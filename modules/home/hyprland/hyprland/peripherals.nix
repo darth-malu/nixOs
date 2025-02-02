@@ -17,7 +17,7 @@ let
         #persistent_warps = true; # maintain cursor position on switch rather than center
         hide_on_key_press = true;
         #warp_on_change_workspace = true; # cursor to last focused window
-        sync_gsettings_theme = true;# on by default
+        # sync_gsettings_theme = true;# on by default
       };
       input = {
         mouse_refocus = false; # default = true, cross window boundary

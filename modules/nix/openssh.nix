@@ -10,7 +10,7 @@
   #   enableSSHSupport = true;
   # };
 
-  systemd.services.sshd.wantedBy = lib.mkOverride 40 [ "multi-user.target" ];
+  # systemd.services.sshd.wantedBy = lib.mkOverride 40 [ "multi-user.target" ];
 
   # programs.ssh.package = pkgs-unstable.openssh;
   services = {
@@ -18,7 +18,7 @@
       enable = true;
       openFirewall = true; # automatically open ports in firewall 
       # package = pkgs-unstable.openssh;
-      startWhenNeeded = false;
+      startWhenNeeded = true;
       # ports = [ 22 443 ]; # 16bit unsigned int
       #ports = [ 22 ]; # 16bit unsigned int
       settings = {

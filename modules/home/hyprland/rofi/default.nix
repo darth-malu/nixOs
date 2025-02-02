@@ -20,7 +20,7 @@
       # icon-theme = "candy icons";
       icon-size = 38;
       hover-select = true;
-      window-format = "{w} {c}   .  {t}";
+      window-format = "{w}{c} .\t{t}";
       display-drun = " "; display-run = " "; display-filebrowser = " "; display-window = " ";
       ml-row-down = "ScrollDown";
       me-select-entry = "MousePrimary";

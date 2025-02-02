@@ -9,8 +9,7 @@
       hashedPassword = "$6$CBR4aPX655swD4cc$ajk7oboxdtZVH5bBF2eQYOCV6Zkg67LFeRKTuMkLjjTjic6xn1.fJGeq03wWkOdiQbZeuoYVjQoMbBmxOM1qt1";# mkpasswd <password> -m SHA-512
       uid = 1000;
       homeMode = "755";
-      # description = "my user lol"; # appears as kde user
-      description = "Darth Malu";
+      description = "Darth Malu"; # appears as kde user
       #shell = [ pkgs.zsh pkgs.nushell ];
       shell = pkgs.bash;
       #useDefaultShell = true;
@@ -28,7 +27,7 @@
         tree
       ];
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMSBfohKDgESEi8FWDnmW4/amgQZJo1t+nOOhqEzJReD malu@carthage"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBpjjsqzxD27CtSdEsp0Ega22sYkY/iMBqMAwmFH6N4R darth-malu@github.com"
       ];
       # openssh.authorizedKeys.keyFiles = [
       #   ./open_key

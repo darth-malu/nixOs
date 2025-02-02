@@ -72,6 +72,21 @@
         ''
       ];
       x = [
+        /*lua*/''
+          {
+            'selectioncount',
+            maxcount = 999,
+            timeout = 120,
+            -- separator = {left = ''},
+          }
+        ''
+      /*lua*/''
+          {
+            "branch",
+            icon = ' •',
+            -- separator = {left = ''}
+          }
+        ''
       /*lua*/''
           {
             -- Lsp server name
@@ -135,14 +150,6 @@
       #separator = { left = '', right = '' }
       #}
       #''
-        /*lua*/''
-          {
-            'selectioncount',
-            maxcount = 999,
-            timeout = 120,
-            -- separator = {left = ''},
-          }
-        ''
         # ''
         #   {
         #     'searchcount',
@@ -151,13 +158,6 @@
         #     separator = {left = ''}
         #   }
         # ''
-      /*lua*/''
-          {
-            "branch",
-            icon = ' •',
-            -- separator = {left = ''}
-          }
-        ''
       ];
       z = [
       /*lua*/''

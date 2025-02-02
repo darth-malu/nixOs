@@ -5,13 +5,13 @@
 # in
 # lib.mkIf osConfig.services.desktopManager.plasma6.enable {
 lib.mkIf osConfig.programs.hyprland.enable {
-  # home.pointerCursor = {
-    # gtk.enable = true; # waybar, gtk apps
+  home.pointerCursor = {
+    gtk.enable = true; # waybar, gtk apps
     # x11.enable = true; #xwayland?
-    # package = pkgs.bibata-cursors; name = "Bibata-Modern-Ice";
-    #package = pkgs.posy-cursors; name = "posy-cursors";
-    # size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
-  # };
+    package = pkgs.bibata-cursors; name = "Bibata-Modern-Ice";
+    # package = pkgs.posy-cursors; name = "posy-cursors";
+    size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
+  };
 
   gtk = {
     enable = true;

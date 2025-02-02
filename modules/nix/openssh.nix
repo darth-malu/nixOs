@@ -12,19 +12,19 @@
 
   systemd.services.sshd.wantedBy = lib.mkOverride 40 [ "multi-user.target" ];
 
-  programs.ssh.package = pkgs-unstable.openssh;
+  # programs.ssh.package = pkgs-unstable.openssh;
   services = {
     openssh = { # sshd.enable alias
       enable = true;
       openFirewall = true; # automatically open ports in firewall 
       # package = pkgs-unstable.openssh;
-      startWhenNeeded = true;
+      startWhenNeeded = false;
       # ports = [ 22 443 ]; # 16bit unsigned int
       #ports = [ 22 ]; # 16bit unsigned int
       settings = {
         #LogLevel = "DEBUG";
         PasswordAuthentication = false; # def: false=require public key auth?
-        PubkeyAuthentication = true;
+        # PubkeyAuthentication = true;
         KbdInteractiveAuthentication = false;
         #AllowUsers = null; # all users::
         PermitRootLogin = "yes"; # Allow password login to the installation, if the user sets a password via "passwd" It is safe as root doesn't have a password by default and SSH is disabled by default

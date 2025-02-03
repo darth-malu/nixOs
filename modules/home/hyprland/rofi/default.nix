@@ -23,12 +23,12 @@
       hover-select = true;
       window-thumbnail = true;
       hide-active-window = true;
-      window-format = "{w}{c} .\t{t}";
+      window-format = "{w}{c} .  {t}";
       display-drun = " "; display-run = " "; display-filebrowser = " "; display-window = " ";
       ml-row-down = "ScrollDown";
       me-select-entry = "";
       me-accept-entry = "MousePrimary";
-      me-accept-custom = "Control+MouseDPrimary";
+      # me-accept-custom = "Control+MouseDPrimary";
       auto-select = true; # When one entry is left, automatically select it.
       monitor = 1; # - currently focused monitor, 2 - currently focused window, 3 - mouse (see more in docs), 4 - monitor with the focused window, 5-monitor with mouse pointer::
       dpi = 1; # 0 - aauto-detect based on x11 screen size(similar to i3 and gtk), 1 - auto based on monitor rofi is on
@@ -37,7 +37,7 @@
       scroll-method = 1; #-0 page::, 1 - continua
       drun-use-desktop-cache =  true; # slow PC, Build and use a cache with the content of desktop files to reload when enabled -> -drun-reload-desktop-cache flag
       # pid = ./rofi.pid; #FIXME:
-      replace = true;
+      # replace = true;
     };
   };
 }

@@ -38,6 +38,17 @@ in
     #   text-color = mkLiteral "@foreground-color";
     # };
 
+    # ┌────────────────────────────────────────────────────────────────────────────────────┐
+    # │ window {BOX:vertical}                                                              │
+    # │ ┌───────────────────────────────────────────────────────────────────────────────┐  │
+    # │ │ mainbox  {BOX:vertical}                                                       │  │
+    # │ │ ┌───────────────────────────────────────────────────────────────────────────┐ │  │
+    # │ │ │ inputbar {BOX:horizontal}                                                 │ │  │
+    # │ │ │ ┌─────────┐ ┌─┐ ┌───────────────────────────────┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐ │ │  │
+    # │ │ │ │ prompt  │ │:│ │ entry                         │ │#fr│ │ / │ │#ns│ │ci │ │ │  │
+    # │ │ │ └─────────┘ └─┘ └───────────────────────────────┘ └───┘ └───┘ └───┘ └───┘ │ │  │
+    # │ │ └───────────────────────────────────────────────────────────────────────────┘ │  │
+
     "#window" = {
       background-color = mkLiteral "@default-background";
       border = 1;
@@ -49,32 +60,45 @@ in
       padding = 8;
     };
 
-      # "#mainbox Packs" = mkLiteral "inputbar, message, listview, mode-switcher";
-      # "#inputbar Packs" = mkLiteral "prompt,entry,case-indicator";
+    # "#mainbox Packs" = mkLiteral "inputbar, message, listview, mode-switcher";
+    # "#inputbar Packs" = mkLiteral "prompt,entry,case-indicator";
+    "#mainbox" = { border =  0; padding = 0; };
 
-      "#mainbox" = {
-          border =  0;
-          padding = 0;
-      };
 
-      # "textbox-custom" = {
-      #   expand = mkLiteral "false";
-      #   content = mkLiteral "My Message";
-      # };
-
-      horibox = {
-        orientation = "horizontal";
-        children = [ "prompt" "entry" "listview" ];
-      };
-
+      # ┌───────────────────────────────────────────────────────────────────────────┐
+      # │ inputbar {BOX:horizontal}                                                 │
+      # │ ┌─────────┐ ┌─┐ ┌───────────────────────────────┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐ │
+      # │ │ prompt  │ │:│ │ entry                         │ │#fr│ │ / │ │#ns│ │ci │ │
+      # │ └─────────┘ └─┘ └───────────────────────────────┘ └───┘ └───┘ └───┘ └───┘ │
+      # └───────────────────────────────────────────────────────────────────────────┘
       "#inputbar" = {
           children = map mkLiteral [ "prompt" "entry" ]; #TODO: investigate case-indicator, prompt , entry
           spacing = 0;
           # border-radius = 4;
           # border = mkLiteral "0 0 1 0";
-          padding = mkLiteral "0 2 0 2";
+          padding = mkLiteral "0 2 0 4";
           # children = mkLiteral "[prompt,entry]";
           # children = mkLiteral "[prompt,entry,overlay,case-indicator]";
+      };
+
+      "#prompt" = {
+          padding = mkLiteral "0 12 0 4";
+          margin = "0 0 0 5";
+      };
+
+      "#entry" = {
+          # background-color: @alternative-background;
+          background-color = mkLiteral "transparent";
+          padding = mkLiteral "1 6 1 6";
+          # border = mkLiteral "0 0 1 0";
+          # border-radius = mkLiteral "2 2 2 2";
+          # border-radius = 4;
+          # placeholder = "Type here"; # works now
+          #  cursor = mkLiteral "text, pointer"
+          cursor = mkLiteral "text";
+          # cursor-color = mkLiteral "rgb(220,20,60)";
+          # cursor-color = mkLiteral "rgba(28,214,206,60%)";
+          cursor-width = mkLiteral "0px"; #8px, 2px::
       };
 
       # right of entry?? what its purpose
@@ -87,35 +111,59 @@ in
           border-radius = mkLiteral "0 2 2 0";
       };
 
-      "#entry" = {
-          # background-color: @alternative-background;
-          children = [ "element-text" "element-icon" ];
+
+      # "textbox-custom" = {
+      #   expand = mkLiteral "false";
+      #   content = mkLiteral "My Message";
+      # };
+
+    # ┌───────────────────────────────────────────────────────────────────────────┐
+    # │ message                                                                   │
+    # │ ┌───────────────────────────────────────────────────────────────────────┐ │
+    # │ │ textbox                                                               │ │
+    # │ └───────────────────────────────────────────────────────────────────────┘ │
+    # └───────────────────────────────────────────────────────────────────────────┘
+      "#message" = {
+          border = 0;
+          border-radius = 3;
+          padding = 5;
+          # background-color = mkLiteral "@alternative-background";
           background-color = mkLiteral "transparent";
-          padding = mkLiteral "1 6 1 6";
-          # border = mkLiteral "0 0 1 0";
-          # border-radius = mkLiteral "2 2 2 2";
-          border-radius = 4;
-          # placeholder = "Type here"; # works now
-          #  cursor = mkLiteral "text, pointer"
-          cursor = mkLiteral "text";
-          # cursor-color = mkLiteral "rgb(220,20,60)";
-          # cursor-color = mkLiteral "rgba(28,214,206,60%)";
-          cursor-width = mkLiteral "0px"; #8px, 2px::
       };
 
-      "#prompt" = {
-          padding = mkLiteral "0 12 0 4";
-          margin = "0 0 0 5";
+      "#textbox" = {
+          # background-color = mkLiteral "@entry-background";
+          background-color = mkLiteral "transparent";
       };
 
+      horibox = {
+        orientation = "horizontal";
+        children = [ "prompt" "entry" "listview" ];
+      };
+
+
+
+      # ┌───────────────────────────────────────────────────────────────────────────┐
+      # │ listview                                                                  │
+      # │ ┌─────────────────────────────────────────────────────────────────────┐   │
+      # │ │ element                                                             │   │
+      # │ │ ┌─────────────────┐ ┌─────────────────────────────────────────────┐ │   │
+      # │ │ │element─icon     │ │element─text                                 │ │   │
+      # │ │ └─────────────────┘ └─────────────────────────────────────────────┘ │   │
+      # │ └─────────────────────────────────────────────────────────────────────┘   │
+      # └───────────────────────────────────────────────────────────────────────────┘
       "#listview" = {
-          # fixed-height = 0;
+          fixed-height = false; # boolean Always show lines rows, even if fewer elements are available.
+          # fixed-columns = true;
           spacing = 4; # distance between elements
           scrollbar = false;
-          # lines = 5; #8
+          lines = 5; #8
+          # columns = 2;
+          # dynamic = true; # True if the size should change when filtering the list, False if it should keep the original height.
           # flow = "horizontal";
           layout = mkLiteral "vertical";
           padding = mkLiteral "2 0 0";
+          
       };
 
       "#element" = { # holds listview - app and icon in list
@@ -124,7 +172,7 @@ in
           border-radius = 2;
           border-color = mkLiteral "@invisible";
           #children = mkLiteral "[ element-text, element-icon ]";
-          children = map mkLiteral [ "element-icon"  "element-text" ];
+          children = map mkLiteral [ "element-icon"  "element-text" ]; #TODO: see map
           spacing = mkLiteral "20px";
           #orientation = mkLiteral "vertical";
           cursor = mkLiteral "pointer";
@@ -170,6 +218,12 @@ in
           border-color =     mkLiteral "@hard-green";
       };
 
+      # ┌───────────────────────────────────────────────────────────────────────────┐
+      # │  mode─switcher {BOX:horizontal}                                           │
+      # │ ┌───────────────┐   ┌───────────────┐  ┌──────────────┐ ┌───────────────┐ │
+      # │ │ Button        │   │ Button        │  │ Button       │ │ Button        │ │
+      # │ └───────────────┘   └───────────────┘  └──────────────┘ └───────────────┘ │
+      # └───────────────────────────────────────────────────────────────────────────┘
       "#mode-switcher" = {
           spacing = 0;
       };
@@ -184,17 +238,41 @@ in
           border-color = mkLiteral "@hard-blue";
       };
 
-      "#message" = {
-          border = 0;
-          border-radius = 3;
-          padding = 5;
-          # background-color = mkLiteral "@alternative-background";
-          background-color = mkLiteral "transparent";
-      };
-
-      "#textbox" = {
-          # background-color = mkLiteral "@entry-background";
-          background-color = mkLiteral "transparent";
-      };
   };
 }
+# ┌────────────────────────────────────────────────────────────────────────────────────┐
+# │ window {BOX:vertical}                                                              │
+# │ ┌───────────────────────────────────────────────────────────────────────────────┐  │
+# │ │ mainbox  {BOX:vertical}                                                       │  │
+# │ │ ┌───────────────────────────────────────────────────────────────────────────┐ │  │
+# │ │ │ inputbar {BOX:horizontal}                                                 │ │  │
+# │ │ │ ┌─────────┐ ┌─┐ ┌───────────────────────────────┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐ │ │  │
+# │ │ │ │ prompt  │ │:│ │ entry                         │ │#fr│ │ / │ │#ns│ │ci │ │ │  │
+# │ │ │ └─────────┘ └─┘ └───────────────────────────────┘ └───┘ └───┘ └───┘ └───┘ │ │  │
+# │ │ └───────────────────────────────────────────────────────────────────────────┘ │  │
+# │ │                                                                               │  │
+# │ │ ┌───────────────────────────────────────────────────────────────────────────┐ │  │
+# │ │ │ message                                                                   │ │  │
+# │ │ │ ┌───────────────────────────────────────────────────────────────────────┐ │ │  │
+# │ │ │ │ textbox                                                               │ │ │  │
+# │ │ │ └───────────────────────────────────────────────────────────────────────┘ │ │  │
+# │ │ └───────────────────────────────────────────────────────────────────────────┘ │  │
+# │ │                                                                               │  │
+# │ │ ┌───────────────────────────────────────────────────────────────────────────┐ │  │
+# │ │ │ listview                                                                  │ │  │
+# │ │ │ ┌─────────────────────────────────────────────────────────────────────┐   │ │  │
+# │ │ │ │ element                                                             │   │ │  │
+# │ │ │ │ ┌─────────────────┐ ┌─────────────────────────────────────────────┐ │   │ │  │
+# │ │ │ │ │element─icon     │ │element─text                                 │ │   │ │  │
+# │ │ │ │ └─────────────────┘ └─────────────────────────────────────────────┘ │   │ │  │
+# │ │ │ └─────────────────────────────────────────────────────────────────────┘   │ │  │
+# │ │ └───────────────────────────────────────────────────────────────────────────┘ │  │
+# │ │                                                                               │  │
+# │ │ ┌───────────────────────────────────────────────────────────────────────────┐ │  │
+# │ │ │  mode─switcher {BOX:horizontal}                                           │ │  │
+# │ │ │ ┌───────────────┐   ┌───────────────┐  ┌──────────────┐ ┌───────────────┐ │ │  │
+# │ │ │ │ Button        │   │ Button        │  │ Button       │ │ Button        │ │ │  │
+# │ │ │ └───────────────┘   └───────────────┘  └──────────────┘ └───────────────┘ │ │  │
+# │ │ └───────────────────────────────────────────────────────────────────────────┘ │  │
+# │ └───────────────────────────────────────────────────────────────────────────────┘  │
+# └────────────────────────────────────────────────────────────────────────────────────┘

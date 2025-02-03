@@ -17,8 +17,8 @@
       "$yazi_term" = "uwsm app -s a -- kitty -1 --instance-group yazi -e yazi";
 
       #"$rofi_open_windows" =  "rofi -show window -theme-str \"window {font: \"quicksand 12\"; width: 55%;}\"";#FIXME: fonts not working with rofi parser
-      "$file_browser_rofi" = "rofi -show filebrowser -sidebar-mode -theme-str 'window {height: 620px; width : 800px;}'";
-      "$rofi_open_windows" =  "rofi -show window -theme-str 'window {width : 800px;}' -theme-str 'listview {dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
+      "$file_browser_rofi" = "rofi -show filebrowser -sidebar-mode -theme-str 'window {height: 620px; width : 800px;}' -theme-str 'element-icon {size: 25px;}'";
+      "$rofi_open_windows" =  "rofi -show window -theme-str 'window {width : 800px;}' -theme-str 'listview {lines: 8; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
           # "-theme-str 'window {width : 800px; fullscreen: true;}" + 
           # " -theme-str 'element {background-image: linear-gradient(white/5%, white/20%);border-color: lightblue /15%;}'";
       "$menu_rofi" = "rofi -show drun -run-command \"uwsm app -s a -- {cmd}\"";
@@ -170,7 +170,7 @@
           "$mod $sl, KP_Insert, movetoworkspace, 10"
 
           "SUPER ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
-          "SUPER ,End,execr, uwsm app waybar" # toggle waybar
+          "SUPER ,End,execr, killall .waybar-wrapped || uwsm app waybar" 
 
           # gaps
           "SUPER $sl,KP_Enter, exec, ~/.darth/scripts/gaps.sh reset"

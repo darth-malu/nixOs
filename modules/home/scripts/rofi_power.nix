@@ -31,6 +31,7 @@ rofi_main() {
     -theme-str 'listview {columns: 1; lines: 5;cycle: true;fixed-height: false;dynamic: false;require-input: false;}' \
     -theme-str 'inputbar {horizontal-align: 0.0; border: 0; children: [ "entry" ];}' \
     -theme-str 'entry {horizontal-align: 0.0; border: 0; blink: false;cursor-color: rgb(220,20,60);cursor-width: 0px;}' \
+    -theme-str 'textbox {horizontal-align: 0.0;}' \
     -theme-str 'message {border: 0;}' \
     -theme-str 'element {orientation: horizontal;}' \
     -i 
@@ -65,12 +66,12 @@ run_rofi() {
   printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n" "$lock" "$logout" "$reboot" "$suspend" "$shutdown" "$timer" "$cancel"| rofi_main
 }
 
-restart_shut_timer_confirm() {
+restart_shut_timer_confirm() {#TODO: make better banner
   rofi -dmenu \
-    -theme-str 'window {columns: 2; fixed-columns: true; dynamic: true; location: center; anchor: center; fullscreen: false; height:160;width: 150; padding:0;margin: 0;border: 0;orientation : vertical;}' \
+    -theme-str 'window {  location: center; anchor: center; fullscreen: false; height:160;width: 150; padding:0;margin: 0;border: 0;orientation : vertical;}' \
     -theme-str 'mainbox {children: [  "listview" ];}' \
-    -theme-str 'listview { lines: 1; cycle: "true"; spacing: 5;orientation : horizontal;}' \
-    -theme-str 'element {lines: 1;horizontal-align: 0.5;border: 1;margin:0;orientation : vertical; anchor: center;padding: 28px 22px 32px 28px;}' \
+    -theme-str 'listview { dynamic: true;columns: 2;fixed-columns : true; lines: 1; cycle: "true"; spacing: 5;orientation : horizontal;}' \
+    -theme-str 'element {horizontal-align: 0.5;border: 1;margin:0; padding: 25px 22px 25px 28px;}' \
     -theme-str 'element-text {font: "JetBrainsMono Nerd Font 32";}' \
     -theme-str 'message {border: 0;}' \
     -theme-str 'textbox {horizontal-align: 0.5;}' \

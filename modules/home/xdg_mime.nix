@@ -20,10 +20,10 @@
           "text/plain" = [ "dev.zed.Zed.desktop" "nvim.desktop"];
           "text/pdf" = [ "zathura.desktop"];
 
-          "image/png" = "viewnior.desktop";
-          "image/jpeg" = "viewnior.desktop";
-          "image/webm" = "viewnior.desktop";
-          "image/webp" = "viewnior.desktop";
+          "image/png" = [ "imv.desktop" "viewnior.desktop" ]; # add logic to check for x11
+          "image/jpeg" = [ "imv.desktop" "viewnior.desktop" ];
+          "image/webm" = [ "imv.desktop" "viewnior.desktop" ];
+          "image/webp" = [ "imv.desktop" "viewnior.desktop" ];
 
           "application/pdf" = "org.pwmt.zathura.desktop";
 

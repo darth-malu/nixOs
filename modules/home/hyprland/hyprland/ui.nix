@@ -101,10 +101,10 @@
       };
 
       dwindle = {
-        pseudotile = true;
-        preserve_split = true;
-        force_split = 0;
-        split_bias = 1; #specifies which window will receive the larger half of a split. positional - 0, current window - 1, opening window - 2 [0/1/2]
+        pseudotile = false;#false:: Pseudotiled windows retain their floating size when tiled.
+        preserve_split = true;#	if enabled, the split (side/top) will not change regardless of what happens to the container.
+        force_split = 0; # 0 -> split follows mouse, 1 -> always split to the left (new = left or top) 2 -> always split to the right (new = right or bottom)
+        # split_bias = 1; #specifies which window will receive the larger half of a split. positional - 0, current window - 1, opening window - 2 [0/1/2]
       };
   };
 }

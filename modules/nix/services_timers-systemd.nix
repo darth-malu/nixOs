@@ -16,10 +16,11 @@
     };
 
     services = {
+          # ${pkgs.coreutils}/bin/echo "Hello Word darth"
       "hello-world" = {
         script = ''
           set -en
-          # ${pkgs.coreutils}/bin/echo "Hello Word darth"
+          notify-send "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
         '';
         serviceConfig = {
           Type = "oneshot";

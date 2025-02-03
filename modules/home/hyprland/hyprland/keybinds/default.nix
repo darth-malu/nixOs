@@ -46,7 +46,7 @@
 
           # rofi
           # drun
-          "$mod, mouse:271, exec, pkill rofi || $menu_rofi"
+          "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
           "$al, space, exec, pkill rofi || $menu_rofi"
           "$mod $al, space, exec, pkill rofi || $file_browser_rofi"
           # "$mod $cl, e, exec, pkill rofi || $emoji_rofi"
@@ -206,8 +206,8 @@
 
       #mouse binds have one less arg
       bindm = [
-        "$mod, mouse:272, movewindow"
-        "$cl, mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
+        "$mod $cl, mouse:272, movewindow"
+        "$mod $cl, mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
       ];
 
       bindel = 

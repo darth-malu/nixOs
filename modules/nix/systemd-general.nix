@@ -1,7 +1,1 @@
-{
-  systemd = {
-    extraConfig = ''
-    DefaultTimeOutStopSec=10s
-    '';
-  };
-}
+{ systemd.extraConfig = '' DefaultTimeOutStopSec=10s ''; }

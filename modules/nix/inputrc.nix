@@ -1,127 +1,125 @@
-{pkgs, ...}:
+{pkgs, ...}: {
+  environment.etc = {
+    "inputrc" = {
+      text = pkgs.lib.mkDefault( pkgs.lib.mkAfter /*bash*/''
+        #$include /etc/Inputrc
 
-{
-      environment.etc = {
-        "inputrc" = {
-         text = pkgs.lib.mkDefault( pkgs.lib.mkAfter ''
+        # experiment
+        # str: text color and background
+        set active-region-start-color \e[01;33m
 
-            #$include /etc/Inputrc
+        # undoes the effect of start-color to normal terminal
+        set active-region-end-color
 
-            # experiment
-            # str: text color and background
-            set active-region-start-color \e[01;33m
+        set completion-display-width 80
 
-            # undoes the effect of start-color to normal terminal
-            set active-region-end-color
+        # - and _ as same if completion-ignore-case is on
+        set completion-map-case on
 
-            set completion-display-width 80
+        # ellipses past char number in common prefix
+        # set completion-prefix-display-length 2
 
-            # - and _ as same if completion-ignore-case is on
-            set completion-map-case on
+        # should be displayed message, possibilities, default 100
+        set completion-query-items 150
 
-            # ellipses past char number in common prefix
-            # set completion-prefix-display-length 2
+        # default on, 8-bit char
+        # set enable-meta-key on
 
-            # should be displayed message, possibilities, default 100
-            set completion-query-items 150
+        # tilde expansion on word completion, def: off
+        # set expand-tilde on
 
-            # default on, 8-bit char
-            # set enable-meta-key on
+        # set print-completions-horizontally on
 
-            # tilde expansion on word completion, def: off
-            # set expand-tilde on
+        # Vi
+        set editing-mode vi
+        set keymap vi-insert
+        set show-mode-in-prompt on
 
-            # set print-completions-horizontally on
+        # 1 - begin , 2 -end
+        # set vi-ins-mode-string (ins)\1\e[6 q\2
+        # set vi-cmd-mode-string (cmd)\1\e[2 q\2
+        # set vi-ins-mode-string \1\e[34;1m\2└──[ins] \1\e[0m\2
+        # set vi-cmd-mode-string \1\e[33;1m\2└──[cmd] \1\e[0m\2
 
-            # Vi
-            set editing-mode vi
-            set show-mode-in-prompt on
+        # set vi-ins-mode-string \1\e[5 q\e]12;pink\a\2
+        set vi-ins-mode-string \1\e[5 q\e]12;green\a\2
+        set vi-cmd-mode-string \1\e[1 q\e]12;orange\a\2
+        # set vi-cmd-mode-string \1\e[1 q\e]12;purple\a\2
 
-            # 1 - begin , 2 -end
-            # set vi-ins-mode-string (ins)\1\e[6 q\2
-            # set vi-cmd-mode-string (cmd)\1\e[2 q\2
-            # set vi-ins-mode-string \1\e[34;1m\2└──[ins] \1\e[0m\2
-            # set vi-cmd-mode-string \1\e[33;1m\2└──[cmd] \1\e[0m\2
+        # if in vi command mode
+        $if mode=vi
+          "\e[D":  backward-char
+          "\M-[C": forward-char
+          "\eh":   backward-char
+          "\M-l":  forward-char
+          "\e[5~": history-search-backward
+          "\e[6~": history-search-forward
+          # C-j - RET - enter for next line instead enter lol best shortcut fr like # alot of conflict eg tmux
+          # "\C-l":"clear\n"
+        $endif
 
-            # set vi-ins-mode-string \1\e[5 q\e]12;pink\a\2
-            set vi-ins-mode-string \1\e[5 q\e]12;green\a\2
-            set vi-cmd-mode-string \1\e[1 q\e]12;orange\a\2
-            # set vi-cmd-mode-string \1\e[1 q\e]12;purple\a\2
-            set keymap vi-insert
+        $if Bash
+          "C-q":  quoted-insert
+          "\e[A": history-search-backward
+          "\e[B": history-search-forward
 
-            $if mode=vi
-              "\e[D":  backward-char
-              "\M-[C": forward-char
-              "\eh":   backward-char
-              "\M-l":  forward-char
-              "C-q":     quoted-insert
-              "\e[5~": history-search-backward
-              "\e[6~": history-search-forward
-              # C-j - RET - enter for next line instead enter lol best shortcut fr like
-              # "\C-l":"clear\n"
-            $endif
+          # prepare to type a quoted word --
+          # insert open and close double quotes
+          # and move to just after the open quote
+          "\C-x\"": "\"\"\C-b"
 
-            $if Bash
-              "\e[A": history-search-backward
-              "\e[B": history-search-forward
+          # Quote the current or previous word
+          "\C-xq": "\eb\"\ef\""
 
-              # prepare to type a quoted word --
-              # insert open and close double quotes
-              # and move to just after the open quote
-              "\C-x\"": "\"\"\C-b"
+          # Add a binding to refresh the line, which is unbound
+          "\C-xr": redraw-current-line
 
-              # Quote the current or previous word
-              "\C-xq": "\eb\"\ef\""
+          # Edit variable on current line.
+          "\M-\C-v": "\C-a\C-k$\C-y\M-\C-e\C-a\C-y="
+        $endif
 
-              # Add a binding to refresh the line, which is unbound
-              "\C-xr": redraw-current-line
+        # Arrow keys in 8 bit keypad mode
+        #
+        #"\M-\C-OD":       backward-char
+        #"\M-\C-OC":       forward-char
+        #"\M-\C-OA":       previous-history
+        #"\M-\C-OB":       next-history
+        #
+        # Arrow keys in 8 bit ANSI mode
+        #
+        #"\M-\C-[D":       backward-char
+        #"\M-\C-[C":       forward-char
+        #"\M-\C-[A":       previous-history
+        #"\M-\C-[B":       next-history
 
-              # Edit variable on current line.
-              "\M-\C-v": "\C-a\C-k$\C-y\M-\C-e\C-a\C-y="
-            $endif
+        set show-all-if-unmodified On # double tab to single tab
+        # complete word, show possible compleetions if still ambiguous
+        set show-all-if-ambiguous On
 
-            # Arrow keys in 8 bit keypad mode
-            #
-            #"\M-\C-OD":       backward-char
-            #"\M-\C-OC":       forward-char
-            #"\M-\C-OA":       previous-history
-            #"\M-\C-OB":       next-history
-            #
-            # Arrow keys in 8 bit ANSI mode
-            #
-            #"\M-\C-[D":       backward-char
-            #"\M-\C-[C":       forward-char
-            #"\M-\C-[A":       previous-history
-            #"\M-\C-[B":       next-history
+        set completion-ignore-case on
 
-            set show-all-if-unmodified On # double tab to single tab
-            # complete word, show possible compleetions if still ambiguous
-            set show-all-if-ambiguous On
+        #security by preventing accidental execution of control characters in text, \e[200~ at the beginning and \e[201~ at the end
+        set enable-bracketed-paste on # fix weird double indent?
 
-            set completion-ignore-case on
+        set echo-control-characters off # control char as symbol rather than command, eg. C-l to clear to work need off
 
-            #security by preventing accidental execution of control characters in text, \e[200~ at the beginning and \e[201~ at the end
-            set enable-bracketed-paste on # fix weird double indent?
+        # Color files by types
 
-            set echo-control-characters off # control char as symbol rather than command, eg. C-l to clear to work need off
+        # Note that this may cause completion text blink in some terminals (e.g. xterm).
+        set colored-stats On #use LS_COLORS
 
-            # Color files by types
+        set visible-stats On # Append char to indicate type
 
-            # Note that this may cause completion text blink in some terminals (e.g. xterm).
-            set colored-stats On #use LS_COLORS
+        set mark-symlinked-directories On
+        set colored-completion-prefix On # color common prefix cmp
+        set menu-complete-display-prefix On
 
-            set visible-stats On # Append char to indicate type
+        # suffix for file type like with ls -F
+        set page-completions off # pager like show of many possible completions
 
-            set mark-symlinked-directories On
-            set colored-completion-prefix On # color common prefix cmp
-            set menu-complete-display-prefix On
-
-            # suffix for file type like with ls -F
-            set page-completions off # pager like show of many possible completions
-
-            '');
-        };
-      };
+        '');
+    };
+  };
 }
 
 # Legend

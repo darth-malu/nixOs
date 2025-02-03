@@ -1,6 +1,6 @@
 {
   wayland.windowManager.hyprland.settings.exec-once = [
-     "systemctl --user enable --now waybar"
+     # "systemctl --user enable --now waybar"
      "systemctl --user enable --now hyprpaper"
      "systemctl --user enable --now hypridle"
      "systemctl --user enable --now hyprpolkitagent.service" #uwsm #"systemctl --user start hyprpolkitagent" # non-uwsm

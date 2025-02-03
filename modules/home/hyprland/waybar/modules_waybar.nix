@@ -4,9 +4,9 @@
   config = lib.mkIf (osConfig.specialisation != {}) {
     programs.waybar = {
       # enable = lib.mkIf config.wayland.windowManager.hyprland.enable true;
-      # enable = lib.mkIf osConfig.programs.hyprland.enable true;
+      enable = lib.mkIf osConfig.programs.hyprland.enable true;
       systemd = {
-          enable = false;
+          enable = true;
           # target = "graphical-session.target";
       };
       style = 

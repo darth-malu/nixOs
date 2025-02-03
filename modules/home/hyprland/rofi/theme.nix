@@ -113,7 +113,7 @@ in
           fixed-height = 0;
           spacing = 4; # distance between elements
           scrollbar = false;
-          lines = 8;
+          lines = 10; #8
           # flow = "horizontal";
           layout = mkLiteral "vertical";
           padding = mkLiteral "2 0 0";

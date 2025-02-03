@@ -46,7 +46,7 @@
 
           # rofi
           # drun
-          # "$mod, P, exec, pkill rofi || $menu_rofi"
+          "$mod, mouse:271, exec, pkill rofi || $menu_rofi"
           "$al, space, exec, pkill rofi || $menu_rofi"
           "$mod $al, space, exec, pkill rofi || $file_browser_rofi"
           # "$mod $cl, e, exec, pkill rofi || $emoji_rofi"

@@ -67,9 +67,59 @@
     #   setupOpts = {
     #   };
     # };
-    # map = { #FIXME: does not work
-    #   enable = true;
-    # };
+    git = {
+      enable = true;
+      setupOpts = {
+        # General CLI execution
+        job = {
+          # Path to Git executable
+          git_executable = "git";
+
+          # Timeout (in ms) for each job before force quit
+          timeout = 30000;
+        };
+
+        # Options for `:Git` command
+        command = {
+          # Default split direction
+          split = "auto";
+        };
+      };
+    };
+    map = { 
+      enable = true;
+        setupOpts = {
+          # Encode symbols. See `:h MiniMap.config` for specification and
+          # `:h MiniMap.gen_encode_symbols` for pre-built ones.
+          # Default: solid blocks with 3x2 resolution.
+          encode = "nil";
+
+          # Scrollbar parts for view and line. Use empty string to disable any.
+          scroll_line = "█";
+          scroll_view = "┃";
+
+          # Window options
+          window = {
+            # Whether window is focusable in normal way (with `wincmd` or mouse)
+            focusable = true;
+
+            # Side to stick ('left' or 'right')
+            side = "right";
+
+            # Whether to show count of multiple integration highlights
+            show_integration_count = true;
+
+            # Total width
+            width = 10;
+
+            # Value of 'winblend' option
+            winblend = 25;
+
+            # Z-index
+            zindex = 10;
+          };
+        };
+    };
     starter = {
       enable = true;
       setupOpts = {};

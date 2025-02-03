@@ -11,7 +11,8 @@
       "uwsm app -s b wl-paste --type image --watch cliphist store "
       "uwsm app -s b wl-paste --type text --watch cliphist store "
 
-      "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" #apps taking long to open
+      "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=Hyprland" #apps taking long to open
+      "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       # "dbus-update-activation-environment --systemd --all"
     ];
 }

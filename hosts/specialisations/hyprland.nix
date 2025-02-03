@@ -41,11 +41,11 @@
     # xdgOpenUsePortal = true; # false:: - use portal for xdg-open. sets NIXOS_XDG_OPEN_USE_PORTAL = 1
     wlr.enable = true; # to share screen
     extraPortals = [
-      # pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gtk
     ];
     configPackages = [
-      # pkgs.xdg-desktop-portal-gtk
-      pkgs-unstable.xdg-desktop-portal
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal
     ];
   };
 }

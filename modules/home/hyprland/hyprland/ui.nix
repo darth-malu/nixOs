@@ -104,6 +104,7 @@
         pseudotile = true;
         preserve_split = true;
         force_split = 0;
+        split_bias = 1; #specifies which window will receive the larger half of a split. positional - 0, current window - 1, opening window - 2 [0/1/2]
       };
   };
 }

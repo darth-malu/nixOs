@@ -18,7 +18,7 @@
 
       #"$rofi_open_windows" =  "rofi -show window -theme-str \"window {font: \"quicksand 12\"; width: 55%;}\"";#FIXME: fonts not working with rofi parser
       "$file_browser_rofi" = "rofi -show filebrowser -sidebar-mode -theme-str 'window {height: 620px; width : 800px;}'";
-      "$rofi_open_windows" =  "rofi -show window -theme-str 'window {height: 620px; width : 800px;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
+      "$rofi_open_windows" =  "rofi -show window -theme-str 'window {width : 800px;}' -theme-str 'listview {dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
           # "-theme-str 'window {width : 800px; fullscreen: true;}" + 
           # " -theme-str 'element {background-image: linear-gradient(white/5%, white/20%);border-color: lightblue /15%;}'";
       "$menu_rofi" = "rofi -show drun -run-command \"uwsm app -s a -- {cmd}\"";
@@ -79,7 +79,7 @@
 
           # Workspaces
           "$mod $cl, Return,workspace ,emptym"
-          "$mod, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch size 80% 80%;dispatch centerwindow 1\""
+          "$mod, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
           
           "$mod, KP_Divide, togglesplit" # dwindle
           "$mod, KP_Multiply, pseudo"# dwindle

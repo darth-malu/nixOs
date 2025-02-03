@@ -21,6 +21,8 @@
       # icon-theme = "candy icons";
       icon-size = 58;
       hover-select = true;
+      window-thumbnail = true;
+      hide-active-window = true;
       window-format = "{w}{c} .\t{t}";
       display-drun = " "; display-run = " "; display-filebrowser = " "; display-window = " ";
       ml-row-down = "ScrollDown";

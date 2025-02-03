@@ -41,13 +41,12 @@ in
     "#window" = {
       background-color = mkLiteral "@default-background";
       border = 1;
-      width = 400; # %, px
-      height = 300;
+      width = 470; # %, px
+      # height = 400;
       # columns = 2;
       border-radius = 6;
       border-color = mkLiteral "@default-border";
       padding = 8;
-      # width = 500px;
     };
 
       # "#mainbox Packs" = mkLiteral "inputbar, message, listview, mode-switcher";
@@ -110,17 +109,17 @@ in
       };
 
       "#listview" = {
-          fixed-height = 0;
+          # fixed-height = 0;
           spacing = 4; # distance between elements
           scrollbar = false;
-          lines = 10; #8
+          # lines = 5; #8
           # flow = "horizontal";
           layout = mkLiteral "vertical";
           padding = mkLiteral "2 0 0";
       };
 
       "#element" = { # holds listview - app and icon in list
-          padding = 5;
+          padding = 8;
           border = mkLiteral "0 1 0 1";
           border-radius = 2;
           border-color = mkLiteral "@invisible";
@@ -133,7 +132,7 @@ in
 
       "#element-icon" = {
           # size: 2.5em;# 
-          size = mkLiteral "20px";
+          size = mkLiteral "25px";
           cursor = mkLiteral "pointer";
       };
 

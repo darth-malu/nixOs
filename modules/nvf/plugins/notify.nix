@@ -8,6 +8,7 @@
       render = "compact"; #one of “default”, “minimal”, “simple”, “compact”, “wrapped-compact” or (luaInline)
       stages = "fade_in_slide_out"; # “fade_in_slide_out”, “fade”, “slide”, “static”
       timeout = 1000; # 1000::
+      fps = 60;
     };
   };
 }

@@ -17,7 +17,6 @@
     ./scripts
     ./yazi
     ./kitty
-    # ./wezterm
     # ./nixvim
     # ./helix
     # core hyprland functionality

@@ -24,7 +24,7 @@
       # appimage-run # for appiamges to run
       clinfo # verify OpenCl
       #cpufrequtils
-      lshw efibootmgr file ripgrep fd fzf curl dash procs exfat
+      lshw efibootmgr file ripgrep fd curl dash procs exfat
       #glib
       #gsettings-qt
       killall

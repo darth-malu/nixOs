@@ -58,6 +58,7 @@
         "noborder,class:^(Xdg-desktop-portal-gtk)$,title:^(All Files)$" # for chrome weird menus clear border
 
         "workspace emptym, initialClass:^(discord)$, initialTitle:^(.*)(Discord)$"
+        "workspace emptym, initialClass:^(vesktop)$, initialTitle:^(.*)(DIscord)$"
         "workspace emptym silent, class:^(discord)$, title:(Discord Updater)"
 
         "size 80% 80%, initialClass:^(Viewnior)$"

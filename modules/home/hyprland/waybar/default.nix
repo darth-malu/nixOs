@@ -22,7 +22,7 @@
           modules-center = [];
           modules-left = [
             "hyprland/workspaces"
-            # "hyprland/window"
+            "hyprland/window"
           ];
           modules-right = if osConfig.networking.hostName == "tangier" then [
             "group/resize_network"
@@ -75,14 +75,17 @@
             icon-size = 17;
             separate-outputs = true;
             cursor = true;
-            #max-length = 50;
+            on-scroll-up = "hyprctl dispatch workspace m-1"; # m- monitor, e -all open, r- m+empty
+            on-scroll-down = "hyprctl dispatch workspace m+1";
+            max-length = 50;
             rewrite = {
               "(.*) — Mozilla Firefox" = "$1";
               "(.*) — Zen Browser" = "$1";
               "(.*) - Chromium" = "$1";
               "(.*)~" = "$1";
               # "v(.*)" = "  $1";
-              "v(.*)" = "  $1";
+              # "v(.*)" = "  $1";
+              "v." = "  $1";
               "v" = "$1";
             };
           };

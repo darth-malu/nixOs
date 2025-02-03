@@ -11,7 +11,7 @@
     # jq #cli json processor
     wev
     tldr
-    glib # for treesitter?
+    qalculate-qt
 
     #dotool kdotool wtype
     dotool
@@ -320,18 +320,28 @@
       enableBashIntegration = true; #true::
       tmux = {
         enableShellIntegration = true;
-        shellIntegrationOptions = [ "-d 40%" ]; #TODO: see more
+        # shellIntegrationOptions = [ "-d 40%" ]; #TODO: see more # fzf-tmux --help
+        shellIntegrationOptions = [ "-p 50%,80%" ];
       };
       colors = {
-        bg = "#1e1e1e";
-        "bg+" = "#1e1e1e";
-        fg = "#d4d4d4";
-        "fg+" = "#d4d4d4";
+        # bg = "#1e1e1e";
+        bg = "#93E1D8";
+        "bg+" = "#93E1D8";# current line
+        fg = "#93E1D8"; # text
+        # "fg+" = "#d4d4d4";# text current line
+        "fg+" = "#DA4167";# text current line
       };
       defaultCommand = "fd --type f";
-      defaultOptions = [
-        "--height 40%"
+      defaultOptions = [#FZF_DEFAULT_OPTS
+        "--height 90%"
         "--border"
+        # "--border none"
+        # "--layout reverse"
+        # "--tmux center,60%,50%  --layout reverse" #--tmux is silently ignored when you're not on tmux.# reverse, reverse-list
+        # "--style minimal"
+        # "--cycle"
+        # "--gap 1"
+        # "--scroll-off=4"
       ];
       changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"]; #M-c binding
       changeDirWidgetCommand = "fd --type d";

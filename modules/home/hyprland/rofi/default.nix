@@ -19,7 +19,7 @@
       kb-secondary-paste = "Control+v,Insert";
       # kb-toggle-case-sensitivity #TODO: assign later
       # icon-theme = "candy icons";
-      icon-size = 38;
+      icon-size = 58;
       hover-select = true;
       window-format = "{w}{c} .\t{t}";
       display-drun = " "; display-run = " "; display-filebrowser = " "; display-window = " ";
@@ -34,7 +34,8 @@
       # no-lazy-grab = true; # Disables lazy grab, this forces the keyboard being grabbed before gui is shown.
       scroll-method = 1; #-0 page::, 1 - continua
       drun-use-desktop-cache =  true; # slow PC, Build and use a cache with the content of desktop files to reload when enabled -> -drun-reload-desktop-cache flag
-      pid = ./rofi.pid; replace = true;
+      # pid = ./rofi.pid; #FIXME:
+      replace = true;
     };
   };
 }

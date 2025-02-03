@@ -12,7 +12,7 @@
       NIXOS_OZONE_WL = "1";
       # For packages that dont yet support the above
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
-      SUDO_PROMPT = "$(tput setaf 199 bold)$(tput sgr0) "; # 219
+      SUDO_PROMPT = "$(tput setaf 199 bold) $(tput sgr0) "; # 219
     };
   };
   # };

@@ -21,8 +21,11 @@
       };
       workspaces = [
         { name = "personal"; path = "/home/malu/obsidianVaults/personal"; }
-        { name = "work"; path = "/home/malu/obsidianVaults/work"; }
+        { name = "code"; path = "/home/malu/obsidianVaults/code"; }
+        { name = "nixOs"; path = "/home/malu/obsidianVaults/nixOs"; }
       ];
+      # Optional, set to true to force ':ObsidianOpen' to bring the app to the foreground.
+      open_app_foreground = false;
         # mappings = {
         #   # Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
         #   ["gf"] = {

@@ -5,10 +5,10 @@
     programs.waybar = {
       # enable = lib.mkIf config.wayland.windowManager.hyprland.enable true;
       enable = lib.mkIf osConfig.programs.hyprland.enable true;
-      systemd = {
-          enable = true;
+      # systemd = {
+          # enable = true; # clashes with uwsm?
           # target = "graphical-session.target";
-      };
+      # };
       style = 
         if osConfig.networking.hostName == "carthage"
           then import ./css_waybar-carthage.nix
@@ -22,7 +22,7 @@
           modules-center = [];
           modules-left = [
             "hyprland/workspaces"
-            # "hyprland/window"
+            "hyprland/window"
           ];
           modules-right = if osConfig.networking.hostName == "tangier" then [
             "group/resize_network"

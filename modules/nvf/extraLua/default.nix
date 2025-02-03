@@ -7,6 +7,7 @@
     # ./custom_gruv.lua # working
     #./custom_lualine.lua
     ./custom_tokyoMalu.lua
+    ./obsidian-nvim+.lua
   ];
 
 }

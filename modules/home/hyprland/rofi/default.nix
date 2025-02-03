@@ -13,22 +13,22 @@
     #terminal = ;
     #yoffset = 3;
     extraConfig = {
+      # rofi -e "my message"
       # modi = "drun,emoji,ssh";
       modes = [ "window"  "drun" "filebrowser" ];
       kb-primary-paste = "Control+V,Shift+Insert";
       kb-secondary-paste = "Control+v,Insert";
       # kb-toggle-case-sensitivity #TODO: assign later
       # icon-theme = "candy icons";
-      icon-size = 58;
+      # icon-size = 58;
       hover-select = true;
       window-thumbnail = true;
-      hide-active-window = true;
+      # hide-active-window = true;
       window-format = "{w}{c} .  {t}";
-      display-drun = " "; display-run = " "; display-filebrowser = " "; display-window = " "; display-dmenu = " ";
+      display-drun = " "; display-run = " "; display-filebrowser = " "; display-window = " "; #
       ml-row-down = "ScrollDown";
       me-select-entry = "";
       me-accept-entry = "MousePrimary";
-      # me-accept-custom = "Control+MouseDPrimary";
       auto-select = true; # When one entry is left, automatically select it.
       monitor = 2; # 1 - currently focused monitor, 2 - currently focused window, 3 - mouse (see more in docs), 4 - monitor with the focused window, 5-monitor with mouse pointer::
       # dpi = 1; # 0 - aauto-detect based on x11 screen size(similar to i3 and gtk), 1 - auto based on monitor rofi is on

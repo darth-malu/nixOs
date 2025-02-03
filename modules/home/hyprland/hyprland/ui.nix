@@ -37,18 +37,19 @@
           enabled = true;
           size = 2;#2,,
           passes = 3;#2,,
+          xray = true; #if enabled, floating windows will ignore tiled windows in their blur. Only available if new_optimizations is true. Will reduce overhead on floating blur significantly.
           # vibrancy = 0.1696; #0.1696::, [0.0-1.0] saturation of blurred colours
         };
 
-
-        rounding = 5;
+        rounding = 5;# 5, 0::
         rounding_power = 4.0; # 2.0::, larger is smoother, 2 is circle, 4 is squircle [2.0-10.0]
         active_opacity = 1;
         # inactive_opacity = 0.95;
-        dim_special = 0.8; # 0.0 - 1.0
-        dim_around = 0.7; # dimaround rule
-        # dim_strength = 0.8;
+        dim_special = 0.7; # 0.0 - 1.0
+        dim_around = 0.4; # dimaround rule
+        # dim_strength = 0.8; # how much inactive windows should be dimmed [0.0 - 1.0]
         dim_inactive = false;
+        # screen_shader
       };
 
       animations = {
@@ -102,7 +103,7 @@
 
       dwindle = {
         pseudotile = false;#false:: Pseudotiled windows retain their floating size when tiled.
-        preserve_split = true;#	if enabled, the split (side/top) will not change regardless of what happens to the container.
+        preserve_split = true;#	if enabled, the split (side/top) will not change regardless of what happens to the container. #TODO: test to restore float to usual size
         force_split = 0; # 0 -> split follows mouse, 1 -> always split to the left (new = left or top) 2 -> always split to the right (new = right or bottom)
         # split_bias = 1; #specifies which window will receive the larger half of a split. positional - 0, current window - 1, opening window - 2 [0/1/2]
       };

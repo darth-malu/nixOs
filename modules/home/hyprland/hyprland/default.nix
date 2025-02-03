@@ -10,14 +10,22 @@
     # ./plugins.nix
   ];
 
+  #This module configures Hyprland and adds it to your user’s PATH, but does not make certain system-level changes. NixOS users should enable the NixOS module with programs.hyprland.enable, which makes system-level changes such as adding a desktop session entry.
   wayland.windowManager.hyprland = {
     enable = lib.mkDefault true;
+    xwayland.enable = true; #true::
+    # portalPackage = pkgs.xdg-desktop-portal-hyprland; # pkgs.xdg-desktop-portal-hyprland:: || null or pkg
+    # package = null; # use nixOs module in hm config #FIXME: throws error
     # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     # xwayland.enable = true;
+    # sourceFirst = true; #true::
     systemd = {
       enable = false; # import to systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE
       # enableXdgAutostart = true;
-      # extraCommands = []; # extra commands to run after dbus activation
+      extraCommands = [# Extra commands to be run after D-Bus activation.
+        # "systemctl --user stop hyprland-session.target"
+        # "systemctl --user start hyprland-session.target"
+      ];
       variables = [ # imported to systemd dbus enviroments
         # "SLURP_ARGS, -d -b -B F050F022 -b 10101022 -c ff00ff"
         # "HYPRCURSOR_THEME,hypr_Bibata-Modern-Ice"

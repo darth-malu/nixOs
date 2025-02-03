@@ -17,7 +17,7 @@
       "$yazi_term" = "uwsm app -s a -- kitty -1 --instance-group yazi -e yazi";
 
       #"$rofi_open_windows" =  "rofi -show window -theme-str \"window {font: \"quicksand 12\"; width: 55%;}\"";#FIXME: fonts not working with rofi parser
-      "$file_browser_rofi" = "rofi -show filebrowser -sidebar-mode -theme-str 'window {height: 620px; width : 800px;}' -theme-str 'element-icon {size: 25px;}'";
+      "$file_browser_rofi" = "rofi -show filebrowser -sidebar-mode -theme-str 'window {height: 620px; width : 800px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
       "$rofi_open_windows" =  "rofi -show window -theme-str 'window {width : 800px;}' -theme-str 'listview {lines: 8; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
           # "-theme-str 'window {width : 800px; fullscreen: true;}" + 
           # " -theme-str 'element {background-image: linear-gradient(white/5%, white/20%);border-color: lightblue /15%;}'";
@@ -54,14 +54,14 @@
           # "$mod $cl, e, exec, pkill rofi || $emoji_rofi"
           # "$mod $cl, m, exec, pkill rofi || $calc_rofi"
           # "$mod $cl, p, exec, pkill rofi || $obsidian"
-          "$mod $cl, h, exec, pkill rofi || $clip_rofi"
+          "$mod , Escape, exec, pkill rofi || $clip_rofi"
 
           # open windows
           "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
           "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
           # hyprpicker
-          "$mod $al, H, exec, hyprpicker -an"
+          "$mod $al, C, exec, hyprpicker -an"
           "$mod $al, R, exec, $formated_rgba"
 
           # power menu
@@ -120,7 +120,7 @@
 
           # move to empty
           "$mod , o, movetoworkspace, emptym"
-          "$mod $sl, o, movetoworkspacesilent, emptym"
+          # "$mod $sl, o, movetoworkspacesilent, emptym"
 
 
           #█▀▀ █▀█ █▀▀ █░█ █▀
@@ -180,13 +180,16 @@
           # "$mod $sl,left, movecurrentworkspacetomonitor, l"
           # "$mod $sl,right, movecurrentworkspacetomonitor, r"
 
-          "$mod $sl,l, movecurrentworkspacetomonitor, HDMI-A-1"
-          "$mod $sl,h, movecurrentworkspacetomonitor, DP-3"
+          "$mod $al,l, movecurrentworkspacetomonitor, HDMI-A-1"
 
+          "$mod $cl,h, movecurrentworkspacetomonitor, DP-3"
 
-          "$mod $sl, j, swapactiveworkspaces, HDMI-A-1 DP-3"
+          "$mod $sl,l, movecurrentworkspacetomonitor, 0"
+          "$mod $sl,h, movecurrentworkspacetomonitor, 1"
+
+          "$mod $sl, o, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\""
           # "$mod $sl,l, focusmonitor, HDMI-A-1"
-          "$mod $sl,k, focusmonitor, +1"
+          "$mod $sl, k, focusmonitor, +1"
           # "$mod $sl,h, focusmonitor, DP-3"
         ]
         ++ (

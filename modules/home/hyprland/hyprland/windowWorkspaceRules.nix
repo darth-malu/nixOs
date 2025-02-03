@@ -15,8 +15,8 @@
         "float, title:^(Media viewer)$"
         "float, title:^(Volume Control)$"
         "float, title:^(Picture-in-Picture)$"
-        "center, floating:1"
-        "size 75% 80%, floating:1"
+        "centerwindow, floating:1"
+        "size 75% 80%, floating:1" # exact screen size... can use only window size also x% y%
         "size 75% 80%, ^(Sign in)(.*)$"
 
         #"size 1160 960, title:^(Volume Control)$"
@@ -50,6 +50,7 @@
         "workspace emptym, class:^(Chromium-browser)$"
         "workspace emptym, google-chrome"
         "workspace emptym, obsidian"
+        "workspace emptym, spotube"
       ];
 
       windowrulev2 = [
@@ -82,6 +83,11 @@
 
         "special:easy, easyeffects"
       ];
+    layerrule = [
+      "dimaround, rofi"
+      "blur, hyprpaper"
+      # "blur, waybar"
+    ];
 
     }; # EOM
 }

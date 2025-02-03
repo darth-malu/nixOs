@@ -18,8 +18,12 @@
   # BIND
   # bind-key -n C-p previous-window
   # bind-key -n C-n next-window
-  bind-key -n M-j previous-window
-  bind-key -n M-k next-window
+  # bind-key -n M-Left previous-window
+  # bind-key -n M-Right next-window
+  bind-key -n M-h previous-window
+  bind-key -n M-l next-window
+  bind-key -n M-n new-window
+  bind-key -n M-q kill-window
   # bind-key -n C-Tab next-window
   # bind-key -n C-S-Tab previous-window
   # bind-key -n M-S-l select-window -t :+  # Next window (Meta+Shift+L)

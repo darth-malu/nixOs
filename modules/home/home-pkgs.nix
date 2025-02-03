@@ -317,14 +317,24 @@
         enableShellIntegration = true;
         shellIntegrationOptions = [ "-p 50%,60%" ]; #-d 40% #TODO: see more # fzf-tmux --help
       };
-      colors = {
+      colors = {#https://github.com/junegunn/fzf/wiki/Color-schemes
         # bg = "#1e1e1e";
         bg = "#022223";
-        "bg+" = "#9381ff";# current line
+        "bg+" = "#9381ff";# current line background plus associated border
         # fg = "#93E1D8"; # text
-        fg = "#9400FF"; # text
+        # fg = "#4ED4BC"; # text
+        fg = "#4ED4BC"; # text
+        # fg = "#9400FF"; # text , results but not current line
         # "fg+" = "#d4d4d4";# text current line
-        "fg+" = "#DA4167";# text current line, ~matched_text
+        # "fg+" = "#DA4167";# text current line, ~matched_text
+        "fg+" = "#FCFCFC";# text current line, ~matched_text
+        "gutter" =  "#022223";
+        "hl" = "#0FA3B1"; # highlighted substrings
+        # "hl+" = "#F1DEDE"; # highlighted substrings(current line)
+        "hl+" = "#F7567C"; # highlighted substrings(current line)
+        # "preview-fg" = "";
+        # "preview-bg" = "";
+        "pointer" = "#4F345A";
       };
       defaultCommand = "fd --type f";
       defaultOptions = [#FZF_DEFAULT_OPTS

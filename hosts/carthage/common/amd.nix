@@ -4,7 +4,8 @@
     graphics = {# hardware accel
         enable = true;
         #enable32Bit = true;
-        package = lib.mkIf config.programs.hyprland.enable inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers; # pkgs-unstable.mesa.drivers
+        # package = lib.mkIf config.programs.hyprland.enable inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers; # pkgs-unstable.mesa.drivers
+        package = pkgs-unstable.mesa.drivers;
         extraPackages = with pkgs-unstable; [# add vulkan, vaapi/vdpau etc
           amdvlk 
         #rocmPackages.clr.icd # opencl

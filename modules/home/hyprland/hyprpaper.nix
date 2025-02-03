@@ -3,6 +3,7 @@
 {
   services.hyprpaper = {
     enable = true;
+    # importantPrefixes = [];#TODO: make cleaner with this
     settings = {
       ipc = true; #true::
       splash = true;

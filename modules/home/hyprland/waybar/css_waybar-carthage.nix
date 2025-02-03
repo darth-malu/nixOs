@@ -51,7 +51,7 @@ window#waybar.empty {
 }
 
 window#waybar.hidden {
-    opacity: 0.2;
+    opacity: 0.4; /*0.2*/
 }
 
 #submap, #submap.resize {

@@ -33,18 +33,7 @@
 
   };
 
-  # systemd.services.mpd.environment = {
-  #   # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
-  #   XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.malu.uid}"; # User-id must match above user. MPD will look inside this directory for the PipeWire socket.
-  # };
-  #
-  # services = {
-  #   mpd = {
-  #     #user = "mpd";
-  #     enable = true;
-  #     user = "malu";
-  #   };
-
+  services = {
     pipewire = {
       enable = true;
       pulse.enable = true;
@@ -81,7 +70,7 @@
       # appimage-run # for appiamges to run
       clinfo # verify OpenCl
       #cpufrequtils
-      lshw efibootmgr file ripgrep fd curl dash procs exfat
+      lshw efibootmgr curl dash procs
       #glib
       #gsettings-qt
       killall
@@ -93,7 +82,8 @@
       jmtpfs # mtp drivers
       pciutils #lspci
       util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
-      kitty bc lsd tldr xdg-user-dirs xdg-utils # xdg-open, xdg-mime, xdg-desktop-menu/icon
+      kitty bc tldr
+      xdg-user-dirs xdg-utils # xdg-open, xdg-mime, xdg-desktop-menu/icon #TODO: see if needed
       dotool  # test if working
     ])
     ++

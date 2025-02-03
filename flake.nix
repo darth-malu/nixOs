@@ -35,7 +35,7 @@
     # nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland"; # with cachix
 
     # python-nixpkgs.url = "github:nixos/nixpkgs/4ae2e647537bcdbb82265469442713d066675275";
 

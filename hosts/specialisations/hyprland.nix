@@ -2,7 +2,7 @@
 
 {
   programs =  {
-    xwayland.enable = true; # needed for waybar dynamic bg, but waybar does not autostart
+    # xwayland.enable = true; # needed for waybar dynamic bg, but waybar does not autostart
     hyprland = { # required even with homeManager for system functions -> xdg, session files
       enable = true; # also enables XDPH
       withUWSM = lib.mkDefault true;

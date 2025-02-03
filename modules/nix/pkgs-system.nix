@@ -2,10 +2,67 @@
 
 {
   programs = {
-    dconf.enable = true;
+    # dconf.enable = false;
+      bash = {
+        completion.enable = true;
+        promptInit = import ./PS1.nix;
+        enableLsColors = true;
+        #blesh.enable = true;
+        undistractMe = { #ISSUES
+         enable = false;
+          timeout = 30; #seconds
+          playSound = false;#TODO: can this be improved??
+        };
+        # shell init
+        # loginShellInit = /*bash*/ ''
+        #   if uwsm check may-start; then
+        #     # exec uwsm start -s hyprland-uwsm.desktop
+        #     exec uwsm start hyprland-uwsm.desktop
+        #     # exec uwsm start -S hyprland.desktop
+        #     # exec uwsm start hyprland-systemd.desktop
+        #   fi
+        # '';
+        # shellInit = /*bash*/ ''
+        #   if uwsm check may-start && uwsm select; then
+        #     exec systemd-cat -t uwsm_start uwsm start default
+        #   fi
+        # '';
+        # interactiveShellInit = /*bash*/ ''
+        # '';
+      };
+
+  };
+
+  systemd.services.mpd.environment = {
+    # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
+    XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.malu.uid}"; # User-id must match above user. MPD will look inside this directory for the PipeWire socket.
   };
 
   services = {
+    mpd = {
+      #user = "mpd";
+      enable = true;
+      user = "malu";
+    };
+
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = false; # check if needed
+      };
+      wireplumber.enable = true;
+      #extraConfig.pipewire."92-low-latency" = {
+        #"context.properties" = {
+        #"default.clock.rate" = 48000;
+        #"default.clock.quantum" = 32;
+        #"default.clock.min-quantum" = 32;
+        #"default.clock.max-quantum" = 32;
+        #};
+      #};
+    };
+
     gvfs.enable = true;
     locate = { enable = true; };
     fstrim = { enable = true; interval = "weekly"; };

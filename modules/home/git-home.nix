@@ -1,9 +1,6 @@
-# {pkgs-unstable, ... }:
 {
-  #services.ssh-agent.enable = true;
   programs.git = {#NOTE: with openssh
     enable = true;
-    # package = pkgs-unstable.git;
     userName = "darth malu"; #darth-malu
     userEmail = "darth-malu@github.com";
     ignores = ["*.swp"];

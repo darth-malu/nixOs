@@ -1,5 +1,4 @@
 {pkgs, lib, inputs, pkgs-unstable, ...}:
-
 {
   imports = [# flaked apps
     inputs.nyaa.homeManagerModule
@@ -18,7 +17,6 @@
     #calc
 
     #glow #md preview
-
     #aria2#NOTE: learn
     #pkgs-unstable.qbittorrent
     qbittorrent
@@ -100,7 +98,7 @@
   #     ffmpeg
      spotube
      superfile kdePackages.dolphin
-   ]);
+]);
 
   programs = {
     # Let Home Manager install and manage itself.
@@ -317,21 +315,21 @@
       enableBashIntegration = true; #true::
       tmux = {
         enableShellIntegration = true;
-        # shellIntegrationOptions = [ "-d 40%" ]; #TODO: see more # fzf-tmux --help
-        shellIntegrationOptions = [ "-p 50%,80%" ];
+        shellIntegrationOptions = [ "-p 50%,60%" ]; #-d 40% #TODO: see more # fzf-tmux --help
       };
       colors = {
         # bg = "#1e1e1e";
-        bg = "#93E1D8";
-        "bg+" = "#93E1D8";# current line
-        fg = "#93E1D8"; # text
+        bg = "#022223";
+        "bg+" = "#9381ff";# current line
+        # fg = "#93E1D8"; # text
+        fg = "#9400FF"; # text
         # "fg+" = "#d4d4d4";# text current line
-        "fg+" = "#DA4167";# text current line
+        "fg+" = "#DA4167";# text current line, ~matched_text
       };
       defaultCommand = "fd --type f";
       defaultOptions = [#FZF_DEFAULT_OPTS
-        "--height 90%"
-        "--border"
+        # "--height 90%"
+        # "--border"
         # "--border none"
         # "--layout reverse"
         # "--tmux center,60%,50%  --layout reverse" #--tmux is silently ignored when you're not on tmux.# reverse, reverse-list

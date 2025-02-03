@@ -2,13 +2,14 @@
 
 {
   imports = [
-    ./pkgs+services-home.nix
+    # ./home-pkgs.nix
+    ./pkgs_home.nix
     #./plasmaManager.nix
     ./tmux
     ./mpv
     ./zed-editor.nix
     ./xdg_mime.nix
-    ./bash-home
+    ./bash
     ./yt-dlp.nix
     ./git-home.nix
     #./sddm_theme.nix
@@ -17,6 +18,7 @@
     ./scripts
     ./yazi
     ./kitty
+    ./textEditor
     # ./nixvim
     # ./helix
     # core hyprland functionality
@@ -30,7 +32,7 @@
     #   ( mkIf config.wayland.windowManager.hyprland.enable {import} ) 
     # ]
     ./hyprland
-    ./theming.nix
+    ./themes.nix
     # ./sync_thing.nix
   ] else []);
 }

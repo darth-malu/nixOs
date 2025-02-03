@@ -2,15 +2,10 @@
 
 {
     services.mpd = {
-      #user = "mpd";
       enable = true;
-      #user = "malu";
-      #group = "mpd";
       musicDirectory = "/home/malu/Music/";
-      # playlistDirectory =  "/home/malu/.local/share/mpd/playlistDirectory";
-      playlistDirectory =  "/home/malu/Music/playlistUnion";
-      #dataDir = "/home/malu/.local/ncmpcppDataDir/";
-      dataDir = "/home/malu/.local/share/mpd";
+      playlistDirectory =  "/home/malu/Music/playlistUnion";#"/home/malu/.local/share/mpd/playlistDirectory"
+      dataDir = "/home/malu/.local/share/mpd"; #"/home/malu/.local/ncmpcppDataDir/"
       dbFile = "/home/malu/.local/share/mpd/db";
 
       extraConfig = ''
@@ -42,8 +37,7 @@
 
       network = {
         port = 6600;
-        #listenAddress = "any";
-        listenAddress = "127.0.0.1";
+        listenAddress = "127.0.0.1"; #any
         startWhenNeeded = true;
       };
 

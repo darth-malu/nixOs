@@ -2,12 +2,10 @@
 
 {
   imports = [
-    # ./home-pkgs.nix
-    ./pkgs_home.nix
+    ./home-pkgs.nix
     #./plasmaManager.nix
     ./tmux
     ./mpv
-    ./zed-editor.nix
     ./xdg_mime.nix
     ./bash
     ./yt-dlp.nix

@@ -47,7 +47,7 @@ window#waybar.solo {
 window#waybar.empty {
     border-bottom: 0px solid #ffffff;
     background-color: rgba(23 ,39 ,41, 0);
-    opacity: 0.;
+    /* opacity: 0.5; */
 }
 
 window#waybar.hidden {

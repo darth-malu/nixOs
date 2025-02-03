@@ -1,6 +1,6 @@
 {
   imports = [
-    ./pkgs-system.nix
+    ./system-pkgs.nix
     ./fonts.nix
     ./inputrc.nix
     ./openssh.nix

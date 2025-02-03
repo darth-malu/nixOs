@@ -2,7 +2,7 @@
 
 {
   programs =  {
-    xwayland.enable = true;
+    # xwayland.enable = true;
     hyprland = { # required even with homeManager for system functions -> xdg, session files
       enable = true; # also enables XDPH
       withUWSM = lib.mkDefault true;

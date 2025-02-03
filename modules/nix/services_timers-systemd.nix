@@ -15,7 +15,7 @@
       };
     };
 
-    services = {
+    services = {#FIXME: does not seemm to be working?
           # ${pkgs.coreutils}/bin/echo "Hello Word darth"
       "hello-world" = {
         script = ''

@@ -21,7 +21,7 @@
           modules-center = [];
           modules-left = [
             "hyprland/workspaces"
-            "hyprland/window"
+            # "hyprland/window"
           ];
           modules-right = if osConfig.networking.hostName == "tangier" then [
             "group/resize_network"

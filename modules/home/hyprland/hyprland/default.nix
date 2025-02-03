@@ -12,8 +12,8 @@
 
   wayland.windowManager.hyprland = {
     enable = lib.mkDefault true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    xwayland.enable = true;
+    # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    # xwayland.enable = true;
     systemd = {
       enable = false; # import to systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE
       # enableXdgAutostart = true;

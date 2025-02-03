@@ -3,9 +3,10 @@
 {
   config = lib.mkIf (osConfig.specialisation != {}) {
     programs.waybar = {
-      enable = lib.mkIf osConfig.programs.hyprland.enable true;
+      # enable = lib.mkIf osConfig.programs.hyprland.enable true;
+      enable = true;
       systemd = {
-          # enable = true; # clashes with uwsm?
+          enable = true; # clashes with uwsm?
           # target = "graphical-session.target";
       };
       style = 

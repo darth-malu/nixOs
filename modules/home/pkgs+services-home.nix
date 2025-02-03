@@ -23,6 +23,7 @@
     #aria2#NOTE: learn
     #pkgs-unstable.qbittorrent
     qbittorrent
+    lazygit
 
     # archive
     zip xz unzip p7zip

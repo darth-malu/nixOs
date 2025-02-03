@@ -54,8 +54,8 @@
 
     settings = {
       misc = {
-        # font_family = "JetBrainsMono Nerd Font";
-        font_family = "quicksand";
+        font_family = "JetBrainsMono Nerd Font";
+        # font_family = "quicksand";
         # force_default_wallpaper = if osConfig.networking.hostName == "carthage" then "0" else "1"; #anime mascot wallpapers
         force_default_wallpaper = 0; # -1 random, 2 (anime), 0/1 - disable anime
         vfr = true; # lower the amount of sent frames when nothing is happening on-screen.
@@ -85,7 +85,7 @@
         #persistent_warps = true; # maintain cursor position on switch rather than center
         hide_on_key_press = true;
         #warp_on_change_workspace = true; # cursor to last focused window
-        #sync_gsettings_theme = true;# on by default
+        #sync_gsettings_theme = true;# true::
       };
 
       binds = {

@@ -1,4 +1,4 @@
-{pkgs, inputs, pkgs-unstable, ...}:
+{pkgs, lib, inputs, pkgs-unstable, ...}:
 
 {
   imports = [# flaked apps
@@ -8,7 +8,6 @@
   home.packages = with pkgs; [
     # neovimConf.neovim
     #inputs.nixvim-config.packages.${system}.default #no options lol
-    file ripgrep fd fzf
     # jq #cli json processor
     wev
     tldr
@@ -31,11 +30,9 @@
     #rofimoji bemoji
     hyprpicker hyprcursor
 
-    #yazi
-    # eza
-    lsd
     sway-audio-idle-inhibit
     taskwarrior3 taskwarrior-tui
+    file ripgrep  
     lsof #list open files/ports**
     usbutils # lsusb, usb-devices, usb-view(optional gui)
     pciutils #lspci
@@ -51,7 +48,7 @@
     # Socials
     telegram-desktop
     #whatsapp-for-linux
-    discord-ptb
+    discord discordo webcord vesktop parrot
 
     # browser
     chromium qutebrowser microsoft-edge lynx google-chrome
@@ -117,6 +114,232 @@
       enableBashIntegration = true;
       options = [
         "--cmd cd"
+      ];
+    };
+
+    comodoro = {
+      enable = true;
+    };
+
+    lsd = {
+      enable = true;
+      enableAliases = true;
+      colors = {#$XDG_CONFIG_HOME/lsd/colors.yaml
+        icons = {
+          extension = {
+            go = "";
+            hs = "";
+          };
+          filetype = {
+            dir = "📂";
+            file = "📄";
+          };
+          name = {
+            ".cargo" = "";
+            ".trash" = "";
+          };
+        };
+        size = {
+          large = "dark_yellow";
+          none = "grey";
+          small = "yellow";
+        };
+        settings = {
+          date = "relative";
+          ignore-globs = [
+            ".git"
+            ".hg"
+          ];
+        };
+      };
+    };
+
+    eza = {
+      enable = true;
+    };
+
+    fd = {
+      enable = true;
+      hidden = true;
+      ignores = [".git" "*.bak" ];
+      extraOptions = [# extra options to pass to fd
+        "--no-ignore"
+        "--absolute-path"
+      ];
+    };
+
+    freetube = {
+      enable = true;
+      package = pkgs-unstable.freetube;
+      settings = {
+        allowDashAv1Formats = true;
+        checkForUpdates     = false;
+        defaultQuality      = "1080";
+        baseTheme           = "catppuccinMocha";
+      };
+    };
+
+    fastfetch = {
+      enable = true;
+      package = pkgs-unstable.fastfetch;
+      settings = { # $XDG_CONFIG_HOME/fastfetch/config.jsonc
+        logo = {
+          source = "nixos_small";
+          padding = {
+            right = 1;
+          };
+        };
+        display = {
+          size = {
+            binaryPrefix = "si";
+          };
+          color = "blue";
+          separator = "  ";
+        };
+        modules = [
+          {
+            type = "datetime";
+            key = "Date";
+            format = "{1}-{3}-{11}";
+          }
+          {
+            type = "datetime";
+            key = "Time";
+            format = "{14}:{17}:{20}";
+          }
+          "break"
+          "player"
+          "media"
+        ];
+      };
+    };
+
+    git-credential-oauth = {
+      enable = true;
+      extraFlags = [
+        "-device"
+      ];
+      package = pkgs-unstable.git-credential-oauth;
+    };
+
+    imv = {
+      enable = true;
+      settings = {
+        options.background = "ffffff";
+        aliases.x = "close";
+      };
+    };
+
+    # helix = {
+    #   enable = true;
+    #   extraPackages = [pkgs.marksman];
+    #   # defaultEditor = true;
+    #   settings = {
+    #     theme = "autumn_night_transparent";
+    #     editor.cursor-shape = {
+    #       normal = "block";
+    #       insert = "bar";
+    #       select = "underline";
+    #       line-number = "relative";
+    #       lsp.display-messages = true;
+    #     };
+    #     keys.normal = {
+    #       space = {
+    #         space = "file_picker";
+    #         w = ":w";
+    #         q = ":q";
+    #       };
+    #       esc = [ "collapse_selection" "keep_primary_selection" ];
+    #     };
+    #   };
+    #   languages.language = [{
+    #     name = "nix";
+    #     auto-format = true;
+    #     # formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+    #     formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
+    #   }];
+    #   themes = {
+    #     autumn_night_transparent = {
+    #       "inherits" = "autumn_night";
+    #       "ui.background" = { };
+    #     };
+    #   };
+    # };
+
+    wezterm = {
+      enable = true;
+      package = pkgs-unstable.wezterm;
+      enableBashIntegration = true;
+      colorSchemes = { #$XDG_CONFIG_HOME/wezterm/colors
+        myCoolTheme = {
+          ansi = [
+            "#222222" "#D14949" "#48874F" "#AFA75A"
+            "#599797" "#8F6089" "#5C9FA8" "#8C8C8C"
+          ];
+          brights = [
+            "#444444" "#FF6D6D" "#89FF95" "#FFF484"
+            "#97DDFF" "#FDAAF2" "#85F5DA" "#E9E9E9"
+          ];
+          background = "#1B1B1B";
+          cursor_bg = "#BEAF8A";
+          cursor_border = "#BEAF8A";
+          cursor_fg = "#1B1B1B";
+          foreground = "#BEAF8A";
+          selection_bg = "#444444";
+          selection_fg = "#E9E9E9";
+        };
+      };
+        extraConfig = /*lua*/''
+          -- Your lua code / config here
+          local mylib = require 'mylib';
+          return {
+            usemylib = mylib.do_fun();
+            font = wezterm.font("JetBrains Mono"),
+            font_size = 16.0,
+            color_scheme = "Tomorrow Night",
+            hide_tab_bar_if_only_one_tab = true,
+            default_prog = { "zsh", "--login", "-c", "tmux attach -t dev || tmux new -s dev" },
+            keys = {
+              {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
+            }
+          }
+        '';
+    };
+
+    ssh = {
+      enable = true;
+      # controlPersist = "10m"; # whether control socket should remain open in background
+      # extraConfig = "";
+      extraOptionOverrides = { # extra SSH config that take precedence over any host specific config
+      # forwardAgent = true; #false:: , Whether the connection to the authentication agent (if any) will be forwarded to the remote machine.
+      };
+    };
+
+    fzf = {
+      enable = true;
+      enableBashIntegration = true; #true::
+      tmux = {
+        enableShellIntegration = true;
+        shellIntegrationOptions = [ "-d 40%" ]; #TODO: see more
+      };
+      colors = {
+        bg = "#1e1e1e";
+        "bg+" = "#1e1e1e";
+        fg = "#d4d4d4";
+        "fg+" = "#d4d4d4";
+      };
+      defaultCommand = "fd --type f";
+      defaultOptions = [
+        "--height 40%"
+        "--border"
+      ];
+      changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"]; #M-c binding
+      changeDirWidgetCommand = "fd --type d";
+      fileWidgetCommand = "fd --type f"; #C-t
+      fileWidgetOptions = ["preview 'head {}"];
+      historyWidgetOptions = [
+        "--sort"
+        "--exact"
       ];
     };
 
@@ -256,7 +479,6 @@
     # };
 
     btop.enable = true;
-    fastfetch.enable = true;
     bashmount.enable = true;
     nyaa.enable = true;
     # nix-index.enable = false;

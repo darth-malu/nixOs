@@ -8,6 +8,7 @@
     enableBashIntegration = true;
     keymap = import ./keymap.nix;
     theme = import ./theme.nix;
+    shellWrapperName = "y"; # yy::
     plugins = import ./plugins.nix;
     settings = {
       manager = {

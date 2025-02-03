@@ -2,11 +2,14 @@
 
 {
   programs =  {
-    xwayland.enable = true;
+    xwayland = {
+      enable = true; #false::
+      package = pkgs-unstable.xwayland;
+    };
     hyprland = { # required even with homeManager for system functions -> xdg, session files
       enable = true; # also enables XDPH
       withUWSM = lib.mkDefault true;
-      xwayland.enable = true; # true::
+      # xwayland.enable = true; # true::
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
@@ -39,14 +42,14 @@
   };
   xdg.portal = {
     enable = true;
-    xdgOpenUsePortal = true; # false:: - use portal for xdg-open. sets NIXOS_XDG_OPEN_USE_PORTAL = 1
+    # xdgOpenUsePortal = true; # false:: - use portal for xdg-open. sets NIXOS_XDG_OPEN_USE_PORTAL = 1
     wlr.enable = true; # to share screen
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
     configPackages = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal
+      # pkgs.xdg-desktop-portal
     ];
   };
 }

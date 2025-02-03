@@ -34,8 +34,8 @@
     # nix-index-database.url = "github:nix-community/nix-index-database";
     # nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
-    #hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    # hyprland.url = "github:hyprwm/Hyprland";
 
     # python-nixpkgs.url = "github:nixos/nixpkgs/4ae2e647537bcdbb82265469442713d066675275";
 
@@ -72,8 +72,7 @@
       };
     in
     {
-      # NVF
-      packages.${system}.my-neovim = neovimConf.neovim;
+      packages.${system}.my-neovim = neovimConf.neovim; # NVF
 
       nixosConfigurations = {
         carthage = 

@@ -46,6 +46,17 @@
       #separator = { left = '', right = '' },
       #}
       #''
+      #/*lua*/''
+      #{
+      #"buffers",
+      #show_filename_only = true,
+      #hide_filename_extension = true,
+      #show_modified_status = true,
+      #mode = 0, --0 buffer name, 1 - index, 2 - name + index, 3 - number, 4 - name + number
+      #max_length = vim.o.columns * 2 / 3,
+      #use_mode_colors = false,
+      #}
+      #''
       ];
       c = [
       #/*lua*/''
@@ -158,20 +169,30 @@
         #     separator = {left = ''}
         #   }
         # ''
-      ];
-      z = [
       /*lua*/''
           {
             "fileformat",
-            color = {fg='black'},
+            -- color = {fg='black'},
             symbols = {
               unix = '', -- e712
               dos = '',  -- e70f
               mac = '',  -- e711
             },
-            separator = {left = ' '}
           }
         ''
+      ];
+      z = [
+      /*lua*/''
+      {
+        "",
+        draw_empty = true,
+        separator = {
+          -- left = '',
+          left = ' ',
+          -- right = ''
+        }
+      }
+      ''
       #/*lua*/''
       #{
       #"",
@@ -180,19 +201,16 @@
       #}
       #''
       ''
-          {
-            "progress",
-            -- separator = {left = ''}
-            -- separator = {left = ''}
-            -- separator = {left = ' '}
-          }
-        ''
-        ''
-          {
-            "location"
-            -- separator = {right = ' '}
-          }
-        ''
+        {
+          "progress",
+          -- separator = {left = ''}
+        }
+      ''
+      ''
+        {
+          "location"
+        }
+      ''
       ];
     };
   };

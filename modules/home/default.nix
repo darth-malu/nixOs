@@ -11,10 +11,6 @@
     ./bash-home
     ./yt-dlp.nix
     ./git-home.nix
-    # ./rofi_old.nix
-    #inputs.wayland-pipewire-idle-inhibit.homeModules.default
-    # ./wayland-pipewire-idle-inhibit.nix
-
     #./sddm_theme.nix
 
     # folders

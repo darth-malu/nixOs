@@ -4,7 +4,7 @@
   programs =  {
     xwayland = {
       enable = true; #false::
-      package = pkgs-unstable.xwayland;
+      # package = pkgs-unstable.xwayland;
     };
     hyprland = { # required even with homeManager for system functions -> xdg, session files
       enable = true; # also enables XDPH
@@ -49,7 +49,7 @@
     ];
     configPackages = [
       pkgs.xdg-desktop-portal-gtk
-      # pkgs.xdg-desktop-portal
+      pkgs.xdg-desktop-portal
     ];
   };
 }

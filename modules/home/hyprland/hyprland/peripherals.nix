@@ -59,11 +59,12 @@ let
         force_zero_scaling = true;
       };
       input = {
-        mouse_refocus = false; # default = true, cross window boundary
+        mouse_refocus = true; # default = true, cross window boundary for focus to change
         kb_layout = "us";
         numlock_by_default = true;
         kb_options = "caps:swapescape";
         follow_mouse = 1; # 2- cursor detached from keyboard foocus, 1- cursor+keyboard focus,3 - completely detach,click wont change focus,0-cursor movement will not change focus
+        focus_on_close = 0; # 0 - next::, 1 - under cursor
         special_fallthrough= true; # floating will not block focus to regular workspace
         float_switch_override_focus = 2; # 2 - follow_mouse on switch; #TODO: test further
         # scroll_factor = 1.2;

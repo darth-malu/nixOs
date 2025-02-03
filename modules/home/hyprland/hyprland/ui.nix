@@ -30,6 +30,14 @@
           enabled = true;
           size = 2;#2,,
           passes = 3;#2,,
+          # vibrancy = 0.1696; #0.1696::, [0.0-1.0] saturation of blurred colours
+        };
+
+        snap = {
+          enabled = true;
+          window_gap = 10;
+          monitor_gap = 10;
+          border_overlap = true; #false::, if true one borders worth btwn windows
         };
 
         rounding = 5;

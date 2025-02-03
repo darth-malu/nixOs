@@ -2,15 +2,16 @@
   wayland.windowManager.hyprland.settings = {
       general = {
         "col.active_border" = "rgba(00FFF5aa)";
-        gaps_in = 6;
+        gaps_in = 6; gaps_out = 12;
         #gaps_in = 6;
         #gaps_out = 12;
-        gaps_out = 12;
         border_size = 1;
+        resize_on_border = false; # false::
         layout = "dwindle";
         allow_tearing = false;
         no_border_on_floating = true;
         hover_icon_on_border = true;
+        no_focus_fallback = true; #false, will not fall back to the next available window when moving focus in a direction where no window was found
       };
 
       decoration = {
@@ -41,6 +42,7 @@
         };
 
         rounding = 5;
+        rounding_power = 4.0; # 2.0::, larger is smoother, 2 is circle, 4 is squircle [2.0-10.0]
         active_opacity = 1;
         # inactive_opacity = 0.95;
         dim_special = 0.8; # 0.0 - 1.0

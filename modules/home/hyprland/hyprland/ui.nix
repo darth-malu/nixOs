@@ -12,6 +12,12 @@
         no_border_on_floating = true;
         hover_icon_on_border = true;
         no_focus_fallback = true; #false, will not fall back to the next available window when moving focus in a direction where no window was found
+        snap = {
+          enabled = true;
+          window_gap = 10;
+          monitor_gap = 10;
+          border_overlap = true; #false::, if true one borders worth btwn windows
+        };
       };
 
       decoration = {
@@ -34,12 +40,6 @@
           # vibrancy = 0.1696; #0.1696::, [0.0-1.0] saturation of blurred colours
         };
 
-        snap = {
-          enabled = true;
-          window_gap = 10;
-          monitor_gap = 10;
-          border_overlap = true; #false::, if true one borders worth btwn windows
-        };
 
         rounding = 5;
         rounding_power = 4.0; # 2.0::, larger is smoother, 2 is circle, 4 is squircle [2.0-10.0]

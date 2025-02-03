@@ -2,14 +2,14 @@
 
 {
   programs =  {
-    xwayland = {
-      enable = true; #false::
+    # xwayland = {
+      # enable = true; #false::
       # package = pkgs-unstable.xwayland;
-    };
+    # };
     hyprland = { # required even with homeManager for system functions -> xdg, session files
       enable = true; # also enables XDPH
       withUWSM = lib.mkDefault true;
-      # xwayland.enable = true; # true::
+      xwayland.enable = true; # true::
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };

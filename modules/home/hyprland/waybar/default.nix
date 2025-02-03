@@ -5,10 +5,10 @@
     programs.waybar = {
       enable = lib.mkIf osConfig.programs.hyprland.enable true;
       # enable = true;
-      systemd = {
-          enable = true; # clashes with uwsm?
-          target = "graphical-session.target"; # config.wayland.systemd.target::
-      };
+      # systemd = {
+          # enable = true; # clashes with uwsm?
+          # target = "graphical-session.target"; # config.wayland.systemd.target::
+      # };
       style = 
         if osConfig.networking.hostName == "carthage"
           then import ./css_waybar-carthage.nix

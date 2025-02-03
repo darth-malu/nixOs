@@ -11,7 +11,7 @@
     # jq #cli json processor
     wev
     tldr
-    qalculate-qt
+    # qalculate-qt # #FIXME:for rofi?
 
     #dotool kdotool wtype
     dotool
@@ -25,7 +25,7 @@
     lazygit
 
     # archive
-    zip xz unzip p7zip
+    # zip xz unzip p7zip
 
     #rofimoji bemoji
     hyprpicker hyprcursor
@@ -55,11 +55,8 @@
     bluemail
     # blueman
 
-    # dev
-    meld
+    # meld
     #zed-editor
-    # jetbrains.pycharm-community-bin
-    #unstable.python39Packages.poetry
 
     # alt can use flake or shell.nix
     #(python313.withPackages (ps: with ps; [
@@ -102,7 +99,7 @@
       #(ffmpeg.override { withXcb = true;  })
   #     ffmpeg
      spotube
-     superfile
+     superfile kdePackages.dolphin
    ]);
 
   programs = {

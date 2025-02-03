@@ -37,7 +37,7 @@ window#waybar {
 window#waybar.kitty {
   background-color: rgba(49,50,68,0.7);
   background-color: rgba(8 ,41 ,41, 0.75);
-  background-color: rgba(8 ,41 ,41, 0.7);
+  background-color: rgba(8 ,41 ,41, 0.8);
 }
 
 window#waybar.solo {
@@ -47,6 +47,7 @@ window#waybar.solo {
 window#waybar.empty {
     border-bottom: 0px solid #ffffff;
     background-color: rgba(23 ,39 ,41, 0);
+    opacity: 0.;
 }
 
 window#waybar.hidden {
@@ -78,6 +79,11 @@ button:hover {
 
 #workspaces {
     padding:0px;
+    margin-right: 16px;
+}
+
+#workspaces.kitty {
+    padding:10px;
     margin-right: 16px;
 }
 

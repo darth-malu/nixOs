@@ -2,10 +2,7 @@
 
 pkgs.writers.writeDashBin "rofi_power"
 ''
-
-# uptime="$(uptime -p | sed -e 's/up //g')"
-# Use printf to format the uptime string nicely (optional)
-printf -v formatted_uptime "Uptime: %s" "$uptime_string"
+upt="$(uptime | awk '{print $1}')"
 
 shutdown="$(printf '⏻     Shutdown')"
 reboot="$(printf '     Reboot')"
@@ -25,17 +22,17 @@ no='  no'
 rofi_main() {
   #-p "" \height:250px;
   rofi -dmenu \
-    -p "$uptime_string" \
-    -theme-str 'window {location: west;  width: 220px; padding: 0; margin: 0;}' \
+    -p "$upt" \
+    -theme-str 'window {location: west;  width: 500px; padding: 0; margin: 0;}' \
     -theme-str 'mainbox {children: [ "message","inputbar", "listview" ];}' \
-    -theme-str 'listview {columns: 1; lines: 5;cycle: true;fixed-height: false;dynamic: false;require-input: false;}' \
+    -theme-str 'listview {columns: 1; lines: 5;cycle: true;}' \
     -theme-str 'inputbar {horizontal-align: 0.0; border: 0; children: [ "entry" ];}' \
     -theme-str 'entry {horizontal-align: 0.0; border: 0; blink: false;cursor-color: rgb(220,20,60);cursor-width: 0px;}' \
-    -theme-str 'textbox {horizontal-align: 0.0;}' \
     -theme-str 'message {border: 0;}' \
     -theme-str 'element {orientation: horizontal;}' \
+    -theme-str 'element-text {horizontal-align: 0.0;vertical-align: 0.5;}' \
     -i 
-  # -theme-str 'element-text {horizontal-align: 0.0;vertical-align: 0.5;}' \
+# -theme-str 'textbox {horizontal-align: 0.0;}' \
     #-mesg "$uptime" \
         #-theme-str 'element-icon { orientation: vertical;}' \
             #-theme-str 'mainbox {children: [ "message", "listview", "inputbar" ];}' 

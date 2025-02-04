@@ -1,15 +1,12 @@
 {
   description = "abstracT nixConfig";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable.url";
-    # nixpkgs.url = "nixpkgs/nixos-24.11"; nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "https://github.com/NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "nixpkgs/nixos-24.11" || nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     yazi.url = "github:sxyazi/yazi";
 
-    # home-manager = {
-    #   url = "github:nix-community/home-manager/release-24.11";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -51,15 +48,13 @@
 
   };
 
-  outputs = {nixpkgs,nixpkgs-unstable, ...}@inputs:
+  outputs = {nixpkgs ,...}@inputs:
     let
       system = "x86_64-linux"; # system = builtins.currentSystem;??
       neovimConf = inputs.nvf.lib.neovimConfiguration {
         inherit (nixpkgs.legacyPackages.${system}) pkgs;
         modules = [ ./modules/nvf];
       };
-      # pkgs-unstable = nixpkgs-unstable.legacyPackages.${system}; #confirm syntax
-      # pkgs = nixpkgs.legacyPackages.${system};
       pkgs = import nixpkgs {#TODO: see if legacyPackages can be used instead 
         inherit  system;
         config = {

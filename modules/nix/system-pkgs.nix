@@ -1,4 +1,4 @@
-{pkgs,  config, pkgs-unstable,...}:
+{pkgs,  config,...}:
 
 {
   programs = {
@@ -85,14 +85,16 @@
       kitty bc tldr
       xdg-user-dirs xdg-utils # xdg-open, xdg-mime, xdg-desktop-menu/icon #TODO: see if needed
       dotool  # test if working
-    ])
-    ++
-    (with pkgs-unstable; [
-      #waybar
       micro
       spotube
-      # davinci-resolve
     ])
+    # ++
+    # (with pkgs-unstable; [
+      #waybar
+      # micro
+      # spotube
+      # davinci-resolve
+    # ])
     ++
     (if config.programs.hyprland.enable
         then with pkgs; [

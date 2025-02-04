@@ -1,4 +1,3 @@
-{lib, pkgs-unstable, ...}:
 {
   # programs.ssh = {
   #   package = pkgs-unstable.openssh;

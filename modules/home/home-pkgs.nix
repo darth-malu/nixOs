@@ -1,4 +1,4 @@
-{pkgs, lib, inputs, pkgs-unstable, ...}:
+{pkgs, inputs,...}:
 {
   imports = [# flaked apps
     inputs.nyaa.homeManagerModule
@@ -165,7 +165,7 @@
 
     freetube = {
       enable = true;
-      package = pkgs-unstable.freetube;
+      # package = pkgs-unstable.freetube;
       settings = {
         allowDashAv1Formats = true;
         checkForUpdates     = false;
@@ -176,7 +176,7 @@
 
     fastfetch = {
       enable = true;
-      package = pkgs-unstable.fastfetch;
+      # package = pkgs-unstable.fastfetch;
       settings = { # $XDG_CONFIG_HOME/fastfetch/config.jsonc
         logo = {
           source = "nixos_small";
@@ -214,7 +214,7 @@
       extraFlags = [
         "-device"
       ];
-      package = pkgs-unstable.git-credential-oauth;
+      # package = pkgs-unstable.git-credential-oauth;
     };
 
     imv = {
@@ -263,7 +263,7 @@
 
     wezterm = {
       enable = true;
-      package = pkgs-unstable.wezterm;
+      # package = pkgs-unstable.wezterm;
       enableBashIntegration = true;
       colorSchemes = { #$XDG_CONFIG_HOME/wezterm/colors
         myCoolTheme = {

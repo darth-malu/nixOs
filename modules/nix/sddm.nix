@@ -1,4 +1,4 @@
-{lib,pkgs-unstable,...}:
+{lib,...}:
 
 {
   services.displayManager = {

@@ -1,5 +1,3 @@
-# {pkgs-unstable, ...}:
-
 {
   programs.yt-dlp = {
     enable = true;

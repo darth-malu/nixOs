@@ -1,4 +1,4 @@
-{pkgs, pkgs-unstable, ...}:
+{pkgs,...}:
 {
   home.packages = with pkgs; [
     grimblast slurp viewnior vlc cliphist

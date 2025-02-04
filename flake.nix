@@ -81,6 +81,7 @@
             specialArgs = { inherit inputs pkgs system; };
             modules = [
               ./hosts/carthage/default.nix
+              # nixpkgs.nixosModules.readOnlyPkgs
               {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
               inputs.home-manager.nixosModules.home-manager { # is this analogous to <home-manager/nixos> from docs # remove need for shell instantiation...get from flake TODO: split hyrland on laptop vs pc
                 home-manager = {
@@ -89,7 +90,7 @@
                   users.malu = import ./modules/home.nix;
                   useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
                   useUserPackages = false; # if false ... uses nix-profile for home apps
-                  extraSpecialArgs = { inherit pkgs inputs system; };
+                  extraSpecialArgs = { inherit inputs system; };
                 };
               }
             ];
@@ -109,7 +110,7 @@
                 users.malu = import ./modules/home.nix;
                 useGlobalPkgs = true; # dont use private instance of pkgs which is the default
                 useUserPackages = false; # if false ... uses nix-profile for home apps
-                extraSpecialArgs = { inherit pkgs inputs system; };
+                extraSpecialArgs = { inherit  inputs system; };
               };
             }
           ];

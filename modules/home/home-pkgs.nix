@@ -27,6 +27,7 @@
 
     #rofimoji bemoji
     hyprpicker hyprcursor
+    swaybg
 
     sway-audio-idle-inhibit
     taskwarrior3 taskwarrior-tui
@@ -54,7 +55,6 @@
     # blueman
 
     # meld
-    #zed-editor
 
     # alt can use flake or shell.nix
     #(python313.withPackages (ps: with ps; [
@@ -93,7 +93,7 @@
     # onlyoffice-bin
   ]
      ++
-   (with pkgs-unstable; [
+   (with pkgs; [
       #(ffmpeg.override { withXcb = true;  })
   #     ffmpeg
      spotube
@@ -179,7 +179,7 @@
       # package = pkgs-unstable.fastfetch;
       settings = { # $XDG_CONFIG_HOME/fastfetch/config.jsonc
         logo = {
-          source = "nixos_small";
+          source = "#nixos_small"; #nixos_small #nixos_old
           padding = {
             right = 1;
           };
@@ -189,22 +189,45 @@
             binaryPrefix = "si";
           };
           color = "blue";
-          separator = "  ";
+          # separator = "  ";
+          separator = " ";
         };
         modules = [
+          # "os"
           {
-            type = "datetime";
-            key = "Date";
-            format = "{1}-{3}-{11}";
+            "type" = "os";
+            "key" = "DISTRO";
+            "keyColor" = "red";
           }
-          {
-            type = "datetime";
-            key = "Time";
-            format = "{14}:{17}:{20}";
-          }
+          # {
+          #   type = "datetime";
+          #   key = "Date";
+          #   format = "{1}-{3}-{11}";
+          # }
+          # {
+          #   type = "datetime";
+          #   key = "Time";
+          #   format = "{14}:{17}:{20}";
+          # }
           "break"
           "player"
-          "media"
+          # "media"
+          {
+            "type" = "media";
+            "key" = "NOW PLAYING";
+            "format" = "{?artist}{artist} - {?}{title}";
+            "keyColor" = "cyan";
+          }
+          "break"
+          {
+            "type" = "display";
+            "key" = "MONITOR ({name})";
+            "keyColor" = "blue";
+            # "format" = "{width}x{height} @ {refresh-rate} Hz - {physical-width}x{physical-height} mm ({inch} inches, {ppi} ppi)";
+            "format" = "{width}x{height} @ {refresh-rate} Hz";
+          }
+          "uptime"
+          "packages"
         ];
       };
     };
@@ -225,41 +248,41 @@
       };
     };
 
-    # helix = {
-    #   enable = true;
-    #   extraPackages = [pkgs.marksman];
-    #   # defaultEditor = true;
-    #   settings = {
-    #     theme = "autumn_night_transparent";
-    #     editor.cursor-shape = {
-    #       normal = "block";
-    #       insert = "bar";
-    #       select = "underline";
-    #       line-number = "relative";
-    #       lsp.display-messages = true;
-    #     };
-    #     keys.normal = {
-    #       space = {
-    #         space = "file_picker";
-    #         w = ":w";
-    #         q = ":q";
-    #       };
-    #       esc = [ "collapse_selection" "keep_primary_selection" ];
-    #     };
-    #   };
-    #   languages.language = [{
-    #     name = "nix";
-    #     auto-format = true;
-    #     # formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
-    #     formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
-    #   }];
-    #   themes = {
-    #     autumn_night_transparent = {
-    #       "inherits" = "autumn_night";
-    #       "ui.background" = { };
-    #     };
-    #   };
-    # };
+    helix = {
+      enable = true;
+      extraPackages = [pkgs.marksman];
+      # defaultEditor = true;
+      settings = {
+        theme = "autumn_night_transparent";
+        editor.cursor-shape = {
+          normal = "block";
+          insert = "bar";
+          select = "underline";
+          line-number = "relative";
+          lsp.display-messages = true;
+        };
+        keys.normal = {
+          space = {
+            space = "file_picker";
+            w = ":w";
+            q = ":q";
+          };
+          esc = [ "collapse_selection" "keep_primary_selection" ];
+        };
+      };
+      languages.language = [{
+        name = "nix";
+        auto-format = true;
+        # formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+        formatter.command = pkgs.lib.getExe pkgs.nixfmt-rfc-style;
+      }];
+      themes = {
+        autumn_night_transparent = {
+          "inherits" = "autumn_night";
+          "ui.background" = { };
+        };
+      };
+    };
 
     wezterm = {
       enable = true;
@@ -289,16 +312,16 @@
           local mylib = require 'mylib';
           return {
             usemylib = mylib.do_fun();
-            font = wezterm.font("JetBrains Mono"),
-            font_size = 16.0,
-            color_scheme = "Tomorrow Night",
-            hide_tab_bar_if_only_one_tab = true,
-            default_prog = { "zsh", "--login", "-c", "tmux attach -t dev || tmux new -s dev" },
+            font = wezterm.font("JetBrains Mono");
+            font_size = 16.0;
+            color_scheme = "Tomorrow Night";
+            hide_tab_bar_if_only_one_tab = true;
+            default_prog = { "zsh"; "--login"; "-c"; "tmux attach -t dev || tmux new -s dev" };
             keys = {
-              {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
+              {key="n"; mods="SHIFT|CTRL"; action="ToggleFullScreen"};
             }
           }
-        '';
+        '';#FIXME: fix this
     };
 
     ssh = {
@@ -306,7 +329,7 @@
       # controlPersist = "10m"; # whether control socket should remain open in background
       # extraConfig = "";
       extraOptionOverrides = { # extra SSH config that take precedence over any host specific config
-      # forwardAgent = true; #false:: , Whether the connection to the authentication agent (if any) will be forwarded to the remote machine.
+      # forwardAgent = true; #false:: ; Whether the connection to the authentication agent (if any) will be forwarded to the remote machine.
       };
     };
 
@@ -315,7 +338,7 @@
       enableBashIntegration = true; #true::
       tmux = {
         enableShellIntegration = true;
-        shellIntegrationOptions = [ "-p 50%,60%" ]; #-d 40% #TODO: see more # fzf-tmux --help
+        shellIntegrationOptions = [ "-p 50%;60%" ]; #-d 40% #TODO: see more # fzf-tmux --help
       };
       colors = {#https://github.com/junegunn/fzf/wiki/Color-schemes
         # bg = "#1e1e1e";
@@ -324,14 +347,15 @@
         # fg = "#93E1D8"; # text
         # fg = "#4ED4BC"; # text
         fg = "#4ED4BC"; # text
-        # fg = "#9400FF"; # text , results but not current line
+        # fg = "#9400FF"; # text ; results but not current line
         # "fg+" = "#d4d4d4";# text current line
-        # "fg+" = "#DA4167";# text current line, ~matched_text
-        "fg+" = "#FCFCFC";# text current line, ~matched_text
-        "gutter" =  "#022223";
+        # "fg+" = "#DA4167";# text current line; ~matched_text
+        "fg+" = "#FCFCFC";# text current line; ~matched_text
+        # "gutter" =  "#022223";
         "hl" = "#0FA3B1"; # highlighted substrings
         # "hl+" = "#F1DEDE"; # highlighted substrings(current line)
-        "hl+" = "#F7567C"; # highlighted substrings(current line)
+        # "hl+" = "#F7567C"; # highlighted substrings(current line)
+        "hl+" = "#9400FF";
         # "preview-fg" = "";
         # "preview-bg" = "";
         "pointer" = "#4F345A";
@@ -342,7 +366,7 @@
         # "--border"
         # "--border none"
         # "--layout reverse"
-        # "--tmux center,60%,50%  --layout reverse" #--tmux is silently ignored when you're not on tmux.# reverse, reverse-list
+        # "--tmux center;60%;50%  --layout reverse" #--tmux is silently ignored when you're not on tmux.# reverse; reverse-list
         # "--style minimal"
         # "--cycle"
         # "--gap 1"

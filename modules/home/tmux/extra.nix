@@ -23,11 +23,14 @@
   bind-key -n M-h previous-window
   bind-key -n M-l next-window
   bind-key -n M-n new-window
-  bind-key -n M-q kill-window
+  # bind-key -n M-q kill-window
+  bind-key -n M-Escape kill-window
   # bind-key -n C-Tab next-window
   # bind-key -n C-S-Tab previous-window
   # bind-key -n M-S-l select-window -t :+  # Next window (Meta+Shift+L)
   # bind-key -n M-S-h select-window -t :-  # Previous window (Meta+Shift+H)
+
+  # bind-key -r G run-shell "path-to-harpoon/harpoon/scripts/tmux/switch-back-to-nvim" #TODO:harpoon term later
 
   bind \` switch-client -t'{marked}'
   bind c new-window -c "#{pane_current_path}" # keep currentpath on new window
@@ -46,7 +49,8 @@
   #set -g set-clipboard on # system clipboard
   set -g detach-on-destroy off  # don't exit from tmux when closing a session
   set -g default-command "''${SHELL}" #non-login shell , solves compositor stderr?
-  set -g default-terminal "tmux-256color"
-  # set -g default-terminal 'screen-256color'
+  # set -g default-terminal "tmux-256color"
+  # set -g default-terminal "xterm-256color"
+  set -g default-terminal 'xterm-kitty'
   # set -ag terminal-overrides ',xterm-256color*:RGB'
 ''

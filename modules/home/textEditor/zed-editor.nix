@@ -5,7 +5,7 @@
     programs.zed-editor = {
         enable = true;
         #extensions = ["nix" "toml" "elixir" "make"];
-        package = pkgs.zed-editor;
+        # package = pkgs.zed-editor;
         extensions = ["nix" "python"];
         # extraPackages = with pkgs; [
         #   nixd
@@ -21,7 +21,7 @@
             buffer_font_family = "JetBrains Mono";
             buffer_font_weight = 400; #default 400, 100-900
             buffer_line_height = "comfortable";
-            current_line_highlight =  "gutter"; #line, none, all
+            current_line_highlight =  "line"; #line, none, all, gutter
             confirm_quit = true;
             hour_format = "hour24";
             auto_update = false;
@@ -188,7 +188,7 @@
 
             indent_guides = {
               enabled = false;
-              #coloring = "indent_aware"; # fixed, indent_aware
+              coloring = "fixed"; # fixed, indent_aware
             };
 
             centered_layout = {

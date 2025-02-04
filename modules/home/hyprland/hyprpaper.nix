@@ -1,11 +1,11 @@
-{osConfig, ...}:
+# {osConfig, ...}:
 
 {
   services.hyprpaper = {
     enable = true;
     # importantPrefixes = [];#TODO: make cleaner with this
     settings = {
-      ipc = true; #true::
+      ipc = false; #true::
       splash = true;
       splash_offset = 2.0; # relative to bottom (% of height)
       splash_color = "55ffffff"; #55ffffff::
@@ -19,13 +19,18 @@
           # "/home/malu/Pictures/wallpapers/rakan-xayah.png"
         ];
       wallpaper = 
-        if osConfig.networking.hostName == "carthage" then [
+        [
           "HDMI-A-1,/home/malu/Pictures/wallpapers/singed.png"
           "DP-3,/home/malu/Pictures/wallpapers/thresh_purp.png"
-        ] else
-          (if osConfig.networking.hostName == "tangier" then [
-            "eDP-1,/home/malu/Pictures/wallpapers/singed.png"
-          ] else []);
+          # "eDP-1,/home/malu/Pictures/wallpapers/singed.png"
+      # if osConfig.networking.hostName == "carthage" then [
+      #   "HDMI-A-1,/home/malu/Pictures/wallpapers/singed.png"
+      #   "DP-3,/home/malu/Pictures/wallpapers/thresh_purp.png"
+      # ] else
+      #   (if osConfig.networking.hostName == "tangier" then [
+      #     "eDP-1,/home/malu/Pictures/wallpapers/singed.png"
+      #   ] else []);
+        ];
     };
-  };
+    };
 }

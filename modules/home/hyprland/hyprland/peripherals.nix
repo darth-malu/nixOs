@@ -20,11 +20,11 @@ let
         # sync_gsettings_theme = true;# on by default
       };
       input = {
-        mouse_refocus = false; # default = true, cross window boundary
+        mouse_refocus = true; # default = if true mouse must cross boundary for focus change 
         kb_layout = "us";
         numlock_by_default = true;
         kb_options = "caps:swapescape";
-        follow_mouse = "1"; # 2- cursor detached from keyboard foocus, 1- cursor+keyboard focus,3 - completely detach,click wont change focus,0-cursor movement will not change focus
+        follow_mouse = 1; #  1- cursor changes focus to window under cursor # 2- cursor focus detached from keyboard foocus # 3 - completely detach,click wont change focus # 0-cursor movement will not change focus
         # special_fallthrough= true; # floating will not block focus to regular workspace
         float_switch_override_focus = 2; # 2 - follow_mouse on switch; #TODO: test further
         scroll_factor = 1.6; #1.2
@@ -37,17 +37,12 @@ let
         }
         {
           name = "sino-wealth-usb-keyboard" ;
-          # repeat_delay = 400;
-          # repeat_rate = 25;
-          # repeat_delay = 300;
-          repeat_delay = 380;
-          repeat_rate = 39;
+          repeat_delay = 380; # 400, ;;380
+          repeat_rate = 39; # ;;25
         }
       ];
     };
   }
-  #else (if osConfig.networking.hostName == laptop then
-  # need better logic for more hosts lol...incase
   else
     lib.mkIf (osConfig.networking.hostName == "tangier") {
       # Default or pc settings here
@@ -89,9 +84,6 @@ let
         device = [
           {
             name = "at-translated-set-2-keyboard" ;
-            # repeat_delay = 400;
-            # repeat_rate = 25;
-            # repeat_delay = 300;
             repeat_delay = 380;
             repeat_rate = 39;
           }
@@ -103,7 +95,6 @@ let
         ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
       ];
       };
-      #} else {});
     };
 in
   settings

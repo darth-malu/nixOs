@@ -1,7 +1,4 @@
-{pkgs, config, ...}:
-# let
-#   cfg= config.vim.toggleterm;
-# in
+{pkgs,  ...}:
 {
   vim = {
     extraPlugins = with pkgs.vimPlugins; {
@@ -11,7 +8,16 @@
       };
       harpoon = {
         package = harpoon;
-        setup = "require('harpoon').setup {}";
+        setup = /*lua*/''require("harpoon").setup ({
+          global_settings = {
+            save_on_toggle = true; -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
+            save_on_change = true, -- saves the harpoon file upon every change. disabling is unrecommended.
+            tmux_autoclose_windows = false, -- closes any tmux windows harpoon that harpoon creates when you close Neovim.
+            excluded_filetypes = { "harpoon" }, -- filetypes that you want to prevent from adding to the harpoon list menu.
+            mark_branch = false, -- set marks specific to each git branch inside git repository
+          }
+          -- require("telescope").load_extension('harpoon')
+        })'';
         #after = ["oil"]; # place harpoon configuration after oil for test
       };
       mini-surround = {

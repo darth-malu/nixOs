@@ -131,8 +131,8 @@
     }
     {
       mode = ["n"];
-      # key = "<M-s>";
-      key = "<M-;>";
+      key = "<M-s>";
+      # key = "<M-;>";
       # key = "<M-a>";
       action = "<cmd>w<cr>";
       silent = true;

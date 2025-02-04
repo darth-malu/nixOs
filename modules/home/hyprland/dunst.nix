@@ -4,14 +4,17 @@
   services.dunst = {
     # enable = lib.mkIf (osConfig.services.desktopManager.plasma6.enable != true ) true;
     enable = lib.mkIf osConfig.programs.hyprland.enable true;
+    # waylandDisplay = ""; #"":: #Set the service's WAYLAND_DISPLAY environment variable.
+      # configFile = path; # conf written to $XDG_CONFIG_HOME/dunst/dunstrc regardless. This allows using a mutable configuration file generated from the immutable one, useful in scenarios where live reloading is desired.
     settings = {
       global = {
         title = "dunst";
         class = "dunst";
         ignore_dbusclose = false;
-        # width = "(100,1000)";
-        width = "(70,1000)";
-        height = "(20,50)"; #height = 300;
+        width = "(100,1000)";
+        # width = "(70,1000)";
+        # height = "(20,50)"; #height = 300;
+        # height = 300;#TODO: see if height needed
         #offset = "30x50";
         background = "#0C1017";
         # background = "#1f2335";

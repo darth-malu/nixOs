@@ -47,7 +47,6 @@
           "$mod, Y, exec, [workspace emptym] $yazi_term"
 
           # rofi
-          # drun
           "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
           "$al, space, exec, pkill rofi || $menu_rofi"
           "$mod $al, space, exec, pkill rofi || $file_browser_rofi"
@@ -92,12 +91,14 @@
           #█▀▀ █▀█ █▀▀ █░█ █▀ █▀▀ █░█ █▀█ █▀█ █▀▀ █▄░█ ▀█▀
           #█▀░ █▄█ █▄▄ █▄█ ▄█ █▄▄ █▄█ █▀▄ █▀▄ ██▄ █░▀█ ░█░
           #""$sr,$sr, focuscurrentorlast"
-          "$mod,K, focuscurrentorlast"
-          "$al,TAB, Workspace, previous_per_monitor"
+          # "$mod,K, focuscurrentorlast"
+          # "$al,TAB, Workspace, previous_per_monitor"
+          "$mod,K, Workspace, previous_per_monitor"
           "$al ,$sl, swapnext"
           #"$mod,J, workspace, previous"
-          "$mod, mouse:276, focuscurrentorlast"
-          "$mod, semicolon, cyclenext"
+          "$mod, mouse:276, Workspace, previous_per_monitor"
+          # "$mod, semicolon, cyclenext"
+          "$al, semicolon, cyclenext"
 
           #█▀ █▀▀ █▀█ ▄▀█ ▀█▀ █▀▀ █░█
           #▄█ █▄▄ █▀▄ █▀█ ░█░ █▄▄ █▀█

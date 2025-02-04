@@ -1,8 +1,8 @@
-{ pkgs-unstable, ...}:
+{ pkgs, ...}:
 {
   programs.tmux = {
     enable = true;
-    package = pkgs-unstable.tmux;
+    package = pkgs.tmux;
     prefix = "M-w";
     # shortcut = "w"; # used with Ctrl alone?
     # aggressiveResize = true; # size of smallest session
@@ -14,7 +14,7 @@
     clock24 = false;
     historyLimit = 9000; ##2000
     # reverseSplit = true; #TODO:test this, no work
-    plugins = with pkgs-unstable.tmuxPlugins; [
+    plugins = with pkgs.tmuxPlugins; [
       yank
       { plugin = catppuccin; extraConfig = import ./catppuccin.nix; }
       { plugin = vim-tmux-navigator; }

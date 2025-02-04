@@ -2,16 +2,18 @@
 
 {
   programs =  {
-    xwayland = {
-      enable = true; #false::
-      package = pkgs-unstable.xwayland;
-    };
+    # xwayland = {
+      # enable = true; #false::
+      # package = pkgs-unstable.xwayland;
+    # };
     hyprland = { # required even with homeManager for system functions -> xdg, session files
       enable = true; # also enables XDPH
       withUWSM = lib.mkDefault true;
-      # xwayland.enable = true; # true::
+      xwayland.enable = true; # true::
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; # set the flake package
       portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;# make sure to also set the portal package, so that they are in sync
+      # package = null;
+      # portalPackage = null;
     };
   };
   # xdg.portal = { # not needed anymore: https://github.com/nix-community/home-manager/pull/5707

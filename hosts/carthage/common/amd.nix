@@ -17,6 +17,10 @@
       amdvlk = {
         enable = true; # amd vulkan driver
         package = pkgs-unstable.amdvlk;
+        # supportExperimental.enable = true; #false::
+      };
+      opencl = {
+        enable = true;
       };
     };
   };

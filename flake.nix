@@ -1,21 +1,21 @@
 {
   description = "abstracT nixConfig";
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "nixpkgs/nixos-24.11"; nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     yazi.url = "github:sxyazi/yazi";
 
+    # home-manager = {
+    #   url = "github:nix-community/home-manager/release-24.11";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager-unstable = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
 
-    # nixvim = {
+    # nixvim = { # TODO:clean after video
       # url = "github:nix-community/nixvim/nixos-24.11";
       # url = "github:nix-community/nixvim";
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -53,43 +53,48 @@
 
   outputs = {nixpkgs,nixpkgs-unstable, ...}@inputs:
     let
-      system = "x86_64-linux";
-      # system = builtins.currentSystem;
-      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system}; #confirm syntax
-      pkgs = import nixpkgs {#TODO: see if legacyPackages can be used instead 
-        inherit  system;
-        config = {
-          allowUnfree = true;
-          # permittedInsecurePackages = [
-            #"qbittorrent-qt5-4.6.4"
-          # ];
-        };
-      };
-      # nvf
+      system = "x86_64-linux"; # system = builtins.currentSystem;??
       neovimConf = inputs.nvf.lib.neovimConfiguration {
         inherit (nixpkgs.legacyPackages.${system}) pkgs;
         modules = [ ./modules/nvf];
       };
+      # pkgs-unstable = nixpkgs-unstable.legacyPackages.${system}; #confirm syntax
+      # pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {#TODO: see if legacyPackages can be used instead 
+        inherit  system;
+        config = {
+          # allowUnfree = true;
+          # permittedInsecurePackages = [
+            #"qbittorrent-qt5-4.6.4"
+          # ];
+          allowUnfreePredicate = pkg:
+            builtins.elem (pkgs.lib.getName pkg) [
+              "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta"
+            ];
+        };
+      };
+
     in
     {
       packages.${system}.my-neovim = neovimConf.neovim; # NVF
 
+      #INFO: CARTHAGE-
       nixosConfigurations = {
         carthage = 
-          nixpkgs.lib.nixosSystem {
+          nixpkgs-unstable.lib.nixosSystem {
             inherit system;
-            specialArgs = { inherit inputs pkgs pkgs-unstable system; };
+            specialArgs = { inherit inputs pkgs system; };
             modules = [
               ./hosts/carthage/default.nix
-              {environment.systemPackages = [neovimConf.neovim];}
-              inputs.home-manager.nixosModules.home-manager { # is this analogous to <home-manager/nixos> from docs # remove need for shell instantiation...get from flake TODO: split hyrland on laptop vs pc
+              {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
+              inputs.home-manager-unstable.nixosModules.home-manager { # is this analogous to <home-manager/nixos> from docs # remove need for shell instantiation...get from flake TODO: split hyrland on laptop vs pc
                 home-manager = {
                   verbose = true;
                   backupFileExtension = "bakup"; # conflict management,append .backup to existing conf. files
                   users.malu = import ./modules/home.nix;
                   useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
                   useUserPackages = false; # if false ... uses nix-profile for home apps
-                  extraSpecialArgs = { inherit pkgs pkgs-unstable inputs system; };
+                  extraSpecialArgs = { inherit pkgs inputs system; };
                 };
               }
             ];
@@ -97,9 +102,7 @@
         tangier =
           nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit inputs pkgs pkgs-unstable system;
-          };
+          specialArgs = { inherit inputs pkgs system; };
           modules = [
             # ./hosts/carthage/default.nix
             ./hosts/tangier/default.nix
@@ -111,9 +114,7 @@
                 users.malu = import ./modules/home.nix;
                 useGlobalPkgs = true; # dont use private instance of pkgs which is the default
                 useUserPackages = false; # if false ... uses nix-profile for home apps
-                extraSpecialArgs = {
-                inherit pkgs pkgs-unstable inputs system; 
-                };
+                extraSpecialArgs = { inherit pkgs inputs system; };
               };
             }
           ];

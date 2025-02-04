@@ -1,4 +1,4 @@
-{modulesPath, pkgs, lib, options, ...}:
+{config,modulesPath, pkgs, lib, options, ...}:
 
 {
   imports = [
@@ -38,6 +38,9 @@
       settings.General.Experimental = true; # battery percentage of btDevice
     };
   };
+
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   networking = {
     hostId = "92d08a60"; #zfs so funny

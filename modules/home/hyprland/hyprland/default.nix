@@ -14,9 +14,10 @@
   wayland.windowManager.hyprland = {
     enable = lib.mkDefault true;
     xwayland.enable = true; #true::
-    # portalPackage = pkgs.xdg-desktop-portal-hyprland; # pkgs.xdg-desktop-portal-hyprland:: || null or pkg
     # package = null; # use nixOs module in hm config #FIXME: throws error
-    # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    # portalPackage = null;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; # pkgs.xdg-desktop-portal-hyprland:: || null or pkg
     # xwayland.enable = true;
     # sourceFirst = true; #true::
     systemd = {

@@ -1,4 +1,4 @@
-{inputs, lib, pkgs-unstable,pkgs, ...}:
+{inputs, lib, pkgs, ...}:
 
 {
   programs =  {

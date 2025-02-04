@@ -1,12 +1,12 @@
-{ pkgs, pkgs-unstable, config, lib, inputs, ...}:
+{ pkgs,...}:
 {
   hardware = {
     graphics = {# hardware accel
         enable = true;
         #enable32Bit = true;
-        # package = lib.mkIf config.programs.hyprland.enable inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers; # pkgs-unstable.mesa.drivers
-        package = pkgs-unstable.mesa.drivers;
-        extraPackages = with pkgs-unstable; [# add vulkan, vaapi/vdpau etc
+        # package = lib.mkIf config.programs.hyprland.enable inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers; # pkgs.mesa.drivers
+        package = pkgs.mesa.drivers;
+        extraPackages = with pkgs; [# add vulkan, vaapi/vdpau etc
           amdvlk 
         #rocmPackages.clr.icd # opencl
         ];
@@ -16,7 +16,7 @@
       #opencl.enable = true; # opecl support through ROCM runtime library #*
       amdvlk = {
         enable = true; # amd vulkan driver
-        package = pkgs-unstable.amdvlk;
+        package = pkgs.amdvlk;
         # supportExperimental.enable = true; #false::
       };
       opencl = {

@@ -1,7 +1,7 @@
 {
   description = "abstracT nixConfig";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable.url";
     # nixpkgs.url = "nixpkgs/nixos-24.11"; nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     yazi.url = "github:sxyazi/yazi";
@@ -81,13 +81,13 @@
       #INFO: CARTHAGE-
       nixosConfigurations = {
         carthage = 
-          nixpkgs-unstable.lib.nixosSystem {
+          nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = { inherit inputs pkgs system; };
             modules = [
               ./hosts/carthage/default.nix
               {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
-              inputs.home-manager-unstable.nixosModules.home-manager { # is this analogous to <home-manager/nixos> from docs # remove need for shell instantiation...get from flake TODO: split hyrland on laptop vs pc
+              inputs.home-manager.nixosModules.home-manager { # is this analogous to <home-manager/nixos> from docs # remove need for shell instantiation...get from flake TODO: split hyrland on laptop vs pc
                 home-manager = {
                   verbose = true;
                   backupFileExtension = "bakup"; # conflict management,append .backup to existing conf. files

@@ -34,6 +34,11 @@
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland.url = "github:hyprwm/Hyprland"; # with cachix
 
+       hyprpaper = {
+       url = "github:hyprwm/hyprpaper";
+       inputs.nixpkgs.follows = "nixpkgs";
+   };
+
     # python-nixpkgs.url = "github:nixos/nixpkgs/4ae2e647537bcdbb82265469442713d066675275";
 
     nyaa = {
@@ -58,17 +63,13 @@
       pkgs = import nixpkgs {#TODO: see if legacyPackages can be used instead 
         inherit  system;
         config = {
-          # allowUnfree = true;
-          # permittedInsecurePackages = [
-            #"qbittorrent-qt5-4.6.4"
-          # ];
           allowUnfreePredicate = pkg:
             builtins.elem (pkgs.lib.getName pkg) [
               "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta"
             ];
         };
       };
-
+      # pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       packages.${system}.my-neovim = neovimConf.neovim; # NVF
@@ -78,10 +79,10 @@
         carthage = 
           nixpkgs.lib.nixosSystem {
             inherit system;
-            specialArgs = { inherit inputs pkgs system; };
+            specialArgs = { inherit pkgs inputs system; };
             modules = [
               ./hosts/carthage/default.nix
-              # nixpkgs.nixosModules.readOnlyPkgs
+              nixpkgs.nixosModules.readOnlyPkgs
               {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
               inputs.home-manager.nixosModules.home-manager { # is this analogous to <home-manager/nixos> from docs # remove need for shell instantiation...get from flake TODO: split hyrland on laptop vs pc
                 home-manager = {
@@ -90,7 +91,7 @@
                   users.malu = import ./modules/home.nix;
                   useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
                   useUserPackages = false; # if false ... uses nix-profile for home apps
-                  extraSpecialArgs = { inherit inputs system; };
+                  extraSpecialArgs = { inherit inputs pkgs system; };
                 };
               }
             ];
@@ -98,7 +99,7 @@
         tangier =
           nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs pkgs system; };
+          specialArgs = { inherit inputs system; };
           modules = [
             # ./hosts/carthage/default.nix
             ./hosts/tangier/default.nix

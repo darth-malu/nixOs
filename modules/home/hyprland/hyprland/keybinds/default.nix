@@ -31,17 +31,18 @@
       bind =
         [
           # app launch
-          "$mod, F1,exec,  killall -9 spotify || [workspace emptym] uwsm app -- spotify"
+          # "$mod, F1,exec,  killall -9 spotify || [workspace emptym] uwsm app -- spotify"
 
           # browswers
-          "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
-          "$mod, C, exec, [workspace emptym] uwsm app -s a -- chromium"
+          # "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
+          "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
 
           #kitty
           "$mod, Return, exec, $terminal"
           "$mod $sl, Return, exec, [workspace emptym] uwsm app -s a -- kitty -e --instance-group main"
+
           # productivity
-          "$mod $cl, O, exec, [workspace emptym] uwsm app -s a -- obsidian"
+          # "$mod $cl, O, exec, [workspace emptym] uwsm app -s a -- obsidian"
           "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
           # "$mod, D, exec, [workspace emptym] uwsm app -s a -- dolphin"
           "$mod, Y, exec, [workspace emptym] $yazi_term"
@@ -49,11 +50,11 @@
           # rofi
           "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
           "$al, space, exec, pkill rofi || $menu_rofi"
-          "$mod $al, space, exec, pkill rofi || $file_browser_rofi"
+          "$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
           # "$mod $cl, e, exec, pkill rofi || $emoji_rofi"
           # "$mod $cl, m, exec, pkill rofi || $calc_rofi"
           # "$mod $cl, p, exec, pkill rofi || $obsidian"
-          "$mod , Escape, exec, pkill rofi || $clip_rofi"
+          "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
 
           # open windows
           "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
@@ -77,7 +78,7 @@
           "$cl, Print, exec, grimblast --cursor --notify copy active"
 
           # Workspaces
-          "$mod $cl, Return,workspace ,emptym"
+          "$al, KP_Enter,workspace ,emptym"
           "$mod, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
           
           "$mod, KP_Divide, togglesplit" # dwindle
@@ -88,17 +89,6 @@
           "$mod ,space, killactive"
           "$mod, mouse:275, killactive,"
 
-          #█▀▀ █▀█ █▀▀ █░█ █▀ █▀▀ █░█ █▀█ █▀█ █▀▀ █▄░█ ▀█▀
-          #█▀░ █▄█ █▄▄ █▄█ ▄█ █▄▄ █▄█ █▀▄ █▀▄ ██▄ █░▀█ ░█░
-          #""$sr,$sr, focuscurrentorlast"
-          # "$mod,K, focuscurrentorlast"
-          # "$al,TAB, Workspace, previous_per_monitor"
-          "$mod,K, Workspace, previous_per_monitor"
-          "$al ,$sl, swapnext"
-          #"$mod,J, workspace, previous"
-          "$mod, mouse:276, Workspace, previous_per_monitor"
-          # "$mod, semicolon, cyclenext"
-          "$al, semicolon, cyclenext"
 
           #█▀ █▀▀ █▀█ ▄▀█ ▀█▀ █▀▀ █░█
           #▄█ █▄▄ █▀▄ █▀█ ░█░ █▄▄ █▀█
@@ -122,7 +112,6 @@
           # move to empty
           "$mod , o, movetoworkspace, emptym"
           # "$mod $sl, o, movetoworkspacesilent, emptym"
-
 
           #█▀▀ █▀█ █▀▀ █░█ █▀
           #█▀░ █▄█ █▄▄ █▄█ ▄█
@@ -178,20 +167,22 @@
           "SUPER ,KP_Enter, exec, ~/.darth/scripts/gaps.sh custom"
           "SUPER ,$ar, exec, $gaps"#toggle gaps on/off
 
-          # "$mod $sl,left, movecurrentworkspacetomonitor, l"
-          # "$mod $sl,right, movecurrentworkspacetomonitor, r"
-
-          "$mod $al,l, movecurrentworkspacetomonitor, HDMI-A-1"
-
-          "$mod $cl,h, movecurrentworkspacetomonitor, DP-3"
-
-          "$mod $sl,l, movecurrentworkspacetomonitor, 0"
-          "$mod $sl,h, movecurrentworkspacetomonitor, 1"
-
-          "$mod $sl, o, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\""
+                
+          # █▀▄▀█ █▀█ █▄░█ █ ▀█▀ █▀█ █▀█
+          # █░▀░█ █▄█ █░▀█ █ ░█░ █▄█ █▀▄
+          "$al $sl,h, movecurrentworkspacetomonitor, 0"
+          "$al $sl,l, movecurrentworkspacetomonitor, 1"
+          "$al $sl, k, focusmonitor, +1"
+          # "$al ,$sl, swapnext"
+          "$al $sl, semicolon, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\""
           # "$mod $sl,l, focusmonitor, HDMI-A-1"
-          "$mod $sl, k, focusmonitor, +1"
           # "$mod $sl,h, focusmonitor, DP-3"
+
+          #█▀▀ █▀█ █▀▀ █░█ █▀ █▀▀ █░█ █▀█ █▀█ █▀▀ █▄░█ ▀█▀
+          #█▀░ █▄█ █▄▄ █▄█ ▄█ █▄▄ █▄█ █▀▄ █▀▄ ██▄ █░▀█ ░█░
+          "$mod,K, Workspace, previous_per_monitor"
+          "$mod, mouse:276, Workspace, previous_per_monitor"
+          "$mod, semicolon, cyclenext"
         ]
         ++ (
           # workspaces

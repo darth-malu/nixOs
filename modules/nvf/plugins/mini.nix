@@ -135,16 +135,16 @@
           # right = "<M-l>";
           # down = "<M-j>";
           # up = "<M-k>";
-          left  = "<M-Left>";
-          right = "<M-Right>";
-          down  = "<M-Down>";
-          up    = "<M-Up>";
+          left  = "<C-h>";
+          right = "<C-l>";
+          down  = "<C-j>";
+          up    = "<C-k>";
 
           # Move current line in Normal mode
-          line_left  =  "<M-Left>";
-          line_right =  "<M-Right>";
-          line_down  =  "<M-Down>";
-          line_up    =  "<M-Up>";
+          line_left  =  "<C-h>";
+          line_right =  "<C-l>";
+          line_down  =  "<C-j>";
+          line_up    =  "<C-k>";
         };
 
         # Options which control moving behavior

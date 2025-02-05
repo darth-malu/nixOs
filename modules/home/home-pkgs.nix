@@ -47,7 +47,12 @@
     # Socials
     telegram-desktop
     #whatsapp-for-linux
-    discord discordo webcord vesktop parrot
+    discord
+    # discordo
+    # webcord
+    # vesktop
+    # parrot
+
 
     # browser
     chromium qutebrowser microsoft-edge lynx google-chrome

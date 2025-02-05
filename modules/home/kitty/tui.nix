@@ -5,5 +5,6 @@
     "f10" = "launch_tab nyaa";
     "f12" = "launch_tab ncmpcpp";
     "f11" = "launch_window --location vsplit ncmpcpp";
+    "f5" = "new_window_with_cwd";
   };
 }

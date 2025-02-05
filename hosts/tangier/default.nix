@@ -6,8 +6,7 @@
     ./drives.nix
     ../../users/malu.nix
     ../../modules/nix
-    # ./nvidia.nix
-    ./enVars.nix # empty -check
+    ./nvidia.nix
   ];
 
   boot = {

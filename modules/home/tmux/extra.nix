@@ -15,16 +15,21 @@
   # set -g focus-events on
   set -g renumber-window on
 
-  # BIND
-  # bind-key -n C-p previous-window
+  # bind-key -n C-h previous-window
   # bind-key -n C-n next-window
+  # bind-key -n C-Space kill-window
   # bind-key -n M-Left previous-window
-  # bind-key -n M-Right next-window
+  # bind-key - M-Right next-window
+  # bind-key -n M-j previous-window
+  # bind-key -n M-k next-window
+  # bind-key -n M-n new-window
+  # bind-key -n M-H previous-window
   bind-key -n M-h previous-window
-  bind-key -n M-l next-window
-  bind-key -n M-n new-window
-  # bind-key -n M-q kill-window
+  bind-key -n M-l next-window "#{pane_current_path}" 
+  bind-key -n M-Enter new-window
   bind-key -n M-Escape kill-window
+  # bind-key -n M-x kill-window
+  # bind-key -n M-q kill-window
   # bind-key -n C-Tab next-window
   # bind-key -n C-S-Tab previous-window
   # bind-key -n M-S-l select-window -t :+  # Next window (Meta+Shift+L)
@@ -43,6 +48,8 @@
 
   # gen conf
   set -g base-index 1
+  setw -g pane-base-index 1
+
   set -g status-position top
   # setw -g aggressive-resize on
   # set -g allow-rename off
@@ -50,7 +57,7 @@
   set -g detach-on-destroy off  # don't exit from tmux when closing a session
   set -g default-command "''${SHELL}" #non-login shell , solves compositor stderr?
   # set -g default-terminal "tmux-256color"
-  # set -g default-terminal "xterm-256color"
-  set -g default-terminal 'xterm-kitty'
+  set -g default-terminal "xterm-256color"
+  # set -g default-terminal 'xterm-kitty'
   # set -ag terminal-overrides ',xterm-256color*:RGB'
 ''

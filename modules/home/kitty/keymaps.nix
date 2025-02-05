@@ -3,6 +3,8 @@
     ## Unbind
     "ctrl+shift+left" = "no_op";
     "ctrl+shift+right" = "no_op";
+    "ctrl+tab" = "no_op";
+    "ctrl+shift+tab" = "no_op";
     #"ctrl+c" = "copy_or_interrupt";
     "alt+c" = "copy_to_clipboard";
     "alt+v" = "paste_from_clipboard";
@@ -52,8 +54,8 @@
 
     #"kitty_mod+/" = "layout_action bias 60 50 40 30 20 10";
     "kitty_mod+/" = "layout_action bias 10 20 30 40 50 60";
-    "ctrl+tab" = "send_text all \x1b[27;5;9~";
-    "ctrl+shift+tab" = "send_text all \x1b[27;6;9~";
+    # "ctrl+tab" = "send_text all \x1b[27;5;9~"; #FIXME: iron out this
+    # "ctrl+hift+tab" = "send_text all \x1b[27;6;9~";
 
     #"kitty_mod+f12" = "swap_with_window";
 #    "kitty_mod+f11" = "focus_visible_window";
@@ -75,7 +77,7 @@
 
     "kitty_mod+f5" = "detach_tab";
     #New windows
-    "kitty_mod+n" = "new_os_window_with_cwd";
+    # "kitty_mod+n" = "new_os_window_with_cwd";
 
     "ctrl+page_up" = "scroll_page_up";
     "ctrl+page_down" = "scroll_page_down";

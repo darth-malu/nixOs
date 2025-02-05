@@ -12,17 +12,14 @@
     ./git-home.nix
     #./sddm_theme.nix
 
-    # folders
     ./scripts
     ./yazi
     ./kitty
     ./textEditor
     # ./nixvim
     # ./helix
-    # core hyprland functionality
     ./soundStuff
     # ./homeSessionVariables.nix ./systemdUserSessionVariables.nix
-    # ./specialisationHome.nix
   ] ++
   # (if osConfig.services.desktopManager.plasma6.enable != true then [ # WIP
   (if osConfig.programs.hyprland.enable then [ # WIP

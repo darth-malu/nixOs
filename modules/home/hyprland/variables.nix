@@ -1,7 +1,7 @@
 {
   home.sessionVariables = {
     EDITOR="nvim";
-    GTK_THEME = "Nightfox-Dark";
+    # GTK_THEME = "Nightfox-Dark";
     #MANPAGER="nvim +Man!";
     #MANWIDTH=999;
     #BEMOJI_CLIP_CMD="wl-copy"; # which clipboard tool to use

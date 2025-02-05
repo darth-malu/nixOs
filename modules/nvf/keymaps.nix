@@ -98,7 +98,7 @@
     {
       mode = ["n"];
       # key = "<leader>l";
-      key = "<M-S-l>";
+      key = "<S-l>";
       #action = "<cmd>BufferLineCycleNext<cr>";
       action = "<cmd>bn<cr>";
       desc = "Cycle to next buffer";
@@ -106,7 +106,7 @@
 
     {
       mode = ["n"];
-      key = "<M-S-h>";
+      key = "<S-h>";
       #action = "<cmd>BufferLineCyclePrev<cr>";
       action = "<cmd>bp<cr>";
       desc = "Cycle to previous buffer";
@@ -131,8 +131,8 @@
     }
     {
       mode = ["n"];
-      key = "<M-s>";
-      # key = "<M-;>";
+      # key = "<M-s>";
+      key = "<M-;>";
       # key = "<M-a>";
       action = "<cmd>w<cr>";
       silent = true;

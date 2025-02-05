@@ -19,6 +19,7 @@
       # notify_on_cmd_finish always 5.0 command canberra-gtk-play -i bell; notify-send -i '/home/malu/Shibuya/modules/home/scripts/assets/icons8-check-all-48.png' 'job finished with status: %s  ' %c
     '';
     settings = {
+      term =  "xterm-256color";
       scrollback_lines = 10000;
       enable_audio_bell = false;
       # update_check_interval = 0;

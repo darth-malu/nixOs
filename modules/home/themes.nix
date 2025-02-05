@@ -63,7 +63,7 @@ lib.mkIf osConfig.programs.hyprland.enable {
   qt = {
     enable = true;
     # platformTheme.name = "adwaita"; #kvantum , gtk, gnome, kde, gtk3, **deprecated
-    platformTheme.name = "qt6ct"; #kvantum , gtk, gnome, kde, gtk3, **deprecated
+    platformTheme.name = "kde"; #"gtk", "gtk3", "gnome", "adwaita", "lxqt", "qtct", "kde" or (submodule) #qt6ct
     style = {
       #name = "adwaita-dark"; #kvantum
       #name = "breeze"; package = pkgs.libsForQt5.breeze-qt5;

@@ -1,11 +1,9 @@
-{config, lib, options,...}:
+{config, lib, options, ...}:
 
 {
   imports = [
-    ./enVars.nix
     ./amd.nix
     ./drives.nix
-    ./enVars.nix
     ../../../modules/nix
     ../../../users/malu.nix
   ];
@@ -32,6 +30,13 @@
       timeout = 2;
     };
   };
+
+  # allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+  #             "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta"
+  # ];
+
+  # nixpkgs.config.allowUnfree = true;
+
   hardware = {
     # enableAllFirmware = true; # enable all firmware regardless of license #for bt to work in HSP/HFP mode
     # enableAllHardware = true; # Enable support for most hardware
@@ -48,19 +53,19 @@
         };
       };
       # package = pkgs-unstable.bluez;
-      network = {
-          General = {
-            DisableSecurity = false; # Disable link encryption: default=false
-          };
-      };
-      input = {#Set configuration for the input service (/etc/bluetooth/input.conf). See https://github.com/bluez/bluez/blob/master/profiles/input/input.conf for full list of options.
-        General = {
-          ClassicBondedOnly = false; #true:: # # Limit HID connections to bonded devices
-          IdleTimeout = 30;# 0 (disabled)::
+      # network = {
+      #     General = {
+      #       DisableSecurity = false; # Disable link encryption: default=false
+      #     };
+      # };
+      # input = {#Set configuration for the input service (/etc/bluetooth/input.conf). See https://github.com/bluez/bluez/blob/master/profiles/input/input.conf for full list of options.
+        # General = {
+          # ClassicBondedOnly = false; #true:: # # Limit HID connections to bonded devices
+          # IdleTimeout = 30;# 0 (disabled)::
           #UserspaceHID=true; #true:: # # Enable HID protocol handling in userspace input profile - true,false, persist
           #LEAutoSecurity=true; # true::
-        };
-      };
+        # };
+      # };
     };
   };
 

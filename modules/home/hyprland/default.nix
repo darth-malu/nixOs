@@ -1,9 +1,6 @@
 {
   imports = [
-    ./hypridle.nix
-    ./hyprpaper.nix
     ./pkgs-hypr.nix
-    ./hyprlock.nix
     ./hyprland 
     ./waybar 
     ./rofi

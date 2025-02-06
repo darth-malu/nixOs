@@ -38,7 +38,7 @@ let
         {
           name = "sino-wealth-usb-keyboard" ;
           repeat_delay = 380; # 400, ;;380
-          repeat_rate = 34; # ;;25 || nice: 39
+          repeat_rate = 30; # ;;25 || nice: 39
         }
       ];
     };

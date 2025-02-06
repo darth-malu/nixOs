@@ -8,8 +8,8 @@
     settings = {
       ipc = true; #true::
       splash = true;
-      splash_offset = 2.0; # relative to bottom (% of height)
-      splash_color = "#89B4FA"; #55ffffff::
+      # splash_offset = 2.0; # relative to bottom (% of height)
+      # splash_color = "#89B4FA"; #55ffffff::
       preload =
         [# hyprctl hyprpaper listloaded
           "/home/malu/Pictures/wallpapers/singed.png"

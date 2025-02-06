@@ -49,7 +49,7 @@
 
           # rofi
           "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
-          "$mod, space, exec, pkill rofi || $menu_rofi"
+          "$mod, Escape, exec, pkill rofi || $menu_rofi"
           "$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
           # "$mod $cl, e, exec, pkill rofi || $emoji_rofi"
           # "$mod $cl, m, exec, pkill rofi || $calc_rofi"
@@ -86,7 +86,7 @@
 
           #█▄▀ █ █░░ █░░   ▄▀█ █▀▀ ▀█▀ █ █░█ █▀▀
           #█░█ █ █▄▄ █▄▄   █▀█ █▄▄ ░█░ █ ▀▄▀ ██▄
-          "$mod ,Escape, killactive"
+          "$mod ,space, killactive"
           # "$mod ,Space, killactive"
           "$mod, mouse:275, killactive,"
 

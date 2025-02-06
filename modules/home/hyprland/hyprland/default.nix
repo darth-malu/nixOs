@@ -1,6 +1,7 @@
 {osConfig, inputs, pkgs, lib, ...}:
 {
   imports = [
+    ./hypr
     ./keybinds
     ./peripherals.nix
     ./ui.nix

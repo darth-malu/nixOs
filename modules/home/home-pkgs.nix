@@ -55,9 +55,9 @@
 
 
     # browser
-    chromium qutebrowser microsoft-edge lynx google-chrome
+    chromium lynx google-chrome
     bluemail
-    # blueman
+    blueman
 
     # meld
 
@@ -109,6 +109,49 @@
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
+    qutebrowser = {
+      enable = true;
+      # aliases = {};
+      enableDefaultBindings = true; # true::
+      extraConfig = # qute config.py file
+        ''
+
+      '';
+      loadAutoconfig = false; # false:: load config from GUI
+      # keyBindings = {
+    # normal = {
+    #   "<ctrl-v>" = "spawn mpv {url}";
+    #   ",p" = "spawn --userscript qute-pass";
+    #   ",l" = ''config-cycle spellcheck.languages ["en-GB"] ["en-US"]'';
+    #   "<f1>" = mkMerge [
+    #     "config-cycle tabs.show never always"
+    #     "config-cycle statusbar.show in-mode always"
+    #     "config-cycle scrolling.bar never always"
+    #   ];
+    # };
+    # prompt = {
+    #   "<ctrl-y>" = "prompt-yes";
+    # };
+  # }
+  # </ctrl-y></f1></ctrl-v>
+      searchEngines = {
+        w = "https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1";
+        aw = "https://wiki.archlinux.org/?search={}";
+        nw = "https://wiki.nixos.org/index.php?search={}";
+        g = "https://www.google.com/search?hl=en&amp;q={}";
+      };
+      settings = {
+        colors = {
+          hints = {
+            bg = "#000000";
+            fg = "#ffffff";
+          };
+          tabs.bar.bg = "#000000";
+        };
+        # tabs.tabs_are_windows = true; #wack lol
+      };
+    };
+
     zoxide = {
       enable = true;
       enableBashIntegration = true;
@@ -117,7 +160,7 @@
       ];
     };
 
-    comodoro = {
+    comodoro = { #TODO: use
       enable = true;
     };
 
@@ -154,9 +197,9 @@
       };
     };
 
-    eza = {
-      enable = true;
-    };
+    # eza = {
+    #   enable = true;
+    # };
 
     fd = {
       enable = true;
@@ -329,21 +372,22 @@
         '';#FIXME: fix this
     };
 
-    ssh = {
-      enable = true;
+    # ssh = { #FIXME: makes thinigs worse? lol
+      # enable = true;
       # controlPersist = "10m"; # whether control socket should remain open in background
       # extraConfig = "";
-      extraOptionOverrides = { # extra SSH config that take precedence over any host specific config
+      # extraOptionOverrides = { # extra SSH config that take precedence over any host specific config
       # forwardAgent = true; #false:: ; Whether the connection to the authentication agent (if any) will be forwarded to the remote machine.
-      };
-    };
+      # };
+    # };
 
     fzf = {
       enable = true;
       enableBashIntegration = true; #true::
       tmux = {
         enableShellIntegration = true;
-        shellIntegrationOptions = [ "-p 50%;60%" ]; #-d 40% #TODO: see more # fzf-tmux --help
+        # shellIntegrationOptions = [ "-p 50%;60%" ]; #-d 40% #TODO: see more # fzf-tmux --help
+        shellIntegrationOptions = [ "-d 40" ]; #-d 40% #TODO: see more # fzf-tmux --help
       };
       colors = {#https://github.com/junegunn/fzf/wiki/Color-schemes
         # bg = "#1e1e1e";
@@ -356,7 +400,7 @@
         # "fg+" = "#d4d4d4";# text current line
         # "fg+" = "#DA4167";# text current line; ~matched_text
         "fg+" = "#FCFCFC";# text current line; ~matched_text
-        # "gutter" =  "#022223";
+        "gutter" =  "#022223";
         "hl" = "#0FA3B1"; # highlighted substrings
         # "hl+" = "#F1DEDE"; # highlighted substrings(current line)
         # "hl+" = "#F7567C"; # highlighted substrings(current line)

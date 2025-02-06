@@ -78,17 +78,16 @@
       action = "<C-r>";
       desc = "better undo (C-r)";
     }
-    # {
-    #   mode = "n";
-    #   # key = "<leader>un";
-    #   key = "<leader>nn";
-    #   lua = true; # action considered lua no quotes**
-    #   # key = "<C-l>";
-    #   action = ''require("notify").dismiss({ silent = true, pending = true })<cr>
-    #   '';
-    #   desc = "Dismiss All notify Notifications";
-    #   nowait = true;
-    # }
+    {
+      mode = "n";
+      # key = "<leader>un";
+      key = "<leader>nn";
+      #lua = true; # action considered lua no quotes**
+      # key = "<C-l>";
+      action = "<cmd>lua require(\"notify\").dismiss({ silent = true, pending = true })<CR>";
+      desc = "Dismiss All notify Notifications";
+      nowait = true;
+    }
     {
       mode = ["n"];
       key = "<leader>/";
@@ -131,8 +130,8 @@
     }
     {
       mode = ["n"];
-      # key = "<M-s>";
-      key = "<M-;>";
+      key = "<M-s>";
+      # key = "<M-;>";
       # key = "<M-a>";
       action = "<cmd>w<cr>";
       silent = true;

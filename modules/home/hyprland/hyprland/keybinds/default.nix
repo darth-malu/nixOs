@@ -49,7 +49,7 @@
 
           # rofi
           "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
-          "$al, space, exec, pkill rofi || $menu_rofi"
+          "$mod, space, exec, pkill rofi || $menu_rofi"
           "$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
           # "$mod $cl, e, exec, pkill rofi || $emoji_rofi"
           # "$mod $cl, m, exec, pkill rofi || $calc_rofi"
@@ -86,7 +86,8 @@
 
           #█▄▀ █ █░░ █░░   ▄▀█ █▀▀ ▀█▀ █ █░█ █▀▀
           #█░█ █ █▄▄ █▄▄   █▀█ █▄▄ ░█░ █ ▀▄▀ ██▄
-          "$mod ,space, killactive"
+          "$mod ,Escape, killactive"
+          # "$mod ,Space, killactive"
           "$mod, mouse:275, killactive,"
 
 
@@ -163,18 +164,18 @@
           "SUPER ,End,execr, killall .waybar-wrapped || uwsm app waybar" 
 
           # gaps
-          "SUPER $sl,KP_Enter, exec, ~/.darth/scripts/gaps.sh reset"
-          "SUPER ,KP_Enter, exec, ~/.darth/scripts/gaps.sh custom"
-          "SUPER ,$ar, exec, $gaps"#toggle gaps on/off
+          "SUPER $sl,KP_Enter, exec, gaps reset"
+          "SUPER ,KP_Enter, exec, gaps custom"
+          "SUPER ,$ar, exec, gaps toggle_gaps_out"#toggle gaps on/off
 
                 
           # █▀▄▀█ █▀█ █▄░█ █ ▀█▀ █▀█ █▀█
           # █░▀░█ █▄█ █░▀█ █ ░█░ █▄█ █▀▄
-          "$al $sl,h, movecurrentworkspacetomonitor, 0"
-          "$al $sl,l, movecurrentworkspacetomonitor, 1"
-          "$al $sl, k, focusmonitor, +1"
+          "$mod $sl,h, movecurrentworkspacetomonitor, 0"
+          "$mod $sl,l, movecurrentworkspacetomonitor, 1"
+          "$mod $sl, k, focusmonitor, +1"
           # "$al ,$sl, swapnext"
-          "$al $sl, semicolon, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\""
+          "$mod $sl, semicolon, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\""
           # "$mod $sl,l, focusmonitor, HDMI-A-1"
           # "$mod $sl,h, focusmonitor, DP-3"
 
@@ -241,8 +242,6 @@
         "$mod, Next, exec, songart"
         ]++
         [#rest
-        # gaps
-        #"SUPER $sl,KP_Enter, exec, ~/.darth/scripts/gaps.sh reset" # reset to 0
         "SUPER ,KP_Enter, exec, gaps custom" # set according to hyprland config default
 
         # increase/decrease gaps

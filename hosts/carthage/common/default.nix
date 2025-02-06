@@ -31,9 +31,14 @@
     };
   };
 
-  # allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  #             "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta"
-  # ];
+  # nixpkgs.pkgs = import <nixpkgs> {}; #TODO: investigate how to make this work
+
+  nixpkgs.pkgs = import  nixpkgs {
+    config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta"
+    ];
+  }; 
+
 
   # nixpkgs.config.allowUnfree = true;
 
@@ -182,7 +187,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   # networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs set
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   time.timeZone = "Africa/Nairobi";
   system.stateVersion = "24.05";

@@ -12,13 +12,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nixvim = { # TODO:clean after video
-      # url = "github:nix-community/nixvim/nixos-24.11";
-      # url = "github:nix-community/nixvim";
-      # inputs.nixpkgs.follows = "nixpkgs-unstable";
-      #url = "github:elythh/nixvim"; #elythh maximal nixvim lul
-    # };
-
     # obsidian-nvim.url = "github:epwalsh/obsidian.nvim";
     # Required, nvf works best and only directly supports flakes
     nvf = {
@@ -28,29 +21,20 @@
       # inputs.obsidian-nvim.follows = "obsidian-nvim"; # <- this will use the obsidian-nvim from your inputs
     };
 
-    # nix-index-database.url = "github:nix-community/nix-index-database";
-    # nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland.url = "github:hyprwm/Hyprland"; # with cachix
+    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+    hyprland-plugins.inputs.hyprland.follows = "hyprland";
 
-       hyprpaper = {
-       url = "github:hyprwm/hyprpaper";
-       inputs.nixpkgs.follows = "nixpkgs";
-   };
-
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # python-nixpkgs.url = "github:nixos/nixpkgs/4ae2e647537bcdbb82265469442713d066675275";
-
     nyaa = {
       url = "github:Beastwick18/nyaa";
       inputs.nixpkgs.follows = "nixpkgs";#TODO: find out what follows does exactly
     };
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
   };
 
   outputs = {nixpkgs ,...}@inputs:
@@ -79,12 +63,12 @@
         carthage = 
           nixpkgs.lib.nixosSystem {
             inherit system;
-            specialArgs = { inherit pkgs inputs system; };
+            specialArgs = { inherit inputs system; };
             modules = [
               ./hosts/carthage/default.nix
-              nixpkgs.nixosModules.readOnlyPkgs
+              nixpkgs.nixosModules.readOnlyPkgs # then set nnixpkgs.pkgs to use options like config.allowUnfreePredicate
               {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
-              inputs.home-manager.nixosModules.home-manager { # is this analogous to <home-manager/nixos> from docs # remove need for shell instantiation...get from flake TODO: split hyrland on laptop vs pc
+              inputs.home-manager.nixosModules.home-manager { 
                 home-manager = {
                   verbose = true;
                   backupFileExtension = "bakup"; # conflict management,append .backup to existing conf. files
@@ -101,7 +85,6 @@
           inherit system;
           specialArgs = { inherit inputs system; };
           modules = [
-            # ./hosts/carthage/default.nix
             ./hosts/tangier/default.nix
             # nvf.homeManagerModules.default # <- this imports the home-manager module that provides the options. # using nvf/ import instead...cleaner
             inputs.home-manager.nixosModules.home-manager { 

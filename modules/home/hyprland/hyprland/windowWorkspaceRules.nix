@@ -48,7 +48,8 @@
 
         "nofocus, title:(Discord Updater)"
         "workspace emptym, class:^(Chromium-browser)$"
-        "workspace emptym, google-chrome"
+        "workspace emptym, google-chrome" #TODO: do this with array?
+        "workspace emptym, org.qutebrowser.qutebrowser"
         "workspace emptym, obsidian"
         "workspace emptym, spotube"
       ];

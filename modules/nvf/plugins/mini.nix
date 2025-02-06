@@ -95,8 +95,10 @@
           encode = "nil";
 
           # Scrollbar parts for view and line. Use empty string to disable any.
-          scroll_line = "█";
-          scroll_view = "┃";
+          # scroll_line = "█";
+          # scroll_view = "┃";
+          scroll_line = "";
+          scroll_view = "";
 
           # Window options
           window = {
@@ -135,16 +137,16 @@
           # right = "<M-l>";
           # down = "<M-j>";
           # up = "<M-k>";
-          left  = "<C-h>";
-          right = "<C-l>";
-          down  = "<C-j>";
-          up    = "<C-k>";
+          left  = "<C-Left>";
+          right = "<C-Right>";
+          down  = "<C-Down>";
+          up    = "<C-Up>";
 
           # Move current line in Normal mode
-          line_left  =  "<C-h>";
-          line_right =  "<C-l>";
-          line_down  =  "<C-j>";
-          line_up    =  "<C-k>";
+          line_left  =  "<C-Left>";
+          line_right =  "<C-Right>";
+          line_down  =  "<C-Down>";
+          line_up    =  "<C-Up>";
         };
 
         # Options which control moving behavior

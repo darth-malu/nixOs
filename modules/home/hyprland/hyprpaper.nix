@@ -4,7 +4,7 @@
   services.hyprpaper = {
     enable = true;
     # importantPrefixes = [];#TODO: make cleaner with this
-    # package = inputs.hyprpaper; # set the flake package
+    # package = inputs.hyprpaper.nixpkgs.hyprpaper; # set the flake package
     settings = {
       ipc = true; #true::
       splash = true;

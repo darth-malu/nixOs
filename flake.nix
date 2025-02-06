@@ -1,9 +1,7 @@
 {
-  description = "abstracT nixConfig";
+  description = "maluware";
   inputs = {
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nixpkgs.url = "nixpkgs/nixos-24.11" || nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     yazi.url = "github:sxyazi/yazi";
 
@@ -23,8 +21,8 @@
 
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland.url = "github:hyprwm/Hyprland"; # with cachix
-    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
-    hyprland-plugins.inputs.hyprland.follows = "hyprland";
+    # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+    # hyprland-plugins.inputs.hyprland.follows = "hyprland";
 
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
@@ -37,7 +35,7 @@
     };
   };
 
-  outputs = {nixpkgs ,...}@inputs:
+  outputs = {nixpkgs , ...}@inputs: # Note the use of `self` which allows reusing flake's outputs in itself
     let
       system = "x86_64-linux"; # system = builtins.currentSystem;??
       neovimConf = inputs.nvf.lib.neovimConfiguration {
@@ -47,26 +45,26 @@
       pkgs = import nixpkgs {#TODO: see if legacyPackages can be used instead 
         inherit  system;
         config = {
-          allowUnfreePredicate = pkg:
-            builtins.elem (pkgs.lib.getName pkg) [
+          allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
               "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta"
             ];
         };
       };
-      # pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       packages.${system}.my-neovim = neovimConf.neovim; # NVF
 
-      #INFO: CARTHAGE-
+      #WARN: CARTHAGE-
       nixosConfigurations = {
         carthage = 
           nixpkgs.lib.nixosSystem {
             inherit system;
+            # specialArgs = { inherit pkgs inputs system; };
             specialArgs = { inherit inputs system; };
             modules = [
+              # {config = { nixpkgs.pkg = import nixpkgs {}; nixpkgs.config.allowUnfree = true;};}
+              # nixpkgs.nixosModules.readOnlyPkgs # then set nnixpkgs.pkgs to use options like config.allowUnfreePredicate
               ./hosts/carthage/default.nix
-              nixpkgs.nixosModules.readOnlyPkgs # then set nnixpkgs.pkgs to use options like config.allowUnfreePredicate
               {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
               inputs.home-manager.nixosModules.home-manager { 
                 home-manager = {
@@ -80,6 +78,7 @@
               }
             ];
         };
+        #WARN: TANGIER
         tangier =
           nixpkgs.lib.nixosSystem {
           inherit system;
@@ -87,6 +86,7 @@
           modules = [
             ./hosts/tangier/default.nix
             # nvf.homeManagerModules.default # <- this imports the home-manager module that provides the options. # using nvf/ import instead...cleaner
+            # {nixpkgs.pkg = import nixpkgs {};}
             inputs.home-manager.nixosModules.home-manager { 
               home-manager = {
                 # verbose = true;

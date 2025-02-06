@@ -20,10 +20,10 @@
       };
     };
     kernelModules = ["kvm-amd" "wl"]; # second stage of boot process # not modules needed to boot root fs
-    #kernelParams = [# parameterrs for kernel command line
-    #"video=HDMI-A-1:1920x1080@240"
-    #"video=DP-3:1920x1080@60"
-    #];
+    # kernelParams = [# parameterrs for kernel command line
+    #   "video=HDMI-A-1:1920x1080@240"
+    #   "video=DP-3:1920x1080@60"
+    # ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -33,12 +33,9 @@
 
   # nixpkgs.pkgs = import <nixpkgs> {}; #TODO: investigate how to make this work
 
-  nixpkgs.pkgs = import  nixpkgs {
-    config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
       "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta"
-    ];
-  }; 
-
+  ];
 
   # nixpkgs.config.allowUnfree = true;
 
@@ -136,18 +133,19 @@
     };
   };
   nix = {
+    optimise = {# Automatically run the nix store optimiser at a specific time.
+      automatic = true; # false::
+      dates = ["weekly"];
+      #dates = ["03:15" "00:00"]; # see systemd.time(7) for specification
+    };
     gc = {
       automatic = true;
       dates = "weekly";
       #dates = "03:15";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 14d";
     };
-    #extraOptions = ''
-      #keep-outputs = true
-      #keep-derivations = true
-    #'';# keep build-time dependencies around/be able to rebuild while being offline
     settings = {
-      #auto-optimise-store = true;
+      auto-optimise-store = true; # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy. #false::
       experimental-features = [ "nix-command" "flakes" ];
       substituters = [
         "https://cache.nixos.org?priority=10"
@@ -166,6 +164,10 @@
         # "konradmalik.cachix.org-1:9REXmCYRwPNL0kAB0IMeTxnMB1Gl9VY5I8w7UVBTtSI="
       ];
     };
+    #extraOptions = ''
+      #keep-outputs = true
+      #keep-derivations = true
+    #'';# keep build-time dependencies around/be able to rebuild while being offline
   };
   i18n = {
     defaultLocale = "en_US.UTF-8";

@@ -173,9 +173,9 @@
           # █░▀░█ █▄█ █░▀█ █ ░█░ █▄█ █▀▄
           "$mod $sl,h, movecurrentworkspacetomonitor, 0"
           "$mod $sl,l, movecurrentworkspacetomonitor, 1"
-          "$mod $sl, k, focusmonitor, +1"
           # "$al ,$sl, swapnext"
-          "$mod $sl, semicolon, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\""
+          "$mod $sl, k, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux
+          # "$mod $sl, k, exec, dispatch swapactiveworkspaces HDMI-A-1 DP-3 ;"
           # "$mod $sl,l, focusmonitor, HDMI-A-1"
           # "$mod $sl,h, focusmonitor, DP-3"
 
@@ -183,6 +183,7 @@
           #█▀░ █▄█ █▄▄ █▄█ ▄█ █▄▄ █▄█ █▀▄ █▀▄ ██▄ █░▀█ ░█░
           "$mod,K, Workspace, previous_per_monitor"
           "$mod, mouse:276, Workspace, previous_per_monitor"
+          "$mod $sl, semicolon, focusmonitor, +1"
           "$mod, semicolon, cyclenext"
         ]
         ++ (

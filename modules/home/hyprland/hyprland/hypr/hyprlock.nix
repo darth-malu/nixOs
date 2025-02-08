@@ -1,8 +1,9 @@
-{lib, ...}:
+{lib, pkgs, inputs,...}:
 
 {
   programs.hyprlock = {
-    enable = lib.mkDefault true;
+    enable = lib.mkDefault false;
+    # package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
     settings = {
       general = {
         disable_loading_bar = true;

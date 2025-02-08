@@ -56,7 +56,7 @@
               git_diff = false;
               search_results = true;
               selected_symbol = true;
-              diagnostics = true;
+              #diagnostics = true;
             };
 
 

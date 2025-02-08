@@ -114,7 +114,22 @@
       # aliases = {};
       enableDefaultBindings = true; # true::
       extraConfig = # qute config.py file
-        ''
+        /*python*/''
+          import os
+          from urllib.request import urlopen
+
+          # load your autoconfig, use this, if the rest of your config is empty!
+          config.load_autoconfig()
+
+          if not os.path.exists(config.configdir / "theme.py"):
+              theme = "https://raw.githubusercontent.com/catppuccin/qutebrowser/main/setup.py"
+              with urlopen(theme) as themehtml:
+                  with open(config.configdir / "theme.py", "a") as file:
+                      file.writelines(themehtml.read().decode("utf-8"))
+
+          if os.path.exists(config.configdir / "theme.py"):
+              import theme
+              theme.setup(c, 'mocha', True)
 
       '';
       loadAutoconfig = false; # false:: load config from GUI
@@ -332,45 +347,6 @@
       };
     };
 
-    wezterm = {
-      enable = true;
-      # package = pkgs-unstable.wezterm;
-      enableBashIntegration = true;
-      colorSchemes = { #$XDG_CONFIG_HOME/wezterm/colors
-        myCoolTheme = {
-          ansi = [
-            "#222222" "#D14949" "#48874F" "#AFA75A"
-            "#599797" "#8F6089" "#5C9FA8" "#8C8C8C"
-          ];
-          brights = [
-            "#444444" "#FF6D6D" "#89FF95" "#FFF484"
-            "#97DDFF" "#FDAAF2" "#85F5DA" "#E9E9E9"
-          ];
-          background = "#1B1B1B";
-          cursor_bg = "#BEAF8A";
-          cursor_border = "#BEAF8A";
-          cursor_fg = "#1B1B1B";
-          foreground = "#BEAF8A";
-          selection_bg = "#444444";
-          selection_fg = "#E9E9E9";
-        };
-      };
-        extraConfig = /*lua*/''
-          -- Your lua code / config here
-          local mylib = require 'mylib';
-          return {
-            usemylib = mylib.do_fun();
-            font = wezterm.font("JetBrains Mono");
-            font_size = 16.0;
-            color_scheme = "Tomorrow Night";
-            hide_tab_bar_if_only_one_tab = true;
-            default_prog = { "zsh"; "--login"; "-c"; "tmux attach -t dev || tmux new -s dev" };
-            keys = {
-              {key="n"; mods="SHIFT|CTRL"; action="ToggleFullScreen"};
-            }
-          }
-        '';#FIXME: fix this
-    };
 
     # ssh = { #FIXME: makes thinigs worse? lol
       # enable = true;
@@ -392,7 +368,8 @@
       colors = {#https://github.com/junegunn/fzf/wiki/Color-schemes
         # bg = "#1e1e1e";
         bg = "#022223";
-        "bg+" = "#9381ff";# current line background plus associated border
+        # "bg+" = "#9381ff";# current line background plus associated border
+        "bg+" =  "#022223";
         # fg = "#93E1D8"; # text
         # fg = "#4ED4BC"; # text
         fg = "#4ED4BC"; # text
@@ -401,10 +378,11 @@
         # "fg+" = "#DA4167";# text current line; ~matched_text
         "fg+" = "#FCFCFC";# text current line; ~matched_text
         "gutter" =  "#022223";
-        "hl" = "#0FA3B1"; # highlighted substrings
+        # "hl" = "#0FA3B1"; # highlighted substrings
         # "hl+" = "#F1DEDE"; # highlighted substrings(current line)
-        # "hl+" = "#F7567C"; # highlighted substrings(current line)
+        "hl" = "#F7567C";
         "hl+" = "#9400FF";
+        # "hl+" = "#4ED4BC";
         # "preview-fg" = "";
         # "preview-bg" = "";
         "pointer" = "#4F345A";

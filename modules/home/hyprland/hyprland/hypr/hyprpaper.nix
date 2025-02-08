@@ -1,10 +1,11 @@
-{inputs,pkgs, ...}:
+# {inputs,pkgs, ...}:
 
 {
   services.hyprpaper = {
     enable = true;
     # importantPrefixes = [];#TODO: make cleaner with this
-    # package = inputs.hyprpaper.nixpkgs.hyprpaper; # set the flake package
+    # package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
+
     settings = {
       ipc = true; #true::
       splash = true;

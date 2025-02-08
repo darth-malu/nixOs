@@ -24,7 +24,12 @@ let
         kb_layout = "us";
         numlock_by_default = true;
         kb_options = "caps:swapescape";
-        follow_mouse = 1; #  1- cursor changes focus to window under cursor # 2- cursor focus detached from keyboard foocus # 3 - completely detach,click wont change focus # 0-cursor movement will not change focus
+        follow_mouse = 0;
+          # Follow Mouse legend
+          # 0 - Cursor movement will not change focus.
+          # 1- Cursor movement will always change focus to the window under the cursor,
+          # 2- Cursor focus will be detached from keyboard focus. Clicking on a window will move keyboard focus to that window.
+          # 3 - completely detach,click wont change focus,0-cursor movement will not change focus
         # special_fallthrough= true; # floating will not block focus to regular workspace
         float_switch_override_focus = 2; # 2 - follow_mouse on switch; #TODO: test further
         scroll_factor = 1.6; #1.2
@@ -38,7 +43,7 @@ let
         {
           name = "sino-wealth-usb-keyboard" ;
           repeat_delay = 380; # 400, ;;380
-          repeat_rate = 30; # ;;25 || nice: 39
+          repeat_rate = 26; # ;;25 || nice: 39
         }
       ];
     };
@@ -59,11 +64,6 @@ let
         numlock_by_default = true;
         kb_options = "caps:swapescape";
         follow_mouse = 1; 
-          # Follow Mouse legend
-          # 0 - Cursor movement will not change focus.
-          # 1- Cursor movement will always change focus to the window under the cursor,
-          # 2- Cursor focus will be detached from keyboard focus. Clicking on a window will move keyboard focus to that window.
-          # 3 - completely detach,click wont change focus,0-cursor movement will not change focus
         focus_on_close = 1; # 0 - next window candidate::, 1 - under cursor
         special_fallthrough= true; # floating will not block focus to regular workspace
         float_switch_override_focus = 2; # 2 - follow_mouse on switch; #TODO: test further
@@ -71,10 +71,9 @@ let
         touchpad = {
             disable_while_typing = true;
             natural_scroll = true;
-            #clickfinger_behaviour = true; # LMB,RMB,MMB to taps #nice spelling vaxry lol
             clickfinger_behavior = true; # LMB,RMB,MMB to taps
             drag_lock = false;
-            tap-and-drag = true; #nice syntax consistency vax lol
+            tap-and-drag = true;
             scroll_factor = 1.2;
         };
         };

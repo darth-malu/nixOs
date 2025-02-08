@@ -20,7 +20,8 @@
       shiftwidth = 2; # use with > shifting
       # winbar = "%=%m\ %f";
       #autoindent = true;
-      cursorlineopt = "number"; # line::, screenline, number, both - hl text line of the cursor
+      cursorline = true; # will make screen redrawing slower
+      cursorlineopt = "number"; # line hl-CursorLine::, screenline hl-CursorLine, number hl-CursorLineNr, both - hl text line of the cursor
       signcolumn = "no"; #yes::, no
       #tm = 500; # timeout for mapped actions
       # wrap = true; # word wrapping
@@ -55,6 +56,5 @@
        # name = "catppuccin"; style = "mocha"; #moon, night, storm, day
       # name = "rose-pine"; style = "dawn"; #moon, dawn
     };
-    
   };
 }

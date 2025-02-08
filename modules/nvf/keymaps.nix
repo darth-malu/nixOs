@@ -72,6 +72,19 @@
       silent = false;
       desc = "rename variable under cursor lol";
     }
+    # {
+    #   mode = [ "n" ];
+    #   key = "<leader>gf";
+    #   #lua = true; # action considered lua no quotes**
+    #   action = ''<cmd>lua
+    #   function()
+    #     return require("obsidian").util.toggle_checkbox()
+    #   end,
+    #   opts = { buffer = true },
+    #   <CR>'';
+    #   silent = false;
+    #   desc = "Toggle check-boxes";
+    # }
     {
       mode = "n";
       key = "U";

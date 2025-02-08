@@ -25,7 +25,7 @@
         extraConfig = /*tmux*/''
           set -g @resurrect-strategy-nvim 'session'
           set -g @resurrect-strategy-vim 'session'
-          set -g @resurrect-capture-pane-contents 'on'
+          # set -g @resurrect-capture-pane-contents 'on'
           # set -g @resurrect-processes '~nvim -> nvim'
          '';
       }
@@ -34,7 +34,7 @@
        extraConfig = /*tmux*/ ''
          set -g @continuum-restore 'on' # autorestore session on tmux a
          set -g @continuum-save-interval '5' # minutes
-         # set -g @continuum-boot 'on'
+         set -g @continuum-boot 'on'
        '';
       }
     ];

@@ -61,8 +61,23 @@
       enableTreesitter = true; # all enabled...can be explicit
       lua.enable = true;
       css.enable = true;
+      python = {
+        enable = true;
+        treesitter.enable = true;
+        lsp = {
+          enable = true;
+          # server = "pyright"; #basedpyright::, "pyright" "python-lsp-serveree"
+        };
+        format = {
+          enable = true;
+        };
+      };
       bash = {
         enable = true;
+        lsp = {
+          enable = true;
+        };
+        treesitter.enable = true;
         extraDiagnostics = {
           enable = true;
           types = ["shellcheck"];

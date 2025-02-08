@@ -49,7 +49,7 @@
 
           # rofi
           "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
-          "$mod, Escape, exec, pkill rofi || $menu_rofi"
+          "$mod, P, exec, pkill rofi || $menu_rofi"
           "$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
           # "$mod $cl, e, exec, pkill rofi || $emoji_rofi"
           # "$mod $cl, m, exec, pkill rofi || $calc_rofi"
@@ -112,7 +112,7 @@
 
           # move to empty
           "$mod , o, movetoworkspace, emptym"
-          # "$mod $sl, o, movetoworkspacesilent, emptym"
+          "$mod $sl, o, movetoworkspacesilent, emptym"
 
           #█▀▀ █▀█ █▀▀ █░█ █▀
           #█▀░ █▄█ █▄▄ █▄█ ▄█
@@ -233,8 +233,8 @@
         # ", Insert, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '$HOME/.local/darth/iconDownload/iconsLinuxHdd/time-color-hand-drawn/icons8-time-60.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
         # "$mod, Insert, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '$HOME/.local/darth/iconDownload/iconsLinuxHdd/time-color-hand-drawn/icons8-time-60.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
         # "$mod, Prior, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/modules/home/scripts/assets/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
-        "$mod, P, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/modules/home/scripts/assets/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
-        "$mod $sl, P, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/modules/home/scripts/assets/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
+        "$mod, T, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/modules/home/scripts/assets/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
+        "$mod $sl, T, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/modules/home/scripts/assets/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
         ]
         ++[
         #dunst pop

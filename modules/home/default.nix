@@ -15,6 +15,7 @@
     ./scripts
     ./yazi
     ./kitty
+    ./wezterm
     ./textEditor
     # ./nixvim
     # ./helix

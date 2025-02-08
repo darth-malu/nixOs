@@ -27,8 +27,8 @@
   bind-key -n M-h previous-window
   bind-key -n M-l next-window
   bind-key -n M-Enter new-window -c "#{pane_current_path}" 
-  bind-key -n M-Escape kill-window
-  # bind-key -n M-Space kill-window
+  # bind-key -n M-Escape kill-window
+  bind-key -n M-Space kill-window
   # bind-key -n M-x kill-window
   # bind-key -n M-q kill-window
   # bind-key -n C-Tab next-window

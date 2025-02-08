@@ -41,7 +41,7 @@
           # vibrancy = 0.1696; #0.1696::, [0.0-1.0] saturation of blurred colours
         };
 
-        rounding = 5;# 5, 0::
+        rounding = 4;# 5, 0::
         rounding_power = 4.0; # 2.0::, larger is smoother, 2 is circle, 4 is squircle [2.0-10.0]
         active_opacity = 1;
         # inactive_opacity = 0.95;

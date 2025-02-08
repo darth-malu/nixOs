@@ -9,7 +9,6 @@ let
         # "DP-3,highrr,0x0,1"
         "DP-3,1920x1080@60,0x0,1"
       ];
-
       cursor = {
         no_warps = true;
         enable_hyprcursor = true;
@@ -24,7 +23,7 @@ let
         kb_layout = "us";
         numlock_by_default = true;
         kb_options = "caps:swapescape";
-        follow_mouse = 0;
+        follow_mouse = 1;
           # Follow Mouse legend
           # 0 - Cursor movement will not change focus.
           # 1- Cursor movement will always change focus to the window under the cursor,

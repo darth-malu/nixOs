@@ -28,10 +28,11 @@ lib.mkIf osConfig.programs.hyprland.enable {
       # name = "tokyonight-gtk-theme"; package = pkgs.Tokyonight-Moon;
     };
     iconTheme = {
-      package = pkgs.kora-icon-theme; name = "kora";
+      # package = pkgs.kora-icon-theme; name = "kora";
 
       # currently not workign
-      # package = pkgs.candy-icons; name = "candy-icons";
+      package = pkgs.candy-icons; name = "candy-icons";
+      # package = pkgs.windows10-icons; name = "windows10-icons";
       #package = pkgs.nordzy-icon-theme; name = "nordzy-icon-theme";
       #package = gruvboxplus; name = "GruvboxPlus";
       # package = pkgs.colloid-icon-theme; name = "colloid-icon-theme";
@@ -68,7 +69,7 @@ lib.mkIf osConfig.programs.hyprland.enable {
       #name = "adwaita-dark"; #kvantum
       #name = "breeze"; package = pkgs.libsForQt5.breeze-qt5;
       # name = "breeze"; package = pkgs.kdePackages.breeze;
-      name = "adwaita-dark";
+      name = "adwaita"; #adwaita-dark
       # package = pkgs.adwaita-qt6;
     };
   };

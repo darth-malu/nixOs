@@ -46,8 +46,8 @@
     { on = [ "l" ]; run = "forward"; desc = "Go forward to the next directory"; }
 
     { on = [ "h" ]; run = "leave";    desc = "parent dir. go"; }
-    #{ on = [ "l" ]; run = "enter"; desc = "@darth Enter child dir."; }
-    { on = [ "l" ]; run  = "plugin --@sync entry smart-enter"; desc = "Enter child dir. or open file lul"; }
+    { on = [ "l" ]; run = "enter"; desc = "@darth Enter child dir."; }
+    # { on = [ "l" ]; run  = "plugin --@sync entry smart-enter"; desc = "Enter child dir. or open file lul"; }
 
     { on = [ "<A-k>" ]; run = "seek -5"; desc = "Seek up 5 units in the preview"; }
     { on = [ "<A-j>" ]; run = "seek 5";  desc = "Seek down 5 units in the preview"; }
@@ -59,8 +59,8 @@
     { on = [ "<Left>" ];  run = "leave";    desc = "Go back to the parent directory"; }
     { on = [ "<Right>" ]; run = "enter";    desc = "Enter the child directory"; }
 
-    { on = [ "g"  "g" ]; run = "arrow -99999999"; desc = "Move cursor to the top"; }
-    { on = [ "G" ];      run = "arrow 99999999";  desc = "Move cursor to the bottom"; }
+    { on = [ "g"  "g" ]; run = "arrow top"; desc = "Move cursor to the top"; }
+    { on = [ "G" ];      run = "arrow bot";  desc = "Move cursor to the bottom"; }
 
     # Selection
     { on = [ "<Space>" ]; run = [ "select --state=none" "arrow 1" ]; desc = "Toggle the current selection state"; }
@@ -135,8 +135,7 @@
     # Tabs
     { on = [ "T" ]; run = "tab_create --current"; desc = "Create a new tab using the current path"; }
     { on = [ "t" ]; run = "tab_create "; desc = "Create a new tab"; }
-
-        { on = [ "1" ]; run = "tab_switch 0"; desc = "Switch to the first tab"; }
+    { on = [ "1" ]; run = "tab_switch 0"; desc = "Switch to the first tab"; }
     { on = [ "2" ]; run = "tab_switch 1"; desc = "Switch to the second tab"; }
     { on = [ "3" ]; run = "tab_switch 2"; desc = "Switch to the third tab"; }
     { on = [ "4" ]; run = "tab_switch 3"; desc = "Switch to the fourth tab"; }
@@ -145,10 +144,8 @@
     { on = [ "7" ]; run = "tab_switch 6"; desc = "Switch to the seventh tab"; }
     { on = [ "8" ]; run = "tab_switch 7"; desc = "Switch to the eighth tab"; }
     { on = [ "9" ]; run = "tab_switch 8"; desc = "Switch to the ninth tab"; }
-
     { on = [ "[" ]; run = "tab_switch -1 --relative"; desc = "Switch to the previous tab"; }
     { on = [ "]" ]; run = "tab_switch 1 --relative";  desc = "Switch to the next tab"; }
-
     { on = [ "{" ]; run = "tab_swap -1"; desc = "Swap the current tab with the previous tab"; }
     { on = [ "}" ]; run = "tab_swap 1";  desc = "Swap the current tab with the next tab"; }
 
@@ -158,9 +155,9 @@
   ];
 
   manager.prepend_keymap = [
-    {on = [ "l" ]; run = "plugin --@sync entry smart-enter"; desc = "Enter child dir or open file";}
-    #{on = [ "p" ]; run = "plugin --sync smart-paste"; desc = "Paste into hovered dir. or CWD";}
-    { on = "<Tab>"; run = "plugin --@sync entry dual-pane --args=next_pane";  desc = "Dual-pane: switch to the other pane"; }
+    {on = [ "l" ]; run = "plugin smart-enter"; desc = "Enter child dir or open file";}
+    # {on = [ "p" ]; run = "plugin --sync smart-paste"; desc = "Paste into hovered dir. or CWD";}
+    # { on = "<Tab>"; run = "plugin --@sync entry dual-pane --args=next_pane";  desc = "Dual-pane: switch to the other pane"; }
   ];
 
   input.prepend_keymap = [

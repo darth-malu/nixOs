@@ -6,15 +6,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd('BufEnter', {
-  desc = 'highlight current line only',
-  group = vim.api.nvim_create_augroup('highlighterr' , { clear = true }),
-  callback = function()
-    vim.cmd('highlight CursorLineNr ctermfg=yellow guifg=#3FA8C6') --#EBBCBA
-    -- Highlight the current line
-    vim.o.cursorline = true
-  end,
-})
+-- vim.api.nvim_create_autocmd('BufEnter', {
+--   desc = 'highlight current line only',
+--   group = vim.api.nvim_create_augroup('highlighterr' , { clear = true }),
+--   callback = function()
+--     vim.cmd('highlight CursorLineNr ctermfg=yellow guifg=#3FA8C6') --#EBBCBA
+--     -- Highlight the current line
+--     vim.o.cursorline = true
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd('TermOpen', { --no numbers on term
   group = vim.api.nvim_create_augroup('custom-term-open' , { clear = true }),

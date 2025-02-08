@@ -1,23 +1,23 @@
 {
   vim.mini = {
-    # ai = {
-    #   enable = true;
-    #   setupOpts = {
-    #     mappings = {
-    #       # Main textobject prefixes
-    #       around = "a";
-    #       inside = "i";
-    #       #Next/last variants
-    #       around_next = "an";
-    #       inside_next = "in";
-    #       around_last = "al";
-    #       inside_last = "il";
-    #       #Move cursor to corresponding edge of `a` textobject
-    #       # goto_left = "g["; #no work?
-    #       # goto_right = "g]";
-    #     };#TODO: check on modifiers and alignment
-    #   };
-    # };
+    ai = {
+      enable = false;
+      setupOpts = {
+        mappings = {
+          # Main textobject prefixes
+          around = "a";
+          inside = "i";
+          #Next/last variants
+          around_next = "an";
+          inside_next = "in";
+          around_last = "al";
+          inside_last = "il";
+          #Move cursor to corresponding edge of `a` textobject
+          # goto_left = "g["; #no work?
+          # goto_right = "g]";
+        };#TODO: check on modifiers and alignment
+      };
+    };
     sessions = {
       enable = true;
       setupOpts = {
@@ -68,7 +68,7 @@
     #   };
     # };
     git = {
-      enable = true;
+      enable = false;
       setupOpts = {
         # General CLI execution
         job = {
@@ -87,7 +87,7 @@
       };
     };
     map = { 
-      enable = true;
+      enable = false;
         setupOpts = {
           # Encode symbols. See `:h MiniMap.config` for specification and
           # `:h MiniMap.gen_encode_symbols` for pre-built ones.
@@ -126,9 +126,9 @@
       enable = true;
       setupOpts = {};
     };
-    files.enable = true;
+    files.enable = false;
     move = { 
-      enable = true;
+      enable = true; #TODO: do this natively without mini.nvim
       setupOpts = {
         # Module mappings. Use `''` (empty string) to disable one.
         mappings = {

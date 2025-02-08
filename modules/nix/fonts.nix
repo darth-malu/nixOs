@@ -33,9 +33,15 @@
         martian-mono
         sauce-code-pro
         tinos # similar to times new
-        iosevka-term
+        # iosevka-term
+        iosevka
+        lekton
+        lilex
         hasklug
         geist-mono
+        agave
+        caskaydia-cove
+        symbols-only # for wezterm/terminal in general glyphs
       ]);
 };
 }

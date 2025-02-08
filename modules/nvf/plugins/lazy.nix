@@ -5,7 +5,7 @@
       # setupModule - lua module to run setup function on
       # setupOpts - Options to pass to the setup function
       enable = true;
-      loader = "lz.n";
+      # loader = "lz.n";
       plugins  = {
         # toggleterm-nvim = {
         #   enabled = true;

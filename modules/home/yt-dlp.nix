@@ -1,64 +1,38 @@
 {
+  #NOTES:
+  # --ignore-config - to disable config for a single run
   programs.yt-dlp = {
     enable = true;
     extraConfig = #$XDG_CONFIG_HOME/yt-dlp/config
     ''
-        # Lines starting with # are comments
-
-        # Always extract audio
-        # -x
-
-        # Do not copy the mtime
-        # --no-mtime
-
-        # Use this proxy
-        #--proxy 127.0.0.1:3128
-
+        -P "~/Videos/YtDlp" -P "temp:tmp"
         # Save all videos under YouTube directory in your home directory
-        -o ~/Videos/YtDlp/%(title)s.%(ext)s
+        -o "%(channel)s-%(title)s.%(ext)s"
 
-        # --windows-filenames
 
-        # Do not overwrite existing output files
-        --no-overwrites
+        # Download and merge the best video-only format and the best audio-only format,
+        # or download the best combined format if video-only format is not available
+        # -f "bv+ba/b"
 
-        #Write thumbnail image to disk
-        # --write-thumbnail
+        # Download the best video available but no better than 1080p,
+        -f "bv*[height<=1080]+ba/b[height<=1080]"
 
-        # Output progress bar as new lines
-        #--newline
-
-        #Video format code
-        --format bestvideo*+bestaudio/best
-
-        #Write subtitle file
-        --write-subs
-
-        # Download all the available subtitles
-        # --all-subs
-
-        # merge subtitles into video file
-        --embed-subs
-
-        # Embed metadata to the video file. Also adds chapters to file
-        --embed-metadata
-
-        #Specify ffmpeg audio quality to use
-        #--audio-quality QUALITY
-
-        # Download only the video, if the URL refers to a video AND a playlist
-        #--yes-playlist
-
-        # Number of seconds to sleep before each download when used alone or a lower bound of a range for randomized sleep before each download (minimum possible number of seconds to sleep) when used
-        --min-sleep-interval 1
-        --max-sleep-interval 2
-
-        # Number of fragments of a dash/hlsnative video that should be download concurrently (default is 1)
-        --concurrent-fragments 4
     '';
     # package = pkgs-unstable.yt-dlp;
-    settings = {
-
+    settings = {# $XDG_CONFIG_HOME/yt-dlp/config.
+      embed-thumbnail = true;
+      no-overwrites = true;# Do not overwrite existing output files
+      embed-metadata = false;
+      embed-subs = true; # if without write-subs will delete file
+      write-subs = true;
+      write-thumbnail = false;
+      sub-langs = "all,-live_chat"; # dwnload all safe for live chat
+      downloader = "aria2c";
+      downloader-args = "aria2c:'-c -x8 -s8 -k1M'";
+      concurreent-fragments = 4;
+      # Number of seconds to sleep before each download when used alone or a lower bound of a range for randomized sleep before each download (minimum possible number of seconds to sleep) when used
+      min-sleep-interval = 1;
+      max-sleep-interval = 2;
     };
   };
 }

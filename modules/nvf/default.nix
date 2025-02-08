@@ -11,9 +11,8 @@
     useSystemClipboard = true;
     searchCase = "smart"; # smart, ignore, insensitive
     # package = pkgs.neovim-unwrapped;
-    # scrollOffset = 10;
-    # enableManpages = true;
-    dashboard.alpha.enable = false;
+    scrollOffset = 15;
+    # dashboard.alpha.enable = false;
     # filetree.neo-tree.enable = true;
     options = {
       tabstop = 2; # number of spaces <TAB> in the file counts for.

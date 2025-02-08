@@ -7,7 +7,7 @@
     ./lualine
     ./mini.nix
     ./notify.nix
-    ./lazy.nix
+    # ./lazy.nix
     ./obsidian.nix
   ];
   vim.autopairs.nvim-autopairs.enable = true;

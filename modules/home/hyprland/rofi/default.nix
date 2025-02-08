@@ -8,9 +8,8 @@
     font = "SpaceMono Nerd Font 12";
     # plugins = with pkgs; [ rofi-emoji rofi-obsidian rofi-calc ];
     # terminal = "\${pkgs.kitty}/bin/kitty";
-    terminal = "uwsm app -s a kitty";
+    terminal = "uwsm app -s a wezterm";
     # package = pkgs-unstable.rofi-wayland.override { plugins = with pkgs-unstable; [ rofi-emoji rofi-obsidian rofi-calc ]; };
-    #terminal = ;
     #yoffset = 3;
     extraConfig = {
       # rofi -e "my message"
@@ -24,11 +23,12 @@
       hover-select = true;
       window-thumbnail = true;
       # hide-active-window = true;
-      window-format = "{w}{c} .  {t}";
+      window-format = "{w}{c}.{t}";
       display-drun = " "; display-run = " "; display-filebrowser = " "; display-window = " "; #
       ml-row-down = "ScrollDown";
       me-select-entry = "";
       me-accept-entry = "MousePrimary";
+      kb-delete-entry = "Shift+space"; #FIXME: not working lol
       auto-select = true; # When one entry is left, automatically select it.
       monitor = 2; # 1 - currently focused monitor, 2 - currently focused window, 3 - mouse (see more in docs), 4 - monitor with the focused window, 5-monitor with mouse pointer::
       # dpi = 1; # 0 - aauto-detect based on x11 screen size(similar to i3 and gtk), 1 - auto based on monitor rofi is on
@@ -36,7 +36,7 @@
       # no-lazy-grab = true; # Disables lazy grab, this forces the keyboard being grabbed before gui is shown.
       scroll-method = 1; #-0 page::, 1 - continua
       drun-use-desktop-cache =  true; # slow PC, Build and use a cache with the content of desktop files to reload when enabled -> -drun-reload-desktop-cache flag
-      # pid = ./rofi.pid; #FIXME:
+      # pid = "/home/malu/.rofi.pid"; #FIXME:
       # replace = true;
     };
   };

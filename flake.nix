@@ -64,7 +64,7 @@
         inherit  system;
         config = {
           allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-              "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta"
+              "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta" "windows10-icons"
             ];
         };
       };
@@ -91,7 +91,7 @@
                   users.malu = import ./modules/home.nix;
                   useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
                   useUserPackages = false; # if false ... uses nix-profile for home apps
-                  extraSpecialArgs = { inherit inputs system; };
+                  extraSpecialArgs = { inherit inputs pkgs system; };
                 };
               }
             ];

@@ -49,7 +49,7 @@
 
           # rofi
           "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
-          "$mod, P, exec, pkill rofi || $menu_rofi"
+          "$mod, P, exec, $menu_rofi"
           "$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
           # "$mod $cl, e, exec, pkill rofi || $emoji_rofi"
           # "$mod $cl, m, exec, pkill rofi || $calc_rofi"
@@ -171,10 +171,12 @@
                 
           # █▀▄▀█ █▀█ █▄░█ █ ▀█▀ █▀█ █▀█
           # █░▀░█ █▄█ █░▀█ █ ░█░ █▄█ █▀▄
-          "$mod $sl,h, movecurrentworkspacetomonitor, 0"
-          "$mod $sl,l, movecurrentworkspacetomonitor, 1"
-          # "$al ,$sl, swapnext"
-          "$mod $sl, k, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux
+          "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
+          "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
+          "$mod $sl, bracketright, swapnext"
+          "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux
+          "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux
+          # "$mod , [, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux
           # "$mod $sl, k, exec, dispatch swapactiveworkspaces HDMI-A-1 DP-3 ;"
           # "$mod $sl,l, focusmonitor, HDMI-A-1"
           # "$mod $sl,h, focusmonitor, DP-3"
@@ -183,7 +185,7 @@
           #█▀░ █▄█ █▄▄ █▄█ ▄█ █▄▄ █▄█ █▀▄ █▀▄ ██▄ █░▀█ ░█░
           "$mod,K, Workspace, previous_per_monitor"
           "$mod, mouse:276, Workspace, previous_per_monitor"
-          "$mod $sl, semicolon, focusmonitor, +1"
+          "$mod $sl, k, focusmonitor, +1"
           "$mod, semicolon, cyclenext"
         ]
         ++ (

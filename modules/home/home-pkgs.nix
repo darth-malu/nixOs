@@ -362,8 +362,8 @@
       enableBashIntegration = true; #true::
       tmux = {
         enableShellIntegration = true;
-        # shellIntegrationOptions = [ "-p 50%;60%" ]; #-d 40% #TODO: see more # fzf-tmux --help
-        shellIntegrationOptions = [ "-d 40" ]; #-d 40% #TODO: see more # fzf-tmux --help
+        shellIntegrationOptions = [ "-p 50%;60%" ]; #-d 40% #TODO: see more # fzf-tmux --help
+        # shellIntegrationOptions = [ "-d 40" ]; #-d 40% #TODO: see more # fzf-tmux --help
       };
       colors = {#https://github.com/junegunn/fzf/wiki/Color-schemes
         # bg = "#1e1e1e";
@@ -389,8 +389,8 @@
       };
       defaultCommand = "fd --type f";
       defaultOptions = [#FZF_DEFAULT_OPTS
-        # "--height 90%"
-        # "--border"
+        "--height 90%"
+        "--border"
         # "--border none"
         # "--layout reverse"
         # "--tmux center;60%;50%  --layout reverse" #--tmux is silently ignored when you're not on tmux.# reverse; reverse-list
@@ -399,10 +399,10 @@
         # "--gap 1"
         # "--scroll-off=4"
       ];
-      changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"]; #M-c binding
-      changeDirWidgetCommand = "fd --type d";
-      fileWidgetCommand = "fd --type f"; #C-t
-      fileWidgetOptions = ["preview 'head {}"];
+      # changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"]; #M-c binding
+      # changeDirWidgetCommand = "fd --type d";
+      # fileWidgetCommand = "fd --type f"; #C-t #FIXME: broken $FZF_DEFAULT_OPTS: invalid command line string
+      # fileWidgetOptions = ["preview 'head {}"];
       historyWidgetOptions = [
         "--sort"
         "--exact"

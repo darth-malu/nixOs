@@ -47,16 +47,20 @@
   # set -g set-titles-string "#T"
 
   # gen conf
-  set -g base-index 1
-  setw -g pane-base-index 1
+  # set -g base-index 1
+  # setw -g pane-base-index 1
 
   set -g status-position top
   # setw -g aggressive-resize on
   # set -g allow-rename off
   #set -g set-clipboard on # system clipboard
   set -g detach-on-destroy off  # don't exit from tmux when closing a session
-  set -g default-command "''${SHELL}" #non-login shell , solves compositor stderr?
-  set -g default-terminal "tmux-256color"
+  # set -g default-command "''${SHELL}" #non-login shell , solves compositor stderr?
+  # set -g default-terminal "tmux-256color"
+  # set -g allow-passthrough on # for user var to work in wezterm
+  set -g allow-passthrough on
+  # set -ga update-environment TERM #FIXME: not work
+  # set -ga update-environment TERM_PROGRAM
   # set -g default-terminal "xterm-256color"
   # set -g default-terminal 'xterm-kitty'
   # set -ag terminal-overrides ',xterm-256color*:RGB'

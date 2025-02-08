@@ -63,13 +63,15 @@
       css.enable = true;
       python = {
         enable = true;
-        treesitter.enable = true;
+        # treesitter.enable = true;
         lsp = {
           enable = true;
-          # server = "pyright"; #basedpyright::, "pyright" "python-lsp-serveree"
+          server = "python-lsp-server"; #basedpyright::, "pyright" "python-lsp-server"
+          package = pkgs.python312Packages.python-lsp-server;
         };
         format = {
           enable = true;
+          type = "black"; #black::, "black-and-isort", isort, ruff
         };
       };
       bash = {

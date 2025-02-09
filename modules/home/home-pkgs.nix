@@ -5,14 +5,10 @@
   ];
 
   home.packages = with pkgs; [
-    # neovimConf.neovim
-    #inputs.nixvim-config.packages.${system}.default #no options lol
-    # jq #cli json processor
     wev
     tldr
     # qalculate-qt # #FIXME:for rofi?
 
-    #dotool kdotool wtype
     dotool
     #calc
 
@@ -20,18 +16,16 @@
     #aria2#NOTE: learn
     #pkgs-unstable.qbittorrent
     qbittorrent
-    lazygit
 
     # archive
     # zip xz unzip p7zip
 
     #rofimoji bemoji
-    hyprpicker hyprcursor
-    swaybg
-
+    hyprpicker
     sway-audio-idle-inhibit
-    taskwarrior3 taskwarrior-tui
-    file ripgrep  
+    taskwarrior3
+    taskwarrior-tui
+    file
     lsof #list open files/ports**
     usbutils # lsusb, usb-devices, usb-view(optional gui)
     pciutils #lspci
@@ -44,21 +38,14 @@
 
     #gnome.nautilus gnome.sushi gnome.file-roller gnome.yelp
 
-    # Socials
-    telegram-desktop
+    telegram-desktop discord
     #whatsapp-for-linux
-    discord
-    # discordo
-    # webcord
-    # vesktop
-    # parrot
-
 
     # browser
-    chromium lynx google-chrome
+    chromium
+    lynx
+    google-chrome
     bluemail
-    blueman
-
     # meld
 
     # alt can use flake or shell.nix
@@ -102,69 +89,28 @@
       #(ffmpeg.override { withXcb = true;  })
   #     ffmpeg
      spotube
-     superfile kdePackages.dolphin
-]);
+     superfile
+     # kdePackages.dolphin
+  ]) ++ 
+  (with pkgs;[ # INFO: MANGA stuff
+      komikku
+      manga-tui
+      mangal
+      manga-cli
+      #syncyomi - sync tachiyomi progress across devices
+    ])
+  ;
 
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
-    qutebrowser = {
+    ripgrep = {
       enable = true;
-      # aliases = {};
-      enableDefaultBindings = true; # true::
-      extraConfig = # qute config.py file
-        /*python*/''
-          import os
-          from urllib.request import urlopen
-
-          # load your autoconfig, use this, if the rest of your config is empty!
-          config.load_autoconfig()
-
-          if not os.path.exists(config.configdir / "theme.py"):
-              theme = "https://raw.githubusercontent.com/catppuccin/qutebrowser/main/setup.py"
-              with urlopen(theme) as themehtml:
-                  with open(config.configdir / "theme.py", "a") as file:
-                      file.writelines(themehtml.read().decode("utf-8"))
-
-          if os.path.exists(config.configdir / "theme.py"):
-              import theme
-              theme.setup(c, 'mocha', True)
-
-      '';
-      loadAutoconfig = false; # false:: load config from GUI
-      # keyBindings = {
-    # normal = {
-    #   "<ctrl-v>" = "spawn mpv {url}";
-    #   ",p" = "spawn --userscript qute-pass";
-    #   ",l" = ''config-cycle spellcheck.languages ["en-GB"] ["en-US"]'';
-    #   "<f1>" = mkMerge [
-    #     "config-cycle tabs.show never always"
-    #     "config-cycle statusbar.show in-mode always"
-    #     "config-cycle scrolling.bar never always"
-    #   ];
-    # };
-    # prompt = {
-    #   "<ctrl-y>" = "prompt-yes";
-    # };
-  # }
-  # </ctrl-y></f1></ctrl-v>
-      searchEngines = {
-        w = "https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1";
-        aw = "https://wiki.archlinux.org/?search={}";
-        nw = "https://wiki.nixos.org/index.php?search={}";
-        g = "https://www.google.com/search?hl=en&amp;q={}";
-      };
-      settings = {
-        colors = {
-          hints = {
-            bg = "#000000";
-            fg = "#ffffff";
-          };
-          tabs.bar.bg = "#000000";
-        };
-        # tabs.tabs_are_windows = true; #wack lol
-      };
+      arguments = [#https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+        "--max-columns-preview"
+        "--colors=line:style:bold"
+      ];
     };
 
     zoxide = {
@@ -356,6 +302,18 @@
       # forwardAgent = true; #false:: ; Whether the connection to the authentication agent (if any) will be forwarded to the remote machine.
       # };
     # };
+
+    lazygit = {
+      enable = true;
+      settings = { # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+        gui.theme = {
+        lightTheme = true;
+        activeBorderColor = [ "blue" "bold" ];
+        inactiveBorderColor = [ "black" ];
+        selectedLineBgColor = [ "default" ];
+      };
+      };
+    };
 
     fzf = {
       enable = true;
@@ -553,6 +511,7 @@
 
   services = {
     # kdeconnect.enable = true;
+    blueman-applet.enable = true;
     udiskie = {
       enable = true;
       tray = "auto";

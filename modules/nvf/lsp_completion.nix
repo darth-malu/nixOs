@@ -101,10 +101,17 @@
       nix = {
         enable = true;
         #lsp.server = "nil";
-        format.enable = true;
         extraDiagnostics = {
           enable = true;
-          types = ["statix" "deadnix"];
+          types = [
+            "statix"
+            "deadnix"
+          ];
+        };
+        format = {
+          enable = true;
+          # package = ; # alejandra::
+          type = "alejandra"; # nix formatter to use , # alejandra::, nixfmt, nixpkgs-fmt
         };
         treesitter = {
           enable = true;

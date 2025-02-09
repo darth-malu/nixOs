@@ -219,11 +219,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1739048455,
-        "narHash": "sha256-hn3GGgilLPezJlIm82SZYN7jpIgbjVBELsGORIoYx+0=",
+        "lastModified": 1739111430,
+        "narHash": "sha256-XsRKpmgr5KSKk6H7uLsGm96oAPl7zZ8qGo0I8Co/ULg=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "8e10ddb592977ef2e1836e75b0e5550ba8fb56f0",
+        "rev": "56f6f61596a547cdcdfb7aa7c3550e380b487ee3",
         "type": "github"
       },
       "original": {
@@ -692,6 +692,8 @@
         "plugin-aerial-nvim": "plugin-aerial-nvim",
         "plugin-alpha-nvim": "plugin-alpha-nvim",
         "plugin-base16": "plugin-base16",
+        "plugin-blink-cmp": "plugin-blink-cmp",
+        "plugin-blink-compat": "plugin-blink-compat",
         "plugin-bufdelete-nvim": "plugin-bufdelete-nvim",
         "plugin-catppuccin": "plugin-catppuccin",
         "plugin-ccc": "plugin-ccc",
@@ -858,11 +860,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1739000762,
-        "narHash": "sha256-DBhyyeHw/EJEoc9fRBt+9FEckv5XlnFDBDmxi4Owru4=",
+        "lastModified": 1739089639,
+        "narHash": "sha256-MCkgsVTAtoVUthorcCeit1oBuFyG7XktYdeMzyHL2uE=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "316d4a0825edde5fa84c0cbd32413f4096aee254",
+        "rev": "a78026438cc8e280a696bcadb60f5c8f93b96a12",
         "type": "github"
       },
       "original": {
@@ -937,6 +939,38 @@
       "original": {
         "owner": "rrethy",
         "repo": "base16-nvim",
+        "type": "github"
+      }
+    },
+    "plugin-blink-cmp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736295934,
+        "narHash": "sha256-MfHI4efAdaoCU8si6YFdznZmSTprthDq3YKuF91z7ss=",
+        "owner": "saghen",
+        "repo": "blink.cmp",
+        "rev": "1cc3b1a908fbcfd15451c4772759549724f38524",
+        "type": "github"
+      },
+      "original": {
+        "owner": "saghen",
+        "repo": "blink.cmp",
+        "type": "github"
+      }
+    },
+    "plugin-blink-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1734896240,
+        "narHash": "sha256-Rrrh+O3FbBnaAnCHwPuQyfhH+XueSkQp6ipEkn6esGY=",
+        "owner": "saghen",
+        "repo": "blink.compat",
+        "rev": "74b251a1e9478c4fa6d7c6bc2921d7124e6f6cbb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "saghen",
+        "repo": "blink.compat",
         "type": "github"
       }
     },
@@ -3736,11 +3770,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1738917769,
-        "narHash": "sha256-f8+C+L8eOugnyx4Zm2y3qAXH33BsI5F1JWecigPKuMg=",
+        "lastModified": 1739083819,
+        "narHash": "sha256-GVapniFyZHtKVxIxgIZihpTRzYjBN9461qN4R48uJ84=",
         "owner": "sxyazi",
         "repo": "yazi",
-        "rev": "17ff1e8812304d52aab56eb5dd6a220578a0dd74",
+        "rev": "793c90f021fd5d0491575d43ee68f92169ba2eb5",
         "type": "github"
       },
       "original": {

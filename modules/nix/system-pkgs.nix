@@ -43,6 +43,7 @@
     };
 
     gvfs.enable = true;
+    blueman.enable = true;
     locate = { enable = true; };
     fstrim = { enable = true; interval = "weekly"; };
     # udev.enable = true; #default: true

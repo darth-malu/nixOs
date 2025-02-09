@@ -6,7 +6,7 @@
     settings = {
       # theme = "dark:catppuccin-mocha,light:catppuccin-latte";
       foreground = "#35A29F"; background = "#022223";
-      background-opacity = 0.8;
+      background-opacity = 0.78;
       # background-blur = 10; # true, false, nonegative integer
       cursor-color = "#FAA6FF";
       cursor-text = "#000000"; # can be hex
@@ -32,7 +32,7 @@
       font-style = "Medium";
       font-style-bold = "SemiBold";
       font-style-italic = "Medium Italic";
-      font-size = 11.5; # 
+      font-size = 11.4; # 
       freetype-load-flags = "no-hinting"; #foce-authint:: - #NOTE: very important for wezterm and ghostty
       # app-notifications = true; # clipboard-copy
       # linux-cgroup = "single-instance"; # always, never, single-instance

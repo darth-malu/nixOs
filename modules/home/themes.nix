@@ -6,6 +6,10 @@
 # lib.mkIf osConfig.services.desktopManager.plasma6.enable {
 lib.mkIf osConfig.programs.hyprland.enable {
   home.pointerCursor = {
+    hyprcursor = {
+      size = 24;
+      enable = true;
+    };
     gtk.enable = true; # waybar, gtk apps
     # x11.enable = true; #xwayland?
     package = pkgs.bibata-cursors; name = "Bibata-Modern-Ice";

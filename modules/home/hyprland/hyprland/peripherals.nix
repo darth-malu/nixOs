@@ -58,14 +58,14 @@ let
         force_zero_scaling = true;
       };
       input = {#https://wiki.hyprland.org/Configuring/Variables/
-        mouse_refocus = true; # default = true, cross window boundary for focus to change
+        mouse_refocus = false; # If disabled, mouse focus won’t switch to the hovered window unless the mouse crosses a window boundary when ,,
         kb_layout = "us";
         numlock_by_default = true;
         kb_options = "caps:swapescape";
         follow_mouse = 1; 
-        focus_on_close = 1; # 0 - next window candidate::, 1 - under cursor
+        # focus_on_close = 1; # 0 - next window candidate::, 1 - under cursor
         special_fallthrough= true; # floating will not block focus to regular workspace
-        float_switch_override_focus = 2; # 2 - follow_mouse on switch; #TODO: test further
+        # float_switch_override_focus = 2; # (1:: or 2), focus will change to the window under the cursor when changing from tiled-to-floating and vice versa. If 2, focus will also follow mouse on float-to-float switches.
         # scroll_factor = 1.2;
         touchpad = {
             disable_while_typing = true;

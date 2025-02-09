@@ -11,7 +11,8 @@
     useSystemClipboard = true;
     searchCase = "smart"; # smart, ignore, insensitive
     # package = pkgs.neovim-unwrapped;
-    scrollOffset = 15;
+    # scrollOffset = 15; # WARN: does not work
+
     # dashboard.alpha.enable = false;
     # filetree.neo-tree.enable = true;
     options = {

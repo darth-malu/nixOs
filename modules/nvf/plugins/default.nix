@@ -4,7 +4,7 @@
     ./todo.nix
     ./extraPlugins.nix
     ./luasnip.nix
-    ./lualine
+    # ./lualine
     ./mini.nix
     ./notify.nix
     # ./lazy.nix

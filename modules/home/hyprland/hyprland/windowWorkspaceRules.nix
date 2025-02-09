@@ -81,6 +81,7 @@
         "special:quanta, on-created-empty:sh -c \"hyprctl dispatch exec $terminal\" "
         # "special:nc, on-created-empty:sh -c \"hyprctl dispatch exec '[workspace special:nc;float;size 89% 85% ] kitty -e ncmpcpp'\""
         "special:nc, on-created-empty:sh -c \"hyprctl dispatch exec '[workspace special:nc; ] kitty -e ncmpcpp'\""
+        # "special:nc, on-created-empty:sh -c \"hyprctl dispatch exec '[workspace special:nc; ] ghostty -e ncmpcpp'\""
 
         "special:easy, easyeffects"
       ];

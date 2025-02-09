@@ -11,11 +11,13 @@
     ./yt-dlp.nix
     ./git-home.nix
     #./sddm_theme.nix
+    ./qutebrowser
 
     ./scripts
     ./yazi
     ./kitty
     ./wezterm
+    ./ghostty
     ./textEditor
     # ./nixvim
     # ./helix

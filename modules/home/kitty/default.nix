@@ -68,11 +68,11 @@
       #yellow
       color3 = "#FFFB46"; color11 = "#fff000";
 
-      sync_to_monitor = "no"; #not recommended for high mouse/keyboard RR (input latency - set to no), yes:: - prevents tearing when scrolling
+      sync_to_monitor = "yes"; #not recommended for high mouse/keyboard RR (input latency - set to no), yes:: - prevents tearing when scrolling
       allow_remote_control = false; # used for arch update
 
-      input_delay = 0; # 3:: # can cause flicker if terminal application does full screen redraw with every loop. **maybe my issue with ncmpcpp
-      repaint_delay = 5; #10(100fps):: # delay between screen updates in milliseconds. decreasing increases FPS at the cost of CPU. ssync_to_monitor = no advised unless highrr
+      # input_delay = 0; # 3:: # can cause flicker if terminal application does full screen redraw with every loop. **maybe my issue with ncmpcpp
+      # repaint_delay = 5; #10(100fps):: # delay between screen updates in milliseconds. decreasing increases FPS at the cost of CPU. ssync_to_monitor = no advised unless highrr
       bell_on_tab = "💎"; # bell_on_tab = " ";
       # tab_bar_background = none; # defaults to terminal background
       # tab_bar_margin_color = "";

@@ -361,8 +361,8 @@
       enable = true;
       enableBashIntegration = true; #true::
       tmux = {
-        enableShellIntegration = true;
-        shellIntegrationOptions = [ "-p 50%;60%" ]; #-d 40% #TODO: see more # fzf-tmux --help
+        enableShellIntegration = true; # sets FZF_TMUX=1 
+        shellIntegrationOptions = [ "-p 50%,60%" ]; #-d 40% #TODO: see more # fzf-tmux --help
         # shellIntegrationOptions = [ "-d 40" ]; #-d 40% #TODO: see more # fzf-tmux --help
       };
       colors = {#https://github.com/junegunn/fzf/wiki/Color-schemes
@@ -389,7 +389,7 @@
       };
       defaultCommand = "fd --type f";
       defaultOptions = [#FZF_DEFAULT_OPTS
-        "--height 90%"
+        "--height 40%"
         "--border"
         # "--border none"
         # "--layout reverse"

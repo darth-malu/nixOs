@@ -58,8 +58,8 @@
   # set -g default-command "''${SHELL}" #non-login shell , solves compositor stderr?
   # set -g default-terminal "tmux-256color"
   # set -g allow-passthrough on # for user var to work in wezterm
-  set -g allow-passthrough on
-  # set -ga update-environment TERM #FIXME: not work
+  # set -g allow-passthrough on
+  # set -ga update-environment TERM # FIXME: errors builtin complete: command not found -bash: builtin: complete: not a shell builtin
   # set -ga update-environment TERM_PROGRAM
   # set -g default-terminal "xterm-256color"
   # set -g default-terminal 'xterm-kitty'

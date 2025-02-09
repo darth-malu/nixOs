@@ -13,8 +13,11 @@
       "$sr" = "SHIFT_R";
       "$date_short" = "$(date +'%I:%M %p')"; # add -u (utc)
       "$date_long" = "$(date +'%a,%d %b%t%I:%M %p')"; 
-      "$terminal" = "uwsm app -s a -- kitty -1 --instance-group kitty";
-      "$yazi_term" = "uwsm app -s a -- kitty -1 --instance-group yazi -e yazi";
+      "$kitty" = "uwsm app -s a -- kitty -1 --instance-group kitty";
+      "$ghostty" = "uwsm app -s a -- ghostty";
+      "$wezterm" = "uwsm app -s a -- kitty -1 --instance-group kitty";
+      "$yazi_kitty" = "uwsm app -s a -- kitty -1 --instance-group yazi -e yazi";
+      "$yazi_ghostty" = "uwsm app -s a -- ghostty -e yazi";
 
       #"$rofi_open_windows" =  "rofi -show window -theme-str \"window {font: \"quicksand 12\"; width: 55%;}\"";#FIXME: fonts not working with rofi parser
       "$file_browser_rofi" = "rofi -show filebrowser -sidebar-mode -theme-str 'window {height: 620px; width : 800px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
@@ -38,14 +41,14 @@
           "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
 
           #kitty
-          "$mod, Return, exec, $terminal"
-          "$mod $sl, Return, exec, [workspace emptym] uwsm app -s a -- kitty -e --instance-group main"
+          "$mod, Return, exec, $ghostty" #$terminal , wezterm, ghostty
+          "$mod $sl, Return, exec, [workspace emptym] $ghostty"
 
           # productivity
           # "$mod $cl, O, exec, [workspace emptym] uwsm app -s a -- obsidian"
           "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
           # "$mod, D, exec, [workspace emptym] uwsm app -s a -- dolphin"
-          "$mod, Y, exec, [workspace emptym] $yazi_term"
+          "$mod, Y, exec, [workspace emptym] $yazi_ghostty"
 
           # rofi
           "$mod, mouse:272, exec, pkill rofi || $menu_rofi"

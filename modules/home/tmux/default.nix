@@ -7,7 +7,7 @@
     # aggressiveResize = true; # size of smallest session
     keyMode = "vi";
     terminal =  "tmux-256color"; # screen::
-    shell = "\${pkgs.bash}/bin/bash";
+    # shell = "\${pkgs.bash}/bin/bash";
     tmuxinator.enable = true;
     baseIndex = 1;
     escapeTime = 0; # 500::

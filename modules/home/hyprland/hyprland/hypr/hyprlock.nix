@@ -1,8 +1,8 @@
-{lib, pkgs, inputs,...}:
+{lib,...}:
 
 {
   programs.hyprlock = {
-    enable = lib.mkDefault false;
+    enable = lib.mkDefault true;
     # package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
     settings = {
       general = {

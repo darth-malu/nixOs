@@ -16,9 +16,11 @@ local config =  wezterm.config_builder() -- improves error log msgs
 -- config.font = wezterm.font ('Fira Code', { weight = 'Bold', italic = true })
 config.font = wezterm.font_with_fallback({
   {
-    family = "JetBrainsMono Nerd Font",
+    family = "JetBrains Mono",
     -- scale = 1.0, -- messes with lualine?
     weight = 'Medium', --Medium, Regular, DemiBold
+    style = "Normal",
+    stretch = "Normal",
     -- harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
     -- calt aka:Contextual Alternates
     -- clig aka: Contextual Ligatures Replaces a sequence of glyphs with a single glyph which is preferred for typographic purposes. Unlike other ligature features
@@ -27,15 +29,30 @@ config.font = wezterm.font_with_fallback({
   { family = "SpaceMono Nerd Font", scale = 1.0, weight = 'Medium', },
   { family = "Symbols Nerd Font", }
   })
-config.font_size = 10.8 --10windows::, 12:: linux,
-config.color_scheme = 'Tokyo Night' -- 'Tokyo Night', 'terafox
-config.default_cursor_style = 'BlinkingBlock' --SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, and BlinkingBar
+config.font_rules = {
+	{
+		intensity = "Bold",
+		italic = false,
+		font = wezterm.font("JetBrains Mono", { weight = "Bold", stretch = "Normal", style = "Normal" }),
+	},
+	{
+		intensity = "Bold",
+		italic = true,
+		font = wezterm.font("JetBrains Mono", { weight = "Bold", stretch = "Normal", style = "Italic" }),
+	},
+}
+config.font_size =  11.2 --10windows::, 12:: linux,
+-- config.color_scheme = 'Tokyo Night' -- 'Tokyo Night', 'terafox
+config.default_cursor_style = 'SteadyBlock' --SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, and BlinkingBar
 config.animation_fps = 10 -- blinking cursors, visual bell, blinking text
 config.max_fps = 200
+config.front_end = "OpenGL"
 
 -- Trying font fix
 config.freetype_load_flags = 'NO_HINTING'
-config.cell_width = 0.9
+-- config.line_height = 0.9 --1.0
+config.line_height = 1.0
+-- config.cell_width = 0.9
 config.pane_focus_follows_mouse = true; -- false::
 config.default_workspace = "tilde"
 config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace" -- WhenFollowedBySpace, Always, Never
@@ -65,7 +82,7 @@ config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace" -- WhenFoll
 -- }
 config.default_cwd = "/home/malu/Shibuya"
 config.hide_tab_bar_if_only_one_tab = true
--- config.window_background_opacity = 0.76
+config.window_background_opacity = 0.74
 config.scrollback_lines = 3500
 -- config.compose_cursor = 'orange'
 config.window_padding = {
@@ -88,7 +105,7 @@ config.colors = {
   -- The default text color
   foreground = '#35A29F', -- 'silver'
   -- The default background color
-  background = '#022223', -- black
+  background = '#022223', -- black, #022223
 
   -- Overrides the cell background color when the current cell is occupied by the
   -- cursor and the cursor style is set to Block
@@ -133,7 +150,7 @@ config.colors = {
   },
 
   -- Arbitrary colors of the palette in the range from 16 to 255
-  indexed = { [136] = '#af8700' },
+  -- indexed = { [136] = '#af8700' },
 
   -- Since: 20220319-142410-0fcdea07
   -- When the IME, a dead key or a leader key are being processed and are effectively

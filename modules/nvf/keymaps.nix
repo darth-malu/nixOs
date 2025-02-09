@@ -25,6 +25,48 @@
         desc = "Toggle MiniStarter";
       }
       {
+        key = "<leader>ha";
+        mode = ["n"];
+        # lua = true;
+        action = "<cmd>lua require('harpoon.mark').add_file()<CR>";
+        silent = true;
+        nowait = true;
+        desc = "add file to Harpoon list";
+      }
+      {
+        key = "<leader>hm";
+        mode = ["n"];
+        action = "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>";
+        silent = true;
+        nowait = true;
+        desc = "Toggle harpoon menu";
+      }
+    #
+      {
+        key = "<leader>ht";
+        mode = ["n"];
+        action = "<cmd>lua require('harpoon.tmux').gotoTerminal(1)<CR>";
+        silent = true;
+        nowait = true;
+        desc = "Toggle harpoon menu";
+      }
+      {
+        key = "<leader>]";
+        mode = ["n"];
+        action = "<cmd>lua require('harpoon.ui').nav_next()<CR>";
+        silent = true;
+        nowait = true;
+        desc = "Toggle harpoon menu";
+      }
+      {
+        key = "<leader>[";
+        mode = ["n"];
+        action = "<cmd>lua require('harpoon.ui').nav_prev()<CR>";
+        silent = true;
+        nowait = true;
+        desc = "Toggle harpoon menu";
+      }
+      {
         key = "-";
         mode = ["n"];
         action = "<cmd>Oil<CR>";
@@ -72,19 +114,19 @@
       silent = false;
       desc = "rename variable under cursor lol";
     }
-    # {
-    #   mode = [ "n" ];
-    #   key = "<leader>gf";
-    #   #lua = true; # action considered lua no quotes**
-    #   action = ''<cmd>lua
-    #   function()
-    #     return require("obsidian").util.toggle_checkbox()
-    #   end,
-    #   opts = { buffer = true },
-    #   <CR>'';
-    #   silent = false;
-    #   desc = "Toggle check-boxes";
-    # }
+    {
+      mode = "n";
+      key = "<leader>gf";
+      #lua = true; # action considered lua no quotes**
+      action = ''<cmd>lua
+      function()
+        return require("obsidian").util.toggle_checkbox()
+      end,
+      opts = { buffer = true },
+      <CR>'';
+      silent = false;
+      desc = "Toggle check-boxes";
+    }
     {
       mode = "n";
       key = "U";

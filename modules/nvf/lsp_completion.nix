@@ -66,8 +66,9 @@
         # treesitter.enable = true;
         lsp = {
           enable = true;
-          server = "python-lsp-server"; #basedpyright::, "pyright" "python-lsp-server"
-          package = pkgs.python312Packages.python-lsp-server;
+          server = "python-lsp-server"; package = pkgs.python312Packages.python-lsp-server;
+          # server = "basedpyright"; package = pkgs.basedpyright; #NOTE: broken right now
+          #basedpyright::, "pyright" "python-lsp-server"
         };
         format = {
           enable = true;

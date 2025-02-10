@@ -51,7 +51,7 @@
         desc = "Toggle harpoon menu";
       }
       {
-        key = "<leader>]";
+        key = "<leader><S-l>";
         mode = ["n"];
         action = "<cmd>lua require('harpoon.ui').nav_next()<CR>";
         silent = true;
@@ -59,7 +59,7 @@
         desc = "Toggle harpoon menu";
       }
       {
-        key = "<leader>[";
+        key = "<leader><S-h>";
         mode = ["n"];
         action = "<cmd>lua require('harpoon.ui').nav_prev()<CR>";
         silent = true;

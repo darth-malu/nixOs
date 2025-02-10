@@ -4,8 +4,9 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./drives.nix
-    ../../users/malu.nix
-    ../../modules/nix
+    ../common
+    # ../../users/malu.nix -- in common
+    # ../../modules/nix -- in common
     ./nvidia.nix
   ];
 

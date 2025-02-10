@@ -29,8 +29,8 @@
       # font-family = "JetBrainsMono Nerd Font";
       font-family = "JetBrains Mono";
       # font-family-bold = "JetBrains Mono Bold";
-      font-style = "Medium";
-      font-style-bold = "SemiBold";
+      font-style = "SemiBold";
+      font-style-bold = "Bold";
       font-style-italic = "Medium Italic";
       font-size = 11.4; # 
       freetype-load-flags = "no-hinting"; #foce-authint:: - #NOTE: very important for wezterm and ghostty

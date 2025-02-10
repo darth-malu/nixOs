@@ -76,13 +76,12 @@
     wpsoffice
     #productivity
     # davinci-resolve
-    # digikam
+    digikam
     # nixd # zed
     #blender
     # blender-hip # accelarated render
     # freeglut
     # gcc
-    # onlyoffice-bin
   ]
      ++
    (with pkgs; [
@@ -93,13 +92,10 @@
      # kdePackages.dolphin
   ]) ++ 
   (with pkgs;[ # INFO: MANGA stuff
-      komikku
-      manga-tui
+      # komikku # broken
       mangal
-      manga-cli
       #syncyomi - sync tachiyomi progress across devices
-    ])
-  ;
+    ]);
 
   programs = {
     # Let Home Manager install and manage itself.

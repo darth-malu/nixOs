@@ -112,7 +112,7 @@
                 users.malu = import ./modules/home.nix;
                 useGlobalPkgs = true; # dont use private instance of pkgs which is the default
                 useUserPackages = false; # if false ... uses nix-profile for home apps
-                extraSpecialArgs = { inherit  inputs system; };
+                extraSpecialArgs = { inherit  pkgs inputs system; };
               };
             }
           ];

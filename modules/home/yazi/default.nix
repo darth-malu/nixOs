@@ -9,7 +9,7 @@
     keymap = import ./keymap.nix;
     theme = import ./theme.nix;
     shellWrapperName = "y"; # yy::
-    # plugins = import ./plugins.nix;
+    plugins = import ./plugins.nix;
     settings = {
       manager = {
         layout = [ 1 4 3 ];

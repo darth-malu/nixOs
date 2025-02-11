@@ -11,13 +11,7 @@
   #   extraGroups = [ "networkmanager" "video" ];
   # };
 
-  imports = [
-    # ../../../hosts/carthage/drives.nix
-    # ../../../hosts/carthage/amd.nix
-    # ../../hosts/carthage/default.nix
-    # ../../../users/malu.nix
-    ../carthage/common
-  ];
+  imports = [ ../../hosts/common ];
   services = {
     displayManager = {
       sddm.enable = lib.mkDefault true;
@@ -27,12 +21,12 @@
     };
     desktopManager.plasma6.enable = true;
   };
-  # programs = { # custom option cleaner enable disbale
-    # hyprland = {
-      # enable = lib.mkForce false; # for exception for waybar, rofi
-      # withUWSM = false;
-    # };
-  # };
+  programs = { # custom option cleaner enable disbale
+    hyprland = {
+      enable = lib.mkForce false; # for exception for waybar, rofi
+      withUWSM = false;
+    };
+  };
   environment = {
     plasma6.excludePackages = with pkgs.kdePackages; [
       # plasma-browser-integration
@@ -40,8 +34,8 @@
       # konsole
       oxygen
     ];
-    systemPackages = with pkgs; [
-      jetbrains.pycharm-community
-    ];
+    # systemPackages = with pkgs; [
+      # jetbrains.pycharm-community
+    # ];
   };
 }

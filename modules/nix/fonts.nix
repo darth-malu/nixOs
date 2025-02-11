@@ -12,6 +12,7 @@
       quicksand
       lato 
       cascadia-code
+      whatsapp-emoji-font
       # nerdfonts.DroidSansMono 
       # nerd-fonts.Lekton
       # nerd-fonts.Monofur

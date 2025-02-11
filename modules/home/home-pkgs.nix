@@ -14,7 +14,6 @@
 
     #glow #md preview
     #aria2#NOTE: learn
-    #pkgs-unstable.qbittorrent
     qbittorrent
 
     # archive
@@ -38,8 +37,10 @@
 
     #gnome.nautilus gnome.sushi gnome.file-roller gnome.yelp
 
-    telegram-desktop discord
-    #whatsapp-for-linux
+    telegram-desktop
+    discord
+    whatsapp-for-linux
+    # whatsapp-emoji-font
 
     # browser
     chromium

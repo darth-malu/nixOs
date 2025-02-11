@@ -87,6 +87,11 @@
         progress_bar_corners = "all"; #default: all
         progress_bar_horizontal_alignment = "center"; #right/left/center
 
+        # mouse
+        mouse_left_click = "do_action, close_current";
+        mouse_right_click = "close_all";
+        mouse_middle_click = "close_current";
+
         corner_radius= 6;
         corners = "all"; #bottom-right, bottom-left, top-right, top-left, top, bottom, left, right or all.
         icon_position = "left"; #off/l/r

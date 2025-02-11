@@ -50,17 +50,21 @@
 
           "hyprland/workspaces" = {
             format = "{name}";
-            all-outputs = true;
+            all-outputs = false; # If set to false workspaces group will be shown only in assigned output. Otherwise all workspace groups are shown.
+            # active-only = true; # only show active workspace on monitor
             on-click = "activate";
             on-click-right = "close";
             # on-click-forward = "dash -c 'hyprctl dispatch workspace special:nc'";
             on-scroll-up = "hyprctl dispatch workspace m-1"; # m- monitor, e -all open, r- m+empty
             on-scroll-down = "hyprctl dispatch workspace m+1";
             show-special = false;
+            special-visible-only = true;
             format-icons = {
               active = "󱎴";
               default = "󰍹";
             };
+            ignored-workspaces = [
+            ];
           };
 
           "hyprland/submap" = {
@@ -73,7 +77,7 @@
             format = "{}";
             # icon = true;
             icon-size = 17;
-            separate-outputs = true;
+            separate-outputs = true; # 	Show the active window of the monitor the bar belongs to, instead of the focused window.
             cursor = true;
             on-scroll-up = "hyprctl dispatch workspace m-1"; # m- monitor, e -all open, r- m+empty
             on-scroll-down = "hyprctl dispatch workspace m+1";

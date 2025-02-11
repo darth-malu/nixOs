@@ -10,14 +10,14 @@
       name = "JetBrainsMono Nerd Font";
       size =
         if osConfig.networking.hostName == "tangier"
-          then 10
+          then 10.2
         else 11.2;
     };
     extraConfig = /*bash*/''
       action_alias launch_window launch --type=window --cwd=current
       action_alias launch_os_window launch --type=os-window --cwd=current
       action_alias launch_tab launch --type=tab --cwd=current
-      enabled_layouts   tall:bias=60;full_size=1;mirrored=false,fat:bias 80
+      enabled_layouts tall:bias=60;full_size=1;mirrored=false,fat:bias 80
       #notify_on_cmd_finish always 5.0 notify # notify_on_cmd_finish always 5.0 bell #notify_on_cmd_finish always 5.0 command notify-send "imeisha lol"
       # notify_on_cmd_finish always 10.0 command 'notify-send -i "/home/malu/Downloads/ICONS/icons8-check-all-glassmorphism/icons8-check-all-48.png" "job finished with status: %s    " %c'
 
@@ -26,7 +26,7 @@
     '';
     settings = {
       # term =  "xterm-256color";
-      term =  "tmux-256color";
+      term =  "xterm-256color";
       scrollback_lines = 10000;
       enable_audio_bell = false;
       # update_check_interval = 0;
@@ -68,11 +68,13 @@
       #yellow
       color3 = "#FFFB46"; color11 = "#fff000";
 
-      sync_to_monitor = "yes"; #not recommended for high mouse/keyboard RR (input latency - set to no), yes:: - prevents tearing when scrolling
+      sync_to_monitor = "no"; #not recommended for high mouse/keyboard RR (input latency - set to no), yes:: - prevents tearing when scrolling
       allow_remote_control = false; # used for arch update
 
-      # input_delay = 0; # 3:: # can cause flicker if terminal application does full screen redraw with every loop. **maybe my issue with ncmpcpp
-      # repaint_delay = 5; #10(100fps):: # delay between screen updates in milliseconds. decreasing increases FPS at the cost of CPU. ssync_to_monitor = no advised unless highrr
+      input_delay = 0; # 3:: # can cause flicker if terminal application does full screen redraw with every loop. **maybe my issue with ncmpcpp
+      repaint_delay = 2; #10(100fps):: # delay between screen updates in milliseconds. decreasing increases FPS at the cost of CPU. ssync_to_monitor = no advised unless highrr
+      wayland_enable_ime = false;
+
       bell_on_tab = "💎"; # bell_on_tab = " ";
       # tab_bar_background = none; # defaults to terminal background
       # tab_bar_margin_color = "";
@@ -98,7 +100,7 @@
     {
       background_opacity = if osConfig.services.desktopManager.plasma6.enable then 1 else 0.80; #0.66
     };
-    # themeFile = "tokyo_night_storm"; # moon, day, storm, night
+    themeFile = "tokyo_night_storm"; # moon, day, storm, night
     # themeFile = "Catppuccin-Mocha"; # moon, day, storm, night
     #Also available: Catppuccin-Frappe Catppuccin-Latte Catppuccin-Macchiato Catppuccin-Mocha
     # See all available kitty themes at: https://github.com/kovidgoyal/kitty-themes/blob/46d9dfe230f315a6a0c62f4687f6b3da20fd05e4/themes.json

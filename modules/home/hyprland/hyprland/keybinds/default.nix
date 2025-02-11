@@ -15,16 +15,16 @@
       "$date_long" = "$(date +'%a,%d %b%t%I:%M %p')"; 
       "$kitty" = "uwsm app -s a -- kitty -1 --instance-group kitty";
       "$ghostty" = "uwsm app -s a -- ghostty";
-      "$wezterm" = "uwsm app -s a -- kitty -1 --instance-group kitty";
+      "$wezterm" = "uwsm app -s a -- wezterm";
       "$yazi_kitty" = "uwsm app -s a -- kitty -1 --instance-group yazi -e yazi";
       "$yazi_ghostty" = "uwsm app -s a -- ghostty -e yazi";
 
-      #"$rofi_open_windows" =  "rofi -show window -theme-str \"window {font: \"quicksand 12\"; width: 55%;}\"";#FIXME: fonts not working with rofi parser
       "$file_browser_rofi" = "rofi -show filebrowser -sidebar-mode -theme-str 'window {height: 620px; width : 800px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
       "$rofi_open_windows" =  "rofi -show window -theme-str 'window {width : 800px;}' -theme-str 'listview {lines: 8; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
           # "-theme-str 'window {width : 800px; fullscreen: true;}" + 
           # " -theme-str 'element {background-image: linear-gradient(white/5%, white/20%);border-color: lightblue /15%;}'";
-      "$menu_rofi" = "rofi -show drun -run-command \"uwsm app -s a -- {cmd}\"";
+      # "$menu_rofi" = "rofi -show drun -run-command \"hyprctl dispatch -- exec [workspace emptym] uwsm app -s a -- {cmd}\"";
+      "$menu_rofi" = "rofi -show drun";
       # "$emoji_rofi" = "rofi -show emoji";
       "$clip_rofi" = "cliphist list | rofi -dmenu | cliphist decode | wl-copy";
       # "$calc_rofi" = "rofi -show calc";
@@ -42,13 +42,14 @@
 
           #kitty
           "$mod, Return, exec, $ghostty" #$terminal , wezterm, ghostty
-          "$mod $sl, Return, exec, [workspace emptym] $ghostty"
+          "$mod $al, Return, exec, $kitty" #$terminal , wezterm, ghostty
+          "$mod $sl, Return, exec, [workspace emptym] uwsm app -s a -- ghostty -e yazi"
 
           # productivity
           # "$mod $cl, O, exec, [workspace emptym] uwsm app -s a -- obsidian"
           "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
           # "$mod, D, exec, [workspace emptym] uwsm app -s a -- dolphin"
-          "$mod, Y, exec, [workspace emptym] $yazi_ghostty"
+          "$mod, Y, exec, [workspace emptym] $yazi_kitty"#NOTE: var does not work
 
           # rofi
           "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
@@ -235,9 +236,6 @@
 
       binde =
         [# Date
-        # ", Insert, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '$HOME/.local/darth/iconDownload/iconsLinuxHdd/time-color-hand-drawn/icons8-time-60.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
-        # "$mod, Insert, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '$HOME/.local/darth/iconDownload/iconsLinuxHdd/time-color-hand-drawn/icons8-time-60.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
-        # "$mod, Prior, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/modules/home/scripts/assets/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
         "$mod, T, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/modules/home/scripts/assets/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
         "$mod $sl, T, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/modules/home/scripts/assets/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
         ]
@@ -251,8 +249,6 @@
         "SUPER ,KP_Enter, exec, gaps custom" # set according to hyprland config default
 
         # increase/decrease gaps
-        # "SUPER,KP_Add, exec, ~/.darth/scripts/gaps.sh increment_gap"
-        # "SUPER,KP_Subtract, exec, ~/.darth/scripts/gaps.sh decrease_gap"
         "SUPER,KP_Add, exec, gaps increment_gap"
         "SUPER,KP_Subtract, exec, gaps decrease_gap"
 

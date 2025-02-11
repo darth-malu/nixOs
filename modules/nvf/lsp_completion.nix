@@ -121,10 +121,16 @@
     };
     autocomplete.nvim-cmp = {
       enable = true;
+      # sources = {
+      #   nvim-cmp = null;
+      #   buffer = "[Buffer]";
+      # };
       mappings = {
-        #next = "<Tab>";
+        next = "<c-n>"; # <Tab>::
+        previous = "<c-p>"; # <S-Tab>::
         scrollDocsDown = "<c-f>";
         scrollDocsUp = "<c-d>";
+        # close = "<C-e>";
         #confirm = "<CR>";
         #complete = "<C-Space>";
         # = "<C-Space>";

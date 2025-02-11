@@ -25,7 +25,7 @@ rofi_main() {
     -p "$upt" \
     -theme-str 'window {location: west;  width: 500px; padding: 0; margin: 0;}' \
     -theme-str 'mainbox {children: [ "message","inputbar", "listview" ];}' \
-    -theme-str 'listview {columns: 1; lines: 5;cycle: true;}' \
+    -theme-str 'listview {columns: 2; lines: 3;cycle: true;}' \
     -theme-str 'inputbar {horizontal-align: 0.0; border: 0; children: [ "entry" ];}' \
     -theme-str 'entry {horizontal-align: 0.0; border: 0; blink: false;cursor-color: rgb(220,20,60);cursor-width: 0px;}' \
     -theme-str 'message {border: 0;}' \
@@ -41,9 +41,14 @@ rofi_main() {
         #-theme-str '#window {location: south west; fullscreen: false; width: 220px; font: "GeistMono Nerd Font 12"; padding: 4;border: 1;}' \
 }
 
+# default -sep is \n lul
+run_rofi() {
+  printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n" "$lock" "$logout" "$reboot" "$suspend" "$shutdown" "$timer" "$cancel"| rofi_main
+}
+
 confirm_actions() {
   rofi -dmenu \
-    -theme-str 'window {location: center; anchor: center; fullscreen: false; fixed-height: false; dynamic: true; height:100px; width: 250px;}' \
+    -theme-str 'window {location: center; anchor: center; fullscreen: false; fixed-height: false; dynamic: false; height:100px; width: 250px;}' \
     -theme-str 'mainbox {children: [ "message", "listview" ];}' \
     -theme-str 'listview {columns: 2; lines: 1; orientation : vertical; fixed-columns: true;}' \
     -theme-str 'element {orientation: horizontal;}' \
@@ -56,11 +61,6 @@ confirm_actions() {
 confirm_exit() {
   printf '%s\n%s\n' "$yes" "$no" | confirm_actions
   #printf "%s\n%s\n" "$yes" "$no" | confirm_actions
-}
-
-# default -sep is \n lul
-run_rofi() {
-  printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n" "$lock" "$logout" "$reboot" "$suspend" "$shutdown" "$timer" "$cancel"| rofi_main
 }
 
 restart_shut_timer_confirm() {#TODO: make better banner

@@ -61,12 +61,13 @@
         # font_family = "quicksand";
         # force_default_wallpaper = if osConfig.networking.hostName == "carthage" then "0" else "1"; #anime mascot wallpapers
         force_default_wallpaper = 0; # -1 random, 2 (anime), 0/1 - disable anime
-        vfr = true; # lower the amount of sent frames when nothing is happening on-screen.
-        vrr = if osConfig.networking.hostName == "carthage" then 1 else 0; # 1 -on,2 -fullscreen
+        # vfr = true; # true:: recommend leave on# lower the amount of sent frames when nothing is happening on-screen.
+        vrr = if osConfig.networking.hostName == "carthage" then 1 else 0; # 1 -on,2 -fullscreen # adaptive sync
         new_window_takes_over_fullscreen = "2"; # 2 - unfullscreen, 1 -takes over, -nothing/staybehind -0
         close_special_on_empty = true;
         disable_hyprland_logo = true; #wallpaper + logo lol
         #disable_splash_rendering = true
+        "col.splash" = "rgba(195,232,141,1.0)";
         splash_font_family = "quicksand";
         key_press_enables_dpms = true;#false:: #wakes monitor if key pressed
         middle_click_paste = if osConfig.networking.hostName == "carthage" then false else true;

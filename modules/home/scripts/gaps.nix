@@ -67,8 +67,8 @@ gap_incrementer () {
   local max_gap_out_size=50
   local min_gaps_out_size=0
   local counter_gaps_out=1
-  config_gap_out=$(grep 'gaps_out' "/home/malu/Shibuya/modules/home/hyprland/hyprland/ui.nix" | tr -cd "[:digit:]")
-  config_gap_in=$(grep 'gaps_in' "/home/malu/Shibuya/modules/home/hyprland/hyprland/ui.nix" | tr -cd "[:digit:]")
+  config_gap_out=$(grep -E '\s+gaps_out' "/home/malu/Shibuya/modules/home/hyprland/hyprland/ui.nix" | tr -cd "[:digit:]") #NOTE: space essential in regex incase of comments in file
+  config_gap_in=$(grep -E '\s+gaps_in' "/home/malu/Shibuya/modules/home/hyprland/hyprland/ui.nix" | tr -cd "[:digit:]")
 
   #Gaps in
   current_gap_in=$(gaps_in_size)
@@ -81,7 +81,7 @@ gap_incrementer () {
   #toggle
   #local tog="toggle_gaps_out"
   #no_gaps="-"
-  #add_gaps="+"
+  # add_gaps="+"
 
   case $1 in
   "gaps_in_add")

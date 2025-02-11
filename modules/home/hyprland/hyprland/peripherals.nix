@@ -9,14 +9,20 @@ let
         # "DP-3,highrr,0x0,1"
         "DP-3,1920x1080@60,0x0,1"
       ];
+      binds = {
+        allow_workspace_cycles = true; # workpsaces dontn forget their previous workspaces
+      };
       cursor = {
-        no_warps = true;
+        # no_warps = true; #false (keybind focus etc warping):: #TODO: see if needed
         enable_hyprcursor = true;
         #no_hardware_cursors = true; #invis cursor
+        inactive_timeout = 2; # in seconds, after how many seconds of cursor’s inactivity to hide it. Set to 0 for never.
         #persistent_warps = true; # maintain cursor position on switch rather than center
         hide_on_key_press = true;
+        default_monitor = "HDMI-A-1";
         #warp_on_change_workspace = true; # cursor to last focused window
         # sync_gsettings_theme = true;# on by default
+        #TODO: see about using use_cpu_buffer for tangier nvidia
       };
       input = {
         mouse_refocus = true; # default = if true mouse must cross boundary for focus change 

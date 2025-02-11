@@ -6,7 +6,7 @@
     # shortcut = "w"; # used with Ctrl alone?
     # aggressiveResize = true; # size of smallest session
     keyMode = "vi";
-    terminal =  "tmux-256color"; # screen::
+    terminal =  "xterm-256color"; # screen::
     # shell = "\${pkgs.bash}/bin/bash";
     tmuxinator.enable = true;
     baseIndex = 1;
@@ -18,10 +18,11 @@
     disableConfirmationPrompt = true;
     clock24 = false;
     historyLimit = 9000; # 2000
-    reverseSplit = true; # does not work
+    # reverseSplit = true; # does not work
     plugins = with pkgs.tmuxPlugins; [
-      yank
+      # yank
       { plugin = catppuccin; extraConfig = import ./catppuccin.nix; }
+      { plugin = vim-tmux-navigator; }
       # { plugin = tmuxPlugins.tmux-yank-unstable; }
       # { plugin = tmuxPlugins.tmux-floatx; }
       # {

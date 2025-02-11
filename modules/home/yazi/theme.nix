@@ -15,14 +15,20 @@
       # { name = "*/"; fg = "blue"; }
   ];
 
-  # flavor = "dracula";
+  # flavor = "dracula"; #FIXME: see more on this
+
   status = { 
-    # mode_normal = { fg = "#e4e4e4"; bg = "red"; };
-    mode_normal = { fg = "#21433E"; bg = "#0075aa"; };
-    mode_select = { fg = "#21433E"; bg = "#FF8000"; };
-    mode_unset = { fg = "#21433E"; bg = "#FF748B"; };
   };
-  # status.
+
+  mode = {
+    normal_main = { fg = "#e4e4e4"; bg = "#21433E"; };
+    normal_alt = { fg = "#e4e4e4"; bg = "#21433E"; };
+    select_main = { fg = "#e4e4e4"; bg = "#563d7c"; };
+    select_alt = { fg = "#e4e4e4"; bg = "#21433E"; };
+    unset_main = { fg = "#e4e4e4"; bg = "#FF748B"; };
+    unset_alt = { fg = "#e4e4e4"; bg = "#21433E"; };
+  };
+
   icon = {
     prepend_dirs = [
       { name = "desktop"; text = ""; fg_dark = "#563d7c"; fg_light = "#563d7c"; }

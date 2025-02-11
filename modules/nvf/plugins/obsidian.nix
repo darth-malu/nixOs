@@ -7,12 +7,12 @@
         # Trigger completion at 2 chars.
         min_chars = 2;
       };
+      # Optional, if you keep notes in a specific subdirectory of your vault.
+      notes_subdir = "notes";
       # Where to put new notes. Valid options are
       #  * "current_dir" - put new notes in same directory as the current buffer.
       #  * "notes_subdir" - put new notes in the default notes subdirectory.
-      new_notes_location = "notes_subdir";
-      # Optional, if you keep notes in a specific subdirectory of your vault.
-      notes_subdir = "notes";
+      new_notes_location = "notes_subdir"; # current_dir, notes_subdir
       daily_notes = {
         date_format = "%d-%m-%Y-%";
         # folder = "~/obsidianVaults/dailyNotes";
@@ -21,7 +21,7 @@
       };
       workspaces = [
         { name = "personal"; path = "/home/malu/obsidianVaults/personal"; }
-        { name = "code"; path = "/home/malu/obsidianVaults/code"; }
+        { name = "code"; path = "/home/malu/obsidianVaults/code"; overrides = { notes_subdir = "sub_note";}; }
         { name = "nixOs"; path = "/home/malu/obsidianVaults/nixOs"; }
       ];
       # Optional, set to true to force ':ObsidianOpen' to bring the app to the foreground.

@@ -16,6 +16,7 @@
     # dashboard.alpha.enable = false;
     # filetree.neo-tree.enable = true;
     options = {
+      conceallevel = 2;
       tabstop = 2; # number of spaces <TAB> in the file counts for.
       shiftwidth = 2; # use with > shifting
       # winbar = "%=%m\ %f";
@@ -27,7 +28,48 @@
       # wrap = true; # word wrapping
     };
     ui = {
-      noice.enable = true;
+      noice = {
+        enable = true;
+        setupOpts = {
+          format = {
+            cmdline = {
+              icon = "";
+              lang = "vim";
+              pattern = "^:";
+            };
+            filter = {
+              icon = "";
+              lang = "bash";
+              pattern = "^:%s*!";
+            };
+            help = {
+              icon = "󰋖";
+              pattern = "^:%s*he?l?p?%s+";
+            };
+            lua = {
+              icon = "";
+              lang = "lua";
+              pattern = "^:%s*lua%s+";
+            };
+            search_down = {
+              icon = " ";
+              kind = "search";
+              lang = "regex";
+              pattern = "^/";
+            };
+            search_up = {
+              icon = " ";
+              kind = "search";
+              lang = "regex";
+              pattern = "^%?";
+            };
+          };
+          presets = { # classic bottom cmdline for search
+            bottom_search = false; #true::
+            command_palette = false;# cmdline and popupmenu together
+          };
+        };
+      };
       # modes-nvim.setupOpts.setCursorline = true; #colored cursor on current line
       colorizer = {
         enable = true;
@@ -50,9 +92,9 @@
     # binds = { cheatsheet.enable = true;};
     theme = {
       enable = true;
-      transparent = true;
-      # name = "gruvbox"; style = "dark";
-       name = "tokyonight"; style = "moon"; #moon, night, storm, day
+      # transparent = true;
+      name = "gruvbox"; style = "dark";
+       # name = "tokyonight"; style = "moon"; #moon, night, storm, day
        # name = "catppuccin"; style = "mocha"; #moon, night, storm, day
       # name = "rose-pine"; style = "dawn"; #moon, dawn
     };

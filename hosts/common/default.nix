@@ -4,15 +4,81 @@
   imports = [
     ../../modules/nix
     ../../users/malu.nix
+    ./common-drive.nix
   ];
 
   # nixpkgs.pkgs = import <nixpkgs> {}; #TODO: investigate how to make this work
 
+  # nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta"
+      "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta" "nvidia-x11" "whatsapp-emoji-linux"
   ];
 
-  # nixpkgs.config.allowUnfree = true;
+  boot = {
+    extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      timeout = 2;
+    };
+  };
+
+  networking = {
+    wireless.enable = false; # Enables wireless support via wpa_supplicant.
+    hostId = if config.networking.hostName == "tangier" then "92d08a60" else "245e3df3"; #ensure when using ZFS that a pool isn’t imported accidentally on a wrong machine.#head -c 8 /etc/machine-id
+    # hostId = (lib.mkIf config.networking.hostName == "tangier") "92d08a60"; #FIXME: see syntax on this attempt to call something which is not a function but a Boolean: false
+    networkmanager = {
+      enable = true; # might be on by default # add user to group
+      # dns = "none";
+      wifi.powersave = true;
+    };
+    dhcpcd.enable = true;
+    useDHCP = lib.mkDefault true;
+    # interfaces.enp5s0.useDHCP = lib.mkDefault true;
+    timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ]; #TODO: see more about options
+    firewall.enable = true;
+    firewall.allowedTCPPorts = [ 22 ]; # 22 auto open with ssh
+    nameservers = [ "1.1.1.1" "1.0.0.1" ]; #"8.8.8.8" #"8.8.4.4" ];
+    # firewall = let kdeConnectAttrRange = { from = 1714; to = 1764; } ; in rec {
+    #   enable = true;
+    #    allowedTCPPortRanges = [ kdeConnectAttrRange ];
+    #    allowedUDPPortRanges =  allowedTCPPortRanges ;
+    #    allowedUDPPorts = [ 22000 21027 ];
+    #    allowedTCPPorts = [ 22 80 443 8384 22000 ];
+    # };
+  };
+
+  hardware = {
+    # enableAllFirmware = true; # enable all firmware regardless of license #for bt to work in HSP/HFP mode # for bt to work in HSP/HFP mode, test further
+    # enableAllHardware = true; # Enable support for most hardware
+    enableRedistributableFirmware = true; # enable firmware with a license allowing redistribution
+    bluetooth = {
+      # enable = lib.mkIf config.networking.hostName == "tangier" true; # works lol..maajabu
+      # hsphfpd = true; #Whether to enable support for hsphfpd[-prototype] implementation.
+      enable =  true; # works lol..maajabu
+      powerOnBoot = true; #power on default controller on boot
+      settings = {#Set configuration for system-wide bluetooth (/etc/bluetooth/main.conf). See https://github.com/bluez/bluez/blob/master/src/main.conf for full list of options.
+        General = {
+          Experimental = true; #battery %
+          # ControllerMode = "bredr";
+        };
+      };
+      # package = pkgs-unstable.bluez;
+      # network = {
+      #     General = {
+      #       DisableSecurity = false; # Disable link encryption: default=false
+      #     };
+      # };
+      # input = {#Set configuration for the input service (/etc/bluetooth/input.conf). See https://github.com/bluez/bluez/blob/master/profiles/input/input.conf for full list of options.
+        # General = {
+          # ClassicBondedOnly = false; #true:: # # Limit HID connections to bonded devices
+          # IdleTimeout = 30;# 0 (disabled)::
+          #UserspaceHID=true; #true:: # # Enable HID protocol handling in userspace input profile - true,false, persist
+          #LEAutoSecurity=true; # true::
+        # };
+      # };
+    };
+  };
 
 
   # services.libinput.enable = true; # touchpad, should be on by default
@@ -51,6 +117,26 @@
           ];
           #groups = [ "wheel" ];
         }];
+    };
+    polkit = {
+      enable = true;
+      extraConfig = ''
+        # reboot/poweroff for non sudo users
+        polkit.addRule(function(action, subject) {
+          if (
+            subject.isInGroup("users")
+              && (
+                action.id == "org.freedesktop.login1.reboot" ||
+                action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+                action.id == "org.freedesktop.login1.power-off" ||
+                action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+              )
+            )
+          {
+            return polkit.Result.YES;
+          }
+        });
+      '';
     };
   };
   nix = {
@@ -108,9 +194,7 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  # networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
-  # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs set
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs set
   time.timeZone = "Africa/Nairobi";
   system.stateVersion = "24.05";
 }

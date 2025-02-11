@@ -5,8 +5,9 @@
     clearDefaultKeybinds = true;
     settings = {
       # theme = "dark:catppuccin-mocha,light:catppuccin-latte";
-      foreground = "#35A29F"; background = "#022223";
-      background-opacity = 0.76;
+      foreground = "#35A29F";
+      background = "#222436";#"#022223";
+      # background-opacity = 0.76;
       # background-blur = 10; # true, false, nonegative integer
       # adjust-cell-height = "-5%";
       adjust-cell-height = "5%";

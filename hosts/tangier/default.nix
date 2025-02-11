@@ -3,10 +3,7 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ./drives.nix
-    # ../common
-    # ../../users/malu.nix -- in common
-    # ../../modules/nix -- in common
+    ../common
     ./nvidia.nix
   ];
 
@@ -27,6 +24,21 @@
       efi.canTouchEfiVariables = true;
       timeout = 2;
     };
+  };
+  nix = {
+    distributedBuilds = true;
+    buildMachines = [ {
+      hostName = "carthage";
+      system = "x86_64-linux";
+      protocol = "ssh-ng";
+      maxJobs = 1;
+      speedFactor = 2;
+      supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+      mandatoryFeatures = [ ];
+    }] ;
+    extraOptions = ''
+      builders-use-substitutes = true
+    '';
   };
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

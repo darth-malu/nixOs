@@ -14,6 +14,7 @@
       "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta" "nvidia-x11" "whatsapp-emoji-linux"
   ];
 
+
   boot = {
     extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
     loader = {
@@ -171,11 +172,23 @@
         # "konradmalik.cachix.org-1:9REXmCYRwPNL0kAB0IMeTxnMB1Gl9VY5I8w7UVBTtSI="
       ];
     };
-    #extraOptions = ''
-      #keep-outputs = true
-      #keep-derivations = true
-    #'';# keep build-time dependencies around/be able to rebuild while being offline
+    # extra options
+    #keep-outputs = true
+    #keep-derivations = true# keep build-time dependencies around/be able to rebuild while being offline
+    extraOptions = ''
+    '';
+    distributedBuilds = true; # for remote builds
+    # buildMachines = [];
+    settings = {
+      allowed-users = [
+        # "@wheel"
+        "@builders"
+        "malu"
+        "sumbi"
+      ];
+    };
   };
+
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {

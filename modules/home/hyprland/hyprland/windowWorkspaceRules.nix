@@ -78,10 +78,10 @@
         "f[1], gapsout:0, gapsin:0"
 
         # created empty
-        "special:quanta, on-created-empty:sh -c 'hyprctl dispatch exec uwsm app -s a ghostty'"
+        "special:quanta, on-created-empty:sh -c \"hyprctl dispatch exec '[workspace special:quanta;] uwsm app -s a ghostty'\""
         # "special:nc, on-created-empty:sh -c \"hyprctl dispatch exec '[workspace special:nc;float;size 89% 85% ] kitty -e ncmpcpp'\""
         # "special:nc, on-created-empty:sh -c \"hyprctl dispatch exec '[workspace special:nc; ] kitty -e ncmpcpp'\""
-        "special:nc, on-created-empty:sh -c \"hyprctl dispatch exec '[workspace special:nc; ] ghostty -e ncmpcpp'\""
+        "special:nc, on-created-empty:sh -c \"hyprctl dispatch exec '[workspace special:nc; ] kitty -e ncmpcpp'\""
         # "special:nc, on-created-empty:sh -c \"hyprctl dispatch exec '[workspace special:nc; ] ghostty -e ncmpcpp'\""
 
         "special:easy, easyeffects"

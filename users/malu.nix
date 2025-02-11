@@ -27,7 +27,8 @@
         tree
       ];
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBpjjsqzxD27CtSdEsp0Ega22sYkY/iMBqMAwmFH6N4R darth-malu@github.com"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBpjjsqzxD27CtSdEsp0Ega22sYkY/iMBqMAwmFH6N4R darth-malu@github.com" # roy
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKubRXSOrk4IrM4Ai3FcvWFVV1wxRUNPF+0VZo9xSph1 darth-malu@github.com"
       ];
       # openssh.authorizedKeys.keyFiles = [
       #   ./open_key

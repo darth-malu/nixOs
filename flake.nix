@@ -82,7 +82,7 @@
             modules = [
               # {config = { nixpkgs.pkg = import nixpkgs {}; nixpkgs.config.allowUnfree = true;};}
               # nixpkgs.nixosModules.readOnlyPkgs # then set nnixpkgs.pkgs to use options like config.allowUnfreePredicate
-              ./hosts/carthage/default.nix
+              ./hosts/carthage
               {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
               inputs.home-manager.nixosModules.home-manager { 
                 home-manager = {
@@ -102,9 +102,10 @@
           inherit system;
           specialArgs = { inherit inputs system; };
           modules = [
-            ./hosts/tangier/default.nix
+            ./hosts/tangier
             # nvf.homeManagerModules.default # <- this imports the home-manager module that provides the options. # using nvf/ import instead...cleaner
             # {nixpkgs.pkg = import nixpkgs {};}
+            {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
             inputs.home-manager.nixosModules.home-manager { 
               home-manager = {
                 # verbose = true;

@@ -1,7 +1,8 @@
 /*bash*/''
 #H - host, #E - inbuilt?, 
 set -g @catppuccin_flavor "mocha"
-set -g @catppuccin_status_background "default" # transparent bg
+# set -g @catppuccin_status_background "default" # transparent bg
+set -g @catppuccin_status_background "#222436" # transparent bg
 
 # Some basic mocha colors.
 set -g @ctp_bg "#24273a"

@@ -93,8 +93,8 @@
     theme = {
       enable = true;
       # transparent = true;
-      name = "gruvbox"; style = "dark";
-       # name = "tokyonight"; style = "moon"; #moon, night, storm, day
+      # name = "gruvbox"; style = "dark";
+       name = "tokyonight"; style = "moon"; #moon, night, storm, day
        # name = "catppuccin"; style = "mocha"; #moon, night, storm, day
       # name = "rose-pine"; style = "dawn"; #moon, dawn
     };

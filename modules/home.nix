@@ -5,7 +5,7 @@
     username = "malu";
     #groupname = "darth";
     homeDirectory = "/home/malu";
-    stateVersion =  "24.05"; #TODO: make this different for the machines
+    stateVersion =  "24.05";
     preferXdgDirectories = true;
   };
   # Nicely reload system units when changing configs

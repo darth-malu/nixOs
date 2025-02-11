@@ -33,7 +33,7 @@
       nowait = true;
       desc = "Toggle harpoon menu";
     }
-  #
+
     {
       key = "<leader>ht";
       mode = ["n"];
@@ -129,119 +129,107 @@
     #   nowait = true;
     #   desc = "show current file";
     # }
-  {
-    mode = [ "n" ];
-    key = "<leader>rn";
-    lua = true; # action considered lua no quotes**
-    action = ''vim.lsp.buf.rename'';#FIXME: works unexpectedly...will do old_var = new_var instead rename to new_var
-    silent = false;
-    desc = "rename variable under cursor lol";
-  }
-  {
-    mode = "n";
-    key = "<leader>.";
-    #lua = true; # action considered lua no quotes**
-    # action = "<cmd>lua function() return require(\"obsidian\").util.toggle_checkbox() end, opts = { buffer = true }, <CR>";
-    action = "<cmd>ObsidianToggleCheckbox<CR>";
-    silent = false;
-    nowait = true;
-    desc = "Toggle check-boxes in obsidian"; #TODO: not sure if it works yet
-  }
-  {
-    mode = "n";
-    key = "<leader>oq";
-    action = "<cmd>ObsidianQuickSwitch<CR>";
-    desc = "Obsidian quickswitch any other note in vault with ripgrep";
-  }
-  {
-    mode = "n";
-    key = "<leader>on";
-    action = "<cmd>ObsidianNew<CR>"; #NOTE: has optional arg `title`
-    desc = "Obsidian new note";
-  }
-  {
-    mode = "n";
-    key = "<leader>od";
-    action = "<cmd>ObsidianDailies<CR>"; #NOTE: has optional arg `offset`a eg. :ObsidianDailies -2 1 -> notes from 2 days ago to tomorrow
-    desc = "Obsidian new note";
-  }
-  {
-    mode = "n";
-    key = "<leader>ot";
-    action = "<cmd>ObsidianTOC<CR>";
-    desc = "Obsidian TOC of current note";
-  }
-  {
-    mode = "n";
-    key = "<leader>ol";
-    action = "<cmd>ObsidianFollowLink vsplit<CR>";
-    desc = "Obsidian vsplit link under cursor in vsplit";
-  }
-  {
-    mode = "n";
-    key = "U";
-    action = "<C-r>";
-    desc = "better undo (C-r)";
-  }
-  {
-    mode = "n";
-    # key = "<leader>un";
-    key = "<leader>nn";
-    #lua = true; # action considered lua no quotes**
-    # key = "<C-l>";
-    action = "<cmd>lua require(\"notify\").dismiss({ silent = true, pending = true })<CR>";
-    desc = "Dismiss All notify Notifications";
-    nowait = true;
-  }
-  {
-    mode = ["n"];
-    key = "<leader>/";
-    action = "<cmd>nohl<CR>";
-    desc = "Clear search";
-  }
-  {
-    mode = ["n"];
-    # key = "<leader>l";
-    key = "<leader><S-l>";
-    #action = "<cmd>BufferLineCycleNext<cr>";
-    action = "<cmd>bn<cr>";
-    desc = "Cycle to next buffer";
-  }
+    {
+      mode = [ "n" ];
+      key = "<leader>rn";
+      lua = true; # action considered lua no quotes**
+      action = ''vim.lsp.buf.rename'';#FIXME: works unexpectedly...will do old_var = new_var instead rename to new_var
+      silent = false;
+      desc = "rename variable under cursor lol";
+    }
+    {
+      mode = "n";
+      key = "<leader>.";
+      #lua = true; # action considered lua no quotes**
+      # action = "<cmd>lua function() return require(\"obsidian\").util.toggle_checkbox() end, opts = { buffer = true }, <CR>";
+      action = "<cmd>ObsidianToggleCheckbox<CR>";
+      silent = false;
+      nowait = true;
+      desc = "Toggle check-boxes in obsidian"; #TODO: not sure if it works yet
+    }
+    {
+      mode = "n";
+      key = "<leader>oq";
+      action = "<cmd>ObsidianQuickSwitch<CR>";
+      desc = "Obsidian quickswitch any other note in vault with ripgrep";
+    }
+    {
+      mode = "n";
+      key = "<leader>on";
+      action = "<cmd>ObsidianNew<CR>"; #NOTE: has optional arg `title`
+      desc = "Obsidian new note";
+    }
+    {
+      mode = "n";
+      key = "<leader>od";
+      action = "<cmd>ObsidianDailies<CR>"; #NOTE: has optional arg `offset`a eg. :ObsidianDailies -2 1 -> notes from 2 days ago to tomorrow
+      desc = "Obsidian new note";
+    }
+    {
+      mode = "n";
+      key = "<leader>ot";
+      action = "<cmd>ObsidianTOC<CR>";
+      desc = "Obsidian TOC of current note";
+    }
+    {
+      mode = "n";
+      key = "<leader>ol";
+      action = "<cmd>ObsidianFollowLink vsplit<CR>";
+      desc = "Obsidian vsplit link under cursor in vsplit";
+    }
+    {
+      mode = "n";
+      key = "U";
+      action = "<C-r>";
+      desc = "better undo (C-r)";
+    }
+    {
+      mode = "n";
+      key = "<leader>nn";
+      action = "<cmd>lua require(\"notify\").dismiss({ silent = true, pending = true })<CR>";
+      desc = "Dismiss All notify Notifications";
+      nowait = true;
+    }
+    {
+      mode = ["n"];
+      key = "<leader>/";
+      action = "<cmd>nohl<CR>";
+      desc = "Clear search";
+    }
+    {
+      mode = ["n"];
+      # key = "<leader>l";
+      key = "<leader><S-l>";
+      action = "<cmd>bn<cr>";
+      desc = "Cycle to next buffer";
+    }
 
-  {
-    mode = ["n"];
-    key = "<leader><S-h>";
-    #action = "<cmd>BufferLineCyclePrev<cr>";
-    action = "<cmd>bp<cr>";
-    desc = "Cycle to previous buffer";
-  }
+    {
+      mode = ["n"];
+      key = "<leader><S-h>";
+      action = "<cmd>bp<cr>";
+      desc = "Cycle to previous buffer";
+    }
 
-  {
-    mode = ["n"];
-    key = "<leader>x";
-    action = "<cmd>bdelete<cr>";
-    desc = "Delete buffer";
-    nowait = true;
-  }
-  {
-    mode = ["t"];
-    key = "<leader>X";
-    # lua = true;
-    # action = "<cmd>lua vim.cmd('quit')";
-    action = "<cmd>q<CR>";
-    # vim.api.nvim_set_keymap("t", "<C-q>", "<C-\\><C-n>:q<CR>", { noremap = true, silent = true })
-    # action = ''vim.cmd('quit')'';
-    desc = "Quit term";
-  }
-  {
-    mode = ["n"];
-    key = "<M-s>";
-    # key = "<M-;>";
-    # key = "<M-a>";
-    action = "<cmd>w<cr>";
-    silent = true;
-    #nowait = true;
-    desc = "quick save";
-  }
+    {
+      mode = ["n"];
+      key = "<leader>x";
+      action = "<cmd>bdelete<cr>";
+      desc = "Delete buffer";
+      nowait = true;
+    }
+    {
+      mode = ["t"];
+      key = "<leader>X";
+      action = "<cmd>q<CR>";
+      desc = "Quit term";
+    }
+    {
+      mode = ["n"];
+      key = "<M-s>";
+      action = "<cmd>w<cr>";
+      silent = true;
+      desc = "quick save";
+    }
   ];
 }

@@ -145,14 +145,14 @@ in
     }
 
     # yazi
-    function yy() {
-      local yazi_tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-      yazi "$@" --cwd-file="$yazi_tmp"
-      if cwd="$(cat -- "$yazi_tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$DIM_BOLD_PWD" ]; then
-          builtin cd -- "$cwd"
-      fi
-      rm -f -- "$yazi_tmp"
-    }
+    # function yy() {
+    #   local yazi_tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    #   yazi "$@" --cwd-file="$yazi_tmp"
+    #   if cwd="$(cat -- "$yazi_tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$DIM_BOLD_PWD" ]; then
+    #       builtin cd -- "$cwd"
+    #   fi
+    #   rm -f -- "$yazi_tmp"
+    # }
 
     # export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin" # should be below in bashrcExtra
     if command -v fzf-share >/dev/null; then

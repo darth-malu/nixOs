@@ -43,7 +43,7 @@
           #kitty
           "$mod, Return, exec, $ghostty" #$terminal , wezterm, ghostty
           "$mod $al, Return, exec, $kitty" #$terminal , wezterm, ghostty
-          "$mod $sl, Return, exec, [workspace emptym] uwsm app -s a -- ghostty -e yazi"
+          "$mod $sl, Return, exec, [workspace emptym] $ghostty"
 
           # productivity
           # "$mod $cl, O, exec, [workspace emptym] uwsm app -s a -- obsidian"

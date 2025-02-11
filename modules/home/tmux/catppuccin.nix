@@ -17,7 +17,7 @@ set -g status-left-length 100
 set -g status-left ""
 # set -ogq @catppuccin_status_module_bg_color "#{@thm_surface_0}"
 # set -ogq @catppuccin_status_module_bg_color "default" # "#{@thm_surface_0}"
-set -ogq @catppuccin_status_module_bg_color "#222436" # "#{@thm_surface_0}"
+set -ogq @catppuccin_status_module_bg_color "#21433E" # "#222436"
 
 # general
 # set -g @catppuccin_directory_text "#{b:pane_current_path}"

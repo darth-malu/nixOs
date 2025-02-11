@@ -3,10 +3,11 @@
     color1 = 112;# song info, tiny tag editor and search engine 
     color2 = 136;
 
-    song_columns_list_format = "(40)[38]{t} | (30)[38]{a} (25)[38]{b} (5)[38]{l}"; # clean
+    song_columns_list_format = "(40)[39]{t} | (30)[39]{a} (25)[39]{b} (5)[39]{l}"; # clean
+    #nice : 38
     song_list_format = "{$5%t}|{$6%f$9} $R %P %b      {$4%a$1$9}$9";
 
-    current_item_prefix = "$(38)$r"; # highlight current
+    current_item_prefix = "$(142)$r"; # highlight current
     current_item_inactive_column_prefix = "$(24)$r"; #nice purp
 
     alternative_header_first_line_format = "$0$aqqu$/a$9  {$6%a$9     }{$5%t$9}|{$3%f$9}  $0$atqq$/a$9";

@@ -66,8 +66,8 @@
     { on = [ "<Space>" ]; run = [ "select --state=none" "arrow 1" ]; desc = "Toggle the current selection state"; }
     { on = [ "v" ];       run = "visual_mode";                        desc = "Enter visual mode (selection mode)"; }
     { on = [ "V" ];       run = "visual_mode --unset";                desc = "Enter visual mode (unset mode)"; }
-    { on = [ "<C-a>" ];   run = "select_all --state=true";            desc = "Select all files"; }
-    { on = [ "<C-r>" ];   run = "select_all --state=none";            desc = "Inverse selection of all files"; }
+    { on = [ "<C-a>" ];   run = "toggle_all --state=on";            desc = "Select all files"; }
+    { on = [ "<C-r>" ];   run = "toggle_all --state=off";            desc = "Inverse selection of all files"; }
 
      # Operation
     { on = [ "o" ];         run = [ "escape --visual" "open" ];                       desc = "Open the selected files"; }
@@ -158,9 +158,6 @@
     {on = [ "l" ]; run = "plugin smart-enter"; desc = "Enter child dir or open file";}
     {on = [ "p" ]; run = "plugin smart-paste"; desc = "Paste into the hovered directory or CWD";}
     {on = [ "t" ]; run = "plugin smart-tab"; desc = "Create a tab and enter the hovered directory";}
-    # {on = [ "y" ]; run = [ 'shell -- for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list', "yank" ];} #FIXME: errors
-    # {on = [ "p" ]; run = "plugin --sync smart-paste"; desc = "Paste into hovered dir. or CWD";}
-    # { on = "<Tab>"; run = "plugin --@sync entry dual-pane --args=next_pane";  desc = "Dual-pane: switch to the other pane"; }
   ];
 
   input.prepend_keymap = [

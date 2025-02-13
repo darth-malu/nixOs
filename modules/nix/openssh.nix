@@ -22,7 +22,7 @@
       #ports = [ 22 ]; # 16bit unsigned int
       settings = {
         #LogLevel = "DEBUG";
-        # PasswordAuthentication = false; # def: false=require public key auth?
+        PasswordAuthentication = false; # def: false=require public key auth?
         PubkeyAuthentication = true;
         # KbdInteractiveAuthentication = false;
         #AllowUsers = null; # all users::
@@ -30,7 +30,7 @@
         # X11Forwarding = false;
         #UseDns = true; #default false
         # PermitRootLogin = "prohibit-password"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
-        AllowUsers = ["malu" "git" ]; # [ "user1" "user2 "] or null(all users allowed)
+        # AllowUsers = ["malu" "git" ]; # [ "user1" "user2 "] or null(all users allowed)
       };
       # authorizedKeysInHomedir = true;
       #authorizedKeysFiles = [ "$HOME/.ssh/id_ed25519.pub" ];

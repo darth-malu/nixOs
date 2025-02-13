@@ -1,3 +1,4 @@
+{osConfig, ...}:
 {
   programs.ghostty = {
     enable = true;
@@ -5,7 +6,7 @@
     clearDefaultKeybinds = true;
     settings = {
       # theme = "dark:catppuccin-mocha,light:catppuccin-latte";
-      foreground = "#35A29F";
+      foreground = "#4BC6B2";# #35A29F
       background = "#222436";#"#022223";
       # background-opacity = 0.76;
       # background-blur = 10; # true, false, nonegative integer
@@ -43,7 +44,7 @@
       font-style = "SemiBold";
       font-style-bold = "Bold";
       font-style-italic = "Medium Italic";
-      font-size = 11.5; # 
+      font-size = if osConfig.networking.hostName == "carthage" then 11.5 else 10.9; # 
       freetype-load-flags = "no-hinting"; #foce-authint:: - #NOTE: very important for wezterm and ghostty
       app-notifications = false; # clipboard-copy
       # linux-cgroup = "single-instance"; # always, never, single-instance

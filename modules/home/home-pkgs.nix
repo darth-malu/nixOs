@@ -12,7 +12,7 @@
     dotool
     #calc
 
-    #glow #md preview
+    glow #TODO: test this extensively # see quart for blog with markdown
     #aria2#NOTE: learn
     qbittorrent
 
@@ -43,8 +43,8 @@
     # whatsapp-emoji-font
 
     # browser
-    chromium
-    lynx
+    # chromium
+    # lynx # terminal browser pretty fun
     google-chrome
     bluemail
     # meld
@@ -95,6 +95,7 @@
   (with pkgs;[ # INFO: MANGA stuff
       # komikku # broken
       mangal
+      ani-cli
       #syncyomi - sync tachiyomi progress across devices
     ]);
 
@@ -254,43 +255,6 @@
       };
     };
 
-    helix = {
-      enable = true;
-      extraPackages = [pkgs.marksman];
-      # defaultEditor = true;
-      settings = {
-        theme = "autumn_night_transparent";
-        editor.cursor-shape = {
-          normal = "block";
-          insert = "bar";
-          select = "underline";
-          line-number = "relative";
-          lsp.display-messages = true;
-        };
-        keys.normal = {
-          space = {
-            space = "file_picker";
-            w = ":w";
-            q = ":q";
-          };
-          esc = [ "collapse_selection" "keep_primary_selection" ];
-        };
-      };
-      languages.language = [{
-        name = "nix";
-        auto-format = true;
-        # formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
-        formatter.command = pkgs.lib.getExe pkgs.nixfmt-rfc-style;
-      }];
-      themes = {
-        autumn_night_transparent = {
-          "inherits" = "autumn_night";
-          "ui.background" = { };
-        };
-      };
-    };
-
-
     # ssh = { #FIXME: makes thinigs worse? lol
       # enable = true;
       # controlPersist = "10m"; # whether control socket should remain open in background
@@ -354,7 +318,7 @@
         # "--gap 1"
         # "--scroll-off=4"
       ];
-      # changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"]; #M-c binding
+      changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"]; #M-c binding
       # changeDirWidgetCommand = "fd --type d";
       # fileWidgetCommand = "fd --type f"; #C-t #FIXME: broken $FZF_DEFAULT_OPTS: invalid command line string
       # fileWidgetOptions = ["preview 'head {}"];

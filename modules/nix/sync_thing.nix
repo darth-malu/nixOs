@@ -1,6 +1,6 @@
 {
   services = {
-    syncthing = {
+    syncthing = { # http://127.0.0.1:8384/
       enable = true;
       group = "darth";
       user = "malu";
@@ -29,6 +29,10 @@
           };
           "music" = {
             path = "/home/malu/Music";
+            devices = [ "tangier" "carthage" ];
+          };
+          "myVaults" = {
+            path = "/home/malu/obsidianVaults";
             devices = [ "tangier" "carthage" ];
           };
         };

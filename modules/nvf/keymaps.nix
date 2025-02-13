@@ -35,6 +35,15 @@
     }
 
     {
+      key = "<Tab>";
+      mode = ["i"];
+      lua = true;
+      action = ''function () require('luasnip').expand() end'';
+      silent = true;
+      nowait = true;
+      desc = "lua snip jump";
+    }
+    {
       key = "<leader>ht";
       mode = ["n"];
       action = "<cmd>lua require('harpoon.tmux').gotoTerminal(1)<CR>";
@@ -176,6 +185,12 @@
       key = "<leader>ol";
       action = "<cmd>ObsidianFollowLink vsplit<CR>";
       desc = "Obsidian vsplit link under cursor in vsplit";
+    }
+    {
+      mode = "n";
+      key = "<leader>op";
+      action = "<cmd>ObsidianOpen<CR>";
+      desc = "open note in obsidian app";
     }
     {
       mode = "n";

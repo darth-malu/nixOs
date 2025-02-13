@@ -1,4 +1,4 @@
-{ config, ...}:
+{ config, lib, ...}:
 {
   fileSystems = if config.networking.hostName == "carthage" then {
 
@@ -56,29 +56,35 @@
       ];
     };
   }
-  else {
+  else { #TODO: better control structure for this
     "/" =
         { device = "darthPool/core/root";
           fsType = "zfs";
         };
-      "/home" =
-        { device = "darthPool/extra/home";
-          fsType = "zfs";
-        };
+    "/home" =
+      { device = "darthPool/extra/home";
+        fsType = "zfs";
+      };
 
-      "/boot" =
-        { device = "/dev/disk/by-uuid/D397-96F1";
-          fsType = "vfat";
-          options = [ "fmask=0022" "dmask=0022" ];
-        };
+    "/boot" =
+      { device = "/dev/disk/by-uuid/D397-96F1";
+        fsType = "vfat";
+        options = [ "fmask=0022" "dmask=0022" ];
+      };
   };
 
-  swapDevices = [
+  zramSwap = {#TODO: study more on this
+    # enable = (lib.mkIf config.networking.hostName == "tangier") true;
+    enable = if config.networking.hostName == "tangier" then true else false;
+    # memoryPercent = 50;
+  };
+
+  swapDevices = if config.networking.hostName == "carthage" then [
     {
       device = "/.darthswapfile";
       size = 2 * 1024; # 2GB
     }
-  ];
+  ] else [];
 }
      #NOTE: default options: rw, suid, dev, exec, auto, nouser, and async.
      # https://manpages.ubuntu.com/manpages/noble/en/man8/mount.8.html#filesystem-independent%20mount%20options

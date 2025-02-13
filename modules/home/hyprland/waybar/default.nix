@@ -3,17 +3,19 @@
 {
   config = lib.mkIf (osConfig.specialisation != {}) {
     programs.waybar = {
-      enable = lib.mkIf osConfig.programs.hyprland.enable true;
+      # enable = lib.mkIf osConfig.programs.hyprland.enable true;
+      enable = if osConfig.programs.hyprland.enable then true else false;
       # enable = true;
       # systemd = {
           # enable = true; # clashes with uwsm?
           # target = "graphical-session.target"; # config.wayland.systemd.target::
       # };
       style = 
-        if osConfig.networking.hostName == "carthage"
+        (if osConfig.networking.hostName == "carthage"
           then import ./css_waybar-carthage.nix
         else 
-          if osConfig.networking.hostName == "tangier" then import ./css_waybar-tangier.nix else import ./css_waybar-carthage.nix;
+          if osConfig.networking.hostName == "tangier" then import ./css_waybar-tangier.nix else import ./css_waybar-carthage.nix)
+        + import ./css_waybar-common.nix;
       settings = {
         mainBar = {
           # height = 20; #so funny

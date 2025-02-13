@@ -28,12 +28,19 @@
   nix = {
     distributedBuilds = true;
     buildMachines = [ {
+      sshUser = "malu";
+      sshKey = "$HOME/.ssh/id_ed25519"; # must be a local path not pointing to the nix store
       hostName = "carthage";
       system = "x86_64-linux";
-      protocol = "ssh-ng";
+      protocol = "ssh"; #ssh:: ssh-ng (improved protocol?TODO:)
       maxJobs = 1;
-      speedFactor = 2;
-      supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+      speedFactor = 2; # The relative speed of this builder. This is an arbitrary integer that indicates the speed of this builder, relative to other builders. Higher is faster.
+      supportedFeatures = [
+        "nixos-test"
+        "benchmark"
+        "big-parallel"
+        "kvm"
+      ];
       mandatoryFeatures = [ ];
     }] ;
     extraOptions = ''
@@ -41,7 +48,7 @@
     '';
   };
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  # powerManagement.cpuFreqGovernor = lib.mkDefault "powersave"; # TODO: test effects of this
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   networking = {
@@ -56,9 +63,13 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
 
-  services.libinput.enable = true; # touchpad, should be on by default
-
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  services = {
+    libinput.enable = true; # touchpad, should be on by default
+    zfs = {
+      autoSnapshot.enable = true; #TODO: see sanoid in man configuration.nix
+      trim.enable = true; # true::
+    };
+  };
 
   time.timeZone = "Africa/Nairobi";
 

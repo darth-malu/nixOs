@@ -13,8 +13,8 @@
           around_last = "al";
           inside_last = "il";
           #Move cursor to corresponding edge of `a` textobject
-          # goto_left = "g["; #no work?
-          # goto_right = "g]";
+          goto_left = "g["; #no work?
+          goto_right = "g]";
         };#TODO: check on modifiers and alignment
       };
     };
@@ -22,14 +22,14 @@
       enable = true;
       setupOpts = {
         # Whether to read default session if Neovim opened without file arguments
-        autoread = false;
+        autoread = true; #false::
         # Whether to write currently read session before quitting Neovim
-        autowrite = true;
+        autowrite = true; # true::
         # Directory where global sessions are stored (use `''` to disable)
         # directory = #<"session" subdir of user data directory from |stdpath()|>,
         # File for local session (use `''` to disable)
-        # file = "Session.vim";
-        file = "/home/malu/Documents/Session.vim";
+        file = "Session.vim";
+        # file = "/home/malu/Documents/Session.vim";
         # Whether to force possibly harmful actions (meaning depends on function)
         force = {
           read = false;
@@ -45,7 +45,7 @@
         # };
         # Whether to print session path after action
         verbose = {
-          read = false;
+          read = true;
           write = true;
           delete = true;
         };

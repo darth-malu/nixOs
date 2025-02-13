@@ -3,6 +3,7 @@
     ./autocmd.lua
     ./extra.lua
     ./harpoon.lua
+    ./snippets.lua
     # ./custom_lualine.lua
     # ./custom_gruv.lua # working
     #./custom_lualine.lua

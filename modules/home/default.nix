@@ -31,6 +31,5 @@
     # ]
     ./hyprland
     ./themes.nix
-    # ./sync_thing.nix
   ] else []);
 }

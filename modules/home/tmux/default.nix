@@ -8,7 +8,7 @@
     keyMode = "vi";
     terminal =  "xterm-256color"; # screen::
     # shell = "\${pkgs.bash}/bin/bash";
-    tmuxinator.enable = true;
+    tmuxinator.enable = false; # using resurrect for this
     baseIndex = 1;
     escapeTime = 0; # 500::
     focusEvents = true;
@@ -25,21 +25,25 @@
       { plugin = vim-tmux-navigator; }
       # { plugin = tmuxPlugins.tmux-yank-unstable; }
       # { plugin = tmuxPlugins.tmux-floatx; }
-      # {
-        # plugin = resurrect;
-        # extraConfig = /*bash*/''
-      #     set -g @resurrect-strategy-nvim 'session'
-      #     set -g @resurrect-strategy-vim 'session'
-          # set -g @resurrect-capture-pane-contents 'on'
-      #     # set -g @resurrect-processes '~nvim -> nvim'
-         # '';
-      # }
+      {
+        plugin = resurrect;
+        extraConfig = /*bash*/''
+          # fix attempt
+          resurrect_dir="$HOME/.tmux/resurrect"
+          set -g @resurrect-dir $resurrect_dir
+          set -g @resurrect-hook-post-save-all 'target=$(readlink -f $resurrect_dir/last); sed "s| --cmd .*-vim-pack-dir||g; s|/etc/profiles/per-user/$USER/bin/||g; s|/home/$USER/.nix-profile/bin/||g" $target | sponge $target'
+          set -g @resurrect-strategy-nvim 'session'
+          set -g @resurrect-strategy-vim 'session'
+          set -g @resurrect-capture-pane-contents 'on'
+          # set -g @resurrect-processes '~nvim -> nvim'
+         '';
+      }
       {
        plugin = continuum;
        extraConfig = /*bash*/ ''
          set -g @continuum-restore 'on' # autorestore session on tmux a
          set -g @continuum-save-interval '5' # minutes
-         # set -g @continuum-boot 'on'
+         set -g @continuum-boot 'on'
        '';
       }
     ];

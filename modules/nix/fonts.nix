@@ -12,12 +12,7 @@
       quicksand
       lato 
       cascadia-code
-      whatsapp-emoji-font
-      # nerdfonts.DroidSansMono 
-      # nerd-fonts.Lekton
-      # nerd-fonts.Monofur
-      # nerd-fonts.DaddyTimeMono
-      # nerd-fonts."3270"
+      # whatsapp-emoji-font # long build time strange
       ]++
         (with pkgs.nerd-fonts; [
         fantasque-sans-mono
@@ -36,13 +31,15 @@
         tinos # similar to times new
         # iosevka-term
         iosevka
+        # DroidSansMono #FIXME: broken
+        # "3270" #FIXME: broken
         lekton
         lilex
         hasklug
         geist-mono
         agave
         caskaydia-cove
-        symbols-only # for wezterm/terminal in general glyphs
+        # symbols-only # for wezterm/terminal in general glyphs
       ]);
 };
 }

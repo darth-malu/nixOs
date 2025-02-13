@@ -1,4 +1,4 @@
-''
+/*css*/''
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     /*font-family: Iosevka,quicksand,JetBrainsMono Nerd Font,ubuntu,fontawesome;*/
@@ -35,6 +35,16 @@ window#waybar {
 /*window#waybar.kitty {*/
     /*background-color: rgba(8 ,41 ,41, 0.75);*/
 /*}*/
+
+window#waybar.com\.mitchellh\.ghostty {
+    /* background-color: rgba(8 ,41 ,41, 0.0); */
+    background-color: rgba(34,36,54,0.79);
+}
+
+window#waybar.mpv {
+    /* background-color: rgba(8 ,41 ,41, 0.0); */
+    background-color: rgba(34,36,54,0.0);
+}
 
 window#waybar.solo {
     border-bottom: 0px solid #ffffff;
@@ -240,22 +250,6 @@ button:hover {
     /*border: 1px solid rgba(222 ,192 ,241, 0.32);*/
 }
 
-
-#disk.home, #disk.linuxHdd,#disk.extraHdd {
-  padding:0px;
-  margin: 4px 0px 3px 0px;
-  border-radius: 0px;
-  border-top: 0px;
-  border-bottom: 0px;
-  border-left: 0px;
-  padding: 0px 5px 0px 8px;
-  /* font-family: VictorMono Nerd Font; */
-}
-
-#disk.extraHdd {
-  border-right: 0px;
-}
-
 #disk {
   margin: 4px 0px 3px 6px;
   border-top-left-radius: 12px;
@@ -272,22 +266,6 @@ button:hover {
 
 #disk:hover {
     background: rgba(72 ,191 ,227, 0.24);
-}
-
-#custom-nvme_temp {
-    margin: 4px 0px 3px 0px;
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-    padding: 0px 2px 0px 2px;
-    font-size:11px;
-    color: rgba(72 ,191 ,227, 0.69);
-    color: rgba(159 ,162 ,178, 1);
-    background: rgba(72 ,191 ,227, 0.16);
-    /*font-family: nunito;*/
-}
-
-#backlight {
-    background-color: #90b1b1;
 }
 
 #network {
@@ -459,7 +437,6 @@ button:hover {
 
 #keyboard-state > label.numlock {
     margin-left:2px;
-
 }
 
 #keyboard-state > label.locked {
@@ -542,88 +519,7 @@ button:hover {
     color: rgba(0,180,216,1.0);
 }
 
-#pulseaudio-slider trough, #backlight-slider trough {
-    min-height: 10px;
-    min-width: 80px;
-}
-
-#pulseaudio-slider {
-    margin: 0px 4px;
-    padding: 0px;
-}
-
-#pulseaudio-slider slider {
-    min-height: 0px;
-    min-width: 60px;
-    opacity: 0;
-    background-image: none;
-    border: none;
-    margin: 0px;
-    box-shadow: none;
-}
-#pulseaudio-slider trough {
-    /*min-height: 80px;*/
-    min-width: 80px;
-    min-height: 10px;
-    /*margin: 0px;*/
-    border-radius: 6px;
-    background-color: #CCAFAF;
-}
-#pulseaudio-slider highlight {
-    min-width: 0px;
-    border-radius: 8px;
-    /*background-color: #CC0E74;*/
-    /*background-color: rgba(72 ,191 ,227, 0.13);*/
-    background-color: red;
-}
-
 #drawer-child {
     background: black;
-}
-#battery {
-    /*background-color: #ffffff;*/
-    /*color: #000000;*/
-    padding: 0px 10px 0px 6px;
-    /*padding: 0px 10px;*/
-    font-size:11px;
-    color: rgba(154 ,208 ,194, 0.85);
-    /*background: rgba(255 ,200 ,0, 0.14);*/
-    /*background: rgba(154 ,208 ,194, 0.25);*/
-    border: 1px solid rgba(154 ,208 ,194, 0.25); 
-    margin: 3px 0px 3px 4px;
-    border-radius: 12px;
-}
-
-#battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
-    /*padding: 0px 12px 0px 6px;*/
-}
-
- /*#battery.<status>.<state>*/
-/*#battery.critical:not(.charging) {*/
-/*window#waybar.battery-<state>*/
-
-#battery.critical.discharging {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#backlight {
-  padding: 0px 4px;
-  background: transparent;
-}
-
-#custom-gpu,#custom-gpu_freq, #cpu {
-    font-size: 12px;
-}
-
-#custom-gpu_temp, #temperature, #custom-nvme_temp {
-    font-size: 11px;
 }
 ''

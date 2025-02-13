@@ -3,7 +3,7 @@
   config = lib.mkIf (osConfig.specialisation != {}) {
   services.dunst = {
     # enable = lib.mkIf (osConfig.services.desktopManager.plasma6.enable != true ) true;
-    enable = lib.mkIf osConfig.programs.hyprland.enable true;
+    enable = if osConfig.programs.hyprland.enable then true else false;
     # waylandDisplay = ""; #"":: #Set the service's WAYLAND_DISPLAY environment variable.
       # configFile = path; # conf written to $XDG_CONFIG_HOME/dunst/dunstrc regardless. This allows using a mutable configuration file generated from the immutable one, useful in scenarios where live reloading is desired.
     settings = {

@@ -1,4 +1,4 @@
-# {inputs,pkgs, ...}:
+{inputs,pkgs, osConfig, ...}:
 
 {
   services.hyprpaper = {
@@ -21,18 +21,18 @@
           # "/home/malu/Pictures/wallpapers/rakan-xayah.png"
         ];
       wallpaper = 
-        [
+        if osConfig.networking.hostName == "carthage" then [
           "HDMI-A-1,/home/malu/Pictures/wallpapers/singed.png"
           "DP-3,/home/malu/Pictures/wallpapers/thresh_purp.png"
+        ] else
+          (if osConfig.networking.hostName == "tangier" then [
+            "eDP-1,/home/malu/Pictures/wallpapers/singed.png"
+          ] else []);
+        # [
+          # "HDMI-A-1,/home/malu/Pictures/wallpapers/singed.png"
+          # "DP-3,/home/malu/Pictures/wallpapers/thresh_purp.png"
           # "eDP-1,/home/malu/Pictures/wallpapers/singed.png"
-      # if osConfig.networking.hostName == "carthage" then [
-      #   "HDMI-A-1,/home/malu/Pictures/wallpapers/singed.png"
-      #   "DP-3,/home/malu/Pictures/wallpapers/thresh_purp.png"
-      # ] else
-      #   (if osConfig.networking.hostName == "tangier" then [
-      #     "eDP-1,/home/malu/Pictures/wallpapers/singed.png"
-      #   ] else []);
-        ];
+        # ];
     };
     };
 }

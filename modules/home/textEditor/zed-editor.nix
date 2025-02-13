@@ -101,15 +101,15 @@
                 blinking = "off";
                 copy_on_select = true;
                 dock = "bottom";
-                detect_venv = {
-                    on = {
-                        directories = [".env" "env" ".venv" "venv"];
-                        activate_script = "default";
-                    };
-                };
-                env = {
-                    TERM = "kitty";
-                };
+                # detect_venv = {
+                #     on = {
+                #         directories = [".env" "env" ".venv" "venv"];
+                #         activate_script = "default";
+                #     };
+                # };
+                # env = {
+                #     TERM = "kitty";
+                # };
                 #font_family = "FiraCode Nerd Font";
                 font_family = "Zed Plex Mono";
                 #font_features = null;

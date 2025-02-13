@@ -81,9 +81,6 @@
     };
   };
 
-
-  # services.libinput.enable = true; # touchpad, should be on by default
-
   # users.groups.students.gid = 1000; # creates group called students, gid optional
 
   # config= lib.mkIf (config.specialisation != {}) {
@@ -145,15 +142,25 @@
       automatic = true; # false::
       dates = ["weekly"];
       #dates = ["03:15" "00:00"]; # see systemd.time(7) for specification
+      randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
+      # persistent = false; # true::
     };
-    gc = {
+    gc = { # garbage collector
       automatic = true;
       dates = "weekly";
       #dates = "03:15";
       options = "--delete-older-than 14d";
+      # randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
+      # persistent = false; # true::
     };
     settings = {
       auto-optimise-store = true; # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy. #false::
+      allowed-users = [
+        "@wheel"
+        "@builders"
+        "malu"
+        "sumbi"
+      ];
       experimental-features = [ "nix-command" "flakes" ];
       substituters = [
         "https://cache.nixos.org?priority=10"
@@ -179,14 +186,6 @@
     '';
     distributedBuilds = true; # for remote builds
     # buildMachines = [];
-    settings = {
-      allowed-users = [
-        # "@wheel"
-        "@builders"
-        "malu"
-        "sumbi"
-      ];
-    };
   };
 
   i18n = {

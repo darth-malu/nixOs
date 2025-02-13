@@ -33,9 +33,9 @@
       };
       otter-nvim = {
         enable = true;
-        # mappings = {
-        #   toggle = "<leader>lo";
-        # };
+        mappings = {
+          toggle = "<leader>lo";
+        };
         setupOpts = {
           lsp.diagnostic_update_event = ["BufWritePost"]; #BufWritePost , InsertLeave, TextChange
           buffers.set_filetype = true;
@@ -66,8 +66,8 @@
         # treesitter.enable = true;
         lsp = {
           enable = true;
-          server = "python-lsp-server"; package = pkgs.python312Packages.python-lsp-server;
-          # server = "basedpyright"; package = pkgs.basedpyright; #NOTE: broken right now
+          # server = "python-lsp-server"; package = pkgs.python312Packages.python-lsp-server;
+          # server = "basedpyright"; package = pkgs.basedpyright; ::
           #basedpyright::, "pyright" "python-lsp-server"
         };
         format = {

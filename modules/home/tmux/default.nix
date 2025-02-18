@@ -43,7 +43,7 @@
        extraConfig = /*bash*/ ''
          set -g @continuum-restore 'on' # autorestore session on tmux a
          set -g @continuum-save-interval '5' # minutes
-         set -g @continuum-boot 'on'
+         # set -g @continuum-boot 'on'
        '';
       }
     ];

@@ -35,13 +35,13 @@
     }
 
     {
-      key = "<Tab>";
+      key = "<M-;>";
       mode = ["i"];
       lua = true;
       action = ''function () require('luasnip').expand() end'';
       silent = true;
       nowait = true;
-      desc = "lua snip jump";
+      desc = "lua snip expand test";
     }
     {
       key = "<leader>ht";
@@ -167,6 +167,16 @@
       key = "<leader>on";
       action = "<cmd>ObsidianNew<CR>"; #NOTE: has optional arg `title`
       desc = "Obsidian new note";
+      silent = true;
+      nowait = true;
+    }
+    {
+      key = "<C-.>";
+      mode = ["i" "n"];
+      action = "-\t"; #TODO: test if it accepts esc characters
+      silent = true;
+      nowait = true;
+      desc = "insert list in obsidian md";
     }
     {
       mode = "n";

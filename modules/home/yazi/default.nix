@@ -1,15 +1,13 @@
 { inputs, pkgs, ...}:
-
 {
   programs.yazi = {
     enable = true;
-    # package = yazi.packages.${pkgs.system}.default;
     package = inputs.yazi.packages.${pkgs.system}.default;
     enableBashIntegration = true;
     keymap = import ./keymap.nix;
     theme = import ./theme.nix;
     shellWrapperName = "y"; # yy::
-    plugins = import ./plugins.nix;
+    plugins = import ./plugins;
     settings = {
       manager = {
         layout = [ 1 4 3 ];
@@ -18,9 +16,8 @@
         sort_reverse = true;
         sort_dir_first = true;
         sort_translit = true; # convert Æ to AE , Â to A
-        # linemode = "none";
-        linemode = "btime"; #birthtime btime, mtime
-        show_hidden = true;
+        linemode = "btime"; # birthtime btime, mtime, none
+        show_hidden = false;
         show_symlink = true;
         scrolloff = 10;
       };
@@ -36,25 +33,26 @@
         ueberzug_offset = [ 0 0 0 0 ];
       };
       opener = {
-        play = [
-          {
-            run = "mpv \"$@\"";
-            orphan = true;
-            for = "unix";
-          }
+        play = [ { run = "mpv \"$@\""; orphan = true; for = "unix" ;} ];
+        edit = [ { run = "$EDITOR \"$@\"" ; block = true; for = "unix" ;} ];
+        open = [ { run = "xdg-open \"$@\""; desc = "Open" ;} ] ;
+      };
+      open = { # needs [openers]
+        rules = [
+          { mime = "text/*"; use = "edit" ;}
+          { mime = "video/*"; use = "play" ;}
+          # { mime = "application/json", use = "edit" },
+          { name = "*.json"; use = "edit" ;}
+          # Multiple openers for a single rule
+          { name = "*.html"; use = [ "open" "edit" ] ;}
         ];
-        edit = [
-          {
-            run = "$EDITOR \"$@\"";
-            block = true;
-            for = "unix";
-          }
+        prepend_rules = [
+          { name = "*.json"; use = "edit" ;}
+          # Multiple openers for a single rule
+          { name = "*.html"; use = [ "open" "edit" ] ;}
         ];
-        open = [
-          {
-            run = "xdg-open \"$@\"";
-            desc = "Open";
-          }
+        append_rules = [
+            { name = "*"; use = "my-fallback" ;}
         ];
       };
       tasks = { micro_workers = 5; macro_workers = 10; bizarre_retry = 5; }; # worker -> micro tasks, 

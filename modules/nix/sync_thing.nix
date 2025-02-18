@@ -25,7 +25,7 @@
           };
           "ytVid" = {
             path = "/home/malu/Videos/YtDlp";
-            devices = [ "tangier" "carthage" ];
+            devices = [ "carthage" ];
           };
           "music" = {
             path = "/home/malu/Music";

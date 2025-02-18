@@ -23,7 +23,7 @@
   /*background: rgba(255 ,200 ,0, 0.14);*/
   /*background: rgba(154 ,208 ,194, 0.25);*/
   /* border: 1px solid rgba(154 ,208 ,194, 0.25);  */
-  border: 1px solid rgba(154 ,208 ,194, 0.25); 
+  border-top: 1px solid rgba(154 ,208 ,194, 0.25); 
   margin: 3px 2px 3px 4px;
   border-radius: 12px;
 }
@@ -50,9 +50,10 @@
 
 #backlight {
   /* background-color: #90b1b1; */
+  /* background-color: transparent; */
+  background: rgba(72 ,191 ,227, 0.00);
+  color: rgba(72 ,191 ,227, 0.70);
   padding: 0px 4px;
-  color: rgba(72 ,191 ,227, 0.73);
-  background: rgba(72 ,191 ,227, 0.0);
-  background: transparent;
+  /* background-color: rgba(34,36,54,0.0); */
 }
 ''

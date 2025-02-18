@@ -74,7 +74,7 @@
   };
 
   zramSwap = {#TODO: study more on this
-    # enable = lib.mkIf config.networking.hostName == "tangier" true;
+    # enable = (lib.mkIf config.networking.hostName == "tangier") true;
     enable = if config.networking.hostName == "tangier" then true else false;
     # memoryPercent = 50;
   };

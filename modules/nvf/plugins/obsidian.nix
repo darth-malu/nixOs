@@ -24,12 +24,15 @@
       };
       workspaces = [
         { name = "personal"; path = "/home/malu/obsidianVaults/personal"; }
-        { name = "code"; path = "/home/malu/obsidianVaults/code"; overrides = { notes_subdir = "sub_code";}; }
+        { name = "code";
+          path = "/home/malu/obsidianVaults/code";
+          # overrides = { notes_subdir = "sub_code";}; #TODO: need subnotes?
+        }
         { name = "nixOs"; path = "/home/malu/obsidianVaults/nixOs"; }
       ];
       # Optional, set to true to force ':ObsidianOpen' to bring the app to the foreground.
       open_app_foreground = true;
-        # mappings = {
+        mappings = {
         #   # Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
         #   ["gf"] = {
         #     action = function()
@@ -38,12 +41,9 @@
         #     opts = { noremap = false, expr = true, buffer = true },
         #   },
         #   # Toggle check-boxes.
-        #   ["<leader>ch"] = {
-        #     action = function()
-        #       return require("obsidian").util.toggle_checkbox()
-        #     end,
-        #     opts = { buffer = true },
-        #   },
+          "<leader>ch" = { action = "function() return require(\"obsidian\").util.toggle_checkbox() end;"; #WARN: might cause problems, build
+            opts = { buffer = true;};
+          };
         #   # Smart action depending on context, either follow link or toggle checkbox.
         #   ["<cr>"] = {
         #     action = function()
@@ -51,7 +51,7 @@
         #     end,
         #     opts = { buffer = true, expr = true },
         #   }
-        # },
+        };
    };
   };
 }

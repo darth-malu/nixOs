@@ -5,10 +5,10 @@
     enable = true;
     extraConfig = #$XDG_CONFIG_HOME/yt-dlp/config
     ''
-        -P "~/Videos/YtDlp" -P "temp:tmp" -P "subtitle:subs"
+        -P "~/Videos/YtDlp" -P "temp:tmp" -P "subtitle:subs" -P "thumbnail:thumbnail"
+        # -P "thumbnail:%(title)s\%(title)s.%(ext)s" # will put thumbnail in folder with same name as video
         # Save all videos under YouTube directory in your home directory
         -o "%(channel)s-%(title)s.%(ext)s"
-        -P "thumbnail:%(title)s\%(title)s.%(ext)s"
 
         # Download and merge the best video-only format and the best audio-only format,
         # or download the best combined format if video-only format is not available

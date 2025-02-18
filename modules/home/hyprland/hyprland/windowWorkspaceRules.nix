@@ -52,6 +52,7 @@
         "workspace emptym, org.qutebrowser.qutebrowser"
         "workspace emptym, obsidian"
         "workspace emptym, spotube"
+        "workspace emptym, mpv"
       ];
 
       windowrulev2 = [

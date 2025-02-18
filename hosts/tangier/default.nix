@@ -29,7 +29,8 @@
     distributedBuilds = true;
     buildMachines = [ {
       sshUser = "malu";
-      sshKey = "$HOME/.ssh/id_ed25519"; # must be a local path not pointing to the nix store
+      # sshKey = "$HOME/.ssh/id_ed25519"; # must be a local path not pointing to the nix store
+      sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKubRXSOrk4IrM4Ai3FcvWFVV1wxRUNPF+0VZo9xSph1 darth-malu@github.com"; # must be a local path not pointing to the nix store
       hostName = "carthage";
       system = "x86_64-linux";
       protocol = "ssh"; #ssh:: ssh-ng (improved protocol?TODO:)

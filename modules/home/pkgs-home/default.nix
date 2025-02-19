@@ -15,7 +15,7 @@
   ];
 
   # optionals
-  homeHypr.enable = lib.mkIf (osConfig.kde.enable != true) true;
+  homeHypr.enable = lib.mkIf osConfig.hypr.enable true;
 
   home.packages = 
     with pkgs; [
@@ -304,7 +304,7 @@
         # bg+ -> current line background plus associated border
         # fg -> # text above current line - default text
         # fg + -> # text current line; ~ matched pattern
-        # hl -> # highlighted substrings
+        # hl -> # highlighted substrings, ~ current line
         # hl+ -> # highlighted substrings(current line) 
         # bg = "#1e1e1e";
         bg = "#022223";
@@ -313,7 +313,7 @@
         # fg = "#93E1D8";
         # fg = "#4ED4BC";
         fg = "#4ED4BC"; 
-        "fg+" = "#FCFCFC";
+        "fg+" = "#0FA3B1";
         # fg = "#9400FF";  
         # "fg+" = "#d4d4d4";
         # "fg+" = "#DA4167";
@@ -322,7 +322,7 @@
         # "hl+" = "#F1DEDE"; 
         # "hl" = "#F7567C";
         "hl" = "#9400FF";
-        "hl+" = "#0FA3B1";
+        "hl+" = "#FCFCFC";
         # "hl+" = "#9400FF";
         # "hl+" = "#4ED4BC";
         # "preview-fg" = "";

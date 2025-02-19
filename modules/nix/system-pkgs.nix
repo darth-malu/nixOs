@@ -9,7 +9,7 @@
         enableLsColors = true;
         #blesh.enable = true;
         undistractMe = { #ISSUES
-         enable = false;
+         enable = true;
           timeout = 30; #seconds
           playSound = false;#TODO: can this be improved??
         };
@@ -32,7 +32,7 @@
         support32Bit = false; # check if needed
       };
       wireplumber.enable = true;
-      #extraConfig.pipewire."92-low-latency" = {
+      #extraConfig.pipewire."92-low-latency" = {#FIXME: crackling
         #"context.properties" = {
         #"default.clock.rate" = 48000;
         #"default.clock.quantum" = 32;
@@ -90,15 +90,14 @@
     (if config.programs.hyprland.enable
         then with pkgs; [
           wl-clipboard
-          hyprcursor hyprpicker
+          hyprcursor hyprpicker hyprpolkitagent
+          hyprsunset
           libappindicator libappindicator-gtk3
           # polkit_gnome
-          hyprpolkitagent hyprsunset
-          libcanberra-gtk3
-          libcanberra
+          libcanberra-gtk3 libcanberra
           # libsecret # secrets lul
           # lib.mkIf (config.networking.hostName == "tangier") with pkgs; [brightnessctl]
-          kdePackages.qt6ct kdePackages.qtwayland
+          #kdePackages.qt6ct kdePackages.qtwayland -- see if needed
         ] ++
         (if config.networking.hostName == "tangier" then [
           brightnessctl

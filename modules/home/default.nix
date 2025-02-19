@@ -1,35 +1,10 @@
-{osConfig, ...}:
-
+{osConfig, lib,...}:
 {
   imports = [
-    ./home-pkgs.nix
-    #./plasmaManager.nix
-    ./tmux
-    ./mpv
+    ./pkgs-home
     ./xdg_mime.nix
-    ./bash
-    ./yt-dlp.nix
-    ./git-home.nix
-    #./sddm_theme.nix
-    ./qutebrowser
-
-    ./scripts
-    ./yazi
-    ./kitty
-    ./wezterm
-    ./ghostty
-    ./textEditor
-    # ./nixvim
-    # ./helix
-    ./soundStuff
-    # ./homeSessionVariables.nix ./systemdUserSessionVariables.nix
   ] ++
-  # (if osConfig.services.desktopManager.plasma6.enable != true then [ # WIP
-  (if osConfig.programs.hyprland.enable then [ # WIP
-    # mkMerge [
-    #   ( mkIf config.wayland.windowManager.hyprland.enable {import} ) 
-    # ]
-    ./hyprland
+  (if osConfig.hyprland.enable then [ # WIP
     ./themes.nix
   ] else []);
 }

@@ -17,12 +17,12 @@
     # filetree.neo-tree.enable = true;
     options = {
       conceallevel = 1; # for obsidian 1 or 2
-      expandtab = 2; # In Insert mode: Use the appropriate number of spaces to insert a <Tab>
+      expandtab = true; # In Insert mode: Use the appropriate number of spaces to insert a <Tab>
       tabstop = 2; # number of spaces <TAB> in the file counts for.
-      softtab = 2; # 	Number of spaces that a <Tab> counts for while performing editing operations, like inserting a <Tab> or using <BS>.  It 'feels' like <Tab>s are being inserted, while in fact a mix of spaces and <Tab>s is used.  This is useful to keep the 'ts' setting at its standard value
+      softtabstop = 2; # 	Number of spaces that a <Tab> counts for while performing editing operations, like inserting a <Tab> or using <BS>.  It 'feels' like <Tab>s are being inserted, while in fact a mix of spaces and <Tab>s is used.  This is useful to keep the 'ts' setting at its standard value
 
       shiftwidth = 2; # use with > shifting. used if ssofttab is -ve
-      spell = true;
+      # spell = true;
 
       # winbar = "%=%m\ %f";
       #autoindent = true;

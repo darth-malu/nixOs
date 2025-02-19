@@ -1,6 +1,6 @@
 {
   imports = [
-    # ./helix
+    ./helix
     ./zed-editor.nix
     # ./nixvim
   ];

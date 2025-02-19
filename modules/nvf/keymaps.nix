@@ -33,7 +33,14 @@
       nowait = true;
       desc = "Toggle harpoon menu";
     }
-
+    {
+      key = "<leader>hM";
+      mode = ["n"];
+      action = "<cmd>Telescope harpoon marks<CR>";
+      silent = true;
+      nowait = true;
+      desc = "Telescope harpoon";
+    }
     {
       key = "<M-;>";
       mode = ["i"];
@@ -57,7 +64,7 @@
       action = "<cmd>lua require('harpoon.ui').nav_next()<CR>";
       silent = true;
       nowait = true;
-      desc = "Toggle harpoon menu";
+      desc = "next harpoon buffer";
     }
     {
       key = "<S-h>";
@@ -65,7 +72,7 @@
       action = "<cmd>lua require('harpoon.ui').nav_prev()<CR>";
       silent = true;
       nowait = true;
-      desc = "Toggle harpoon menu";
+      desc = "prev. harpoon buffer";
     }
     {
       key = "-";

@@ -10,5 +10,4 @@
     # ./custom_tokyo-lualine.lua
     # ./obsidian-nvim+.lua
   ];
-
 }

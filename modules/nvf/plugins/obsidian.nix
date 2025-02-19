@@ -8,7 +8,7 @@
         min_chars = 2;
       };
       # Optional, if you keep notes in a specific subdirectory of your vault.
-      notes_subdir = "notes";
+      # notes_subdir = "notes"; # places notes in dah...a sub dir
       # Where to put new notes. Valid options are
       #  * "current_dir" - put new notes in same directory as the current buffer.
       #  * "notes_subdir" - put new notes in the default notes subdirectory.
@@ -19,7 +19,8 @@
       daily_notes = {
         date_format = "%d-%m-%Y-%";
         # folder = "~/obsidianVaults/dailyNotes";
-        folder = "notes/dailies";
+        # folder = "notes/dailies";
+        folder = "dailies";
         default_tags =  "daily-notes" ;
       };
       workspaces = [
@@ -29,6 +30,8 @@
           # overrides = { notes_subdir = "sub_code";}; #TODO: need subnotes?
         }
         { name = "nixOs"; path = "/home/malu/obsidianVaults/nixOs"; }
+        # { name = "dailies"; path = "/home/malu/obsidianVaults/dailies"; }
+        { name = "neovim"; path = "/home/malu/obsidianVaults/neovim"; }
       ];
       # Optional, set to true to force ':ObsidianOpen' to bring the app to the foreground.
       open_app_foreground = true;

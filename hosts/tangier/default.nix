@@ -49,7 +49,7 @@
     '';
   };
 
-  # powerManagement.cpuFreqGovernor = lib.mkDefault "powersave"; # TODO: test effects of this
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave"; # TODO: test effects of this, and add to waybar
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   networking = {

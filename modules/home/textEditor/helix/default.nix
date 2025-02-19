@@ -1,12 +1,18 @@
-{pkgs, ...}:
+{pkgs, lib, ...}:
 {
   programs.helix = {
     enable = true;
     settings = {
-      theme = "base16";
+      # theme = "base16";
+      theme = "autumn_night_transparent";
       editor = {
+        cursor-shape = {
+          normal = "block";
+          insert = "bar";
+          select = "underline";
+        };
         line-number = "relative";
-        lsp.display-messages = true;
+        # lsp.display-messages = true;
       };
       keys.normal = {
         space = {
@@ -17,13 +23,18 @@
         esc = [ "collapse_selection" "keep_primary_selection" ];
       };
     };
-    languages = [{
+    languages.language = [{
       name = "nix";
-      auto-format = true;
-          formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
-          # formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
+      auto-format = false;
+      # formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+      # formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
     }];
+    extraPackages = [ pkgs.marksman ];
     themes = {
+      autumn_night_transparent = {
+        inherits = "autumn_night";
+        "ui.background" = {};
+      };
       base16 = let
         transparent = "none";
         gray = "#665c54";

@@ -3,8 +3,9 @@
 {
   imports = [
     ../../modules/nix
-    ../../users/malu.nix
-    ./common-drive.nix
+    ./users/malu.nix
+    ./storage-common.nix
+    ./specialisations
   ];
 
   # nixpkgs.pkgs = import <nixpkgs> {}; #TODO: investigate how to make this work
@@ -25,13 +26,13 @@
   };
 
   networking = {
-    wireless.enable = false; # Enables wireless support via wpa_supplicant.
+    wireless.enable = if config.networking.hostName == "tangier" then true else false; # Enables wireless support via wpa_supplicant.
     hostId = if config.networking.hostName == "tangier" then "92d08a60" else "245e3df3"; #ensure when using ZFS that a pool isn’t imported accidentally on a wrong machine.#head -c 8 /etc/machine-id
     # hostId = (lib.mkIf config.networking.hostName == "tangier") "92d08a60"; #FIXME: see syntax on this attempt to call something which is not a function but a Boolean: false
     networkmanager = {
       enable = true; # might be on by default # add user to group
       # dns = "none";
-      wifi.powersave = true;
+      wifi.powersave = if config.networking.hostName == "tangier" then true else false;
     };
     dhcpcd.enable = true;
     useDHCP = lib.mkDefault true;
@@ -180,9 +181,9 @@
       ];
     };
     # extra options
-    #keep-outputs = true
-    #keep-derivations = true# keep build-time dependencies around/be able to rebuild while being offline
     extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true# keep build-time dependencies around/be able to rebuild while being offline
     '';
     distributedBuilds = true; # for remote builds
     # buildMachines = [];

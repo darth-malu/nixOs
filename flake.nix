@@ -35,7 +35,7 @@
       };
     };
 
-    hyprpaper = {
+    hyprpaper = { # TODO: test if needed
       url = "github:hyprwm/hyprpaper";
       inputs = {
         hyprgraphics.follows = "hyprland/hyprgraphics";
@@ -77,17 +77,14 @@
         carthage = 
           nixpkgs.lib.nixosSystem {
             inherit system;
-            # specialArgs = { inherit pkgs inputs system; };
             specialArgs = { inherit inputs system; };
             modules = [
-              # {config = { nixpkgs.pkg = import nixpkgs {}; nixpkgs.config.allowUnfree = true;};}
-              # nixpkgs.nixosModules.readOnlyPkgs # then set nnixpkgs.pkgs to use options like config.allowUnfreePredicate
               ./hosts/carthage
               {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
               inputs.home-manager.nixosModules.home-manager { 
                 home-manager = {
                   verbose = true;
-                  backupFileExtension = "bakup"; # conflict management,append .backup to existing conf. files
+                  backupFileExtension = "home_backup"; # useful for clearance script
                   users.malu = import ./modules/home.nix;
                   useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
                   useUserPackages = false; # if false ... uses nix-profile for home apps
@@ -103,8 +100,6 @@
           specialArgs = { inherit inputs system; };
           modules = [
             ./hosts/tangier
-            # nvf.homeManagerModules.default # <- this imports the home-manager module that provides the options. # using nvf/ import instead...cleaner
-            # {nixpkgs.pkg = import nixpkgs {};}
             {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
             inputs.home-manager.nixosModules.home-manager { 
               home-manager = {
@@ -118,18 +113,6 @@
             }
           ];
         };
-      # homeConfigurations = {
-      #   malu = home-manager.lib.homeManagerConfiguration {
-      #     inherit pkgs;
-      #     extraSpecialArgs = {
-      #       inherit pkgs pkgs-unstable inputs system  pc userPc; };
-      #     modules = [
-      #       ./modules/home.nix
-      #       # inputs.nix-index-database.hmModules.nix-index
-      #       # inputs.plasma-manager.homeManagerModules.plasma-manager
-      #     ];
-      #   };
-      # };
 
       devShells.${system}.default = pkgs.mkShell
         {

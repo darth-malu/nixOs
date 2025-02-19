@@ -1,3 +1,5 @@
+{osConfig, lib, ...}:
+
 let
   fromSecond = "\${@:2}";
   fromThird = "\${@:3}";
@@ -18,13 +20,15 @@ in
     historyControl = ["ignoreboth" "erasedups"];
     historyIgnore = [ "ls" "rg" "bemoji" "lss" "lxx" "cd" "exit" ];
     profileExtra =
+      if (osConfig.kde.enable == false) then#INFO: only launch when hyrpland option is enabled
     #loginshell
     /*bash*/
     ''
         if uwsm check may-start; then
           exec uwsm start -S hyprland-uwsm.desktop
        fi
-    '';
+    ''
+        else '''';
     # extra commands interactive shell/ also in non interactive
     # bashrcExtra = '''';
     initExtra =

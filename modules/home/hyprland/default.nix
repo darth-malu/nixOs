@@ -11,11 +11,11 @@
     ../hyprland-helper
   ];
 
-  options.homeHypr = {
+  options.homeHyprland = {
     enable = lib.mkEnableOption "homeHypr";
   };
 
-  config = lib.mkIf config.homeHypr.enable {
+  config = lib.mkIf config.homeHyprland.enable {
     #configures Hyprland and adds it to your user’s PATH, but does not make certain system-level changes. the NixOS module makes system-level changes such as adding a desktop session entry.
     dunst.enable = true;
     waybar.enable = true;

@@ -15,7 +15,7 @@
   ];
 
   # optionals
-  homeHypr.enable = lib.mkIf osConfig.hypr.enable true;
+  homeHyprland.enable = lib.mkIf osConfig.hyprland.enable true;
 
   home.packages = 
     with pkgs; [

@@ -569,7 +569,7 @@
             format-stopped = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}-Stopped  \t";
             tooltip-format = "MPD (connected)";
             tooltip-format-disconnected = "MPD (disconnected)";
-            #tooltip = false;
+            tooltip = false;
             interval = 2;
             consume-icons = {
               "on" = " ";

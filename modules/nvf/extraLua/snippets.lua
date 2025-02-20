@@ -13,6 +13,13 @@ ls.add_snippets("nix", { --filetype first parameter
 })
 
 ls.add_snippets("nix", { --filetype first parameter
+  s("enable", { --snippet name and snippet body
+    t('enable = true;'),
+    i(0)
+  })
+})
+
+ls.add_snippets("nix", { --filetype first parameter
   s("import", { --snippet name and snippet body
     t('imports = ['),
     i(1),

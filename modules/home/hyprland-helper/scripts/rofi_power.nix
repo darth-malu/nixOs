@@ -53,7 +53,7 @@ confirm_exit() {
 #TODO: make better banner
 restart_shut_timer_confirm() {
   rofi -dmenu \
-    -theme-str 'window {  location: center; anchor: center; fullscreen: false; height:160;width: 220; padding:0;margin: 0;border: 0;orientation : horizontal;}' \
+    -theme-str 'window {  location: west; anchor: west; fullscreen: false; height:160;width: 220; padding:0;margin: 0;border: 0;orientation : horizontal;}' \
     -theme-str 'mainbox {children: [  "listview" ];}' \
     -theme-str 'listview { dynamic: false;columns: 2;fixed-columns : false; lines: 1; cycle: "true"; orientation : horizontal;}' \
     -theme-str 'element {horizontal-align: 0.9;border: 1;margin:0; orientation: vertical;}' \
@@ -66,7 +66,7 @@ restart_shut_timer_confirm() {
 
 confirm_actions() {
   rofi -dmenu \
-    -theme-str 'window {location: center; anchor: west; fullscreen: false; border: 0; fixed-height: false; dynamic: false; height:90px; width: 300px;}' \
+    -theme-str 'window {location: west; anchor: west; fullscreen: false; border: 0; fixed-height: false; dynamic: false; height:90px; width: 300px;}' \
     -theme-str 'mainbox {children: [ "message", "listview" ];}' \
     -theme-str 'listview {columns: 2; lines: 1; orientation : horizontal; fixed-columns: false;}' \
     -theme-str 'element {orientation: horizontal; padding: 0; margin: 4;}' \

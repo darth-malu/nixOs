@@ -8,6 +8,8 @@
     ./mpv
     ./git.nix
     ./tmux
+    ./emacs
+    ./yazi
     ../terminal
     ../bash
     ../hyprland

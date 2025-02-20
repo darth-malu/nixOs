@@ -16,7 +16,7 @@
         sort_reverse = true;
         sort_dir_first = true;
         sort_translit = true; # convert Æ to AE , Â to A
-        linemode = "btime"; # birthtime btime, mtime, none
+        linemode = "none"; # (birthtime) btime, mtime, none
         show_hidden = false;
         show_symlink = true;
         scrolloff = 10;

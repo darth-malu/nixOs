@@ -3,13 +3,18 @@
   fileSystems = if config.networking.hostName == "carthage" then {
 
     "/" = {
-      device = "/dev/disk/by-uuid/d0c435ce-b5d0-44c0-9ac4-88b67734756b";
-      fsType = "ext4";
+      device = "darth-pool/root";
+      fsType = "zfs";
     };
 
     "/home" = {
-      device = "/dev/disk/by-uuid/3eea7486-62a4-455c-a686-7f28f5e9b118";
-      fsType = "ext4";
+      device = "darth-pool/home";
+      fsType = "zfs";
+    };
+    
+    "/nix" = {
+     device = "darth-pool/nix";
+     fsType = "zfs";
     };
 
     "/boot" = {
@@ -23,7 +28,7 @@
 
     "/media/linuxHdd" = {
       device = "/dev/disk/by-uuid/48b59b13-573c-4e39-b2ce-abb2a3c0206e";
-      #noCheck = true;
+      noCheck = true;
       fsType = "ext4";
       options = [ "users" "nofail" ];# defaults if options list missing
     };
@@ -31,6 +36,7 @@
     "/media/extraHdd" = {
       device = "/dev/disk/by-uuid/01DA684DD5DAAEA0";
       fsType = "ntfs-3g";
+      noCheck = true;
       options = [
         "users"
         "nofail"
@@ -74,17 +80,10 @@
   };
 
   zramSwap = {#TODO: study more on this
-    # enable = (lib.mkIf config.networking.hostName == "tangier") true;
-    enable = if config.networking.hostName == "tangier" then true else false;
+    enable = true;
     # memoryPercent = 50;
-  };#TODO: enable latere after error check
-
-  swapDevices = if config.networking.hostName == "carthage" then [
-    {
-      device = "/.darthswapfile";
-      size = 2 * 1024; # 2GB
-    }
-  ] else [];
+  };
 }
+
      #NOTE: default options: rw, suid, dev, exec, auto, nouser, and async.
      # https://manpages.ubuntu.com/manpages/noble/en/man8/mount.8.html#filesystem-independent%20mount%20options

@@ -1,7 +1,8 @@
+{pkgs,...}:
 {
   programs.ncmpcpp = {
     enable = true;
-    #package = pkgs.ncmpcpp.override { visualizerSupport = true; };
+    package = pkgs.ncmpcpp.override { visualizerSupport = true; };
     mpdMusicDir = "~/Music";
 
     bindings = [

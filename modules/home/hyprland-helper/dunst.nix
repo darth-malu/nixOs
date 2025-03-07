@@ -49,9 +49,10 @@
           plain_text = "yes";
 
           format = ''
-            %a
+            %a %i
             <b>%s</b>
-            %b'';
+            <b>%b</b>''; #both body and summary bold HACK: added %i can remove FIXME: the bold in body does not work :)
+          # %a appname | %s summary | %b body | %i iconname (including its path) | %I iconname (without its path) | %p progress value ([ 0%] to [100%]) | %n progress value without any extra characters | %% Literal %
 
           notification_limit = 10;
           indicate_hidden = true;
@@ -106,7 +107,7 @@
           min_icon_size = 10;
           max_icon_size = 100;
           layer = "overlay"; #overylay/top/bottom # wayland only
-          vertical_alignment = "center"; # center-default, top/center/bottom
+          vertical_alignment = "center"; # center-default, top/center/bottom Defines how the text and icon should be aligned vertically within the notification.
           separator_height = 2;
           padding = 0; # between text and separator/window in vertical axis
           horizontal_padding = 0; #padding but horizontal

@@ -6,7 +6,7 @@
     # shortcut = "w"; # used with Ctrl alone?
     # aggressiveResize = true; # size of smallest session
     keyMode = "vi";
-    terminal =  "xterm-256color"; # screen::
+    terminal =  "screen-256color"; # screen::, xterm-256color?
     # shell = "\${pkgs.bash}/bin/bash";
     tmuxinator.enable = false; # using resurrect for this
     baseIndex = 1;

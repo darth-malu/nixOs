@@ -28,17 +28,18 @@
   nix = {
     distributedBuilds = true;
     buildMachines = [ {
-      sshUser = "malu";
+      sshUser = "remotebuild"; # NOTE special user that cant be sudo'd into
       # sshKey = "$HOME/.ssh/id_ed25519"; # must be a local path not pointing to the nix store
-      sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKubRXSOrk4IrM4Ai3FcvWFVV1wxRUNPF+0VZo9xSph1 darth-malu@github.com"; # must be a local path not pointing to the nix store
+      # sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKubRXSOrk4IrM4Ai3FcvWFVV1wxRUNPF+0VZo9xSph1 darth-malu@github.com";
+      sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBpjjsqzxD27CtSdEsp0Ega22sYkY/iMBqMAwmFH6N4R darth-malu@github.com"; # carthage
       hostName = "carthage";
       system = "x86_64-linux";
-      protocol = "ssh"; #ssh:: ssh-ng (improved protocol?TODO:)
-      maxJobs = 1;
+      protocol = "ssh-ng"; #ssh:: ssh-ng ( ssh next generation)
+      maxJobs = 4;
       speedFactor = 2; # The relative speed of this builder. This is an arbitrary integer that indicates the speed of this builder, relative to other builders. Higher is faster.
       supportedFeatures = [
         "nixos-test"
-        "benchmark"
+        # "benchmark"
         "big-parallel"
         "kvm"
       ];
@@ -74,6 +75,6 @@
 
   time.timeZone = "Africa/Nairobi";
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }
 

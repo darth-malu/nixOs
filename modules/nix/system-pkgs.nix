@@ -78,6 +78,9 @@
       dotool  # test if working
       micro
       spotube
+      # ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
+      #   epkgs.emacs-libvterm
+      # ]))
     ])
     # ++
     # (with pkgs-unstable; [

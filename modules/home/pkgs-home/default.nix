@@ -1,7 +1,17 @@
 {pkgs, inputs, lib, osConfig, ...}:
+let
+  tex = (pkgs.texlive.combine {
+    inherit (pkgs.texlive) scheme-basic scheme-medium
+      dvisvgm dvipng # for preview and export as html
+      wrapfig amsmath ulem hyperref capt-of;
+      #(setq org-latex-compiler "lualatex")
+      #(setq org-preview-latex-default-process 'dvisvgm)
+  });
+in
 {
-    imports = [# flaked apps
+  imports = [# flaked apps
     inputs.nyaa.homeManagerModule
+    # inputs.nix-doom-emacs.hmModule #FIXME Throughs errors
     ./yt-dlp.nix
     ./qutebrowser
     ./soundStuff
@@ -9,6 +19,7 @@
     ./git.nix
     ./tmux
     ./emacs
+    # ./nix-doom
     ./yazi
     ../terminal
     ../bash
@@ -16,19 +27,19 @@
     ../textEditor
   ];
 
-  # optionals
+  # modules
   homeHyprland.enable = lib.mkIf osConfig.hyprland.enable true;
 
   home.packages = 
     with pkgs; [
+      sway-audio-idle-inhibit
       wev
       tldr
+      #testdisk
+      testdisk-qt
       # qalculate-qt # #FIXME:for rofi?
-
       dotool
       # calc
-
-      glow #TODO: test this extensively # see quart for blog with markdown
       #aria2#NOTE: learn
       qbittorrent
 
@@ -36,9 +47,7 @@
       # zip xz unzip p7zip
 
       #rofimoji bemoji
-      hyprpicker
-      modem-manager-gui modemmanager
-      sway-audio-idle-inhibit
+      modem-manager-gui modemmanager # saves the day with no internet
       taskwarrior3
       taskwarrior-tui
       file
@@ -54,71 +63,94 @@
 
       #gnome.nautilus gnome.sushi gnome.file-roller gnome.yelp
 
-      telegram-desktop
-      discord
-      whatsapp-for-linux
-      # whatsapp-emoji-font
+      telegram-desktop discord whatsapp-for-linux # socials
 
-      # browser
+      # browserr
       # chromium
-      # lynx # terminal browser pretty fun
+      # lynx # terminal browser pretty fun -> on emacs now
       google-chrome
       bluemail
-      # meld
-
-      # alt can use flake or shell.nix
-      #(python313.withPackages (ps: with ps; [
-        #pip
-        #seaborn
-        #matplotlib
-        #numpy
-        #pandas
-        #powerline
-        #pygments
-        #pynvim
-      #]))
 
       # Entertainment
-      lollypop mpc-cli spotify mpv easyeffects
-      #spotify-cli-linux
-      #spotify-tray
-      # glyr
-      jamesdsp
-       
+      lollypop
+      mpc-cli
+      spotify
+      easyeffects
+
       # disk management
-      duf ncdu
+      duf
+      ncdu
+      # superfile # kinda cool but dont need
 
       # productivity / school
-      obsidian obs-studio obs-cli
+      obsidian
+      glow #TODO: test this extensively # see quart for blog with markdown
       ffmpeg
-      wpsoffice
       #productivity
-      # davinci-resolve
-      digikam
-      # nixd # zed
       #blender
       # blender-hip # accelarated render
       # freeglut
       # gcc
-    ]
+    ]++
+    (with pkgs; [ # NOTE: EMACS
+      # texlive.combined.scheme-medium # for latex
+      # texlivePackages.dvipng # for latex already installed
+      # texlive.withPackages (ps: [ ps.dvipng ])
+      # texlive.withPackages (ps: [ ps.scheme-medium ])
+      xclip
+      tex
+      libtool
+      shellcheck
+      cmake
+      gnumake
+      ## Module dependencies
+      # :email mu4e
+      mu
+      isync
+      # :checkers spell
+      # Because emacs expects the dictionaries to be on the same directory as aspell, they won't be picked up. To fix it install the aspellWithDicts package, specifying the dictionaries you want to use:
+      (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+      clang-tools
+      wordnet #:tools +dictionary dep
+      # :tools lookup & :lang org +roam
+      sqlite
+      # :tools editorconfig
+      editorconfig-core-c # per-project style config
+      # :lang nix
+      age
+      zstd                # for undo-fu-session/undo-tree compression
+      binutils            # native-comp needs 'as', provided by this
+    ])
     ++
-   (with pkgs; [
-      #(ffmpeg.override { withXcb = true;  })
-  #     ffmpeg
-     spotube
-     superfile
-     # kdePackages.dolphin
+   (with pkgs; [ # creative space
+    #(ffmpeg.override { withXcb = true;  })
+    #  ffmpeg
+    # davinci-resolve
+    obs-studio
+    obs-cli
+    spotube
+    digikam
+    jamesdsp
+    # nixd # zed
+    imagemagick         # for image-dired
+    # kdePackages.dolphin
   ]) ++ 
-  (with pkgs;[ # INFO: MANGA stuff
-      # komikku # broken
-      mangal
-      ani-cli
-      #syncyomi - sync tachiyomi progress across devices
-    ]);
+  (with pkgs;[ # NOTE: MANGA stuff
+    # komikku # broken
+    mangal
+    ani-cli
+    #syncyomi - sync tachiyomi progress across devices
+  ]) ++
+  (with pkgs; [ #NOTE: school
+    netbeans
+    wpsoffice
+  ])++
+  (with pkgs; [ # hyrpland
+    hyprpicker
+  ]);
 
   programs = {
-    # Let Home Manager install and manage itself.
-    home-manager.enable = true;
+    home-manager.enable = true; # Let Home Manager install and manage itself.
 
     ripgrep = {
       enable = true;
@@ -176,6 +208,9 @@
     # eza = {
     #   enable = true;
     # };
+    pandoc = {
+      enable = true;
+    };
 
     fd = {
       enable = true;
@@ -203,7 +238,7 @@
       # package = pkgs-unstable.fastfetch;
       settings = { # $XDG_CONFIG_HOME/fastfetch/config.jsonc
         logo = {
-          source = "#nixos_small"; #nixos_small #nixos_old
+          source = "nixos_small"; #nixos_small #nixos_old
           padding = {
             right = 1;
           };
@@ -459,22 +494,62 @@
     zathura = {
       enable = true;
       options = {# this are the :set options
-          default-bg = "#000000";
-          default-fg = "#FFFFFF";
-          statusbar-h-padding = 0;
-          statusbar-v-padding = 0;
-          page-padding = 0;
-          selection-clipboard = "clipboard";# copy selection to system clipboard
-          # zoom and scroll step size
-          zoom-step = 20;
-          scroll-step = 80;
-          incremental-search = true;
+        default-bg = "#000000";
+        default-fg = "#FFFFFF";
+        statusbar-h-padding = 0;
+        statusbar-v-padding = 0;
+        page-padding = 0;
+        selection-clipboard = "clipboard";# copy selection to system clipboard
+        zoom-step = 20; # 10:: in % percentage
+        zoom-min = 20; # 10::
+        zoom-max = 1000; #1000::
+        scroll-step = 100; # 40::
+        incremental-search = true;
+        # highlight-color = ""; # #9FBC00::
+        highlight-active-color = "#623CEA"; # #00BC00::, #75DBCD
+        # highlight-transparency = ""; # 0.5::
+        guioptions = "none"; # no statusbar
+        adjust-open = "best-fit"; # opening zathura defaults
+        smoth-scroll = true;
+        font = "Iosevka Comfy semibold 10";
       };
       mappings = {
         u = "scroll half-up";
         d = "scroll half-down";
-        D = "toggle_page_mode";
+        D = "toggle_page_mode"; # single | double page viewing mode
       };
+      # extraConfig = ''
+      # '';# zathurarc
+      # keys ^ -> Meta, Ctrl
+      # o -> open document
+      # ^r -> recolor
+      # ^n > toggle statusbar
+      # ^m > toggle inputbar
+      # zI, zO, z0 -> Zoom in, out or to the original size
+      #
+      # mouse
+      # ^Scroll -> zoom in/out
+      # Button1 -> follow link
+      # Hold Button1 -> select text
+      # Hold ^Button1 -> Highlight region
+      #
+      # vim keys work...including marks, search
+      #f5 -> fullscreen mode
+
+      # commands
+      # :bmark -> for bookmark, blist -> list bookmarks ,bdelete
+      # :exec -> execute an external command
+      # write, write!
+      # print
+      # info
+      # offset <number>
+      # open, o -> open document
+      # help
+
+      # flags
+      # -w [password]
+      # --mode [presentation | fullscreen]
+      # -P [number], --page [number] open at this page
     };
 
     # starship = {

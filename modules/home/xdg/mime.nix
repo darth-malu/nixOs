@@ -2,12 +2,12 @@
   xdg = {
     enable = true;
     mimeApps = {
-      enable = true;
-      associations = { 
+      enable = true; #false::
+      associations = { # as if the .desktop file was listing this mimetype in the first place
         added = {
           "text/plain" = [ "nvim.desktop"];
         };
-        removed = {
+        removed = { # as if the .desktop file was not listing this mimetype in the first place
 
         };
       };

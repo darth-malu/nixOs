@@ -15,6 +15,7 @@ ls.add_snippets("nix", { --filetype first parameter
 ls.add_snippets("nix", { --filetype first parameter
   s("enable", { --snippet name and snippet body
     t('enable = true;'),
+    t(''),
     i(0)
   })
 })

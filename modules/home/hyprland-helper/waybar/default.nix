@@ -2,12 +2,12 @@
 
 {
   options.waybar = {
-    enable =  lib.mkEnableOption "dunst";
+    enable =  lib.mkEnableOption "waybar";
   };
   # config = lib.mkIf (osConfig.specialisation != {}) {
   config = lib.mkIf config.waybar.enable {
     programs.waybar =  {
-      enable = lib.mkIf (osConfig.kde.enable != true) true;
+      enable =  lib.mkDefault true;
       # systemd = {
           # enable = true; # clashes with uwsm?
           # target = "graphical-session.target"; # config.wayland.systemd.target::
@@ -16,49 +16,51 @@
         (if osConfig.networking.hostName == "carthage"
           then import ./css_waybar-carthage.nix
         else 
-          if osConfig.networking.hostName == "tangier" then import ./css_waybar-tangier.nix else import ./css_waybar-carthage.nix)
-        + import ./css_waybar-common.nix;
+          if osConfig.networking.hostName == "tangier" then import ./css_waybar-tangier.nix else import ./css_waybar-carthage.nix) + import ./css_waybar-common.nix;
       settings = {
         mainBar = {
           # height = 20; #so funny
           margin = "0 6 0 4";
+          output = [
+            "HDMI-A-1"
+            # "DP-1"
+          ];
           layer = "bottom";
           modules-center = [];
           modules-left = [
             "hyprland/workspaces"
-            "hyprland/window"
+            "hyprland/window" # NOTE needed for transparency effects
           ];
-          modules-right = if osConfig.networking.hostName == "tangier" then [
+          modules-right = [# common front - since its sequential layering
             "group/resize_network"
+          ] ++ (if osConfig.networking.hostName == "tangier" then [ # tangier
             "group/disk_memory"
             "group/ssd-mpris"
             "group/cpu_freq"
-            "group/temp_wireplumber"
-            "group/tray_clock"
             "battery"
             "backlight"
-            "idle_inhibitor"
-          ] 
-          else [
-              "group/resize_network"
-              "group/gpu_mpris"
-              "group/gpu_temp_network_block"
-              "group/all_disks"
-              #"custom/nvme_temp"
-              "group/nvme-temp_memory"
-              "group/cpu_block"
-              "group/temp_wireplumber"
-              "group/tray_clock"
-              "idle_inhibitor"
+          ]
+          else if osConfig.networking.hostName == "carthage" then [ # carthage
+            "group/gpu_mpris"
+            "group/gpu_temp_network_block"
+            "group/all_disks"
+            #"custom/nvme_temp"
+            "group/nvme-temp_memory"
+            "group/cpu_block"
+          ] else []) ++ [ # common rear
+            "group/temp_wireplumber"
+            "group/tray_clock"
+             # "power-profiles-daemon"
+             # "idle_inhibitor"
+            "group/power-profiles-idle-inhibitor"
           ];
 
           "hyprland/workspaces" = {
             format = "{name}";
             all-outputs = false; # If set to false workspaces group will be shown only in assigned output. Otherwise all workspace groups are shown.
-            # active-only = true; # only show active workspace on monitor
+            # active-only = true; # show active workspace ONLY on monitor instead of all currently open workspaces
             on-click = "activate";
             on-click-right = "close";
-            # on-click-forward = "dash -c 'hyprctl dispatch workspace special:nc'";
             on-scroll-up = "hyprctl dispatch workspace m-1"; # m- monitor, e -all open, r- m+empty
             on-scroll-down = "hyprctl dispatch workspace m+1";
             show-special = false;
@@ -113,6 +115,19 @@
             cursor = true;
           };
 
+
+          "power-profiles-daemon" = {
+            format = "{icon}";
+            tooltip-format = "Power profile: {profile}\nDriver: {driver}";
+            tooltip = true;
+            format-icons = {
+              default = "🧊"; # ☯
+              performance = "⚡";
+              balanced = "🧊️";
+              power-saver = "☘️"; # 
+            };
+          };
+
           "battery" = {
             "states" = { "good" = 95; "warning" = 20; "critical" = 10; };
             "interval"  = 10;
@@ -126,20 +141,35 @@
           };
 
           "wireplumber" = {
-            format = "{volume}  ";# 🎙️
+            format = "{volume} ";# 🎙️
             format-muted = "";
             on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
             on-click-backward = "pwvucontrol";
             max-volume = 100;
             scroll-step = 2;
             tooltip = false;
-            # min-length = 5;
-            # max-length = 5;
+            min-length = 5;
+            max-length = 5;
           };
 
           "tray" = {
-            spacing = 10;
+            spacing = 8; # 10;;
             icon-size = 12;
+          };
+
+          "group/power-profiles-idle-inhibitor" = {
+            drawer = {
+              transition-duration = "680";
+              transition-left-to-right = false;
+              children-class = "drawer-child";
+              click-to-reveal = false;
+            };
+            orientation = "horizontal";
+            cursor = true;
+            modules = [
+              "power-profiles-daemon"
+              "idle_inhibitor"
+            ];
           };
 
           "group/gpu_mpris" = {
@@ -280,6 +310,7 @@
               "tray"
               # "custom/weather"
               "clock"
+              # "custom/monitors"
             ];
           };
 
@@ -385,6 +416,16 @@
             ];
           };
 
+          "custom/monitors" = {
+            on-click = "hyprctl keyword monitor DP-1,disable; notify-send -i /home/malu/Shibuya/assets/icons/toggle-on-glassmorphism/icons8-toggle-on-48.png";
+            on-click-right = "hyprctl keyword monitor DP-1,highres,0x0,1; notify-send -i /home/malu/Shibuya/assets/icons/toggle-off-glassmorphism/icons8-toggle-off-48.png";
+            format = "󰍺 ";
+            return-type = "";
+            interval = 10;
+            # min-length = 5;
+            # max-length = 8;
+            tooltip = false;
+          };
           "custom/gpu" = {
             exec = "cat /sys/class/drm/card1/device/gpu_busy_percent";
             format = " \t{}%  ";
@@ -588,7 +629,6 @@
             single-icons = {
               "on" = "";
               "off" = "";
-
               #"on" = "🔂";
             };
 
@@ -634,9 +674,11 @@
             format = "{icon}";
             format-icons = {
               #activated = "  ";
-              activated = "🍺";
-              deactivated = " ";
+              activated = "💡 "; # 🍺💡🚬
+              deactivated = " "; # 🗿 🃏🧿
             };
+            on-click-backward = "hyprctl keyword monitor DP-1,disable && notify-send -i '/home/malu/Shibuya/assets/icons/toggle-on-glassmorphism/icons8-toggle-off-48.png' false";
+            on-click-forward = "hyprctl keyword monitor DP-1,highres,0x0,1 && notify-send -i '/home/malu/Shibuya/assets/icons/toggle-off-glassmorphism/icons8-toggle-on-48.png' true";
           };
         };
       };

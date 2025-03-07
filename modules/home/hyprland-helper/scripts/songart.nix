@@ -1,6 +1,5 @@
 # {pkgs ? import <nixpkgs> {}}:
 {pkgs}:
-
 pkgs.writeShellScriptBin "songart" ''
 msgTag='mpris'
 

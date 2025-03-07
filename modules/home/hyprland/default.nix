@@ -2,12 +2,11 @@
 {
   imports = [
     ./keybinds
-    ./peripherals.nix
+    ./monitors-peripherals.nix
     ./ui.nix
     # ./environment_variables.nix # avoid use .conf/uwsm/env - check file
-    ./windowWorkspaceRules.nix
+    ./window-workspace-rules.nix
     ./autoStart.nix
-    ./variables.nix
     ../hyprland-helper
   ];
 
@@ -16,16 +15,13 @@
   };
 
   config = lib.mkIf config.homeHyprland.enable {
-    #configures Hyprland and adds it to your user’s PATH, but does not make certain system-level changes. the NixOS module makes system-level changes such as adding a desktop session entry.
     dunst.enable = true;
     waybar.enable = true;
     rofi.enable =  true;
-    wayland.windowManager.hyprland = {
+    wayland.windowManager.hyprland = { # configures Hyprland and adds it to your user’s PATH, but does not make certain system-level changes. the NixOS module makes system-level changes such as adding a desktop session entry.
       enable = true;
-      # xwayland.enable = true; #true::
       package = null;
       portalPackage = null;
-      # sourceFirst = true; #true::
       systemd = {
         enable = false; # import to systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE #WARN: last change true -> false
         # enableXdgAutostart = true;

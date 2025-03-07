@@ -2,7 +2,8 @@
 {
   imports = [
     ./pkgs-home
-    ./xdg_mime.nix
+    ./xdg
+    ./variables.nix
   ] ++
   (if osConfig.hyprland.enable then [ # WIP
     ./themes.nix

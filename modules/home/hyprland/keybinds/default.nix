@@ -30,6 +30,7 @@
       # "$calc_rofi" = "rofi -show calc";
       # "$obsidian_rofi" = "rofi -show obsidian";
       "$gaps" = "gaps toggle_gaps_out";
+      "$emacs" = "uwsm app -s a -- emacsclient -c";
 
       bind =
         [
@@ -40,11 +41,16 @@
           # "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
           "$mod, F, exec, [workspace emptym] uwsm app -s a -- freetube"
           "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
+          "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
 
           #kitty
-          "$mod, Return, exec, $ghostty" #$terminal , wezterm, ghostty
-          "$mod $al, Return, exec, $kitty" #$terminal , wezterm, ghostty
-          "$mod $sl, Return, exec, [workspace emptym] $ghostty"
+          "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
+          "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
+          "$mod $sl, Return, exec, [workspace emptym] $kitty"
+
+          # EMACS
+          # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
+          "$mod, D, exec, [workspace emptym] $emacs"
 
           # productivity
           # "$mod $cl, O, exec, [workspace emptym] uwsm app -s a -- obsidian"
@@ -179,8 +185,8 @@
           "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
           "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
           "$mod $sl, bracketright, swapnext"
-          "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux
-          "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux
+          "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux || make this dynamic as well
+          "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux
           # "$mod , [, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux
           # "$mod $sl, k, exec, dispatch swapactiveworkspaces HDMI-A-1 DP-3 ;"
           # "$mod $sl,l, focusmonitor, HDMI-A-1"

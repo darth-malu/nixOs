@@ -18,7 +18,7 @@
         "input"
         "darth"
         "wheel"
-        "networkmanager"
+        "networkmanager" # allow access to the NetworkManager daemon and be able to configure and add new networks
         #"video" #backlight control
         #"audio"
       ];

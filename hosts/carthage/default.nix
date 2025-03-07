@@ -11,7 +11,7 @@
   boot = {
     # supportedFilesystems = { ntfs-3g = true; ext4 = true; }; # can also be list # supportedFilesystems = [ "ntfs" ];
     initrd = {
-      kernelModules = [ "dm-snapshot" ]; #load amd driver (amdgpu) early user space # Force loads to initrd
+      # kernelModules = [ "dm-snapshot" ]; #load amd driver (amdgpu) early user space # Force loads to initrd
       availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ]; # available to initram but only loaded on demand
       systemd = {
         network = {
@@ -38,5 +38,5 @@
     hostName = "carthage"; # Define your hostname.
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }

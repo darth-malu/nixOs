@@ -31,30 +31,32 @@ current_volume () {
 }
 
 player_volume () {
-    local current_player
-    local volume
-
-    current_player=$(playerctl metadata --format '{{ playerName }}')
+    local current_player=$(playerctl metadata --format '{{ playerName }}')
+    local volume=$(current_volume "$current_player")
     local add_minus=$1
 
     case $current_player in
         "spotify")
-            playerctl_add_sub "$current_player" "$add_minus" 
-            volume=$(current_volume "$current_player")
-            dunstify -t 1000 -a "changeVolume" -u low -i ~/.darth/iconss/spotify.png -h string:x-dunst-stack-tag:$msgTag "Spotify                  $volume   " -h int:value:"$volume"
+            playerctl_add_sub "$current_player" "$add_minus"
+            # volume=$(current_volume "$current_player")
+            dunstify -t 1000 -a "changeVolume" -u low -i ./icons-link/icons8-spotify-gradient/icons8-spotify-50.png -h string:x-dunst-stack-tag:$msgTag "Spotify                  $volume   " -h int:value:"$volume"
             ;;
         "Lollypop")
-            playerctl_add_sub "$current_player" "$add_minus" 
-            volume=$(current_volume "$current_player")
-            dunstify -t 1000 -a "changeVolume" -u low -i ~/.darth/iconss/lolly.png -h string:x-dunst-stack-tag:$msgTag "Lollypop                  $volume" -h int:value:"$volume"
+            playerctl_add_sub "$current_player" "$add_minus"
+            # volume=$(current_volume "$current_player")
+            dunstify -t 1000 -a "changeVolume" -u low -i ./icons-link/icons8-candy-50.png -h string:x-dunst-stack-tag:$msgTag "Lollypop                  $volume" -h int:value:"$volume"
             ;;
         "mpd")
-            mpc_add_sub "$add_minus" && songart "ncmpcpp_volume" #TODO: cant display with no album art art feature lol
+            mpc_add_sub "$add_minus" && songart "ncmpcpp_volume" #TODO: cant display with no album art art feature lol unless use playerctl
             ;;
-        "chromium")
-            playerctl_add_sub "$current_player" "$add_minus" 
-            volume=$(current_volume "$current_player")
-            dunstify -t 1000 -a "changeVolume" -u low -i ~/.darth/iconss/lolly.png -h string:x-dunst-stack-tag:$msgTag "Lollypop                  $volume" -h int:value:"$volume"
+        "mpv")
+            playerctl_add_sub "$current_player" "$add_minus"
+            dunstify -t 1000 -a "changeVolume" -u low -i ./icons-link/mpv.256x253.png -h string:x-dunst-stack-tag:$msgTag "Lollypop                  $volume" -h int:value:"$volume"
+            ;;
+        "chromium"*)
+            playerctl_add_sub "$current_player" "$add_minus"
+            # volume=$(current_volume "$current_player")
+            dunstify -t 1000 -a "changeVolume" -u low -i ./icons-link/icons8-chrome-office-l/icons8-chrome-40.png -h string:x-dunst-stack-tag:$msgTag "Chrome                  $volume" -h int:value:"$volume"
             ;;
     esac
 }

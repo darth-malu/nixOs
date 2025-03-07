@@ -494,6 +494,18 @@ button:hover {
     border-radius:12px;
 }
 
+#power-profiles-daemon.balanced {
+    padding:0px;
+    margin: 2px 0px 0px 4px;
+    background-color: transparent;
+    font-size: 14px;
+}
+
+#power-profiles-daemon.power-saver {
+    padding:0px;
+    margin: 2px 0px 0px 4px;
+    font-size: 14px;
+}
 
 #idle_inhibitor {
     padding:0px;
@@ -520,6 +532,7 @@ button:hover {
 }
 
 #drawer-child {
-    background: black;
+    /*background: black;*/
+    background: transparent;
 }
 ''

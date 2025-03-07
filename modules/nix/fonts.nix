@@ -12,6 +12,7 @@
       quicksand
       lato 
       cascadia-code
+      iosevka-comfy.comfy
       # whatsapp-emoji-font # long build time strange
       ]++
         (with pkgs.nerd-fonts; [
@@ -39,7 +40,7 @@
         geist-mono
         agave
         caskaydia-cove
-        # symbols-only # for wezterm/terminal in general glyphs
+        symbols-only # for wezterm/terminal in general glyphs, also emacs
       ]);
-};
+  };
 }

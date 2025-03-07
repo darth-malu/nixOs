@@ -31,7 +31,7 @@
         }
         { name = "nixOs"; path = "/home/malu/obsidianVaults/nixOs"; }
         # { name = "dailies"; path = "/home/malu/obsidianVaults/dailies"; }
-        { name = "neovim"; path = "/home/malu/obsidianVaults/neovim"; }
+        # { name = "neovim"; path = "/home/malu/obsidianVaults/neovim"; }
       ];
       # Optional, set to true to force ':ObsidianOpen' to bring the app to the foreground.
       open_app_foreground = true;

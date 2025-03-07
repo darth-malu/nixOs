@@ -5,6 +5,10 @@
 
     yazi.url = "github:sxyazi/yazi";
 
+    emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
+
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,34 +57,47 @@
     };
   };
 
-  outputs = {nixpkgs , ...}@inputs: # Note the use of `self` which allows reusing flake's outputs in itself
+  outputs = inputs@{
+    nixpkgs ,
+    nix-doom-emacs,
+    self,
+    ...
+  }: # Note the use of `self` which allows reusing flake's outputs in itself
     let
       system = "x86_64-linux"; # system = builtins.currentSystem;??
       neovimConf = inputs.nvf.lib.neovimConfiguration {
         inherit (nixpkgs.legacyPackages.${system}) pkgs;
         modules = [ ./modules/nvf];
       };
-      pkgs = import nixpkgs {#TODO: see if legacyPackages can be used instead 
+      pkgs = import nixpkgs {
         inherit  system;
         config = {
           allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-              "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta" "windows10-icons" "whatsapp-emoji-linux"
+              "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta" "windows10-icons" "whatsapp-emoji-linux" "aspell-dict-en-science" "davinci-resolve"
+              "youtube-upnext"
             ];
         };
+        # overlays = [
+        #   (import self.inputs.emacs-overlay) # with flakes
+        # ];
       };
     in
     {
       packages.${system}.my-neovim = neovimConf.neovim; # NVF
 
-      #WARN: CARTHAGE-
+      # NOTE CARTHAGE-
       nixosConfigurations = {
-        carthage = 
+        carthage =
           nixpkgs.lib.nixosSystem {
             inherit system;
-            specialArgs = { inherit inputs system; };
+            specialArgs = { inherit inputs self system; };
             modules = [
+              { nixpkgs.overlays = [ (import self.inputs.emacs-overlay) ]; } # emacs overlay
+
               ./hosts/carthage
+
               {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
+
               inputs.home-manager.nixosModules.home-manager { 
                 home-manager = {
                   verbose = true;
@@ -88,12 +105,12 @@
                   users.malu = import ./modules/home.nix;
                   useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
                   useUserPackages = false; # if false ... uses nix-profile for home apps
-                  extraSpecialArgs = { inherit inputs pkgs system; };
+                  extraSpecialArgs = { inherit inputs pkgs self system; };
                 };
               }
             ];
         };
-        #WARN: TANGIER
+        # NOTE TANGIER
         tangier =
           nixpkgs.lib.nixosSystem {
           inherit system;
@@ -117,6 +134,8 @@
       devShells.${system}.default = pkgs.mkShell
         {
           nativeBuildInputs = with pkgs; [
+          # BuildInputs = with pkgs; [
+            doom-emacs
             #inputs.python-nixpkgs.legacyPackages.${system}.python313
             (python312.withPackages (python-pkgs: with python-pkgs; [
               pandas

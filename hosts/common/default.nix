@@ -4,6 +4,7 @@
   imports = [
     ../../modules/nix
     ./users/malu.nix
+    ./users/remote-builder.nix
     ./storage-common.nix
     ./specialisations
   ];
@@ -15,7 +16,6 @@
       "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta" "nvidia-x11" "whatsapp-emoji-linux"
   ];
 
-
   boot = {
     extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
     loader = {
@@ -26,21 +26,29 @@
   };
 
   networking = {
-    wireless.enable = if config.networking.hostName == "tangier" then true else false; # Enables wireless support via wpa_supplicant.
+    # wireless.enable = if config.networking.hostName == "tangier" then true else false; # Enables wireless support via wpa_supplicant.
+    wireless.enable = false;
     hostId = if config.networking.hostName == "tangier" then "92d08a60" else "245e3df3"; #ensure when using ZFS that a pool isn’t imported accidentally on a wrong machine.#head -c 8 /etc/machine-id
     # hostId = (lib.mkIf config.networking.hostName == "tangier") "92d08a60"; #FIXME: see syntax on this attempt to call something which is not a function but a Boolean: false
     networkmanager = {
       enable = true; # might be on by default # add user to group
-      # dns = "none";
-      wifi.powersave = if config.networking.hostName == "tangier" then true else false;
+      dns = "none"; # dnsmasq, default::, systemd-resolved
+      # wifi.powersave = if config.networking.hostName == "tangier" then true else false;
+      wifi = {
+        powersave = false;
+        backend = "wpa_supplicant"; # wpa_supplicant::, iwd
+      };
+      logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
     };
-    dhcpcd.enable = true;
+
+    #NOTE: self managing dns test
+    dhcpcd.enable = false;
     useDHCP = lib.mkDefault true;
     # interfaces.enp5s0.useDHCP = lib.mkDefault true;
     timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ]; #TODO: see more about options
     firewall.enable = true;
     firewall.allowedTCPPorts = [ 22 ]; # 22 auto open with ssh
-    nameservers = [ "1.1.1.1" "1.0.0.1" ]; #"8.8.8.8" #"8.8.4.4" ];
+    nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
     # firewall = let kdeConnectAttrRange = { from = 1714; to = 1764; } ; in rec {
     #   enable = true;
     #    allowedTCPPortRanges = [ kdeConnectAttrRange ];
@@ -155,7 +163,7 @@
       # persistent = false; # true::
     };
     settings = {
-      auto-optimise-store = true; # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy. #false::
+      auto-optimise-store = false; #optimise with everybuild #nix-store optimise ->manual # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy. #false::
       allowed-users = [
         "@wheel"
         "@builders"
@@ -181,10 +189,10 @@
       ];
     };
     # extra options
-    extraOptions = ''
-      keep-outputs = true
-      keep-derivations = true# keep build-time dependencies around/be able to rebuild while being offline
-    '';
+    # extraOptions = ''
+    #   keep-outputs = true
+    #   keep-derivations = true# keep build-time dependencies around/be able to rebuild while being offline
+    # '';
     distributedBuilds = true; # for remote builds
     # buildMachines = [];
   };
@@ -209,5 +217,5 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs set
   time.timeZone = "Africa/Nairobi";
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }

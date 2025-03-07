@@ -47,4 +47,5 @@
   # set -g default-terminal "xterm-256color"
   # set -g default-terminal 'xterm-kitty'
   # set -ag terminal-overrides ',xterm-256color*:RGB'
+  set -ag terminal-overrides ',screen-256color:RGB'
 ''

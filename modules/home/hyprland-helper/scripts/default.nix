@@ -9,7 +9,7 @@ let
   rofi_power = import ./rofi_power.nix {inherit pkgs;};
   gaps = import ./gaps.nix {inherit pkgs;};
   temp = if osConfig.networking.hostName == "tangier" then import ./temp-tangier.nix {inherit pkgs;} else import ./carthage_temp.nix {inherit pkgs;};
-  clear = import ./clear_bak.nix {inherit pkgs;};
+  clr_backup = import ./clr_backup.nix {inherit pkgs;};
 in
 {
   home.packages = [
@@ -21,6 +21,6 @@ in
     rofi_power
     gaps
     temp
-    clear
+    clr_backup
   ];
 }

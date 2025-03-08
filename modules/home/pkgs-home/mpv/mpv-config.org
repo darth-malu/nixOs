@@ -1,0 +1,28 @@
+#+title: mpv stuffs
+
+* TOC: :toc:
+- [[#play-playlists][play playlists]]
+  - [[#text-file-requirements][text file requirements]]
+- [[#interesting-flags][interesting flags]]
+- [[#see-also][see also:]]
+
+* play playlists
+- use =--playlist=<filename>= - supports common formats
+- use =--playlist-start=<auto|index>= to set file to play in internal playlist
+  - *index* is an int
+  - 0 - first file
+  - behavior undefined and may change if:
+    - index does not exist
+    - if playlist has further playlists
+** text file requirements
+- files delimited by new line
+
+* interesting flags
++ =--list-options=
++ =--list--properties=
++ =--no-config=
++ =--idle= - Makes mpv wait idly instead of quitting when there is no file to play. Mostly useful in input mode, where mpv can be controlled through input commands
+
+* see also:
+  - [[https://mpv.io/manual/stable/#synopsis][mpv official docs#synopsis]]
+  - [[https://mpv.io/manual/stable/#lua-scripting][lua scripting | mpv manual]]

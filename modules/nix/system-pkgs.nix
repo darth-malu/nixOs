@@ -2,25 +2,22 @@
 
 {
   programs = {
-    # dconf.enable = false;
-      bash = {
-        completion.enable = true;
-        promptInit = import ./PS1.nix;
-        enableLsColors = true;
-        #blesh.enable = true;
-        undistractMe = { #ISSUES
-         enable = true;
-          timeout = 30; #seconds
-          playSound = false;#TODO: can this be improved??
-        };
-        # loginShellInit = /*bash*/ ''
-        # '';
-        # shellInit = /*bash*/ ''
-        # '';
-        # interactiveShellInit = /*bash*/ ''
-        # '';
-      };
-
+    dconf.enable = true;
+    bash.completion.enable = true;
+    bash.promptInit = import ./PS1.nix;
+    bash.enableLsColors = true;
+    #blesh.enable = true;
+    bash.undistractMe = { #ISSUES
+      enable = true;
+      timeout = 30; #seconds
+      playSound = false;#TODO: can this be improved??
+    };
+    # bash.loginShellInit = /*bash*/ ''
+    # '';
+    # bash.shellInit = /*bash*/ ''
+    # '';
+    # bash.interactiveShellInit = ''
+    # '';
   };
 
   services = {

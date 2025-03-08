@@ -120,6 +120,9 @@ in
       age
       zstd                # for undo-fu-session/undo-tree compression
       binutils            # native-comp needs 'as', provided by this
+
+      # LSP stuff
+      nil
     ])
     ++
    (with pkgs; [ # creative space

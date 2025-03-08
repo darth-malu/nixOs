@@ -85,7 +85,7 @@
 
           # copy
           "SUPER, Print, exec, grimblast --cursor --notify copysave output"
-          "$al, Print, exec, grimblast --cursor --notify copy area"
+          "$al, Print, exec, grimblast --notify copy area"
           "$cl, Print, exec, grimblast --cursor --notify copy active"
 
           # Workspaces

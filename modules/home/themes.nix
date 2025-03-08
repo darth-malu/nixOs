@@ -33,27 +33,27 @@ lib.mkIf osConfig.programs.hyprland.enable {
     };
     iconTheme = {
       # package = pkgs.kora-icon-theme; name = "kora";
-
       package = pkgs.candy-icons; name = "candy-icons";
     };
 
-    # gtk3 = {
-    #   extraConfig = {
-    #     gtk-application-prefer-dark-theme = "1";
-    #   };
-    # };
+    gtk3 = {
+      extraConfig = {
+        gtk-application-prefer-dark-theme = "1";
+      };
+    };
     #
-    # gtk4 = {
-    #   extraConfig = {
+    gtk4 = {
+      extraConfig = {
     #     #gtk-theme-name = ''Nightfox:Dark''; #eg nautilus
     #     gtk-theme-name = "Nightfox-Dark"; #eg nautilus
     #     gtk-cursor-blink = false;
-    #     gtk-recent-files-limit = 20;
-    #   };
+        gtk-recent-files-limit = 20;
+        gtk-application-prefer-dark-theme = "1";
+      };
     #   # extraCss = #gtk-4.0/gtk.css
     #   #   ''
     #   # '';
-    # };
+    };
   };
 
   qt = {

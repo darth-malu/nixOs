@@ -1,8 +1,7 @@
-/*css*/''
+''
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    /*font-family: Iosevka,quicksand,JetBrainsMono Nerd Font,ubuntu,fontawesome;*/
-    font-family: quicksand,nunito,JetBrainsMono Nerd Font,ubuntu;
+    font-family: quicksand,nunito,JetBrainsMono Nerd Font,ubuntu,fontawesome;
     min-height: 0;
     /*min-width: 0px;*/
     font-weight: bold;
@@ -36,14 +35,13 @@ window#waybar {
     /*background-color: rgba(8 ,41 ,41, 0.75);*/
 /*}*/
 
-window#waybar.com\.mitchellh\.ghostty {
-    /* background-color: rgba(8 ,41 ,41, 0.0); */
-    background-color: rgba(34,36,54,0.79);
-}
 
 window#waybar.mpv {
-    /* background-color: rgba(8 ,41 ,41, 0.0); */
-    background-color: rgba(34,36,54,0.0);
+    background-color: rgba(40, 44, 52, 0.0);
+}
+
+window#waybar.Emacs {
+    background-color: rgba(40, 44, 52, 0.74);
 }
 
 window#waybar.solo {

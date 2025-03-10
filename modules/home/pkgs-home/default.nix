@@ -1,15 +1,14 @@
-{pkgs, inputs, lib, osConfig, ...}:
+{ pkgs, inputs, lib, osConfig, ... }:
 let
   tex = (pkgs.texlive.combine {
-    inherit (pkgs.texlive) scheme-basic scheme-medium
-      dvisvgm dvipng # for preview and export as html
+    inherit (pkgs.texlive)
+      scheme-basic scheme-medium dvisvgm dvipng # for preview and export as html
       wrapfig amsmath ulem hyperref capt-of;
-      #(setq org-latex-compiler "lualatex")
-      #(setq org-preview-latex-default-process 'dvisvgm)
+    #(setq org-latex-compiler "lualatex")
+    #(setq org-preview-latex-default-process 'dvisvgm)
   });
-in
-{
-  imports = [# flaked apps
+in {
+  imports = [ # flaked apps
     inputs.nyaa.homeManagerModule
     # inputs.nix-doom-emacs.hmModule #FIXME Throughs errors
     ./yt-dlp.nix
@@ -17,7 +16,7 @@ in
     ./soundStuff
     ./mpv
     ./git.nix
-    ./tmux
+    # ./tmux
     ./emacs
     # ./nix-doom
     ./yazi
@@ -30,8 +29,8 @@ in
   # modules
   homeHyprland.enable = lib.mkIf osConfig.hyprland.enable true;
 
-  home.packages = 
-    with pkgs; [
+  home.packages = with pkgs;
+    [
       sway-audio-idle-inhibit
       wev
       tldr
@@ -47,13 +46,14 @@ in
       # zip xz unzip p7zip
 
       #rofimoji bemoji
-      modem-manager-gui modemmanager # saves the day with no internet
+      modem-manager-gui
+      modemmanager # saves the day with no internet
       taskwarrior3
       taskwarrior-tui
       file
-      lsof #list open files/ports**
+      lsof # list open files/ports**
       usbutils # lsusb, usb-devices, usb-view(optional gui)
-      pciutils #lspci
+      pciutils # lspci
       util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
       lm_sensors
 
@@ -63,7 +63,9 @@ in
 
       #gnome.nautilus gnome.sushi gnome.file-roller gnome.yelp
 
-      telegram-desktop discord whatsapp-for-linux # socials
+      telegram-desktop
+      discord
+      whatsapp-for-linux # socials
 
       # browserr
       # chromium
@@ -84,15 +86,14 @@ in
 
       # productivity / school
       obsidian
-      glow #TODO: test this extensively # see quart for blog with markdown
+      glow # TODO: test this extensively # see quart for blog with markdown
       ffmpeg
       #productivity
       #blender
       # blender-hip # accelarated render
       # freeglut
       # gcc
-    ]++
-    (with pkgs; [ # NOTE: EMACS
+    ] ++ (with pkgs; [ # NOTE: EMACS
       # texlive.combined.scheme-medium # for latex
       # texlivePackages.dvipng # for latex already installed
       # texlive.withPackages (ps: [ ps.dvipng ])
@@ -111,74 +112,77 @@ in
       # Because emacs expects the dictionaries to be on the same directory as aspell, they won't be picked up. To fix it install the aspellWithDicts package, specifying the dictionaries you want to use:
       (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
       clang-tools
-      wordnet #:tools +dictionary dep
+      wordnet # :tools +dictionary dep
       # :tools lookup & :lang org +roam
       sqlite
       # :tools editorconfig
       editorconfig-core-c # per-project style config
       # :lang nix
       age
-      zstd                # for undo-fu-session/undo-tree compression
-      binutils            # native-comp needs 'as', provided by this
+      zstd # for undo-fu-session/undo-tree compression
+      binutils # native-comp needs 'as', provided by this
+
+      # pdf
 
       # LSP stuff
       nil
-    ])
-    ++
-   (with pkgs; [ # creative space
-    #(ffmpeg.override { withXcb = true;  })
-    #  ffmpeg
-    # davinci-resolve
-    obs-studio
-    obs-cli
-    spotube
-    digikam
-    jamesdsp
-    # nixd # zed
-    imagemagick         # for image-dired
-    # kdePackages.dolphin
-  ]) ++ 
-  (with pkgs;[ # NOTE: MANGA stuff
-    # komikku # broken
-    mangal
-    ani-cli
-    #syncyomi - sync tachiyomi progress across devices
-  ]) ++
-  (with pkgs; [ #NOTE: school
-    netbeans
-    wpsoffice
-  ])++
-  (with pkgs; [ # hyrpland
-    hyprpicker
-  ]);
+      #nixfmt # needed to use formatter
+    ]) ++ (with pkgs; [ # creative space
+      #(ffmpeg.override { withXcb = true;  })
+      #  ffmpeg
+      # davinci-resolve
+      obs-studio
+      obs-cli
+      spotube
+      digikam
+      # jamesdsp
+      # nixd # zed
+      imagemagick # for image-dired
+      # kdePackages.dolphin
+    ]) ++ (with pkgs; [ # NOTE: MANGA stuff
+      # komikku # broken
+      mangal
+      ani-cli
+      #syncyomi - sync tachiyomi progress across devices
+    ]) ++ (with pkgs; [ # NOTE: school
+      netbeans
+      wpsoffice
+    ]) ++ (with pkgs;
+      [ # hyrpland
+        hyprpicker
+      ]);
 
   programs = {
     home-manager.enable = true; # Let Home Manager install and manage itself.
 
+    java = {
+      enable = true;
+      package = pkgs.jdk23;
+    };
+
     ripgrep = {
       enable = true;
-      arguments = [#https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
-        "--max-columns-preview"
-        "--colors=line:style:bold"
-      ];
+      arguments =
+        [ # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+          "--max-columns-preview"
+          "--colors=line:style:bold"
+        ];
     };
 
     zoxide = {
       enable = true;
       enableBashIntegration = true;
-      options = [
-        "--cmd cd"
-      ];
+      options = [ "--cmd cd" ];
     };
 
-    comodoro = { #TODO: use
+    comodoro = { # TODO: use
       enable = true;
     };
 
     lsd = {
       enable = true;
       enableAliases = true;
-      colors = {#$XDG_CONFIG_HOME/lsd/colors.yaml
+      colors = { # $XDG_CONFIG_HOME/lsd/colors.yaml
         icons = {
           extension = {
             go = "";
@@ -200,10 +204,7 @@ in
         };
         settings = {
           date = "relative";
-          ignore-globs = [
-            ".git"
-            ".hg"
-          ];
+          ignore-globs = [ ".git" ".hg" ];
         };
       };
     };
@@ -211,15 +212,13 @@ in
     # eza = {
     #   enable = true;
     # };
-    pandoc = {
-      enable = true;
-    };
+    pandoc = { enable = true; };
 
     fd = {
       enable = true;
       hidden = true;
-      ignores = [".git" "*.bak" ];
-      extraOptions = [# extra options to pass to fd
+      ignores = [ ".git" "*.bak" ];
+      extraOptions = [ # extra options to pass to fd
         "--no-ignore"
         "--absolute-path"
       ];
@@ -230,9 +229,9 @@ in
       # package = pkgs-unstable.freetube;
       settings = {
         allowDashAv1Formats = true;
-        checkForUpdates     = false;
-        defaultQuality      = "1080";
-        baseTheme           = "catppuccinMocha";
+        checkForUpdates = false;
+        defaultQuality = "1080";
+        baseTheme = "catppuccinMocha";
       };
     };
 
@@ -241,15 +240,11 @@ in
       # package = pkgs-unstable.fastfetch;
       settings = { # $XDG_CONFIG_HOME/fastfetch/config.jsonc
         logo = {
-          source = "nixos_small"; #nixos_small #nixos_old
-          padding = {
-            right = 1;
-          };
+          source = "nixos_small"; # nixos_small #nixos_old
+          padding = { right = 1; };
         };
         display = {
-          size = {
-            binaryPrefix = "si";
-          };
+          size = { binaryPrefix = "si"; };
           color = "blue";
           # separator = "  ";
           separator = " ";
@@ -296,9 +291,7 @@ in
 
     git-credential-oauth = {
       enable = true;
-      extraFlags = [
-        "-device"
-      ];
+      extraFlags = [ "-device" ];
       # package = pkgs-unstable.git-credential-oauth;
     };
 
@@ -311,35 +304,37 @@ in
     };
 
     # ssh = { #FIXME: makes thinigs worse? lol
-      # enable = true;
-      # controlPersist = "10m"; # whether control socket should remain open in background
-      # extraConfig = "";
-      # extraOptionOverrides = { # extra SSH config that take precedence over any host specific config
-      # forwardAgent = true; #false:: ; Whether the connection to the authentication agent (if any) will be forwarded to the remote machine.
-      # };
+    # enable = true;
+    # controlPersist = "10m"; # whether control socket should remain open in background
+    # extraConfig = "";
+    # extraOptionOverrides = { # extra SSH config that take precedence over any host specific config
+    # forwardAgent = true; #false:: ; Whether the connection to the authentication agent (if any) will be forwarded to the remote machine.
+    # };
     # };
 
     lazygit = {
       enable = true;
-      settings = { # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
-        gui.theme = {
-        lightTheme = true;
-        activeBorderColor = [ "blue" "bold" ];
-        inactiveBorderColor = [ "black" ];
-        selectedLineBgColor = [ "default" ];
-      };
-      };
+      settings =
+        { # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+          gui.theme = {
+            lightTheme = true;
+            activeBorderColor = [ "blue" "bold" ];
+            inactiveBorderColor = [ "black" ];
+            selectedLineBgColor = [ "default" ];
+          };
+        };
     };
 
     fzf = {
       enable = true;
-      enableBashIntegration = true; #true::
+      enableBashIntegration = true; # true::
       tmux = {
-        enableShellIntegration = true; # sets FZF_TMUX=1 
-        shellIntegrationOptions = [ "-p 50%,60%" ]; #-d 40% #TODO: see more # fzf-tmux --help
+        enableShellIntegration = true; # sets FZF_TMUX=1
+        shellIntegrationOptions =
+          [ "-p 50%,60%" ]; # -d 40% #TODO: see more # fzf-tmux --help
         # shellIntegrationOptions = [ "-d 40" ]; #-d 40% #TODO: see more # fzf-tmux --help
       };
-      colors = {#https://github.com/junegunn/fzf/wiki/Color-schemes
+      colors = { # https://github.com/junegunn/fzf/wiki/Color-schemes
         # bg -> background
         # bg+ -> current line background plus associated border
         # fg -> # text above current line - default text
@@ -349,16 +344,16 @@ in
         # bg = "#1e1e1e";
         bg = "#022223";
         # "bg+" = "#9381ff";
-        "bg+" =  "#222436"; # #022223 - green, #222436 - tokyo
+        "bg+" = "#222436"; # #022223 - green, #222436 - tokyo
         # fg = "#93E1D8";
         # fg = "#4ED4BC";
-        fg = "#4ED4BC"; 
+        fg = "#4ED4BC";
         "fg+" = "#0FA3B1";
         # fg = "#9400FF";  
         # "fg+" = "#d4d4d4";
         # "fg+" = "#DA4167";
-        "gutter" =  "#022223";
-        # "hl" = "#0FA3B1"; 
+        "gutter" = "#022223";
+        # "hl" = "#0FA3B1";
         # "hl+" = "#F1DEDE"; 
         # "hl" = "#F7567C";
         "hl" = "#9400FF";
@@ -370,7 +365,7 @@ in
         "pointer" = "#4F345A";
       };
       defaultCommand = "fd --type f";
-      defaultOptions = [#FZF_DEFAULT_OPTS
+      defaultOptions = [ # FZF_DEFAULT_OPTS
         "--height 40%"
         "--border"
         # "--border none"
@@ -381,20 +376,18 @@ in
         # "--gap 1"
         # "--scroll-off=4"
       ];
-      changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"]; #M-c binding
+      changeDirWidgetOptions =
+        [ "--preview 'tree -C {} | head -200'" ]; # M-c binding
       # changeDirWidgetCommand = "fd --type d";
       # fileWidgetCommand = "fd --type f"; #C-t #FIXME: broken $FZF_DEFAULT_OPTS: invalid command line string
       # fileWidgetOptions = ["preview 'head {}"];
-      historyWidgetOptions = [
-        "--sort"
-        "--exact"
-      ];
+      historyWidgetOptions = [ "--sort" "--exact" ];
     };
 
     bat = {
       enable = true;
       extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
-      syntaxes= {
+      syntaxes = {
         gleam = {
           src = pkgs.fetchFromGitHub {
             owner = "molnarmark";
@@ -422,42 +415,55 @@ in
     spotify-player = {
       enable = false;
       # package = pkgs.spotify-player;
-      themes = [
-        {
-          name = "default2";
-          palette = {
-            black = "black";
-            red = "red";
-            green = "green";
-            yellow = "yellow";
-            blue = "blue";
-            magenta = "magenta";
-            cyan = "cyan";
-            white = "white";
-            bright_black = "bright_black";
-            bright_red = "bright_red";
-            bright_green = "bright_green";
-            bright_yellow = "bright_yellow";
-            bright_blue = "bright_blue";
-            bright_magenta = "bright_magenta";
-            bright_cyan = "bright_cyan";
-            bright_white = "bright_white";
+      themes = [{
+        name = "default2";
+        palette = {
+          black = "black";
+          red = "red";
+          green = "green";
+          yellow = "yellow";
+          blue = "blue";
+          magenta = "magenta";
+          cyan = "cyan";
+          white = "white";
+          bright_black = "bright_black";
+          bright_red = "bright_red";
+          bright_green = "bright_green";
+          bright_yellow = "bright_yellow";
+          bright_blue = "bright_blue";
+          bright_magenta = "bright_magenta";
+          bright_cyan = "bright_cyan";
+          bright_white = "bright_white";
+        };
+        component_style = {
+          block_title = { fg = "Magenta"; };
+          border = { };
+          playback_track = {
+            fg = "Cyan";
+            modifiers = [ "Bold" ];
           };
-          component_style = {
-            block_title = { fg = "Magenta"; };
-            border = {};
-            playback_track = { fg = "Cyan"; modifiers = ["Bold"]; };
-            playback_artists = { fg = "Cyan"; modifiers = ["Bold"]; };
-            playback_album = { fg = "Yellow"; };
-            playback_metadata = { fg = "BrightBlack"; };
-            playback_progress_bar = { bg = "BrightBlack"; fg = "Green"; };
-            current_playing = { fg = "Green"; modifiers = ["Bold"]; };
-            page_desc = { fg = "Cyan"; modifiers = ["Bold"]; };
-            table_header = { fg = "Blue"; };
-            selection = { modifiers = ["Bold" "Reversed"]; };
+          playback_artists = {
+            fg = "Cyan";
+            modifiers = [ "Bold" ];
           };
-        }
-      ];
+          playback_album = { fg = "Yellow"; };
+          playback_metadata = { fg = "BrightBlack"; };
+          playback_progress_bar = {
+            bg = "BrightBlack";
+            fg = "Green";
+          };
+          current_playing = {
+            fg = "Green";
+            modifiers = [ "Bold" ];
+          };
+          page_desc = {
+            fg = "Cyan";
+            modifiers = [ "Bold" ];
+          };
+          table_header = { fg = "Blue"; };
+          selection = { modifiers = [ "Bold" "Reversed" ]; };
+        };
+      }];
       keymaps = [
         {
           command = "NextTrack";
@@ -485,7 +491,7 @@ in
         playback_window_position = "Top";
         copy_command = {
           command = "wl-copy";
-          args = ["-n"];
+          args = [ "-n" ];
         };
         device = {
           audio_cache = false;
@@ -496,16 +502,16 @@ in
 
     zathura = {
       enable = true;
-      options = {# this are the :set options
+      options = { # this are the :set options
         default-bg = "#000000";
         default-fg = "#FFFFFF";
         statusbar-h-padding = 0;
         statusbar-v-padding = 0;
         page-padding = 0;
-        selection-clipboard = "clipboard";# copy selection to system clipboard
+        selection-clipboard = "clipboard"; # copy selection to system clipboard
         zoom-step = 20; # 10:: in % percentage
         zoom-min = 20; # 10::
-        zoom-max = 1000; #1000::
+        zoom-max = 1000; # 1000::
         scroll-step = 100; # 40::
         incremental-search = true;
         # highlight-color = ""; # #9FBC00::

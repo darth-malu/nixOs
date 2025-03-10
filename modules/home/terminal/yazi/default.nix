@@ -32,7 +32,7 @@
         ueberzug_scale = 1;
         ueberzug_offset = [ 0 0 0 0 ];
       };
-      opener = {
+      opener = { # to be used in openers
         play = [ { run = "mpv \"$@\""; orphan = true; for = "unix" ;} ];
         edit = [ { run = "$EDITOR \"$@\"" ; block = true; for = "unix" ;} ];
         open = [ { run = "xdg-open \"$@\""; desc = "Open" ;} ] ;
@@ -44,7 +44,8 @@
           # { mime = "application/json", use = "edit" },
           { name = "*.json"; use = "edit" ;}
           # Multiple openers for a single rule
-          { name = "*.html"; use = [ "open" "edit" ] ;}
+          # { name = "*.html"; use = [ "open" "edit" ] ;}
+          { name = "*.html"; use = "open" ;}
         ];
         prepend_rules = [
           { name = "*.json"; use = "edit" ;}

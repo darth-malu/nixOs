@@ -1,5 +1,4 @@
-{lib,...}:
-{
+{ lib, ... }: {
   programs.qutebrowser = {
     enable = true;
     # aliases = {};
@@ -22,7 +21,7 @@
     #         import theme
     #         theme.setup(c, 'mocha', True)
     # '';
-    loadAutoconfig = false; # false:: load config from GUI
+    loadAutoconfig = true; # false:: load config from GUI
     keyBindings = {
       normal = {
         "<ctrl-v>" = "spawn mpv {url}";
@@ -34,13 +33,12 @@
           "config-cycle scrolling.bar never always"
         ];
       };
-      prompt = {
-        "<ctrl-y>" = "prompt-yes";
-      };
+      prompt = { "<ctrl-y>" = "prompt-yes"; };
     };
-  # </ctrl-y></f1></ctrl-v>
+    # </ctrl-y></f1></ctrl-v>
     searchEngines = {
-      w = "https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1";
+      w =
+        "https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1";
       aw = "https://wiki.archlinux.org/?search={}";
       nw = "https://wiki.nixos.org/index.php?search={}";
       g = "https://www.google.com/search?hl=en&amp;q={}";

@@ -18,7 +18,6 @@ in {
     ./git.nix
     # ./tmux
     ./emacs
-    # ./nix-doom
     ./yazi
     ../terminal
     ../bash

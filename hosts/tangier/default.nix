@@ -27,11 +27,11 @@
   };
   nix = {
     distributedBuilds = true;
-    buildMachines = [ {
+    buildMachines = [ { # makes it so i dont have to use --builders "ssh://myuser@builder <other builder specification>"
       sshUser = "remotebuild"; # NOTE special user that cant be sudo'd into
       # sshKey = "$HOME/.ssh/id_ed25519"; # must be a local path not pointing to the nix store
       # sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKubRXSOrk4IrM4Ai3FcvWFVV1wxRUNPF+0VZo9xSph1 darth-malu@github.com";
-      sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBpjjsqzxD27CtSdEsp0Ega22sYkY/iMBqMAwmFH6N4R darth-malu@github.com"; # carthage
+      #sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBpjjsqzxD27CtSdEsp0Ega22sYkY/iMBqMAwmFH6N4R darth-malu@github.com"; # carthage
       hostName = "carthage";
       system = "x86_64-linux";
       protocol = "ssh-ng"; #ssh:: ssh-ng ( ssh next generation)

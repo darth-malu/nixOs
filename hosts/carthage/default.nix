@@ -5,6 +5,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ./amd.nix
     ../common
+    ../common/users/remote-builder.nix # removed from common only for carthage now
   ];
 
   

@@ -4,10 +4,10 @@
   #   startAgent = true; 
   # };
 
-  # programs.gnupg.agent = {
-  #   enable = false;
-  #   enableSSHSupport = true;
-  # };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   # systemd.services.sshd.wantedBy = lib.mkOverride 40 [ "multi-user.target" ];
 
@@ -19,17 +19,17 @@
       # package = pkgs-unstable.openssh;
       # startWhenNeeded = true;
       # ports = [ 22 443 ]; # 16bit unsigned int
-      #ports = [ 22 ]; # 16bit unsigned int
+      ports = [ 22 ]; # 16bit unsigned int
       settings = {
         #LogLevel = "DEBUG";
-        PasswordAuthentication = false; # def: false=require public key auth?
+        PasswordAuthentication = true; # def: false=require public key auth?
         PubkeyAuthentication = true;
         # KbdInteractiveAuthentication = false;
         #AllowUsers = null; # all users::
         # PermitRootLogin = "yes"; # Allow password login to the installation, if the user sets a password via "passwd" It is safe as root doesn't have a password by default and SSH is disabled by default
         # X11Forwarding = false;
-        #UseDns = true; #default false
-        # PermitRootLogin = "prohibit-password"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
+        UseDns = true; #default false
+        PermitRootLogin = "prohibit-password"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
         # AllowUsers = ["malu" "git" ]; # [ "user1" "user2 "] or null(all users allowed)
       };
       # authorizedKeysInHomedir = true;

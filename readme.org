@@ -1,0 +1,3 @@
+#+title: maluware bytes
+
+* excuse to use org mode lol

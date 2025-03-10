@@ -4,7 +4,6 @@
   imports = [
     ../../modules/nix
     ./users/malu.nix
-    ./users/remote-builder.nix
     ./storage-common.nix
     ./specialisations
   ];
@@ -45,17 +44,12 @@
     dhcpcd.enable = false;
     useDHCP = lib.mkDefault true;
     # interfaces.enp5s0.useDHCP = lib.mkDefault true;
-    timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ]; #TODO: see more about options
-    firewall.enable = true;
-    firewall.allowedTCPPorts = [ 22 ]; # 22 auto open with ssh
+    timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
+    firewall = { #TODO: see more about options
+        enable = true;
+        allowedTCPPorts = [ 22 ];
+    }; # 22 auto open with ssh
     nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
-    # firewall = let kdeConnectAttrRange = { from = 1714; to = 1764; } ; in rec {
-    #   enable = true;
-    #    allowedTCPPortRanges = [ kdeConnectAttrRange ];
-    #    allowedUDPPortRanges =  allowedTCPPortRanges ;
-    #    allowedUDPPorts = [ 22000 21027 ];
-    #    allowedTCPPorts = [ 22 80 443 8384 22000 ];
-    # };
   };
 
   hardware = {
@@ -167,6 +161,7 @@
       allowed-users = [
         "@wheel"
         "@builders"
+        "@remotask"
         "malu"
         "sumbi"
       ];

@@ -2,9 +2,9 @@
   users.users.remotebuild = {
     isNormalUser = true;
     createHome = false;
-    group = "remotebuild";
+    group = "remotask";
 
-    openssh.authorizedKeys.keyFiles = [ ./remotebuild.pub ];
+    openssh.authorizedKeys.keyFiles = [ ./remotebuild ]; # ssh key of the builder that will use the builder
   };
 
   users.groups.remotebuild = {};
@@ -12,11 +12,11 @@
   nix.settings.trusted-users = [ "remotebuild" ];
 
   programs.ssh.extraConfig = ''
-  Host builder
-    HostName <url of the host>
-    Port 2222
-    User remotebuild
-    IdentitiesOnly yes
-    IdentityFile /root/.ssh/id_builder
+    Host carthage
+      HostName 192.168.100.5
+      Port 22
+      User remotebuild
+      IdentitiesOnly yes
+      IdentityFile /root/.ssh/id_builder
   '';
 }

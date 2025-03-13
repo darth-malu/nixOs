@@ -5,6 +5,8 @@
     enableDefaultPackages = true;
     packages = with pkgs; [
       #terminus_font noto-fonts fira-code noto-fonts-cjk-sans
+      fira-code fira-math
+      monaspace
       jetbrains-mono
       font-awesome
       texlivePackages.nunito
@@ -16,6 +18,7 @@
       # whatsapp-emoji-font # long build time strange
       ]++
         (with pkgs.nerd-fonts; [
+        fira-mono
         fantasque-sans-mono
         zed-mono
         daddy-time-mono
@@ -26,7 +29,7 @@
         ubuntu-mono
         space-mono
         mononoki
-        monaspace
+        # monaspace
         martian-mono
         sauce-code-pro
         tinos # similar to times new
@@ -40,6 +43,7 @@
         geist-mono
         agave
         caskaydia-cove
+        monofur
         symbols-only # for wezterm/terminal in general glyphs, also emacs
       ]);
   };

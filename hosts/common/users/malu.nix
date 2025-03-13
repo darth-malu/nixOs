@@ -1,10 +1,9 @@
 {pkgs ,...}:
 
 {
-  users = { 
-    mutableUsers = false; # false -> useradd group add does not work
+    users.mutableUsers = false; # false -> disable useradd group add
     # defaultUserShell = pkgs.zsh;
-    users.malu = {
+    users.users.malu = {
       isNormalUser = true;
       hashedPassword = "$6$CBR4aPX655swD4cc$ajk7oboxdtZVH5bBF2eQYOCV6Zkg67LFeRKTuMkLjjTjic6xn1.fJGeq03wWkOdiQbZeuoYVjQoMbBmxOM1qt1";# mkpasswd <password> -m SHA-512
       uid = 1000;
@@ -13,7 +12,6 @@
       #shell = [ pkgs.zsh pkgs.nushell ];
       shell = pkgs.bash;
       #useDefaultShell = true;
-      # shell = "${pkgs.bash}/bin/bash"; # does not work
       extraGroups = [
         "input"
         "darth"
@@ -27,16 +25,17 @@
         tree
       ];
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBpjjsqzxD27CtSdEsp0Ega22sYkY/iMBqMAwmFH6N4R darth-malu@github.com" # carthage
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKubRXSOrk4IrM4Ai3FcvWFVV1wxRUNPF+0VZo9xSph1 darth-malu@github.com"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJXqFrWf3rqkudQ6+aBFXkWpZcAm9HW9oHZclRwtGI8G justinmalu@gmail.com" # carthage
+        # "AAAAC3NzaC1lZDI1NTE5AAAAIJXqFrWf3rqkudQ6+aBFXkWpZcAm9HW9oHZclRwtGI8G" # carthage
+        # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKubRXSOrk4IrM4Ai3FcvWFVV1wxRUNPF+0VZo9xSph1 darth-malu@github.com"
       ];
       # openssh.authorizedKeys.keyFiles = [
       #   ./open_key
       # ];
     };
 
-    groups = {
+    users.groups = {
       darth.gid = 1000; # instantiate group darth #TODO: see groups id range implications
     };
-  };
+  
 }

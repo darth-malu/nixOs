@@ -7,5 +7,6 @@
   ] ++
   (if osConfig.hyprland.enable then [ # WIP
     ./themes.nix
+    # ./dconf.nix
   ] else []);
 }

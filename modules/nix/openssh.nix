@@ -24,18 +24,18 @@
         #LogLevel = "DEBUG";
         PasswordAuthentication = true; # def: false=require public key auth?
         PubkeyAuthentication = true;
-        # KbdInteractiveAuthentication = false;
+        # KbdInteractiveAuthentication = false; # true::
         #AllowUsers = null; # all users::
         # PermitRootLogin = "yes"; # Allow password login to the installation, if the user sets a password via "passwd" It is safe as root doesn't have a password by default and SSH is disabled by default
-        # X11Forwarding = false;
+        # X11Forwarding = false; # false::
         UseDns = true; #default false
-        PermitRootLogin = "prohibit-password"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
-        # AllowUsers = ["malu" "git" ]; # [ "user1" "user2 "] or null(all users allowed)
+        # PermitRootLogin = "prohibit-password"; # "yes", "without-password", "prohibit-password"::, "forced-commands-only", "no"
+        # AllowUsers = ["malu" "git" ]; # [ "user1" "user2 "] or null(all users allowed)::
+        AllowUsers = null;
       };
       # authorizedKeysInHomedir = true;
       #authorizedKeysFiles = [ "$HOME/.ssh/id_ed25519.pub" ];
       # authorizedKeysFiles = [ "/home/malu/Documents/authorized_keys" ];
-      #authorizedKeysFiles = [ /home/malu/.ssh/id_ed25519.pub ];
       #extraConfig = ''
         #Match user git
           #AllowTcpForwarding no

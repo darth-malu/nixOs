@@ -12,7 +12,7 @@
       "$sl" = "SHIFT_L";
       "$sr" = "SHIFT_R";
       "$date_short" = "$(date +'%I:%M %p')"; # add -u (utc)
-      "$date_long" = "$(date +'%a,%d %b%t%I:%M %p')"; 
+      "$date_long" = "$(date +'%a,%d %b%t%I:%M %p')";
       "$kitty" = "uwsm app -s a -- kitty -1 --instance-group kitty";
       "$ghostty" = "uwsm app -s a -- ghostty";
       "$wezterm" = "uwsm app -s a -- wezterm";
@@ -21,7 +21,7 @@
 
       "$file_browser_rofi" = "rofi -show filebrowser -sidebar-mode -theme-str 'window {height: 620px; width : 800px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
       "$rofi_open_windows" =  "rofi -show window -theme-str 'window {width : 800px;}' -theme-str 'listview {lines: 8; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
-          # "-theme-str 'window {width : 800px; fullscreen: true;}" + 
+          # "-theme-str 'window {width : 800px; fullscreen: true;}" +
           # " -theme-str 'element {background-image: linear-gradient(white/5%, white/20%);border-color: lightblue /15%;}'";
       # "$menu_rofi" = "rofi -show drun -run-command \"hyprctl dispatch -- exec [workspace emptym] uwsm app -s a -- {cmd}\"";
       "$menu_rofi" = "rofi -show drun";
@@ -91,7 +91,7 @@
           # Workspaces
           "$al, KP_Enter,workspace ,emptym"
           "$mod, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
-          
+
           "$mod, KP_Divide, togglesplit" # dwindle
           "$mod, KP_Multiply, pseudo"# dwindle
 
@@ -172,14 +172,14 @@
           "$mod $sl, KP_Insert, movetoworkspace, 10"
 
           "SUPER ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
-          "SUPER ,End,execr, killall .waybar-wrapped || uwsm app waybar" 
+          "SUPER ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 
           # gaps
           "SUPER $sl,KP_Enter, exec, gaps reset"
           "SUPER ,KP_Enter, exec, gaps custom"
           "SUPER ,$ar, exec, gaps toggle_gaps_out"#toggle gaps on/off
 
-                
+
           # █▀▄▀█ █▀█ █▄░█ █ ▀█▀ █▀█ █▀█
           # █░▀░█ █▄█ █░▀█ █ ░█░ █▄█ █▀▄
           "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
@@ -194,9 +194,10 @@
 
           #█▀▀ █▀█ █▀▀ █░█ █▀ █▀▀ █░█ █▀█ █▀█ █▀▀ █▄░█ ▀█▀
           #█▀░ █▄█ █▄▄ █▄█ ▄█ █▄▄ █▄█ █▀▄ █▀▄ ██▄ █░▀█ ░█░
-          "$mod,K, Workspace, previous_per_monitor"
-          "$mod, mouse:276, Workspace, previous_per_monitor"
+          # "$mod,K, Workspace, previous_per_monitor"
+          "$mod,K, focuscurrentorlast"
           "$mod $sl, k, focusmonitor, +1"
+          "$mod, mouse:276, Workspace, previous_per_monitor"
           "$mod, semicolon, cyclenext"
         ]
         ++ (
@@ -222,12 +223,12 @@
         "$mod $cl, mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
       ];
 
-      bindel = 
+      bindel =
         if osConfig.networking.hostName == "tangier" then
           import ./laptop_bindings.nix
-        else 
+        else
           import ./pc_bindings.nix;
-      bindl = 
+      bindl =
         [
           #-----------------------PLAY/PAUSE------------------#
           ", XF86AudioPlay, execr, pause_play"

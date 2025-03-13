@@ -5,11 +5,11 @@
       enable = true;
       group = "darth";
       user = "malu";
-      dataDir = "/home/malu/syncFolder";
       openDefaultPorts = true; # TCP/UDP 22000 for transfers and UDP 21027 for discovery. # NOTE unneeded works anyway :) leaving on because.
       guiAddress = "127.0.0.1:8384";
       systemService = true; # true::
       configDir = "/home/malu/.config/syncthing"; # will run as root if you dont do this by default? not nice for dots ... videos :)
+      dataDir = "/home/malu/syncFolder";
       overrideDevices = false;
       overrideFolders = false; # Whether to delete the folders which are not configured via the folders option
       settings = {

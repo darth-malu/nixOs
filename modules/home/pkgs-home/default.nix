@@ -84,6 +84,7 @@ in {
       # superfile # kinda cool but dont need
 
       # productivity / school
+      groff ghostscript
       obsidian
       glow # TODO: test this extensively # see quart for blog with markdown
       ffmpeg

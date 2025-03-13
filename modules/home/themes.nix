@@ -1,4 +1,4 @@
-{pkgs, osConfig, lib, ...}:
+{pkgs, osConfig, lib, config, ...}:
 
 # let
 #   gruvboxplus = import ../home/gruvbox-plus.nix { inherit pkgs;};
@@ -36,19 +36,29 @@ lib.mkIf osConfig.programs.hyprland.enable {
       package = pkgs.candy-icons; name = "candy-icons";
     };
 
+    gtk2 = {
+      extraConfig = ''
+        "gtk-can-change-accels" = "1"
+      '';
+      configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    };
     gtk3 = {
       extraConfig = {
-        gtk-application-prefer-dark-theme = "1";
+        gtk-application-prefer-dark-theme = 1;
       };
+      bookmarks = [
+        "file://home/malu/org"
+      ];
     };
     #
     gtk4 = {
+      # extraCss = '''';
       extraConfig = {
     #     #gtk-theme-name = ''Nightfox:Dark''; #eg nautilus
     #     gtk-theme-name = "Nightfox-Dark"; #eg nautilus
     #     gtk-cursor-blink = false;
         gtk-recent-files-limit = 20;
-        gtk-application-prefer-dark-theme = "1";
+        gtk-application-prefer-dark-theme = 1;
       };
     #   # extraCss = #gtk-4.0/gtk.css
     #   #   ''

@@ -24,33 +24,31 @@
     };
   };
 
-  networking = {
-    # wireless.enable = if config.networking.hostName == "tangier" then true else false; # Enables wireless support via wpa_supplicant.
-    wireless.enable = false;
-    hostId = if config.networking.hostName == "tangier" then "92d08a60" else "245e3df3"; #ensure when using ZFS that a pool isn’t imported accidentally on a wrong machine.#head -c 8 /etc/machine-id
-    # hostId = (lib.mkIf config.networking.hostName == "tangier") "92d08a60"; #FIXME: see syntax on this attempt to call something which is not a function but a Boolean: false
-    networkmanager = {
-      enable = true; # might be on by default # add user to group
-      dns = "none"; # dnsmasq, default::, systemd-resolved
-      # wifi.powersave = if config.networking.hostName == "tangier" then true else false;
-      wifi = {
-        powersave = false;
-        backend = "wpa_supplicant"; # wpa_supplicant::, iwd
-      };
-      logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
+  # wireless.enable = if config.networking.hostName == "tangier" then true else false; # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = false;
+  networking.hostId = if config.networking.hostName == "tangier" then "92d08a60" else "245e3df3"; #ensure when using ZFS that a pool isn’t imported accidentally on a wrong machine.#head -c 8 /etc/machine-id
+  # hostId = (lib.mkIf config.networking.hostName == "tangier") "92d08a60"; #FIXME: see syntax on this attempt to call something which is not a function but a Boolean: false
+  networking.networkmanager = {
+    enable = true; # might be on by default # add user to group
+    dns = "none"; # dnsmasq, default::, systemd-resolved
+    # wifi.powersave = if config.networking.hostName == "tangier" then true else false;
+    wifi = {
+      powersave = false;
+      backend = "wpa_supplicant"; # wpa_supplicant::, iwd
     };
-
-    #NOTE: self managing dns test
-    dhcpcd.enable = false;
-    useDHCP = lib.mkDefault true;
-    # interfaces.enp5s0.useDHCP = lib.mkDefault true;
-    timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
-    firewall = { #TODO: see more about options
-        enable = true;
-        allowedTCPPorts = [ 22 ];
-    }; # 22 auto open with ssh
-    nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
+    logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
   };
+
+  #NOTE: self managing dns test
+  networking.dhcpcd.enable = false;
+  networking.useDHCP = lib.mkDefault true;
+  # interfaces.enp5s0.useDHCP = lib.mkDefault true;
+  networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
+  networking.firewall = { #TODO: see more about options
+      enable = true;
+      allowedTCPPorts = [ 22 ];
+  }; # 22 auto open with ssh
+  networking.nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
 
   hardware = {
     # enableAllFirmware = true; # enable all firmware regardless of license #for bt to work in HSP/HFP mode # for bt to work in HSP/HFP mode, test further
@@ -140,15 +138,15 @@
       '';
     };
   };
-  nix = {
-    optimise = {# Automatically run the nix store optimiser at a specific time.
-      automatic = true; # false::
-      dates = ["weekly"];
-      #dates = ["03:15" "00:00"]; # see systemd.time(7) for specification
-      randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
-      # persistent = false; # true::
-    };
-    gc = { # garbage collector
+  
+    # Automatically run the nix store optimiser at a specific time.
+    nix.optimise.automatic = true; # false::
+    nix.optimise.dates = ["weekly"];
+    #dates = ["03:15" "00:00"]; # see systemd.time(7) for specification
+    nix.optimise.randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
+    # persistent = false; # true::
+    
+    nix.gc = { # garbage collector
       automatic = true;
       dates = "weekly";
       #dates = "03:15";
@@ -156,7 +154,8 @@
       # randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
       # persistent = false; # true::
     };
-    settings = {
+
+    nix.settings = {
       auto-optimise-store = false; #optimise with everybuild #nix-store optimise ->manual # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy. #false::
       allowed-users = [
         "@wheel"
@@ -188,9 +187,9 @@
     #   keep-outputs = true
     #   keep-derivations = true# keep build-time dependencies around/be able to rebuild while being offline
     # '';
-    distributedBuilds = true; # for remote builds
+    nix.distributedBuilds = true; # for remote builds
     # buildMachines = [];
-  };
+  
 
   i18n = {
     defaultLocale = "en_US.UTF-8";

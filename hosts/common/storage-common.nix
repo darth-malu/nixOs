@@ -28,7 +28,7 @@
 
     "/media/linuxHdd" = {
       device = "/dev/disk/by-uuid/48b59b13-573c-4e39-b2ce-abb2a3c0206e";
-      noCheck = true;
+      # noCheck = true; # won't mount on boot
       fsType = "ext4";
       options = [ "users" "nofail" ];# defaults if options list missing
     };
@@ -36,7 +36,7 @@
     "/media/extraHdd" = {
       device = "/dev/disk/by-uuid/01DA684DD5DAAEA0";
       fsType = "ntfs-3g";
-      noCheck = true;
+      # noCheck = true;
       options = [
         "users"
         "nofail"

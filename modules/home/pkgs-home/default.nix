@@ -125,8 +125,14 @@ in {
       # pdf
 
       # LSP stuff
-      nil
-      #nixfmt # needed to use formatter
+      # nil # kinda slow
+      nixfmt-rfc-style # official - needed to use formatting with :lang nix
+
+      # org stuff
+      scrot # for org-screenshot-take
+
+      # export dep
+      wkhtmltopdf
     ]) ++ (with pkgs; [ # creative space
       #(ffmpeg.override { withXcb = true;  })
       #  ffmpeg

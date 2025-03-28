@@ -1,4 +1,4 @@
-{osConfig, inputs, pkgs, lib, config, ...}:
+{osConfig,  lib, config, ...}:
 {
   imports = [
     ./keybinds
@@ -22,18 +22,18 @@
       enable = true;
       package = null;
       portalPackage = null;
-      systemd = {
-        enable = false; # import to systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE #WARN: last change true -> false
+      # systemd = {
+        # enable = false; # import to systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE #WARN: last change true -> false
         # enableXdgAutostart = true;
-        extraCommands = [# Extra commands to be run after D-Bus activation.
+        # extraCommands = [# Extra commands to be run after D-Bus activation.
           # "systemctl --user stop hyprland-session.target"
           # "systemctl --user start hyprland-session.target"
-        ];
-        variables = [ # imported to systemd dbus enviroments
-          "--all" # does dbus-update-activation-environment --systemd --all
-        ];
+        # ];
+        # variables = [ # imported to systemd dbus enviroments
+          # "--all" # does dbus-update-activation-environment --systemd --all
+        # ];
       };
-      extraConfig = /*jsonc*/''
+      extraConfig = ''
         # █▀█ █▀▀ █▀ █ ▀█ █▀▀
         # █▀▄ ██▄ ▄█ █ █▄ ██▄
 
@@ -50,10 +50,10 @@
         # █░▀░█ █▄█ ▀▄▀ ██▄ █▀█ █▄▄ ░█░ █ ▀▄▀ ██▄
         bind=ALT,M,submap,moveactive
         submap=moveactive
-        binde=,right,moveactive,10 0
-        binde=,left,moveactive,-10 0
-        binde=,up,moveactive,0 -10
-        binde=,down,moveactive,0 10
+        binde=,right,moveactive,20 0
+        binde=,left,moveactive,-20 0
+        binde=,up,moveactive,0 -20
+        binde=,down,moveactive,0 20
         bind=,escape,submap,reset
         submap=reset
       '';
@@ -62,19 +62,20 @@
           font_family = "JetBrainsMono Nerd Font";
           # font_family = "quicksand";
           # force_default_wallpaper = if osConfig.networking.hostName == "carthage" then "0" else "1"; #anime mascot wallpapers
-          force_default_wallpaper = 0; # -1 random, 2 (anime), 0/1 - disable anime
+          force_default_wallpaper = 2; # -1 random, 2 (anime), 0/1 - disable anime
           # vfr = true; # true:: recommend leave on# lower the amount of sent frames when nothing is happening on-screen.
           vrr = if osConfig.networking.hostName == "carthage" then 1 else 0; # 1 -on,2 -fullscreen # adaptive sync
-          new_window_takes_over_fullscreen = "2"; # 2 - unfullscreen, 1 -takes over, -nothing/staybehind -0
+          new_window_takes_over_fullscreen = 2; # 2 - unfullscreen, 1 -takes over, -nothing/staybehind -0
           close_special_on_empty = true;
           disable_hyprland_logo = true; #wallpaper + logo lol
           #disable_splash_rendering = true
           "col.splash" = "rgba(195,232,141,1.0)";
-          splash_font_family = "quicksand";
+          splash_font_family = "VictorMono Nerd Font"; # FIXME not working lol ofcourse
           key_press_enables_dpms = true;#false:: #wakes monitor if key pressed
-          middle_click_paste = if osConfig.networking.hostName == "carthage" then false else true;
+          # middle_click_paste = if osConfig.networking.hostName == "carthage" then false else true;
+          middle_click_paste = true;
           # animate_manual_resizes = true;
-          focus_on_activate = true; #solves rofi issue lol # focus apps that request to be focused(activate request)
+          focus_on_activate = true; # solves rofi issue lol # focus apps that request to be focused(activate request)
           #mouse_move_enables_dpms = true
           # mouse_move_focuses_monitor = true; #true::
           #initial_workspace_tracking = 1; #0, 1::(single-shot), 2 -persistent/children
@@ -90,7 +91,7 @@
           #persistent_warps = true; # maintain cursor position on switch rather than center
           hide_on_key_press = true;
           #warp_on_change_workspace = true; # cursor to last focused window
-          #sync_gsettings_theme = true;# true::
+          sync_gsettings_theme = true;# true::
         };
         binds = {
           workspace_center_on = 1;#Whether switching workspaces should center the cursor on the workspace (0) or on the last active window for that workspace (1)
@@ -98,6 +99,6 @@
         };
       };
     };
-  };
+  # };
 
 }

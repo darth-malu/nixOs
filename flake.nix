@@ -120,18 +120,18 @@
             {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
             inputs.home-manager.nixosModules.home-manager { 
               home-manager = {
-                # verbose = true;
+                verbose = true;
                 backupFileExtension = "bakup"; # conflict management,append .backup to existing conf. files
                 users.malu = import ./modules/home.nix;
                 useGlobalPkgs = true; # dont use private instance of pkgs which is the default
-                useUserPackages = false; # if false ... uses nix-profile for home apps
+                useUserPackages = false; # if false:: ... uses nix-profile for home apps
                 extraSpecialArgs = { inherit  pkgs inputs system; };
               };
             }
           ];
         };
 
-      devShells.${system}.default = pkgs.mkShell
+      devShells.${system} = pkgs.mkShell
         {
           nativeBuildInputs = with pkgs; [
           # BuildInputs = with pkgs; [

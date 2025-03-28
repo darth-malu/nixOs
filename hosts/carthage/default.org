@@ -1,3 +1,4 @@
+#+begin_src nix :tangle default.nix
 {modulesPath, lib, config,...}:
 
 {
@@ -34,7 +35,12 @@
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+#+end_src
 
+* hostId
+use: ~head -c 8 /etc/machine-id~ or ~head -c4 /dev/urandom | od -A none -t x4~
+
+#+begin_src nix :tangle default.nix
 networking = {
   hostName = "carthage"; # Define your hostname.
   hostId = "7435d550";
@@ -42,3 +48,4 @@ networking = {
 
 system.stateVersion = "24.11";
 }
+#+end_src

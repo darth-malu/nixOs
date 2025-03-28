@@ -23,7 +23,7 @@
       settings = {
         #LogLevel = "DEBUG";
         PasswordAuthentication = true; # def: false=require public key auth?
-        PubkeyAuthentication = true;
+        # PubkeyAuthentication = true; FIXME: causing issues??
         # KbdInteractiveAuthentication = false; # true::
         #AllowUsers = null; # all users::
         # PermitRootLogin = "yes"; # Allow password login to the installation, if the user sets a password via "passwd" It is safe as root doesn't have a password by default and SSH is disabled by default

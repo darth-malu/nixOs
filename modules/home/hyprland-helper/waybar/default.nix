@@ -21,7 +21,7 @@
         mainBar = {
           # height = 20; #so funny
           margin = "0 6 0 4";
-          output = [
+          output = lib.mkIf osConfig.networking.hostName == "carthage" [
             "HDMI-A-1"
             # "DP-1"
           ];

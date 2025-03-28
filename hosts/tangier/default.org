@@ -1,8 +1,9 @@
+#+begin_src nix :tangle default.nix
 {config,modulesPath, pkgs, lib, options, ...}:
 
 {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
+    # (modulesPath + "/installer/scan/not-detected.nix")
     ../common
     ./nvidia.nix
   ];
@@ -26,12 +27,12 @@
     };
   };
   nix = {
-    distributedBuilds = true;
+    distributedBuilds = false;
     buildMachines = [ { # makes it so i dont have to use --builders "ssh://myuser@builder <other builder specification>"
       sshUser = "remotebuild"; # NOTE special user that cant be sudo'd into
       # sshKey = "$HOME/.ssh/id_ed25519"; # must be a local path not pointing to the nix store
       # sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKubRXSOrk4IrM4Ai3FcvWFVV1wxRUNPF+0VZo9xSph1 darth-malu@github.com";
-      #sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBpjjsqzxD27CtSdEsp0Ega22sYkY/iMBqMAwmFH6N4R darth-malu@github.com"; # carthage
+      sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJXqFrWf3rqkudQ6+aBFXkWpZcAm9HW9oHZclRwtGI8G justinmalu@gmail.com"; # carthage
       hostName = "carthage";
       system = "x86_64-linux";
       protocol = "ssh-ng"; #ssh:: ssh-ng ( ssh next generation)
@@ -50,11 +51,12 @@
     '';
   };
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave"; # TODO: test effects of this, and add to waybar
+  # powerManagement.cpuFreqGovernor = lib.mkDefault "powersave"; # TODO: test effects of this, and add to waybar
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   networking = {
     hostName = "tangier"; # Define your hostname.
+    hostId =  "92d08a60";
     networkmanager = {
       wifi.powersave = lib.mkForce false;
     };
@@ -78,3 +80,4 @@
   system.stateVersion = "24.11";
 }
 
+#+end_src

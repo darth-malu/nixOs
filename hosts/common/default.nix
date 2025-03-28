@@ -26,7 +26,6 @@
 
   # wireless.enable = if config.networking.hostName == "tangier" then true else false; # Enables wireless support via wpa_supplicant.
   networking.wireless.enable = false;
-  networking.hostId = if config.networking.hostName == "tangier" then "92d08a60" else "245e3df3"; #ensure when using ZFS that a pool isn’t imported accidentally on a wrong machine.#head -c 8 /etc/machine-id
   # hostId = (lib.mkIf config.networking.hostName == "tangier") "92d08a60"; #FIXME: see syntax on this attempt to call something which is not a function but a Boolean: false
   networking.networkmanager = {
     enable = true; # might be on by default # add user to group
@@ -138,14 +137,14 @@
       '';
     };
   };
-  
+
     # Automatically run the nix store optimiser at a specific time.
     nix.optimise.automatic = true; # false::
     nix.optimise.dates = ["weekly"];
     #dates = ["03:15" "00:00"]; # see systemd.time(7) for specification
     nix.optimise.randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
     # persistent = false; # true::
-    
+
     nix.gc = { # garbage collector
       automatic = true;
       dates = "weekly";
@@ -189,7 +188,7 @@
     # '';
     nix.distributedBuilds = true; # for remote builds
     # buildMachines = [];
-  
+
 
   i18n = {
     defaultLocale = "en_US.UTF-8";

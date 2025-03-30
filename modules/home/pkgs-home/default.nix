@@ -1,4 +1,5 @@
 { pkgs, inputs, lib, osConfig, ... }:
+
 let
   tex = (pkgs.texlive.combine {
     inherit (pkgs.texlive)
@@ -7,6 +8,11 @@ let
     #(setq org-latex-compiler "lualatex")
     #(setq org-preview-latex-default-process 'dvisvgm)
   });
+
+R-with-my-packages = pkgs.rWrapper.override{ packages = with pkgs.rPackages; [ ggplot2 dplyr xts ]; };
+RStudio-with-my-packages = pkgs.rstudioWrapper.override{ packages = with pkgs.rPackages; [ ggplot2 dplyr xts ]; };
+
+
 in {
   imports = [ # flaked apps
     inputs.nyaa.homeManagerModule
@@ -47,8 +53,9 @@ in {
       #rofimoji bemoji
       modem-manager-gui
       modemmanager # saves the day with no internet
-      taskwarrior3
-      taskwarrior-tui
+      taskwarrior3 taskwarrior-tui
+
+      # utilities
       file
       lsof # list open files/ports**
       usbutils # lsusb, usb-devices, usb-view(optional gui)
@@ -70,7 +77,7 @@ in {
       # chromium
       # lynx # terminal browser pretty fun -> on emacs now
       google-chrome
-      bluemail
+      bluemail #TODO move to mu4e
 
       # Entertainment
       lollypop
@@ -83,10 +90,10 @@ in {
       ncdu
       # superfile # kinda cool but dont need
 
-      # productivity / school
+      # productivity
       groff ghostscript
-      obsidian
-      glow # TODO: test this extensively # see quart for blog with markdown
+      # obsidian
+      # glow # TODO: test this extensively # see quart for blog with markdown
       ffmpeg
       #productivity
       #blender
@@ -153,10 +160,10 @@ in {
     ]) ++ (with pkgs; [ # NOTE: school
       netbeans
       wpsoffice
-    ]) ++ (with pkgs;
-      [ # hyrpland
+      R-with-my-packages RStudio-with-my-packages
+    ]) ++ (with pkgs; [ # hyrpland
         hyprpicker
-      ]);
+    ]);
 
   programs = {
     home-manager.enable = true; # Let Home Manager install and manage itself.
@@ -182,7 +189,7 @@ in {
     };
 
     comodoro = { # TODO: use
-      enable = true;
+      enable = false;
     };
 
     lsd = {

@@ -32,7 +32,7 @@
         # variables = [ # imported to systemd dbus enviroments
           # "--all" # does dbus-update-activation-environment --systemd --all
         # ];
-      };
+      # };
       extraConfig = ''
         # █▀█ █▀▀ █▀ █ ▀█ █▀▀
         # █▀▄ ██▄ ▄█ █ █▄ ██▄
@@ -99,6 +99,5 @@
         };
       };
     };
-  # };
-
+  };
 }

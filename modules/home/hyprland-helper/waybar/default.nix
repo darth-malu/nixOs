@@ -21,10 +21,10 @@
         mainBar = {
           # height = 20; #so funny
           margin = "0 6 0 4";
-          output = lib.mkIf osConfig.networking.hostName == "carthage" [
+          output = if osConfig.networking.hostName == "carthage" then [
             "HDMI-A-1"
             # "DP-1"
-          ];
+          ] else [];
           layer = "bottom";
           modules-center = [];
           modules-left = [

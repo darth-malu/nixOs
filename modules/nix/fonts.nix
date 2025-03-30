@@ -12,19 +12,19 @@
       texlivePackages.nunito
       inter
       quicksand
-      lato 
+      lato # unneeded?
       cascadia-code
       iosevka-comfy.comfy
       # whatsapp-emoji-font # long build time strange
       ]++
         (with pkgs.nerd-fonts; [
-        fira-mono
+        # fira-mono
         fantasque-sans-mono
         zed-mono
         daddy-time-mono
         shure-tech-mono
         jetbrains-mono
-        fira-code
+        # fira-code
         victor-mono
         ubuntu-mono
         space-mono
@@ -32,14 +32,14 @@
         # monaspace
         martian-mono
         sauce-code-pro
-        tinos # similar to times new
+        # hasklug # kinda looks like sauce code pro
+        tinos # similar to times new roman
         # iosevka-term
-        iosevka
+        # iosevka
         # DroidSansMono #FIXME: broken
         # "3270" #FIXME: broken
         lekton
-        lilex
-        hasklug
+        lilex # kinda nice actually
         geist-mono
         agave
         caskaydia-cove

@@ -17,7 +17,7 @@
 
   # flavor = "dracula"; #FIXME: see more on this
 
-  status = { 
+  status = {
   };
 
   mode = {
@@ -35,7 +35,7 @@
     ];
     append_exts = [
       { name = "mp3"; text = ""; fg_dark = "#00afff"; fg_light = "#0075aa";}
-    ];  
+    ];
     # prepend_conds = [
     #   { if = "hidden & dir";  text = "👻"; }  # Hidden directories
     #   { if = "dir";           text = "📁"; }  # Directories

@@ -17,6 +17,7 @@ lib.mkIf osConfig.programs.hyprland.enable {
     size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
   };
 
+
   gtk = {
     enable = true;
     #font = {

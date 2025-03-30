@@ -1,4 +1,4 @@
-{lib,...}:
+{ lib, ... }:
 
 {
   programs.hyprlock = {
@@ -7,7 +7,7 @@
     settings = {
       general = {
         disable_loading_bar = true;
-        grace = 300; #seconds
+        grace = 300; # seconds
         hide_cursor = true;
         no_fade_in = false;
         ignore_empty_input = true;
@@ -18,7 +18,7 @@
           #path = "/home/malu/Pictures/Screenshots/FirstFlake.png";
           # path = "/media/linuxHdd/Pictures/wallpaper/city_minima.jpg";
           # path = "/media/linuxHdd/Pictures/wallpaper/city_minima.jpg";
-          path = "/home/malu/Pictures/wallpapers/thresh_purp.png";
+          path = "/home/malu/Pictures/wallpapers/cthulthu.png";
           blur_passes = 2;
           blur_size = 2;
         }
@@ -61,9 +61,8 @@
         }
       ];
 
-      
       label = [
-        # Date 
+        # Date
         {
           monitor = "";
           text = "cmd[update:1000] echo \"$(date +\"%A, %B %d\")\"";
@@ -75,7 +74,7 @@
           valign = "center";
         }
 
-        # TIME 
+        # TIME
         {
           monitor = "";
           text = "cmd[update:1000] echo \"$(date +\"%-I:%M\")\"";

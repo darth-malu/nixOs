@@ -1,20 +1,49 @@
-{ pkgs, inputs, lib, osConfig, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  osConfig,
+  ...
+}:
 
 let
-  tex = (pkgs.texlive.combine {
-    inherit (pkgs.texlive)
-      scheme-basic scheme-medium dvisvgm dvipng # for preview and export as html
-      wrapfig amsmath ulem hyperref capt-of;
-    #(setq org-latex-compiler "lualatex")
-    #(setq org-preview-latex-default-process 'dvisvgm)
-  });
+  tex = (
+    pkgs.texlive.combine {
+      inherit (pkgs.texlive)
+        scheme-basic
+        scheme-medium
+        dvisvgm
+        dvipng # for preview and export as html
+        wrapfig
+        amsmath
+        ulem
+        hyperref
+        capt-of
+        ;
+      #(setq org-latex-compiler "lualatex")
+      #(setq org-preview-latex-default-process 'dvisvgm)
+    }
+  );
 
-R-with-my-packages = pkgs.rWrapper.override{ packages = with pkgs.rPackages; [ ggplot2 dplyr xts ]; };
-RStudio-with-my-packages = pkgs.rstudioWrapper.override{ packages = with pkgs.rPackages; [ ggplot2 dplyr xts ]; };
+  R-with-my-packages = pkgs.rWrapper.override {
+    packages = with pkgs.rPackages; [
+      ggplot2
+      dplyr
+      xts
+    ];
+  };
+  RStudio-with-my-packages = pkgs.rstudioWrapper.override {
+    packages = with pkgs.rPackages; [
+      ggplot2
+      dplyr
+      xts
+    ];
+  };
 
-
-in {
-  imports = [ # flaked apps
+in
+{
+  imports = [
+    # flaked apps
     inputs.nyaa.homeManagerModule
     # inputs.nix-doom-emacs.hmModule #FIXME Throughs errors
     ./yt-dlp.nix
@@ -34,7 +63,8 @@ in {
   # modules
   homeHyprland.enable = lib.mkIf osConfig.hyprland.enable true;
 
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       sway-audio-idle-inhibit
       wev
@@ -53,7 +83,8 @@ in {
       #rofimoji bemoji
       modem-manager-gui
       modemmanager # saves the day with no internet
-      taskwarrior3 taskwarrior-tui
+      taskwarrior3
+      taskwarrior-tui
 
       # utilities
       file
@@ -77,7 +108,7 @@ in {
       # chromium
       # lynx # terminal browser pretty fun -> on emacs now
       google-chrome
-      bluemail #TODO move to mu4e
+      bluemail # TODO move to mu4e
 
       # Entertainment
       lollypop
@@ -91,7 +122,8 @@ in {
       # superfile # kinda cool but dont need
 
       # productivity
-      groff ghostscript
+      groff
+      ghostscript
       # obsidian
       # glow # TODO: test this extensively # see quart for blog with markdown
       ffmpeg
@@ -100,7 +132,9 @@ in {
       # blender-hip # accelarated render
       # freeglut
       # gcc
-    ] ++ (with pkgs; [ # NOTE: EMACS
+    ]
+    ++ (with pkgs; [
+      # NOTE: EMACS
       # texlive.combined.scheme-medium # for latex
       # texlivePackages.dvipng # for latex already installed
       # texlive.withPackages (ps: [ ps.dvipng ])
@@ -117,7 +151,13 @@ in {
       isync
       # :checkers spell
       # Because emacs expects the dictionaries to be on the same directory as aspell, they won't be picked up. To fix it install the aspellWithDicts package, specifying the dictionaries you want to use:
-      (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+      (aspellWithDicts (
+        ds: with ds; [
+          en
+          en-computers
+          en-science
+        ]
+      ))
       clang-tools
       wordnet # :tools +dictionary dep
       # :tools lookup & :lang org +roam
@@ -132,7 +172,7 @@ in {
       # pdf
 
       # LSP stuff
-      # nil # kinda slow
+      nil # kinda slow
       nixfmt-rfc-style # official - needed to use formatting with :lang nix
 
       # org stuff
@@ -140,7 +180,9 @@ in {
 
       # export dep
       wkhtmltopdf
-    ]) ++ (with pkgs; [ # creative space
+    ])
+    ++ (with pkgs; [
+      # creative space
       #(ffmpeg.override { withXcb = true;  })
       #  ffmpeg
       # davinci-resolve
@@ -152,17 +194,24 @@ in {
       # nixd # zed
       imagemagick # for image-dired
       # kdePackages.dolphin
-    ]) ++ (with pkgs; [ # NOTE: MANGA stuff
+    ])
+    ++ (with pkgs; [
+      # NOTE: MANGA stuff
       # komikku # broken
       mangal
       ani-cli
       #syncyomi - sync tachiyomi progress across devices
-    ]) ++ (with pkgs; [ # NOTE: school
+    ])
+    ++ (with pkgs; [
+      # NOTE: school
       netbeans
       wpsoffice
-      R-with-my-packages RStudio-with-my-packages
-    ]) ++ (with pkgs; [ # hyrpland
-        hyprpicker
+      R-with-my-packages
+      RStudio-with-my-packages
+    ])
+    ++ (with pkgs; [
+      # hyrpland
+      hyprpicker
     ]);
 
   programs = {
@@ -175,11 +224,11 @@ in {
 
     ripgrep = {
       enable = true;
-      arguments =
-        [ # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
-          "--max-columns-preview"
-          "--colors=line:style:bold"
-        ];
+      arguments = [
+        # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+        "--max-columns-preview"
+        "--colors=line:style:bold"
+      ];
     };
 
     zoxide = {
@@ -188,14 +237,16 @@ in {
       options = [ "--cmd cd" ];
     };
 
-    comodoro = { # TODO: use
+    comodoro = {
+      # TODO: use
       enable = false;
     };
 
     lsd = {
       enable = true;
       enableAliases = true;
-      colors = { # $XDG_CONFIG_HOME/lsd/colors.yaml
+      colors = {
+        # $XDG_CONFIG_HOME/lsd/colors.yaml
         icons = {
           extension = {
             go = "";
@@ -217,7 +268,10 @@ in {
         };
         settings = {
           date = "relative";
-          ignore-globs = [ ".git" ".hg" ];
+          ignore-globs = [
+            ".git"
+            ".hg"
+          ];
         };
       };
     };
@@ -225,13 +279,19 @@ in {
     # eza = {
     #   enable = true;
     # };
-    pandoc = { enable = true; };
+    pandoc = {
+      enable = true;
+    };
 
     fd = {
       enable = true;
       hidden = true;
-      ignores = [ ".git" "*.bak" ];
-      extraOptions = [ # extra options to pass to fd
+      ignores = [
+        ".git"
+        "*.bak"
+      ];
+      extraOptions = [
+        # extra options to pass to fd
         "--no-ignore"
         "--absolute-path"
       ];
@@ -251,13 +311,18 @@ in {
     fastfetch = {
       enable = true;
       # package = pkgs-unstable.fastfetch;
-      settings = { # $XDG_CONFIG_HOME/fastfetch/config.jsonc
+      settings = {
+        # $XDG_CONFIG_HOME/fastfetch/config.jsonc
         logo = {
           source = "nixos_small"; # nixos_small #nixos_old
-          padding = { right = 1; };
+          padding = {
+            right = 1;
+          };
         };
         display = {
-          size = { binaryPrefix = "si"; };
+          size = {
+            binaryPrefix = "si";
+          };
           color = "blue";
           # separator = "  ";
           separator = " ";
@@ -327,15 +392,18 @@ in {
 
     lazygit = {
       enable = true;
-      settings =
-        { # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
-          gui.theme = {
-            lightTheme = true;
-            activeBorderColor = [ "blue" "bold" ];
-            inactiveBorderColor = [ "black" ];
-            selectedLineBgColor = [ "default" ];
-          };
+      settings = {
+        # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+        gui.theme = {
+          lightTheme = true;
+          activeBorderColor = [
+            "blue"
+            "bold"
+          ];
+          inactiveBorderColor = [ "black" ];
+          selectedLineBgColor = [ "default" ];
         };
+      };
     };
 
     fzf = {
@@ -343,17 +411,17 @@ in {
       enableBashIntegration = true; # true::
       tmux = {
         enableShellIntegration = true; # sets FZF_TMUX=1
-        shellIntegrationOptions =
-          [ "-p 50%,60%" ]; # -d 40% #TODO: see more # fzf-tmux --help
+        shellIntegrationOptions = [ "-p 50%,60%" ]; # -d 40% #TODO: see more # fzf-tmux --help
         # shellIntegrationOptions = [ "-d 40" ]; #-d 40% #TODO: see more # fzf-tmux --help
       };
-      colors = { # https://github.com/junegunn/fzf/wiki/Color-schemes
+      colors = {
+        # https://github.com/junegunn/fzf/wiki/Color-schemes
         # bg -> background
         # bg+ -> current line background plus associated border
         # fg -> # text above current line - default text
         # fg + -> # text current line; ~ matched pattern
         # hl -> # highlighted substrings, ~ current line
-        # hl+ -> # highlighted substrings(current line) 
+        # hl+ -> # highlighted substrings(current line)
         # bg = "#1e1e1e";
         bg = "#022223";
         # "bg+" = "#9381ff";
@@ -362,12 +430,12 @@ in {
         # fg = "#4ED4BC";
         fg = "#4ED4BC";
         "fg+" = "#0FA3B1";
-        # fg = "#9400FF";  
+        # fg = "#9400FF";
         # "fg+" = "#d4d4d4";
         # "fg+" = "#DA4167";
         "gutter" = "#022223";
         # "hl" = "#0FA3B1";
-        # "hl+" = "#F1DEDE"; 
+        # "hl+" = "#F1DEDE";
         # "hl" = "#F7567C";
         "hl" = "#9400FF";
         "hl+" = "#FCFCFC";
@@ -378,7 +446,8 @@ in {
         "pointer" = "#4F345A";
       };
       defaultCommand = "fd --type f";
-      defaultOptions = [ # FZF_DEFAULT_OPTS
+      defaultOptions = [
+        # FZF_DEFAULT_OPTS
         "--height 40%"
         "--border"
         # "--border none"
@@ -389,17 +458,24 @@ in {
         # "--gap 1"
         # "--scroll-off=4"
       ];
-      changeDirWidgetOptions =
-        [ "--preview 'tree -C {} | head -200'" ]; # M-c binding
+      changeDirWidgetOptions = [ "--preview 'tree -C {} | head -200'" ]; # M-c binding
       # changeDirWidgetCommand = "fd --type d";
       # fileWidgetCommand = "fd --type f"; #C-t #FIXME: broken $FZF_DEFAULT_OPTS: invalid command line string
       # fileWidgetOptions = ["preview 'head {}"];
-      historyWidgetOptions = [ "--sort" "--exact" ];
+      historyWidgetOptions = [
+        "--sort"
+        "--exact"
+      ];
     };
 
     bat = {
       enable = true;
-      extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
+      extraPackages = with pkgs.bat-extras; [
+        batdiff
+        batman
+        batgrep
+        batwatch
+      ];
       syntaxes = {
         gleam = {
           src = pkgs.fetchFromGitHub {
@@ -428,55 +504,70 @@ in {
     spotify-player = {
       enable = false;
       # package = pkgs.spotify-player;
-      themes = [{
-        name = "default2";
-        palette = {
-          black = "black";
-          red = "red";
-          green = "green";
-          yellow = "yellow";
-          blue = "blue";
-          magenta = "magenta";
-          cyan = "cyan";
-          white = "white";
-          bright_black = "bright_black";
-          bright_red = "bright_red";
-          bright_green = "bright_green";
-          bright_yellow = "bright_yellow";
-          bright_blue = "bright_blue";
-          bright_magenta = "bright_magenta";
-          bright_cyan = "bright_cyan";
-          bright_white = "bright_white";
-        };
-        component_style = {
-          block_title = { fg = "Magenta"; };
-          border = { };
-          playback_track = {
-            fg = "Cyan";
-            modifiers = [ "Bold" ];
+      themes = [
+        {
+          name = "default2";
+          palette = {
+            black = "black";
+            red = "red";
+            green = "green";
+            yellow = "yellow";
+            blue = "blue";
+            magenta = "magenta";
+            cyan = "cyan";
+            white = "white";
+            bright_black = "bright_black";
+            bright_red = "bright_red";
+            bright_green = "bright_green";
+            bright_yellow = "bright_yellow";
+            bright_blue = "bright_blue";
+            bright_magenta = "bright_magenta";
+            bright_cyan = "bright_cyan";
+            bright_white = "bright_white";
           };
-          playback_artists = {
-            fg = "Cyan";
-            modifiers = [ "Bold" ];
+          component_style = {
+            block_title = {
+              fg = "Magenta";
+            };
+            border = { };
+            playback_track = {
+              fg = "Cyan";
+              modifiers = [ "Bold" ];
+            };
+            playback_artists = {
+              fg = "Cyan";
+              modifiers = [ "Bold" ];
+            };
+            playback_album = {
+              fg = "Yellow";
+            };
+            playback_metadata = {
+              fg = "BrightBlack";
+            };
+            playback_progress_bar = {
+              bg = "BrightBlack";
+              fg = "Green";
+            };
+            current_playing = {
+              fg = "Green";
+              modifiers = [ "Bold" ];
+            };
+            page_desc = {
+              fg = "Cyan";
+              modifiers = [ "Bold" ];
+            };
+            table_header = {
+              fg = "Blue";
+            };
+            selection = {
+              modifiers = [
+                "Bold"
+                "Reversed"
+              ];
+            };
           };
-          playback_album = { fg = "Yellow"; };
-          playback_metadata = { fg = "BrightBlack"; };
-          playback_progress_bar = {
-            bg = "BrightBlack";
-            fg = "Green";
-          };
-          current_playing = {
-            fg = "Green";
-            modifiers = [ "Bold" ];
-          };
-          page_desc = {
-            fg = "Cyan";
-            modifiers = [ "Bold" ];
-          };
-          table_header = { fg = "Blue"; };
-          selection = { modifiers = [ "Bold" "Reversed" ]; };
-        };
-      }];
+        }
+      ];
       keymaps = [
         {
           command = "NextTrack";
@@ -515,7 +606,8 @@ in {
 
     zathura = {
       enable = true;
-      options = { # this are the :set options
+      options = {
+        # this are the :set options
         default-bg = "#000000";
         default-fg = "#FFFFFF";
         statusbar-h-padding = 0;

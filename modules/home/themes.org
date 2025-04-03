@@ -1,0 +1,132 @@
+#+title: Themes
+
+* start / hyprland condition
+#+begin_src nix :tangle themes.nix
+{pkgs, osConfig, lib, config, ...}:
+
+# let
+#   gruvboxplus = import ../home/gruvbox-plus.nix { inherit pkgs;};
+# in
+# lib.mkIf osConfig.services.desktopManager.plasma6.enable {
+lib.mkIf osConfig.programs.hyprland.enable {
+#+end_src
+
+* home
+#+begin_src nix themes.nix
+home.pointerCursor = {
+  hyprcursor = {
+    size = 24;
+    enable = true;
+  };
+  gtk.enable = true; # waybar, gtk apps
+  # x11.enable = true; #xwayland?
+  package = pkgs.bibata-cursors;
+  name = "Bibata-Modern-Ice";
+  # package = pkgs.posy-cursors; name = "posy-cursors";
+  size =
+    if osConfig.networking.hostName == "carthage" then
+      24
+    else if osConfig.networking.hostName == "tangier" then
+      20
+    else
+      18;
+};
+#+end_src
+
+* gtk applications
+#+begin_src nix :tangle themes.nix
+gtk = {
+  enable = true;
+  #font = {
+  #name = "DaddyTimeMono Nerd Font";
+  #size = 12;
+  #};
+  # cursorTheme = {
+  #   package = pkgs.bibata-cursors; name = "Bibata-Modern-Ice";
+  #   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
+  # };#NOTE: not needed
+  theme = {
+    name = "Nightfox-Dark";
+    package = pkgs.nightfox-gtk-theme;
+    # name = "tokyonight-gtk-theme"; package = pkgs.Tokyonight-Moon;
+  };
+  iconTheme = {
+    # package = pkgs.kora-icon-theme; name = "kora";
+    package = pkgs.candy-icons;
+    name = "candy-icons";
+  };
+
+  gtk2 = {
+    extraConfig = ''
+        "gtk-can-change-accels" = "1"
+      '';
+    configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+  };
+  gtk3 = {
+    extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+    bookmarks = [
+      "file://home/malu/org"
+    ];
+  };
+  #
+  gtk4 = {
+    # extraCss = '''';
+    extraConfig = {
+      #     #gtk-theme-name = ''Nightfox:Dark''; #eg nautilus
+      #     gtk-theme-name = "Nightfox-Dark"; #eg nautilus
+      #     gtk-cursor-blink = false;
+      gtk-recent-files-limit = 20;
+      gtk-application-prefer-dark-theme = 1;
+    };
+    #   # extraCss = #gtk-4.0/gtk.css
+    #   #   ''
+    #   # '';
+  };
+};
+#+end_src
+
+* qt
+** =qt.style.name=
+Style to use for =Qt5/Qt6= applications. Case-insensitive.
+
+Some examples are:
+- =adwaita,= adwaita-dark, adwaita-highcontrast, adwaita-highcontrastinverse : Use the Adwaita style from [[github:FedoraQt/adwaita-qt][adwaita-qt]]
+- =breeze= : Use the Breeze style from =breeze=
+- bb10bright, bb10dark, cde, cleanlooks, gtk2, motif, plastique : Use styles from =qtstyleplugins=
+- =kvantum= : Use styles from =kvantum.=
+
+** =qt.platformTheme=
+Selects the platform theme to use for Qt applications.
+The options are:
+- =gnome=: Use GNOME theme with qgnomeplatform
+- =gtk2=: Use GTK theme with qtstyleplugins
+- =kde=: Use Qt settings from Plasma.
+- =lxqt=: Use LXQt style set using the lxqt-config-appearance application.
+- =qt5ct=: Use Qt style set using the qt5ct and qt6ct applications.
+
+** =qt.style=
+Selects the style to use for Qt applications.
+The options are:
+- =adwaita=, adwaita-dark, adwaita-highcontrast, adawaita-highcontrastinverse: Use Adwaita Qt style with adwaita
+- =breeze=: Use the Breeze style from breeze
+- bb10bright, bb10dark, cleanlooks, gtk2, motif, plastique: Use styles from qtstyleplugins
+- =kvantum=: Use styles from kvantum.
+
+#+begin_src nix :tangle themes.nix
+qt = {
+  enable = true;
+  # platformTheme.name = "adwaita"; #kvantum , gtk, gnome, kde, gtk3, **deprecated
+  # platformTheme.name = "qtct"; # "gtk", "gtk3", "gnome", "adwaita", "lxqt", "qtct", "kde" or (submodule) #qt6ct
+  platformTheme = "gnome";
+  style = {
+    name = "breeze";
+  };
+};
+#+end_src
+
+* end
+#+begin_src nix :tangle themes.nix
+}
+#+end_src

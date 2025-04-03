@@ -1,59 +1,86 @@
-{osConfig, lib, config, ...}:
+{
+  osConfig,
+  lib,
+  config,
+  ...
+}:
 
 {
   options.waybar = {
-    enable =  lib.mkEnableOption "waybar";
+    enable = lib.mkEnableOption "waybar";
   };
-  # config = lib.mkIf (osConfig.specialisation != {}) {
+
   config = lib.mkIf config.waybar.enable {
-    programs.waybar =  {
-      enable =  lib.mkDefault true;
+    programs.waybar = {
+      enable = lib.mkDefault true;
       # systemd = {
-          # enable = true; # clashes with uwsm?
-          # target = "graphical-session.target"; # config.wayland.systemd.target::
+      # enable = true; # clashes with uwsm?
+      # target = "graphical-session.target"; # config.wayland.systemd.target::
       # };
-      style = 
-        (if osConfig.networking.hostName == "carthage"
-          then import ./css_waybar-carthage.nix
-        else 
-          if osConfig.networking.hostName == "tangier" then import ./css_waybar-tangier.nix else import ./css_waybar-carthage.nix) + import ./css_waybar-common.nix;
+      style =
+        (
+          if osConfig.networking.hostName == "carthage" then
+            import ./css_waybar-carthage.nix
+          else if osConfig.networking.hostName == "tangier" then
+            import ./css_waybar-tangier.nix
+          else
+            import ./css_waybar-carthage.nix
+        )
+        + import ./css_waybar-common.nix;
       settings = {
         mainBar = {
           # height = 20; #so funny
           margin = "0 6 0 4";
-          output = if osConfig.networking.hostName == "carthage" then [
-            "HDMI-A-1"
-            # "DP-1"
-          ] else [];
+          output =
+            if osConfig.networking.hostName == "carthage" then
+              [
+                "HDMI-A-1"
+                # "DP-1"
+              ]
+            else
+              [ ];
           layer = "bottom";
-          modules-center = [];
+          modules-center = [ ];
           modules-left = [
             "hyprland/workspaces"
             "hyprland/window" # NOTE needed for transparency effects
           ];
-          modules-right = [# common front - since its sequential layering
-            "group/resize_network"
-          ] ++ (if osConfig.networking.hostName == "tangier" then [ # tangier
-            "group/disk_memory"
-            "group/ssd-mpris"
-            "group/cpu_freq"
-            "battery"
-            "backlight"
-          ]
-          else if osConfig.networking.hostName == "carthage" then [ # carthage
-            "group/gpu_mpris"
-            "group/gpu_temp_network_block"
-            "group/all_disks"
-            #"custom/nvme_temp"
-            "group/nvme-temp_memory"
-            "group/cpu_block"
-          ] else []) ++ [ # common rear
-            "group/temp_wireplumber"
-            "group/tray_clock"
-             # "power-profiles-daemon"
-             # "idle_inhibitor"
-            "group/power-profiles-idle-inhibitor"
-          ];
+          modules-right =
+            [
+              # common front - since its sequential layering
+              "group/resize_network"
+            ]
+            ++ (
+              if osConfig.networking.hostName == "tangier" then
+                [
+                  # tangier
+                  "group/disk_memory"
+                  "group/ssd-mpris"
+                  "group/cpu_freq"
+                  "battery"
+                  "backlight"
+                ]
+              else if osConfig.networking.hostName == "carthage" then
+                [
+                  # carthage
+                  "group/gpu_mpris"
+                  "group/gpu_temp_network_block"
+                  "group/all_disks"
+                  #"custom/nvme_temp"
+                  "group/nvme-temp_memory"
+                  "group/cpu_block"
+                ]
+              else
+                [ ]
+            )
+            ++ [
+              # common rear
+              "group/temp_wireplumber"
+              "group/tray_clock"
+              # "power-profiles-daemon"
+              # "idle_inhibitor"
+              "group/power-profiles-idle-inhibitor"
+            ];
 
           "hyprland/workspaces" = {
             format = "{name}";
@@ -83,7 +110,7 @@
             format = "{}";
             # icon = true;
             icon-size = 17;
-            separate-outputs = true; # 	Show the active window of the monitor the bar belongs to, instead of the focused window.
+            separate-outputs = true; # Show the active window of the monitor the bar belongs to, instead of the focused window.
             cursor = true;
             on-scroll-up = "hyprctl dispatch workspace m-1"; # m- monitor, e -all open, r- m+empty
             on-scroll-down = "hyprctl dispatch workspace m+1";
@@ -108,13 +135,16 @@
             format-critical = "{temperatureC}° {icon}";
             interval = 8;
             format = "{temperatureC} °";
-            format-icons = [ " " " " "" ];
+            format-icons = [
+              " "
+              " "
+              ""
+            ];
             tooltip = false;
             min-length = 3;
             max-length = 4;
             cursor = true;
           };
-
 
           "power-profiles-daemon" = {
             format = "{icon}";
@@ -129,19 +159,29 @@
           };
 
           "battery" = {
-            "states" = { "good" = 95; "warning" = 20; "critical" = 10; };
-            "interval"  = 10;
+            "states" = {
+              "good" = 95;
+              "warning" = 20;
+              "critical" = 10;
+            };
+            "interval" = 10;
             "format" = "{capacity}%  {icon}";
             "format-charging" = "{capacity}% ";
             "format-plugged" = "{capacity}% ";
             "format-alt" = "{time} {icon}";
             # "format-good": "", // An empty format will hide the module
             # "format-full": "",
-            "format-icons" = ["" "" "" "" ""];
+            "format-icons" = [
+              ""
+              ""
+              ""
+              ""
+              ""
+            ];
           };
 
           "wireplumber" = {
-            format = "{volume} ";# 🎙️
+            format = "{volume} "; # 🎙️
             format-muted = "";
             on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
             on-click-backward = "pwvucontrol";
@@ -230,14 +270,17 @@
             orientation = "inherit";
             cursor = true;
             modules =
-              if osConfig.networking.hostName == "carthage"  then
-              [
-                "disk"
-                "disk#home"
-                "disk#linuxHdd"
-                "disk#extraHdd"
-              ]
-              else if osConfig.networking.hostName == "tangier" then ["disk"] else [];
+              if osConfig.networking.hostName == "carthage" then
+                [
+                  "disk"
+                  "disk#home"
+                  "disk#linuxHdd"
+                  "disk#extraHdd"
+                ]
+              else if osConfig.networking.hostName == "tangier" then
+                [ "disk" ]
+              else
+                [ ];
           };
 
           "group/resize_network" = {
@@ -254,7 +297,6 @@
               click-to-reveal = true;
             };
           };
-
 
           "group/media" = {
             orientation = "horizontal";
@@ -295,7 +337,10 @@
               children-class = "drawer-child";
               click-to-reveal = true;
             };
-            modules = [ "temperature" "wireplumber" ];
+            modules = [
+              "temperature"
+              "wireplumber"
+            ];
           };
 
           "group/tray_clock" = {
@@ -323,7 +368,10 @@
             };
             orientation = "horizontal";
             cursor = true;
-            modules = [ "cpu" "custom/cpu_freq"  ];
+            modules = [
+              "cpu"
+              "custom/cpu_freq"
+            ];
           };
 
           "group/cpu_block" = {
@@ -441,7 +489,7 @@
             interval = 10;
             format = "{} °";
             retur-type = "";
-            min-length = 3;#absolut min lul
+            min-length = 3; # absolut min lul
             max-length = 3;
             tooltip = false;
           };
@@ -518,14 +566,14 @@
 
           "disk#linuxHdd" = {
             interval = 90;
-            format = "   {specific_free:0.1f} Gib";#
+            format = "   {specific_free:0.1f} Gib"; # 
             path = "/media/linuxHdd";
             "unit" = "GB";
           };
 
           "disk#extraHdd" = {
             interval = 90;
-            format = "   {specific_free:0.1f} Gib"; #󰨡
+            format = "   {specific_free:0.1f} Gib"; # 󰨡
             path = "/media/extraHdd";
             "unit" = "GB";
           };
@@ -572,7 +620,18 @@
             format = "{icon}";
             tooltip = true;
             format-alt = "<small>{percent}%</small>";
-            format-icons = [ "󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨" ];
+            format-icons = [
+              "󱩎"
+              "󱩏"
+              "󱩐"
+              "󱩑"
+              "󱩒"
+              "󱩓"
+              "󱩔"
+              "󱩕"
+              "󱩖"
+              "󰛨"
+            ];
             on-scroll-up = "brightnessctl set 1%+";
             on-scroll-down = "brightnessctl set 1%-";
             smooth-scrolling-threshold = "2400";
@@ -582,8 +641,8 @@
 
           "network" = {
             format-wifi = "  {essid} {bandwidthDownBytes}";
-            format-icons = [];
-            format-wifi-alt =  "  {bandwidthDownBytes}      {bandwidthUpBytes}";
+            format-icons = [ ];
+            format-wifi-alt = "  {bandwidthDownBytes}      {bandwidthUpBytes}";
             format-ethernet = "   {bandwidthDownBytes}       {bandwidthUpBytes}";
             interval = 2;
             format-linked = "{ifname} (No IP) ";
@@ -657,11 +716,28 @@
               spotify = "󰓇 ";
               mpd = "♪";
             };
-            status-icons = {paused = "⏸";playing = "";stopped = "";};
-            dynamic-importance-order = [ "title" "artist" "album" "position" "length" ];
+            status-icons = {
+              paused = "⏸";
+              playing = "";
+              stopped = "";
+            };
+            dynamic-importance-order = [
+              "title"
+              "artist"
+              "album"
+              "position"
+              "length"
+            ];
             dynamic-len = 30;
-            dynamic-order = ["title" "artist" "album" ];
-            ignored-players = [ "firefox" "chromium"];
+            dynamic-order = [
+              "title"
+              "artist"
+              "album"
+            ];
+            ignored-players = [
+              "firefox"
+              "chromium"
+            ];
           };
 
           "custom/launcher" = {

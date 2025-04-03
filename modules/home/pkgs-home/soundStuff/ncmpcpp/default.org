@@ -1,6 +1,6 @@
 #+title: my ncmpcpp master config
 
-* intro
+* start
 #+begin_src nix :tangle default.nix
 {
   programs.ncmpcpp = {
@@ -8,7 +8,7 @@
     # package = pkgs.ncmpcpp.override { visualizerSupport = true; };
 #+end_src
 
-** music location
+* music location
 #+begin_src nix :tangle default.nix
     mpdMusicDir = "~/Music";
 #+end_src
@@ -22,7 +22,7 @@ bindings = [
 
 { key = "k"; command = "scroll_up"; }
 
-{key = "l";command = "next_column";}
+{key = "l"; command = "next_column";}
 
 {key = "L";command = "next_screen";}
 
@@ -60,70 +60,119 @@ bindings = [
 * settings
 #+begin_src nix :tangle default.nix
 settings = {
-  startup_screen = "playlist";
-  user_interface = "alternative"; # classic , alternative #TODO: add snippet for nice comments
-  default_place_to_search_in = "database"; #playlist
+#+end_src
 
-  message_delay_time = 2;
+** start up
+display_screens_numbers_on_start = true; not working
 
-  locked_screen_width_part = "20-80";
-  ask_for_locked_screen_width_part = true; # disable to use default
+#+begin_src nix :tangle default.nix
+startup_screen = "playlist";
+user_interface = "classic"; # classic , alternative #TODO: add snippet for nice comments
+default_place_to_search_in = "database"; #playlist
+#+end_src
 
-  jump_to_now_playing_song_at_start = true;
-  #now_playing_prefix = " "; # 󱉺  
-  now_playing_prefix = "  ";#TODO:check how to filter out songs from playlist
+** pop up , messages
+#+begin_src nix :tangle default.nix
+message_delay_time = 2;
+connected_message_on_startup = false;
+#+end_src
 
-  # external_editor = "/home/malu/.nix-profile/bin/nvim";
-  # external_editor = "/run/current-system/sw/bin/nvim";
-  external_editor = "/home/malu/.nix-profile/bin/emacsclient";
-  use_console_editor = true;#TODO: what is sit doing?
+** screen switch
+If set to "previous", key_screen_switcher will switch between current and last used screen. If set to "sequence: user_defined_sequence", it will switch between given sequence of screens. Syntax clarification can be found in example config file.
 
-  show_hidden_files_in_local_browser = false;
+#+begin_src :tangle default.nix
+screen_switcher_mode = "previous";
+#+end_src
 
-  # functionality
-  centered_cursor = true; #playing focus
-  autocenter_mode = true; # Centers highlight on current song during switch
+** locked screen part
+If enabled, ncmpcpp will ask for % of locked screen's width each time you want to lock a screen. If you disable that, it'll silently attempt to use default value.
 
-  cyclic_scrolling = true;
-  connected_message_on_startup = false;
+#+begin_src nix :tangle default.nix
+# locked_screen_width_part = "20-80";
+ask_for_locked_screen_width_part = true; # disable to use default
+#+end_src
 
-  #ignore_diacritics = true; # local language ^ pronounciation marker eg. shadda, umlauts TODO : investigate if this is what is causing issues with -
-  #ignore_leading_the = true;
+#+begin_src nix :tangle default.nix
+jump_to_now_playing_song_at_start = true;
+#now_playing_prefix = " "; # 󱉺  
+now_playing_prefix = "  ";#TODO:check how to filter out songs from playlist
+now_playing_suffix = "  ";
+#+end_src
 
-  block_search_constraints_change_if_items_found = true; # fields in Search engine above "Reset" will be blocked after successful searching
-  display_bitrate = false;
+** external editor
+#+begin_src nix :tangle default.nix
+external_editor = "/home/malu/.nix-profile/bin/emacsclient";
+use_console_editor = true;#TODO: what is sit doing?
 
-  enable_window_title = true;
+#+end_src
 
-  empty_tag_marker = "@@";
-  #empty_tag_color = "";
+** cursor position
+- centered_cursor = yes/no
+        If enabled, currently highlighted position in the list will be always centered.
+
+- autocenter_mode = yes/no
+        Default state for autocenter mode at start.
+#+begin_src nix :tangle default.nix
+# functionality
+centered_cursor = true; #playing focus
+autocenter_mode = true; # Centers highlight on current song during switch
+
+cyclic_scrolling = true;
+
+#ignore_diacritics = true; # local language ^ pronounciation marker eg. shadda, umlauts TODO : investigate if this is what is causing issues with -
+#ignore_leading_the = true;
+
+block_search_constraints_change_if_items_found = true; # fields in Search engine above "Reset" will be blocked after successful searching
+display_bitrate = false;
+
+enable_window_title = true;
+#+end_src
+
+** tags
+#+begin_src nix :tangle default.nix
+tag_editor_extended_numeration = true;
+empty_tag_marker = "*empty*";
+#empty_tag_color = "";
 #+end_src
 
 ** media library
+media_library_left_column = "a";#a/y/g/c/p - not work
+ 
 #+begin_src nix :tangle default.nix
 media_library_primary_tag = "album_artist"; #album_artist, artist, date, genre, composer, performer
 media_library_albums_split_by_date = true;
 media_library_hide_album_dates = true;
+# media_library_disable_two_column_mode = false; # false::
+#+end_src
 
+** find
+#+begin_src nix :tangle default.nix
 default_find_mode = "wrapped"; #wrapped - go to match as you type, normal <key>w
 
-# lyrics
-follow_now_playing_lyrics = true;
-# lyrics_directory = "~/.local/share/darth_ncmpcpp";
 #+end_src
 
 ** lyrics
 #+begin_src nix :tangle default.nix
 lyrics_directory = "~/Music/lyrics";
 store_lyrics_in_song_dir = false;
-# lyrics_fetchers = "genius , azlyrics";
-# lyrics_fetchers = "genius";
+fetch_lyrics_for_current_song_in_background = false;
 
+# lyrics_fetchers = "genius , azlyrics";
+lyrics_fetchers = "genius";
+# lyrics
+follow_now_playing_lyrics = true;
+# lyrics_directory = "~/.local/share/darth_ncmpcpp";
+#+end_src
+
+** seeking
+#+begin_src nix :tangle default.nix
 incremental_seeking = "yes";
 seek_time = "1";
 #+end_src
 
 ** title
+If enabled, column titles will be displayed, otherwise hidden.
+
 #+begin_src nix :tangle default.nix
 titles_visibility = false;
 #+end_src
@@ -131,13 +180,13 @@ titles_visibility = false;
 ** header
 #+begin_src nix :tangle default.nix
 header_text_scrolling = true;
-header_visibility = true;
+header_visibility = true; # If enabled, header window will be displayed, otherwise hidden.
 header_window_color = 136; # page title #holy purplee
 #+end_src
 
 ** colors
 *** color1, color2
-one of the colors for song info, tiny tag editor and search engine
+One of colors used in Song info, Tiny tag editor and Search engine.
 
 #+begin_src nix :tangle default.nix
 color1 = 112;
@@ -232,23 +281,40 @@ colors_enabled = true;
 #+end_src
 
 ** playlists
+ncmpc_like_songs_adding = true; # If enabled, pressing space on item, which is already in playlist will remove it, otherwise add it again.
 #+begin_src nix :tangle default.nix
-playlist_editor_display_mode = "columns";
 playlist_disable_highlight_delay = 5; #0 to disable fade
 playlist_show_remaining_time = true; #header time remaining
 playlist_shorten_total_times = true;
 playlist_separate_albums = false; # add separator lines between albums in playlist view
-playlist_display_mode = "columns";
 ask_before_clearing_playlists = true;
+#+end_src
 
+** display mode , columns
+#+begin_src nix :tangle default.nix
 search_engine_display_mode = "columns";
 browser_display_mode = "columns";
-
+playlist_display_mode = "columns";
+playlist_editor_display_mode = "columns";
+browser_playlist_prefix = " - ";
 #clock_display_seconds = yes
+#+end_src
+
+** mouse
++ mouse_list_scroll_whole_page = yes/no
+        If enabled, mouse wheel will scroll the whole page of item list at a time, otherwise the number of lines specified by lines_scrolled variable.
+
+#+begin_src nix :tangle default.nix
+lines_scrolled = 8;
+mouse_list_scroll_whole_page = true;
 mouse_support = true;
 #+end_src
 
 ** visualizer
++ visualizer_fifo_path = PATH
+        Path to mpd fifo output. This is needed to make music visualizer work (note that output sound format of this fifo has to be either 44100:16:1 or 44100:16:2, depending on whether you want mono or stereo visualization)
++ visualizer_in_stereo = yes/no
+        Should be set to 'yes', if fifo output's format was set to 44100:16:2.
 #+begin_src nix :tangle default.nix
 visualizer_output_name = "Visualizer feed";
 visualizer_type = "wave_filled"; # wave, wave_filled, spectrum, ellipse
@@ -262,11 +328,23 @@ visualizer_look = "+|";
 #+end_src
 
 ** ncmpcpp directory
++ ncmpcpp_directory = PATH
+        Directory for storing ncmpcpp related files. Changing it is useful if you want to store everything somewhere else and provide command line setting for alternative location to config file which defines that while launching ncmpcpp.
 #+begin_src nix :tangle default.nix
 ncmpcpp_directory = "~/.local/share/ncmpcpp";
 #+end_src
 
 ** mpd settings
++ mpd_communicat[[id:a34c5d79-9efd-40a7-a99a-87d96af60a1d][School]]ion_mode = MODE
+        If set to 'polling', ncmpcpp will constantly poll mpd for its status. If set to 'notifications', ncmppcp will make use of 'idle' command and wait for events. This is more efficient and responsive, but may cause some trouble with <mpd-0.15, so if you run such version and encounter strange bugs (e.g. current track time not being updated), you will either have to use 'polling' or upgrade your mpd.
++ mpd_host = HOST
+        Connect to MPD running on specified host/unix socket. When HOST starts with a '/', it is assumed to be a unix socket.
++ mpd_music_dir = PATH
+        Search for files in specified directory. This is needed for ~tag editor~ to work.
+       
+# mpd_communication_mode = "notifications";
+not working
+
 #+begin_src nix :tangle default.nix
 mpd_crossfade_time = 4;
 mpd_connection_timeout = 5;
@@ -290,15 +368,25 @@ selected_item_prefix = "+  ";
 discard_colors_if_item_is_selected = true;
 #+end_src
 
-** physical item deletion, encoding
+** encoding
 #+begin_src nix :tangle default.nix
 system_encoding = "utf8";
-#regular_expressions = none/basic/extended/perl;
+regular_expressions =  "extended"; # none/basic/extended/perl;
 generate_win32_compatible_filenames = true; # generated file names eg. with tag editor wont have  \?*:|
-allow_for_physical_item_deletion = true;
-#startup_slave_screen = "browser";
-};
- };
-}
 #+end_src
 
+** delete files and directories
+# allow_physical_directories_deletion = true; not working???
+
+#+begin_src nix :tangle default.nix
+allow_for_physical_item_deletion = true;
+show_hidden_files_in_local_browser = false;
+#startup_slave_screen = "browser";
+#+end_src
+
+* end
+#+begin_src nix :tangle default.nix
+};
+ };
+  }
+#+end_src

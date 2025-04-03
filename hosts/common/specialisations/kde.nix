@@ -1,4 +1,9 @@
-{pkgs, lib, config, ...}:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   # system.nixos.tags = ["kdeBoi"];
   # inheritParentConfig = true;
@@ -16,12 +21,13 @@
 
   # imports = [ ../../hosts/common ];
 
-  config = lib.mkIf config.kde.enable { # execute if implicitly enabled
+  config = lib.mkIf config.kde.enable {
+    # execute if implicitly enabled
     services = {
       displayManager = {
         sddm.enable = lib.mkDefault true;
-        defaultSession = "plasma"; # plasmax11, plasma(wayland)
         sddm.wayland.enable = lib.mkDefault true;
+        defaultSession = "plasma"; # plasmax11, plasma(wayland)
         ly.enable = lib.mkForce false;
       };
       desktopManager.plasma6.enable = true;
@@ -34,7 +40,7 @@
         oxygen
       ];
       # systemPackages = with pkgs; [
-        # jetbrains.pycharm-community
+      # jetbrains.pycharm-community
       # ];
     };
   };

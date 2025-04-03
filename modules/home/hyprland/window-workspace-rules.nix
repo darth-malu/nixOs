@@ -13,7 +13,7 @@
       "float, title:confirmreset"
       "float, title:Open File"
       "float, title:branchdialog"
-      "float, title:org.gnome.FileRoller"
+      "float, class:org.gnome.FileRoller"
       "float, title:^(Media viewer)$"
       "float, title:^(Volume Control)$"
       "float, title:^(Picture-in-Picture)$"
@@ -27,7 +27,7 @@
       #"float, Rofi"
 
       # "float, pwvucontrol"
-      "float, title:com.saivert.pwvucontrol"
+      "float, class:com.saivert.pwvucontrol"
       #"center(1), com.saivert.pwvucontrol"
 
       # Select files dialog

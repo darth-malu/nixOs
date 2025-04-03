@@ -126,7 +126,7 @@ in
       ghostscript
       # obsidian
       # glow # TODO: test this extensively # see quart for blog with markdown
-      ffmpeg
+      ffmpeg-full # full vs vanilla?
       #productivity
       #blender
       # blender-hip # accelarated render
@@ -173,6 +173,7 @@ in
 
       # LSP stuff
       nil # kinda slow
+      nixd
       nixfmt-rfc-style # official - needed to use formatting with :lang nix
 
       # org stuff
@@ -180,6 +181,14 @@ in
 
       # export dep
       wkhtmltopdf
+
+      nodePackages.js-beautify # js/css/html format
+      stylelint # css linter
+
+      graphviz # for org-roam visualization
+
+      imagemagick # for image-dired
+      unzip # for tldr
     ])
     ++ (with pkgs; [
       # creative space
@@ -190,10 +199,6 @@ in
       obs-cli
       spotube
       digikam
-      # jamesdsp
-      # nixd # zed
-      imagemagick # for image-dired
-      # kdePackages.dolphin
     ])
     ++ (with pkgs; [
       # NOTE: MANGA stuff
@@ -204,6 +209,7 @@ in
     ])
     ++ (with pkgs; [
       # NOTE: school
+      nodePackages.vercel # vercel
       netbeans
       wpsoffice
       R-with-my-packages

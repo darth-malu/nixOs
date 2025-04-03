@@ -1,0 +1,27 @@
+#+title: Qemu
+
+* start
+#+begin_src emacs-lisp :tangle qemu.nix
+{config, lib, pkgs, ...}:
+
+{
+    environment.systemPackages = [
+        qemu
+    ];
+
+    # virt manager
+    virtualisation.libvirtd.enable = true;
+    programs.virt-manager.enable = true;
+    virtualisation.spiceUSBRedirection.enable = true;
+#+end_src
+
+* Uefi support
+#+begin_src emacs-lisp :tangle qemu.nix
+
+    systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
+#+end_src
+
+* end
+#+begin_src emacs-lisp :tangle qemu.nix
+}
+#+end_src

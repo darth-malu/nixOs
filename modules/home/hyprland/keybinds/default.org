@@ -137,6 +137,17 @@ bind =
     "$mod, KP_Multiply, pseudo"# dwindle
 #+end_src
 
+#+begin_src nix :tangle default.nix
+    # "$cl $sl, R, pass, ^(com.obsproject.Studio)$"
+    # "$cl $sl, S, pass, ^(com.obsproject.Studio)$"
+    # "$cl $sl, [, pass, ^(com.obsproject.Studio)$"
+    # "$cl $sl, ], pass, ^(com.obsproject.Studio)$"
+    # "$cl $sl, \, pass, ^(com.obsproject.Studio)$"
+    # "$cl $sl, -, pass, ^(com.obsproject.Studio)$"
+    "SUPER $sl, F10, sendshortcut, $cl $sl, R, class:^(com\.obsproject\.Studio)$"
+#+end_src
+
+
 * kill active
 #+begin_src nix :tangle default.nix
 #█▄▀ █ █░░ █░░   ▄▀█ █▀▀ ▀█▀ █ █░█ █▀▀

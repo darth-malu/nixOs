@@ -11,7 +11,7 @@ bindings = [
 
 { key = "k"; command = "scroll_up"; }
 
-{key = "l";command = "next_column";}
+{key = "l"; command = "next_column";}
 
 {key = "L";command = "next_screen";}
 
@@ -47,58 +47,59 @@ bindings = [
 ];
 
 settings = {
-  startup_screen = "playlist";
-  user_interface = "alternative"; # classic , alternative #TODO: add snippet for nice comments
-  default_place_to_search_in = "database"; #playlist
 
-  message_delay_time = 2;
+startup_screen = "playlist";
+user_interface = "classic"; # classic , alternative #TODO: add snippet for nice comments
+default_place_to_search_in = "database"; #playlist
 
-  locked_screen_width_part = "20-80";
-  ask_for_locked_screen_width_part = true; # disable to use default
+message_delay_time = 2;
+connected_message_on_startup = false;
 
-  jump_to_now_playing_song_at_start = true;
-  #now_playing_prefix = " "; # 󱉺  
-  now_playing_prefix = "  ";#TODO:check how to filter out songs from playlist
+# locked_screen_width_part = "20-80";
+ask_for_locked_screen_width_part = true; # disable to use default
 
-  # external_editor = "/home/malu/.nix-profile/bin/nvim";
-  # external_editor = "/run/current-system/sw/bin/nvim";
-  external_editor = "/home/malu/.nix-profile/bin/emacsclient";
-  use_console_editor = true;#TODO: what is sit doing?
+jump_to_now_playing_song_at_start = true;
+#now_playing_prefix = " "; # 󱉺  
+now_playing_prefix = "  ";#TODO:check how to filter out songs from playlist
+now_playing_suffix = "  ";
 
-  show_hidden_files_in_local_browser = false;
+external_editor = "/home/malu/.nix-profile/bin/emacsclient";
+use_console_editor = true;#TODO: what is sit doing?
 
-  # functionality
-  centered_cursor = true; #playing focus
-  autocenter_mode = true; # Centers highlight on current song during switch
+# functionality
+centered_cursor = true; #playing focus
+autocenter_mode = true; # Centers highlight on current song during switch
 
-  cyclic_scrolling = true;
-  connected_message_on_startup = false;
+cyclic_scrolling = true;
 
-  #ignore_diacritics = true; # local language ^ pronounciation marker eg. shadda, umlauts TODO : investigate if this is what is causing issues with -
-  #ignore_leading_the = true;
+#ignore_diacritics = true; # local language ^ pronounciation marker eg. shadda, umlauts TODO : investigate if this is what is causing issues with -
+#ignore_leading_the = true;
 
-  block_search_constraints_change_if_items_found = true; # fields in Search engine above "Reset" will be blocked after successful searching
-  display_bitrate = false;
+block_search_constraints_change_if_items_found = true; # fields in Search engine above "Reset" will be blocked after successful searching
+display_bitrate = false;
 
-  enable_window_title = true;
+enable_window_title = true;
 
-  empty_tag_marker = "@@";
-  #empty_tag_color = "";
+tag_editor_extended_numeration = true;
+empty_tag_marker = "empty";
+#empty_tag_color = "";
 
 media_library_primary_tag = "album_artist"; #album_artist, artist, date, genre, composer, performer
 media_library_albums_split_by_date = true;
 media_library_hide_album_dates = true;
+# media_library_disable_two_column_mode = false; # false::
 
 default_find_mode = "wrapped"; #wrapped - go to match as you type, normal <key>w
 
+lyrics_directory = "~/Music/lyrics";
+store_lyrics_in_song_dir = false;
+fetch_lyrics_for_current_song_in_background = false;
+
+# lyrics_fetchers = "genius , azlyrics";
+lyrics_fetchers = "genius";
 # lyrics
 follow_now_playing_lyrics = true;
 # lyrics_directory = "~/.local/share/darth_ncmpcpp";
-
-lyrics_directory = "~/Music/lyrics";
-store_lyrics_in_song_dir = false;
-# lyrics_fetchers = "genius , azlyrics";
-# lyrics_fetchers = "genius";
 
 incremental_seeking = "yes";
 seek_time = "1";
@@ -106,7 +107,7 @@ seek_time = "1";
 titles_visibility = false;
 
 header_text_scrolling = true;
-header_visibility = true;
+header_visibility = true; # If enabled, header window will be displayed, otherwise hidden.
 header_window_color = 136; # page title #holy purplee
 
 color1 = 112;
@@ -154,18 +155,21 @@ progressbar_elapsed_color = 74;
 
 colors_enabled = true;
 
-playlist_editor_display_mode = "columns";
 playlist_disable_highlight_delay = 5; #0 to disable fade
 playlist_show_remaining_time = true; #header time remaining
 playlist_shorten_total_times = true;
 playlist_separate_albums = false; # add separator lines between albums in playlist view
-playlist_display_mode = "columns";
 ask_before_clearing_playlists = true;
 
 search_engine_display_mode = "columns";
 browser_display_mode = "columns";
-
+playlist_display_mode = "columns";
+playlist_editor_display_mode = "columns";
+browser_playlist_prefix = " - ";
 #clock_display_seconds = yes
+
+lines_scrolled = 8;
+mouse_list_scroll_whole_page = true;
 mouse_support = true;
 
 visualizer_output_name = "Visualizer feed";
@@ -196,10 +200,13 @@ selected_item_prefix = "+  ";
 discard_colors_if_item_is_selected = true;
 
 system_encoding = "utf8";
-#regular_expressions = none/basic/extended/perl;
+regular_expressions =  "extended"; # none/basic/extended/perl;
 generate_win32_compatible_filenames = true; # generated file names eg. with tag editor wont have  \?*:|
+
 allow_for_physical_item_deletion = true;
+show_hidden_files_in_local_browser = false;
 #startup_slave_screen = "browser";
+
 };
  };
-}
+  }

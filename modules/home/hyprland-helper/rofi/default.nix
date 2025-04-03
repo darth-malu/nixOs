@@ -24,7 +24,7 @@
       # package = pkgs-unstable.rofi-wayland.override { plugins = with pkgs-unstable; [ rofi-emoji rofi-obsidian rofi-calc ]; };
       #yoffset = 3;
       extraConfig = {
-        run-command = "hyprctl dispatch exec [workspace emptym] uwsm app -s a -- {cmd}";
+        run-command = "hyprctl dispatch -- exec [workspace emptym] uwsm app -s a -- {cmd}";
         # rofi -e "my message"
         # modi = "drun,emoji,ssh";
         modes = [

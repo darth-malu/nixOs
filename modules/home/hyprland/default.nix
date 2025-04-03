@@ -1,10 +1,15 @@
-{osConfig,  lib, config, ...}:
+{
+  osConfig,
+  lib,
+  config,
+  ...
+}:
 {
   imports = [
     ./keybinds
     ./monitors-peripherals.nix
     ./ui.nix
-    # ./environment_variables.nix # avoid use .conf/uwsm/env - check file
+    ./environment_variables.nix # avoid use .conf/uwsm/env - check file
     ./window-workspace-rules.nix
     ./autoStart.nix
     ../hyprland-helper
@@ -17,21 +22,22 @@
   config = lib.mkIf config.homeHyprland.enable {
     dunst.enable = true;
     waybar.enable = true;
-    rofi.enable =  true;
-    wayland.windowManager.hyprland = { # configures Hyprland and adds it to your user’s PATH, but does not make certain system-level changes. the NixOS module makes system-level changes such as adding a desktop session entry.
+    rofi.enable = true;
+    wayland.windowManager.hyprland = {
+      # configures Hyprland and adds it to your user’s PATH, but does not make certain system-level changes. the NixOS module makes system-level changes such as adding a desktop session entry.
       enable = true;
       package = null;
       portalPackage = null;
       # systemd = {
-        # enable = false; # import to systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE #WARN: last change true -> false
-        # enableXdgAutostart = true;
-        # extraCommands = [# Extra commands to be run after D-Bus activation.
-          # "systemctl --user stop hyprland-session.target"
-          # "systemctl --user start hyprland-session.target"
-        # ];
-        # variables = [ # imported to systemd dbus enviroments
-          # "--all" # does dbus-update-activation-environment --systemd --all
-        # ];
+      # enable = false; # import to systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE #WARN: last change true -> false
+      # enableXdgAutostart = true;
+      # extraCommands = [# Extra commands to be run after D-Bus activation.
+      # "systemctl --user stop hyprland-session.target"
+      # "systemctl --user start hyprland-session.target"
+      # ];
+      # variables = [ # imported to systemd dbus enviroments
+      # "--all" # does dbus-update-activation-environment --systemd --all
+      # ];
       # };
       extraConfig = ''
         # █▀█ █▀▀ █▀ █ ▀█ █▀▀
@@ -67,11 +73,11 @@
           vrr = if osConfig.networking.hostName == "carthage" then 1 else 0; # 1 -on,2 -fullscreen # adaptive sync
           new_window_takes_over_fullscreen = 2; # 2 - unfullscreen, 1 -takes over, -nothing/staybehind -0
           close_special_on_empty = true;
-          disable_hyprland_logo = true; #wallpaper + logo lol
+          disable_hyprland_logo = true; # wallpaper + logo lol
           #disable_splash_rendering = true
           "col.splash" = "rgba(195,232,141,1.0)";
           splash_font_family = "VictorMono Nerd Font"; # FIXME not working lol ofcourse
-          key_press_enables_dpms = true;#false:: #wakes monitor if key pressed
+          key_press_enables_dpms = true; # false:: #wakes monitor if key pressed
           # middle_click_paste = if osConfig.networking.hostName == "carthage" then false else true;
           middle_click_paste = true;
           # animate_manual_resizes = true;
@@ -91,10 +97,10 @@
           #persistent_warps = true; # maintain cursor position on switch rather than center
           hide_on_key_press = true;
           #warp_on_change_workspace = true; # cursor to last focused window
-          sync_gsettings_theme = true;# true::
+          sync_gsettings_theme = true; # true::
         };
         binds = {
-          workspace_center_on = 1;#Whether switching workspaces should center the cursor on the workspace (0) or on the last active window for that workspace (1)
+          workspace_center_on = 1; # Whether switching workspaces should center the cursor on the workspace (0) or on the last active window for that workspace (1)
           workspace_back_and_forth = true;
         };
       };

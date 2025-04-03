@@ -1,6 +1,6 @@
 {
   home.sessionVariables = {
-    EDITOR="nvim";
+    # EDITOR="nvim";
     # GTK_THEME = "Nightfox-Dark";
     #MANPAGER="nvim +Man!";
     #MANWIDTH=999;

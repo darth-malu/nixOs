@@ -16,9 +16,11 @@
       };
       null-ls = {
         enable = true;
-        debounce = 250; # 250::,
-        default_timeout = 5000; #milliseconds, 5000::
-        diagnostics_format = "[#{m}] #{s} (#{c})"; # #[#{m}] #{s} (#{c})::
+        setupOpts = {
+          diagnostics_format = "[#{m}] #{s} (#{c})"; # #[#{m}] #{s} (#{c})::
+          default_timeout = 5000; #milliseconds, 5000::
+          debounce = 250; # 250::,
+        };
         # sources = {};
       };
       trouble = {

@@ -1,4 +1,5 @@
 #+title: Themes
+#+auto_tangle: t
 
 * start / hyprland condition
 #+begin_src nix :tangle themes.nix
@@ -114,12 +115,13 @@ The options are:
 - bb10bright, bb10dark, cleanlooks, gtk2, motif, plastique: Use styles from qtstyleplugins
 - =kvantum=: Use styles from kvantum.
 
+  =NOTE= platformTheme: gnome deprecated use 'adwaita'
 #+begin_src nix :tangle themes.nix
 qt = {
   enable = true;
-  # platformTheme.name = "adwaita"; #kvantum , gtk, gnome, kde, gtk3, **deprecated
+  platformTheme.name = "adwaita-dark"; #kvantum , gtk, gnome, kde, gtk3, **deprecated
   # platformTheme.name = "qtct"; # "gtk", "gtk3", "gnome", "adwaita", "lxqt", "qtct", "kde" or (submodule) #qt6ct
-  platformTheme = "gnome";
+  # platformTheme = "gnome";
   style = {
     name = "breeze";
   };

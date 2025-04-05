@@ -9,10 +9,7 @@ exitstatus() {
   fi
 }
 
-# EXIT_COLOR="$(exitstatus)"
 EXIT_COLOR="\[\$(exitstatus)\]"
-# BOLD="\[$(tput bold)\]"
-# RESET="\[$(tput sgr0)\]"
 BOLD="\[$(tput bold)\]"
 DIM="\[$(tput dim)\]"
 RESET="\[$(tput sgr0)\]"

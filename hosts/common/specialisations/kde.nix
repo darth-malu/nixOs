@@ -19,15 +19,12 @@
     enable = lib.mkEnableOption "Plasma";
   };
 
-  # imports = [ ../../hosts/common ];
-
   config = lib.mkIf config.kde.enable {
-    # execute if implicitly enabled
     services = {
       displayManager = {
         sddm.enable = lib.mkDefault true;
         sddm.wayland.enable = lib.mkDefault true;
-        defaultSession = "plasma"; # plasmax11, plasma(wayland)
+        defaultSession = "plasma";
         ly.enable = lib.mkForce false;
       };
       desktopManager.plasma6.enable = true;

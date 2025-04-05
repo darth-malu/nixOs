@@ -1,6 +1,7 @@
 #+title: maluware flake
 #+TOC: headlines 2
 #+OPTIONS: toc:2
+#+auto_tangle: t
 
 * inputs
 #+begin_src nix :tangle flake.nix

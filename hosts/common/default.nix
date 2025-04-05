@@ -8,117 +8,117 @@
     ./specialisations
   ];
 
-  # nixpkgs.pkgs = import <nixpkgs> {}; #TODO: investigate how to make this work
+# nixpkgs.pkgs = import <nixpkgs> {}; #TODO: investigate how to make this work
 
-  # nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta" "nvidia-x11" "whatsapp-emoji-linux"
-  ];
+# nixpkgs.config.allowUnfree = true;
+nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+  "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta" "nvidia-x11" "whatsapp-emoji-linux"
+];
 
-  boot = {
-    extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-      timeout = 2;
-    };
+boot = {
+  extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+  loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+    timeout = 2;
   };
+};
 
-  # wireless.enable = if config.networking.hostName == "tangier" then true else false; # Enables wireless support via wpa_supplicant.
-  networking.wireless.enable = false;
-  # hostId = (lib.mkIf config.networking.hostName == "tangier") "92d08a60"; #FIXME: see syntax on this attempt to call something which is not a function but a Boolean: false
-  networking.networkmanager = {
-    enable = true; # might be on by default # add user to group
-    dns = "none"; # dnsmasq, default::, systemd-resolved
-    # wifi.powersave = if config.networking.hostName == "tangier" then true else false;
-    wifi = {
-      powersave = false;
-      backend = "wpa_supplicant"; # wpa_supplicant::, iwd
-    };
-    logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
+# wireless.enable = if config.networking.hostName == "tangier" then true else false; # Enables wireless support via wpa_supplicant.
+networking.wireless.enable = false;
+# hostId = (lib.mkIf config.networking.hostName == "tangier") "92d08a60"; #FIXME: see syntax on this attempt to call something which is not a function but a Boolean: false
+networking.networkmanager = {
+  enable = true; # might be on by default # add user to group
+  dns = "none"; # dnsmasq, default::, systemd-resolved
+  # wifi.powersave = if config.networking.hostName == "tangier" then true else false;
+  wifi = {
+    powersave = false;
+    backend = "wpa_supplicant"; # wpa_supplicant::, iwd
   };
+  logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
+};
 
-  #NOTE: self managing dns test
-  networking.dhcpcd.enable = false;
-  networking.useDHCP = lib.mkDefault true;
-  # interfaces.enp5s0.useDHCP = lib.mkDefault true;
-  networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
-  networking.firewall = { #TODO: see more about options
-      enable = true;
-      allowedTCPPorts = [ 22 ];
-  }; # 22 auto open with ssh
-  networking.nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
+#NOTE: self managing dns test
+networking.dhcpcd.enable = false;
+networking.useDHCP = lib.mkDefault true;
+# interfaces.enp5s0.useDHCP = lib.mkDefault true;
+networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
+networking.firewall = { #TODO: see more about options
+  enable = true;
+  allowedTCPPorts = [ 22 ];
+}; # 22 auto open with ssh
+networking.nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
 
-  hardware = {
-    # enableAllFirmware = true; # enable all firmware regardless of license #for bt to work in HSP/HFP mode # for bt to work in HSP/HFP mode, test further
-    # enableAllHardware = true; # Enable support for most hardware
-    enableRedistributableFirmware = true; # enable firmware with a license allowing redistribution
-    bluetooth = {
-      # enable = lib.mkIf config.networking.hostName == "tangier" true; # works lol..maajabu
-      # hsphfpd = true; #Whether to enable support for hsphfpd[-prototype] implementation.
-      enable =  true; # works lol..maajabu
-      powerOnBoot = true; #power on default controller on boot
-      settings = {#Set configuration for system-wide bluetooth (/etc/bluetooth/main.conf). See https://github.com/bluez/bluez/blob/master/src/main.conf for full list of options.
-        General = {
-          Experimental = true; #battery %
-          # ControllerMode = "bredr";
-        };
+hardware = {
+  # enableAllFirmware = true; # enable all firmware regardless of license #for bt to work in HSP/HFP mode # for bt to work in HSP/HFP mode, test further
+  # enableAllHardware = true; # Enable support for most hardware
+  enableRedistributableFirmware = true; # enable firmware with a license allowing redistribution
+  bluetooth = {
+    # enable = lib.mkIf config.networking.hostName == "tangier" true; # works lol..maajabu
+    # hsphfpd = true; #Whether to enable support for hsphfpd[-prototype] implementation.
+    enable =  true; # works lol..maajabu
+    powerOnBoot = true; #power on default controller on boot
+    settings = {#Set configuration for system-wide bluetooth (/etc/bluetooth/main.conf). See https://github.com/bluez/bluez/blob/master/src/main.conf for full list of options.
+      General = {
+        Experimental = true; #battery %
+        # ControllerMode = "bredr";
       };
-      # package = pkgs-unstable.bluez;
-      # network = {
-      #     General = {
-      #       DisableSecurity = false; # Disable link encryption: default=false
-      #     };
-      # };
-      # input = {#Set configuration for the input service (/etc/bluetooth/input.conf). See https://github.com/bluez/bluez/blob/master/profiles/input/input.conf for full list of options.
-        # General = {
-          # ClassicBondedOnly = false; #true:: # # Limit HID connections to bonded devices
-          # IdleTimeout = 30;# 0 (disabled)::
-          #UserspaceHID=true; #true:: # # Enable HID protocol handling in userspace input profile - true,false, persist
-          #LEAutoSecurity=true; # true::
-        # };
-      # };
     };
+    # package = pkgs-unstable.bluez;
+    # network = {
+    #     General = {
+    #       DisableSecurity = false; # Disable link encryption: default=false
+    #     };
+    # };
+    # input = {#Set configuration for the input service (/etc/bluetooth/input.conf). See https://github.com/bluez/bluez/blob/master/profiles/input/input.conf for full list of options.
+    # General = {
+    # ClassicBondedOnly = false; #true:: # # Limit HID connections to bonded devices
+    # IdleTimeout = 30;# 0 (disabled)::
+    #UserspaceHID=true; #true:: # # Enable HID protocol handling in userspace input profile - true,false, persist
+    #LEAutoSecurity=true; # true::
+    # };
+    # };
   };
+};
 
-  # users.groups.students.gid = 1000; # creates group called students, gid optional
+# users.groups.students.gid = 1000; # creates group called students, gid optional
 
-  # config= lib.mkIf (config.specialisation != {}) {
-  security = {
-    rtkit.enable = true; # pipewire need?
-    sudo = {
-      enable = true;
-        extraRules = [{
-          commands = [
-            #{
-              #command = "${pkgs.systemd}/bin/systemctl suspend";
-              #options = [ "NOPASSWD" ];
-            #}
+# config= lib.mkIf (config.specialisation != {}) {
+security = {
+  rtkit.enable = true; # pipewire need?
+  sudo = {
+    enable = true;
+    extraRules = [{
+      commands = [
+        #{
+        #command = "${pkgs.systemd}/bin/systemctl suspend";
+        #options = [ "NOPASSWD" ];
+        #}
 
-            {
-              command = "/run/current-system/sw/bin/nixos-rebuild";
-              options = [ "NOPASSWD" ];
-            }
+        {
+          command = "/run/current-system/sw/bin/nixos-rebuild";
+          options = [ "NOPASSWD" ];
+        }
 
-            #{
-              #command = "${pkgs.systemd}/bin/reboot";
-              #options = [ "NOPASSWD" ];
-            #}
-            #{
-              #command = "${pkgs.systemd}/bin/poweroff";
-              #options = [ "NOPASSWD" ];
-            #}
-            #{
-              #command = "${pkgs.fdisk} -l";
-              #options = [ "NOPASSWD" ];
-            #}
-          ];
-          #groups = [ "wheel" ];
-        }];
-    };
-    polkit = {
-      enable = true;
-      extraConfig = ''
+        #{
+        #command = "${pkgs.systemd}/bin/reboot";
+        #options = [ "NOPASSWD" ];
+        #}
+        #{
+        #command = "${pkgs.systemd}/bin/poweroff";
+        #options = [ "NOPASSWD" ];
+        #}
+        #{
+        #command = "${pkgs.fdisk} -l";
+        #options = [ "NOPASSWD" ];
+        #}
+      ];
+      #groups = [ "wheel" ];
+    }];
+  };
+  polkit = {
+    enable = true;
+    extraConfig = ''
         # reboot/poweroff for non sudo users
         polkit.addRule(function(action, subject) {
           if (
@@ -129,86 +129,86 @@
                 action.id == "org.freedesktop.login1.power-off" ||
                 action.id == "org.freedesktop.login1.power-off-multiple-sessions"
               )
-            )
+          )
           {
             return polkit.Result.YES;
           }
         });
       '';
-    };
   };
+};
 
-    # Automatically run the nix store optimiser at a specific time.
-    nix.optimise.automatic = true; # false::
-    nix.optimise.dates = ["weekly"];
-    #dates = ["03:15" "00:00"]; # see systemd.time(7) for specification
-    nix.optimise.randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
-    # persistent = false; # true::
+# Automatically run the nix store optimiser at a specific time.
+nix.optimise.automatic = true; # false::
+nix.optimise.dates = ["weekly"];
+#dates = ["03:15" "00:00"]; # see systemd.time(7) for specification
+nix.optimise.randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
+# persistent = false; # true::
 
-    nix.gc = { # garbage collector
-      automatic = true;
-      dates = "weekly";
-      #dates = "03:15";
-      options = "--delete-older-than 14d";
-      # randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
-      # persistent = false; # true::
-    };
+nix.gc = { # garbage collector
+  automatic = true;
+  dates = "weekly";
+  #dates = "03:15";
+  options = "--delete-older-than 14d";
+  # randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
+  # persistent = false; # true::
+};
 
-    nix.settings = {
-      auto-optimise-store = false; #optimise with everybuild #nix-store optimise ->manual # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy. #false::
-      allowed-users = [
-        "@wheel"
-        "@builders"
-        "@remotask"
-        "malu"
-        "sumbi"
-      ];
-      experimental-features = [ "nix-command" "flakes" ];
-      substituters = [
-        "https://cache.nixos.org?priority=10"
-        "https://hyprland.cachix.org"
-        "https://nix-community.cachix.org"
-        "https://helix.cachix.org"
-        "https://yazi.cachix.org"
-      ]; #"https://cache.nixos.org" #used automatically by nix pkg mgr "https://konradmalik.cachix.org"
-      trusted-public-keys = [
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-        "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
-        #"cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-        # "konradmalik.cachix.org-1:9REXmCYRwPNL0kAB0IMeTxnMB1Gl9VY5I8w7UVBTtSI="
-      ];
-    };
-    # extra options
-    # extraOptions = ''
-    #   keep-outputs = true
-    #   keep-derivations = true# keep build-time dependencies around/be able to rebuild while being offline
-    # '';
-    nix.distributedBuilds = true; # for remote builds
-    # buildMachines = [];
+nix.settings = {
+  auto-optimise-store = false; #optimise with everybuild #nix-store optimise ->manual # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy. #false::
+  allowed-users = [
+    "@wheel"
+    "@builders"
+    "@remotask"
+    "malu"
+    "sumbi"
+  ];
+  experimental-features = [ "nix-command" "flakes" ];
+  substituters = [
+    "https://cache.nixos.org?priority=10"
+    "https://hyprland.cachix.org"
+    "https://nix-community.cachix.org"
+    "https://helix.cachix.org"
+    "https://yazi.cachix.org"
+  ]; #"https://cache.nixos.org" #used automatically by nix pkg mgr "https://konradmalik.cachix.org"
+  trusted-public-keys = [
+    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
+    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
+    #"cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    # "konradmalik.cachix.org-1:9REXmCYRwPNL0kAB0IMeTxnMB1Gl9VY5I8w7UVBTtSI="
+  ];
+};
+# extra options
+# extraOptions = ''
+#   keep-outputs = true
+#   keep-derivations = true# keep build-time dependencies around/be able to rebuild while being offline
+# '';
+nix.distributedBuilds = false; # for remote builds
+# buildMachines = [];
 
-
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "en_US.UTF-8";
-      LC_IDENTIFICATION = "en_US.UTF-8";
-      LC_MEASUREMENT = "en_US.UTF-8";
-      LC_MONETARY = "en_US.UTF-8";
-      LC_NAME = "en_US.UTF-8";
-      LC_NUMERIC = "en_US.UTF-8";
-      LC_PAPER = "en_US.UTF-8";
-      LC_TELEPHONE = "en_US.UTF-8";
-      LC_TIME = "en_US.UTF-8";
-    };
+i18n = {
+  defaultLocale = "en_US.UTF-8";
+  extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
   };
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs set
-  time.timeZone = "Africa/Nairobi";
-  system.stateVersion = "24.11";
+};
+# Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+# (the default) this is the recommended approach. When using systemd-networkd it's
+# still possible to use this option, but it's recommended to use it in conjunction
+# with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs set
+
+time.timeZone = "Africa/Nairobi";
+system.stateVersion = "24.11";
 }

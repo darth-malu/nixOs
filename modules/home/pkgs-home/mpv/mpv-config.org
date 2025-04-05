@@ -1,4 +1,5 @@
 #+title: mpv stuffs
+#+auto_tangle: t
 
 * TOC: :toc:
 - [[#play-playlists][play playlists]]

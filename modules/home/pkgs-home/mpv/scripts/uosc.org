@@ -1,3 +1,5 @@
+#+auto_tangle: t
+
 * default shortcuts
 #+begin_src conf
 menu        script-binding uosc/menu

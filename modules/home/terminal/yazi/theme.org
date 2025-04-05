@@ -1,5 +1,7 @@
 #+title: yazi theme file :)
+#+auto_tangle: t
 
+* filetype rules
 #+begin_src nix :tangle theme.nix
 {
   filetype.rules = [

@@ -1,4 +1,5 @@
 #+title: Qemu
+#+auto_tangle: t
 
 * start
 #+begin_src emacs-lisp :tangle qemu.nix
@@ -6,7 +7,7 @@
 
 {
     environment.systemPackages = [
-        qemu
+        pkgs.qemu
     ];
 
     # virt manager

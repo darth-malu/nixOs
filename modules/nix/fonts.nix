@@ -1,23 +1,25 @@
-{ pkgs,... }:
+{ pkgs, ... }:
 
 {
   fonts = {
     enableDefaultPackages = true;
-    packages = with pkgs; [
-      #terminus_font noto-fonts fira-code noto-fonts-cjk-sans
-      fira-code fira-math
-      monaspace
-      jetbrains-mono
-      font-awesome
-      texlivePackages.nunito
-      inter
-      quicksand
-      lato # unneeded?
-      cascadia-code
-      iosevka-comfy.comfy
-      # whatsapp-emoji-font # long build time strange
-      ]++
-        (with pkgs.nerd-fonts; [
+    packages =
+      with pkgs;
+      [
+        #terminus_font noto-fonts fira-code noto-fonts-cjk-sans
+        fira-code
+        fira-math
+        monaspace
+        jetbrains-mono
+        font-awesome
+        texlivePackages.nunito
+        inter
+        quicksand
+        lato # unneeded?
+        cascadia-code
+        iosevka-comfy.comfy
+      ]
+      ++ (with pkgs.nerd-fonts; [
         # fira-mono
         fantasque-sans-mono
         zed-mono

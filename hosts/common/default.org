@@ -1,3 +1,5 @@
+#+auto_tangle: t
+
 #+begin_src nix :tangle default.nix
 {config, lib, options, ...}:
 #+end_src

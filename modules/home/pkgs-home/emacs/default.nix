@@ -15,16 +15,25 @@
         vterm
         mu4e
         prettier
-        shfmt # sh format
-        grip-mode # markdown grip mode
-        python-black
         org-tidy
 
-        #python
-        python-isort
-        pipenv
-        pytest
+        npm
+
+        # python
+        # python-isort
+        # py-isort this and isortify ... break emacs convention
+
+        # flycheck-pyflakes
+        # flymake-python-pyflakes
+        # pipenv # does nott work
+        # pytest
+        # python-black
         # eww # FIXME: why doesnt this work
+        # grip-mode # markdown grip mode
+
+        # shfmt # sh format
+        #
+        # emacs-all-the-icons-fonts
       ];
     # overrides = self: super: rec {
     #   haskell-mode = self.melpaPackages.haskell-mode;
@@ -41,7 +50,7 @@
     client = {
       enable = true; # false::, generation of Emacs client desktop file.
       arguments = [
-        "-c" # open in emacs frame
+        "-c" # open in emacs frame / GUI frame
         # "-a 'emacs'"
       ];
     };

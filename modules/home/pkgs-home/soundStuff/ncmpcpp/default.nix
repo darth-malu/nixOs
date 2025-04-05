@@ -81,7 +81,7 @@ display_bitrate = false;
 enable_window_title = true;
 
 tag_editor_extended_numeration = true;
-empty_tag_marker = "empty";
+empty_tag_marker = "*empty*";
 #empty_tag_color = "";
 
 media_library_primary_tag = "album_artist"; #album_artist, artist, date, genre, composer, performer

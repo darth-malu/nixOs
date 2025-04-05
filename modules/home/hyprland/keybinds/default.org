@@ -1,3 +1,5 @@
+#+auto_tangle: t
+
 * variables to use in config
 #+begin_src nix :tangle default.nix
 {pkgs, osConfig, ...}:

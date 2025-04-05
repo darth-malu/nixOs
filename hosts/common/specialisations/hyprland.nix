@@ -1,4 +1,10 @@
-{inputs, lib, config, pkgs, ...}:
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 {
   options.hyprland = {
@@ -6,13 +12,15 @@
   };
 
   config = {
-    programs =  {
-      hyprland = { # required even with homeManager for system functions -> xdg, session files
+    programs = {
+      hyprland = {
+        # required even with homeManager for system functions -> xdg, session files
         enable = true; # also enables XDPH
         withUWSM = lib.mkDefault true;
         # xwayland.enable = true; # true::
         package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; # set package + portal if using flake
-        portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;# make sure to also set the portal package, so that they are in sync
+        portalPackage =
+          inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; # make sure to also set the portal package, so that they are in sync
       };
     };
     services = {
@@ -21,7 +29,7 @@
         mountOnMedia = true;
       };
       power-profiles-daemon.enable = true;
-      upower.enable = true; #TODO transfer to tangier only after testing
+      upower.enable = true; # TODO transfer to tangier only after testing
     };
     # (lib.mkIf config.networking.hostName == "tangier") services.upower.enable = true;
     security.polkit = {

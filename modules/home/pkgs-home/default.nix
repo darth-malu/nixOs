@@ -189,6 +189,20 @@ in
 
       imagemagick # for image-dired
       unzip # for tldr
+
+      # python
+      pipenv
+      black
+      python313Packages.pytest
+      shfmt
+      libxml2
+      python313Packages.isort
+
+      # web
+      html-tidy
+      # consider npm for auto install of servers in lsp-mode
+      # nodejs_23
+
     ])
     ++ (with pkgs; [
       # creative space

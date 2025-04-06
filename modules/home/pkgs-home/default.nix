@@ -44,7 +44,7 @@ in
 {
   imports = [
     # flaked apps
-    inputs.nyaa.homeManagerModule
+    # inputs.nyaa.homeManagerModule
     # inputs.nix-doom-emacs.hmModule #FIXME Throughs errors
     ./yt-dlp.nix
     ./qutebrowser
@@ -704,7 +704,7 @@ in
 
     btop.enable = true;
     bashmount.enable = true;
-    nyaa.enable = true;
+    # nyaa.enable = true;
     # nix-index.enable = false;
     # nh.enable = true;
   };

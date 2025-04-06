@@ -12,49 +12,56 @@ gtk = {
   #name = "DaddyTimeMono Nerd Font";
   #size = 12;
   #};
-  # cursorTheme = {
-  #   package = pkgs.bibata-cursors; name = "Bibata-Modern-Ice";
-  #   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
-  # };#NOTE: not needed
-  theme = {
-    name = "Nightfox-Dark";
-    package = pkgs.nightfox-gtk-theme;
-    # name = "tokyonight-gtk-theme"; package = pkgs.Tokyonight-Moon;
-  };
-  iconTheme = {
-    # package = pkgs.kora-icon-theme; name = "kora";
-    package = pkgs.candy-icons;
-    name = "candy-icons";
-  };
 
-  gtk2 = {
-    extraConfig = ''
+cursorTheme = {
+  package = pkgs.bibata-cursors; name = "Bibata-Modern-Ice";
+  size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
+};#NOTE: not needed
+
+theme = {
+  name = "Nightfox-Dark";
+  package = pkgs.nightfox-gtk-theme;
+  # name = "tokyonight-gtk-theme"; package = pkgs.Tokyonight-Moon;
+};
+
+iconTheme = {
+  # package = pkgs.kora-icon-theme; name = "kora";
+  package = pkgs.candy-icons; name = "candy-icons";
+  # package = pkgs.windows10-icons; name = "windows10-icons";
+  # package = pkgs.kora-icon-theme; name = "kora-icon-theme";
+  # package = pkgs.gruvbox-plus-icons;
+ # name = "gruvbox-plus-icons";
+};
+
+gtk2 = {
+  extraConfig = ''
         "gtk-can-change-accels" = "1"
       '';
-    configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+  configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+};
+
+gtk3 = {
+  extraConfig = {
+    gtk-application-prefer-dark-theme = 1;
   };
-  gtk3 = {
-    extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    bookmarks = [
-      "file://home/malu/org"
-    ];
+  bookmarks = [
+    "file://home/malu/org"
+  ];
+};
+
+gtk4 = {
+  # extraCss = '''';
+  extraConfig = {
+    #     #gtk-theme-name = ''Nightfox:Dark''; #eg nautilus
+    #     gtk-theme-name = "Nightfox-Dark"; #eg nautilus
+    #     gtk-cursor-blink = false;
+    gtk-recent-files-limit = 20;
+    gtk-application-prefer-dark-theme = 1;
   };
-  #
-  gtk4 = {
-    # extraCss = '''';
-    extraConfig = {
-      #     #gtk-theme-name = ''Nightfox:Dark''; #eg nautilus
-      #     gtk-theme-name = "Nightfox-Dark"; #eg nautilus
-      #     gtk-cursor-blink = false;
-      gtk-recent-files-limit = 20;
-      gtk-application-prefer-dark-theme = 1;
-    };
-    #   # extraCss = #gtk-4.0/gtk.css
-    #   #   ''
-    #   # '';
-  };
+  #   # extraCss = #gtk-4.0/gtk.css
+  #   #   ''
+  #   # '';
+};
 };
 
 qt = {
@@ -63,7 +70,7 @@ qt = {
   # platformTheme.name = "qtct"; # "gtk", "gtk3", "gnome", "adwaita", "lxqt", "qtct", "kde" or (submodule) #qt6ct
   # platformTheme = "gnome";
   style = {
-    name = "breeze";
+    name = "adwaita-dark";
   };
 };
 

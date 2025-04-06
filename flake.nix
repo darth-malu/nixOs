@@ -128,28 +128,29 @@ tangier =
     ];
   };
 
-devShells.${system}.default = pkgs.mkShell
-  {
-    # nativeBuildInputs = with pkgs; [ # TODO: see between
-    BuildInputs = with pkgs; [
-      doom-emacs
-      #inputs.python-nixpkgs.legacyPackages.${system}.python313
-      (python312.withPackages (python-pkgs: with python-pkgs; [
-        pandas
-        numpy
-        seaborn
-        matplotlib
-        tkinter
-        pip
-        requests
-      ])) # teal env
-    ];
-    shellHook = ''
+devShells.default = pkgs.mkShell {
+  # nativeBuildInputs = with pkgs; [ # TODO: see between
+  buildInputs = with pkgs; [
+    #inputs.python-nixpkgs.legacyPackages.${system}.python313
+
+(python312.withPackages (python-pkgs: with python-pkgs; [
+  pandas
+  numpy
+  seaborn
+  matplotlib
+  tkinter
+  pip
+  requests
+])) # teal env
+];
+
+shellHook = ''
             echo "welcome to your dev env lul"
             #pip install ttkbootstrap
-          '';
-    MYVAR = "custom var here lol";
-  };
+'';
+
+MYVAR = "custom var here lol";
 };
- };
-  }
+};
+};
+}

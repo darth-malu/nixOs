@@ -169,29 +169,49 @@ tangier =
 
 ** devshell - nix develop
 #+begin_src nix :tangle flake.nix
-devShells.${system}.default = pkgs.mkShell
-  {
-    # nativeBuildInputs = with pkgs; [ # TODO: see between
-    BuildInputs = with pkgs; [
-      doom-emacs
-      #inputs.python-nixpkgs.legacyPackages.${system}.python313
-      (python312.withPackages (python-pkgs: with python-pkgs; [
-        pandas
-        numpy
-        seaborn
-        matplotlib
-        tkinter
-        pip
-        requests
-      ])) # teal env
-    ];
-    shellHook = ''
+devShells.default = pkgs.mkShell {
+  # nativeBuildInputs = with pkgs; [ # TODO: see between
+  buildInputs = with pkgs; [
+    #inputs.python-nixpkgs.legacyPackages.${system}.python313
+#+end_src
+
+*** teal environment
+#+begin_src nix :tangle flake.nix
+(python312.withPackages (python-pkgs: with python-pkgs; [
+  pandas
+  numpy
+  seaborn
+  matplotlib
+  tkinter
+  pip
+  requests
+])) # teal env
+];
+#+end_src
+
+*** shellHook
+Optional: Set up a Python virtual environment automatically
+#+begin_src nix :tangle no
+shellHook = ''
+    if [ ! -d .venv ]; then
+        python -m venv .venv
+    fi
+    source .venv/bin/activate
+'';
+#+end_src
+
+#+begin_src nix :tangle flake.nix
+shellHook = ''
             echo "welcome to your dev env lul"
             #pip install ttkbootstrap
-          '';
-    MYVAR = "custom var here lol";
-  };
+'';
+#+end_src
+
+*** declare custom variables
+#+begin_src nix :tangle flake.nix
+MYVAR = "custom var here lol";
 };
- };
-  }
+};
+};
+}
 #+end_src

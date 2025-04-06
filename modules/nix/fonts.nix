@@ -3,6 +3,7 @@
 {
   fonts = {
     enableDefaultPackages = true;
+    enableGhostscriptFonts = true;
     packages =
       with pkgs;
       [

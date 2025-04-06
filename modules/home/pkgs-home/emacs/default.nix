@@ -17,22 +17,6 @@
         prettier
         org-tidy
 
-        npm
-
-        # python
-        # python-isort
-        # py-isort this and isortify ... break emacs convention
-
-        # flycheck-pyflakes
-        # flymake-python-pyflakes
-        # pipenv # does nott work
-        # pytest
-        # python-black
-        # eww # FIXME: why doesnt this work
-        # grip-mode # markdown grip mode
-
-        # shfmt # sh format
-        #
         # emacs-all-the-icons-fonts
       ];
     # overrides = self: super: rec {

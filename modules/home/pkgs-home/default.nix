@@ -197,12 +197,17 @@ in
       shfmt
       libxml2
       python313Packages.isort
+      python313Packages.pyflakes
+      nose2pytest
 
       # web
       html-tidy
-      # consider npm for auto install of servers in lsp-mode
-      # nodejs_23
 
+      # lsp
+      nodejs_23 # consider npm for auto install of servers in lsp-mode
+
+      #:markdown
+      python313Packages.grip
     ])
     ++ (with pkgs; [
       # creative space

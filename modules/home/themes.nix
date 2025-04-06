@@ -13,6 +13,8 @@ gtk = {
   #size = 12;
   #};
 
+
+
 cursorTheme = {
   package = pkgs.bibata-cursors; name = "Bibata-Modern-Ice";
   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
@@ -30,7 +32,7 @@ iconTheme = {
   # package = pkgs.windows10-icons; name = "windows10-icons";
   # package = pkgs.kora-icon-theme; name = "kora-icon-theme";
   # package = pkgs.gruvbox-plus-icons;
- # name = "gruvbox-plus-icons";
+  # name = "gruvbox-plus-icons";
 };
 
 gtk2 = {

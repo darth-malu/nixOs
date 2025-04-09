@@ -5,6 +5,7 @@
   ...
 }:
 {
+<<<<<<< HEAD
   imports = [
     ./keybinds
     ./monitors-peripherals.nix
@@ -15,6 +16,26 @@
     ./autoStart.nix
     ../hyprland-helper
   ];
+=======
+  imports =
+    [
+      ./keybinds
+      ./monitors-peripherals.nix
+      ./ui.nix
+      ./environment_variables.nix # avoid use .conf/uwsm/env - check file
+      ./window-workspace-rules.nix
+      ./autoStart.nix
+      ../hyprland-helper
+    ]
+    ++ (
+      if osConfig.networking.hostName == "tangier" then
+        [
+          ./plugins.nix
+        ]
+      else
+        [ ]
+    );
+>>>>>>> 9e29ecd (plugins only for tangier)
 
   options.homeHyprland = {
     enable = lib.mkEnableOption "homeHypr";

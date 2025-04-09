@@ -43,6 +43,7 @@ folders = {
     type = "sendreceive";
   };
 
+<<<<<<< HEAD
   # "ytVid" = {
   #   path = "/home/malu/Videos/YtDlp";
   #   devices = [ "tangier" ]; # device to receive from?
@@ -57,6 +58,22 @@ folders = {
   #     value = 15;
   #   };
   # };
+=======
+  "ytVid" = {
+    path = "/home/malu/Videos/YtDlp";
+    devices = [ "carthage" ];
+    type = "receiveonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted
+    order = "newestFirst"; # random(default), alphabetic, smallestFirst, largestFirst,
+    # maxConflicts = 2; # -1:: unlimited number , 0 - disables
+    maxConcurrentWrites = 4; # 2:: Maximum number of concurrent write operations while syncing. Increasing this might increase or decrease disk performance, depending on the underlying storage.
+    # scanProgressIntervalS = 0; # The interval in seconds with which scan progress information is sent to the GUI. Setting to 0 will cause Syncthing to use the default value of two.
+    minHomeDiskFree = {
+      # % (percent of the disk / volume size), kB, MB, GB and TB.
+      unit = "%";
+      value = 15;
+    };
+  };
+>>>>>>> 9e29ecd (plugins only for tangier)
 
   "music" = {
     path = "/home/malu/Music";

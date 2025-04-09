@@ -4,12 +4,11 @@
   lib,
   osConfig,
   ...
-}:
-
-let
+}: let
   tex = (
     pkgs.texlive.combine {
-      inherit (pkgs.texlive)
+      inherit
+        (pkgs.texlive)
         scheme-basic
         scheme-medium
         dvisvgm
@@ -39,9 +38,7 @@ let
       xts
     ];
   };
-
-in
-{
+in {
   imports = [
     # flaked apps
     # inputs.nyaa.homeManagerModule
@@ -63,8 +60,7 @@ in
   # modules
   homeHyprland.enable = lib.mkIf osConfig.hyprland.enable true;
 
-  home.packages =
-    with pkgs;
+  home.packages = with pkgs;
     [
       sway-audio-idle-inhibit
       wev
@@ -152,11 +148,12 @@ in
       # :checkers spell
       # Because emacs expects the dictionaries to be on the same directory as aspell, they won't be picked up. To fix it install the aspellWithDicts package, specifying the dictionaries you want to use:
       (aspellWithDicts (
-        ds: with ds; [
-          en
-          en-computers
-          en-science
-        ]
+        ds:
+          with ds; [
+            en
+            en-computers
+            en-science
+          ]
       ))
       clang-tools
       wordnet # :tools +dictionary dep
@@ -259,7 +256,7 @@ in
     zoxide = {
       enable = true;
       enableBashIntegration = true;
-      options = [ "--cmd cd" ];
+      options = ["--cmd cd"];
     };
 
     comodoro = {
@@ -359,16 +356,16 @@ in
             "key" = "DISTRO";
             "keyColor" = "red";
           }
-          # {
-          #   type = "datetime";
-          #   key = "Date";
-          #   format = "{1}-{3}-{11}";
-          # }
-          # {
-          #   type = "datetime";
-          #   key = "Time";
-          #   format = "{14}:{17}:{20}";
-          # }
+          {
+            type = "datetime";
+            key = "Date";
+            format = "{1}-{3}-{11}";
+          }
+          {
+            type = "datetime";
+            key = "Time";
+            format = "{14}:{17}:{20}";
+          }
           "break"
           "player"
           # "media"
@@ -379,22 +376,22 @@ in
           #   "keyColor" = "cyan";
           # }
           # "break"
-          # {
-          #   "type" = "display";
-          #   "key" = "MONITOR ({name})";
-          #   "keyColor" = "blue";
-          #   # "format" = "{width}x{height} @ {refresh-rate} Hz - {physical-width}x{physical-height} mm ({inch} inches, {ppi} ppi)";
-          #   "format" = "{width}x{height} @ {refresh-rate} Hz";
-          # }
+          {
+            "type" = "display";
+            "key" = "MONITOR ({name})";
+            "keyColor" = "blue";
+            # "format" = "{width}x{height} @ {refresh-rate} Hz - {physical-width}x{physical-height} mm ({inch} inches, {ppi} ppi)";
+            "format" = "{width}x{height} @ {refresh-rate} Hz";
+          }
           # "uptime"
-          # "packages"
+          "packages"
         ];
       };
     };
 
     git-credential-oauth = {
       enable = true;
-      extraFlags = [ "-device" ];
+      extraFlags = ["-device"];
       # package = pkgs-unstable.git-credential-oauth;
     };
 
@@ -425,8 +422,8 @@ in
             "blue"
             "bold"
           ];
-          inactiveBorderColor = [ "black" ];
-          selectedLineBgColor = [ "default" ];
+          inactiveBorderColor = ["black"];
+          selectedLineBgColor = ["default"];
         };
       };
     };
@@ -436,8 +433,7 @@ in
       enableBashIntegration = true; # true::
       tmux = {
         enableShellIntegration = true; # sets FZF_TMUX=1
-        shellIntegrationOptions = [ "-p 50%,60%" ]; # -d 40% #TODO: see more # fzf-tmux --help
-        # shellIntegrationOptions = [ "-d 40" ]; #-d 40% #TODO: see more # fzf-tmux --help
+        shellIntegrationOptions = ["-p 50%,60%"]; # -d 40% #TODO: see more # fzf-tmux --help
       };
       colors = {
         # https://github.com/junegunn/fzf/wiki/Color-schemes
@@ -483,7 +479,7 @@ in
         # "--gap 1"
         # "--scroll-off=4"
       ];
-      changeDirWidgetOptions = [ "--preview 'tree -C {} | head -200'" ]; # M-c binding
+      changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"]; # M-c binding
       # changeDirWidgetCommand = "fd --type d";
       # fileWidgetCommand = "fd --type f"; #C-t #FIXME: broken $FZF_DEFAULT_OPTS: invalid command line string
       # fileWidgetOptions = ["preview 'head {}"];
@@ -554,14 +550,14 @@ in
             block_title = {
               fg = "Magenta";
             };
-            border = { };
+            border = {};
             playback_track = {
               fg = "Cyan";
-              modifiers = [ "Bold" ];
+              modifiers = ["Bold"];
             };
             playback_artists = {
               fg = "Cyan";
-              modifiers = [ "Bold" ];
+              modifiers = ["Bold"];
             };
             playback_album = {
               fg = "Yellow";
@@ -575,11 +571,11 @@ in
             };
             current_playing = {
               fg = "Green";
-              modifiers = [ "Bold" ];
+              modifiers = ["Bold"];
             };
             page_desc = {
               fg = "Cyan";
-              modifiers = [ "Bold" ];
+              modifiers = ["Bold"];
             };
             table_header = {
               fg = "Blue";
@@ -620,7 +616,7 @@ in
         playback_window_position = "Top";
         copy_command = {
           command = "wl-copy";
-          args = [ "-n" ];
+          args = ["-n"];
         };
         device = {
           audio_cache = false;

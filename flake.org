@@ -69,6 +69,11 @@ hyprpaper = { # TODO: test if needed
     systems.follows = "hyprland/systems";
   };
 };
+
+hyprland-plugins = {
+    url = "github:hyprwm/hyprland-plugins";
+    inputs.hyprland.follows = "hyprland";
+};
 #+end_src
 
 ** nyaa

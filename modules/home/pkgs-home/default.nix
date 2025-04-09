@@ -4,11 +4,11 @@
   lib,
   osConfig,
   ...
-}: let
+}:
+let
   tex = (
     pkgs.texlive.combine {
-      inherit
-        (pkgs.texlive)
+      inherit (pkgs.texlive)
         scheme-basic
         scheme-medium
         dvisvgm
@@ -38,7 +38,8 @@
       xts
     ];
   };
-in {
+in
+{
   imports = [
     # flaked apps
     # inputs.nyaa.homeManagerModule
@@ -60,7 +61,8 @@ in {
   # modules
   homeHyprland.enable = lib.mkIf osConfig.hyprland.enable true;
 
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       sway-audio-idle-inhibit
       wev
@@ -131,10 +133,6 @@ in {
     ]
     ++ (with pkgs; [
       # NOTE: EMACS
-      # texlive.combined.scheme-medium # for latex
-      # texlivePackages.dvipng # for latex already installed
-      # texlive.withPackages (ps: [ ps.dvipng ])
-      # texlive.withPackages (ps: [ ps.scheme-medium ])
       xclip
       tex
       libtool
@@ -148,12 +146,11 @@ in {
       # :checkers spell
       # Because emacs expects the dictionaries to be on the same directory as aspell, they won't be picked up. To fix it install the aspellWithDicts package, specifying the dictionaries you want to use:
       (aspellWithDicts (
-        ds:
-          with ds; [
-            en
-            en-computers
-            en-science
-          ]
+        ds: with ds; [
+          en
+          en-computers
+          en-science
+        ]
       ))
       clang-tools
       wordnet # :tools +dictionary dep
@@ -172,6 +169,7 @@ in {
       nil # kinda slow
       nixd
       nixfmt-rfc-style # official - needed to use formatting with :lang nix
+      emacs-lsp-booster
 
       # org stuff
       scrot # for org-screenshot-take
@@ -256,7 +254,7 @@ in {
     zoxide = {
       enable = true;
       enableBashIntegration = true;
-      options = ["--cmd cd"];
+      options = [ "--cmd cd" ];
     };
 
     comodoro = {
@@ -391,7 +389,7 @@ in {
 
     git-credential-oauth = {
       enable = true;
-      extraFlags = ["-device"];
+      extraFlags = [ "-device" ];
       # package = pkgs-unstable.git-credential-oauth;
     };
 
@@ -422,8 +420,8 @@ in {
             "blue"
             "bold"
           ];
-          inactiveBorderColor = ["black"];
-          selectedLineBgColor = ["default"];
+          inactiveBorderColor = [ "black" ];
+          selectedLineBgColor = [ "default" ];
         };
       };
     };
@@ -433,7 +431,7 @@ in {
       enableBashIntegration = true; # true::
       tmux = {
         enableShellIntegration = true; # sets FZF_TMUX=1
-        shellIntegrationOptions = ["-p 50%,60%"]; # -d 40% #TODO: see more # fzf-tmux --help
+        shellIntegrationOptions = [ "-p 50%,60%" ]; # -d 40% #TODO: see more # fzf-tmux --help
       };
       colors = {
         # https://github.com/junegunn/fzf/wiki/Color-schemes
@@ -479,7 +477,7 @@ in {
         # "--gap 1"
         # "--scroll-off=4"
       ];
-      changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"]; # M-c binding
+      changeDirWidgetOptions = [ "--preview 'tree -C {} | head -200'" ]; # M-c binding
       # changeDirWidgetCommand = "fd --type d";
       # fileWidgetCommand = "fd --type f"; #C-t #FIXME: broken $FZF_DEFAULT_OPTS: invalid command line string
       # fileWidgetOptions = ["preview 'head {}"];
@@ -550,14 +548,14 @@ in {
             block_title = {
               fg = "Magenta";
             };
-            border = {};
+            border = { };
             playback_track = {
               fg = "Cyan";
-              modifiers = ["Bold"];
+              modifiers = [ "Bold" ];
             };
             playback_artists = {
               fg = "Cyan";
-              modifiers = ["Bold"];
+              modifiers = [ "Bold" ];
             };
             playback_album = {
               fg = "Yellow";
@@ -571,11 +569,11 @@ in {
             };
             current_playing = {
               fg = "Green";
-              modifiers = ["Bold"];
+              modifiers = [ "Bold" ];
             };
             page_desc = {
               fg = "Cyan";
-              modifiers = ["Bold"];
+              modifiers = [ "Bold" ];
             };
             table_header = {
               fg = "Blue";
@@ -616,7 +614,7 @@ in {
         playback_window_position = "Top";
         copy_command = {
           command = "wl-copy";
-          args = ["-n"];
+          args = [ "-n" ];
         };
         device = {
           audio_cache = false;

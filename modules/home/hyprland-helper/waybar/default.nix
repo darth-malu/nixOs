@@ -37,6 +37,8 @@
                 "HDMI-A-1"
                 # "DP-1"
               ]
+            else if osConfig.networking.hostName == "tangier" then
+              [ "eDP-1" ]
             else
               [ ];
           layer = "bottom";
@@ -62,7 +64,6 @@
                 ]
               else if osConfig.networking.hostName == "carthage" then
                 [
-                  # carthage
                   "group/gpu_mpris"
                   "group/gpu_temp_network_block"
                   "group/all_disks"

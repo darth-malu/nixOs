@@ -1,7 +1,8 @@
 {
   systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
   services = {
-    syncthing = { # http://127.0.0.1:8384/
+    syncthing = {
+      # http://127.0.0.1:8384/
       enable = true;
       group = "darth";
       user = "malu";
@@ -14,8 +15,12 @@
       overrideFolders = false; # Whether to delete the folders which are not configured via the folders option
       settings = {
         devices = {
-          "tangier" = { id = "RIYCPC3-U3UCO5N-WLM7WNB-5372SAE-RSGUD4Y-BFIWCUC-WPOII3S-N2EGNAB"; };
-          "carthage" = { id = "O2RS6GG-GKU2JYU-D2UEHPV-JQCGHCW-UZKE22D-SMNEYX6-WGAUXLR-BHTLGQA"; };
+          "tangier" = {
+            id = "RIYCPC3-U3UCO5N-WLM7WNB-5372SAE-RSGUD4Y-BFIWCUC-WPOII3S-N2EGNAB";
+          };
+          "carthage" = {
+            id = "O2RS6GG-GKU2JYU-D2UEHPV-JQCGHCW-UZKE22D-SMNEYX6-WGAUXLR-BHTLGQA";
+          };
         };
         folders = {
           # "Shibuya" = {         # Name of folder in Syncthing, also the folder ID
@@ -24,7 +29,10 @@
           # };
           "Taskwarrior" = {
             path = "/home/malu/.task";
-            devices = [ "tangier" "carthage" ];
+            devices = [
+              "tangier"
+              "carthage"
+            ];
             type = "sendreceive";
           };
           "ytVid" = {
@@ -35,32 +43,50 @@
             # maxConflicts = 2; # -1:: unlimited number , 0 - disables
             maxConcurrentWrites = 4; # Maximum number of concurrent write operations while syncing. Increasing this might increase or decrease disk performance, depending on the underlying storage. Default is 2.
             # scanProgressIntervalS = 0; # The interval in seconds with which scan progress information is sent to the GUI. Setting to 0 will cause Syncthing to use the default value of two.
-            minHomeDiskFree = { # % (percent of the disk / volume size), kB, MB, GB and TB.
+            minHomeDiskFree = {
+              # % (percent of the disk / volume size), kB, MB, GB and TB.
               unit = "%";
               value = 10;
             };
           };
           "music" = {
             path = "/home/malu/Music";
-            devices = [ "tangier" "carthage" ];
-            minHomeDiskFree = { # % (percent of the disk / volume size), kB, MB, GB and TB.
+            devices = [
+              "tangier"
+              "carthage"
+            ];
+            minHomeDiskFree = {
+              # % (percent of the disk / volume size), kB, MB, GB and TB.
               unit = "%";
               value = 10;
             };
           };
           "myVaults" = {
             path = "/home/malu/obsidianVaults";
-            devices = [ "tangier" "carthage" ];
+            devices = [
+              "tangier"
+              "carthage"
+            ];
           };
-          "org-stuff" = {
+          "org" = {
             path = "/home/malu/org";
-            devices = [ "tangier" "carthage" ];
+            devices = [
+              "tangier"
+              "carthage"
+            ];
+          };
+          "org-roam" = {
+            path = "/home/malu/org-roam";
+            devices = [
+              "tangier"
+              "carthage"
+            ];
           };
         };
         gui = {
           theme = "black";
-          password = "@syncthing2025";
           user = "malu";
+          password = "@syncthing2025";
         };
       };
     };

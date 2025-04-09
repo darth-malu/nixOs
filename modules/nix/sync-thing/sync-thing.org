@@ -1,0 +1,162 @@
+#+title: Sync Thing
+#+auto_tangle: t
+
+will output to a default nix
+
+* intro
+#+begin_src nix :tangle default.nix
+{
+    systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
+
+    services.syncthing = {
+        # http://127.0.0.1:8384/
+        enable = true;
+        group = "darth";
+        user = "malu";
+        openDefaultPorts = true; # TCP/UDP 22000 for transfers and UDP 21027 for discovery. # NOTE unneeded works anyway :) leaving on because.
+        guiAddress = "127.0.0.1:8384";
+        systemService = true; # true::
+        configDir = "/home/malu/.config/syncthing"; # will run as root if you dont do this by default? not nice for dots ... videos :)
+        dataDir = "/home/malu/syncFolder";
+        overrideDevices = false;
+        overrideFolders = false; # Whether to delete the folders which are not configured via the folders option
+    settings = {
+#+end_src
+
+* devices
+#+begin_src nix :tangle default.nix
+devices = {
+  "tangier" = {
+    id = "RIYCPC3-U3UCO5N-WLM7WNB-5372SAE-RSGUD4Y-BFIWCUC-WPOII3S-N2EGNAB";
+  };
+  "carthage" = {
+    id = "O2RS6GG-GKU2JYU-D2UEHPV-JQCGHCW-UZKE22D-SMNEYX6-WGAUXLR-BHTLGQA";
+  };
+};
+#+end_src
+
+* folders
+** docs
+- services.syncthing.settings.options.maxFolderConcurrency
+    This option controls how many folders may concurrently be in I/O-intensive operations such as syncing or scanning. The mechanism is described in detail in a [[https://docs.syncthing.net/advanced/option-max-concurrency.html][separate chapter]].
+
+    The maxFolderConcurrency option controls how many folders may concurrently be in I/O-intensive operations such as syncing or
+    scanning. The default value is the same as the number of logical CPU cores in the system. Folders waiting for their turn to scan or
+    sync will show up as “Waiting to Scan” or “Waiting to Sync” until the total number of ongoing such operations is low enough to let
+    them proceed.
+
+    Valid Values:
+  - Zero (0):
+      The default, means the number of logical CPUs in the system (i.e., 2, 4, 8, etc.), autodetected.
+
+  - Negative (< 0):
+    No limit on the number of concurrent operations. This was the default in versions < 1.4.0.
+
+  - A positive integer (> 0):
+    Use this specific limit.
+
+- services.syncthing.settings.folders.<name>.type
+    Controls how the folder is handled by Syncthing. See https://docs.syncthing.net/users/config.html#config-option-folder.type.
+    one of "sendreceive"::, "sendonly", "receiveonly", "receiveencrypted"
+
+    sendreceive
+        The folder is in default mode. Sending local and accepting remote changes.
+
+    sendonly
+        The folder is in “send only” mode – it will not be modified by Syncthing on this device.
+
+    receiveonly
+        The folder is in “receive only” mode – it will not propagate changes to other devices.
+
+    receiveencrypted
+        Must be used on untrusted devices, where the data cannot be decrypted because no folder password was entered. See Untrusted (Encrypted) Devices.
+
+** tangle
+#+begin_src nix :tangle default.nix
+folders = {
+  "Shibuya" = {         # Name of folder in Syncthing, also the folder ID
+    path = "/home/malu/Shibuya";    # Which folder to add to Syncthing
+    devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
+  };
+
+  "Taskwarrior" = {
+    path = "/home/malu/.task";
+    devices = [
+      "tangier"
+      "carthage"
+    ];
+    type = "sendreceive";
+  };
+
+  "ytVid" = {
+    path = "/home/malu/Videos/YtDlp";
+    devices = [ "carthage" ];
+    type = "receiveonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted
+    order = "newestFirst"; # random(default), alphabetic, smallestFirst, largestFirst,
+    # maxConflicts = 2; # -1:: unlimited number , 0 - disables
+    maxConcurrentWrites = 4; # 2:: Maximum number of concurrent write operations while syncing. Increasing this might increase or decrease disk performance, depending on the underlying storage.
+    # scanProgressIntervalS = 0; # The interval in seconds with which scan progress information is sent to the GUI. Setting to 0 will cause Syncthing to use the default value of two.
+    minHomeDiskFree = {
+      # % (percent of the disk / volume size), kB, MB, GB and TB.
+      unit = "%";
+      value = 15;
+    };
+  };
+
+  "music" = {
+    path = "/home/malu/Music";
+    devices = [
+      "tangier"
+      "carthage"
+    ];
+    minHomeDiskFree = {
+      # % (percent of the disk / volume size), kB, MB, GB and TB.
+      unit = "%";
+      value = 40;
+    };
+  };
+
+  "myVaults" = {
+    path = "/home/malu/obsidianVaults";
+    devices = [
+      "tangier"
+      "carthage"
+    ];
+  };
+#+end_src
+
+** org, org-roam
+#+begin_src nix :tangle default.nix
+"org" = {
+  path = "/home/malu/org";
+  devices = [
+    "tangier"
+    "carthage"
+  ];
+};
+"org-roam" = {
+  path = "/home/malu/org-roam";
+  devices = [
+    "tangier"
+    "carthage"
+  ];
+};
+}; # end of folders
+#+end_src
+
+* gui
+** TODO set password as harsh instead
+#+begin_src nix :tangle default.nix
+gui = {
+  theme = "black";
+  user = "malu";
+  password = "@syncthing2025";
+};
+#+end_src
+
+* end
+#+begin_src nix :tangle default.nix
+};
+ };
+  }
+#+end_src

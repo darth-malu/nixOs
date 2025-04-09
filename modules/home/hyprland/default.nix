@@ -9,6 +9,7 @@
     ./keybinds
     ./monitors-peripherals.nix
     ./ui.nix
+    ./plugins.nix
     ./environment_variables.nix # avoid use .conf/uwsm/env - check file
     ./window-workspace-rules.nix
     ./autoStart.nix

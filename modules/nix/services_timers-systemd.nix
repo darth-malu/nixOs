@@ -1,30 +1,32 @@
-{pkgs, ... }:
+{ pkgs, ... }:
 
 {
   systemd = {
+    services = {
+      # FIXME: does not seemm to be working?
+      # ${pkgs.coreutils}/bin/echo "Hello Word darth"
+      "hello-world" = {
+        script = ''
+          set -eu
+          # notify-send "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+          ${pkgs.coreutils}/bin/echo "Hello Word darth"
+          ${pkgs.libnotify}/bin/notify-send "Hello Word darth"
+        '';
+        serviceConfig = {
+          Type = "oneshot";
+          User = "root";
+        };
+      };
+    };
     timers = {
       "hello-world" = {
         wantedBy = [ "timers.target" ];
         timerConfig = {
           OnBootSec = "3m";
-          OnUnitActiveSec = "2m";
+          OnUnitActiveSec = "5m";
           Unit = "hello-world.service";
           OnCalendar = "daily";
           Persistent = true;
-        };
-      };
-    };
-
-    services = {#FIXME: does not seemm to be working?
-          # ${pkgs.coreutils}/bin/echo "Hello Word darth"
-      "hello-world" = {
-        script = ''
-          set -en
-          notify-send "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
-        '';
-        serviceConfig = {
-          Type = "oneshot";
-          User = "root";
         };
       };
     };
@@ -55,4 +57,3 @@
     # };
   };
 }
-

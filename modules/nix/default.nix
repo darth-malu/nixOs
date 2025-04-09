@@ -8,6 +8,7 @@
     ./services_timers-systemd.nix
     # ./sync_thing.nix
     ./enVars.nix
+    ./bash.nix
     ./qemu
     # ../specialisations
   ];

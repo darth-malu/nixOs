@@ -2,7 +2,7 @@
 #+auto_tangle: t
 
 * start
-#+begin_src emacs-lisp :tangle qemu.nix
+#+begin_src emacs-lisp :tangle default.nix
 {config, lib, pkgs, ...}:
 
 {
@@ -17,12 +17,12 @@
 #+end_src
 
 * Uefi support
-#+begin_src emacs-lisp :tangle qemu.nix
+#+begin_src emacs-lisp :tangle default.nix
 
     systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
 #+end_src
 
 * end
-#+begin_src emacs-lisp :tangle qemu.nix
+#+begin_src emacs-lisp :tangle default.nix
 }
 #+end_src

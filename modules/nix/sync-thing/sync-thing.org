@@ -36,13 +36,16 @@ settings = {
 Syncthing creates a 'Sync' folder in your home directory every time it regenerates a configuration, even if your declarative configuration does not have this folder. You can disable that by setting the STNODEFAULTFOLDER environment variable:
 
 ** devices
+nix-shell -p syncthing --run "syncthing generate --config myconfig/"
+
 #+begin_src nix :tangle default.nix
 devices = {
   "tangier" = {
     id = "RIYCPC3-U3UCO5N-WLM7WNB-5372SAE-RSGUD4Y-BFIWCUC-WPOII3S-N2EGNAB";
   };
   "carthage" = {
-    id = "O2RS6GG-GKU2JYU-D2UEHPV-JQCGHCW-UZKE22D-SMNEYX6-WGAUXLR-BHTLGQA";
+    # id = "O2RS6GG-GKU2JYU-D2UEHPV-JQCGHCW-UZKE22D-SMNEYX6-WGAUXLR-BHTLGQA";
+    id = "6BCT57I-VW3QQGE-HBEAZGA-UHFTPH4-RBF6R2H-EN33IXQ-HPVOPGG-2NQHOAD";
   };
 };
 #+end_src

@@ -36,14 +36,14 @@
         ]; # [ "user1" "user2 "] or null(all users allowed)::
         # AllowUsers = null; # works
       };
-      # knownHosts = {
-      #   emacsRepo = {
-      #     hostNames = [
-      #       "github.com"
-      #     ];
-      #     publicKeyFile = ./public-keys/emacs.pub;
-      #   };
-      # };
+      knownHosts = {
+        emacsRepo = {
+          hostNames = [
+            "github.com"
+          ];
+          publicKeyFile = ./public-keys/emacs.pub;
+        };
+      };
       # authorizedKeysInHomedir = true;
       #authorizedKeysFiles = [ "$HOME/.ssh/id_ed25519.pub" ];
       # authorizedKeysFiles = [ "/home/malu/Documents/authorized_keys" ];
@@ -53,17 +53,17 @@
       #AllowAgentForwarding no
       #PermitTTY no
       #'';
-      extraConfig = ''
-        Host emacsGit
-        HostName github.com
-        User git
-        IdentityFile ~/.ssh/emacs
+      # extraConfig = ''
+      #   Host emacsGit
+      #   HostName github.com
+      #   User git
+      #   IdentityFile ~/.ssh/emacs
 
-        Host orgGit
-        HostName github.com
-        User git
-        IdentityFile ~/.ssh/org-roam
-      '';
+      #   Host orgGit
+      #   HostName github.com
+      #   User git
+      #   IdentityFile ~/.ssh/org-roam
+      # '';
     };
   };
 }

@@ -5,18 +5,6 @@
   ...
 }:
 {
-<<<<<<< HEAD
-  imports = [
-    ./keybinds
-    ./monitors-peripherals.nix
-    ./ui.nix
-    # ./plugins.nix
-    ./environment_variables.nix # avoid use .conf/uwsm/env - check file
-    ./window-workspace-rules.nix
-    ./autoStart.nix
-    ../hyprland-helper
-  ];
-=======
   imports =
     [
       ./keybinds
@@ -35,7 +23,6 @@
       else
         [ ]
     );
->>>>>>> 9e29ecd (plugins only for tangier)
 
   options.homeHyprland = {
     enable = lib.mkEnableOption "homeHypr";

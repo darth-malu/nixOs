@@ -41,9 +41,6 @@ let
 in
 {
   imports = [
-    # flaked apps
-    # inputs.nyaa.homeManagerModule
-    # inputs.nix-doom-emacs.hmModule #FIXME Throughs errors
     ./yt-dlp.nix
     ./qutebrowser
     ./soundStuff
@@ -120,6 +117,7 @@ in
       # superfile # kinda cool but dont need
 
       # productivity
+      buku
       groff
       ghostscript
       # obsidian
@@ -169,6 +167,7 @@ in
       nil # kinda slow
       nixd
       nixfmt-rfc-style # official - needed to use formatting with :lang nix
+
       emacs-lsp-booster
 
       # org stuff

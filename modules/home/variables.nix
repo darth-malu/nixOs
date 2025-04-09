@@ -9,6 +9,7 @@
     #BEMOJI_TYPE_CMD="dotool"; # which typing tool to use (ydotool will NOT work)
     #BEMOJI_ECHO_NEWLINE="true"; # whether to end the output with a newline character
     # UWSM_WAIT_VARNAMES="$UWSM_WAIT_VARNAMES";
+    LSP_USE_PLISTS = "true";
   };
   systemd.user.sessionVariables = {
     # EDITOR="nvim";

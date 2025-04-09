@@ -4,11 +4,11 @@
     ./system-pkgs.nix
     ./fonts.nix
     ./inputrc.nix
-    ./openssh.nix
+    ./ssh
     ./services_timers-systemd.nix
     # ./sync_thing.nix
     ./enVars.nix
-    ./qemu.nix
+    ./qemu
     # ../specialisations
   ];
 }

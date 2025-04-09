@@ -1,29 +1,41 @@
 #+title: Sync Thing
 #+auto_tangle: t
+#+startup: inlineimages content
 
 will output to a default nix
 
-* intro
-#+begin_src nix :tangle default.nix
+  http://127.0.0.1:8384/ - synthing gui
+
+* start
+  #+begin_src nix :tangle default.nix
 {
-    systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
+ systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
 
-    services.syncthing = {
-        # http://127.0.0.1:8384/
-        enable = true;
-        group = "darth";
-        user = "malu";
-        openDefaultPorts = true; # TCP/UDP 22000 for transfers and UDP 21027 for discovery. # NOTE unneeded works anyway :) leaving on because.
-        guiAddress = "127.0.0.1:8384";
-        systemService = true; # true::
-        configDir = "/home/malu/.config/syncthing"; # will run as root if you dont do this by default? not nice for dots ... videos :)
-        dataDir = "/home/malu/syncFolder";
-        overrideDevices = false;
-        overrideFolders = false; # Whether to delete the folders which are not configured via the folders option
-    settings = {
-#+end_src
+ services.syncthing = {
+   # http://127.0.0.1:8384/
+   enable = true;
+   group = "darth";
+   user = "malu";
+   openDefaultPorts = true; # TCP/UDP 22000 for transfers and UDP 21027 for discovery. # NOTE unneeded works anyway :) leaving on because.
+   # guiAddress = "127.0.0.1:8384";
+   systemService = true; # true::
+   configDir = "/home/malu/.config/syncthing"; # will run as root if you dont do this by default? (path where the settings and keys will exist)
+   dataDir = "/home/malu/syncFolder";
+   overrideDevices = false;
+   overrideFolders = false; # Whether to delete the folders which are not configured via the folders option
+   # key = "${/home/malu/.config/syncthing/key.pem}";
+   # cert = "${/home/malu/.config/syncthing/cert.pem}";
+ #+end_src
 
-* devices
+* settings
+** start
+  #+begin_src nix :tangle default.nix
+settings = {
+  #+end_src
+
+Syncthing creates a 'Sync' folder in your home directory every time it regenerates a configuration, even if your declarative configuration does not have this folder. You can disable that by setting the STNODEFAULTFOLDER environment variable:
+
+** devices
 #+begin_src nix :tangle default.nix
 devices = {
   "tangier" = {
@@ -35,43 +47,8 @@ devices = {
 };
 #+end_src
 
-* folders
-** docs
-- services.syncthing.settings.options.maxFolderConcurrency
-    This option controls how many folders may concurrently be in I/O-intensive operations such as syncing or scanning. The mechanism is described in detail in a [[https://docs.syncthing.net/advanced/option-max-concurrency.html][separate chapter]].
-
-    The maxFolderConcurrency option controls how many folders may concurrently be in I/O-intensive operations such as syncing or
-    scanning. The default value is the same as the number of logical CPU cores in the system. Folders waiting for their turn to scan or
-    sync will show up as “Waiting to Scan” or “Waiting to Sync” until the total number of ongoing such operations is low enough to let
-    them proceed.
-
-    Valid Values:
-  - Zero (0):
-      The default, means the number of logical CPUs in the system (i.e., 2, 4, 8, etc.), autodetected.
-
-  - Negative (< 0):
-    No limit on the number of concurrent operations. This was the default in versions < 1.4.0.
-
-  - A positive integer (> 0):
-    Use this specific limit.
-
-- services.syncthing.settings.folders.<name>.type
-    Controls how the folder is handled by Syncthing. See https://docs.syncthing.net/users/config.html#config-option-folder.type.
-    one of "sendreceive"::, "sendonly", "receiveonly", "receiveencrypted"
-
-    sendreceive
-        The folder is in default mode. Sending local and accepting remote changes.
-
-    sendonly
-        The folder is in “send only” mode – it will not be modified by Syncthing on this device.
-
-    receiveonly
-        The folder is in “receive only” mode – it will not propagate changes to other devices.
-
-    receiveencrypted
-        Must be used on untrusted devices, where the data cannot be decrypted because no folder password was entered. See Untrusted (Encrypted) Devices.
-
-** tangle
+** folders
+*** tangle
 #+begin_src nix :tangle default.nix
 folders = {
   "Shibuya" = {         # Name of folder in Syncthing, also the folder ID
@@ -90,7 +67,7 @@ folders = {
 
   "ytVid" = {
     path = "/home/malu/Videos/YtDlp";
-    devices = [ "carthage" ];
+    devices = [ "tangier" ]; # device to receive from?
     type = "receiveonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted
     order = "newestFirst"; # random(default), alphabetic, smallestFirst, largestFirst,
     # maxConflicts = 2; # -1:: unlimited number , 0 - disables
@@ -125,7 +102,7 @@ folders = {
   };
 #+end_src
 
-** org, org-roam
+*** org, org-roam
 #+begin_src nix :tangle default.nix
 "org" = {
   path = "/home/malu/org";
@@ -144,8 +121,44 @@ folders = {
 }; # end of folders
 #+end_src
 
-* gui
-** TODO set password as harsh instead
+*** docs
+- services.syncthing.settings.options.maxFolderConcurrency
+    This option controls how many folders may concurrently be in I/O-intensive operations such as syncing or scanning. The mechanism is described in detail in a [[https://docs.syncthing.net/advanced/option-max-concurrency.html][separate chapter]].
+
+    The maxFolderConcurrency option controls how many folders may concurrently be in I/O-intensive operations such as syncing or
+    scanning. The default value is the same as the number of logical CPU cores in the system. Folders waiting for their turn to scan or
+    sync will show up as “Waiting to Scan” or “Waiting to Sync” until the total number of ongoing such operations is low enough to let
+    them proceed.
+
+    Valid Values:
+  - Zero (0):
+      The default, means the number of logical CPUs in the system (i.e., 2, 4, 8, etc.), autodetected.
+
+  - Negative (< 0):
+    No limit on the number of concurrent operations. This was the default in versions < 1.4.0.
+
+  - A positive integer (> 0):
+    Use this specific limit.
+
+- services.syncthing.settings.folders.<name>.type
+    Controls how the folder is handled by Syncthing. See https://docs.syncthing.net/users/config.html#config-option-folder.type.
+    one of "sendreceive"::, "sendonly", "receiveonly", "receiveencrypted"
+
+    sendreceive
+        The folder is in default mode. Sending local and accepting remote changes.
+
+    sendonly
+        The folder is in “send only” mode – it will not be modified by Syncthing on this device.
+
+    receiveonly
+        The folder is in “receive only” mode – it will not propagate changes to other devices.
+
+    receiveencrypted
+        Must be used on untrusted devices, where the data cannot be decrypted because no folder password was entered. See Untrusted (Encrypted) Devices.
+
+
+** gui
+*** TODO set password as harsh instead
 #+begin_src nix :tangle default.nix
 gui = {
   theme = "black";
@@ -154,9 +167,20 @@ gui = {
 };
 #+end_src
 
-* end
+** end
 #+begin_src nix :tangle default.nix
 };
  };
-  }
+  # Syncthing ports: 8384 for remote access to GUI
+  # 22000 TCP and/or UDP for sync traffic
+  # 21027/UDP for discovery
+  # source: https://docs.syncthing.net/users/firewall.html
+  networking.firewall.allowedTCPPorts = [ 8384 22000 ];
+  networking.firewall.allowedUDPPorts = [ 22000 21027 ];
+#+end_src
+
+
+* end
+#+begin_src nix :tangle default.nix
+}
 #+end_src

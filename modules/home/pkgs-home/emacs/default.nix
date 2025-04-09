@@ -2,8 +2,7 @@
 {
   programs.emacs = {
     enable = true;
-    # package = pkgs.emacs-gtk; # emacs, emacs-gkt
-    package = pkgs.emacs; # emacs, emacs-gkt
+    package = pkgs.emacs-gtk; # emacs, emacs-gkt
     extraConfig = ''
       (setq standard-indent 2)
     '';
@@ -16,7 +15,7 @@
         mu4e
         prettier
         org-tidy
-
+        ebuku
         # emacs-all-the-icons-fonts
       ];
     # overrides = self: super: rec {
@@ -27,12 +26,12 @@
 
   services.emacs = {
     enable = true; # emacs daemon
-    startWithUserSession = true; # whether to launch Emacs servicee with the systemd session
+    startWithUserSession = "graphical"; # whether to launch Emacs servicee with the systemd session. boolean or "graphical" (default.target::)
     #package = emacs;
     defaultEditor = true;
-    # socketActivation.enable = true; # Whether to enable systemd socket activation for the Emacs service. # NOTE: works as needed without
+    socketActivation.enable = true; # Whether to enable systemd socket activation for the Emacs service. # NOTE: works as needed without
     client = {
-      enable = true; # false::, generation of Emacs client desktop file.
+      enable = false; # false::, generation of Emacs client desktop file.
       arguments = [
         "-c" # open in emacs frame / GUI frame
         # "-a 'emacs'"

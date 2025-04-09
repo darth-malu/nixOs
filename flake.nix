@@ -50,6 +50,11 @@ hyprpaper = { # TODO: test if needed
   };
 };
 
+hyprland-plugins = {
+    url = "github:hyprwm/hyprland-plugins";
+    inputs.hyprland.follows = "hyprland";
+};
+
 nyaa = {
   url = "github:Beastwick18/nyaa";
   inputs.nixpkgs.follows = "nixpkgs";#TODO: find out what follows does exactly

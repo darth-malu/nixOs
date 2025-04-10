@@ -13,7 +13,7 @@
       ./environment_variables.nix # avoid use .conf/uwsm/env - check file
       ./window-workspace-rules.nix
       ./autoStart.nix
-      ../hyprland-helper
+      ./hyprland-helper
     ]
     ++ (
       if osConfig.networking.hostName == "tangier" then

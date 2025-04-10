@@ -55,7 +55,10 @@ in
         echo "scale=2;$1" | bc
         }
 
-        # task
+        speedtest () {
+            curl -S https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
+        }
+
         t ()
         {
           case $1 in

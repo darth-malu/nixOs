@@ -33,10 +33,6 @@
       /*padding: 0px 12px 0px 6px;*/
   }
 
-   /*#battery.<status>.<state>*/
-  /*#battery.critical:not(.charging) {*/
-  /*window#waybar.battery-<state>*/
-
   #battery.critical.discharging {
     background-color: #f53c3c;
     color: #ffffff;

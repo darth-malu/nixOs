@@ -39,7 +39,7 @@ in
             "DP-3,$HOME/Pictures/wallpapers/singed-4096x2305.jpg"
           ]
         else if osConfig.networking.hostname == "tangier" then
-          [ "$HOME/Pictures/wallpapers/vi_xander.png" ]
+          [ "eDP-1,$HOME/Pictures/wallpapers/vi_xander.png" ]
         else
           [ ];
     };

@@ -17,7 +17,7 @@ pkgs.writeShellScriptBin "songart" ''
       mpc_generated_png="$(${pkgs.mpc}/bin/mpc --format %album% current | base64).png"
       previewname="$previewDir/$mpc_generated_png"
 
-      [ -e "$previewname" ] || ${pkgs.ffmpeg}/bin/ffmpeg -y -i "$filename" -an -vf scale=128:128 "$previewname" > /dev/null 2>&1
+      [ -e "$previewname" ] || ${pkgs.ffmpeg-full}/bin/ffmpeg -y -i "$filename" -an -vf scale=128:128 "$previewname" > /dev/null 2>&1
       echo "$previewname" # ready image for dunst 🤪
 
       # NOTE: works beautifully

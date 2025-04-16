@@ -3,7 +3,7 @@
 {
   imports = [
     ./dunst.nix
-    ./eww
+    # ./eww
     ./rofi
     ./waybar
     ./scripts

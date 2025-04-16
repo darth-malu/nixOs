@@ -345,19 +345,11 @@
         ]
       },
       "locked": {
-<<<<<<< HEAD
-        "lastModified": 1744307861,
-        "narHash": "sha256-c4i69OsEMi3e5+HuWrwgcx9sOsn1Z1hxLlyiQOiWJi8=",
+        "lastModified": 1744833442,
+        "narHash": "sha256-BBMWW2m64Grcc5FlXz74+vdkUyCJOfUGnl+VcS/4x44=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "140a7df916f6257c755b8663fb27ed79e81c8e89",
-=======
-        "lastModified": 1744820898,
-        "narHash": "sha256-gUldr3LtCm/OfEnbH6sFFlyyxqPMCsfMs2Ha+0fdPDs=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "7ede02c32a729db0d6340bdb41d10e73ec511ca0",
->>>>>>> 3806569 (add steam.nix fix mpriis script(icons not work))
+        "rev": "c6b75d69b6994ba68ec281bd36faebcc56097800",
         "type": "github"
       },
       "original": {
@@ -440,19 +432,11 @@
         "xdph": "xdph"
       },
       "locked": {
-<<<<<<< HEAD
-        "lastModified": 1744289664,
-        "narHash": "sha256-mcegUAWyi9AqbXTTASP5YQJmyGqQ/kpjnrxUbu9vsFU=",
-        "owner": "hyprwm",
-        "repo": "Hyprland",
-        "rev": "d775686380c348efe3a2044a5ca8626505249e38",
-=======
         "lastModified": 1744818541,
         "narHash": "sha256-DHegSmqvGE8MsVtL8HYTEi2+fg2K5o8pUpb3mgPkyb0=",
         "owner": "hyprwm",
         "repo": "Hyprland",
         "rev": "3fa6320a391ed60779702e058f67649beb787962",
->>>>>>> 3806569 (add steam.nix fix mpriis script(icons not work))
         "type": "github"
       },
       "original": {
@@ -638,19 +622,11 @@
         ]
       },
       "locked": {
-<<<<<<< HEAD
-        "lastModified": 1744270614,
-        "narHash": "sha256-pW+kMJWqqxyJjOmmdMRWmGg1E6P6dHc+4F3u4yfMfS4=",
-        "owner": "hyprwm",
-        "repo": "hyprlock",
-        "rev": "71d35aa75f32ba2006e1116bc1fc53a59093bfc3",
-=======
         "lastModified": 1744707942,
         "narHash": "sha256-rSTFt5QOsDVc1dU3ybsXc6SBuN3fBCMbKH77kaNo45g=",
         "owner": "hyprwm",
         "repo": "hyprlock",
         "rev": "656704aeb0b531f79ac642fa436d0540eabbd076",
->>>>>>> 3806569 (add steam.nix fix mpriis script(icons not work))
         "type": "github"
       },
       "original": {
@@ -1034,19 +1010,11 @@
         "systems": "systems_4"
       },
       "locked": {
-<<<<<<< HEAD
-        "lastModified": 1744308014,
-        "narHash": "sha256-gbN6v+1be1SrRRbur3GgvDPbv/QMJ5L6keJDMcNGpZ8=",
-        "owner": "notashelf",
-        "repo": "nvf",
-        "rev": "ed31499ad65e97a6210291848aff6dd9f9b137d0",
-=======
         "lastModified": 1744639354,
         "narHash": "sha256-AwUtAeDokimPucrPVj0YuoFWZ/xFVL4wy2wxZN5+u20=",
         "owner": "notashelf",
         "repo": "nvf",
         "rev": "f516cb43ceb2b071e6b9a6d5c9d681c8a3187f5f",
->>>>>>> 3806569 (add steam.nix fix mpriis script(icons not work))
         "type": "github"
       },
       "original": {
@@ -1440,19 +1408,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-<<<<<<< HEAD
-        "lastModified": 1744215954,
-        "narHash": "sha256-7hynNio9B/AiOYK0/yilaq3QwJIeqWhGQRVn5j1f2XQ=",
-        "owner": "sxyazi",
-        "repo": "yazi",
-        "rev": "7cc250180f61e0e4e8a5d0aa0271d31c3fc797b7",
-=======
         "lastModified": 1744805292,
         "narHash": "sha256-N8FIMhskRvkN+d4dFvNjOPyD0nS2HMFdV1epv4/INw4=",
         "owner": "sxyazi",
         "repo": "yazi",
         "rev": "510cb14ab6e348029763ec4c77a5b6a8c4b38caa",
->>>>>>> 3806569 (add steam.nix fix mpriis script(icons not work))
         "type": "github"
       },
       "original": {

@@ -18,9 +18,8 @@ pkgs.writeShellScriptBin "clr_backup" ''
     # Only delete if the user confirms
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
       # delete matched files
-      # find "$HOME" -maxdepth 3 -iname "${pattern}" -type f -delete
       # fd "$HOME" -d 3 "${pattern}" -0 -t f
-
+      find "$HOME" -maxdepth 3 -iname "${pattern}" -type f -delete
       if [$? -eq 0]; then
         echo "Backups removed."
       else

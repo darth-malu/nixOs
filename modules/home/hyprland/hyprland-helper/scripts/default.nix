@@ -1,15 +1,19 @@
-{pkgs, osConfig,...}:
+{ pkgs, osConfig, ... }:
 
 let
   # sample_script = import ./spript.nix {inherit pkgs;};
-  songart = import ./songart.nix {inherit pkgs;};
-  mpris_vol = import ./mpris_volume_dunst.nix {inherit pkgs;};
-  volume_dunst = import ./volume_dunst.nix {inherit pkgs;};
-  pause_play = import ./pause_play.nix {inherit pkgs;};
-  rofi_power = import ./rofi_power.nix {inherit pkgs;};
-  gaps = import ./gaps.nix {inherit pkgs;};
-  temp = if osConfig.networking.hostName == "tangier" then import ./temp-tangier.nix {inherit pkgs;} else import ./carthage_temp.nix {inherit pkgs;};
-  clr_backup = import ./clr_backup.nix {inherit pkgs;};
+  songart = import ./songart.nix { inherit pkgs; };
+  mpris_vol = import ./volume/mpris_volume_dunst.nix { inherit pkgs; };
+  volume_dunst = import ./volume/volume_dunst.nix { inherit pkgs; };
+  pause_play = import ./pause_play.nix { inherit pkgs; };
+  rofi_power = import ./rofi_power.nix { inherit pkgs; };
+  gaps = import ./gaps.nix { inherit pkgs; };
+  temp =
+    if osConfig.networking.hostName == "tangier" then
+      import ./temp/tangier_temp.nix { inherit pkgs; }
+    else
+      import ./temp/carthage_temp.nix { inherit pkgs; };
+  clr_backup = import ./clr_backup.nix { inherit pkgs; };
 in
 {
   home.packages = [

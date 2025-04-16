@@ -63,7 +63,7 @@ in
     [
       sway-audio-idle-inhibit
       wev
-      tldr
+      # tldr - using emacs one lol
       #testdisk
       testdisk-qt
       # qalculate-qt # #FIXME:for rofi?
@@ -117,7 +117,7 @@ in
       # superfile # kinda cool but dont need
 
       # productivity
-      buku
+      buku # TODO: test
       groff
       ghostscript
       # obsidian
@@ -168,7 +168,7 @@ in
       nixd
       nixfmt-rfc-style # official - needed to use formatting with :lang nix
 
-      emacs-lsp-booster
+      emacs-lsp-booster # TODO: test if this works
 
       # org stuff
       scrot # for org-screenshot-take
@@ -208,8 +208,6 @@ in
       #(ffmpeg.override { withXcb = true;  })
       #  ffmpeg
       # davinci-resolve
-      obs-studio
-      obs-cli
       spotube
       digikam
     ])
@@ -223,22 +221,36 @@ in
     ++ (with pkgs; [
       # NOTE: school
       nodePackages.vercel # vercel
-      netbeans
+      # netbeans
       wpsoffice
-      R-with-my-packages
-      RStudio-with-my-packages
+      # R-with-my-packages
+      # RStudio-with-my-packages
     ])
     ++ (with pkgs; [
       # hyrpland
       hyprpicker
-    ]);
+    ])
+    ++
+      # NOTE: selective
+      (
+        if osConfig.networking.hostName == "carthage" then
+          with pkgs;
+          [
+            obs-studio
+            obs-cli
+          ]
+        else if osConfig.networking.hostname == "tangier" then
+          [ ]
+        else
+          [ ]
+      );
 
   programs = {
     home-manager.enable = true; # Let Home Manager install and manage itself.
 
     java = {
       enable = true;
-      package = pkgs.jdk23;
+      # package = pkgs.jdk23;
     };
 
     ripgrep = {
@@ -707,17 +719,21 @@ in
     blueman-applet.enable = true;
     udiskie = {
       enable = true;
-      tray = "auto";
+      tray = "auto"; # works
       notify = true;
       automount = true;
+      # appindicator = true; # use if no icon shows...uses appindicator3
 
-      #settings = {
-      #program_options = {
-      #udisks_version = 2;
-      #tray = true;
-      #};
-      #icon_names.media = [ "media-optical" ];
-      #};
+      settings = {
+        # config written to .config/udiskie/config.yml
+        # https://github.com/coldfix/udiskie/blob/master/doc/udiskie.8.txt#configuration
+        # program_options = {
+        #   udisks_version = 2;
+        #   tray = true;
+        # };
+        # icon_names.media = [ "media-optical" ];
+        file-manager = "yazi";
+      };
     };
   };
 }

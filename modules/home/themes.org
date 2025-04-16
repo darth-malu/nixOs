@@ -15,14 +15,18 @@ lib.mkIf osConfig.programs.hyprland.enable {
 * home
 #+begin_src nix themes.nix
 home.pointerCursor = {
+  enable = true; # false::
   hyprcursor = {
-    size = 24;
+    size = 24; # 32::
     enable = true;
   };
   gtk.enable = true; # waybar, gtk apps
-  # x11.enable = true; #xwayland?
-  package = pkgs.bibata-cursors; name = "Bibata-Modern-Ice";
-  # package = pkgs.posy-cursors; name = "posy-cursors";
+  x11 = {
+    enable = true; # false:: xwayland?
+    # defaultCursor = pkgs.
+  };
+  name = "Bibata-Modern-Ice";
+  package = pkgs.bibata-cursors;
   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
 };
 #+end_src

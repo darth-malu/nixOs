@@ -106,8 +106,8 @@ pkgs = import nixpkgs {
   inherit  system;
   config = {
     allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-      "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta" "windows10-icons" "whatsapp-emoji-linux" "aspell-dict-en-science" "davinci-resolve"
-      "youtube-upnext"
+      "discord" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta" "windows10-icons" "whatsapp-emoji-linux" "aspell-dict-en-science" "davinci-resolve"
+     "steam" "steam-original" "steam-unwrapped" "steam-run" "youtube-upnext"
     ];
   };
   # overlays = [

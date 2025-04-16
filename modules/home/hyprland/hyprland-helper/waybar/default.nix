@@ -707,8 +707,8 @@
             #on-click-middle = "~/.darth/scripts/player_focus.sh";#FIXME: focus not working
             # on-scroll-down = "~/.darth/scripts/player/mpris_volume.sh -";
             # on-scroll-up = "~/.darth/scripts/player/mpris_volume.sh +";
-            on-scroll-down = "mpris_vol -2";
-            on-scroll-up = "mpris_vol +2";
+            on-scroll-down = "mpris_vol -";
+            on-scroll-up = "mpris_vol +";
             tooltip = false;
             ellipsis = "...";
             player-icons = {

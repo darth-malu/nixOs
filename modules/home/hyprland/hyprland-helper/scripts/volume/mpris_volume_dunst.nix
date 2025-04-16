@@ -21,16 +21,17 @@ pkgs.writeShellScriptBin "mpris_vol" ''
           playerctl -p "$current_player" volume 0.02"$1"
           dunstify -t 1000 -a "changeVolume" -u low \
             -i $HOME/Shibuya/assets/icons/icons8-spotify-gradient/icons8-spotify-50.png \
-            -h string:x-dunst-stack-tag:$msgTag "Spotify            $(get_volume)" \
+            -h string:x-dunst-stack-tag:$msgTag "Spotify           " \
             -h int:value:"$(get_volume)"
+            # -h string:x-dunst-stack-tag:$msgTag "Spotify            $(get_volume)" \
           ;;
       "Lollypop")
           playerctl -p "$current_player" volume 0.02"$1"
           volume=$(convert_to_percentage "$(playerctl volume)")
           dunstify -t 1000 -a "changeVolume" -u low \
             -i $HOME/Shibuya/assets/icons/icons8-candy-50.png \
+            -h string:x-dunst-stack-tag:$msgTag "Lollypop                  " \
             -h int:value:"$(get_volume)"
-            # -h string:x-dunst-stack-tag:$msgTag "Lollypop                  $(get_volume)" \
           ;;
       "mpd")
           mpc volume "$1"2
@@ -41,6 +42,7 @@ pkgs.writeShellScriptBin "mpris_vol" ''
           volume=$(convert_to_percentage "$(playerctl volume)")
           dunstify -t 1000 -a "changeVolume" -u low \
             -i $HOME/Shibuya/assets/icons/mpv.256x253.png \
+            -h string:x-dunst-stack-tag:$msgTag "MPV                  " \
             -h int:value:"$(get_volume)"
             # -h string:x-dunst-stack-tag:$msgTag "MPV                  $(get_volume) " \
           ;;
@@ -49,6 +51,7 @@ pkgs.writeShellScriptBin "mpris_vol" ''
           volume=$(convert_to_percentage "$(playerctl volume)")
           dunstify -t 1000 -a "changeVolume" -u low \
             -i $HOME/Shibuya/assets/icons/icons8-chrome-office-l/icons8-chrome-30.png \
+            -h string:x-dunst-stack-tag:$msgTag "Chrome                  " \
             -h int:value:"$(get_volume)"
             # -h string:x-dunst-stack-tag:$msgTag "Chrome                  $(get_volume)" \
           ;;

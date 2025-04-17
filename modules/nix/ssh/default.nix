@@ -26,7 +26,7 @@
       };
       # authorizedKeysInHomedir = true;
       # authorizedKeysFiles = [ "/home/malu/Documents/authorized_keys" ];
-      extraConfig = import ./extraConf.nix;
+      # extraConfig = import ./extraConf.nix; # FIXME check source of errors?
     };
   };
 }

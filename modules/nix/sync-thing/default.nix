@@ -82,6 +82,20 @@ folders = {
   };
 };
 
+"ncmpcpp_playlists" = {
+  path = "/home/malu/Music/playlists";
+  devices = [
+    "tangier"
+    "carthage"
+  ];
+  type = "sendreceive";
+  minHomeDiskFree = {
+    # % (percent of the disk / volume size), kB, MB, GB and TB.
+    unit = "%";
+    value = 40;
+  };
+};
+
   "myVaults" = {
     path = "/home/malu/obsidianVaults";
     devices = ["tangier" "carthage"];

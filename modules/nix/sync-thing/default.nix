@@ -45,7 +45,7 @@ folders = {
   type = "sendreceive";
 };
 
-"ytVid" = {
+"ytVid-tangier" = {
   path = "/home/malu/Videos/YtDlp";
   devices = [ "tangier" ]; # device to receive from?
   type = "sendonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted
@@ -55,7 +55,7 @@ folders = {
   # scanProgressIntervalS = 0; # The interval in seconds with which scan progress information is sent to the GUI. Setting to 0 will cause Syncthing to use the default value of two.
 };
 
-"ytVid" = {
+"ytVid-carthage" = {
   path = "/home/malu/Videos/YtDlp";
   devices = [ "carthage" ];
   type = "receiveonly";

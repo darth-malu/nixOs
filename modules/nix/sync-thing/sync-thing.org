@@ -84,7 +84,7 @@ folders = {
 *** yt videos
 **** tangier
 #+begin_src nix :tangle default.nix
-"ytVid" = {
+"ytVid-tangier" = {
   path = "/home/malu/Videos/YtDlp";
   devices = [ "tangier" ]; # device to receive from?
   type = "sendonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted
@@ -96,7 +96,7 @@ folders = {
 #+end_src
 **** carthage
 #+begin_src nix :tangle default.nix
-"ytVid" = {
+"ytVid-carthage" = {
   path = "/home/malu/Videos/YtDlp";
   devices = [ "carthage" ];
   type = "receiveonly";

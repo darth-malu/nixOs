@@ -91,8 +91,8 @@ folders = {
 *** yt videos
 #+begin_src nix :tangle default.nix
 "ytVid" = {
-  id = "Yt"
-  label = "mbono"
+  id = "Yt";
+  label = "mbono";
   path = "/home/malu/Videos/YtDlp";
   devices = [ "carthage" ]; # device to receive from?
   type = "receiveonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted

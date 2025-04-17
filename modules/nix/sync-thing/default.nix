@@ -37,8 +37,8 @@ folders = {
   };
 
 "ytVid" = {
-  id = "Yt"
-  label = "mbono"
+  id = "Yt";
+  label = "mbono";
   path = "/home/malu/Videos/YtDlp";
   devices = [ "carthage" ]; # device to receive from?
   type = "receiveonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted

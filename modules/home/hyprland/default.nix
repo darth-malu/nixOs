@@ -5,24 +5,23 @@
   ...
 }:
 {
-  imports =
-    [
-      ./keybinds
-      ./monitors-peripherals.nix
-      ./ui.nix
-      ./environment_variables.nix # avoid use .conf/uwsm/env - check file
-      ./window-workspace-rules.nix
-      ./autoStart.nix
-      ./hyprland-helper
-    ]
-    ++ (
-      if osConfig.networking.hostName == "tangier" then
-        [
-          ./plugins.nix
-        ]
-      else
-        [ ]
-    );
+  imports = [
+    ./keybinds
+    ./monitors-peripherals.nix
+    ./ui.nix
+    ./environment_variables.nix # avoid use .conf/uwsm/env - check file
+    ./window-workspace-rules.nix
+    ./autoStart.nix
+    ./hyprland-helper
+  ];
+  # ++ (
+  #   if osConfig.networking.hostName == "tangier" then
+  #     [
+  #       ./plugins.nix
+  #     ]
+  #   else
+  #     [ ]
+  # );
 
   options.homeHyprland = {
     enable = lib.mkEnableOption "homeHypr";

@@ -1,9 +1,6 @@
-{
-  osConfig,
-  ...
-}:
+{ osConfig, ... }:
 
-let # FIXME this block is not working
+let
   # requirements:
   # - output alist [
   #   monitor1, location
@@ -27,7 +24,7 @@ in
             "$HOME/Pictures/wallpapers/jinx.png"
             "$HOME/Pictures/wallpapers/thresh_purp.png"
           ]
-        else if osConfig.networking.hostname == "tangier" then
+        else if osConfig.networking.hostName == "tangier" then
           [ "$HOME/Pictures/wallpapers/vi_xander.png" ]
         else
           [ ];
@@ -38,7 +35,7 @@ in
             "HDMI-A-1,$HOME/Pictures/wallpapers/jinx.png"
             "DP-3,$HOME/Pictures/wallpapers/singed-4096x2305.jpg"
           ]
-        else if osConfig.networking.hostname == "tangier" then
+        else if osConfig.networking.hostName == "tangier" then
           [ "eDP-1,$HOME/Pictures/wallpapers/vi_xander.png" ]
         else
           [ ];

@@ -25,19 +25,16 @@ devices = {
   };
 
   "carthage" = {
-    # id = "O2RS6GG-GKU2JYU-D2UEHPV-JQCGHCW-UZKE22D-SMNEYX6-WGAUXLR-BHTLGQA";
     addresses = ["tcp://192.168.100.5"];
-    # id = "6BCT57I-VW3QQGE-HBEAZGA-UHFTPH4-RBF6R2H-EN33IXQ-HPVOPGG-2NQHOAD";
-    # id = "DABGRG2-6ZXSZYX-5P4JOKR-Q3R7ZRC-X7G4S53-FZ44QKA-AAGLFZU-K2GR2QI";
     id = "DEOOZ33-AWZH56X-4QBF224-QG7LXVY-YXWCGBL-VCWZ3G4-ZWID3ZN-QHBPKQU";
   };
 };
 
 folders = {
-  # "Shibuya" = {         # Name of folder in Syncthing, also the folder ID
-  #   path = "/home/malu/Shibuya";    # Which folder to add to Syncthing
-  #   devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
-  # };
+  "Shibuya" = {         # Name of folder in Syncthing, also the folder ID
+    path = "/home/malu/Shibuya";    # Which folder to add to Syncthing
+    devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
+  };
 
   "Taskwarrior" = {
     path = "/home/malu/.task";
@@ -48,20 +45,20 @@ folders = {
     type = "sendreceive";
   };
 
-  # "ytVid" = {
-  #   path = "/home/malu/Videos/YtDlp";
-  #   devices = [ "tangier" ]; # device to receive from?
-  #   type = "receiveonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted
-  #   order = "newestFirst"; # random(default), alphabetic, smallestFirst, largestFirst,
-  #   # maxConflicts = 2; # -1:: unlimited number , 0 - disables
-  #   maxConcurrentWrites = 4; # 2:: Maximum number of concurrent write operations while syncing. Increasing this might increase or decrease disk performance, depending on the underlying storage.
-  #   # scanProgressIntervalS = 0; # The interval in seconds with which scan progress information is sent to the GUI. Setting to 0 will cause Syncthing to use the default value of two.
-  #   minHomeDiskFree = {
-  #     # % (percent of the disk / volume size), kB, MB, GB and TB.
-  #     unit = "%";
-  #     value = 15;
-  #   };
-  # };
+  "ytVid" = {
+    path = "/home/malu/Videos/YtDlp";
+    devices = [ "tangier" ]; # device to receive from?
+    type = "receiveonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted
+    order = "newestFirst"; # random(default), alphabetic, smallestFirst, largestFirst,
+    # maxConflicts = 2; # -1:: unlimited number , 0 - disables
+    maxConcurrentWrites = 4; # 2:: Maximum number of concurrent write operations while syncing. Increasing this might increase or decrease disk performance, depending on the underlying storage.
+    # scanProgressIntervalS = 0; # The interval in seconds with which scan progress information is sent to the GUI. Setting to 0 will cause Syncthing to use the default value of two.
+    minHomeDiskFree = {
+      # % (percent of the disk / volume size), kB, MB, GB and TB.
+      unit = "%";
+      value = 15;
+    };
+  };
 
   "music" = {
     path = "/home/malu/Music";
@@ -70,35 +67,31 @@ folders = {
       "carthage"
     ];
     type = "sendreceive";
-    # minHomeDiskFree = {
-    #   # % (percent of the disk / volume size), kB, MB, GB and TB.
-    #   unit = "%";
-    #   value = 40;
-    # };
+    minHomeDiskFree = {
+      # % (percent of the disk / volume size), kB, MB, GB and TB.
+      unit = "%";
+      value = 40;
+    };
   };
 
   "myVaults" = {
     path = "/home/malu/obsidianVaults";
-    devices = [
-      "tangier"
-      "carthage"
-    ];
+    devices = ["tangier" "carthage"];
+  };
+
+  "sharepoint" = {
+    path = "/home/malu/sharepoint";
+    devices = ["tangier" "carthage"];
   };
 
 "org" = {
   path = "/home/malu/org";
-  devices = [
-    "tangier"
-    "carthage"
-  ];
+  devices = ["tangier" "carthage"];
 };
 
 "org-roam" = {
   path = "/home/malu/org-roam";
-  devices = [
-    "tangier"
-    "carthage"
-  ];
+  devices = ["tangier" "carthage"];
 };
 }; # end of folders
 

@@ -59,6 +59,7 @@
                   "group/disk_memory"
                   "group/ssd-mpris"
                   "group/cpu_freq"
+                  "group/temp_wireplumber"
                   "battery"
                   "backlight"
                 ]
@@ -70,13 +71,13 @@
                   #"custom/nvme_temp"
                   "group/nvme-temp_memory"
                   "group/cpu_block"
+                  "group/temp_wireplumber"
                 ]
               else
                 [ ]
             )
             ++ [
               # common rear
-              "group/temp_wireplumber"
               "group/tray_clock"
               # "power-profiles-daemon"
               # "idle_inhibitor"

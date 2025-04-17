@@ -7,7 +7,7 @@
     undistractMe = {
       enable = true;
       timeout = 30; # seconds
-      playSound = true; # TODO: can this be improved??
+      playSound = true;
     };
     # bash.loginShellInit = /*bash*/ ''
     # '';

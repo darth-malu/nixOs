@@ -1,8 +1,13 @@
-{config, lib, pkgs, ...}:
+{ lib, pkgs, config, ...}:
 
 {
+  options.qemuNix = {
+    enable = lib.mkEnableOption "homeHypr";
+  };
+
+  config = lib.mkIf config.qemuNix.enable {
     environment.systemPackages = [
-        pkgs.qemu
+      pkgs.qemu
     ];
 
     # virt manager
@@ -12,4 +17,5 @@
 
     systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
 
+    };
 }

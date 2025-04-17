@@ -3,11 +3,16 @@
 
 * start
 #+begin_src emacs-lisp :tangle default.nix
-{config, lib, pkgs, ...}:
+{ lib, pkgs, config, ...}:
 
 {
+  options.qemuNix = {
+    enable = lib.mkEnableOption "homeHypr";
+  };
+
+  config = lib.mkIf config.qemuNix.enable {
     environment.systemPackages = [
-        pkgs.qemu
+      pkgs.qemu
     ];
 
     # virt manager
@@ -24,5 +29,6 @@
 
 * end
 #+begin_src emacs-lisp :tangle default.nix
+    };
 }
 #+end_src

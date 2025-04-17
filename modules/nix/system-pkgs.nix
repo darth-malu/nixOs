@@ -1,23 +1,22 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./fonts.nix
-      ./sync-thing
-      ./ssh
-      ./bash.nix
-    ]
-    ++ (
-      if config.networking.hostName == "carthage" then
-        [ ./qemu ] # TODO learn use
-      else if config.networking.hostname == "tangier" then
-        [ ]
-      else
-        [ ]
-    );
+  imports = [
+    ./fonts.nix
+    ./sync-thing
+    ./ssh
+    ./bash.nix
+    ./qemu
+  ];
+
+  qemuNix.enable = if config.networking.hostName == "carthage" then true else false;
+
   programs = {
-    dconf.enable = false; # TODO see if needed
+    dconf.enable = true; # TODO see if needed
   };
 
   services = {

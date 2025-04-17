@@ -11,6 +11,7 @@
   - [ ] backup music i like (or symlink to ingester for share with laptop)
 - [ ] downloads
   - [ ] websites
+- [ ] wallpapers
 - [ ] books
   - [ ] one studious folder for better organisation in documents
 ** QOC
@@ -26,85 +27,86 @@ pkgs.writeShellScriptBin "backup_script" ''
 ** body
 #+begin_src nix :tangle backuper.nix
 # --- Configuration ---
-SOURCE_DIR="$HOME/videos/bakFOlder/"
-  EXTERNAL_DRIVE_FLASH="/dev/sdb1"
-    EXTERNAL_DRIVE_HDD="/dev/sda2"
-      MOUNT_POINT_FLASH="/media/flash"
-        MOUNT_POINT_HDD="/media/hdd"
-          LOG_FILE="$HOME/backup_videos.log"
+SOURCE_DIR="$HOME/sharepoint"
+# EXTERNAL_DRIVE_FLASH="/dev/sdb1"
+SUMBI_HDD="/media/SumbiHDD/malu"
+SAN_DISK_FLASH="/media/Ventoy"
 
-            # --- Functions ---
+MOUNT_POINT_FLASH="/media/Ventoy"
+MOUNT_POINT_HDD="/media/SumbiHDD/malu"
+LOG_FILE="$HOME/sharepoint/backup_videos.log"
 
-            log_message() {
-              TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
-                echo "[$TIMESTAMP] $1" >> "$LOG_FILE"
-            }
+# --- Functions ---
+log_message() {
+    TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+    echo "[$TIMESTAMP] $1" >> "$LOG_FILE"
+}
 
-            mount_drive() {
-              local DEVICE="$1"
-                local MOUNT_POINT="$2"
+# mount_drive() {
+#     local DEVICE="$1"
+#     local MOUNT_POINT="$2"
 
-                  if ! mountpoint -q "$MOUNT_POINT"; then
-                    log_message "Mounting $DEVICE to $MOUNT_POINT..."
-                      sudo mount "$DEVICE" "$MOUNT_POINT"
-                      if [ $? -ne 0 ]; then
-                        log_message "Error mounting $DEVICE to $MOUNT_POINT. Exiting."
-                          exit 1
-                          fi
-                      else
-                        log_message "$DEVICE is already mounted at $MOUNT_POINT."
-                          fi
-            }
+#         if ! mountpoint -q "$MOUNT_POINT"; then
+#         log_message "Mounting $DEVICE to $MOUNT_POINT..."
+#             sudo mount "$DEVICE" "$MOUNT_POINT"
+#             if [ $? -ne 0 ]; then
+#             log_message "Error mounting $DEVICE to $MOUNT_POINT. Exiting."
+#                 exit 1
+#                 fi
+#             else
+#             log_message "$DEVICE is already mounted at $MOUNT_POINT."
+#                 fi
+# }
 
-            unmount_drive() {
-              local MOUNT_POINT="$1"
+# unmount_drive() {
+#     local MOUNT_POINT="$1"
 
-                if mountpoint -q "$MOUNT_POINT"; then
-                  log_message "Unmounting $MOUNT_POINT..."
-                    sudo umount "$MOUNT_POINT"
-                    if [ $? -ne 0 ]; then
-                      log_message "Error unmounting $MOUNT_POINT."
-                        fi
-                    else
-                      log_message "$MOUNT_POINT is not mounted."
-                        fi
-            }
+#     if mountpoint -q "$MOUNT_POINT"; then
+#         log_message "Unmounting $MOUNT_POINT..."
+#         sudo umount "$MOUNT_POINT"
+#         if [ $? -ne 0 ]; then
+#             log_message "Error unmounting $MOUNT_POINT."
+#             fi
+#         else
+#             log_message "$MOUNT_POINT is not mounted."
+#             fi
+# }
 
-            backup_folders() {
-              local DESTINATION="$1"
+backup_folders() {
+    local DESTINATION="$1"
 
-                log_message "Starting backup to $DESTINATION..."
-                rsync -avz "$SOURCE_DIR" "$DESTINATION" --delete --log-file="$LOG_FILE"
-                  if [ $? -eq 0 ]; then
-                    log_message "Backup to $DESTINATION completed successfully."
-                  else
-                    log_message "Backup to $DESTINATION failed. Check $LOG_FILE for details."
-                      fi
-            }
+    log_message "Starting backup to $DESTINATION..."
+    rsync -avz "$SOURCE_DIR" "$DESTINATION" --delete --log-file="$LOG_FILE"
+        if [ $? -eq 0 ]; then
+        log_message "Backup to $DESTINATION completed successfully."
+        else
+        log_message "Backup to $DESTINATION failed. Check $LOG_FILE for details."
+            fi
+}
 
-            # --- Main Script ---
+# --- Main Script ---
 
-            log_message "--- Starting Video Backup ---"
+log_message "--- Starting Video Backup ---"
 
-            # Mount the external drives
-            mount_drive "$EXTERNAL_DRIVE_FLASH" "$MOUNT_POINT_FLASH"
-            mount_drive "$EXTERNAL_DRIVE_HDD" "$MOUNT_POINT_HDD"
+# Mount the external drives
+mount_drive "$EXTERNAL_DRIVE_FLASH" "$MOUNT_POINT_FLASH"
+mount_drive "$EXTERNAL_DRIVE_HDD" "$MOUNT_POINT_HDD"
 
-            # Perform the backups
-            if [ -d "$MOUNT_POINT_FLASH" ]; then
-              backup_folders "$MOUNT_POINT_FLASH"
-                fi
+# Perform the backups
+if [ -d "$MOUNT_POINT_FLASH" ]; then
+    backup_folders "$MOUNT_POINT_FLASH"
+    fi
 
-                if [ -d "$MOUNT_POINT_HDD" ]; then
-                  backup_folders "$MOUNT_POINT_HDD"
-                    fi
+    if [ -d "$MOUNT_POINT_HDD" ]; then
+        backup_folders "$MOUNT_POINT_HDD"
+        fi
 
-                    # Unmount the external drives
-                    unmount_drive "$MOUNT_POINT_FLASH"
-                    unmount_drive "$MOUNT_POINT_HDD"
+        # Unmount the external drives
+        unmount_drive "$MOUNT_POINT_FLASH"
+        unmount_drive "$MOUNT_POINT_HDD"
 
-                    log_message "--- Video Backup Finished ---"
+        log_message "--- Video Backup Finished ---"
 
-                    exit 0
+        exit 0
 ''
 #+end_src

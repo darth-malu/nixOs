@@ -46,7 +46,7 @@ networking = {
     useDHCP = lib.mkDefault true;
 
     # interfaces.enp5s0.useDHCP = lib.mkDefault true;
-    networking.nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
+    nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
 };
 
 hardware = {

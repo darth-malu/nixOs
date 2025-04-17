@@ -42,9 +42,12 @@ nix-shell -p syncthing --run "syncthing generate --config myconfig/"
 devices = {
   "tangier" = {
     id = "RIYCPC3-U3UCO5N-WLM7WNB-5372SAE-RSGUD4Y-BFIWCUC-WPOII3S-N2EGNAB";
+    addresses = ["tcp://192.168.100.8"];
   };
+
   "carthage" = {
     # id = "O2RS6GG-GKU2JYU-D2UEHPV-JQCGHCW-UZKE22D-SMNEYX6-WGAUXLR-BHTLGQA";
+    addresses = ["tcp://192.168.100.5"];
     id = "6BCT57I-VW3QQGE-HBEAZGA-UHFTPH4-RBF6R2H-EN33IXQ-HPVOPGG-2NQHOAD";
   };
 };
@@ -131,7 +134,7 @@ folders = {
 #+end_src
 *** docs
 **** sample config
-#+begin_src nix
+#+begin_src nix :tangle no
 services = {
   syncthing = {
     enable = true;
@@ -197,7 +200,7 @@ services = {
         Must be used on untrusted devices, where the data cannot be decrypted because no folder password was entered. See Untrusted (Encrypted) Devices.
 
 
-** gui
+** password theme user gui
 *** TODO set password as harsh instead
 #+begin_src nix :tangle default.nix
 gui = {
@@ -207,10 +210,17 @@ gui = {
 };
 #+end_src
 
+** options
+The options element contains all other global configuration options.
+
+#+begin_src nix :tangle no
+
+#+end_src
+
 ** end
 #+begin_src nix :tangle default.nix
-};
- };
+}; # end of settings
+ }; # end of syncting
   # Syncthing ports: 8384 for remote access to GUI
   # 22000 TCP and/or UDP for sync traffic
   # 21027/UDP for discovery

@@ -2,7 +2,7 @@
   services.mpd = {
     enable = true;
     musicDirectory = "/home/malu/Music";
-    playlistDirectory = "/home/malu/Music/playlists"; # "/home/malu/.local/share/mpd/playlistDirectory"
+    playlistDirectory = "/home/malu/Music/ncmcppStuff/playlists"; # "/home/malu/.local/share/mpd/playlistDirectory"
     dataDir = "/home/malu/.local/share/mpd"; # "/home/malu/.local/ncmpcppDataDir/"
     dbFile = "/home/malu/.local/share/mpd/db";
 

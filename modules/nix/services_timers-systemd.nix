@@ -7,8 +7,8 @@
       # ${pkgs.coreutils}/bin/echo "Hello Word darth"
       "hello-world" = {
         script = ''
-          set -eu
-          # notify-send "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+          # set -eu
+          notify-send "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
           ${pkgs.coreutils}/bin/echo "Hello Word darth"
           ${pkgs.libnotify}/bin/notify-send "Hello Word darth"
         '';

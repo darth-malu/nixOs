@@ -1,15 +1,9 @@
 {
-  imports = [
-    ./sync-thing
-    ./system-pkgs.nix
-    ./fonts.nix
-    ./inputrc.nix
-    ./ssh
-    ./services_timers-systemd.nix
-    # ./sync_thing.nix
-    ./enVars.nix
-    ./bash.nix
-    ./qemu
-    # ../specialisations
-  ];
+  imports =
+    [
+      ./system-pkgs.nix
+      ./inputrc.nix
+      # ./services_timers-systemd.nix #FIXME not triggering
+      ./enVars.nix
+    ]
 }

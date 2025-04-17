@@ -1,14 +1,29 @@
 { pkgs, config, ... }:
 
 {
+  imports =
+    [
+      ./fonts.nix
+      ./sync-thing
+      ./ssh
+      ./bash.nix
+    ]
+    ++ (
+      if config.networking.hostName == "carthage" then
+        [ ./qemu ] # TODO learn use
+      else if config.networking.hostname == "tangier" then
+        [ ]
+      else
+        [ ]
+    );
   programs = {
-    dconf.enable = true;
+    dconf.enable = false; # TODO see if needed
   };
 
   services = {
     gvfs.enable = true;
     blueman.enable = true;
-    locate.enable = true;
+    locate.enable = false; # i dont use this...fd/fzf
     fstrim = {
       enable = true;
       interval = "weekly";
@@ -108,9 +123,9 @@
               [
                 # hello
                 # filelight
-                ghostwriter
+                # ghostwriter
                 # plan # watch
-                calindori
+                # calindori
                 # pkgs.labplot
               ]
             else

@@ -70,30 +70,19 @@ folders = {
 
 "music" = {
   path = "/home/malu/Music/homeMusic";
-  devices = [
-    "tangier"
-    "carthage"
-  ];
+  devices = ["tangier" "carthage"];
   type = "sendreceive";
   minHomeDiskFree = {
     # % (percent of the disk / volume size), kB, MB, GB and TB.
     unit = "%";
-    value = 40;
+    value = 10;
   };
 };
 
 "ncmpcpp_playlists" = {
   path = "/home/malu/Music/playlists";
-  devices = [
-    "tangier"
-    "carthage"
-  ];
+  devices = ["tangier" "carthage"];
   type = "sendreceive";
-  minHomeDiskFree = {
-    # % (percent of the disk / volume size), kB, MB, GB and TB.
-    unit = "%";
-    value = 40;
-  };
 };
 
   "myVaults" = {
@@ -123,8 +112,8 @@ gui = {
   password = "@syncthing2025";
 };
 
-}; # end of settings
- }; # end of syncting
+    }; # end of settings
+}; # end of syncting
   # Syncthing ports: 8384 for remote access to GUI
   # 22000 TCP and/or UDP for sync traffic
   # 21027/UDP for discovery

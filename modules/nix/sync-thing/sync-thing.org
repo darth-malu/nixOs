@@ -119,6 +119,7 @@ folders = {
     "carthage"
   ];
 };
+
 "org-roam" = {
   path = "/home/malu/org-roam";
   devices = [
@@ -129,6 +130,38 @@ folders = {
 }; # end of folders
 #+end_src
 *** docs
+**** sample config
+#+begin_src nix
+services = {
+  syncthing = {
+    enable = true;
+    group = "mygroupname";
+    user = "myusername";
+    dataDir = "/home/myusername/Documents";
+    configDir = "/home/myusername/Documents/.config/syncthing";
+    overrideDevices = true;     # overrides any devices added or deleted through the WebUI
+    overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+    settings = {
+      devices = {
+        "device1" = { id = "DEVICE-ID-GOES-HERE"; };
+        "device2" = { id = "DEVICE-ID-GOES-HERE"; };
+      };
+      folders = {
+        "Documents" = {         # Name of folder in Syncthing, also the folder ID
+          path = "/home/myusername/Documents";    # Which folder to add to Syncthing
+          devices = [ "device1" "device2" ];      # Which devices to share the folder with
+        };
+        "Example" = {
+          path = "/home/myusername/Example";
+          devices = [ "device1" ];
+          ignorePerms = false;  # By default, Syncthing doesn't sync file permissions. This line enables it for this folder.
+        };
+      };
+    };
+  };
+};
+#+end_src
+**** other
 - services.syncthing.settings.options.maxFolderConcurrency
     This option controls how many folders may concurrently be in I/O-intensive operations such as syncing or scanning. The mechanism is described in detail in a [[https://docs.syncthing.net/advanced/option-max-concurrency.html][separate chapter]].
 

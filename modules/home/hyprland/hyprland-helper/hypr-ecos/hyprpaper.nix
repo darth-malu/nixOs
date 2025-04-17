@@ -1,13 +1,13 @@
 { osConfig, ... }:
 
-let
-  # requirements:
-  # - output alist [
-  #   monitor1, location
-  #   monitor2, location
-  # ]
-  # wall = "${set_wallpaper_script}/bin/set_wallpaper.sh"; TODO see if its possible to do this
-in
+# let # FIXME this block is not working
+# requirements:
+# - output alist [
+#   monitor1, location
+#   monitor2, location
+# ]
+# wall = "${set_wallpaper_script}/bin/set_wallpaper.sh"; TODO see if its possible to do this
+# in
 {
   # home.packages = [ set_wallpaper_script ];
 

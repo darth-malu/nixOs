@@ -39,31 +39,34 @@ boot = {
 #+end_src
 
 * networking stuffs
+** TODO investigate issue with school wpa
+
 #+begin_src nix :tangle default.nix
-# wireless.enable = if config.networking.hostName == "tangier" then true else false; # Enables wireless support via wpa_supplicant.
-networking.wireless.enable = false;
-# hostId = (lib.mkIf config.networking.hostName == "tangier") "92d08a60"; #FIXME: see syntax on this attempt to call something which is not a function but a Boolean: false
-networking.networkmanager = {
-  enable = true; # might be on by default # add user to group
-  dns = "none"; # dnsmasq, default::, systemd-resolved
-  # wifi.powersave = if config.networking.hostName == "tangier" then true else false;
-  wifi = {
-    powersave = false;
-    backend = "wpa_supplicant"; # wpa_supplicant::, iwd
-  };
-  logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
+networking = {
+    wireless = {
+        enable = false; # wpa_supplicant enable
+        userControlled.enable = true; # wpa_supplicant_gui
+    };
+    # hostId = (lib.mkIf config.networking.hostName == "tangier") "92d08a60"; #FIXME: see syntax on this attempt to call something which is not a function but a Boolean: false
+    networkmanager = {
+        enable = true; # might be on by default # add user to group
+        dns = "none"; # dnsmasq, default::, systemd-resolved
+        # wifi.powersave = if config.networking.hostName == "tangier" then true else false;
+        wifi = {
+            powersave = false;
+            backend = "wpa_supplicant"; # wpa_supplicant::, iwd
+        };
+        logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
+    };
+
+    #NOTE: self managing dns test
+    dhcpcd.enable = false;
+    useDHCP = lib.mkDefault true;
+
+    # interfaces.enp5s0.useDHCP = lib.mkDefault true;
+    networking.nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
 };
 
-#NOTE: self managing dns test
-networking.dhcpcd.enable = false;
-networking.useDHCP = lib.mkDefault true;
-# interfaces.enp5s0.useDHCP = lib.mkDefault true;
-networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
-networking.firewall = { #TODO: see more about options
-  enable = true;
-  allowedTCPPorts = [ 22 ];
-}; # 22 auto open with ssh
-networking.nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
 #+end_src
 
 * hardware

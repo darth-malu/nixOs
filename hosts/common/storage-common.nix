@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ config, ... }:
+
 {
-  # zfs, lvm
   fileSystems =
     if config.networking.hostName == "carthage" then
       {

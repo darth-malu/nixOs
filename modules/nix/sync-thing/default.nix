@@ -11,8 +11,8 @@
    systemService = true; # true::
    configDir = "/home/malu/.config/syncthing"; # will run as root if you dont do this by default? (path where the settings and keys will exist)
    dataDir = "/home/malu/syncFolder";
-   overrideDevices = false;
-   overrideFolders = false; # Whether to delete the folders which are not configured via the folders option
+   overrideDevices = true;
+   overrideFolders = true; # Whether to delete the folders which are not configured via the folders option
    # key = "${/home/malu/.config/syncthing/key.pem}";
    # cert = "${/home/malu/.config/syncthing/cert.pem}";
 
@@ -45,27 +45,14 @@ folders = {
   type = "sendreceive";
 };
 
-"ytVid-tangier" = {
+"ytVid" = {
   path = "/home/malu/Videos/YtDlp";
-  devices = [ "tangier" ]; # device to receive from?
-  type = "sendonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted
+  devices = [ "carthage" "tangier" ]; # device to receive from?
+  type = "receiveonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted
   order = "newestFirst"; # random(default), alphabetic, smallestFirst, largestFirst,
   # maxConflicts = 2; # -1:: unlimited number , 0 - disables
   maxConcurrentWrites = 4; # 2:: Maximum number of concurrent write operations while syncing. Increasing this might increase or decrease disk performance, depending on the underlying storage.
   # scanProgressIntervalS = 0; # The interval in seconds with which scan progress information is sent to the GUI. Setting to 0 will cause Syncthing to use the default value of two.
-};
-
-"ytVid-carthage" = {
-  path = "/home/malu/Videos/YtDlp";
-  devices = [ "carthage" ];
-  type = "receiveonly";
-  order = "newestFirst";
-  maxConcurrentWrites = 4;
-  minHomeDiskFree = {
-    # % (percent of the disk / volume size), kB, MB, GB and TB.
-    unit = "%";
-    value = 15;
-  };
 };
 
 "music" = {

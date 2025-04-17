@@ -38,9 +38,9 @@ folders = {
 
 "ytVid" = {
   id = "Yt";
-  label = "mbono";
+  label = "yt - receiveonly";
   path = "/home/malu/Videos/YtDlp";
-  devices = [ "carthage" ]; # device to receive from?
+  devices = [ "carthage" "tangier" ]; # device to receive from?
   type = "receiveonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted
   order = "newestFirst"; # random(default), alphabetic, smallestFirst, largestFirst,
   # maxConflicts = 2; # -1:: unlimited number , 0 - disables
@@ -50,7 +50,7 @@ folders = {
 
 "music" = {
   path = "/home/malu/Music/homeMusic";
-  devices = ["tangier"];
+  devices = ["tangier" "carthage" ];
   type = "receiveonly";
 };
 

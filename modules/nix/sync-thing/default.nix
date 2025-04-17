@@ -53,6 +53,14 @@ folders = {
   # maxConflicts = 2; # -1:: unlimited number , 0 - disables
   maxConcurrentWrites = 4; # 2:: Maximum number of concurrent write operations while syncing. Increasing this might increase or decrease disk performance, depending on the underlying storage.
   # scanProgressIntervalS = 0; # The interval in seconds with which scan progress information is sent to the GUI. Setting to 0 will cause Syncthing to use the default value of two.
+};
+
+"ytVid" = {
+  path = "/home/malu/Videos/YtDlp";
+  devices = [ "carthage" ];
+  type = "receiveonly";
+  order = "newestFirst";
+  maxConcurrentWrites = 4;
   minHomeDiskFree = {
     # % (percent of the disk / volume size), kB, MB, GB and TB.
     unit = "%";

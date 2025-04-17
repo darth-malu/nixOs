@@ -54,7 +54,7 @@ in
       audio-device =
         if osConfig.networking.hostName == "carthage" then
           "pipewire/alsa_output.pci-0000_09_00.3.analog-stereo"
-        else if osConfig.networking.hostname == "tangier" then
+        else if osConfig.networking.hostName == "tangier" then
           "pipewire/alsa_output.pci-0000_00_1b.0.analog-stereo"
         else
           "pipewire"; # FIXME no default option test further
@@ -84,7 +84,7 @@ in
       video-sync =
         if osConfig.networking.hostName == "carthage" then
           "display-resample"
-        else if osConfig.networking.hostname == "tangier" then
+        else if osConfig.networking.hostName == "tangier" then
           "audio"
         else
           "audio";
@@ -92,7 +92,7 @@ in
         # video output drivers experimental (gpu-next ) should be better, gpu,NOTE vaapi lowquality, vdpau -x11
         if osConfig.networking.hostName == "carthage" then
           "gpu-next"
-        else if osConfig.networking.hostname == "tangier" then
+        else if osConfig.networking.hostName == "tangier" then
           "gpu"
         else
           "gpu";

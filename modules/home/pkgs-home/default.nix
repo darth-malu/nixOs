@@ -242,7 +242,7 @@ in
             obs-studio
             obs-cli
           ]
-        else if osConfig.networking.hostname == "tangier" then
+        else if osConfig.networking.hostName == "tangier" then
           [ ]
         else
           [ ]

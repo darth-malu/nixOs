@@ -47,8 +47,8 @@ folders = {
 
 "ytVid" = {
   path = "/home/malu/Videos/YtDlp";
-  devices = [ "carthage" ]; # device to receive from?
-  type = "receiveonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted
+  devices = [ "tangier" ]; # device to receive from?
+  type = "sendonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted
   order = "newestFirst"; # random(default), alphabetic, smallestFirst, largestFirst,
   # maxConflicts = 2; # -1:: unlimited number , 0 - disables
   maxConcurrentWrites = 4; # 2:: Maximum number of concurrent write operations while syncing. Increasing this might increase or decrease disk performance, depending on the underlying storage.

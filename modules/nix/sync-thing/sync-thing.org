@@ -4,8 +4,12 @@
 
 will output to a default nix
 
-  http://127.0.0.1:8384/ - synthing gui
+http://127.0.0.1:8384/ - synthing gui
 
+* files to ignore
+#+begin_src text :tangle ~/Shibuya/.stdignore
+.git
+#+end_src
 * start
   #+begin_src nix :tangle default.nix
 {
@@ -56,52 +60,60 @@ devices = {
 - recently added addresses
 
 ** folders
-*** tangle
+*** shibuya
 #+begin_src nix :tangle default.nix
 folders = {
   "Shibuya" = {         # Name of folder in Syncthing, also the folder ID
     path = "/home/malu/Shibuya";    # Which folder to add to Syncthing
     devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
   };
+#+end_src
 
-  "Taskwarrior" = {
-    path = "/home/malu/.task";
-    devices = [
-      "tangier"
-      "carthage"
-    ];
-    type = "sendreceive";
+*** taskwarrior
+#+begin_src nix :tangle default.nix
+"Taskwarrior" = {
+  path = "/home/malu/.task";
+  devices = [
+    "tangier"
+    "carthage"
+  ];
+  type = "sendreceive";
+};
+#+end_src
+
+*** yt videos
+#+begin_src nix :tangle default.nix
+"ytVid" = {
+  path = "/home/malu/Videos/YtDlp";
+  devices = [ "carthage" ]; # device to receive from?
+  type = "receiveonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted
+  order = "newestFirst"; # random(default), alphabetic, smallestFirst, largestFirst,
+  # maxConflicts = 2; # -1:: unlimited number , 0 - disables
+  maxConcurrentWrites = 4; # 2:: Maximum number of concurrent write operations while syncing. Increasing this might increase or decrease disk performance, depending on the underlying storage.
+  # scanProgressIntervalS = 0; # The interval in seconds with which scan progress information is sent to the GUI. Setting to 0 will cause Syncthing to use the default value of two.
+  minHomeDiskFree = {
+    # % (percent of the disk / volume size), kB, MB, GB and TB.
+    unit = "%";
+    value = 15;
   };
+};
+#+end_src
 
-  "ytVid" = {
-    path = "/home/malu/Videos/YtDlp";
-    devices = [ "carthage" ]; # device to receive from?
-    type = "receiveonly"; # sendreceive::,sendonly, receiveonly, receiveencrypted
-    order = "newestFirst"; # random(default), alphabetic, smallestFirst, largestFirst,
-    # maxConflicts = 2; # -1:: unlimited number , 0 - disables
-    maxConcurrentWrites = 4; # 2:: Maximum number of concurrent write operations while syncing. Increasing this might increase or decrease disk performance, depending on the underlying storage.
-    # scanProgressIntervalS = 0; # The interval in seconds with which scan progress information is sent to the GUI. Setting to 0 will cause Syncthing to use the default value of two.
-    minHomeDiskFree = {
-      # % (percent of the disk / volume size), kB, MB, GB and TB.
-      unit = "%";
-      value = 15;
-    };
+*** music
+#+begin_src nix :tangle default.nix
+"music" = {
+  path = "/home/malu/Music/homeMusic";
+  devices = [
+    "tangier"
+    "carthage"
+  ];
+  type = "sendreceive";
+  minHomeDiskFree = {
+    # % (percent of the disk / volume size), kB, MB, GB and TB.
+    unit = "%";
+    value = 40;
   };
-
-  "music" = {
-    path = "/home/malu/Music/homeMusic";
-    devices = [
-      "tangier"
-      "carthage"
-    ];
-    type = "sendreceive";
-    minHomeDiskFree = {
-      # % (percent of the disk / volume size), kB, MB, GB and TB.
-      unit = "%";
-      value = 40;
-    };
-  };
-
+};
 #+end_src
 
 *** obsidian vaults
@@ -207,7 +219,6 @@ services = {
     receiveencrypted
         Must be used on untrusted devices, where the data cannot be decrypted because no folder password was entered. See Untrusted (Encrypted) Devices.
 
-
 ** password theme user gui
 *** TODO set password as harsh instead
 #+begin_src nix :tangle default.nix
@@ -237,8 +248,9 @@ The options element contains all other global configuration options.
   networking.firewall.allowedUDPPorts = [ 22000 21027 ];
 #+end_src
 
-
 * end
 #+begin_src nix :tangle default.nix
 }
 #+end_src
+
+

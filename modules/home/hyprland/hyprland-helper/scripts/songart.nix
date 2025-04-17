@@ -10,11 +10,8 @@ pkgs.writeShellScriptBin "songart" ''
       local album_base64="$(${pkgs.mpc}/bin/mpc --format %album% current | base64).png"
       local preview_path="$previewDir/$album_base64"
 
-      [ -e "$preview_path" ] || ${pkgs.ffmpeg-full}/bin/ffmpeg -y -i "$current_file" -an -vf scale=128:128 "$preview_path" > /dev/null 2>&1
+      [ -e "$preview_path" ] || ${pkgs.ffmpeg-full}/bin/ffmpeg -y -i "$current_file" -an -vf scale=128:128 "$preview_path" 2> /dev/null
       echo "$preview_path" # ready image for dunst 🤪
-
-      # NOTE: works beautifully
-      # ffmpeg -y -i "$(mpc --format $HOME/Music/%file% current)" -an -vf scale=128:128 "/home/malu/Music/ncmpcppStuff/previews/$(mpc --format %album% current |base64).png" &> /dev/null
   }
 
   dunstify_preview() {

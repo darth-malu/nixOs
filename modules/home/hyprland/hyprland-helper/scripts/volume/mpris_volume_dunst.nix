@@ -21,7 +21,7 @@ pkgs.writeShellScriptBin "mpris_vol" ''
           playerctl -p "$current_player" volume 0.02"$1"
           dunstify -t 1000 -a "changeVolume" -u low \
             -i $HOME/Shibuya/assets/icons/icons8-spotify-gradient/icons8-spotify-50.png \
-            -h string:x-dunst-stack-tag:$msgTag "Spotify           " \
+            -h string:x-dunst-stack-tag:$msgTag "Spotify" \
             -h int:value:"$(get_volume)"
             # -h string:x-dunst-stack-tag:$msgTag "Spotify            $(get_volume)" \
           ;;

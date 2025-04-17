@@ -186,6 +186,7 @@ ncmpcpp_directory = "~/.local/share/ncmpcpp";
 
 mpd_crossfade_time = 4;
 mpd_connection_timeout = 5;
+# mpd_host = "localhost";
 mpd_host = "localhost";
 mpd_port = 6600;
 

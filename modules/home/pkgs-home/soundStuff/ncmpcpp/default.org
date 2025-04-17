@@ -349,6 +349,7 @@ not working
 #+begin_src nix :tangle default.nix
 mpd_crossfade_time = 4;
 mpd_connection_timeout = 5;
+# mpd_host = "localhost";
 mpd_host = "localhost";
 mpd_port = 6600;
 #+end_src

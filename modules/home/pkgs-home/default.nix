@@ -72,6 +72,8 @@ in
       #aria2#NOTE: learn
       qbittorrent
 
+      ntfs3g # NOTE: trying whichever which way
+
       # archive
       # zip xz unzip p7zip
 
@@ -209,6 +211,7 @@ in
       #  ffmpeg
       # davinci-resolve
       spotube
+      spotify-cli-linux
       digikam
     ])
     ++ (with pkgs; [

@@ -7,7 +7,7 @@
   timeline_cache = true;
   controls = "menu,gap,subtitles,<has_many_audio>audio,<has_many_video>video,<has_many_edition>editions,<stream>stream-quality, gap, space, space, shuffle, loop-playlist, loop-file, gap, prev, items, next, gap, fullscreen";
   # Where to display volume controls: none, left, right
-  volume = "right";
+  volume = "none";
   volume_size = 40;
   volume_border = 1;
   volume_step = 1;
@@ -55,11 +55,12 @@
   # Display stream's buffered time in timeline if it's lower than this amount of seconds, 0 to disable
   buffered_time_threshold = 60;
   # Hide UI when mpv autohides the cursor. Timing is controlled by `cursor-autohide` in `mpv.conf` (in milliseconds).
-  autohide = false;
+  autohide = true;
   # Can be: flash, static, manual (controlled by flash-pause-indicator and decide-pause-indicator commands)
-  pause_indicator = "flash";
+  pause_indicator = "static";
   # Sizes to list in stream quality menu
-  stream_quality_options = "4320,2160,1440,1080,720,480,360,240,144";
+  # stream_quality_options = "4320,2160,1440,1080,720,480,360,240,144";
+  stream_quality_options = "1080,720";
   # Types to identify media files
   video_types = "3g2,3gp,asf,avi,f4v,flv,h264,h265,m2ts,m4v,mkv,mov,mp4,mp4v,mpeg,mpg,ogm,ogv,rm,rmvb,ts,vob,webm,wmv,y4m";
   audio_types = "aac,ac3,aiff,ape,au,cue,dsf,dts,flac,m4a,mid,midi,mka,mp3,mp4a,oga,ogg,opus,spx,tak,tta,wav,weba,wma,wv";
@@ -71,7 +72,7 @@
   load_types = [
     "video"
     "audio"
-    "image"
+    # "image"
   ];
 
   # A comma separated list of element IDs to disable. Available IDs:
@@ -87,4 +88,3 @@
   controls_spacing = 2;
   # controls_persistency=
 }
-#see: https://github.com/tomasklaen/uosc/blob/HEAD/src/uosc.conf

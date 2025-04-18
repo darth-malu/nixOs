@@ -2,19 +2,20 @@
 let
   mpvScripts = with pkgs.mpvScripts; [
     mpris
-    mpv-discord
+    # mpv-discord #FIXME not working
     sponsorblock
     quality-menu # allows you to change the streamed video and audio quality (ytdl-format) on the fly.
     youtube-upnext # C-u (configurablea) , space to append
-    mpv-cheatsheet
+    mpv-cheatsheet # use ?
     mpv-playlistmanager # S-Enter
-    uosc
+    # uosc
+    modernx thumbfast
   ];
 in
 {
   programs.mpv = {
     enable = true;
-    scripts = mpvScripts; # FIXME > error: collision between `/nix/store/aii6s2qsz4awn6vdh49pz1g2liwjh1sz-mpv-with-scripts-0.39.0/bin/umpv' and `/nix/store/wy5f4d2sjki9v930iasmzr5538jk0nhl-mpv-with-scripts-0.39.0/bin/umpv'
+    scripts = mpvScripts;
     bindings = import ./keybindings.nix;
     scriptOpts = {
       mpv_discordRPC = {
@@ -24,7 +25,7 @@ in
         active = true;
         key_toggle = "D";
       };
-      uosc = import ./scripts/uosc.nix;
+      # uosc = import ./scripts/uosc.nix;
     };
 
     profiles = {
@@ -71,7 +72,7 @@ in
       #   else
       #     false;
       # force-window = false; # FIXME not working for audio # immediate, true, | Do not wait with showing the video window until it has loaded. (This will resize the window once video is loaded. Also always shows a window with audio.)
-      # osc = false;
+      osc = false; # for modernx
       # sub-bold = true;
       profile =
         if osConfig.networking.hostName == "carthage" then
@@ -119,6 +120,7 @@ in
       subs-fallback = true; # if noo match select a full track
       # dither = true; #   Can help reduce banding artifacts, especially in 8-bit content.
       # no-border = true; # removes black borders around the video #FIXME failed
+      border = false; # for mordernx
       save-position-on-quit = true;
       watch-later-dir = "~/Videos/mpv-watch-later";
       resume-playback = true; # resume-playback-check-mtime - use incase of similar name to match mtime with statefile

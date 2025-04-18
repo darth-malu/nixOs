@@ -2,8 +2,8 @@
   services.mpd = {
     enable = true;
     musicDirectory = "/home/malu/Music";
-    playlistDirectory = "/home/malu/Music/ncmcppStuff/playlists"; # "/home/malu/.local/share/mpd/playlistDirectory"
-    dataDir = "/home/malu/.local/share/mpd"; # "/home/malu/.local/ncmpcppDataDir/"
+    playlistDirectory = "/home/malu/Music/ncmpcppStuff/playlists";
+    dataDir = "/home/malu/.local/share/mpd";
     dbFile = "/home/malu/.local/share/mpd/db";
 
     extraConfig = # mpd.conf

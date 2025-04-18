@@ -212,7 +212,7 @@ in
       # davinci-resolve
       spotube
       spotify-cli-linux
-      digikam
+      # digikam
     ])
     ++ (with pkgs; [
       # NOTE: MANGA stuff

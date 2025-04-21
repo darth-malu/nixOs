@@ -55,7 +55,7 @@ default_place_to_search_in = "database"; #playlist
 message_delay_time = 2;
 connected_message_on_startup = false;
 
-# locked_screen_width_part = "20-80";
+locked_screen_width_part = "50"; # 20-80::
 ask_for_locked_screen_width_part = true; # disable to use default
 
 jump_to_now_playing_song_at_start = true;

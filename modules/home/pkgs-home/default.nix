@@ -72,7 +72,8 @@ in
       #aria2#NOTE: learn
       qbittorrent
 
-      ntfs3g # NOTE: trying whichever which way
+      # ntfs3g # NOTE: trying whichever which way
+      tokei
 
       # archive
       # zip xz unzip p7zip
@@ -80,8 +81,8 @@ in
       #rofimoji bemoji
       modem-manager-gui
       modemmanager # saves the day with no internet
-      taskwarrior3
-      taskwarrior-tui
+      # taskwarrior3
+      # taskwarrior-tui
 
       # utilities
       file

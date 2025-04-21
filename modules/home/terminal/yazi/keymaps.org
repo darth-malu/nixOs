@@ -30,14 +30,13 @@ source: [[https://yazi-rs.github.io/docs/configuration/keymap]]
 
 ** shortcuts
 #+begin_src nix :tangle keymaps.nix
-  { on = [ "g" "h" ];       run = "cd ~";             desc = "$HOME"; }
-  { on = [ "g" "c" ];       run = "cd ~/.config";     desc = "config directory";}
+  { on = [ "g" "h" ];       run = "cd ~";             desc = "go to home"; }
   { on = [ "g" "d" ];       run = "cd ~/Documents";   desc = "documents directory"; }
   { on = [ "g" "p" ];       run = "cd ~/Pictures";   desc = "pictures directory"; }
   { on = [ "g" "s" ];       run = "cd ~/Pictures/Screenshots";   desc = "screenshots"; }
-  { on = [ "g" "x" ];       run = "cd ~/Downloads";   desc = "Go to the downloads directory"; }
+  { on = [ "g" "x" ];       run = "cd ~/Downloads";   desc = "downloads"; }
   { on = [ "g" "v" ];       run = "cd ~/Videos";   desc = "VIDEOS dir"; }
-  { on = [ "g" "M" ];       run = "cd /media/";          desc = "media directory"; }
+  { on = [ "g" "y" ];       run = "cd /media/";          desc = "media directory"; }
   { on = [ "g" "m" ];       run = "cd ~/Music";          desc = "music dir"; }
   { on = [ "g" "<Space>" ]; run = "cd --interactive"; desc = "Go to a directory interactively"; }
 #+end_src
@@ -82,6 +81,7 @@ remove escape --all?
 
   # { on = [ "h" ]; run = "leave";    desc = "parent dir. go"; }
   # { on = [ "l" ]; run = "enter"; desc = "@darth Enter child dir."; }
+
   # scroll contents in preview pane
   { on = [ "<A-k>" ]; run = "seek -5"; desc = "Seek up 5 units in the preview"; }
   { on = [ "<A-j>" ]; run = "seek 5";  desc = "Seek down 5 units in the preview"; }
@@ -158,7 +158,7 @@ remove escape --all?
 ** filter
 #+begin_src nix :tangle keymaps.nix
 # Filter
-{ on = [ "f" ]; run = "filter --smart"; desc = "Filter the files"; }
+  { on = [ "f" ]; run = "filter --smart"; desc = "Filter the files"; }
 #+end_src
 
 ** find
@@ -228,7 +228,7 @@ manager.prepend_keymap = [
 #+end_src
 * input
 ** prepend
-#+begin_src nix :tangle keymaps.nix
+#+begin_src nix :tangle no
 input.prepend_keymap = [
   {on = [ "<Esc>" ]; run = "close"; desc = "Cancel input";}
 ];

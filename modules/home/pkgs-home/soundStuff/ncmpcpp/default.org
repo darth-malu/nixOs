@@ -89,7 +89,7 @@ screen_switcher_mode = "previous";
 If enabled, ncmpcpp will ask for % of locked screen's width each time you want to lock a screen. If you disable that, it'll silently attempt to use default value.
 
 #+begin_src nix :tangle default.nix
-# locked_screen_width_part = "20-80";
+locked_screen_width_part = "50"; # 20-80::
 ask_for_locked_screen_width_part = true; # disable to use default
 #+end_src
 

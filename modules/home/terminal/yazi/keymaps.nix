@@ -2,14 +2,13 @@
   manager.keymap = [
     # list of attribute sets
 
-  { on = [ "g" "h" ];       run = "cd ~";             desc = "$HOME"; }
-  { on = [ "g" "c" ];       run = "cd ~/.config";     desc = "config directory";}
+  { on = [ "g" "h" ];       run = "cd ~";             desc = "go to home"; }
   { on = [ "g" "d" ];       run = "cd ~/Documents";   desc = "documents directory"; }
   { on = [ "g" "p" ];       run = "cd ~/Pictures";   desc = "pictures directory"; }
   { on = [ "g" "s" ];       run = "cd ~/Pictures/Screenshots";   desc = "screenshots"; }
-  { on = [ "g" "x" ];       run = "cd ~/Downloads";   desc = "Go to the downloads directory"; }
+  { on = [ "g" "x" ];       run = "cd ~/Downloads";   desc = "downloads"; }
   { on = [ "g" "v" ];       run = "cd ~/Videos";   desc = "VIDEOS dir"; }
-  { on = [ "g" "M" ];       run = "cd /media/";          desc = "media directory"; }
+  { on = [ "g" "y" ];       run = "cd /media/";          desc = "media directory"; }
   { on = [ "g" "m" ];       run = "cd ~/Music";          desc = "music dir"; }
   { on = [ "g" "<Space>" ]; run = "cd --interactive"; desc = "Go to a directory interactively"; }
 
@@ -47,6 +46,7 @@
 
   # { on = [ "h" ]; run = "leave";    desc = "parent dir. go"; }
   # { on = [ "l" ]; run = "enter"; desc = "@darth Enter child dir."; }
+
   # scroll contents in preview pane
   { on = [ "<A-k>" ]; run = "seek -5"; desc = "Seek up 5 units in the preview"; }
   { on = [ "<A-j>" ]; run = "seek 5";  desc = "Seek down 5 units in the preview"; }
@@ -105,7 +105,7 @@
   { on = [ "c"  "n" ]; run = [ "escape --visual"  "copy name_without_ext" ]; desc = "Copy the name of the file without the extension"; }
 
 # Filter
-{ on = [ "f" ]; run = "filter --smart"; desc = "Filter the files"; }
+  { on = [ "f" ]; run = "filter --smart"; desc = "Filter the files"; }
 
 # Find
   { on = [ "/" ]; run = "find --smart";            desc = "Find next file"; }
@@ -153,10 +153,6 @@ manager.prepend_keymap = [
   {on = [ "l" ]; run = "plugin smart-enter"; desc = "Enter child dir or open file";}
   {on = [ "p" ]; run = "plugin smart-paste"; desc = "Paste into the hovered directory or CWD";}
   {on = [ "t" ]; run = "plugin smart-tab"; desc = "Create a tab and enter the hovered directory";}
-];
-
-input.prepend_keymap = [
-  {on = [ "<Esc>" ]; run = "close"; desc = "Cancel input";}
 ];
 
 }

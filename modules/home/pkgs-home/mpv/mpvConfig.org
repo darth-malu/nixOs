@@ -12,146 +12,267 @@
 ** TODO use all scripts
 
 * main config
+** into - let
+let used to simplify calling my scripts
 #+begin_src nix :tangle default.nix
 { pkgs, osConfig, ... }:
 let
-  mpvScripts = with pkgs.mpvScripts; [
-    mpris
-    # mpv-discord #FIXME not working
-    sponsorblock
-    quality-menu # allows you to change the streamed video and audio quality (ytdl-format) on the fly.
-    youtube-upnext # C-u (configurablea) , space to append
-    mpv-cheatsheet # use ?
-    mpv-playlistmanager # S-Enter
-    # uosc
-    modernx thumbfast
-  ];
+#+end_src
+
+*** mpvScripts
+#+begin_src nix :tangle default.nix
+mpvScripts = with pkgs.mpvScripts; [
+  mpris
+  # mpv-discord #FIXME not working
+  sponsorblock
+  quality-menu # allows you to change the streamed video and audio quality (ytdl-format) on the fly.
+  youtube-upnext # C-u (configurablea) , space to append
+  mpv-cheatsheet # use ?
+  mpv-playlistmanager # S-Enter
+  # uosc
+  modernx thumbfast
+];
+#+end_src
+
+** start mpv
+#+begin_src nix :tangle default.nix
 in
 {
   programs.mpv = {
     enable = true;
-    scripts = mpvScripts;
-    bindings = import ./keybindings.nix;
-    scriptOpts = {
-      mpv_discordRPC = {
-        rpc_wrapper = "lua-discordRPC";
-        periodic_timer = 1;
-        cover_art = true;
-        active = true;
-        key_toggle = "D";
-      };
-      # uosc = import ./scripts/uosc.nix;
-    };
+#+end_src
 
-    profiles = {
-      # mpv/mpv.conf
-      fast = {
-        vo =
-          if osConfig.networking.hostName == "carthage" then
-            "vaapi"
-          else if osConfig.networking.hostName == "tangier" then
-            "vdpau"
-          else
-            "";
-      }; # video output backend to use
-    };
-    config = {
-      # sub-auto = "fuzzy";
-      sub-font = "VictorMono Nerd Font";
-      sub-font-size = 45; # 55::The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well.
-      # sub-bold = true;
-      sub-pos = 100; # 0-150. 100 original - % vertical. >100 sub down
-      embeddedfonts = true;
-      osd-on-seek = false;
-      osd-font = "VictorMono Nerd Font";
-      osd-font-size = 45; # 55::
-      osd-bar = false; # nice with uosc
-      screenshot-format = "png"; # jpeg, png, webp, avif, jxl
-      audio-device =
-        if osConfig.networking.hostName == "carthage" then
-          "pipewire/alsa_output.pci-0000_09_00.3.analog-stereo"
-        else if osConfig.networking.hostName == "tangier" then
-          "pipewire/alsa_output.pci-0000_00_1b.0.analog-stereo"
-        else
-          "pipewire"; # FIXME no default option test further
-      # --audio-device=help
-      #audio-pitch-correction=no # Do not filter audio to keep pitch when changing playback speed.
-      fs = true; # fullscreen
-      # fs-screen = # all, current, 0-32
-      # keep-open = true; # after playback ends - TODO make script for youtube. close otherwise
-      # livemarkers = #FIXME test if failed
-      #   if osConfig.networking.hostName == "carthage" then
-      #     true
-      #   else if osConfig.networking.hostName == "tangier" then
-      #     false
-      #   else
-      #     false;
-      # force-window = false; # FIXME not working for audio # immediate, true, | Do not wait with showing the video window until it has loaded. (This will resize the window once video is loaded. Also always shows a window with audio.)
-      osc = false; # for modernx
-      # sub-bold = true;
-      profile =
-        if osConfig.networking.hostName == "carthage" then
-          "high-quality"
-        else if osConfig.networking.hostName == "tangier" then
-          "fast"
-        else
-          "";
-      gpu-context = "wayland";
-      video-sync =
-        if osConfig.networking.hostName == "carthage" then
-          "display-resample"
-        else if osConfig.networking.hostName == "tangier" then
-          "audio"
-        else
-          "audio";
-      vo =
-        # video output drivers experimental (gpu-next ) should be better, gpu,NOTE vaapi lowquality, vdpau -x11
-        if osConfig.networking.hostName == "carthage" then
-          "gpu-next"
-        else if osConfig.networking.hostName == "tangier" then
-          "gpu"
-        else
-          "gpu";
-      ytdl-format = "bestvideo+bestaudio"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
-      cache = true; # yes, no , auto
-      cache-pause = true; # buffering insteaad of stutter :)
-      cache-pause-initial = true;
-      demuxer-max-bytes = "512MiB";
-      demuxer-max-back-bytes = "100M";
-      demuxer-readahead-secs = 20;
-      # Store cache payload on the hard disk instead of in RAM. (This may negatively
-      # impact performance unless used for slow input such as network.)
-      #cache-dir=~/.cache/
-      #cache-on-disk=yes
-      # cache-default = 4000000; # not found?
-      hwdec = "auto"; # hardware decoding, auto,auto-safe, vaapi (unsafe), set vaapi only if necessary
-      slang = "en"; # Display English subtitles if available.
-      alang = [
-        "jpn"
-        "en"
-      ];
-      vlang = "en";
-      subs-match-os-language = true;
-      subs-fallback = true; # if noo match select a full track
-      # dither = true; #   Can help reduce banding artifacts, especially in 8-bit content.
-      # no-border = true; # removes black borders around the video #FIXME failed
-      border = false; # for mordernx
-      save-position-on-quit = true;
-      watch-later-dir = "~/Videos/mpv-watch-later";
-      resume-playback = true; # resume-playback-check-mtime - use incase of similar name to match mtime with statefile
-      # thumbnails = "best"; # all, best , none:: #FIXME failed
-      volume = 70; # startup volume
-      volume-max = 100;
-      gapless-audio = true; # no, yes, weak:: #Try to play consecutive audio files with no silence or disruption at the point of file change
-    };
-    # bindings = {#input.conf
-    # };
-    # extraInput = #sub config append to mpv/input.conf
-    # ''
-    # '';
+** key binds
+[[file:keybindings.nix][./keybindings.nix]] written to mpv/input.conf
+
+#+begin_src nix :tangle default.nix
+bindings = import ./keybindings.nix;
+#+end_src
+
+*** extra input
+appended to mpv/input.conf
+#+begin_src nix :tangle default.nix
+extraInput = ''
+ b  quit #! Quit
+'';
+#+end_src
+
+** scriptOpts - config for mpvScripts
+see:
+#+begin_src nix :tangle default.nix
+scripts = mpvScripts;
+scriptOpts = {
+  mpv_discordRPC = {
+    rpc_wrapper = "lua-discordRPC";
+    periodic_timer = 1;
+    cover_art = true;
+    active = true;
+    key_toggle = "D";
   };
-}
+  # uosc = import ./scripts/uosc.nix;
+};
+#+end_src
+** profiles
+#+begin_src nix :tangle default.nix
+profiles = {
+  # mpv/mpv.conf
+  fast = {
+    vo =
+      if osConfig.networking.hostName == "carthage" then
+        "vaapi"
+      else if osConfig.networking.hostName == "tangier" then
+        # "vdpau"
+        "nvdec"
+      else
+        "";
+  }; # video output backend to use
+};
+#+end_src
 
+** configuration
+written to: .config/mpv/mpv.conf
+*** config start
+#+begin_src nix :tangle default.nix
+config = {
+#+end_src
+
+*** osd
+#+begin_src nix :tangle default.nix
+osd-on-seek = false;
+osd-font = "VictorMono Nerd Font";
+osd-font-size = 38; # 55::
+osd-bar = false; # nice with uosc
+osc = false; # for modernx
+#+end_src
+
+*** audio device
+#+begin_src nix :tangle default.nix
+audio-device =
+  if osConfig.networking.hostName == "carthage" then
+    "pipewire/alsa_output.pci-0000_09_00.3.analog-stereo"
+  else if osConfig.networking.hostName == "tangier" then
+    "pipewire/alsa_output.pci-0000_00_1b.0.analog-stereo"
+  else
+    "pipewire"; # FIXME no default option test further
+# --audio-device=help
+#audio-pitch-correction=no # Do not filter audio to keep pitch when changing playback speed.
+#+end_src
+
+*** full screen
+#+begin_src nix :tangle default.nix
+fs = true; # fullscreen
+# fs-screen = # all, current, 0-32
+# keep-open = true; # after playback ends - TODO make script for youtube. close otherwise
+# livemarkers = #FIXME test if failed
+#   if osConfig.networking.hostName == "carthage" then
+#     true
+#   else if osConfig.networking.hostName == "tangier" then
+#     false
+#   else
+#     false;
+# force-window = false; # FIXME not working for audio # immediate, true, | Do not wait with showing the video window until it has loaded. (This will resize the window once video is loaded. Also always shows a window with audio.)
+# sub-bold = true;
+#+end_src
+
+*** profile
+#+begin_src nix :tangle default.nix
+profile =
+  if osConfig.networking.hostName == "carthage" then
+    "high-quality"
+  else if osConfig.networking.hostName == "tangier" then
+    "fast"
+  else
+    "";
+gpu-context = "wayland";
+#+end_src
+
+*** video sync
+#+begin_src nix :tangle default.nix
+video-sync =
+  if osConfig.networking.hostName == "carthage" then
+    "display-resample"
+  else if osConfig.networking.hostName == "tangier" then
+    "audio"
+  else
+    "audio";
+#+end_src
+
+*** video output drivers + hardware decoding
+
+#+begin_src nix :tangle default.nix
+hwdec = "auto"; # hardware decoding, auto,auto-safe, vaapi (unsafe), set vaapi only if necessary
+vo =
+  # video output drivers experimental (gpu-next ) should be better, gpu,NOTE vaapi lowquality, vdpau -x11
+  if osConfig.networking.hostName == "carthage" then
+    "gpu-next"
+  else if osConfig.networking.hostName == "tangier" then
+    "gpu"
+  else
+    "gpu";
+#+end_src
+
+**** notes
+***** hwdec
+hardware decoding api
+ - whether decoding is done is based on the video codec, if not possible fallback to software
+ - disabled by default
+
+no:  always use software decoding (default)
+auto:  enable any whitelisted hw decoder (see below)
+auto-unsafe:  forcibly enable any hw decoder found (see below)
+yes:  exactly the same as auto
+auto-safe:  exactly the same as auto
+
+***** video output drivers
+vo - video output backend to use. [[https://mpv.io/manual/stable/#video-output-drivers]]
++ gpu
+  * General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more.
+  * provides predefined profils (fast + high-quality) select with --profile=<name>
++ gpu-next
+  + experimental video renderer based on libplacebo
+  + supports almost the same set of features as --vo=gpu
+  + generally be faster/higher quality but experimental still
+
+*** ytdl
+#+begin_src nix :tangle default.nix
+ytdl-format = "bestvideo+bestaudio"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
+#+end_src
+
+*** cache  + demux
+#+begin_src nix :tangle default.nix
+cache = true; # yes, no , auto
+cache-pause = true; # buffering insteaad of stutter :)
+cache-pause-initial = true;
+demuxer-max-bytes = "512MiB";
+demuxer-max-back-bytes = "100M";
+demuxer-readahead-secs = 20;
+# Store cache payload on the hard disk instead of in RAM. (This may negatively
+# impact performance unless used for slow input such as network.)
+#cache-dir=~/.cache/
+#cache-on-disk=yes
+# cache-default = 4000000; # not found?
+#+end_src
+
+*** languages, sub languages, audio languages, video languages + subtitles
+#+begin_src nix :tangle default.nix
+slang = "en"; # Display English subtitles if available.
+alang = [
+  "jpn"
+  "en"
+];
+vlang = [ "jpn" "en" ];
+# sub-auto = "fuzzy";
+sub-font = "VictorMono Nerd Font";
+sub-font-size = 40; # 55::The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well.
+# sub-bold = true;
+sub-pos = 100; # 0-150. 100 original - % vertical. >100 sub down
+subs-match-os-language = true; #TODO test this further
+subs-fallback = true; # if noo match select a full track
+#+end_src
+
+**** notes
++ vlang - Equivalent to --alang and --slang, for video tracks.
++ slang - Equivalent to --alang, for subtitle tracks.
+*** subtitles
+#+begin_src nix :tangle default.nix
+#+end_src
+
+*** watch later , resume playback
+#+begin_src nix :tangle default.nix
+save-position-on-quit = true;
+watch-later-dir = "~/Videos/mpv-watch-later";
+resume-playback = true; # resume-playback-check-mtime - use incase of similar name to match mtime with statefile
+# thumbnails = "best"; # all, best , none:: #FIXME failed
+#+end_src
+
+*** volume
+#+begin_src nix :tangle default.nix
+volume = 70; # startup volume
+volume-max = 100;
+gapless-audio = true; # no, yes, weak:: #Try to play consecutive audio files with no silence or disruption at the point of file change
+#+end_src
+
+*** misc
+#+begin_src nix :tangle default.nix
+border = false; # for mordernx
+embeddedfonts = true;
+screenshot-format = "png"; # jpeg, png, webp, avif, jxl
+# dither = true; #   Can help reduce banding artifacts, especially in 8-bit content.
+# no-border = true; # removes black borders around the video #FIXME failed
+#+end_src
+
+*** end of config
+#+begin_src nix :tangle default.nix
+}; # end of config
+ # extraInput = #sub config append to mpv/input.conf
+ # ''
+ # '';
+#+end_src
+
+** end of mpv
+#+begin_src nix :tangle default.nix
+}; # end of mpv
+} # EOF
 #+end_src
 
 * plugin-opts

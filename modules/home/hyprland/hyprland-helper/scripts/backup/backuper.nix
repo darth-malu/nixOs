@@ -7,8 +7,8 @@ SOURCE_DIR="$HOME/sharepoint"
 SUMBI_HDD="/media/SumbiHDD/malu"
 SAN_DISK_FLASH="/media/Ventoy"
 
-MOUNT_POINT_FLASH="/media/Ventoy"
-MOUNT_POINT_HDD="/media/SumbiHDD/malu"
+MOUNT_POINT_FLASH="/media/Ventoy/BACKUP"
+MOUNT_POINT_HDD="/media/SumbiHDD/maluFolder/BACKUP"
 LOG_FILE="$HOME/sharepoint/backup_videos.log"
 
 # --- Functions ---
@@ -52,11 +52,11 @@ backup_folders() {
 
     log_message "Starting backup to $DESTINATION..."
     rsync -avz "$SOURCE_DIR" "$DESTINATION" --delete --log-file="$LOG_FILE"
-        if [ $? -eq 0 ]; then
+    if [ $? -eq 0 ]; then
         log_message "Backup to $DESTINATION completed successfully."
-        else
+    else
         log_message "Backup to $DESTINATION failed. Check $LOG_FILE for details."
-            fi
+    fi
 }
 
 # --- Main Script ---
@@ -64,23 +64,21 @@ backup_folders() {
 log_message "--- Starting Video Backup ---"
 
 # Mount the external drives
-mount_drive "$EXTERNAL_DRIVE_FLASH" "$MOUNT_POINT_FLASH"
-mount_drive "$EXTERNAL_DRIVE_HDD" "$MOUNT_POINT_HDD"
+# mount_drive "$EXTERNAL_DRIVE_FLASH" "$MOUNT_POINT_FLASH"
+# mount_drive "$EXTERNAL_DRIVE_HDD" "$MOUNT_POINT_HDD"
 
 # Perform the backups
 if [ -d "$MOUNT_POINT_FLASH" ]; then
     backup_folders "$MOUNT_POINT_FLASH"
-    fi
+fi
 
-    if [ -d "$MOUNT_POINT_HDD" ]; then
-        backup_folders "$MOUNT_POINT_HDD"
-        fi
+if [ -d "$MOUNT_POINT_HDD" ]; then
+    backup_folders "$MOUNT_POINT_HDD"
+fi
+    # Unmount the external drives
+    # unmount_drive "$MOUNT_POINT_FLASH"
+    # unmount_drive "$MOUNT_POINT_HDD"
 
-        # Unmount the external drives
-        unmount_drive "$MOUNT_POINT_FLASH"
-        unmount_drive "$MOUNT_POINT_HDD"
-
-        log_message "--- Video Backup Finished ---"
-
-        exit 0
+    log_message "--- Backing up from Sharepoint 100% complete ---"
+    exit 0
 ''

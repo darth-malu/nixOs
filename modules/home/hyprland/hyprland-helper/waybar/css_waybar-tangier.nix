@@ -12,6 +12,11 @@
     background: rgba(72 ,191 ,227, 0.10);
   }
 
+  window#waybar.battery.critical.discharging {
+    background-color: #f53c3c;
+    border-top: 2px solid rgb(245, 60, 60);
+  }
+
   #battery {
     /*background-color: #ffffff;*/
     /*color: #000000;*/

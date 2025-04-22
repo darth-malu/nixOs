@@ -620,8 +620,7 @@
           "backlight" = {
             device = "intel_backlight";
             format = "{icon}";
-            tooltip = true;
-            format-alt = "<small>{percent}%</small>";
+            # format-alt = "<small>{percent}%</small>";
             format-icons = [
               "󱩎"
               "󱩏"
@@ -634,9 +633,10 @@
               "󱩖"
               "󰛨"
             ];
-            on-scroll-up = "brightnessctl set 1%+";
-            on-scroll-down = "brightnessctl set 1%-";
+            on-scroll-up = "brightnessctl set 2%+";
+            on-scroll-down = "brightnessctl set 2%-";
             smooth-scrolling-threshold = "2400";
+            tooltip = true;
             tooltip-format = "Brightness {percent}%";
             reverse-scrolling = true;
           };
@@ -757,6 +757,21 @@
             };
             on-click-backward = "hyprctl keyword monitor DP-1,disable && notify-send -i '/home/malu/Shibuya/assets/icons/toggle-on-glassmorphism/icons8-toggle-off-48.png' false";
             on-click-forward = "hyprctl keyword monitor DP-1,highres,0x0,1 && notify-send -i '/home/malu/Shibuya/assets/icons/toggle-off-glassmorphism/icons8-toggle-on-48.png' true";
+          };
+
+          "group/backlight_idle" = {
+            drawer = {
+              transition-duration = 680;
+              transition-left-to-right = false;
+              children-class = "drawer-child";
+              click-to-reveal = true;
+            };
+            orientation = "inherit";
+            cursor = true;
+            modules = [
+              "backlight"
+              "idle_inhibitor"
+            ];
           };
         };
       };

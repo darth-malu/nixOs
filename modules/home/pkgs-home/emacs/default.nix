@@ -26,8 +26,7 @@
 
   services.emacs = {
     enable = true; # emacs daemon
-    startWithUserSession = "graphical"; # whether to launch Emacs servicee with the systemd session. boolean or "graphical" (default.target::)
-    #package = emacs;
+    # startWithUserSession = true; # whether to launch Emacs servicee with the systemd session. boolean or "graphical" (default.target::) #TODO test without
     defaultEditor = true;
     socketActivation.enable = false; # Whether to enable systemd socket activation for the Emacs service. # NOTE: very slow to launch
     client = {

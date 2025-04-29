@@ -131,7 +131,8 @@ folders = {
 #+end_src
 
 *** music
-#+begin_src nix :tangle default.nix
+**** TODO make sharepoint better
+#+begin_src nix :tangle no
 "music" = {
   path = "/home/malu/Music/homeMusic";
   devices = ["tangier" "carthage" ];
@@ -144,7 +145,6 @@ folders = {
   type = "sendreceive";
 };
 #+end_src
-
 *** obsidian vaults
 #+begin_src nix :tangle default.nix
   "myVaults" = {

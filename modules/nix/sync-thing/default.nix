@@ -48,18 +48,6 @@ folders = {
   # scanProgressIntervalS = 0; # The interval in seconds with which scan progress information is sent to the GUI. Setting to 0 will cause Syncthing to use the default value of two.
 };
 
-"music" = {
-  path = "/home/malu/Music/homeMusic";
-  devices = ["tangier" "carthage" ];
-  type = "receiveonly";
-};
-
-"ncmpcpp_playlists" = {
-  path = "/home/malu/Music/ncmpcppStuff/playlists";
-  devices = ["tangier" "carthage"];
-  type = "sendreceive";
-};
-
   "myVaults" = {
     path = "/home/malu/obsidianVaults";
     devices = ["tangier" "carthage"];

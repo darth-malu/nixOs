@@ -2,15 +2,16 @@
 let
 
 mpvScripts = with pkgs.mpvScripts; [
-  mpris
+  # mpris
   # mpv-discord #FIXME not working
   sponsorblock
-  quality-menu # allows you to change the streamed video and audio quality (ytdl-format) on the fly.
+  # quality-menu # allows you to change the streamed video and audio quality (ytdl-format) on the fly.
   youtube-upnext # C-u (configurablea) , space to append
   mpv-cheatsheet # use ?
-  mpv-playlistmanager # S-Enter
+  mpv-playlistmanager # S-Enter to add to playlist
   # uosc
-  modernx thumbfast
+  modernx
+  thumbfast # thumbnails
 ];
 
 in
@@ -26,14 +27,9 @@ extraInput = ''
 
 scripts = mpvScripts;
 scriptOpts = {
-  mpv_discordRPC = {
-    rpc_wrapper = "lua-discordRPC";
-    periodic_timer = 1;
-    cover_art = true;
-    active = true;
-    key_toggle = "D";
-  };
-  # uosc = import ./scripts/uosc.nix;
+
+# uosc = import ./scripts/uosc.nix;
+
 };
 
 profiles = {

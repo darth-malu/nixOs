@@ -279,7 +279,8 @@ in
 
     lsd = {
       enable = true;
-      enableAliases = true;
+      # enableAliases = true; #NOTE has been deprecated and replaced with integration options per shell, for example, 'programs.lsd.enableBashIntegration'.
+      enableBashIntegration = true;
       colors = {
         # $XDG_CONFIG_HOME/lsd/colors.yaml
         icons = {

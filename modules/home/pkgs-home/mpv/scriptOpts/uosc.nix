@@ -8,7 +8,7 @@
   controls = "menu,gap,subtitles,<has_many_audio>audio,<has_many_video>video,<has_many_edition>editions,<stream>stream-quality, gap, space, space, shuffle, loop-playlist, loop-file, gap, prev, items, next, gap, fullscreen";
   # Where to display volume controls: none, left, right
   volume = "none";
-  volume_size = 40;
+  volume_size = 20;
   volume_border = 1;
   volume_step = 1;
   #volume_persistency=

@@ -23,19 +23,27 @@ let
 see if quality-menu is needed with modernX uosc
 #+begin_src nix :tangle default.nix
 mpvScripts = with pkgs.mpvScripts; [
-  # mpris
-  # mpv-discord #FIXME not working
+  mpris
+  # mpv-discord #TODO too much work lol
   sponsorblock
-  # quality-menu # allows you to change the streamed video and audio quality (ytdl-format) on the fly.
+  quality-menu # allows you to change the streamed video and audio quality (ytdl-format) on the fly.
   youtube-upnext # C-u (configurablea) , space to append
   mpv-cheatsheet # use ?
   mpv-playlistmanager # S-Enter to add to playlist
   # uosc
-  modernx
+  modernx-zydezu
   thumbfast # thumbnails
 ];
 #+end_src
 
+*** how some of it looks
+*** mpv playlistManager
+○ default file
+▷ playing file
+● hovered file(for removing, playing and moving)
+▶ playing and hovered file
+➔ selected file(file is being moved)
+➤ playing and selected file
 ** start mpv
 #+begin_src nix :tangle default.nix
 in
@@ -44,22 +52,7 @@ in
     enable = true;
 #+end_src
 
-** key binds
-[[file:keybindings.nix][./keybindings.nix]] written to mpv/input.conf
-
-#+begin_src nix :tangle default.nix
-bindings = import ./keybindings.nix;
-#+end_src
-
-*** extra input
-appended to mpv/input.conf
-#+begin_src nix :tangle default.nix
-extraInput = ''
- b  quit #! Quit
-'';
-#+end_src
-
-** scriptOpts - config for mpvScripts
+** scripts, scriptOpts
 see:
 *** start
 #+begin_src nix :tangle default.nix
@@ -67,7 +60,7 @@ scripts = mpvScripts;
 scriptOpts = {
 #+end_src
 
-*** discord rich presence
+**** discord rich presence
 #+begin_src nix :tangle no
 mpv_discordRPC = {
   rpc_wrapper = "lua-discordRPC";
@@ -79,14 +72,39 @@ mpv_discordRPC = {
 #+end_src
 
 *** uosc
-#+begin_src nix :tangle default.nix
-# uosc = import ./scripts/uosc.nix;
+#+begin_src nix :tangle no
+uosc = import ./scripts/uosc.nix;
 #+end_src
-*** modernX
+*** modernX-zydezu
+#+begin_src nix :tangle default.nix
+modernx-zydezu = import ./scriptOpts/modernx-zydezu.nix;
+#+end_src
+*** playlistmanager
+#+begin_src nix :tangle default.nix
+playlistmanager = import ./scriptOpts/modernx-zydezu.nix;
+#+end_src
 *** end
 #+begin_src nix :tangle default.nix
 };
 #+end_src
+** key binds
+[[file:keybindings.nix][./keybindings.nix]] written to mpv/input.conf
+
+#+begin_src nix :tangle default.nix
+bindings = import ./keybindings.nix // {
+  Y = "script-binding quality_menu/video_formats_toggle";
+  # Alt+f script-binding quality_menu/audio_formats_toggle
+};
+#+end_src
+
+*** extra input
+appended to mpv/input.conf
+#+begin_src nix :tangle default.nix
+extraInput = ''
+ b  quit #! Quit
+'';
+#+end_src
+
 ** profiles
 #+begin_src nix :tangle default.nix
 profiles = {
@@ -135,7 +153,7 @@ audio-device =
 
 *** full screen
 #+begin_src nix :tangle default.nix
-fs = true; # fullscreen
+fs = false; # fullscreen
 # fs-screen = # all, current, 0-32
 # keep-open = true; # after playback ends - TODO make script for youtube. close otherwise
 # livemarkers = #FIXME test if failed
@@ -208,9 +226,10 @@ vo - video output backend to use. [[https://mpv.io/manual/stable/#video-output-d
   + supports almost the same set of features as --vo=gpu
   + generally be faster/higher quality but experimental still
 
-*** ytdl
+*** ytdl, quality of the video
 #+begin_src nix :tangle default.nix
-ytdl-format = "bestvideo+bestaudio"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
+# ytdl-format = "bestvideo+bestaudio"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
+ytdl-format = "bv*[height<=1080]+ba/b[height<=1080]"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
 #+end_src
 
 *** cache  + demux
@@ -269,11 +288,10 @@ gapless-audio = true; # no, yes, weak:: #Try to play consecutive audio files wit
 
 *** misc
 #+begin_src nix :tangle default.nix
-border = false; # for mordernx
+border = false; # for mordernx etc
 embeddedfonts = true;
 screenshot-format = "png"; # jpeg, png, webp, avif, jxl
 # dither = true; #   Can help reduce banding artifacts, especially in 8-bit content.
-# no-border = true; # removes black borders around the video #FIXME failed
 #+end_src
 
 *** end of config
@@ -293,7 +311,7 @@ screenshot-format = "png"; # jpeg, png, webp, avif, jxl
 * plugin-opts
 ** uosc
 *** config
-#+begin_src nix :tangle uosc.nix
+#+begin_src nix :tangle scriptOpts/uosc.nix
 {
   # Display style of current position. available: line, bar
   timeline_style = "line";
@@ -304,7 +322,7 @@ screenshot-format = "png"; # jpeg, png, webp, avif, jxl
   controls = "menu,gap,subtitles,<has_many_audio>audio,<has_many_video>video,<has_many_edition>editions,<stream>stream-quality, gap, space, space, shuffle, loop-playlist, loop-file, gap, prev, items, next, gap, fullscreen";
   # Where to display volume controls: none, left, right
   volume = "none";
-  volume_size = 40;
+  volume_size = 20;
   volume_border = 1;
   volume_step = 1;
   #volume_persistency=
@@ -385,7 +403,9 @@ screenshot-format = "png"; # jpeg, png, webp, avif, jxl
   # controls_persistency=
 }
 #+end_src
-*** default shortcuts
+*** default shortcuts uosc
+not part of the setup
+
 #+begin_src conf
 menu        script-binding uosc/menu
 mbtn_right  script-binding uosc/menu
@@ -412,12 +432,44 @@ O           script-binding uosc/show-in-directory  #! Utils > Show in directory
 #           script-binding uosc/open-config-directory #! Utils > Open config directory
 #           script-binding uosc/update             #! Utils > Update uosc
 esc         quit #! Quit
+# Alt+f script-binding quality_menu/audio_formats_toggle
 #+end_src
 
 *** source
 #see: https://github.com/tomasklaen/uosc/blob/HEAD/src/uosc.conf
 
 ** modernx
+** modernx-zydezu
+*** misc
+#+begin_src nix :tangle scriptOpts/modernx-zydezu.nix
+{
+  compact_mode = true;
+  info_button = false;
+  title_font_size = 20;
+  seekbar_handle_size = 0;
+  jump_buttons = false;                    # show the jump backward and forward buttons
+#+end_src
+
+*** persistent progress
+#+begin_src nix :tangle scriptOpts/modernx-zydezu.nix
+persistent_progress = false;            # always show a small progress line at the bottom of the screen
+persistent_progressheight = 17;         # the height of the persistent_progress bar
+persistent_buffer = false;              # on web videos, show the buffer on the persistent progress line
+persistent_progresstoggle = true;       # enable toggling the persistent_progress bar
+#+end_src
+
+*** downloads
+#+begin_src nix :tangle scriptOpts/modernx-zydezu.nix
+download_button = true;                 # show download button on web videos (requires yt-dlp and ffmpeg)
+# download_path = "~~desktop/mpv/downloads"; # default download directory for videos (https://mpv.io/manual/master/#paths)
+download_path = "~/Videos/mpvDownloads"; # default download directory for videos (https://mpv.io/manual/master/#paths)
+}
+#+end_src
+** playlistmanager
+#+begin_src nix :tangle scriptOpts/playlistManager.nix
+# KEY show-text "Shuffled playlist" ; script-message playlistmanager shuffle
+p show-text "Shuffled playlist" ; script-message playlistmanager shuffle
+#+end_src
 * video sync
 - audio: Time video frames to audio. This is the most robust mode, because the player doesn't have to assume anything about how the display behaves. The disadvantage is that it can lead to occasional frame drops or repeats. If audio is disabled, this uses the system clock. This is the default mode.
 - display-resample:
@@ -434,8 +486,8 @@ esc         quit #! Quit
 
 * extra notes
 ** play playlists
-- use =--playlist=<filename>= - supports common formats
-- use =--playlist-start=<auto|index>= to set file to play in internal playlist
+- use =#playlist=<filename>= - supports common formats
+- use =#playlist-start=<auto|index>= to set file to play in internal playlist
   - *index* is an int
   - 0 - first file
   - behavior undefined and may change if:
@@ -445,10 +497,10 @@ esc         quit #! Quit
 - files delimited by new line
 
 ** interesting flags
-+ =--list-options=
-+ =--list--properties=
-+ =--no-config=
-+ =--idle= - Makes mpv wait idly instead of quitting when there is no file to play. Mostly useful in input mode, where mpv can be controlled through input commands
++ =#list-options=
++ =#list--properties=
++ =#no-config=
++ =#idle= - Makes mpv wait idly instead of quitting when there is no file to play. Mostly useful in input mode, where mpv can be controlled through input commands
 
 ** see also:
   - [[https://mpv.io/manual/stable/#synopsis][mpv official docs#synopsis]]

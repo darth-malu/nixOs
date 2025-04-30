@@ -95,8 +95,12 @@ in
       ventoy-full # usb imager #woeusb
 
       mission-center
+      iftop
+      nethogs
 
       #gnome.nautilus gnome.sushi gnome.file-roller gnome.yelp
+
+      trash-cli # for move to trash mpv
 
       telegram-desktop
       discord

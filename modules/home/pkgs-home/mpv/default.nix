@@ -2,15 +2,15 @@
 let
 
 mpvScripts = with pkgs.mpvScripts; [
-  # mpris
-  # mpv-discord #FIXME not working
+  mpris
+  # mpv-discord #TODO too much work lol
   sponsorblock
-  # quality-menu # allows you to change the streamed video and audio quality (ytdl-format) on the fly.
+  quality-menu # allows you to change the streamed video and audio quality (ytdl-format) on the fly.
   youtube-upnext # C-u (configurablea) , space to append
   mpv-cheatsheet # use ?
   mpv-playlistmanager # S-Enter to add to playlist
   # uosc
-  modernx
+  modernx-zydezu
   thumbfast # thumbnails
 ];
 
@@ -19,18 +19,23 @@ in
   programs.mpv = {
     enable = true;
 
-bindings = import ./keybindings.nix;
+scripts = mpvScripts;
+scriptOpts = {
+
+modernx-zydezu = import ./scriptOpts/modernx-zydezu.nix;
+
+playlistmanager = import ./scriptOpts/modernx-zydezu.nix;
+
+};
+
+bindings = import ./keybindings.nix // {
+  Y = "script-binding quality_menu/video_formats_toggle";
+  # Alt+f script-binding quality_menu/audio_formats_toggle
+};
 
 extraInput = ''
  b  quit #! Quit
 '';
-
-scripts = mpvScripts;
-scriptOpts = {
-
-# uosc = import ./scripts/uosc.nix;
-
-};
 
 profiles = {
   # mpv/mpv.conf
@@ -64,7 +69,7 @@ audio-device =
 # --audio-device=help
 #audio-pitch-correction=no # Do not filter audio to keep pitch when changing playback speed.
 
-fs = true; # fullscreen
+fs = false; # fullscreen
 # fs-screen = # all, current, 0-32
 # keep-open = true; # after playback ends - TODO make script for youtube. close otherwise
 # livemarkers = #FIXME test if failed
@@ -104,7 +109,8 @@ vo =
   else
     "gpu";
 
-ytdl-format = "bestvideo+bestaudio"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
+# ytdl-format = "bestvideo+bestaudio"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
+ytdl-format = "bv*[height<=1080]+ba/b[height<=1080]"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
 
 cache = true; # yes, no , auto
 cache-pause = true; # buffering insteaad of stutter :)
@@ -143,11 +149,10 @@ volume = 70; # startup volume
 volume-max = 100;
 gapless-audio = true; # no, yes, weak:: #Try to play consecutive audio files with no silence or disruption at the point of file change
 
-border = false; # for mordernx
+border = false; # for mordernx etc
 embeddedfonts = true;
 screenshot-format = "png"; # jpeg, png, webp, avif, jxl
 # dither = true; #   Can help reduce banding artifacts, especially in 8-bit content.
-# no-border = true; # removes black borders around the video #FIXME failed
 
 }; # end of config
  # extraInput = #sub config append to mpv/input.conf

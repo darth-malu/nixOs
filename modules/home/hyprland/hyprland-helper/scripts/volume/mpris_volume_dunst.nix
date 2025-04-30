@@ -38,7 +38,7 @@ pkgs.writeShellScriptBin "mpris_vol" ''
           songart "ncmpcpp_volume"
           ;;
       "mpv")
-          playerctl -p "$current_player" volume 0.02"$1"
+          playerctl -p "$current_player" volume 0.04"$1"
           volume=$(convert_to_percentage "$(playerctl volume)")
           dunstify -t 1000 -a "changeVolume" -u low \
             -i $HOME/Shibuya/assets/icons/mpv.256x253.png \

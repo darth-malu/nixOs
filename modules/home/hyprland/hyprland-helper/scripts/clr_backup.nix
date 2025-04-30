@@ -10,7 +10,7 @@ pkgs.writeShellScriptBin "clr_backup" ''
   find_backup() {
 
     # Find backups, but only print what *would* be deleted first
-    find "$HOME" -maxdepth 3 -name "${pattern}" -type f -print0 | xargs -0 -n 100 echo "Would remove:"
+    find "$HOME" -maxdepth 3 -iname "${pattern}" -type f -print0 | xargs -0 -n 50 printf '%s\n' 'Files to be removed::'
 
     # Ask for confirmation before deleting
     read -r -p "Are you sure you want to remove these backups? (y/N) " response

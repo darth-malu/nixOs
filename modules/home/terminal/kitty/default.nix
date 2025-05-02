@@ -23,7 +23,7 @@
     settings =
       {
         # term =  "xterm-256color";
-        term = "xterm-256color";
+        # term = "xterm-256color";
         scrollback_lines = 10000;
         enable_audio_bell = false;
         # update_check_interval = 0;

@@ -4,7 +4,7 @@ let
 mpvScripts = with pkgs.mpvScripts; [
   mpris
   # mpv-discord #TODO too much work lol
-  sponsorblock
+  # sponsorblock # TODO not need?
   quality-menu # allows you to change the streamed video and audio quality (ytdl-format) on the fly.
   youtube-upnext # C-u (configurablea) , space to append
   mpv-cheatsheet # use ?
@@ -24,7 +24,7 @@ scriptOpts = {
 
 modernx-zydezu = import ./scriptOpts/modernx-zydezu.nix;
 
-playlistmanager = import ./scriptOpts/modernx-zydezu.nix;
+playlistmanager = import ./scriptOpts/playlistManager.nix;
 
 };
 

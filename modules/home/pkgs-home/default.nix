@@ -129,7 +129,6 @@ in
       ghostscript
       # obsidian
       # glow # TODO: test this extensively # see quart for blog with markdown
-      ffmpeg-full # full vs vanilla?
       #productivity
       #blender
       # blender-hip # accelarated render
@@ -188,7 +187,7 @@ in
 
       graphviz # for org-roam visualization
 
-      imagemagick # for image-dired
+      imagemagick # for image-dired, has convert:
       unzip # for tldr
 
       # python
@@ -213,8 +212,8 @@ in
     ++ (with pkgs; [
       # creative space
       #(ffmpeg.override { withXcb = true;  })
-      #  ffmpeg
       # davinci-resolve
+      #  ffmpeg
       spotube
       spotify-cli-linux
       # digikam
@@ -228,7 +227,7 @@ in
     ])
     ++ (with pkgs; [
       # NOTE: school
-      nodePackages.vercel # vercel
+      nodePackages.vercel
       # netbeans
       wpsoffice
       # R-with-my-packages
@@ -244,11 +243,15 @@ in
         if osConfig.networking.hostName == "carthage" then
           with pkgs;
           [
+            gimp
             obs-studio
             obs-cli
+            ffmpeg-full # full vs vanilla?
           ]
         else if osConfig.networking.hostName == "tangier" then
-          [ ]
+          [
+            ffmpeg
+          ]
         else
           [ ]
       );

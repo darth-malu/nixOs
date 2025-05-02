@@ -21,7 +21,20 @@
           hostNames = [
             "github.com"
           ];
-          publicKeyFile = ./public-keys/emacs.pub; # TODO test if this is working
+          # publicKeyFile = ./public-keys/emacs.pub; # TODO test if this is working
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFRszOn4mMS5HCMwLch6Wqbb1qCsapem5woNxx/U4LRA emacs stuff";
+        };
+        orgRoam = {
+          hostNames = [
+            "github.com"
+          ];
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE58JjkxBtMXnMAkyYLEnp5lto+XlL6spllX6LaDaauA org roam";
+        };
+        org = {
+          hostNames = [
+            "github.com"
+          ];
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC1gX5yQAnTy9O1d1KXjcWSgVC6QtBXta8lJ+Q9b663u org";
         };
       };
       # authorizedKeysInHomedir = true;

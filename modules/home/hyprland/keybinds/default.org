@@ -139,7 +139,8 @@ bind =
     "$mod, KP_Multiply, pseudo"# dwindle
 #+end_src
 
-#+begin_src nix :tangle default.nix
+** obs
+#+begin_src nix :tangle no
     # "$cl $sl, R, pass, ^(com.obsproject.Studio)$"
     # "$cl $sl, S, pass, ^(com.obsproject.Studio)$"
     # "$cl $sl, [, pass, ^(com.obsproject.Studio)$"
@@ -147,6 +148,10 @@ bind =
     # "$cl $sl, \, pass, ^(com.obsproject.Studio)$"
     # "$cl $sl, -, pass, ^(com.obsproject.Studio)$"
     "SUPER $sl, F10, sendshortcut, $cl $sl, R, class:^(com\.obsproject\.Studio)$"
+#+end_src
+** focus favorite apps
+#+begin_src nix :tangle default.nix
+    "SUPER $sl, KP_1, focuswindow, class:^(Emacs)$"
 #+end_src
 
 

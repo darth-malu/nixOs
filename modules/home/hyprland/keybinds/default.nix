@@ -95,13 +95,7 @@ bind =
     "$mod, KP_Divide, togglesplit" # dwindle
     "$mod, KP_Multiply, pseudo"# dwindle
 
-    # "$cl $sl, R, pass, ^(com.obsproject.Studio)$"
-    # "$cl $sl, S, pass, ^(com.obsproject.Studio)$"
-    # "$cl $sl, [, pass, ^(com.obsproject.Studio)$"
-    # "$cl $sl, ], pass, ^(com.obsproject.Studio)$"
-    # "$cl $sl, \, pass, ^(com.obsproject.Studio)$"
-    # "$cl $sl, -, pass, ^(com.obsproject.Studio)$"
-    "SUPER $sl, F10, sendshortcut, $cl $sl, R, class:^(com\.obsproject\.Studio)$"
+    "SUPER $sl, KP_1, focuswindow, class:^(Emacs)$"
 
 #█▄▀ █ █░░ █░░   ▄▀█ █▀▀ ▀█▀ █ █░█ █▀▀
 #█░█ █ █▄▄ █▄▄   █▀█ █▄▄ ░█░ █ ▀▄▀ ██▄

@@ -61,10 +61,7 @@
                   "group/cpu_freq"
                   "group/temp_wireplumber"
                   "battery"
-                  # "backlight"
-                  "group/tray_clock"
-                  "group/backlight_idle"
-                  "power-profiles-daemon"
+                  "backlight"
                 ]
               else if osConfig.networking.hostName == "carthage" then
                 [
@@ -75,18 +72,16 @@
                   "group/nvme-temp_memory"
                   "group/cpu_block"
                   "group/temp_wireplumber"
-                  "group/tray_clock"
-                  "group/power-profiles-idle-inhibitor"
                 ]
               else
                 [ ]
             )
             ++ [
               # common rear
-              # "group/tray_clock"
-              # "power-profiles-daemon"
+              "group/tray_clock"
               # "idle_inhibitor"
               # "group/power-profiles-idle-inhibitor"
+              "power-profiles-daemon"
             ];
 
           "hyprland/workspaces" = {

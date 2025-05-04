@@ -75,7 +75,7 @@ pkgs = import nixpkgs {
   config = {
     allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
       "discord" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta" "windows10-icons" "whatsapp-emoji-linux" "aspell-dict-en-science" "davinci-resolve"
-     "steam" "steam-original" "steam-unwrapped" "steam-run" "youtube-upnext"
+      "steam" "steam-original" "steam-unwrapped" "steam-run" "youtube-upnext"
     ];
   };
   # overlays = [
@@ -84,9 +84,9 @@ pkgs = import nixpkgs {
 };
 in
 {
-  packages.${system}.my-neovim = neovimConf.neovim; # NVF
 
-# NOTE CARTHAGE-
+packages.${system}.my-neovim = neovimConf.neovim; # NVF
+
 nixosConfigurations = {
   carthage =
     nixpkgs.lib.nixosSystem {
@@ -97,7 +97,7 @@ nixosConfigurations = {
 
         ./hosts/carthage
 
-        {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
+{environment.systemPackages = [neovimConf.neovim];}
 
         inputs.home-manager.nixosModules.home-manager {
           home-manager = {
@@ -107,19 +107,21 @@ nixosConfigurations = {
             useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
             useUserPackages = false; # if false ... uses nix-profile for home apps
             extraSpecialArgs = { inherit inputs pkgs self system; };
-          };
+         };
         }
-      ];
-    };
+    ];
+ };
 
-# NOTE TANGIER
 tangier =
   nixpkgs.lib.nixosSystem {
     inherit system;
     specialArgs = { inherit inputs system; };
     modules = [
+
       ./hosts/tangier
+
       {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
+
       inputs.home-manager.nixosModules.home-manager {
         home-manager = {
           verbose = true;
@@ -133,29 +135,28 @@ tangier =
     ];
   };
 
-devShells.default = pkgs.mkShell {
-  # nativeBuildInputs = with pkgs; [ # TODO: see between
-  buildInputs = with pkgs; [
-    #inputs.python-nixpkgs.legacyPackages.${system}.python313
 
-(python312.withPackages (python-pkgs: with python-pkgs; [
-  pandas
-  numpy
-  seaborn
-  matplotlib
-  tkinter
-  pip
-  requests
-])) # teal env
-];
 
-shellHook = ''
-            echo "welcome to your dev env lul"
-            #pip install ttkbootstrap
-'';
-
-MYVAR = "custom var here lol";
+devShells.${system}.default = pkgs.mkShell {
+    buildInputs = with pkgs; [
+        #inputs.python-nixpkgs.legacyPackages.${system}.python313
+        (python3.withPackages (python-pkgs: with python-pkgs; [
+        pandas
+        numpy
+        seaborn
+        matplotlib
+        tkinter
+        pip
+        requests
+        ]))
+    ];
+    # shellHook = ''
+    #     if [ ! -d .venv ]; then
+    #         python -m venv .venv
+    #     fi
+    #     source .venv/bin/activate
+    # '';
+    shellHook = ''
+                echo "welcome to your dev env lul"
+    '';
 };
-};
-};
-}

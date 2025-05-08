@@ -28,7 +28,7 @@
           hostNames = [
             "github.com"
           ];
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE58JjkxBtMXnMAkyYLEnp5lto+XlL6spllX6LaDaauA org roam";
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE58JjkxBtMXnMAkyYLEnp5lto+XlL6spllX6LaDaauA will this work";
         };
         org = {
           hostNames = [

@@ -17,7 +17,6 @@
 # aliases = {};
 #+end_src
 
-
 * keybindings
 #+begin_src nix :tangle default.nix
 keyBindings = {
@@ -60,6 +59,8 @@ searchEngines = {
 #+end_src
 
 * settings
+url.searchengines
+source: qute://settings
 #+begin_src nix :tangle default.nix
 settings = {
   # config.py
@@ -69,6 +70,27 @@ settings = {
   };
   colors.tabs.bar.bg = "#000000";
   colors.webpage.darkmode.enabled = true;
+  tabs = {
+    close_mouse_button = "right"; # right, middle::
+    # position = "top";
+    select_on_remove = "last-used"; # Which tab to select when the focused tab is removed.
+    show = "multiple"; # multiple, always::, never, switching
+    width = "10%"; # in px or % - vertical mode
+  };
+  downloads.location.suggestion = "both"; # path::, filename, both
+  scrolling = {
+    smooth = true;
+    bar = "when-searching"; # overlay::, when-searching, never, always
+  };
+  url.searchengines = {
+    # DEFAULT = "https://duckduckgo.com/?q={}";
+    "DEFAULT" = "https://www.google.com/search?hl=en&amp;q={}";
+    aw = "https://wiki.archlinux.org/?search={}";
+    g = "https://www.google.com/search?hl=en&amp;q={}";
+    nw = "https://wiki.nixos.org/index.php?search={}";
+    w = "https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1";
+  };
+  url.start_pages = "https://www.google.com";
   # tabs.tabs_are_windows = true; #wack lol
 };
 #+end_src
@@ -78,7 +100,19 @@ settings = {
 extraConfig = ''''; # extra lines added to qutebrowser config.py
 };
 #+end_src
+* cheatsheet
 
+|----------+---------------------------------------|
+| key      | does                                  |
+|----------+---------------------------------------|
+| gt       | open list of tabs to fuzzy search and |
+| +SHIFT+t | go to tab at N                        |
+| gD       | move current tab to new window        |
+| d        | close current tab                     |
+| co       | close all tabs but current            |
+| gi       | go to primary input textbox           |
+| ;t       | hints for selecting input textbox     |
+|----------+---------------------------------------|
 * end
 #+begin_src nix :tangle default.nix
 }

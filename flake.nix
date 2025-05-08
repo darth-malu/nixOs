@@ -1,9 +1,10 @@
 {
   description = "maluware";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    yazi.url = "github:sxyazi/yazi";
+nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+yazi.url = "github:sxyazi/yazi";
 
 emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
 
@@ -12,15 +13,6 @@ nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 home-manager = {
   url = "github:nix-community/home-manager";
   inputs.nixpkgs.follows = "nixpkgs";
-};
-
-# obsidian-nvim.url = "github:epwalsh/obsidian.nvim";
-# Required, nvf works best and only directly supports flakes
-nvf = {
-  url = "github:notashelf/nvf";
-  inputs.nixpkgs.follows = "nixpkgs"; # This is safe to do as nvf does not depend on a binary cache
-  # Optionally, you can also override individual plugins
-  # inputs.obsidian-nvim.follows = "obsidian-nvim"; # <- this will use the obsidian-nvim from your inputs
 };
 
 # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -59,58 +51,75 @@ nyaa = {
   url = "github:Beastwick18/nyaa";
   inputs.nixpkgs.follows = "nixpkgs";#TODO: find out what follows does exactly
 };
+
 };
 
-outputs = inputs@{nixpkgs , nix-doom-emacs, self, ...}: # Note the use of `self` which allows reusing flake's outputs in itself
-  let
-    system = "x86_64-linux"; # system = builtins.currentSystem;??
+outputs =
+    inputs@{
+    nixpkgs ,
+    nix-doom-emacs,
+    # self,
+    ...}:
 
-neovimConf = inputs.nvf.lib.neovimConfiguration {
-  inherit (nixpkgs.legacyPackages.${system}) pkgs;
-  modules = [ ./modules/nvf];
-};
+let
+
+system = "x86_64-linux"; # system = builtins.currentSystem;??
 
 pkgs = import nixpkgs {
   inherit  system;
   config = {
     allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-      "discord" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta" "windows10-icons" "whatsapp-emoji-linux" "aspell-dict-en-science" "davinci-resolve"
-      "steam" "steam-original" "steam-unwrapped" "steam-run" "youtube-upnext"
+      "discord"
+      "google-chrome"
+      "bluemail"
+      "spotify"
+      # "obsidian"
+      "wpsoffice"
+      "broadcom-sta"
+      # "windows10-icons"
+      # "whatsapp-emoji-linux"
+      "aspell-dict-en-science"
+      "davinci-resolve"
+      # "steam"
+      # "steam-original"
+      # "steam-unwrapped"
+      # "steam-run"
+      "youtube-upnext"
     ];
   };
   # overlays = [
   #   (import self.inputs.emacs-overlay) # with flakes
   # ];
 };
+
 in
 {
-
-packages.${system}.my-neovim = neovimConf.neovim; # NVF
 
 nixosConfigurations = {
   carthage =
     nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs self system; };
-      modules = [
-        { nixpkgs.overlays = [ (import self.inputs.emacs-overlay) ]; } # emacs overlay
+      specialArgs = { inherit inputs system; };
 
-        ./hosts/carthage
+modules = [
 
-{environment.systemPackages = [neovimConf.neovim];}
+# { nixpkgs.overlays = [ (import self.inputs.emacs-overlay) ]; } # emacs overlay
 
-        inputs.home-manager.nixosModules.home-manager {
-          home-manager = {
-            verbose = true;
-            backupFileExtension = "home_backup"; # useful for clearance script
-            users.malu = import ./modules/home.nix;
-            useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
-            useUserPackages = false; # if false ... uses nix-profile for home apps
-            extraSpecialArgs = { inherit inputs pkgs self system; };
-         };
-        }
-    ];
- };
+./hosts/carthage
+
+inputs.home-manager.nixosModules.home-manager {
+  home-manager = {
+    verbose = true;
+    backupFileExtension = "home_backup"; # useful for clearance script
+    users.malu = import ./modules/home.nix;
+    useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
+    useUserPackages = false; # if false ... uses nix-profile for home apps
+    extraSpecialArgs = { inherit inputs pkgs system; };
+  };
+}
+
+];
+}; # end of carthage config
 
 tangier =
   nixpkgs.lib.nixosSystem {
@@ -120,7 +129,7 @@ tangier =
 
       ./hosts/tangier
 
-      {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
+      # {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
 
       inputs.home-manager.nixosModules.home-manager {
         home-manager = {
@@ -134,8 +143,6 @@ tangier =
       }
     ];
   };
-
-
 
 devShells.${system}.default = pkgs.mkShell {
     buildInputs = with pkgs; [
@@ -160,3 +167,5 @@ devShells.${system}.default = pkgs.mkShell {
                 echo "welcome to your dev env lul"
     '';
 };
+
+};};}

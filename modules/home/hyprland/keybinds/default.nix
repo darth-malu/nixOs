@@ -34,111 +34,97 @@
 
 bind =
   [
-    # app launch
     # "$mod, F1,exec,  killall -9 spotify || [workspace emptym] uwsm app -- spotify"
 
-    # browswers
-    # "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
-    "$mod, F, exec, [workspace emptym] uwsm app -s a -- freetube"
-    "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
-    "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
+# "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
+  "$mod, F, exec, [workspace emptym] uwsm app -s a -- freetube"
+  "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
+  "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
 
-    #kitty
-    "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
-    "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
-    "$mod $sl, Return, exec, [workspace emptym] $kitty"
+  "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
+  "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
+  "$mod $sl, Return, exec, [workspace emptym] $kitty"
 
-    # EMACS
-    # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
-    "$mod, D, exec, [workspace emptym] $emacs"
+# "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
+  "$mod, D, exec, [workspace emptym] $emacs"
 
-    # productivity
-    # "$mod $cl, O, exec, [workspace emptym] uwsm app -s a -- obsidian"
-    "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
-    # "$mod, D, exec, [workspace emptym] uwsm app -s a -- dolphin"
-    "$mod, Y, exec, [workspace emptym] $yazi_kitty"#NOTE: var does not work
+  "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
+  "$mod, Y, exec, [workspace emptym] $yazi_kitty"
 
-    # rofi
-    "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
-    "$mod, P, exec, $menu_rofi"
-    "$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
-    # "$mod $cl, e, exec, pkill rofi || $emoji_rofi"
-    # "$mod $cl, m, exec, pkill rofi || $calc_rofi"
-    # "$mod $cl, p, exec, pkill rofi || $obsidian"
-    "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
+"$mod, mouse:272, exec, pkill rofi || $menu_rofi"
+"$mod, P, exec, $menu_rofi"
+"$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
+"$mod , BackSpace, exec, pkill rofi || $clip_rofi"
 
-    # open windows
-    "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
-    "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
+# open windows
+"$mod, TAB, exec, pkill rofi || $rofi_open_windows"
+"$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
-    # hyprpicker
-    "$mod $al, C, exec, hyprpicker -an"
-    "$mod $al, R, exec, $formated_rgba"
+# power menu
+"$mod, Delete, exec, pkill rofi || rofi_power"
 
-    # power menu
-    "$mod, Delete, exec, pkill rofi || rofi_power"
+"$mod $al, C, exec, hyprpicker -an"
+"$mod $al, R, exec, $formated_rgba"
 
-    # copysave
-    # ", Print, exec, grimblast --cursor --notify copysave output"
-    ", Print, exec, grimblast --cursor --notify copy output"
-    "$sl, Print, exec, grimblast --cursor --notify copysave screen"
+# ", Print, exec, grimblast --cursor --notify copysave output"
+  ", Print, exec, grimblast --cursor --notify copy output"
+  "$sl, Print, exec, grimblast --cursor --notify copysave screen"
 
-    # copy
-    "SUPER, Print, exec, grimblast --cursor --notify copysave output"
-    "$al, Print, exec, grimblast --notify copy area"
-    "$cl, Print, exec, grimblast --cursor --notify copy active"
+  # copy
+  "SUPER, Print, exec, grimblast --cursor --notify copysave output"
+  "$al, Print, exec, grimblast --notify copy area"
+  "$cl, Print, exec, grimblast --cursor --notify copy active"
 
-    # Workspaces
-    "$al, KP_Enter,workspace ,emptym"
-    "$mod, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
+# Workspaces
+  "$al, KP_Enter,workspace ,emptym"
+  "$mod, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
 
-    "$mod, KP_Divide, togglesplit" # dwindle
-    "$mod, KP_Multiply, pseudo"# dwindle
+  "$mod, KP_Divide, togglesplit" # dwindle
+  "$mod, KP_Multiply, pseudo"
 
-    "SUPER $sl, KP_1, focuswindow, class:^(Emacs)$"
+"SUPER $cl, KP_End, focuswindow, class:^(Emacs)$"
+"SUPER $cl, D, focuswindow, class:^(Emacs)$"
 
-#█▄▀ █ █░░ █░░   ▄▀█ █▀▀ ▀█▀ █ █░█ █▀▀
-#█░█ █ █▄▄ █▄▄   █▀█ █▄▄ ░█░ █ ▀▄▀ ██▄
+# "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"SUPER $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"SUPER $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+
+"SUPER $cl, KP_Left, focuswindow, class:^(google-chrome)$"
+"SUPER $cl, C, focuswindow, class:^(google-chrome)$"
+
 "$mod ,space, killactive"
-  # "$mod ,Space, killactive"
-  "$mod, mouse:275, killactive,"
+"$mod, mouse:275, killactive,"
 
-#█▀ █▀▀ █▀█ ▄▀█ ▀█▀ █▀▀ █░█
-#▄█ █▄▄ █▀▄ █▀█ ░█░ █▄▄ █▀█
 "$mod, m, togglespecialworkspace, magic"
-  "$mod SHIFT, m, movetoworkspace, special:magic"
+"$mod SHIFT, m, movetoworkspace, special:magic"
 
-  "$mod, q, togglespecialworkspace, quanta"
-  "$mod SHIFT, q, movetoworkspace, special:quanta"
+"$mod, q, togglespecialworkspace, quanta"
+"$mod SHIFT, q, movetoworkspace, special:quanta"
 
-  "$mod, e, togglespecialworkspace, easy"
-  "$mod SHIFT, e, movetoworkspace, special:easy"
+"$mod, e, togglespecialworkspace, easy"
+"$mod SHIFT, e, movetoworkspace, special:easy"
 
-  "$mod, i, togglespecialworkspace, nc"
-  #"$mod SHIFT, i, movetoworkspace, special:nc" no need to move shit into it
+"$mod, i, togglespecialworkspace, nc"
+#"$mod SHIFT, i, movetoworkspace, special:nc" no need to move shit into it using this for songart
 
-  "$mod, s, togglespecialworkspace, scratch"
-  "$mod SHIFT, S, movetoworkspace, special:scratch"
+"$mod, s, togglespecialworkspace, scratch"
+"$mod SHIFT, S, movetoworkspace, special:scratch"
 
-  #"$mod, t, togglespecialworkspace, Tixati" #"$mod SHIFT, T, movetoworkspace, special:Tixati"
+#"$mod, t, togglespecialworkspace, Tixati" #"$mod SHIFT, T, movetoworkspace, special:Tixati"
 
 # move to empty
-"$mod , o, movetoworkspace, emptym"
+  "$mod , o, movetoworkspace, emptym"
   "$mod $sl, o, movetoworkspacesilent, emptym"
 
-#█▀▀ █▀█ █▀▀ █░█ █▀
-#█▀░ █▄█ █▄▄ █▄█ ▄█
-"$mod $cl, h, movefocus, l"
+  "$mod $cl, h, movefocus, l"
   "$mod $cl, l, movefocus, r"
   "$mod $cl, k, movefocus, u"
   "$mod $cl, j, movefocus, d"
   #Scroll throught windows in a workspace
   #bind="$mod SHIFT,Left,layoutmsg,swapnext"
 
-
-
 # next/prev workspace
-"$mod, mouse_up, workspace, m+1"
+  "$mod, mouse_up, workspace, m+1"
   "$mod, mouse_down, workspace, m-1"
 
   "$mod ,left, workspace,m-1"
@@ -149,7 +135,7 @@ bind =
 
 # Keypad navigation
 # Switch workspaces with mod + [ numpad 0-9]
-"$mod, KP_End, workspace, 1"#TODO: do for loop make this cleaner
+  "$mod, KP_End, workspace, 1"#TODO: do for loop make this cleaner
   "$mod, KP_Down, workspace, 2"
   "$mod, KP_Next, workspace, 3"
   "$mod, KP_Left, workspace, 4"
@@ -163,7 +149,7 @@ bind =
 # Move active window to a workspace with mod + SHIFT + [ numpad 0-9]
 # --> movetoworkspacesilent exists
 #KEYPAD
-"$mod $sl, KP_End, movetoworkspace, 1"
+  "$mod $sl, KP_End, movetoworkspace, 1"
   "$mod $sl, KP_Down, movetoworkspace, 2"
   "$mod $sl, KP_Next, movetoworkspace, 3"
   "$mod $sl, KP_Left, movetoworkspace, 4"
@@ -174,28 +160,20 @@ bind =
   "$mod $sl, KP_Prior, movetoworkspace, 9"
   "$mod $sl, KP_Insert, movetoworkspace, 10"
 
-"SUPER ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
-"SUPER ,End,execr, killall .waybar-wrapped || uwsm app waybar"
+  "SUPER ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
+  "SUPER ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 
 # gaps
 "SUPER $sl,KP_Enter, exec, gaps reset"
 "SUPER ,KP_Enter, exec, gaps custom"
 "SUPER ,$ar, exec, gaps toggle_gaps_out"#toggle gaps on/off
 
-# █▀▄▀█ █▀█ █▄░█ █ ▀█▀ █▀█ █▀█
-# █░▀░█ █▄█ █░▀█ █ ░█░ █▄█ █▀▄
-"$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
+  "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
   "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
   "$mod $sl, bracketright, swapnext"
-  "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux || make this dynamic as well
-  "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux
-  # "$mod , [, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux
-  # "$mod $sl, k, exec, dispatch swapactiveworkspaces HDMI-A-1 DP-3 ;"
-  # "$mod $sl,l, focusmonitor, HDMI-A-1"
-  # "$mod $sl,h, focusmonitor, DP-3"
+  "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
+  "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
 
-#█▀▀ █▀█ █▀▀ █░█ █▀ █▀▀ █░█ █▀█ █▀█ █▀▀ █▄░█ ▀█▀
-#█▀░ █▄█ █▄▄ █▄█ ▄█ █▄▄ █▄█ █▀▄ █▀▄ ██▄ █░▀█ ░█░
 # "$mod,K, Workspace, previous_per_monitor"
 "$mod,K, focuscurrentorlast"
   "$mod $sl, k, focusmonitor, +1"

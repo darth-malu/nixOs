@@ -28,9 +28,20 @@ playlistmanager = import ./scriptOpts/playlistManager.nix;
 
 };
 
-bindings = import ./keybindings.nix // {
-  Y = "script-binding quality_menu/video_formats_toggle";
-  # Alt+f script-binding quality_menu/audio_formats_toggle
+bindings = {
+
+Y = "script-binding quality_menu/video_formats_toggle";
+# Alt+f script-binding quality_menu/audio_formats_toggle
+# "ctrl+a" = "script-message osc-visibility cycle";
+# "ctrl+f" = "script-binding subtitle_lines/list_subtitles";
+# "tab" = "script-binding uosc/toggle-ui";
+# "menu" = "script-binding uosc/menu";
+# "mbtn_right" = "script-binding uosc/menu";
+# "mbtn_left" = "space cycle pause; show-text \"\${filename}\n\${time-pos} / \${duration} (\${percent-pos}%)\"; osd-bar show-progress";
+"mbtn_left" = "cycle pause; show-progress";
+"ctrl+s" = "async screenshot"; # ! Utils > Screenshot
+"esc" = "quit"; # ! Quit
+
 };
 
 extraInput = ''

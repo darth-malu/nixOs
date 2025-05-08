@@ -37,109 +37,90 @@
       "$emacs" = "uwsm app -s a -- emacsclient -c";
 #+end_src
 
-* bind
-** multiple binds to one key
-# to switch between windows in a floating workspace
-bind = SUPER, Tab, cyclenext,           # change focus to another window
-bind = SUPER, Tab, bringactivetotop,    # bring it to the top
-
-** bind flags
-|------+-----------------------------------------------+------------------------------------------------------------------------------------------------|
-| flag | use case                                      | extra                                                                                          |
-|------+-----------------------------------------------+------------------------------------------------------------------------------------------------|
-| l    | locked                                        | will aso when when an input inhibitor is active. eg lockscreen                                 |
-| r    | release                                       | trigger on release of a key                                                                    |
-| o    | longPress                                     | trigger on longpress                                                                           |
-| e    | repeat                                        | repeat when held                                                                               |
-| n    | non-consuming                                 | key/mouse events will be passed to the active window in addition to triggering the dispatcher. |
-| m    | mouse                                         |                                                                                                |
-| t    | transparent                                   | cannot be shadowed by other binds                                                              |
-| i    | ignore mods                                   | will ignore modifiers                                                                          |
-| s    | seperate                                      | will arbitrarily combine keys between each mod/key, see [Keysym combos](#keysym-combos) above. |
-| d    | has description                               |                                                                                                |
-| p    | bypass the app's requests to inhibit keybinds |                                                                                                |
-|------+-----------------------------------------------+------------------------------------------------------------------------------------------------|
-
-** Description to keybindings
-You can describe your keybind with the description flag. Your description always goes in front of the dispatcher and should never contain the character ,!
-
-bindd = MODS, key, description, dispatcher, params
-
-for example,
-
-#+begin_quote
-bindd = SUPER, Q, Open my favourite terminal, exec, kitty
-#+end_quote
-
-If you want to access your description you can use hyprctl binds. For more information have a look at Using Hyprctl.
-
+* bindings
+** bind
+*** starter
 #+begin_src nix :tangle default.nix
-
 bind =
   [
-    # app launch
     # "$mod, F1,exec,  killall -9 spotify || [workspace emptym] uwsm app -- spotify"
-
-    # browswers
-    # "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
-    "$mod, F, exec, [workspace emptym] uwsm app -s a -- freetube"
-    "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
-    "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
-
-    #kitty
-    "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
-    "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
-    "$mod $sl, Return, exec, [workspace emptym] $kitty"
-
-    # EMACS
-    # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
-    "$mod, D, exec, [workspace emptym] $emacs"
-
-    # productivity
-    # "$mod $cl, O, exec, [workspace emptym] uwsm app -s a -- obsidian"
-    "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
-    # "$mod, D, exec, [workspace emptym] uwsm app -s a -- dolphin"
-    "$mod, Y, exec, [workspace emptym] $yazi_kitty"#NOTE: var does not work
-
-    # rofi
-    "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
-    "$mod, P, exec, $menu_rofi"
-    "$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
-    # "$mod $cl, e, exec, pkill rofi || $emoji_rofi"
-    # "$mod $cl, m, exec, pkill rofi || $calc_rofi"
-    # "$mod $cl, p, exec, pkill rofi || $obsidian"
-    "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
-
-    # open windows
-    "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
-    "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
-
-    # hyprpicker
-    "$mod $al, C, exec, hyprpicker -an"
-    "$mod $al, R, exec, $formated_rgba"
-
-    # power menu
-    "$mod, Delete, exec, pkill rofi || rofi_power"
-
-    # copysave
-    # ", Print, exec, grimblast --cursor --notify copysave output"
-    ", Print, exec, grimblast --cursor --notify copy output"
-    "$sl, Print, exec, grimblast --cursor --notify copysave screen"
-
-    # copy
-    "SUPER, Print, exec, grimblast --cursor --notify copysave output"
-    "$al, Print, exec, grimblast --notify copy area"
-    "$cl, Print, exec, grimblast --cursor --notify copy active"
-
-    # Workspaces
-    "$al, KP_Enter,workspace ,emptym"
-    "$mod, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
-
-    "$mod, KP_Divide, togglesplit" # dwindle
-    "$mod, KP_Multiply, pseudo"# dwindle
 #+end_src
 
-** obs
+*** browsers
+#+begin_src nix :tangle default.nix
+# "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
+  "$mod, F, exec, [workspace emptym] uwsm app -s a -- freetube"
+  "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
+  "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
+#+end_src
+
+*** kitty
+#+begin_src nix :tangle default.nix
+  "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
+  "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
+  "$mod $sl, Return, exec, [workspace emptym] $kitty"
+#+end_src
+
+*** emacs
+#+begin_src nix :tangle default.nix
+# "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
+  "$mod, D, exec, [workspace emptym] $emacs"
+#+end_src
+
+*** productivity
+**** file manager
+#+begin_src nix :tangle default.nix
+  "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
+  "$mod, Y, exec, [workspace emptym] $yazi_kitty"
+#+end_src
+
+**** rofi
+#+begin_src nix :tangle default.nix
+"$mod, mouse:272, exec, pkill rofi || $menu_rofi"
+"$mod, P, exec, $menu_rofi"
+"$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
+"$mod , BackSpace, exec, pkill rofi || $clip_rofi"
+
+# open windows
+"$mod, TAB, exec, pkill rofi || $rofi_open_windows"
+"$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
+
+# power menu
+"$mod, Delete, exec, pkill rofi || rofi_power"
+#+end_src
+
+*** hyprpicker , colors
+#+begin_src nix :tangle default.nix
+"$mod $al, C, exec, hyprpicker -an"
+"$mod $al, R, exec, $formated_rgba"
+#+end_src
+
+*** screenshots
+using grimblast from hypr team 🤪
+#+begin_src nix :tangle default.nix
+# ", Print, exec, grimblast --cursor --notify copysave output"
+  ", Print, exec, grimblast --cursor --notify copy output"
+  "$sl, Print, exec, grimblast --cursor --notify copysave screen"
+
+  # copy
+  "SUPER, Print, exec, grimblast --cursor --notify copysave output"
+  "$al, Print, exec, grimblast --notify copy area"
+  "$cl, Print, exec, grimblast --cursor --notify copy active"
+#+end_src
+
+*** empty workspace, toggle floating
+#+begin_src nix :tangle default.nix
+# Workspaces
+  "$al, KP_Enter,workspace ,emptym"
+  "$mod, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
+#+end_src
+
+*** toggle dwindle/pseudo
+#+begin_src nix :tangle default.nix
+  "$mod, KP_Divide, togglesplit" # dwindle
+  "$mod, KP_Multiply, pseudo"
+#+end_src
+*** obs
 #+begin_src nix :tangle no
     # "$cl $sl, R, pass, ^(com.obsproject.Studio)$"
     # "$cl $sl, S, pass, ^(com.obsproject.Studio)$"
@@ -149,55 +130,61 @@ bind =
     # "$cl $sl, -, pass, ^(com.obsproject.Studio)$"
     "SUPER $sl, F10, sendshortcut, $cl $sl, R, class:^(com\.obsproject\.Studio)$"
 #+end_src
-** focus favorite apps
+*** focus favorite apps
+#NOTE for KP need to bind with numlock off identifier
+see hyprswitch
+**** emacs
 #+begin_src nix :tangle default.nix
-    "SUPER $sl, KP_1, focuswindow, class:^(Emacs)$"
+"SUPER $cl, KP_End, focuswindow, class:^(Emacs)$"
+"SUPER $cl, D, focuswindow, class:^(Emacs)$"
 #+end_src
-
-
-* kill active
+**** qutebrowser
 #+begin_src nix :tangle default.nix
-#█▄▀ █ █░░ █░░   ▄▀█ █▀▀ ▀█▀ █ █░█ █▀▀
-#█░█ █ █▄▄ █▄▄   █▀█ █▄▄ ░█░ █ ▀▄▀ ██▄
+# "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"SUPER $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"SUPER $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+#+end_src
+**** chrome
+#+begin_src nix :tangle default.nix
+"SUPER $cl, KP_Left, focuswindow, class:^(google-chrome)$"
+"SUPER $cl, C, focuswindow, class:^(google-chrome)$"
+#+end_src
+*** kill active
+#+begin_src nix :tangle default.nix
 "$mod ,space, killactive"
-  # "$mod ,Space, killactive"
-  "$mod, mouse:275, killactive,"
+"$mod, mouse:275, killactive,"
 #+end_src
 
-* special workspaces / scratch
+*** special workspaces / scratch
 #+begin_src nix :tangle default.nix
-#█▀ █▀▀ █▀█ ▄▀█ ▀█▀ █▀▀ █░█
-#▄█ █▄▄ █▀▄ █▀█ ░█░ █▄▄ █▀█
 "$mod, m, togglespecialworkspace, magic"
-  "$mod SHIFT, m, movetoworkspace, special:magic"
+"$mod SHIFT, m, movetoworkspace, special:magic"
 
-  "$mod, q, togglespecialworkspace, quanta"
-  "$mod SHIFT, q, movetoworkspace, special:quanta"
+"$mod, q, togglespecialworkspace, quanta"
+"$mod SHIFT, q, movetoworkspace, special:quanta"
 
-  "$mod, e, togglespecialworkspace, easy"
-  "$mod SHIFT, e, movetoworkspace, special:easy"
+"$mod, e, togglespecialworkspace, easy"
+"$mod SHIFT, e, movetoworkspace, special:easy"
 
-  "$mod, i, togglespecialworkspace, nc"
-  #"$mod SHIFT, i, movetoworkspace, special:nc" no need to move shit into it
+"$mod, i, togglespecialworkspace, nc"
+#"$mod SHIFT, i, movetoworkspace, special:nc" no need to move shit into it using this for songart
 
-  "$mod, s, togglespecialworkspace, scratch"
-  "$mod SHIFT, S, movetoworkspace, special:scratch"
+"$mod, s, togglespecialworkspace, scratch"
+"$mod SHIFT, S, movetoworkspace, special:scratch"
 
-  #"$mod, t, togglespecialworkspace, Tixati" #"$mod SHIFT, T, movetoworkspace, special:Tixati"
+#"$mod, t, togglespecialworkspace, Tixati" #"$mod SHIFT, T, movetoworkspace, special:Tixati"
 #+end_src
 
-* move to empty workspace
+*** move to empty workspace
 #+begin_src nix :tangle default.nix
 # move to empty
-"$mod , o, movetoworkspace, emptym"
+  "$mod , o, movetoworkspace, emptym"
   "$mod $sl, o, movetoworkspacesilent, emptym"
 #+end_src
 
-* move focus
+*** move focus
 #+begin_src nix :tangle default.nix
-#█▀▀ █▀█ █▀▀ █░█ █▀
-#█▀░ █▄█ █▄▄ █▄█ ▄█
-"$mod $cl, h, movefocus, l"
+  "$mod $cl, h, movefocus, l"
   "$mod $cl, l, movefocus, r"
   "$mod $cl, k, movefocus, u"
   "$mod $cl, j, movefocus, d"
@@ -205,14 +192,11 @@ bind =
   #bind="$mod SHIFT,Left,layoutmsg,swapnext"
 #+end_src
 
-* workspaces
-#+begin_src nix :tangle default.nix
-#+end_src
-
-** +/- workspaces, left/right workspaces
+*** workspaces
+**** +/- workspaces, left/right workspaces
 #+begin_src nix :tangle default.nix
 # next/prev workspace
-"$mod, mouse_up, workspace, m+1"
+  "$mod, mouse_up, workspace, m+1"
   "$mod, mouse_down, workspace, m-1"
 
   "$mod ,left, workspace,m-1"
@@ -222,11 +206,11 @@ bind =
   "$mod ,L,workspace,m+1"
 #+end_src
 
-** go to workspace
+**** go to workspace
 #+begin_src nix :tangle default.nix
 # Keypad navigation
 # Switch workspaces with mod + [ numpad 0-9]
-"$mod, KP_End, workspace, 1"#TODO: do for loop make this cleaner
+  "$mod, KP_End, workspace, 1"#TODO: do for loop make this cleaner
   "$mod, KP_Down, workspace, 2"
   "$mod, KP_Next, workspace, 3"
   "$mod, KP_Left, workspace, 4"
@@ -238,12 +222,12 @@ bind =
   "$mod, KP_Insert, workspace, 10"
 #+end_src
 
-** move workspace
+**** move workspace
 #+begin_src nix :tangle default.nix
 # Move active window to a workspace with mod + SHIFT + [ numpad 0-9]
 # --> movetoworkspacesilent exists
 #KEYPAD
-"$mod $sl, KP_End, movetoworkspace, 1"
+  "$mod $sl, KP_End, movetoworkspace, 1"
   "$mod $sl, KP_Down, movetoworkspace, 2"
   "$mod $sl, KP_Next, movetoworkspace, 3"
   "$mod $sl, KP_Left, movetoworkspace, 4"
@@ -255,14 +239,14 @@ bind =
   "$mod $sl, KP_Insert, movetoworkspace, 10"
 #+end_src
 
-* waybar
+*** waybar
 #+begin_src nix :tangle default.nix
-"SUPER ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
-"SUPER ,End,execr, killall .waybar-wrapped || uwsm app waybar"
+  "SUPER ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
+  "SUPER ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 #+end_src
 
-* gaps script
-** TODO make it launch in bash major mode
+*** gaps script
+**** TODO make it launch in bash major mode
 [[file:~/Shibuya/modules/home/hyprland-helper/scripts/gaps.nix][The gaps script]]
 #+begin_src nix :tangle default.nix
 # gaps
@@ -271,25 +255,17 @@ bind =
 "SUPER ,$ar, exec, gaps toggle_gaps_out"#toggle gaps on/off
 #+end_src
 
-* move workspace/window to different monitors
+*** move workspace/window to different monitors
 #+begin_src nix :tangle default.nix
-# █▀▄▀█ █▀█ █▄░█ █ ▀█▀ █▀█ █▀█
-# █░▀░█ █▄█ █░▀█ █ ░█░ █▄█ █▀▄
-"$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
+  "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
   "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
   "$mod $sl, bracketright, swapnext"
-  "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux || make this dynamic as well
-  "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux
-  # "$mod , [, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 DP-3 ; dispatch focusmonitor +1;\"" # TODO: only in nvim? or tmux
-  # "$mod $sl, k, exec, dispatch swapactiveworkspaces HDMI-A-1 DP-3 ;"
-  # "$mod $sl,l, focusmonitor, HDMI-A-1"
-  # "$mod $sl,h, focusmonitor, DP-3"
+  "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
+  "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
 #+end_src
 
-* focus previously focused window, cycle next, previous_per_monitor
+*** focus previously focused window, cycle next, previous_per_monitor
 #+begin_src nix :tangle default.nix
-#█▀▀ █▀█ █▀▀ █░█ █▀ █▀▀ █░█ █▀█ █▀█ █▀▀ █▄░█ ▀█▀
-#█▀░ █▄█ █▄▄ █▄█ ▄█ █▄▄ █▄█ █▀▄ █▀▄ ██▄ █░▀█ ░█░
 # "$mod,K, Workspace, previous_per_monitor"
 "$mod,K, focuscurrentorlast"
   "$mod $sl, k, focusmonitor, +1"
@@ -314,7 +290,7 @@ bind =
 );
 #+end_src
 
-* bindm ( mouse binding )
+** bindm ( mouse binding )
 |--------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------|
 | Name         | Description               | Params                                                                                                                                   |
 |--------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------|
@@ -330,7 +306,7 @@ bindm = [
 ];
 #+end_src
 
-* bindel
+** bindel
 #+begin_src nix :tangle default.nix
 bindel =
   if osConfig.networking.hostName == "tangier" then
@@ -339,7 +315,7 @@ bindel =
     import ./pc_bindings.nix;
 #+end_src
 
-* bindl
+** bindl
 #+begin_src nix :tangle default.nix
 bindl =
   [
@@ -355,7 +331,7 @@ bindl =
   ];
 #+end_src
 
-* binde
+** binde
 #+begin_src nix :tangle default.nix
 binde =
   [# Date
@@ -383,3 +359,39 @@ binde =
  };
 }
 #+end_src
+** notes
+*** multiple binds to one key
+# to switch between windows in a floating workspace
+bind = SUPER, Tab, cyclenext,           # change focus to another window
+bind = SUPER, Tab, bringactivetotop,    # bring it to the top
+
+*** bind flags
+|------+-----------------------------------------------+------------------------------------------------------------------------------------------------|
+| flag | use case                                      | extra                                                                                          |
+|------+-----------------------------------------------+------------------------------------------------------------------------------------------------|
+| l    | locked                                        | will aso when when an input inhibitor is active. eg lockscreen                                 |
+| r    | release                                       | trigger on release of a key                                                                    |
+| o    | longPress                                     | trigger on longpress                                                                           |
+| e    | repeat                                        | repeat when held                                                                               |
+| n    | non-consuming                                 | key/mouse events will be passed to the active window in addition to triggering the dispatcher. |
+| m    | mouse                                         |                                                                                                |
+| t    | transparent                                   | cannot be shadowed by other binds                                                              |
+| i    | ignore mods                                   | will ignore modifiers                                                                          |
+| s    | seperate                                      | will arbitrarily combine keys between each mod/key, see [Keysym combos](#keysym-combos) above. |
+| d    | has description                               |                                                                                                |
+| p    | bypass the app's requests to inhibit keybinds |                                                                                                |
+|------+-----------------------------------------------+------------------------------------------------------------------------------------------------|
+
+*** Description to keybindings
+You can describe your keybind with the description flag. Your description always goes in front of the dispatcher and should never contain the character ,!
+
+bindd = MODS, key, description, dispatcher, params
+
+for example,
+
+#+begin_quote
+bindd = SUPER, Q, Open my favourite terminal, exec, kitty
+#+end_quote
+
+If you want to access your description you can use hyprctl binds. For more information have a look at Using Hyprctl.
+

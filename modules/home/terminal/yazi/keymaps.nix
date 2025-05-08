@@ -1,4 +1,5 @@
 {
+
   manager.keymap = [
     # list of attribute sets
 
@@ -7,7 +8,7 @@
   { on = [ "g" "p" ];       run = "cd ~/Pictures";   desc = "pictures directory"; }
   { on = [ "g" "s" ];       run = "cd ~/Pictures/Screenshots";   desc = "screenshots"; }
   { on = [ "g" "x" ];       run = "cd ~/Downloads";   desc = "downloads"; }
-  { on = [ "g" "v" ];       run = "cd ~/Videos";   desc = "VIDEOS dir"; }
+  { on = [ "g" "v" ];       run = "cd ~/Videos";   desc = "videos directory"; }
   { on = [ "g" "y" ];       run = "cd /media/";          desc = "media directory"; }
   { on = [ "g" "m" ];       run = "cd ~/Music";          desc = "music dir"; }
   { on = [ "g" "<Space>" ]; run = "cd --interactive"; desc = "Go to a directory interactively"; }
@@ -18,7 +19,6 @@
   { on = [ "<C-x>" ]; run = "close";              desc = "Close the current tab; or quit if it is last tab"; }
   { on = [ "<C-z>" ]; run = "suspend";            desc = "Suspend the process - press fg to resume yazi"; }
 
-# Navigation
   { on = [ "k" ]; run = "arrow -1"; desc = "Move cursor up"; }
   { on = [ "j" ]; run = "arrow 1";  desc = "Move cursor down"; }
 

@@ -39,14 +39,24 @@
           ]; # defaults if options list missing
         };
 
-        "/media/kibweziHdd" = {
-          device = "/dev/disk/by-uuid/48b59b13-573c-4e39-b2ce-abb2a3c0206e";
-          # noCheck = true; # won't mount on boot
-          fsType = "ext4";
+        "/media/kibweziC" = {
+          # /dev/sda3 - c drive
+          device = "/dev/disk/by-uuid/68025AB7025A89C8";
+          fsType = "ntfs-3g";
           options = [
             "users"
             "nofail"
-          ]; # defaults if options list missing
+          ];
+        };
+
+        "/media/kibweziExtraHdd" = {
+          # /dev/sda5 - extraHdd
+          device = "/dev/disk/by-uuid/CC74322874321624";
+          fsType = "ntfs-3g";
+          options = [
+            "users"
+            "nofail"
+          ];
         };
 
         "/media/extraHdd" = {
@@ -54,8 +64,8 @@
           fsType = "ntfs-3g";
           # noCheck = true;
           options = [
-            "rw"
-            "uid=1000"
+            # "rw"
+            # "uid=1000"
             "users"
             "nofail"
           ];

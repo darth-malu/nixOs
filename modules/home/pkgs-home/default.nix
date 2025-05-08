@@ -204,7 +204,7 @@ in
       html-tidy
 
       # lsp
-      nodejs_23 # consider npm for auto install of servers in lsp-mode
+      nodejs_24 # consider npm for auto install of servers in lsp-mode
 
       #:markdown
       python313Packages.grip
@@ -216,6 +216,7 @@ in
       #  ffmpeg
       spotube
       spotify-cli-linux
+      spotube
       # digikam
     ])
     ++ (with pkgs; [

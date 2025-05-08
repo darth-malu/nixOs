@@ -1,4 +1,4 @@
-{config, lib, options, ...}:
+{config, lib, pkgs, options, ...}:
 
 {
   imports = [
@@ -96,7 +96,8 @@ security = {
         #}
 
         {
-          command = "/run/current-system/sw/bin/nixos-rebuild";
+          # command = "/run/current-system/sw/bin/nixos-rebuild";
+          command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
           options = [ "NOPASSWD" ];
         }
 
@@ -108,10 +109,10 @@ security = {
         #command = "${pkgs.systemd}/bin/poweroff";
         #options = [ "NOPASSWD" ];
         #}
-        #{
-        #command = "${pkgs.fdisk} -l";
-        #options = [ "NOPASSWD" ];
-        #}
+        {
+          command = "${pkgs.util-linux}/bin/fdisk -l";
+          options = [ "NOPASSWD" ];
+        }
       ];
       #groups = [ "wheel" ];
     }];

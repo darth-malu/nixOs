@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   config,
   ...
 }:
@@ -16,7 +17,7 @@
   qemuNix.enable = if config.networking.hostName == "carthage" then true else false;
 
   programs = {
-    dconf.enable = true; # TODO see if needed
+    dconf.enable = lib.mkDefault true; # TODO see if needed
   };
 
   services = {
@@ -44,7 +45,7 @@
       #};
       #};
     };
-    # udev.enable = true; #default: true
+    # udev.enable = true; # true::
     # dbus = {
     #   implementation = lib.mkDefault "broker"; #"broker" , "dbus"
     # };
@@ -56,8 +57,6 @@
       (with pkgs; [
         libnotify # notify-send
         wget
-        # neovimConf.neovim
-        # nixd
         # appimage-run # for appiamges to run
         clinfo # verify OpenCl
         #cpufrequtils
@@ -87,7 +86,6 @@
         xdg-utils # xdg-open, xdg-mime, xdg-desktop-menu/icon #TODO: see if needed
         dotool # test if working
         micro
-        spotube
       ])
       ++ (
         if config.programs.hyprland.enable then

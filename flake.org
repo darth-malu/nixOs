@@ -2,15 +2,24 @@
 #+TOC: headlines 2
 #+OPTIONS: toc:2
 #+auto_tangle: t
+#+startup: content indent
 
 * inputs
+** description, inputs start
 #+begin_src nix :tangle flake.nix
 {
   description = "maluware";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+#+end_src
 
-    yazi.url = "github:sxyazi/yazi";
+** nixpkgs
+#+begin_src nix :tangle flake.nix
+nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+#+end_src
+
+** yazi
+#+begin_src nix :tangle flake.nix
+yazi.url = "github:sxyazi/yazi";
 #+end_src
 
 ** emacs overlay
@@ -30,7 +39,7 @@ home-manager = {
 #+end_src
 
 ** nvf - neovim
-#+begin_src nix :tangle flake.nix
+#+begin_src nix :tangle no
 # obsidian-nvim.url = "github:epwalsh/obsidian.nvim";
 # Required, nvf works best and only directly supports flakes
 nvf = {
@@ -82,22 +91,41 @@ nyaa = {
   url = "github:Beastwick18/nyaa";
   inputs.nixpkgs.follows = "nixpkgs";#TODO: find out what follows does exactly
 };
+#+end_src
+
+** end inputs
+#+begin_src nix :tangle flake.nix
 };
 #+end_src
 
 * outputs
+# Note the use of `self` which allows reusing flake's outputs in itself
+
 #+begin_src nix :tangle flake.nix
-outputs = inputs@{nixpkgs , nix-doom-emacs, self, ...}: # Note the use of `self` which allows reusing flake's outputs in itself
-  let
-    system = "x86_64-linux"; # system = builtins.currentSystem;??
+outputs =
+    inputs@{
+    nixpkgs ,
+    nix-doom-emacs,
+    # self,
+    ...}:
+#+end_src
+
+** let start
+#+begin_src nix :tangle flake.nix
+let
+#+end_src
+
+** system
+#+begin_src nix :tangle flake.nix
+system = "x86_64-linux"; # system = builtins.currentSystem;??
 #+end_src
 
 ** nvf
-#+begin_src nix :tangle flake.nix
-neovimConf = inputs.nvf.lib.neovimConfiguration {
-  inherit (nixpkgs.legacyPackages.${system}) pkgs;
-  modules = [ ./modules/nvf];
-};
+#+begin_src nix :tangle no
+    neovimConf = inputs.nvf.lib.neovimConfiguration {
+        inherit (nixpkgs.legacyPackages.${system}) pkgs;
+        modules = [ ./modules/nvf];
+    };
 #+end_src
 
 ** allowUnfreePredicate
@@ -106,20 +134,38 @@ pkgs = import nixpkgs {
   inherit  system;
   config = {
     allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-      "discord" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta" "windows10-icons" "whatsapp-emoji-linux" "aspell-dict-en-science" "davinci-resolve"
-      "steam" "steam-original" "steam-unwrapped" "steam-run" "youtube-upnext"
+      "discord"
+      "google-chrome"
+      "bluemail"
+      "spotify"
+      # "obsidian"
+      "wpsoffice"
+      "broadcom-sta"
+      # "windows10-icons"
+      # "whatsapp-emoji-linux"
+      "aspell-dict-en-science"
+      "davinci-resolve"
+      # "steam"
+      # "steam-original"
+      # "steam-unwrapped"
+      # "steam-run"
+      "youtube-upnext"
     ];
   };
   # overlays = [
   #   (import self.inputs.emacs-overlay) # with flakes
   # ];
 };
+#+end_src
+
+** let end
+#+begin_src nix :tangle flake.nix
 in
 {
 #+end_src
 
 ** nvf
-#+begin_src nix :tangle flake.nix
+#+begin_src nix :tangle no
 packages.${system}.my-neovim = neovimConf.neovim; # NVF
 #+end_src
 
@@ -129,32 +175,47 @@ nixosConfigurations = {
   carthage =
     nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs self system; };
-      modules = [
-        { nixpkgs.overlays = [ (import self.inputs.emacs-overlay) ]; } # emacs overlay
-
-        ./hosts/carthage
+      specialArgs = { inherit inputs system; };
 #+end_src
 
-*** nvf
+*** modules
 #+begin_src nix :tangle flake.nix
-{environment.systemPackages = [neovimConf.neovim];}
+modules = [
+#+end_src
+
+**** emacs overlay
+#+begin_src nix :tangle flake.nix
+# { nixpkgs.overlays = [ (import self.inputs.emacs-overlay) ]; } # emacs overlay
+#+end_src
+
+**** carthage nix config (hosts/carthage)
+#+begin_src nix :tangle flake.nix
+./hosts/carthage
+#+end_src
+
+**** nvf
+#+begin_src nix :tangle no
+    {environment.systemPackages = [neovimConf.neovim];}
 #+end_src
 
 *** home manager
 #+begin_src nix :tangle flake.nix
-        inputs.home-manager.nixosModules.home-manager {
-          home-manager = {
-            verbose = true;
-            backupFileExtension = "home_backup"; # useful for clearance script
-            users.malu = import ./modules/home.nix;
-            useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
-            useUserPackages = false; # if false ... uses nix-profile for home apps
-            extraSpecialArgs = { inherit inputs pkgs self system; };
-         };
-        }
-    ];
- };
+inputs.home-manager.nixosModules.home-manager {
+  home-manager = {
+    verbose = true;
+    backupFileExtension = "home_backup"; # useful for clearance script
+    users.malu = import ./modules/home.nix;
+    useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
+    useUserPackages = false; # if false ... uses nix-profile for home apps
+    extraSpecialArgs = { inherit inputs pkgs system; };
+  };
+}
+#+end_src
+
+*** end of modules
+#+begin_src nix :tangle flake.nix
+];
+}; # end of carthage config
 #+end_src
 
 ** tangier
@@ -167,7 +228,7 @@ tangier =
 
       ./hosts/tangier
 
-      {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
+      # {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
 
       inputs.home-manager.nixosModules.home-manager {
         home-manager = {
@@ -184,8 +245,6 @@ tangier =
 #+end_src
 
 ** devshell - nix develop
-#+begin_src nix :tangle flake.nix
-#+end_src
 
 *** teal environment / python
 #+begin_src nix :tangle flake.nix
@@ -229,7 +288,7 @@ env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
 **** nix way - bundle packages in python instance
 Then use nix-shell
 pypkgs / p
-#+begin_src nix :tangle pythonShell.nix
+#+begin_src nix pythonShell.nix
 pkgs.mkShell = {
     packages = [
     (pkgs.python3.withPackages(p: with p[
@@ -243,7 +302,7 @@ pkgs.mkShell = {
 *** shellHook
 Optional: Set up a Python virtual environment automatically
 
-*** declare custom variables
-#+begin_src nix :tangle no
-}
+*** EOF
+#+begin_src nix :tangle flake.nix
+};};}
 #+end_src

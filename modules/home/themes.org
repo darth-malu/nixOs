@@ -32,6 +32,7 @@ home.pointerCursor = {
 #+end_src
 
 * gtk applications
+** start
 #+begin_src nix :tangle themes.nix
 gtk = {
   enable = true;
@@ -42,9 +43,6 @@ gtk = {
 #+end_src
 
 ** waybar?, gtk apps cursor
-#+begin_src nix :tangle themes.nix
-#+end_src
-
 *** cursor theme
 #+begin_src nix :tangle themes.nix
 cursorTheme = {
@@ -71,8 +69,8 @@ iconTheme = {
 };
 #+end_src
 
-** gtk2, gtk3, gtk4
-#+begin_src nix :tangle themes.nix
+** gtk2, gtk3, gtk4 start
+#+begin_src nix :tangle no
 gtk2 = {
   extraConfig = ''
         "gtk-can-change-accels" = "1"
@@ -102,6 +100,10 @@ gtk4 = {
   #   #   ''
   #   # '';
 };
+#+end_src
+
+** end
+#+begin_src nix :tangle themes.nix
 };
 #+end_src
 
@@ -126,14 +128,6 @@ The options are:
 - =qt5ct=: Use Qt style set using the qt5ct and qt6ct applications.
 
 ** =qt.style=
-Selects the style to use for Qt applications.
-The options are:
-- =adwaita=, adwaita-dark, adwaita-highcontrast, adawaita-highcontrastinverse: Use Adwaita Qt style with adwaita
-- =breeze=: Use the Breeze style from breeze
-- bb10bright, bb10dark, cleanlooks, gtk2, motif, plastique: Use styles from qtstyleplugins
-- =kvantum=: Use styles from kvantum.
-
-  =NOTE= platformTheme: gnome deprecated use 'adwaita'
 #+begin_src nix :tangle themes.nix
 qt = {
   enable = true;
@@ -145,7 +139,14 @@ qt = {
   };
 };
 #+end_src
+Selects the style to use for Qt applications.
+The options are:
+- =adwaita=, adwaita-dark, adwaita-highcontrast, adawaita-highcontrastinverse: Use Adwaita Qt style with adwaita
+- =breeze=: Use the Breeze style from breeze
+- bb10bright, bb10dark, cleanlooks, gtk2, motif, plastique: Use styles from qtstyleplugins
+- =kvantum=: Use styles from kvantum.
 
+  =NOTE= platformTheme: gnome deprecated use 'adwaita'
 * end
 #+begin_src nix :tangle themes.nix
 }

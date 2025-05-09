@@ -16,13 +16,7 @@
 
   qemuNix.enable = if config.networking.hostName == "carthage" then true else false;
 
-  programs = {
-    dconf.enable = lib.mkDefault true; # TODO see if needed
-  };
-
   services = {
-    gvfs.enable = true;
-    blueman.enable = true;
     locate.enable = false; # i dont use this...fd/fzf
     fstrim = {
       enable = true;

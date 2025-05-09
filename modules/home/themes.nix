@@ -13,8 +13,6 @@ gtk = {
   #size = 12;
   #};
 
-
-
 cursorTheme = {
   package = pkgs.bibata-cursors; name = "Bibata-Modern-Ice";
   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
@@ -35,35 +33,6 @@ iconTheme = {
   # name = "gruvbox-plus-icons";
 };
 
-gtk2 = {
-  extraConfig = ''
-        "gtk-can-change-accels" = "1"
-      '';
-  configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-};
-
-gtk3 = {
-  extraConfig = {
-    gtk-application-prefer-dark-theme = 1;
-  };
-  bookmarks = [
-    "file://home/malu/org"
-  ];
-};
-
-gtk4 = {
-  # extraCss = '''';
-  extraConfig = {
-    #     #gtk-theme-name = ''Nightfox:Dark''; #eg nautilus
-    #     gtk-theme-name = "Nightfox-Dark"; #eg nautilus
-    #     gtk-cursor-blink = false;
-    gtk-recent-files-limit = 20;
-    gtk-application-prefer-dark-theme = 1;
-  };
-  #   # extraCss = #gtk-4.0/gtk.css
-  #   #   ''
-  #   # '';
-};
 };
 
 qt = {

@@ -22,6 +22,7 @@
         portalPackage =
           inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; # make sure to also set the portal package, so that they are in sync
       };
+      dconf.enable = lib.mkDefault true; # TODO see if needed
     };
     services = {
       udisks2 = {
@@ -30,6 +31,8 @@
       };
       power-profiles-daemon.enable = true;
       upower.enable = true; # TODO transfer to tangier only after testing
+      blueman.enable = true; # TODO test if works
+      gvfs.enable = true;
     };
     # (lib.mkIf config.networking.hostName == "tangier") services.upower.enable = true;
     security.polkit = {

@@ -5,8 +5,6 @@
   loadAutoconfig = true; # false:: load config from GUI
   enableDefaultBindings = true; # true::
 
-# aliases = {};
-
 keyBindings = {
   normal = {
     "<ctrl-v>" = "spawn mpv {url}";
@@ -24,17 +22,12 @@ keyBindings = {
   };
 };
 
-quickmarks = {
-  nixpkgs = "https://github.com/NixOS/nixpkgs";
-  home-manager = "https://github.com/nix-community/home-manager";
-  twitter = "https://x.com";
-};
-
 searchEngines = {
   w = "https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1";
   aw = "https://wiki.archlinux.org/?search={}";
   nw = "https://wiki.nixos.org/index.php?search={}";
   g = "https://www.google.com/search?hl=en&amp;q={}";
+  # "DEFAULT" = "https://www.google.com/search?hl=en&amp;q={}";
   #ge = "https://www.gemini.google.com/app";
   #yt = "https://www.youtube.com";
 };
@@ -59,15 +52,15 @@ settings = {
     smooth = true;
     bar = "when-searching"; # overlay::, when-searching, never, always
   };
-  url.searchengines = {
+  # url.searchengines = {
     # DEFAULT = "https://duckduckgo.com/?q={}";
-    "DEFAULT" = "https://www.google.com/search?hl=en&amp;q={}";
-    aw = "https://wiki.archlinux.org/?search={}";
-    g = "https://www.google.com/search?hl=en&amp;q={}";
-    nw = "https://wiki.nixos.org/index.php?search={}";
-    w = "https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1";
-  };
-  url.start_pages = "https://www.google.com";
+    # "DEFAULT" = "https://www.google.com/search?hl=en&amp;q={}";
+    # aw = "https://wiki.archlinux.org/?search={}";
+    # g = "https://www.google.com/search?hl=en&amp;q={}";
+    # nw = "https://wiki.nixos.org/index.php?search={}";
+    # w = "https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1";
+  # };
+  # url.start_pages = "https://www.google.com"; #FIXME not work
   # tabs.tabs_are_windows = true; #wack lol
 };
 

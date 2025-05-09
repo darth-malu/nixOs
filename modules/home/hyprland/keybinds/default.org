@@ -1,14 +1,16 @@
 #+auto_tangle: t
 
-* variables to use in config
+* variables
 #+begin_src nix :tangle default.nix
 {pkgs, osConfig, ...}:
+#+end_src
 
+#+begin_src nix :tangle default.nix
 {
   wayland.windowManager.hyprland = {
     settings = {
       "$mod" = "SUPER";
-      "$formated_rgba" = "$(hyprpicker -f rgb - | sed \"s/^/(/; s/$/,1.0)/; y/ /,/\" | wl-copy -n)";
+      "$formated_rgba" = "$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/' | wl-copy -n)";
       "$cl" = "Control_L";
       "$al" = "Alt_L";
       "$ar" = "Alt_R";
@@ -38,6 +40,61 @@
 #+end_src
 
 * bindings
+** bindr
+*** starter
+#+begin_src nix :tangle default.nix
+bindr = [
+#+end_src
+
+*** productivity
+**** file manager
+#+begin_src nix :tangle default.nix
+  "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
+  "$mod, Y, exec, [workspace emptym] $yazi_kitty"
+#+end_src
+
+**** rofi
+#+begin_src nix :tangle default.nix
+  "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
+  "$mod, P, exec, $menu_rofi"
+  "$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
+  "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
+
+  # open windows
+  "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
+  "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
+
+  # power menu
+  "$mod, Delete, exec, pkill rofi || rofi_power"
+#+end_src
+
+*** hyprpicker , colors
+#+begin_src nix :tangle default.nix
+"$mod $al, C, exec, hyprpicker -an"
+"$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""
+#+end_src
+*** ghostty
+#+begin_src nix :tangle default.nix
+  "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
+#+end_src
+*** screenshots
+using grimblast from hypr team 🤪
+
+#+begin_src nix :tangle default.nix
+# ", Print, exec, grimblast --cursor --notify copysave output"
+  ", Print, exec, grimblast --cursor --notify copy output"
+  "$sl, Print, exec, grimblast --cursor --notify copysave screen"
+
+  # copy
+  "SUPER, Print, exec, grimblast --cursor --notify copysave output"
+  "$al, Print, exec, grimblast --notify copy area"
+  "$cl, Print, exec, grimblast --cursor --notify copy active"
+#+end_src
+
+*** ender
+#+begin_src nix :tangle default.nix
+];
+#+end_src
 ** bind
 *** starter
 #+begin_src nix :tangle default.nix
@@ -57,7 +114,6 @@ bind =
 *** kitty
 #+begin_src nix :tangle default.nix
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
-  "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
 #+end_src
 
@@ -65,47 +121,6 @@ bind =
 #+begin_src nix :tangle default.nix
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] $emacs"
-#+end_src
-
-*** productivity
-**** file manager
-#+begin_src nix :tangle default.nix
-  "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
-  "$mod, Y, exec, [workspace emptym] $yazi_kitty"
-#+end_src
-
-**** rofi
-#+begin_src nix :tangle default.nix
-"$mod, mouse:272, exec, pkill rofi || $menu_rofi"
-"$mod, P, exec, $menu_rofi"
-"$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
-"$mod , BackSpace, exec, pkill rofi || $clip_rofi"
-
-# open windows
-"$mod, TAB, exec, pkill rofi || $rofi_open_windows"
-"$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
-
-# power menu
-"$mod, Delete, exec, pkill rofi || rofi_power"
-#+end_src
-
-*** hyprpicker , colors
-#+begin_src nix :tangle default.nix
-"$mod $al, C, exec, hyprpicker -an"
-"$mod $al, R, exec, $formated_rgba"
-#+end_src
-
-*** screenshots
-using grimblast from hypr team 🤪
-#+begin_src nix :tangle default.nix
-# ", Print, exec, grimblast --cursor --notify copysave output"
-  ", Print, exec, grimblast --cursor --notify copy output"
-  "$sl, Print, exec, grimblast --cursor --notify copysave screen"
-
-  # copy
-  "SUPER, Print, exec, grimblast --cursor --notify copysave output"
-  "$al, Print, exec, grimblast --notify copy area"
-  "$cl, Print, exec, grimblast --cursor --notify copy active"
 #+end_src
 
 *** empty workspace, toggle floating

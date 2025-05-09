@@ -167,11 +167,9 @@ in
       zstd # for undo-fu-session/undo-tree compression
       binutils # native-comp needs 'as', provided by this
 
-      # pdf
-
       # LSP stuff
-      nil # kinda slow
-      nixd
+      nil
+      # nixd
       nixfmt-rfc-style # official - needed to use formatting with :lang nix
 
       emacs-lsp-booster # TODO: test if this works
@@ -217,6 +215,7 @@ in
       spotube
       spotify-cli-linux
       spotube
+      kdePackages.kdenlive
       # digikam
     ])
     ++ (with pkgs; [
@@ -228,9 +227,9 @@ in
     ])
     ++ (with pkgs; [
       # NOTE: school
-      nodePackages.vercel
+      # nodePackages.vercel
       # netbeans
-      wpsoffice
+      # wpsoffice
       # R-with-my-packages
       # RStudio-with-my-packages
     ])

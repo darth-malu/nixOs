@@ -17,7 +17,7 @@
         # AllowUsers = null; # works
       };
       knownHosts = {
-        emacsRepo = {
+        emacs = {
           hostNames = [
             "github.com"
           ];

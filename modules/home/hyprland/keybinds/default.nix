@@ -4,7 +4,7 @@
   wayland.windowManager.hyprland = {
     settings = {
       "$mod" = "SUPER";
-      "$formated_rgba" = "$(hyprpicker -f rgb - | sed \"s/^/(/; s/$/,1.0)/; y/ /,/\" | wl-copy -n)";
+      "$formated_rgba" = "$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/' | wl-copy -n)";
       "$cl" = "Control_L";
       "$al" = "Alt_L";
       "$ar" = "Alt_R";
@@ -32,6 +32,39 @@
       "$gaps" = "gaps toggle_gaps_out";
       "$emacs" = "uwsm app -s a -- emacsclient -c";
 
+bindr = [
+
+  "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
+  "$mod, Y, exec, [workspace emptym] $yazi_kitty"
+
+  "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
+  "$mod, P, exec, $menu_rofi"
+  "$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
+  "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
+
+  # open windows
+  "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
+  "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
+
+  # power menu
+  "$mod, Delete, exec, pkill rofi || rofi_power"
+
+"$mod $al, C, exec, hyprpicker -an"
+"$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""
+
+  "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
+
+# ", Print, exec, grimblast --cursor --notify copysave output"
+  ", Print, exec, grimblast --cursor --notify copy output"
+  "$sl, Print, exec, grimblast --cursor --notify copysave screen"
+
+  # copy
+  "SUPER, Print, exec, grimblast --cursor --notify copysave output"
+  "$al, Print, exec, grimblast --notify copy area"
+  "$cl, Print, exec, grimblast --cursor --notify copy active"
+
+];
+
 bind =
   [
     # "$mod, F1,exec,  killall -9 spotify || [workspace emptym] uwsm app -- spotify"
@@ -42,38 +75,10 @@ bind =
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
 
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
-  "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] $emacs"
-
-  "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
-  "$mod, Y, exec, [workspace emptym] $yazi_kitty"
-
-"$mod, mouse:272, exec, pkill rofi || $menu_rofi"
-"$mod, P, exec, $menu_rofi"
-"$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
-"$mod , BackSpace, exec, pkill rofi || $clip_rofi"
-
-# open windows
-"$mod, TAB, exec, pkill rofi || $rofi_open_windows"
-"$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
-
-# power menu
-"$mod, Delete, exec, pkill rofi || rofi_power"
-
-"$mod $al, C, exec, hyprpicker -an"
-"$mod $al, R, exec, $formated_rgba"
-
-# ", Print, exec, grimblast --cursor --notify copysave output"
-  ", Print, exec, grimblast --cursor --notify copy output"
-  "$sl, Print, exec, grimblast --cursor --notify copysave screen"
-
-  # copy
-  "SUPER, Print, exec, grimblast --cursor --notify copysave output"
-  "$al, Print, exec, grimblast --notify copy area"
-  "$cl, Print, exec, grimblast --cursor --notify copy active"
 
 # Workspaces
   "$al, KP_Enter,workspace ,emptym"

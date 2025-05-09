@@ -10,7 +10,7 @@
     #BEMOJI_ECHO_NEWLINE="true"; # whether to end the output with a newline character
     # UWSM_WAIT_VARNAMES="$UWSM_WAIT_VARNAMES";
     LSP_USE_PLISTS = "true"; # for emacs? TODO test
-    XDG_SCREENSHOTS_DIR = "~/Pictures/grimblast"; # TODO test
+    # XDG_SCREENSHOTS_DIR = "$HOME/Pictures/grimblast"; # TODO test
   };
   systemd.user.sessionVariables = {
     # EDITOR="nvim";

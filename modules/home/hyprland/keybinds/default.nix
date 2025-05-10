@@ -229,8 +229,8 @@ bindl =
 
 binde =
   [# Date
-    "$mod, T, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/modules/home/scripts/assets/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
-    "$mod $sl, T, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/modules/home/scripts/assets/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
+    "$mod, T, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/modules/home/hyprland/hyprland-helper/scripts/assets/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
+    "$mod $sl, T, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/modules/home/hyprland/hyprland-helper/scripts/assets/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
   ]
   ++[
     #dunst pop

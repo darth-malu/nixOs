@@ -30,21 +30,20 @@ rofi_main() {
     -theme-str 'message {border: 0;}' \
     -theme-str 'element {orientation: horizontal;padding: 15px 0px 15px 0px; margin: 0; width: 10px;}' \
     -theme-str 'element-text {horizontal-align: 0.0;vertical-align: 0.5;}' \
-    -i 
-# -theme-str 'textbox {horizontal-align: 0.0;}' \
-    #-mesg "$uptime" \
-        #-theme-str 'element-icon { orientation: vertical;}' \
-            #-theme-str 'mainbox {children: [ "message", "listview", "inputbar" ];}' 
-        #for case insens :)
-        #-theme-str 'mainbox {children: [ "message", "entry", "listview" ];}' \
-        #-theme-str '#window {location: south west; fullscreen: false; width: 220px; font: "GeistMono Nerd Font 12"; padding: 4;border: 1;}' \
+    -i
+  # -theme-str 'textbox {horizontal-align: 0.0;}' \
+  #-mesg "$uptime" \
+  #-theme-str 'element-icon { orientation: vertical;}' \
+  #-theme-str 'mainbox {children: [ "message", "listview", "inputbar" ];}'
+  #for case insens :)
+  #-theme-str 'mainbox {children: [ "message", "entry", "listview" ];}' \
+  #-theme-str '#window {location: south west; fullscreen: false; width: 220px; font: "GeistMono Nerd Font 12"; padding: 4;border: 1;}' \
 }
 
 # default -sep is \n lul
 run_rofi() {
-  printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n" "$lock" "$logout" "$reboot" "$suspend" "$shutdown" "$timer" "$cancel"| rofi_main
+  printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n" "$lock" "$logout" "$reboot" "$suspend" "$shutdown" "$timer" "$cancel" | rofi_main
 }
-
 
 confirm_exit() {
   printf '%s\n%s\n' "$yes" "$no" | confirm_actions
@@ -79,68 +78,86 @@ confirm_actions() {
 SHUT="$(printf '⏻ ')"
 RESTART="$(printf ' ')"
 # menu itselverticalf
+
 shut_or_restart() {
- printf "%s\n%s" "$RESTART" "$SHUT"  | restart_shut_timer_confirm
+  printf "%s\n%s" "$RESTART" "$SHUT" | restart_shut_timer_confirm
+}
+
+iconic() {
+  local cancel="/home/malu/Shibuya/assets/icons/icons8-cancel-3d-plastilina/icons8-cancel-45.png"
+  local shutdown="/home/malu/Shibuya/assets/icons/icons8-shutdown-office-l/icons8-shutdown-40.png"
+  local restart="/home/malu/Shibuya/assets/icons/restart/icons8-restart-50.png"
+  case $1 in
+  "restart")
+    printf '%s' "$restart"
+    ;;
+  "shutdown")
+    printf '%s' "$shutdown"
+    ;;
+  "cancel")
+    printf '%s' "$cancel"
+    ;;
+  esac
 }
 
 # pass answer to function
 # Execute Command
 run_cmd() {
   case "$1" in
-    # custom timer
-      "timer")
-        restart_shut="$(shut_or_restart)"
-          case "$restart_shut" in
-            "$RESTART")
-              shutdown -r +5
-              # systemctl reboot
-              #notify-send "Restart in 5 min"
-              notify-send "Restarting in 5min " \
-                  -i "/home/malu/Downloads/ICONS/icons8-restart-windows-11-color/icons8-restart-96.png"#FIXME: replace with working icons
-              canberra-gtk-play -i service-logout
-              ;;
-            "$SHUT")
-              notify-send "Shutting Down in 5min  " \
-                  -i "/home/malu/Downloads/ICONS/icons8-shutdown-windows-11-color/icons8-shutdown-100.png"
-              shutdown +5 
-              canberra-gtk-play -i service-logout
-              #notify-send "Shutdown in 5 min"
-            ;;
-          esac
-          ;;
-      "cancel")
-        shutdown -c
-        notify-send "Shutdown -c  " \
-            -i "/home/malu/Downloads/ICONS/icons8-multiply-windows-11-color/icons8-multiply-100.png"
-        canberra-gtk-play -i window-attention
+  # custom timer
+  "timer")
+    restart_shut="$(shut_or_restart)"
+    case "$restart_shut" in
+    "$RESTART")
+      shutdown -r +5
+      # systemctl reboot
+      #notify-send "Restart in 5 min"
+      notify-send "Restarting in 5min " \
+        -i $(iconic 'restart')
+      canberra-gtk-play -i service-logout
+      ;;
+    "$SHUT")
+      notify-send "Shutting Down in 5min  " \
+        -i $(iconic 'shutdown')
+      shutdown +5
+      canberra-gtk-play -i service-logout
+      #notify-send "Shutdown in 5 min"
+      ;;
+    esac
+    ;;
+  "cancel")
+    shutdown -c
+    notify-send "Shutdown -c (cancelled)  " \
+      -i $(iconic 'cancel')
+    canberra-gtk-play -i window-attention
+    ;;
+  *)
+    if [ "$(confirm_exit)" = "$yes" ]; then
+      case "$1" in
+      '--shutdown') systemctl poweroff ;;
+      '--reboot') systemctl reboot ;;
+      '--suspend')
+        mpc -q pause
+        amixer set Master mute
+        systemctl suspend
         ;;
-      *)
-        if [ "$(confirm_exit)" = "$yes" ]; then
-            case "$1" in
-                '--shutdown') systemctl poweroff ;;
-                '--reboot') systemctl reboot ;;
-                '--suspend') 
-                    mpc -q pause
-                    amixer set Master mute
-                    systemctl suspend 
-                    ;;
-                '--logout') uwsm stop;; #hyprctl dispatch exit 
-            esac
-        else
-            exit 0
-        fi
-        ;;
-        esac
+      '--logout') uwsm stop ;; #hyprctl dispatch exit
+      esac
+    else
+      exit 0
+    fi
+    ;;
+  esac
 }
 
 case "$(run_rofi)" in
-  "$shutdown")run_cmd --shutdown;;
-  "$reboot")run_cmd --reboot;;
-  #"$lock")hyprlock;;
-  "$lock")dash -c ~/.config/hypr/scripts/sway_lock_idle/lock.sh;;
-  "$suspend")run_cmd --suspend;;
-  "$logout")run_cmd --logout;;
-  "$timer")run_cmd timer;;
-  "$cancel")run_cmd cancel;;
+"$shutdown") run_cmd --shutdown ;;
+"$reboot") run_cmd --reboot ;;
+"$lock") hyprlock ;;
+# "$lock") dash -c ~/.config/hypr/scripts/sway_lock_idle/lock.sh ;;
+"$suspend") run_cmd --suspend ;;
+"$logout") run_cmd --logout ;;
+"$timer") run_cmd timer ;;
+"$cancel") run_cmd cancel ;;
 esac
 ''

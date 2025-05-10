@@ -105,7 +105,7 @@ iconic() {
 run_cmd() {
   case "$1" in
   # custom timer
-  "timer")
+  "timer") #TODO add timers for 2...10 timers and custom one
     restart_shut="$(shut_or_restart)"
     case "$restart_shut" in
     "$RESTART")

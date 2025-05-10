@@ -17,13 +17,31 @@ pkgs.writeShellScriptBin "mpris_vol" ''
 
       case "$current_player" in
       "spotify")
-          # needs to be absolute path for dunstify to work
-          playerctl -p "$current_player" volume 0.02"$1"
+          playerctl -p "$current_player" volume 0.04"$1"
+          album_art=$(playerctl -p spotify metadata mpris:artUrl)
+          track_id=$(playerctl -p spotify metadata mpris:trackid | sed 's/.*\///') # Extract track ID
+          local cover_dir="/tmp/spotify_covers"
+          local cover_path="$cover_dir/''${track_id}.jpeg"
+
+          # if [[ -z $album_art ]]
+          # then
+            # spotify is dead, we should die too.
+            # no need since it always exists in waybar when this is run :)
+          #   exit
+          # fi
+
+          # Create the directory if it doesn't exist
+          mkdir -p "$cover_dir"
+
+          if [[ ! -f "$cover_path" ]]; then
+            curl -s "$album_art" --output "$cover_path"
+          fi
+
+          # echo "/tmp/cover.jpeg"
           dunstify -t 1000 -a "changeVolume" -u low \
-            -i $HOME/Shibuya/assets/icons/icons8-spotify-gradient/icons8-spotify-50.png \
-            -h string:x-dunst-stack-tag:$msgTag "Spotify" \
+            -i "$cover_path" \
+            -h string:x-dunst-stack-tag:$msgTag "Spotify                  " \
             -h int:value:"$(get_volume)"
-            # -h string:x-dunst-stack-tag:$msgTag "Spotify            $(get_volume)" \
           ;;
       "Lollypop")
           playerctl -p "$current_player" volume 0.02"$1"

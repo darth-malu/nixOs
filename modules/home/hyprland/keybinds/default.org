@@ -53,22 +53,7 @@ bindr = [
   "$mod, Y, exec, [workspace emptym] $yazi_kitty"
 #+end_src
 
-**** rofi
-#+begin_src nix :tangle default.nix
-  "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
-  "$mod, P, exec, $menu_rofi"
-  "$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
-  "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
-
-  # open windows
-  "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
-  "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
-
-  # power menu
-  "$mod, Delete, exec, pkill rofi || rofi_power"
-#+end_src
-
-*** hyprpicker , colors
+*** hyprpicker
 #+begin_src nix :tangle default.nix
 "$mod $al, C, exec, hyprpicker -an"
 "$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""
@@ -115,6 +100,21 @@ bind =
 #+begin_src nix :tangle default.nix
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
+#+end_src
+
+*** rofi
+#+begin_src nix :tangle default.nix
+  "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
+  "$mod, P, exec, $menu_rofi"
+  "$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
+  "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
+
+  # open windows
+  "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
+  "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
+
+  # power menu
+  "$mod, Delete, exec, pkill rofi || rofi_power"
 #+end_src
 
 *** emacs

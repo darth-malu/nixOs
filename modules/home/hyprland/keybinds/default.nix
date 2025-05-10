@@ -37,18 +37,6 @@ bindr = [
   "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
   "$mod, Y, exec, [workspace emptym] $yazi_kitty"
 
-  "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
-  "$mod, P, exec, $menu_rofi"
-  "$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
-  "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
-
-  # open windows
-  "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
-  "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
-
-  # power menu
-  "$mod, Delete, exec, pkill rofi || rofi_power"
-
 "$mod $al, C, exec, hyprpicker -an"
 "$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""
 
@@ -76,6 +64,18 @@ bind =
 
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
+
+  "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
+  "$mod, P, exec, $menu_rofi"
+  "$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
+  "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
+
+  # open windows
+  "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
+  "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
+
+  # power menu
+  "$mod, Delete, exec, pkill rofi || rofi_power"
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] $emacs"

@@ -29,16 +29,13 @@
   }
 
   #battery {
-    /*background-color: #ffffff;*/
-    /*color: #000000;*/
-    padding: 0px 10px 0px 6px;
-    /*padding: 0px 10px;*/
+    padding: 0px 10px 0px 8px;
     font-size:11px;
     color: rgba(154 ,208 ,194, 0.85);
     /*background: rgba(255 ,200 ,0, 0.14);*/
     /*background: rgba(154 ,208 ,194, 0.25);*/
-    /* border: 1px solid rgba(154 ,208 ,194, 0.25);  */
-    border-top: 1px solid rgba(154 ,208 ,194, 0.25);
+    border: 1px solid rgba(154 ,208 ,194, 0.25);
+    /* border-top: 1px solid rgba(154 ,208 ,194, 0.25); */
     margin: 3px 2px 3px 4px;
     border-radius: 12px;
   }
@@ -52,11 +49,11 @@
   #battery.critical.discharging {
     background-color: #f53c3c;
     color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    /* animation-name: blink; */
+    /* animation-duration: 0.5s; */
+    /* animation-timing-function: linear; */
+    /* animation-iteration-count: infinite; */
+    /* animation-direction: alternate; */
   }
 
   #backlight {

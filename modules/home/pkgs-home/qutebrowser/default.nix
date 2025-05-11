@@ -35,9 +35,6 @@ searchEngines = {
   yt =  "https://www.youtube.com/results?search_query={}";
   gh  =  "https://github.com/search?o=desc&q={}&s=stars";
   t   =    "https://www.thesaurus.com/browse/{}";
-  # "DEFAULT" = "https://www.google.com/search?hl=en&amp;q={}";
-  #ge = "https://www.gemini.google.com/app";
-  #yt = "https://www.youtube.com";
 };
 
 settings = {

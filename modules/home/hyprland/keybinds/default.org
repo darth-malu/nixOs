@@ -1,4 +1,5 @@
 #+auto_tangle: t
+#+startup: content
 
 * variables
 #+begin_src nix :tangle default.nix
@@ -150,19 +151,22 @@ bind =
 see hyprswitch
 **** emacs
 #+begin_src nix :tangle default.nix
-"SUPER $cl, KP_End, focuswindow, class:^(Emacs)$"
-"SUPER $cl, D, focuswindow, class:^(Emacs)$"
+"$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
+"$mod $cl, D, focuswindow, class:^(Emacs)$"
+"$mod , left, focuswindow, class:^(Emacs)$"
 #+end_src
 **** qutebrowser
 #+begin_src nix :tangle default.nix
 # "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
-"SUPER $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
-"SUPER $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"$mod $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"$mod $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"$mod , down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 #+end_src
 **** chrome
 #+begin_src nix :tangle default.nix
 "SUPER $cl, KP_Left, focuswindow, class:^(google-chrome)$"
 "SUPER $cl, C, focuswindow, class:^(google-chrome)$"
+"SUPER $cl, up, focuswindow, class:^(google-chrome)$"
 #+end_src
 *** kill active
 #+begin_src nix :tangle default.nix
@@ -214,8 +218,8 @@ see hyprswitch
   "$mod, mouse_up, workspace, m+1"
   "$mod, mouse_down, workspace, m-1"
 
-  "$mod ,left, workspace,m-1"
-  "$mod ,right,workspace,m+1"
+  # "$mod ,left, workspace,m-1"
+  # "$mod ,right,workspace,m+1"
 
   "$mod ,H, workspace,m-1"
   "$mod ,L,workspace,m+1"
@@ -276,7 +280,7 @@ see hyprswitch
   "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
   "$mod $sl, bracketright, swapnext"
   "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
-  "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
+  # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
 #+end_src
 
 *** focus previously focused window, cycle next, previous_per_monitor

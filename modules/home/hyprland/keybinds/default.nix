@@ -87,15 +87,18 @@ bind =
   "$mod, KP_Divide, togglesplit" # dwindle
   "$mod, KP_Multiply, pseudo"
 
-"SUPER $cl, KP_End, focuswindow, class:^(Emacs)$"
-"SUPER $cl, D, focuswindow, class:^(Emacs)$"
+"$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
+"$mod $cl, D, focuswindow, class:^(Emacs)$"
+"$mod , left, focuswindow, class:^(Emacs)$"
 
 # "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
-"SUPER $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
-"SUPER $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"$mod $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"$mod $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"$mod , down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 
 "SUPER $cl, KP_Left, focuswindow, class:^(google-chrome)$"
 "SUPER $cl, C, focuswindow, class:^(google-chrome)$"
+"SUPER $cl, up, focuswindow, class:^(google-chrome)$"
 
 "$mod ,space, killactive"
 "$mod, mouse:275, killactive,"
@@ -132,8 +135,8 @@ bind =
   "$mod, mouse_up, workspace, m+1"
   "$mod, mouse_down, workspace, m-1"
 
-  "$mod ,left, workspace,m-1"
-  "$mod ,right,workspace,m+1"
+  # "$mod ,left, workspace,m-1"
+  # "$mod ,right,workspace,m+1"
 
   "$mod ,H, workspace,m-1"
   "$mod ,L,workspace,m+1"
@@ -177,7 +180,7 @@ bind =
   "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
   "$mod $sl, bracketright, swapnext"
   "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
-  "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
+  # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
 
 # "$mod,K, Workspace, previous_per_monitor"
 "$mod,K, focuscurrentorlast"

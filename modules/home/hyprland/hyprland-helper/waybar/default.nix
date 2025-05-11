@@ -61,7 +61,8 @@
                   "group/cpu_freq"
                   "group/temp_wireplumber"
                   "battery"
-                  "backlight"
+                  # "backlight"
+                  "group/backlight_idle"
                 ]
               else if osConfig.networking.hostName == "carthage" then
                 [
@@ -131,20 +132,24 @@
 
           "temperature" = {
             #thermal-zone = 2;
-            # hwmon-path = "/sys/class/hwmon/hwmon4/temp1_input";
-            hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input"; # k10temp?
+            hwmon-path = # TODO have this be dynamic based on name?
+              if osConfig.networking.hostName == "tangier" then
+                "/sys/class/hwmon/hwmon4/temp1_input"
+              else
+                "/sys/class/hwmon/hwmon2/temp1_input"; # carthage? TODO: test
             critical-threshold = 80;
-            format-critical = "{temperatureC}° {icon}";
-            interval = 8;
+            # format-critical = "{temperatureC}° {icon}";
+            # format-critical = "{temperatureC}° {icon}";
+            # interval = 8;
             format = "{temperatureC} °";
             format-icons = [
-              " "
-              " "
+              ""
               ""
+              ""
             ];
             tooltip = false;
             min-length = 3;
-            max-length = 4;
+            max-length = 5;
             cursor = true;
           };
 
@@ -163,6 +168,7 @@
           "battery" = {
             "states" = {
               "good" = 95;
+              "half" = 50;
               "warning" = 20;
               "critical" = 10;
             };

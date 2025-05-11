@@ -8,8 +8,8 @@
 keyBindings = {
   normal = {
     "<ctrl-v>" = "spawn mpv {url}";
-    ",p" = "spawn --userscript qute-pass";
-    ",l" = ''config-cycle spellcheck.languages ["en-GB"] ["en-US"]'';
+    # ",p" = "spawn --userscript qute-pass";
+    # ",l" = ''config-cycle spellcheck.languages ["en-GB"] ["en-US"]'';
     "<f1>" = lib.mkMerge [
       # TODO see more info on lib.mkMerge
       "config-cycle tabs.show never always"
@@ -26,7 +26,15 @@ searchEngines = {
   w = "https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1";
   aw = "https://wiki.archlinux.org/?search={}";
   nw = "https://wiki.nixos.org/index.php?search={}";
-  g = "https://www.google.com/search?hl=en&amp;q={}";
+  mn = "https://mynixos.com/search?q={}";
+  npS = "https://search.nixos.org/packages?channel=24.11&from=0&size=50&sort=relevance&type=packages&query={}";
+  npU = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
+  # g = "https://www.google.com/search?hl=en&amp;q={}";
+  g = "https://www.google.com/search?hl=en&q={}";
+  b = "https://search.brave.com/search?q={}";
+  yt =  "https://www.youtube.com/results?search_query={}";
+  gh  =  "https://github.com/search?o=desc&q={}&s=stars";
+  t   =    "https://www.thesaurus.com/browse/{}";
   # "DEFAULT" = "https://www.google.com/search?hl=en&amp;q={}";
   #ge = "https://www.gemini.google.com/app";
   #yt = "https://www.youtube.com";
@@ -52,19 +60,12 @@ settings = {
     smooth = true;
     bar = "when-searching"; # overlay::, when-searching, never, always
   };
-  # url.searchengines = {
-    # DEFAULT = "https://duckduckgo.com/?q={}";
-    # "DEFAULT" = "https://www.google.com/search?hl=en&amp;q={}";
-    # aw = "https://wiki.archlinux.org/?search={}";
-    # g = "https://www.google.com/search?hl=en&amp;q={}";
-    # nw = "https://wiki.nixos.org/index.php?search={}";
-    # w = "https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1";
-  # };
+  auto_save = {
+    session = true;
+    interval = 10000; # milliseconds
+  };
   # url.start_pages = "https://www.google.com"; #FIXME not work
   # tabs.tabs_are_windows = true; #wack lol
-};
-
-extraConfig = ''''; # extra lines added to qutebrowser config.py
 };
 
 }

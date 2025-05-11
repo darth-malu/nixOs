@@ -8,7 +8,6 @@
     '';
     extraPackages =
       epkgs: with epkgs; [
-        # nix-env -f '<nixpkgs>' -qaP -A emacsPackages
         treesit-grammars.with-all-grammars
         magit
         vterm

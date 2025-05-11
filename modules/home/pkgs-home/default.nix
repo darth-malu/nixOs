@@ -64,8 +64,16 @@ in
       sway-audio-idle-inhibit
       wev
       # tldr - using emacs one lol
-      #testdisk
-      testdisk-qt
+      # disk management
+      duf
+      ncdu
+      # superfile # kinda cool but dont need
+      #testdisk # also installs photorec
+      # testdisk-qt
+      # gsmartcontrol
+      # squirreldisk #kinda nice
+      # qdiskinfo
+      # win-disk-writer
       # qalculate-qt # #FIXME:for rofi?
       dotool
       # calc
@@ -94,6 +102,7 @@ in
 
       ventoy-full # usb imager #woeusb
 
+      # perfmon
       mission-center
       iftop
       nethogs
@@ -117,11 +126,6 @@ in
       mpc-cli
       spotify
       easyeffects
-
-      # disk management
-      duf
-      ncdu
-      # superfile # kinda cool but dont need
 
       # productivity
       buku # TODO: test
@@ -735,7 +739,6 @@ in
       notify = true;
       automount = true;
       # appindicator = true; # use if no icon shows...uses appindicator3
-
       settings = {
         # config written to .config/udiskie/config.yml
         # https://github.com/coldfix/udiskie/blob/master/doc/udiskie.8.txt#configuration
@@ -744,7 +747,7 @@ in
         #   tray = true;
         # };
         # icon_names.media = [ "media-optical" ];
-        file-manager = "yazi";
+        file-manager = "kitty -e 'yazi'";
       };
     };
   };

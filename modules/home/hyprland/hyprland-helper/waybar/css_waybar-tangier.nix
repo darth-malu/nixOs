@@ -12,9 +12,20 @@
     background: rgba(72 ,191 ,227, 0.10);
   }
 
-  window#waybar.battery.critical.discharging {
+  window#waybar.battery-critical {
+    /* background-color: #f53c3c; */
+    /* border-bottom: 2px solid rgb(245, 60, 60); */
+    border-bottom: 2px solid rgba(228,76,249,1.0);
+  }
+
+  window#waybar.battery-warning {
+    /* background-color: #f53c3c; */
+    border-bottom: 2px solid rgba(245, 60, 60, 1.0);
+  }
+
+  window#waybar.battery-good.discharging {
     background-color: #f53c3c;
-    border-top: 2px solid rgb(245, 60, 60);
+    /* border-bottom: 2px solid rgb(245, 60, 60); */
   }
 
   #battery {

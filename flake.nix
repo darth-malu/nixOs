@@ -2,13 +2,9 @@
   description = "maluware";
   inputs = {
 
-nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-yazi.url = "github:sxyazi/yazi";
-
-emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
-
-nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+  yazi.url = "github:sxyazi/yazi";
 
 home-manager = {
   url = "github:nix-community/home-manager";
@@ -54,12 +50,7 @@ nyaa = {
 
 };
 
-outputs =
-    inputs@{
-    nixpkgs ,
-    nix-doom-emacs,
-    # self,
-    ...}:
+outputs = inputs@{nixpkgs , ...}:
 
 let
 
@@ -168,4 +159,6 @@ devShells.${system}.default = pkgs.mkShell {
     '';
 };
 
-};};}
+   }; # end of nixosConfigurations
+  }; # end of let
+}

@@ -86,58 +86,74 @@ hardware = {
 # config= lib.mkIf (config.specialisation != {}) {
 security = {
   rtkit.enable = true; # pipewire need?
-  sudo = {
-    enable = true;
-    extraRules = [{
-      commands = [
-        #{
-        #command = "${pkgs.systemd}/bin/systemctl suspend";
-        #options = [ "NOPASSWD" ];
-        #}
 
-        {
-          # command = "/run/current-system/sw/bin/nixos-rebuild";
-          command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
-          options = [ "NOPASSWD" ];
-        }
+sudo = {
+  enable = true;
+  extraRules = [{
+    commands = [
+      #{
+      #command = "${pkgs.systemd}/bin/systemctl suspend";
+      #options = [ "NOPASSWD" ];
+      #}
 
-        #{
-        #command = "${pkgs.systemd}/bin/reboot";
-        #options = [ "NOPASSWD" ];
-        #}
-        #{
-        #command = "${pkgs.systemd}/bin/poweroff";
-        #options = [ "NOPASSWD" ];
-        #}
-        {
-          command = "${pkgs.util-linux}/bin/fdisk -l";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-      #groups = [ "wheel" ];
-    }];
-  };
-  polkit = {
-    enable = true;
-    extraConfig = ''
-        # reboot/poweroff for non sudo users
-        polkit.addRule(function(action, subject) {
-          if (
-            subject.isInGroup("users")
-              && (
-                action.id == "org.freedesktop.login1.reboot" ||
-                action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-                action.id == "org.freedesktop.login1.power-off" ||
-                action.id == "org.freedesktop.login1.power-off-multiple-sessions"
-              )
-          )
-          {
-            return polkit.Result.YES;
-          }
-        });
-      '';
-  };
+      {
+        # command = "/run/current-system/sw/bin/nixos-rebuild";
+        command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
+        options = [ "NOPASSWD" ];
+      }
+
+      #{
+      #command = "${pkgs.systemd}/bin/reboot";
+      #options = [ "NOPASSWD" ];
+      #}
+      #{
+      #command = "${pkgs.systemd}/bin/poweroff";
+      #options = [ "NOPASSWD" ];
+      #}
+      {
+        command = "${pkgs.util-linux}/bin/fdisk -l";
+        options = [ "NOPASSWD" ];
+      }
+    ];
+    #groups = [ "wheel" ];
+  }];
 };
+
+polkit = {
+  enable = true;
+
+extraConfig = ''
+
+polkit.addRule(function(action, subject) {
+  if (
+    subject.isInGroup("users")
+    && (
+      action.id == "org.freedesktop.login1.reboot" ||
+      action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+      action.id == "org.freedesktop.login1.power-off" ||
+      action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+    )
+  )
+    {
+      return polkit.Result.YES;
+    }
+});
+
+polkit.addRule(function(action, subject) {
+  if ((action.id == "org.blueman.network.setup" ||
+       action.id == "org.blueman.dhcp.client" ||
+       action.id == "org.blueman.rfkill.setstate" ||
+       action.id == "org.blueman.pppd.pppconnect") &&
+  subject.isInGroup("wheel")) {
+    return polkit.Result.YES;
+  }
+});
+
+'';
+
+};
+
+}; # end of security
 
 # Automatically run the nix store optimiser at a specific time.
 nix.optimise.automatic = true; # false::

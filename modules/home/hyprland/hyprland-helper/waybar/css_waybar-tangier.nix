@@ -23,27 +23,33 @@
     border-bottom: 2px solid rgba(245, 60, 60, 1.0);
   }
 
-  window#waybar.battery-good.discharging {
-    background-color: #f53c3c;
-    /* border-bottom: 2px solid rgb(245, 60, 60); */
-  }
-
   #battery {
-    padding: 0px 10px 0px 8px;
-    font-size:11px;
+    padding: 0px 10px 0px 4px;
+    margin: 3px 2px 3px 4px;
     color: rgba(154 ,208 ,194, 0.85);
     /*background: rgba(255 ,200 ,0, 0.14);*/
-    /*background: rgba(154 ,208 ,194, 0.25);*/
-    border: 1px solid rgba(154 ,208 ,194, 0.25);
+    background: rgba(154 ,208 ,194, 0.0);
+    border: 1px solid rgba(154 ,208 ,194, 0.05);
     /* border-top: 1px solid rgba(154 ,208 ,194, 0.25); */
-    margin: 3px 2px 3px 4px;
     border-radius: 12px;
   }
 
   #battery.charging, #battery.plugged {
       color: #ffffff;
       background-color: #26A65B;
+      padding: 0px 7px 0px 4px;
       /*padding: 0px 12px 0px 6px;*/
+  }
+
+  #battery.warning.discharging {
+    /* background-color: #f53c3c; */
+    color: #ffffff;
+    background-color: rgba(228,76,249,1.0);
+    /* animation-name: blink; */
+    /* animation-duration: 0.5s; */
+    /* animation-timing-function: linear; */
+    /* animation-iteration-count: infinite; */
+    /* animation-direction: alternate; */
   }
 
   #battery.critical.discharging {

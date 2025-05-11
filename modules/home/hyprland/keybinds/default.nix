@@ -57,7 +57,6 @@ bind =
   [
     # "$mod, F1,exec,  killall -9 spotify || [workspace emptym] uwsm app -- spotify"
 
-# "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- freetube"
   "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"

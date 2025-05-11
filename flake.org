@@ -14,17 +14,17 @@
 
 ** nixpkgs
 #+begin_src nix :tangle flake.nix
-nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 #+end_src
 
 ** yazi
 #+begin_src nix :tangle flake.nix
-yazi.url = "github:sxyazi/yazi";
+  yazi.url = "github:sxyazi/yazi";
 #+end_src
 
 ** emacs overlay
 for emacs28? latest
-#+begin_src nix :tangle flake.nix
+#+begin_src nix :tangle no
 emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
 
 nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
@@ -102,12 +102,7 @@ nyaa = {
 # Note the use of `self` which allows reusing flake's outputs in itself
 
 #+begin_src nix :tangle flake.nix
-outputs =
-    inputs@{
-    nixpkgs ,
-    nix-doom-emacs,
-    # self,
-    ...}:
+outputs = inputs@{nixpkgs , ...}:
 #+end_src
 
 ** let start
@@ -115,12 +110,12 @@ outputs =
 let
 #+end_src
 
-** system
+*** system
 #+begin_src nix :tangle flake.nix
 system = "x86_64-linux"; # system = builtins.currentSystem;??
 #+end_src
 
-** nvf
+*** nvf
 #+begin_src nix :tangle no
     neovimConf = inputs.nvf.lib.neovimConfiguration {
         inherit (nixpkgs.legacyPackages.${system}) pkgs;
@@ -128,7 +123,7 @@ system = "x86_64-linux"; # system = builtins.currentSystem;??
     };
 #+end_src
 
-** allowUnfreePredicate
+*** allowUnfreePredicate
 #+begin_src nix :tangle flake.nix
 pkgs = import nixpkgs {
   inherit  system;
@@ -158,7 +153,7 @@ pkgs = import nixpkgs {
 };
 #+end_src
 
-** let end
+*** let end
 #+begin_src nix :tangle flake.nix
 in
 {
@@ -178,22 +173,22 @@ nixosConfigurations = {
       specialArgs = { inherit inputs system; };
 #+end_src
 
-*** modules
+*** start modules
 #+begin_src nix :tangle flake.nix
 modules = [
 #+end_src
 
-**** emacs overlay
+*** emacs overlay
 #+begin_src nix :tangle flake.nix
 # { nixpkgs.overlays = [ (import self.inputs.emacs-overlay) ]; } # emacs overlay
 #+end_src
 
-**** carthage nix config (hosts/carthage)
+*** carthage nix config (hosts/carthage)
 #+begin_src nix :tangle flake.nix
 ./hosts/carthage
 #+end_src
 
-**** nvf
+*** nvf
 #+begin_src nix :tangle no
     {environment.systemPackages = [neovimConf.neovim];}
 #+end_src
@@ -288,7 +283,7 @@ env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
 **** nix way - bundle packages in python instance
 Then use nix-shell
 pypkgs / p
-#+begin_src nix pythonShell.nix
+#+begin_src nix :tangle pythonShell.nix
 pkgs.mkShell = {
     packages = [
     (pkgs.python3.withPackages(p: with p[
@@ -302,7 +297,9 @@ pkgs.mkShell = {
 *** shellHook
 Optional: Set up a Python virtual environment automatically
 
-*** EOF
+* EOF
 #+begin_src nix :tangle flake.nix
-};};}
+   }; # end of nixosConfigurations
+  }; # end of let
+}
 #+end_src

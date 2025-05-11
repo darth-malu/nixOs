@@ -326,16 +326,15 @@
   #tray {
       opacity: 1;
       border-radius: 12px;
-      margin: 4px 0px 3px 3px;
+      margin: 4px 2px 3px 6px;
       padding:0px 4px;
       min-width: 0px;
       background: rgba(154 ,208 ,194, 0.12);
   }
 
-
   #tray > .passive {
       -gtk-icon-effect: dim;
-      /*margin: 0;*/
+      margin: 0;
   }
 
   /*#tray > .active status active icons*/
@@ -488,17 +487,22 @@
       border-radius:12px;
   }
 
+  #power-profiles-daemon {
+      padding:0px;
+      margin: 2px 0px 0px 2px;
+      background-color: transparent;
+      /* font-size: 14px; */
+  }
+
   #power-profiles-daemon.balanced {
       padding:0px;
-      margin: 2px 0px 0px 4px;
       background-color: transparent;
-      font-size: 14px;
+      /* font-size: 14px; */
   }
 
   #power-profiles-daemon.power-saver {
       padding:0px;
-      margin: 2px 0px 0px 4px;
-      font-size: 14px;
+      /* font-size: 14px; */
   }
 
   #idle_inhibitor {

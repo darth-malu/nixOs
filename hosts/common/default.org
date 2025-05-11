@@ -107,62 +107,105 @@ hardware = {
 #+end_src
 
 * security, rtkit, sudo, polkit
+** start
 #+begin_src nix :tangle default.nix
 # config= lib.mkIf (config.specialisation != {}) {
 security = {
   rtkit.enable = true; # pipewire need?
-  sudo = {
-    enable = true;
-    extraRules = [{
-      commands = [
-        #{
-        #command = "${pkgs.systemd}/bin/systemctl suspend";
-        #options = [ "NOPASSWD" ];
-        #}
+#+end_src
 
-        {
-          # command = "/run/current-system/sw/bin/nixos-rebuild";
-          command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
-          options = [ "NOPASSWD" ];
-        }
+** sudo
+#+begin_src nix :tangle default.nix
+sudo = {
+  enable = true;
+  extraRules = [{
+    commands = [
+      #{
+      #command = "${pkgs.systemd}/bin/systemctl suspend";
+      #options = [ "NOPASSWD" ];
+      #}
 
-        #{
-        #command = "${pkgs.systemd}/bin/reboot";
-        #options = [ "NOPASSWD" ];
-        #}
-        #{
-        #command = "${pkgs.systemd}/bin/poweroff";
-        #options = [ "NOPASSWD" ];
-        #}
-        {
-          command = "${pkgs.util-linux}/bin/fdisk -l";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-      #groups = [ "wheel" ];
-    }];
-  };
-  polkit = {
-    enable = true;
-    extraConfig = ''
-        # reboot/poweroff for non sudo users
-        polkit.addRule(function(action, subject) {
-          if (
-            subject.isInGroup("users")
-              && (
-                action.id == "org.freedesktop.login1.reboot" ||
-                action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-                action.id == "org.freedesktop.login1.power-off" ||
-                action.id == "org.freedesktop.login1.power-off-multiple-sessions"
-              )
-          )
-          {
-            return polkit.Result.YES;
-          }
-        });
-      '';
-  };
+      {
+        # command = "/run/current-system/sw/bin/nixos-rebuild";
+        command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
+        options = [ "NOPASSWD" ];
+      }
+
+      #{
+      #command = "${pkgs.systemd}/bin/reboot";
+      #options = [ "NOPASSWD" ];
+      #}
+      #{
+      #command = "${pkgs.systemd}/bin/poweroff";
+      #options = [ "NOPASSWD" ];
+      #}
+      {
+        command = "${pkgs.util-linux}/bin/fdisk -l";
+        options = [ "NOPASSWD" ];
+      }
+    ];
+    #groups = [ "wheel" ];
+  }];
 };
+#+end_src
+
+** polkit
+*** start
+#+begin_src nix :tangle default.nix
+polkit = {
+  enable = true;
+#+end_src
+
+*** extraconfig
+**** start
+#+begin_src nix :tangle default.nix
+extraConfig = ''
+#+end_src
+
+**** reboot/poweroff for non sudo users
+#+begin_src nix :tangle default.nix
+polkit.addRule(function(action, subject) {
+  if (
+    subject.isInGroup("users")
+    && (
+      action.id == "org.freedesktop.login1.reboot" ||
+      action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+      action.id == "org.freedesktop.login1.power-off" ||
+      action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+    )
+  )
+    {
+      return polkit.Result.YES;
+    }
+});
+#+end_src
+
+**** blueman
+#+begin_src nix :tangle default.nix
+polkit.addRule(function(action, subject) {
+  if ((action.id == "org.blueman.network.setup" ||
+       action.id == "org.blueman.dhcp.client" ||
+       action.id == "org.blueman.rfkill.setstate" ||
+       action.id == "org.blueman.pppd.pppconnect") &&
+  subject.isInGroup("wheel")) {
+    return polkit.Result.YES;
+  }
+});
+#+end_src
+
+**** end
+#+begin_src nix :tangle default.nix
+'';
+#+end_src
+
+*** end
+#+begin_src nix :tangle default.nix
+};
+#+end_src
+
+** end
+#+begin_src nix :tangle default.nix
+}; # end of security
 #+end_src
 
 * nix settings

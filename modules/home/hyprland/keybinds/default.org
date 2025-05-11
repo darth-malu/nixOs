@@ -1,5 +1,5 @@
 #+auto_tangle: t
-#+startup: content
+#+startup: content indent
 
 * variables
 #+begin_src nix :tangle default.nix
@@ -91,12 +91,10 @@ bind =
 
 *** browsers
 #+begin_src nix :tangle default.nix
-# "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- freetube"
   "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
 #+end_src
-
 *** kitty
 #+begin_src nix :tangle default.nix
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
@@ -148,7 +146,7 @@ bind =
 #+end_src
 *** focus favorite apps
 #NOTE for KP need to bind with numlock off identifier
-see hyprswitch
+see hyprswitch:
 **** emacs
 #+begin_src nix :tangle default.nix
 "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
@@ -263,7 +261,6 @@ see hyprswitch
   "SUPER ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
   "SUPER ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 #+end_src
-
 *** gaps script
 **** TODO make it launch in bash major mode
 [[file:~/Shibuya/modules/home/hyprland-helper/scripts/gaps.nix][The gaps script]]

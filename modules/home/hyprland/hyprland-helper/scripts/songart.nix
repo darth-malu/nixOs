@@ -9,8 +9,7 @@ pkgs.writeShellScriptBin "songart" ''
     local current_file="$(${pkgs.mpc}/bin/mpc --format $musicDir/%file% current )"
     local album_base64="$(${pkgs.mpc}/bin/mpc --format %album% current | base64).png"
     local preview_path="$previewDir/$album_base64"
-    [ -e "$preview_path" ] || ${pkgs.ffmpeg-full}/bin/ffmpeg -y -i "$current_file" -an -vf scale=128:128 "$preview_path" 2> /dev/null
-    # echo "$preview_path" # ready image for dunst 🤪
+    [ -e "$preview_path" ] || ${pkgs.ffmpeg-full}/bin/ffmpeg -y -i "$current_file" -an -vf scale=128:128 "$preview_path" &> /dev/null
     printf '%s' "$preview_path"
   }
 
@@ -26,18 +25,12 @@ pkgs.writeShellScriptBin "songart" ''
     local cover_dir="/tmp/spotify_covers"
     local cover_path album_art track_id metadata
 
-    # track_id=$(playerctl -p spotify metadata mpris:trackid | sed 's/.*\///') # Extract track ID
     metadata=$(playerctl -p spotify metadata)
-    # track_id=$(awk -F'/' '/mpris:trackid/ {print $NF}' <<< "$metadata") #TODO learn awk well
     track_id=$(printf '%s\n' "$(grep 'trackid' <(playerctl -p spotify metadata))")
     track_id=''${track_id##*/}
     cover_path="$cover_dir/$track_id.jpeg"
-    # album_art=$(grep 'artUrl' <(playerctl -p spotify metadata) | tr -s '[:space:]' | cut -f3 -d ' ')
     album_art=$(grep 'artUrl' <(playerctl -p spotify metadata))
     album_art=''${album_art##* }
-    # track_id=$()
-    # album_art=$(awk '/mpris:artUrl/ {print $2}' <<< "$metadata")
-    # album_art=$(playerctl -p spotify metadata mpris:artUrl)
 
     # download art if not exists
     if [[ ! -f "$cover_path" ]]; then

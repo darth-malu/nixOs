@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   lib,
   osConfig,
   ...
@@ -732,12 +731,12 @@ in
 
   services = {
     # kdeconnect.enable = true;
-    blueman-applet.enable = true;
+    blueman-applet.enable = lib.mkIf osConfig.hyprland.enable true;
     udiskie = {
-      enable = true;
+      enable = lib.mkIf osConfig.hyprland.enable true;
       tray = "auto"; # works
       notify = true;
-      automount = true;
+      automount = false; # better?
       # appindicator = true; # use if no icon shows...uses appindicator3
       settings = {
         # config written to .config/udiskie/config.yml
@@ -747,7 +746,11 @@ in
         #   tray = true;
         # };
         # icon_names.media = [ "media-optical" ];
+        # file-manager = "kitty -e 'yazi'";
         file-manager = "kitty -e 'yazi'";
+        terminal = "${pkgs.kitty}/bin/kitty -e yazi";
+        # file-manager = "/home/malu/.nix-profile/bin/yazi";
+        # file-manager = "xdg-open";
       };
     };
   };

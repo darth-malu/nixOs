@@ -1,15 +1,19 @@
 {
-  programs.git = {#NOTE: with openssh
+  programs.git = {
+    # NOTE: with openssh
     enable = true;
-    userName = "darth malu"; #darth-malu
+    userName = "darth-malu"; # darth-malu
     userEmail = "darth-malu@github.com";
-    ignores = ["*.swp"];
-    aliases = {
-      ci = "commit";
-      co = "checkout";
-      s = "status";
-      p = "push";
-    };
+    ignores = [
+      "*.swp"
+      ".stfolder.*"
+    ];
+    # aliases = { # magit cool
+    #   ci = "commit";
+    #   co = "checkout";
+    #   s = "status";
+    #   p = "push";
+    # };
     extraConfig = {
       init.defaultBranch = "shibuya";
       #push = { autoSetupRemote = true; }; # does --set-upstream origin to current branch

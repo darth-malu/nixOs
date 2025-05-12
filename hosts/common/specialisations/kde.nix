@@ -20,12 +20,13 @@
   };
 
   config = lib.mkIf config.kde.enable {
+    programs.waybar.enable = false;
     services = {
       displayManager = {
         sddm.enable = lib.mkDefault true;
         sddm.wayland.enable = lib.mkDefault true;
         defaultSession = "plasma";
-        ly.enable = lib.mkForce false;
+        # ly.enable = false;
       };
       desktopManager.plasma6.enable = true;
     };

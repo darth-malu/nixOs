@@ -31,7 +31,8 @@ in
       "exit"
     ];
     profileExtra =
-      if (osConfig.kde.enable == false) then # INFO: only launch when hyrpland option is enabled
+      # if (osConfig.kde.enable == false) then # INFO: only launch when hyrpland option is enabled
+      if (osConfig.kde.enable == false) then
         #loginshell
         # bash
         ''
@@ -50,117 +51,65 @@ in
         #complete command + file names. Investigate if needed
         #complete -cf sudo
 
-        math ()
-        {
-        echo "scale=2;$1" | bc
-        }
+        # math ()
+        # {
+        # echo "scale=2;$1" | bc
+        # }
 
-        speedtest () {
-            curl -S https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
-        }
+        # speedtest () {
+        #     curl -S https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
+        # }
 
-        t ()
-        {
-          case $1 in
-            "-a")
-                task add project:arch "${fromSecond}"
-                ;;
-            "-n")
-                task add project:nix  "${fromSecond}"
-                ;;
-            "-m")
-                task add project:movies  "${fromSecond}"
-                ;;
-            "-nv")
-                task add project:nixvim  "${fromSecond}"
-                ;;
-            "-t")
-                task add project:teal "${fromSecond}"
-                ;;
-            "-p")
-                task project:"$2" add "${fromThird}"
-                ;;
-            "-N")
-                task project:nixvim add "${fromSecond}"
-                ;;
-            "-l")
-                task list
-                ;;
-            "-lp")
-                task list project:"$2"
-                ;;
-            "-d")
-                task delete "${fromSecond}"
-                ;;
-            "-ln"|"-nl")
-                task list project:nix
-                ;;
-            "-lm"|"-ml")
-                task list project:movies
-                ;;
-            "-lnv")
-                task list project:nixvim
-                ;;
-            "-la"|"-al")
-                task list project:arch
-                ;;
-            *)
-                task add "$1"
-                ;;
-          esac
-        }
-
-        # systemctl qol
-        sys () {
-          case $1 in
-            "user")
-              case $2 in
-                "start")
-                  systemctl --user start $3
-                  ;;
-                "stop")
-                  systemctl --user stop $3
-                    ;;
-                "status")
-                    systemctl --user status $3
-                    ;;
-                "enable")
-                    systemctl --user enable $3
-                    ;;
-                "restart")
-                    systemctl --user restart $3
-                    ;;
-                "daemon")
-                    systemctl --user daemon-reload
-                    ;;
-              esac
-              ;; ###### end of user
-            "start")
-                systemctl start $2
-                ;;
-            "stop")
-                systemctl stop $2
-                ;;
-            "status")
-                systemctl status $2
-                ;;
-            "restart")
-                systemctl restart $2
-                ;;
-            "enable")
-                systemctl enable $2
-                ;;
-            "disable")
-                systemctl disable $2
-                ;;
-            "daemon")
-                systemctl daemon-reload
-                ;;
-            *)
-                echo "Sys function failed...check bash config"
-                ;;
-          esac
-        }
+        # t ()
+        # {
+        #   case $1 in
+        #     "-a")
+        #         task add project:arch "${fromSecond}"
+        #         ;;
+        #     "-n")
+        #         task add project:nix  "${fromSecond}"
+        #         ;;
+        #     "-m")
+        #         task add project:movies  "${fromSecond}"
+        #         ;;
+        #     "-nv")
+        #         task add project:nixvim  "${fromSecond}"
+        #         ;;
+        #     "-t")
+        #         task add project:teal "${fromSecond}"
+        #         ;;
+        #     "-p")
+        #         task project:"$2" add "${fromThird}"
+        #         ;;
+        #     "-N")
+        #         task project:nixvim add "${fromSecond}"
+        #         ;;
+        #     "-l")
+        #         task list
+        #         ;;
+        #     "-lp")
+        #         task list project:"$2"
+        #         ;;
+        #     "-d")
+        #         task delete "${fromSecond}"
+        #         ;;
+        #     "-ln"|"-nl")
+        #         task list project:nix
+        #         ;;
+        #     "-lm"|"-ml")
+        #         task list project:movies
+        #         ;;
+        #     "-lnv")
+        #         task list project:nixvim
+        #         ;;
+        #     "-la"|"-al")
+        #         task list project:arch
+        #         ;;
+        #     *)
+        #         task add "$1"
+        #         ;;
+        #   esac
+        # }
 
         # yazi
         # function yy() {
@@ -182,7 +131,7 @@ in
       # prefix with ~ to unset
       "histappend"
       "checkwinsize"
-      "extglob"
+      "extglob" # extended globbing
       "globstar"
       "checkjobs"
     ];

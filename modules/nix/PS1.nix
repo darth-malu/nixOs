@@ -1,17 +1,17 @@
 /*bash*/
 ''
 exitstatus() {
- local stat="$?"
+  local stat="$?"
   if [[ $stat -ne 0 ]]; then
     printf "%s" "$(tput setaf 199)" # 161
   else
-    printf "%s" "$(tput setaf 43)" # 43 
+    printf "%s" "$(tput setaf 43)" # 43
   fi
 }
 
 EXIT_COLOR="\[\$(exitstatus)\]"
 BOLD="\[$(tput bold)\]"
-DIM="\[$(tput dim)\]"
+# DIM="\[$(tput dim)\]"
 RESET="\[$(tput sgr0)\]"
 
 PS1="\n$EXIT_COLOR$BOLD \w $RESET"

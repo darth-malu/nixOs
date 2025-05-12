@@ -51,6 +51,9 @@ bindr = [
   "$al, Print, exec, grimblast --notify copy area"
   "$cl, Print, exec, grimblast --cursor --notify copy active"
 
+"$mod ,space, killactive"
+"$mod, mouse:275, killactive,"
+
 ];
 
 bind =
@@ -98,9 +101,6 @@ bind =
 "SUPER $cl, KP_Left, focuswindow, class:^(google-chrome)$"
 "SUPER $cl, C, focuswindow, class:^(google-chrome)$"
 "SUPER $cl, up, focuswindow, class:^(google-chrome)$"
-
-"$mod ,space, killactive"
-"$mod, mouse:275, killactive,"
 
 "$mod, m, togglespecialworkspace, magic"
 "$mod SHIFT, m, movetoworkspace, special:magic"

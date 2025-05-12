@@ -77,6 +77,12 @@ using grimblast from hypr team 🤪
   "$cl, Print, exec, grimblast --cursor --notify copy active"
 #+end_src
 
+*** kill active
+#+begin_src nix :tangle default.nix
+"$mod ,space, killactive"
+"$mod, mouse:275, killactive,"
+#+end_src
+
 *** ender
 #+begin_src nix :tangle default.nix
 ];
@@ -166,12 +172,6 @@ see hyprswitch:
 "SUPER $cl, C, focuswindow, class:^(google-chrome)$"
 "SUPER $cl, up, focuswindow, class:^(google-chrome)$"
 #+end_src
-*** kill active
-#+begin_src nix :tangle default.nix
-"$mod ,space, killactive"
-"$mod, mouse:275, killactive,"
-#+end_src
-
 *** special workspaces / scratch
 #+begin_src nix :tangle default.nix
 "$mod, m, togglespecialworkspace, magic"

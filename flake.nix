@@ -63,6 +63,7 @@ pkgs = import nixpkgs {
       "discord"
       "google-chrome"
       "bluemail"
+      "ventoy"
       "spotify"
       # "obsidian"
       "wpsoffice"
@@ -76,6 +77,9 @@ pkgs = import nixpkgs {
       # "steam-unwrapped"
       # "steam-run"
       "youtube-upnext"
+    ];
+    permittedInsecurePackages = [
+      "ventoy-1.1.05"
     ];
   };
   # overlays = [

@@ -1,9 +1,9 @@
 {
   enable = true;
-  createDirectories = true; # false::,Whether to enable automatic creation of the XDG user directories.
+  createDirectories = false; # false::, Whether to enable automatic creation of the XDG user directories.
   # documents = "${config.home.homeDirectory}/Documents";
   # download = "${config.home.homeDirectory}/Downloads";
-  extraConfig = ''
+  extraConfig = {
     XDG_SCREENSHOTS_DIR = "$HOME/Pictures/grimblast";
-  '';
+  };
 }

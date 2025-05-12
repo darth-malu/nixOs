@@ -4,7 +4,7 @@
 #   gruvboxplus = import ../home/gruvbox-plus.nix { inherit pkgs;};
 # in
 # lib.mkIf osConfig.services.desktopManager.plasma6.enable {
-lib.mkIf osConfig.programs.hyprland.enable {
+lib.mkIf osConfig.hyprland.enable {
 
 gtk = {
   enable = true;

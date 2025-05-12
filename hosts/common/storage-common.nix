@@ -92,7 +92,6 @@
       }
     else
       {
-        # TODO: better control structure for this
         "/" = {
           device = "darthPool/core/root";
           fsType = "zfs";

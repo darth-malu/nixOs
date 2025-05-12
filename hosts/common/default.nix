@@ -8,13 +8,6 @@
     ./specialisations
   ];
 
-# nixpkgs.pkgs = import <nixpkgs> {}; #TODO: investigate how to make this work
-
-# nixpkgs.config.allowUnfree = true;
-nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta" "nvidia-x11" "whatsapp-emoji-linux"
-];
-
 boot = {
   extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   loader = {
@@ -35,16 +28,14 @@ networking = {
         dns = "none"; # dnsmasq, default::, systemd-resolved
         # wifi.powersave = if config.networking.hostName == "tangier" then true else false;
         wifi = {
-            powersave = false;
+            powersave = true; # TODO see if has issues?
             backend = "wpa_supplicant"; # wpa_supplicant::, iwd
         };
         logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
     };
-
     #NOTE: self managing dns test
     dhcpcd.enable = false;
     useDHCP = lib.mkDefault true;
-
     # interfaces.enp5s0.useDHCP = lib.mkDefault true;
     nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
 };
@@ -156,11 +147,13 @@ polkit.addRule(function(action, subject) {
 }; # end of security
 
 # Automatically run the nix store optimiser at a specific time.
-nix.optimise.automatic = true; # false::
-nix.optimise.dates = ["weekly"];
-#dates = ["03:15" "00:00"]; # see systemd.time(7) for specification
-nix.optimise.randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
-# persistent = false; # true::
+nix.optimise = {
+  automatic = true; # false::
+  optimise.dates = ["weekly"];
+  #dates = ["03:15" "00:00"]; # see systemd.time(7) for specification
+  randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
+  # persistent = false; # true::
+};
 
 nix.gc = { # garbage collector
   automatic = true;
@@ -175,8 +168,6 @@ nix.settings = {
   auto-optimise-store = false; #optimise with everybuild #nix-store optimise ->manual # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy. #false::
   allowed-users = [
     "@wheel"
-    "@builders"
-    "@remotask"
     "malu"
     "sumbi"
   ];
@@ -198,13 +189,6 @@ nix.settings = {
     # "konradmalik.cachix.org-1:9REXmCYRwPNL0kAB0IMeTxnMB1Gl9VY5I8w7UVBTtSI="
   ];
 };
-# extra options
-# extraOptions = ''
-#   keep-outputs = true
-#   keep-derivations = true# keep build-time dependencies around/be able to rebuild while being offline
-# '';
-nix.distributedBuilds = false; # for remote builds
-# buildMachines = [];
 
 i18n = {
   defaultLocale = "en_US.UTF-8";
@@ -227,5 +211,6 @@ i18n = {
 nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs set
 
 time.timeZone = "Africa/Nairobi";
+
 system.stateVersion = "24.11";
 }

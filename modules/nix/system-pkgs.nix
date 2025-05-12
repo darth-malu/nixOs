@@ -1,6 +1,6 @@
 {
   pkgs,
-  lib,
+  # lib,
   config,
   ...
 }:
@@ -77,7 +77,7 @@
         bc
         tldr
         # xdg-user-dirs
-        xdg-utils # xdg-open, xdg-mime, xdg-desktop-menu/icon #TODO: see if needed
+        # xdg-utils # xdg-open, xdg-mime, xdg-desktop-menu/icon #TODO: see if needed
         dotool # test if working
         micro
       ])
@@ -86,7 +86,7 @@
           with pkgs;
           [
             wl-clipboard
-            hyprcursor
+            # hyprcursor
             hyprpicker
             hyprpolkitagent
             hyprsunset

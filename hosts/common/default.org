@@ -1,10 +1,10 @@
 #+auto_tangle: t
 #+startup: content
 
+* header
 #+begin_src nix :tangle default.nix
 {config, lib, pkgs, options, ...}:
 #+end_src
-
 * imports
 #+begin_src nix :tangle default.nix
 {
@@ -15,9 +15,10 @@
     ./specialisations
   ];
 #+end_src
-
 * allow unfree
-#+begin_src nix :tangle default.nix
+#NOTE handled in flake
+no need tangle
+#+begin_src nix :tangle no
 # nixpkgs.pkgs = import <nixpkgs> {}; #TODO: investigate how to make this work
 
 # nixpkgs.config.allowUnfree = true;
@@ -39,8 +40,6 @@ boot = {
 #+end_src
 
 * networking stuffs
-** TODO investigate issue with school wpa
-
 #+begin_src nix :tangle default.nix
 networking = {
     wireless = {
@@ -53,22 +52,19 @@ networking = {
         dns = "none"; # dnsmasq, default::, systemd-resolved
         # wifi.powersave = if config.networking.hostName == "tangier" then true else false;
         wifi = {
-            powersave = false;
+            powersave = true; # TODO see if has issues?
             backend = "wpa_supplicant"; # wpa_supplicant::, iwd
         };
         logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
     };
-
     #NOTE: self managing dns test
     dhcpcd.enable = false;
     useDHCP = lib.mkDefault true;
-
     # interfaces.enp5s0.useDHCP = lib.mkDefault true;
     nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
 };
-
 #+end_src
-
+** TODO investigate issue with school wpa
 * hardware
 #+begin_src nix :tangle default.nix
 hardware = {
@@ -209,14 +205,19 @@ polkit.addRule(function(action, subject) {
 #+end_src
 
 * nix settings
+** nix optimise
 #+begin_src nix :tangle default.nix
 # Automatically run the nix store optimiser at a specific time.
-nix.optimise.automatic = true; # false::
-nix.optimise.dates = ["weekly"];
-#dates = ["03:15" "00:00"]; # see systemd.time(7) for specification
-nix.optimise.randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
-# persistent = false; # true::
-
+nix.optimise = {
+  automatic = true; # false::
+  optimise.dates = ["weekly"];
+  #dates = ["03:15" "00:00"]; # see systemd.time(7) for specification
+  randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
+  # persistent = false; # true::
+};
+#+end_src
+** nix garbage collector
+#+begin_src nix :tangle default.nix
 nix.gc = { # garbage collector
   automatic = true;
   dates = "weekly";
@@ -225,13 +226,13 @@ nix.gc = { # garbage collector
   # randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
   # persistent = false; # true::
 };
-
+#+end_src
+** nix settings
+#+begin_src nix :tangle default.nix
 nix.settings = {
   auto-optimise-store = false; #optimise with everybuild #nix-store optimise ->manual # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy. #false::
   allowed-users = [
     "@wheel"
-    "@builders"
-    "@remotask"
     "malu"
     "sumbi"
   ];
@@ -253,11 +254,30 @@ nix.settings = {
     # "konradmalik.cachix.org-1:9REXmCYRwPNL0kAB0IMeTxnMB1Gl9VY5I8w7UVBTtSI="
   ];
 };
-# extra options
-# extraOptions = ''
-#   keep-outputs = true
-#   keep-derivations = true# keep build-time dependencies around/be able to rebuild while being offline
-# '';
+#+end_src
+
+** nix extra options
+*** start
+#+begin_src nix :tangle no
+extraOptions = ''
+#+end_src
+
+*** offline builds
+#+begin_src nix :tangle no
+keep-outputs = true
+keep-derivations = true# keep build-time dependencies around/be able to rebuild while being offline
+#+end_src
+*** end
+#+begin_src nix :tangle no
+'';
+#+end_src
+** remote builds
+#+begin_src nix :tangle no
+nix.settings.allowed-users = [
+    "@builders"
+    "@remotask"
+];
+
 nix.distributedBuilds = false; # for remote builds
 # buildMachines = [];
 #+end_src
@@ -285,9 +305,12 @@ i18n = {
 nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs set
 #+end_src
 
-* core
+* timezone
 #+begin_src nix :tangle default.nix
 time.timeZone = "Africa/Nairobi";
+#+end_src
+* system.stateVersion -- dont delete/change
+#+begin_src nix :tangle default.nix
 system.stateVersion = "24.11";
 }
 #+end_src

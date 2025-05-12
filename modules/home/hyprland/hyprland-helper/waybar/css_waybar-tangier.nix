@@ -13,25 +13,19 @@
   }
 
   window#waybar.battery-critical {
-    /* background-color: #f53c3c; */
-    /* border-bottom: 2px solid rgb(245, 60, 60); */
-    border-bottom: 2px solid rgba(228,76,249,1.0);
-  }
-
-  window#waybar.battery-warning {
-    /* background-color: #f53c3c; */
-    border-bottom: 2px solid rgba(245, 60, 60, 1.0);
+    border-bottom: 1px solid rgba(245, 60, 60, 1.0);
   }
 
   #battery {
     padding: 0px 10px 0px 4px;
-    margin: 3px 2px 3px 4px;
+    margin: 4px 2px 3px 6px;
     color: rgba(154 ,208 ,194, 0.85);
     /*background: rgba(255 ,200 ,0, 0.14);*/
     background: rgba(154 ,208 ,194, 0.0);
     border: 1px solid rgba(154 ,208 ,194, 0.05);
     /* border-top: 1px solid rgba(154 ,208 ,194, 0.25); */
     border-radius: 12px;
+    font-size:11px;
   }
 
   #battery.charging, #battery.plugged {

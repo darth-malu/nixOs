@@ -8,6 +8,22 @@
     ./specialisations
   ];
 
+# nixpkgs.pkgs = import <nixpkgs> {}; #TODO: investigate how to make this work
+
+# nixpkgs.config.allowUnfree = true;
+nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+  # "discord"
+  # "microsoft-edge"
+  # "google-chrome"
+  # "bluemail"
+  # "spotify"
+  # "obsidian"
+  # "wpsoffice"
+  "broadcom-sta"
+  # "nvidia-x11"
+  # "whatsapp-emoji-linux"
+];
+
 boot = {
   extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   loader = {
@@ -149,7 +165,7 @@ polkit.addRule(function(action, subject) {
 # Automatically run the nix store optimiser at a specific time.
 nix.optimise = {
   automatic = true; # false::
-  optimise.dates = ["weekly"];
+  dates = ["weekly"];
   #dates = ["03:15" "00:00"]; # see systemd.time(7) for specification
   randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
   # persistent = false; # true::

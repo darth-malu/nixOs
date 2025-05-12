@@ -9,7 +9,7 @@ pkgs.writeShellScriptBin "mpris_vol" ''
 
   get_volume() {
     convert_to_percentage "$(playerctl volume)"
-  } # remove need for local volume in every case block
+  } # remove need for local volume in every case block, very neat 🫠
 
   player_volume() {
       local current_player=$(playerctl metadata --format '{{ playerName }}')
@@ -25,6 +25,7 @@ pkgs.writeShellScriptBin "mpris_vol" ''
           # Create the directory if it doesn't exist
           mkdir -p "$cover_dir"
 
+          # download art if not exists
           if [[ ! -f "$cover_path" ]]; then
             curl -s "$album_art" --output "$cover_path"
           fi
@@ -32,12 +33,11 @@ pkgs.writeShellScriptBin "mpris_vol" ''
           # echo "/tmp/cover.jpeg"
           dunstify -t 1000 -a "changeVolume" -u low \
             -i "$cover_path" \
-            -h string:x-dunst-stack-tag:$msgTag "Spotify                  " \
+            -h string:x-dunst-stack-tag:$msgTag "$track_id " \
             -h int:value:"$(get_volume)"
           ;;
       "Lollypop")
           playerctl -p "$current_player" volume 0.02"$1"
-          volume=$(convert_to_percentage "$(playerctl volume)")
           dunstify -t 1000 -a "changeVolume" -u low \
             -i $HOME/Shibuya/assets/icons/icons8-candy-50.png \
             -h string:x-dunst-stack-tag:$msgTag "Lollypop                  " \
@@ -49,7 +49,6 @@ pkgs.writeShellScriptBin "mpris_vol" ''
           ;;
       "mpv")
           playerctl -p "$current_player" volume 0.04"$1"
-          volume=$(convert_to_percentage "$(playerctl volume)")
           dunstify -t 1000 -a "changeVolume" -u low \
             -i $HOME/Shibuya/assets/icons/mpv.256x253.png \
             -h string:x-dunst-stack-tag:$msgTag "MPV                  " \
@@ -58,7 +57,6 @@ pkgs.writeShellScriptBin "mpris_vol" ''
           ;;
       "chromium"*)
           playerctl -p "$current_player" volume 0.02"$1"
-          volume=$(convert_to_percentage "$(playerctl volume)")
           dunstify -t 1000 -a "changeVolume" -u low \
             -i $HOME/Shibuya/assets/icons/icons8-chrome-office-l/icons8-chrome-30.png \
             -h string:x-dunst-stack-tag:$msgTag "Chrome                  " \

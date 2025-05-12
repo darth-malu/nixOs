@@ -16,14 +16,22 @@
   ];
 #+end_src
 * allow unfree
-#NOTE handled in flake
-no need tangle
-#+begin_src nix :tangle no
+#NOTE handled in flake, except for broadcom-sta(needed)
+#+begin_src nix :tangle default.nix
 # nixpkgs.pkgs = import <nixpkgs> {}; #TODO: investigate how to make this work
 
 # nixpkgs.config.allowUnfree = true;
 nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  "discord" "microsoft-edge" "google-chrome" "bluemail" "spotify" "obsidian" "wpsoffice" "broadcom-sta" "nvidia-x11" "whatsapp-emoji-linux"
+  # "discord"
+  # "microsoft-edge"
+  # "google-chrome"
+  # "bluemail"
+  # "spotify"
+  # "obsidian"
+  # "wpsoffice"
+  "broadcom-sta"
+  # "nvidia-x11"
+  # "whatsapp-emoji-linux"
 ];
 #+end_src
 
@@ -210,7 +218,7 @@ polkit.addRule(function(action, subject) {
 # Automatically run the nix store optimiser at a specific time.
 nix.optimise = {
   automatic = true; # false::
-  optimise.dates = ["weekly"];
+  dates = ["weekly"];
   #dates = ["03:15" "00:00"]; # see systemd.time(7) for specification
   randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
   # persistent = false; # true::

@@ -2,16 +2,15 @@
 
 manager.keymap = [
 
-{ on = [ "g" "h" ];       run = "cd ~";             desc = "Go to the home directory"; }
+  { on = [ "g" "h" ];       run = "cd ~";             desc = "Go to the home directory"; }
   { on = [ "g" "c" ];       run = "cd ~/.config";     desc = ".config";}
   { on = [ "g" "d" ];       run = "cd ~/Documents";   desc = "Documents"; }
   { on = [ "g" "p" ];       run = "cd ~/Pictures";   desc = "Go to the pictures directory"; }
   { on = [ "g" "g" ];       run = "cd ~/Pictures/grimblast";   desc = "grimblast"; }
   { on = [ "g" "x" ];       run = "cd ~/Downloads";   desc = "Go to the downloads directory"; }
-  { on = [ "g" "s" ];       run = "cd ~/Shibuya";   desc = ".darth/scripts directory"; }
+  { on = [ "g" "s" ];       run = "cd ~/Shibuya";   desc = "~/Shibuya"; }
   { on = [ "g" "v" ];       run = "cd ~/Videos";   desc = "VIDEOS dir"; }
   { on = [ "g" "m" ];       run = "cd ~/Music";   desc = "MUSIC"; }
-  { on = [ "g" "t" ];       run = "cd /tmp";          desc = "Go to the temporary directory"; }
   { on = [ "g" "M" ];       run = "cd /media/";          desc = "media directory"; }
   { on = [ "g" "<Space>" ]; run = "cd --interactive"; desc = "Go to a directory interactively"; }
 
@@ -59,12 +58,12 @@ manager.keymap = [
   { on = [ "<A-PageUp>" ];   run = "seek -5"; desc = "Seek up 5 units in the preview"; }
   { on = [ "<A-PageDown>" ]; run = "seek 5";  desc = "Seek down 5 units in the preview"; }
 
-{ on = [ "<Space>" ]; run = [ "select --state=none" "arrow 1" ]; desc = "Toggle the current selection state"; }
+{ on = [ "<Space>" ]; run = [ "toggle" "arrow 1" ]; desc = "Toggle the current selection state"; }
 
   { on = [ "v" ];       run = "visual_mode";                        desc = "Enter visual mode (selection mode)"; }
   { on = [ "V" ];       run = "visual_mode --unset";                desc = "Enter visual mode (unset mode)"; }
 
-{ on = [ "<C-a>" ];   run = "toggle_all --state=on";            desc = "Select all files"; }
+  { on = [ "<C-a>" ];   run = "toggle_all --state=on";            desc = "Select all files"; }
   { on = [ "<C-r>" ];   run = "toggle_all --state=off";            desc = "Inverse selection of all files"; }
 
   { on = [ "o" ];         run = [ "escape --visual" "open" ];                       desc = "Open the selected files"; }

@@ -4,7 +4,7 @@ exitstatus() {
   if [[ $stat -ne 0 ]]; then
     printf "%s" "$(tput setaf 199)" # 161
   else
-    printf "%s" "$(tput setaf 43)" # 43
+    printf "%s" "$(tput setaf 43)"
   fi
 }
 

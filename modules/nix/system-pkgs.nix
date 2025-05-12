@@ -76,7 +76,7 @@
         kitty
         bc
         tldr
-        xdg-user-dirs
+        # xdg-user-dirs
         xdg-utils # xdg-open, xdg-mime, xdg-desktop-menu/icon #TODO: see if needed
         dotool # test if working
         micro

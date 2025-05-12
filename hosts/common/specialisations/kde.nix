@@ -20,7 +20,6 @@
   };
 
   config = lib.mkIf config.kde.enable {
-    programs.waybar.enable = false;
     services = {
       displayManager = {
         sddm.enable = lib.mkDefault true;

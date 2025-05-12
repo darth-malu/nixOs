@@ -46,80 +46,10 @@ in
     # bashrcExtra = '''';
     initExtra =
       # during interactive shell init
-      # bash
       ''
+
         #complete command + file names. Investigate if needed
         #complete -cf sudo
-
-        # math ()
-        # {
-        # echo "scale=2;$1" | bc
-        # }
-
-        # speedtest () {
-        #     curl -S https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
-        # }
-
-        # t ()
-        # {
-        #   case $1 in
-        #     "-a")
-        #         task add project:arch "${fromSecond}"
-        #         ;;
-        #     "-n")
-        #         task add project:nix  "${fromSecond}"
-        #         ;;
-        #     "-m")
-        #         task add project:movies  "${fromSecond}"
-        #         ;;
-        #     "-nv")
-        #         task add project:nixvim  "${fromSecond}"
-        #         ;;
-        #     "-t")
-        #         task add project:teal "${fromSecond}"
-        #         ;;
-        #     "-p")
-        #         task project:"$2" add "${fromThird}"
-        #         ;;
-        #     "-N")
-        #         task project:nixvim add "${fromSecond}"
-        #         ;;
-        #     "-l")
-        #         task list
-        #         ;;
-        #     "-lp")
-        #         task list project:"$2"
-        #         ;;
-        #     "-d")
-        #         task delete "${fromSecond}"
-        #         ;;
-        #     "-ln"|"-nl")
-        #         task list project:nix
-        #         ;;
-        #     "-lm"|"-ml")
-        #         task list project:movies
-        #         ;;
-        #     "-lnv")
-        #         task list project:nixvim
-        #         ;;
-        #     "-la"|"-al")
-        #         task list project:arch
-        #         ;;
-        #     *)
-        #         task add "$1"
-        #         ;;
-        #   esac
-        # }
-
-        # yazi
-        # function yy() {
-        #   local yazi_tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-        #   yazi "$@" --cwd-file="$yazi_tmp"
-        #   if cwd="$(cat -- "$yazi_tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$DIM_BOLD_PWD" ]; then
-        #       builtin cd -- "$cwd"
-        #   fi
-        #   rm -f -- "$yazi_tmp"
-        # }
 
         # export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin" # should be below in bashrcExtra
         if command -v fzf-share >/dev/null; then

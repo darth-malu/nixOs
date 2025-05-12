@@ -9,8 +9,9 @@
       "TextEditor"
     ];
     startupNotify = true;
-    comment = "Its working lol"; # tooltip for the entry
-    exec = "emacsclient -c %U";
+    comment = "tooltip test 🫠"; # tooltip for the entry
+    # exec = "emacsclient -c %U";
+    exec = "emacsclient -c";
     icon = "emacs";
     mimeType = [
       "text/english"

@@ -180,25 +180,26 @@ manager.keymap = [
 
 *** sort
 #+begin_src nix :tangle keymap.nix
-  { on = [ ","  "m" ]; run = "sort modified --dir-first";               desc = "Sort by modified time"; }
-  { on = [ ","  "M" ]; run = "sort modified --reverse --dir-first";     desc = "Sort by modified time (reverse)"; }
-  { on = [ ","  "c" ]; run = "sort created --dir-first";                desc = "Sort by created time"; }
-  { on = [ ","  "C" ]; run = "sort created --reverse --dir-first";      desc = "Sort by created time (reverse)"; }
-  { on = [ ","  "e" ]; run = "sort extension --dir-first";         	   desc = "Sort by extension"; }
-  { on = [ ","  "E" ]; run = "sort extension --reverse --dir-first";    desc = "Sort by extension (reverse)"; }
-  { on = [ ","  "a" ]; run = "sort alphabetical --dir-first";           desc = "Sort alphabetically"; }
-  { on = [ ","  "A" ]; run = "sort alphabetical --reverse --dir-first"; desc = "Sort alphabetically (reverse)"; }
+  { on = [ ","  "m" ]; run = "sort mtime --dir-first";                  desc = "Sort by modified time"; }
+  { on = [ ","  "M" ]; run = "sort mtime --reverse=yes --dir-first";        desc = "Sort by modified time (reverse)"; }
+  { on = [ ","  "c" ]; run = "sort btime --dir-first";                  desc = "Sort by btime time"; }
+  { on = [ ","  "C" ]; run = "sort btime --reverse=yes --dir-first";        desc = "Sort by btime (reverse)"; }
+  { on = [ ","  "e" ]; run = "sort extension --dir-first";              desc = "Sort by extension"; }
+  { on = [ ","  "E" ]; run = "sort extension --reverse=yes --dir-first";    desc = "Sort by extension (reverse)"; }
+  { on = [ ","  "a" ]; run = "sort alphabetical --dir-first";           desc = "Sort alphabetically"; } # 1<2<10
+  { on = [ ","  "A" ]; run = "sort alphabetical --reverse=yes --dir-first"; desc = "Sort alphabetically (reverse)"; }
   { on = [ ","  "n" ]; run = "sort natural --dir-first";                desc = "Sort naturally"; }
-  { on = [ ","  "N" ]; run = "sort natural --reverse --dir-first";      desc = "Sort naturally (reverse)"; }
+  { on = [ ","  "N" ]; run = "sort natural --reverse=yes --dir-first";      desc = "Sort naturally (reverse)"; }
   { on = [ ","  "s" ]; run = "sort size --dir-first";                   desc = "Sort by size"; }
-  { on = [ ","  "S" ]; run = "sort size --reverse --dir-first";         desc = "Sort by size (reverse)"; }
-  { on = [ "w" ]; run = "tasks show"; desc = "Show the tasks manager"; } #TODO for test
+  { on = [ ","  "S" ]; run = "sort size --reverse=yes --dir-first";         desc = "Sort by size (reverse)"; }
 #+end_src
-
+**** changes
+- created -> btime?
+- modified -> mtime
 *** Tabs
 #+begin_src nix :tangle keymap.nix
   { on = [ "T" ]; run = "tab_create --current"; desc = "Create a new tab using the $CWD"; }
-  { on = [ "t" ]; run = "tab_create "; desc = "Create a new tab"; }
+  { on = [ "t" ]; run = "tab_create /home/malu"; desc = "Create a new tab"; } # If neither [path] nor --current is specified, will use the startup directory to create the tab.
   { on = [ "1" ]; run = "tab_switch 0"; desc = "Switch to the first tab"; }
   { on = [ "2" ]; run = "tab_switch 1"; desc = "Switch to the second tab"; }
   { on = [ "3" ]; run = "tab_switch 2"; desc = "Switch to the third tab"; }
@@ -222,6 +223,7 @@ manager.keymap = [
 ** task
 #+begin_src nix :tangle keymap.nix
 tasks.keymap = [
+  { on = [ "w" ]; run = "tasks show"; desc = "Show the tasks manager"; } #TODO for test
   { on = [ "w" "t" ]; run = "tasks show"; desc = "Show the tasks manager"; }
   { on = [ "w" "i" ]; run = "tasks inspect"; desc = "tasks inspector"; }
   { on = [ "w" "c" ]; run = "tasks close"; desc = "Show the tasks manager"; }

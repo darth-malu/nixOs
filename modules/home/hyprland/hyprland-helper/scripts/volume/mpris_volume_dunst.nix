@@ -12,7 +12,6 @@ pkgs.writeShellScriptBin "mpris_vol" ''
   } # remove need for local volume in every case block
 
   player_volume() {
-
       local current_player=$(playerctl metadata --format '{{ playerName }}')
 
       case "$current_player" in
@@ -22,13 +21,6 @@ pkgs.writeShellScriptBin "mpris_vol" ''
           track_id=$(playerctl -p spotify metadata mpris:trackid | sed 's/.*\///') # Extract track ID
           local cover_dir="/tmp/spotify_covers"
           local cover_path="$cover_dir/''${track_id}.jpeg"
-
-          # if [[ -z $album_art ]]
-          # then
-            # spotify is dead, we should die too.
-            # no need since it always exists in waybar when this is run :)
-          #   exit
-          # fi
 
           # Create the directory if it doesn't exist
           mkdir -p "$cover_dir"

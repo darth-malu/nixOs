@@ -44,6 +44,14 @@
       fg = "#e4e4e4";
       bg = "red"; # FIXME not working
     };
+    count_copied = {
+      fg = "#e4e4e4";
+      bg = "red"; # FIXME not working
+    };
+    count_selected = {
+      fg = "#e4e4e4";
+      bg = "red"; # FIXME not working
+    };
   };
 
   mode = {

@@ -8,21 +8,7 @@
     ./specialisations
   ];
 
-# nixpkgs.pkgs = import <nixpkgs> {}; #TODO: investigate how to make this work
-
-# nixpkgs.config.allowUnfree = true;
-nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  # "discord"
-  # "microsoft-edge"
-  # "google-chrome"
-  # "bluemail"
-  # "spotify"
-  # "obsidian"
-  # "wpsoffice"
-  "broadcom-sta"
-  # "nvidia-x11"
-  # "whatsapp-emoji-linux"
-];
+nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["broadcom-sta"];
 
 boot = {
   extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];

@@ -18,21 +18,7 @@
 * allow unfree
 #NOTE handled in flake, except for broadcom-sta(needed)
 #+begin_src nix :tangle default.nix
-# nixpkgs.pkgs = import <nixpkgs> {}; #TODO: investigate how to make this work
-
-# nixpkgs.config.allowUnfree = true;
-nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  # "discord"
-  # "microsoft-edge"
-  # "google-chrome"
-  # "bluemail"
-  # "spotify"
-  # "obsidian"
-  # "wpsoffice"
-  "broadcom-sta"
-  # "nvidia-x11"
-  # "whatsapp-emoji-linux"
-];
+nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["broadcom-sta"];
 #+end_src
 
 * boot

@@ -114,18 +114,19 @@ manager.keymap = [
   { on = [ "n" ]; run = "find_arrow";              desc = "Go to next found file"; }
   { on = [ "N" ]; run = "find_arrow --previous";   desc = "Go to previous found file"; }
 
-{ on = [ ","  "m" ]; run = "sort modified --dir-first";               desc = "Sort by modified time"; }
-  { on = [ ";"  "M" ]; run = "sort modified --reverse --dir-first";     desc = "Sort by modified time (reverse)"; }
-  { on = [ ";"  "c" ]; run = "sort created --dir-first";                desc = "Sort by created time"; }
-  { on = [ ";"  "C" ]; run = "sort created --reverse --dir-first";      desc = "Sort by created time (reverse)"; }
-  { on = [ ";"  "e" ]; run = "sort extension --dir-first";         	   desc = "Sort by extension"; }
-  { on = [ ";"  "E" ]; run = "sort extension --reverse --dir-first";    desc = "Sort by extension (reverse)"; }
-  { on = [ ";"  "a" ]; run = "sort alphabetical --dir-first";           desc = "Sort alphabetically"; }
-  { on = [ ";"  "A" ]; run = "sort alphabetical --reverse --dir-first"; desc = "Sort alphabetically (reverse)"; }
-  { on = [ ";"  "n" ]; run = "sort natural --dir-first";                desc = "Sort naturally"; }
-  { on = [ ";"  "N" ]; run = "sort natural --reverse --dir-first";      desc = "Sort naturally (reverse)"; }
-  { on = [ ";"  "s" ]; run = "sort size --dir-first";                   desc = "Sort by size"; }
-  { on = [ ";"  "S" ]; run = "sort size --reverse --dir-first";         desc = "Sort by size (reverse)"; }
+  { on = [ ","  "m" ]; run = "sort modified --dir-first";               desc = "Sort by modified time"; }
+  { on = [ ","  "M" ]; run = "sort modified --reverse --dir-first";     desc = "Sort by modified time (reverse)"; }
+  { on = [ ","  "c" ]; run = "sort created --dir-first";                desc = "Sort by created time"; }
+  { on = [ ","  "C" ]; run = "sort created --reverse --dir-first";      desc = "Sort by created time (reverse)"; }
+  { on = [ ","  "e" ]; run = "sort extension --dir-first";         	   desc = "Sort by extension"; }
+  { on = [ ","  "E" ]; run = "sort extension --reverse --dir-first";    desc = "Sort by extension (reverse)"; }
+  { on = [ ","  "a" ]; run = "sort alphabetical --dir-first";           desc = "Sort alphabetically"; }
+  { on = [ ","  "A" ]; run = "sort alphabetical --reverse --dir-first"; desc = "Sort alphabetically (reverse)"; }
+  { on = [ ","  "n" ]; run = "sort natural --dir-first";                desc = "Sort naturally"; }
+  { on = [ ","  "N" ]; run = "sort natural --reverse --dir-first";      desc = "Sort naturally (reverse)"; }
+  { on = [ ","  "s" ]; run = "sort size --dir-first";                   desc = "Sort by size"; }
+  { on = [ ","  "S" ]; run = "sort size --reverse --dir-first";         desc = "Sort by size (reverse)"; }
+  { on = [ "w" ]; run = "tasks show"; desc = "Show the tasks manager"; } #TODO for test
 
   { on = [ "T" ]; run = "tab_create --current"; desc = "Create a new tab using the $CWD"; }
   { on = [ "t" ]; run = "tab_create "; desc = "Create a new tab"; }
@@ -143,8 +144,12 @@ manager.keymap = [
   { on = [ "{" ]; run = "tab_swap -1"; desc = "Swap the current tab with the previous tab"; }
   { on = [ "}" ]; run = "tab_swap 1";  desc = "Swap the current tab with the next tab"; }
 
-{ on = [ "w" ]; run = "tasks_show"; desc = "Show the tasks manager"; }
+];
 
+tasks.keymap = [
+  { on = [ "w" "t" ]; run = "tasks show"; desc = "Show the tasks manager"; }
+  { on = [ "w" "i" ]; run = "tasks inspect"; desc = "tasks inspector"; }
+  { on = [ "w" "c" ]; run = "tasks close"; desc = "Show the tasks manager"; }
 ];
 
 manager.prepend_keymap = [

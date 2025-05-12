@@ -180,18 +180,19 @@ manager.keymap = [
 
 *** sort
 #+begin_src nix :tangle keymap.nix
-{ on = [ ","  "m" ]; run = "sort modified --dir-first";               desc = "Sort by modified time"; }
-  { on = [ ";"  "M" ]; run = "sort modified --reverse --dir-first";     desc = "Sort by modified time (reverse)"; }
-  { on = [ ";"  "c" ]; run = "sort created --dir-first";                desc = "Sort by created time"; }
-  { on = [ ";"  "C" ]; run = "sort created --reverse --dir-first";      desc = "Sort by created time (reverse)"; }
-  { on = [ ";"  "e" ]; run = "sort extension --dir-first";         	   desc = "Sort by extension"; }
-  { on = [ ";"  "E" ]; run = "sort extension --reverse --dir-first";    desc = "Sort by extension (reverse)"; }
-  { on = [ ";"  "a" ]; run = "sort alphabetical --dir-first";           desc = "Sort alphabetically"; }
-  { on = [ ";"  "A" ]; run = "sort alphabetical --reverse --dir-first"; desc = "Sort alphabetically (reverse)"; }
-  { on = [ ";"  "n" ]; run = "sort natural --dir-first";                desc = "Sort naturally"; }
-  { on = [ ";"  "N" ]; run = "sort natural --reverse --dir-first";      desc = "Sort naturally (reverse)"; }
-  { on = [ ";"  "s" ]; run = "sort size --dir-first";                   desc = "Sort by size"; }
-  { on = [ ";"  "S" ]; run = "sort size --reverse --dir-first";         desc = "Sort by size (reverse)"; }
+  { on = [ ","  "m" ]; run = "sort modified --dir-first";               desc = "Sort by modified time"; }
+  { on = [ ","  "M" ]; run = "sort modified --reverse --dir-first";     desc = "Sort by modified time (reverse)"; }
+  { on = [ ","  "c" ]; run = "sort created --dir-first";                desc = "Sort by created time"; }
+  { on = [ ","  "C" ]; run = "sort created --reverse --dir-first";      desc = "Sort by created time (reverse)"; }
+  { on = [ ","  "e" ]; run = "sort extension --dir-first";         	   desc = "Sort by extension"; }
+  { on = [ ","  "E" ]; run = "sort extension --reverse --dir-first";    desc = "Sort by extension (reverse)"; }
+  { on = [ ","  "a" ]; run = "sort alphabetical --dir-first";           desc = "Sort alphabetically"; }
+  { on = [ ","  "A" ]; run = "sort alphabetical --reverse --dir-first"; desc = "Sort alphabetically (reverse)"; }
+  { on = [ ","  "n" ]; run = "sort natural --dir-first";                desc = "Sort naturally"; }
+  { on = [ ","  "N" ]; run = "sort natural --reverse --dir-first";      desc = "Sort naturally (reverse)"; }
+  { on = [ ","  "s" ]; run = "sort size --dir-first";                   desc = "Sort by size"; }
+  { on = [ ","  "S" ]; run = "sort size --reverse --dir-first";         desc = "Sort by size (reverse)"; }
+  { on = [ "w" ]; run = "tasks show"; desc = "Show the tasks manager"; } #TODO for test
 #+end_src
 
 *** Tabs
@@ -213,24 +214,22 @@ manager.keymap = [
   { on = [ "}" ]; run = "tab_swap 1";  desc = "Swap the current tab with the next tab"; }
 #+end_src
 
-*** tasks
-#+begin_src nix :tangle keymap.nix
-{ on = [ "w" ]; run = "tasks_show"; desc = "Show the tasks manager"; }
-#+end_src
-
 *** manager end
 #+begin_src nix :tangle keymap.nix
 ];
 #+end_src
 
 ** task
-#+begin_src nix :tangle no
-task.keymap = [
+#+begin_src nix :tangle keymap.nix
+tasks.keymap = [
+  { on = [ "w" "t" ]; run = "tasks show"; desc = "Show the tasks manager"; }
+  { on = [ "w" "i" ]; run = "tasks inspect"; desc = "tasks inspector"; }
+  { on = [ "w" "c" ]; run = "tasks close"; desc = "Show the tasks manager"; }
 ];
 #+end_src
 
 * prepend keymap
-** manager prepend
+** manager.prepend
 #+begin_src nix :tangle keymap.nix
 manager.prepend_keymap = [
   {on = [ "l" ]; run = "plugin smart-enter"; desc = "Enter child dir or open file";}
@@ -239,7 +238,7 @@ manager.prepend_keymap = [
 ];
 #+end_src
 
-** input prepend keymap
+** input.prepend
 #+begin_src nix :tangle keymap.nix
 input.prepend_keymap = [
   {on = [ "<Esc>" ]; run = "close"; desc = "Cancel input";}

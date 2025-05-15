@@ -24,8 +24,8 @@
       color: rgba(154 ,208 ,194, 0.86);
       margin: 0px 13px 0px 14px;
       font-size:14px;
-      /*background-color: rgba(8 ,41 ,41, 0.95);*/
-      background-color: rgba(8 ,41 ,41, 0.0);
+      /* background-color: rgba(8 ,41 ,41, 0.65); */
+      background-color: rgba(8 ,41 ,41, 0.58);
       border-radius: 18px;
       color: rgba(72 ,191 ,227, 0.83);
       color: rgba(53,162,159,1.0);

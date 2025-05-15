@@ -2,51 +2,12 @@
 #+startup: content indent
 #+auto_tangle: t
 
-* important key binds
-
-|-----+------------------------|
-| key | does                   |
-|-----+------------------------|
-| ?   | pull up mpv cheatsheet |
-|-----+------------------------|
-** TODO use all scripts
-
 * main config
-** into - let
-let used to simplify calling my scripts
 #+begin_src nix :tangle default.nix
 { pkgs, osConfig, ... }:
-let
 #+end_src
-
-*** mpvScripts
-see if quality-menu is needed with modernX uosc
+** start/enable mpv
 #+begin_src nix :tangle default.nix
-mpvScripts = with pkgs.mpvScripts; [
-  mpris
-  # mpv-discord #TODO too much work lol
-  # sponsorblock # TODO not need?
-  quality-menu # allows you to change the streamed video and audio quality (ytdl-format) on the fly.
-  youtube-upnext # C-u (configurablea) , space to append
-  mpv-cheatsheet # use ?
-  mpv-playlistmanager # S-Enter to add to playlist
-  # uosc
-  modernx-zydezu
-  thumbfast # thumbnails
-];
-#+end_src
-
-*** how some of it looks
-*** mpv playlistManager
-○ default file
-▷ playing file
-● hovered file(for removing, playing and moving)
-▶ playing and hovered file
-➔ selected file(file is being moved)
-➤ playing and selected file
-** start mpv
-#+begin_src nix :tangle default.nix
-in
 {
   programs.mpv = {
     enable = true;
@@ -54,12 +15,27 @@ in
 
 ** scripts, scriptOpts
 see:
-*** start
+*** scripts
 #+begin_src nix :tangle default.nix
-scripts = mpvScripts;
+scripts = with pkgs.mpvScripts; [
+  mpris
+  # mpv-discord #TODO too much work lol
+  # sponsorblock # TODO not need?
+  # quality-menu
+  youtube-upnext # C-u (configurable) , space to append
+  mpv-cheatsheet # use ?
+  mpv-playlistmanager # S-Enter to add to playlist
+  uosc
+  memo # recent files menu
+  # modernx-zydezu
+  thumbfast
+];
+#+end_src
+*** script opts
+**** start
+#+begin_src nix :tangle default.nix
 scriptOpts = {
 #+end_src
-
 **** discord rich presence
 #+begin_src nix :tangle no
 mpv_discordRPC = {
@@ -71,19 +47,22 @@ mpv_discordRPC = {
 };
 #+end_src
 
-*** uosc
-#+begin_src nix :tangle no
-uosc = import ./scripts/uosc.nix;
+**** uosc
+[[file:scriptOpts/uosc.nix][uosc.nix]]
+#+begin_src nix :tangle default.nix
+# uosc = import ./scripts/uosc.nix;
+uosc = import ./scriptOpts/uosc.nix;
 #+end_src
-*** modernX-zydezu
+**** modernX-zydezu
 #+begin_src nix :tangle default.nix
 modernx-zydezu = import ./scriptOpts/modernx-zydezu.nix;
 #+end_src
-*** playlistmanager
+**** playlistmanager
 #+begin_src nix :tangle default.nix
 playlistmanager = import ./scriptOpts/playlistManager.nix;
 #+end_src
-*** end
+
+**** end
 #+begin_src nix :tangle default.nix
 };
 #+end_src
@@ -110,26 +89,26 @@ Y = "script-binding quality_menu/video_formats_toggle";
 #+end_src
 
 *** uosc bindings
-#+begin_src nix :tangle no
-# "s" = "script-binding uosc/subtitles"; # ! Subtitles
-# "a" = "script-binding uosc/audio"; # ! Audio tracks
-# "q" = "script-binding uosc/stream-quality"; # ! Stream quality
-# "p" = "script-binding uosc/items"; # ! Playlist
-# "c" = "script-binding uosc/chapters"; # ! Chapters
+#+begin_src nix :tangle default.nix
+"s" = "script-binding uosc/subtitles"; # ! Subtitles
+"a" = "script-binding uosc/audio"; # ! Audio tracks
+"q" = "script-binding uosc/stream-quality"; # ! Stream quality
+"p" = "script-binding uosc/items"; # ! Playlist
+"c" = "script-binding uosc/chapters"; # ! Chapters
+"o" = "script-binding uosc/open-file"; # ! Navigation > Open file
+"O" = "script-binding uosc/show-in-directory"; # ! Utils > Show in directory
+"alt+i" = "script-binding uosc/keybinds"; # ! Utils > Key bindings
 # "alt+>" = "script-binding uosc/delete-file-next"; # ! Navigation > Delete file & Next
 # "alt+<" = "script-binding uosc/delete-file-prev"; # ! Navigation > Delete file & Prev
 # "alt+esc" = "script-binding uosc/delete-file-quit"; # ! Navigation > Delete file & Quit
-# "o" = "script-binding uosc/open-file"; # ! Navigation > Open file
-#           set video-aspect-override "-1"         #! Utils > Aspect ratio > Default
-#           set video-aspect-override "16:9"       #! Utils > Aspect ratio > 16:9
-#           set video-aspect-override "4:3"        #! Utils > Aspect ratio > 4:3
-#           set video-aspect-override "2.35:1"     #! Utils > Aspect ratio > 2.35:1
-#           script-binding uosc/audio-device       #! Utils > Audio devices
-#           script-binding uosc/editions           #! Utils > Editions
-# "alt+i" = "script-binding uosc/keybinds"; # ! Utils > Key bindings
-# "O" = "script-binding uosc/show-in-directory"; # ! Utils > Show in directory
-#           script-binding uosc/open-config-directory #! Utils > Open config directory
-#           script-binding uosc/update             #! Utils > Update uosc
+          # set video-aspect-override "-1"         #! Utils > Aspect ratio > Default
+          # set video-aspect-override "16:9"       #! Utils > Aspect ratio > 16:9
+          # set video-aspect-override "4:3"        #! Utils > Aspect ratio > 4:3
+          # set video-aspect-override "2.35:1"     #! Utils > Aspect ratio > 2.35:1
+          # script-binding uosc/audio-device       #! Utils > Audio devices
+          # script-binding uosc/editions           #! Utils > Editions
+          # script-binding uosc/open-config-directory #! Utils > Open config directory
+          # script-binding uosc/update             #! Utils > Update uosc
 #+end_src
 
 *** ender
@@ -139,7 +118,7 @@ Y = "script-binding quality_menu/video_formats_toggle";
 
 *** extra input
 appended to mpv/input.conf
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
 extraInput = ''
  b  quit #! Quit
 '';
@@ -348,6 +327,14 @@ screenshot-format = "png"; # jpeg, png, webp, avif, jxl
 } # EOF
 #+end_src
 
+* important key binds
+
+|-----+------------------------|
+| key | does                   |
+|-----+------------------------|
+| ?   | pull up mpv cheatsheet |
+|-----+------------------------|
+
 * plugin-opts
 ** uosc
 *** config
@@ -542,34 +529,34 @@ download_path = "~~desktop/Videos/mpvDownloads"; # default download directory fo
 
 *** Colors and style
 #+begin_src nix :tangle scriptOpts/modernx-zydezu.nix
-    osc_color = "#000000";                  # accent color of the OSC and title bar
-    window_title_color = "#FFFFFF";         # color of the title in borderless/fullscreen mode
-    window_controls_color = "#FFFFFF";      # color of the window controls (close, minimize, maximize) in borderless/fullscreen mode
-    window_controls_close_hover = "#E81123"; # color of close window control on hover
-    window_controls_minmax_hover = "#53A4FC";# color of min/max window controls on hover
-    title_color = "#FFFFFF";                # color of the title (above seekbar)
-    seekbarfg_color = "#1D96F5";            # color of the seekbar progress and handle, in Hex color format
-    seekbarbg_color = "#FFFFFF";            # color of the remaining seekbar, in Hex color format
-    seekbar_cache_color = "#8a2be2";        # color of the cache ranges on the seekbar
-    volumebar_match_seek_color = false;     # match volume bar color with seekbar color (ignores side_buttons_color)
-    time_color = "#FFFFFF";                 # color of the timestamps (below seekbar)
-    chapter_title_color = "#FFFFFF";        # color of the chapter title next to timestamp (below seekbar)
-    side_buttons_color = "#FFFFFF";         # color of the side buttons (audio, subtitles, playlist, etc.)
-    middle_buttons_color = "#FFFFFF";       # color of the middle buttons (skip, jump, chapter, etc.)
-    playpause_color = "#FFFFFF";            # color of the play/pause button
-    held_element_color = "#999999";         # color of the element when held down (pressed)
-    hover_effect_color = "#FFFFFF";         # color of a hovered button when hover_effect includes "color"
-    thumbnail_border_color = "#FFFFFF";     # color of the border for thumbnails (with thumbfast)
+osc_color = "#000000";                  # accent color of the OSC and title bar
+window_title_color = "#FFFFFF";         # color of the title in borderless/fullscreen mode
+window_controls_color = "#FFFFFF";      # color of the window controls (close, minimize, maximize) in borderless/fullscreen mode
+window_controls_close_hover = "#E81123"; # color of close window control on hover
+window_controls_minmax_hover = "#53A4FC";# color of min/max window controls on hover
+title_color = "#FFFFFF";                # color of the title (above seekbar)
+seekbarfg_color = "#1D96F5";            # color of the seekbar progress and handle, in Hex color format
+seekbarbg_color = "#FFFFFF";            # color of the remaining seekbar, in Hex color format
+seekbar_cache_color = "#8a2be2";        # color of the cache ranges on the seekbar
+volumebar_match_seek_color = false;     # match volume bar color with seekbar color (ignores side_buttons_color)
+time_color = "#FFFFFF";                 # color of the timestamps (below seekbar)
+chapter_title_color = "#FFFFFF";        # color of the chapter title next to timestamp (below seekbar)
+side_buttons_color = "#FFFFFF";         # color of the side buttons (audio, subtitles, playlist, etc.)
+middle_buttons_color = "#FFFFFF";       # color of the middle buttons (skip, jump, chapter, etc.)
+playpause_color = "#FFFFFF";            # color of the play/pause button
+held_element_color = "#999999";         # color of the element when held down (pressed)
+hover_effect_color = "#FFFFFF";         # color of a hovered button when hover_effect includes "color"
+thumbnail_border_color = "#FFFFFF";     # color of the border for thumbnails (with thumbfast)
 
-    fade_alpha = 150;                       # alpha of the OSC background box
-    fade_blur_strength = 100;               # blur strength for the OSC alpha fade. caution: high values can take a lot of CPU time to render
-    window_fade_alpha = 75;                 # alpha of the window title bar
-    thumbnail_border = 0;                   # the width of the thumbnail border
+fade_alpha = 150;                       # alpha of the OSC background box
+fade_blur_strength = 100;               # blur strength for the OSC alpha fade. caution: high values can take a lot of CPU time to render
+window_fade_alpha = 75;                 # alpha of the window title bar
+thumbnail_border = 0;                   # the width of the thumbnail border
 
-    # Button hover effects
-    hover_effect = "size,glow,color";       # active button hover effects: "glow", "size", "color"; can use multiple separated by commas
-    hover_button_size = 115;                # relative size of a hovered button if "size" effect is active
-    button_glow_amount = 5;                 # glow intensity when "glow" hover effect is active
+# Button hover effects
+hover_effect = "size,glow,color";       # active button hover effects: "glow", "size", "color"; can use multiple separated by commas
+hover_button_size = 115;                # relative size of a hovered button if "size" effect is active
+button_glow_amount = 5;                 # glow intensity when "glow" hover effect is active
 #+end_src
 *** progress bar
 #+begin_src nix :tangle scriptOpts/modernx-zydezu.nix

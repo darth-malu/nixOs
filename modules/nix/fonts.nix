@@ -20,6 +20,10 @@
         cascadia-code
         iosevka-comfy.comfy
       ]
+      ++ [
+        # fonts
+        emacs-all-the-icons-fonts
+      ]
       ++ (with pkgs.nerd-fonts; [
         # fira-mono
         fantasque-sans-mono

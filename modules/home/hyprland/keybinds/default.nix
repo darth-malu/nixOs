@@ -62,7 +62,7 @@ bind =
 
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- freetube"
   "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
-  "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
+  "$mod, Q, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
 
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
@@ -91,22 +91,27 @@ bind =
 
 "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
 "$mod $cl, D, focuswindow, class:^(Emacs)$"
-"$mod , left, focuswindow, class:^(Emacs)$"
+"$mod , up, focuswindow, class:^(Emacs)$"
 
 # "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 "$mod $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
-"$mod $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
-"$mod , down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"$mod $cl, Q, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"$mod , left, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 
-"SUPER $cl, KP_Left, focuswindow, class:^(google-chrome)$"
-"SUPER $cl, C, focuswindow, class:^(google-chrome)$"
-"SUPER $cl, up, focuswindow, class:^(google-chrome)$"
+"$mod $cl, KP_Left, focuswindow, class:^(google-chrome)$"
+"$mod $cl, C, focuswindow, class:^(google-chrome)$"
+"$mod ,right, focuswindow, class:^(google-chrome)$"
+
+"$mod $cl, m, focuswindow, class:^(mpv)$"
+"$mod , down, focuswindow, class:^(mpv)$"
+
+"$mod $cl, F, focuswindow, class:^(Freetube)$"
 
 "$mod, m, togglespecialworkspace, magic"
 "$mod SHIFT, m, movetoworkspace, special:magic"
 
-"$mod, q, togglespecialworkspace, quanta"
-"$mod SHIFT, q, movetoworkspace, special:quanta"
+# "$mod, q, togglespecialworkspace, quanta"
+# "$mod SHIFT, q, movetoworkspace, special:quanta"
 
 "$mod, e, togglespecialworkspace, easy"
 "$mod SHIFT, e, movetoworkspace, special:easy"
@@ -167,13 +172,13 @@ bind =
   "$mod $sl, KP_Prior, movetoworkspace, 9"
   "$mod $sl, KP_Insert, movetoworkspace, 10"
 
-  "SUPER ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
-  "SUPER ,End,execr, killall .waybar-wrapped || uwsm app waybar"
+  "$mod ,Home,execr, killalll-SIGUSR1 .waybar-wrapped" # toggle waybar
+  "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 
 # gaps
-"SUPER $sl,KP_Enter, exec, gaps reset"
-"SUPER ,KP_Enter, exec, gaps custom"
-"SUPER ,$ar, exec, gaps toggle_gaps_out"#toggle gaps on/off
+"$mod $sl,KP_Enter, exec, gaps reset"
+"$mod ,KP_Enter, exec, gaps custom"
+"$mod ,$ar, exec, gaps toggle_gaps_out"#toggle gaps on/off
 
   "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
   "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1

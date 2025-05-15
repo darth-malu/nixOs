@@ -53,7 +53,7 @@ pkgs.writeShellScriptBin "songart" ''
 
   dunstify_preview() {
     local mpd_album_art="$(generate_preview)"
-    local mpd_format="$(mpc --format '[[󰎍    %title%  \n][      %audioformat%]\n   %artist%  \n    %album%  ]] | [%file%]' current)"
+    local mpd_format="$(mpc --format '[[󰎍    %title%  \n][      %audioformat%]\n    %artist%  \n    %album%  ]] | [%file%]' current)"
     local spotify_format=$(printf '%b' "$(playerctl metadata --format '󰎍    {{title}}\n   {{artist}}\n    {{album}}')")
     # local spotify_album_art=$(playerctl -p spotify metadata mpris:artUrl)
     local art=$(spotify_art 'art')

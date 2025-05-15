@@ -99,7 +99,7 @@ bind =
 #+begin_src nix :tangle default.nix
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- freetube"
   "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
-  "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
+  "$mod, Q, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
 #+end_src
 *** kitty
 #+begin_src nix :tangle default.nix
@@ -157,28 +157,38 @@ see hyprswitch:
 #+begin_src nix :tangle default.nix
 "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
 "$mod $cl, D, focuswindow, class:^(Emacs)$"
-"$mod , left, focuswindow, class:^(Emacs)$"
+"$mod , up, focuswindow, class:^(Emacs)$"
 #+end_src
 **** qutebrowser
 #+begin_src nix :tangle default.nix
 # "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 "$mod $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
-"$mod $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
-"$mod , down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"$mod $cl, Q, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"$mod , left, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 #+end_src
 **** chrome
 #+begin_src nix :tangle default.nix
-"SUPER $cl, KP_Left, focuswindow, class:^(google-chrome)$"
-"SUPER $cl, C, focuswindow, class:^(google-chrome)$"
-"SUPER $cl, up, focuswindow, class:^(google-chrome)$"
+"$mod $cl, KP_Left, focuswindow, class:^(google-chrome)$"
+"$mod $cl, C, focuswindow, class:^(google-chrome)$"
+"$mod ,right, focuswindow, class:^(google-chrome)$"
 #+end_src
+**** mpv
+#+begin_src nix :tangle default.nix
+"$mod $cl, m, focuswindow, class:^(mpv)$"
+"$mod , down, focuswindow, class:^(mpv)$"
+#+end_src
+**** freetube
+#+begin_src nix :tangle default.nix
+"$mod $cl, F, focuswindow, class:^(Freetube)$"
+#+end_src
+
 *** special workspaces / scratch
 #+begin_src nix :tangle default.nix
 "$mod, m, togglespecialworkspace, magic"
 "$mod SHIFT, m, movetoworkspace, special:magic"
 
-"$mod, q, togglespecialworkspace, quanta"
-"$mod SHIFT, q, movetoworkspace, special:quanta"
+# "$mod, q, togglespecialworkspace, quanta"
+# "$mod SHIFT, q, movetoworkspace, special:quanta"
 
 "$mod, e, togglespecialworkspace, easy"
 "$mod SHIFT, e, movetoworkspace, special:easy"
@@ -258,17 +268,17 @@ see hyprswitch:
 
 *** waybar
 #+begin_src nix :tangle default.nix
-  "SUPER ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
-  "SUPER ,End,execr, killall .waybar-wrapped || uwsm app waybar"
+  "$mod ,Home,execr, killalll-SIGUSR1 .waybar-wrapped" # toggle waybar
+  "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 #+end_src
 *** gaps script
 **** TODO make it launch in bash major mode
 [[file:~/Shibuya/modules/home/hyprland-helper/scripts/gaps.nix][The gaps script]]
 #+begin_src nix :tangle default.nix
 # gaps
-"SUPER $sl,KP_Enter, exec, gaps reset"
-"SUPER ,KP_Enter, exec, gaps custom"
-"SUPER ,$ar, exec, gaps toggle_gaps_out"#toggle gaps on/off
+"$mod $sl,KP_Enter, exec, gaps reset"
+"$mod ,KP_Enter, exec, gaps custom"
+"$mod ,$ar, exec, gaps toggle_gaps_out"#toggle gaps on/off
 #+end_src
 
 *** move workspace/window to different monitors

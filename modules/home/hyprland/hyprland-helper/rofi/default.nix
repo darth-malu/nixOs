@@ -46,8 +46,8 @@
         display-filebrowser = " ";
         display-window = " "; # 
         ml-row-down = "ScrollDown";
-        # me-select-entry = "";
-        # me-accept-entry = "MousePrimary";
+        me-select-entry = "";
+        me-accept-entry = "MousePrimary";
         kb-delete-entry = "Shift+space"; # TODO: make this backspace
         auto-select = true; # When one entry is left, automatically select it.
         monitor = 4; # 1 - currently focused monitor, 2;; - currently focused window, 3 - mouse (see more in docs), 4 - monitor with the focused window, 5-monitor with mouse pointer::

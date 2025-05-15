@@ -1,9 +1,5 @@
-{ osConfig, ... }:
+{ osConfig, pkgs, ... }:
 
-let
-  fromSecond = "\${@:2}";
-  fromThird = "\${@:3}";
-in
 {
   imports = [
     # ./alias.nix
@@ -25,6 +21,7 @@ in
       "ls"
       "rg"
       "bemoji"
+      "yazi"
       "lss"
       "lxx"
       "cd"
@@ -47,7 +44,22 @@ in
     initExtra =
       # during interactive shell init
       ''
-
+        yT() {
+          case $1 in
+            "a")
+              yt-dlp -P "$HOME/Music/ytDlp-audio/" --extract-audio --audio-format mp3 "''${@:2}"
+              ;;
+            "v")
+              yt-dlp -P "$HOME/Music/musicVideos/" "''${@:2}"
+              ;;
+            "k")
+              yt-dlp -P "$HOME/Videos/YtDlp/keniaWOKE/" "''${@:2}"
+              ;;
+             *)
+              printf '%s\n' "Invalid option. Usage: yT a|mv|k 'url1' 'url2' ..."
+              ;;
+            esac
+        }
         #complete command + file names. Investigate if needed
         #complete -cf sudo
 

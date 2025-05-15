@@ -123,6 +123,9 @@ in
       # Entertainment
       lollypop
       mpc-cli
+      ymuse
+      cantata
+      youtube-tui # https://siriusmart.github.io/youtube-tui/
       spotify
       easyeffects
 
@@ -226,6 +229,7 @@ in
       # komikku # broken
       mangal
       ani-cli
+      miru
       #syncyomi - sync tachiyomi progress across devices
     ])
     ++ (with pkgs; [

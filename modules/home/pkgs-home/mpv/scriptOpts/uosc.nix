@@ -2,18 +2,24 @@
   # Display style of current position. available: line, bar
   timeline_style = "line";
   # Line display style config
-  timeline_line_width = 2;
+  timeline_line_width = 1; # 2::
   # Render cache indicators for streaming content
   timeline_cache = true;
+  # Timeline size when fully expanded, in pixels, 0 to disable
+  timeline_size = 20; # 40::
+  # Top border of background color to help visually separate timeline from video
+  timeline_border = 1;
+
   controls = "menu,gap,subtitles,<has_many_audio>audio,<has_many_video>video,<has_many_edition>editions,<stream>stream-quality, gap, space, space, shuffle, loop-playlist, loop-file, gap, prev, items, next, gap, fullscreen";
+
   # Where to display volume controls: none, left, right
   volume = "none";
-  volume_size = 20;
+  volume_size = 20; # 40::
   volume_border = 1;
   volume_step = 1;
   #volume_persistency=
   ## Playback speed widget: mouse drag or wheel to change, click to reset
-  speed_step = 0.4;
+  speed_step = 0.4; # 0.1
   speed_step_is_factor = false;
   # speed_persistency=
 
@@ -21,6 +27,8 @@
   # Uses `load_types` config below to determine what type of file to load next.
   # When enabled, usoc will set mpv config `keep-open` to `yes`, and `keep-open-pause` to `no`.
   autoload = true;
+  # Hide UI when mpv autohides the cursor. Timing is controlled by `cursor-autohide` in `mpv.conf` (in milliseconds).
+  autohide = true;
   # Enable uosc's playlist/directory shuffle mode
   # This simply makes the next selected playlist or directory item be random, just
   # like any other player in the world. It also has an easily togglable control button.
@@ -28,7 +36,6 @@
 
   # Move files to trash (recycle bin) when deleting files. Dependencies:
   # - Linux: `sudo apt install trash-cli`
-  # - MacOS: `brew install trash`
   use_trash = true;
   default_directory = "~/";
   #
@@ -46,18 +53,26 @@
   # Prefix the path with `!` to force all subtitles to be saved there. Example: `!~~/subtitles`
   subtitles_directory = "~~/subtitles";
 
+  # Scale the interface by this factor
+  scale = 0.8; # 1::
+  # Scale in fullscreen
+  scale_fullscreen = 1; # 1.3::
   # Use only bold font weight throughout the whole UI
   font_bold = false;
+  # Adjust the text scaling to fit your font
+  font_scale = 1;
+
+  # Border radius of buttons, menus, and all other rectangles
+  border_radius = 4;
+
   # One of `total`, `playtime-remaining` (scaled by the current speed), `time-remaining` (remaining length of file)
   destination_time = "playtime-remaining";
   # Display sub second fraction in timestamps up to this precision
   time_precision = 0;
   # Display stream's buffered time in timeline if it's lower than this amount of seconds, 0 to disable
   buffered_time_threshold = 60;
-  # Hide UI when mpv autohides the cursor. Timing is controlled by `cursor-autohide` in `mpv.conf` (in milliseconds).
-  autohide = true;
   # Can be: flash, static, manual (controlled by flash-pause-indicator and decide-pause-indicator commands)
-  pause_indicator = "static";
+  pause_indicator = "flash";
   # Sizes to list in stream quality menu
   # stream_quality_options = "4320,2160,1440,1080,720,480,360,240,144";
   stream_quality_options = "1080,720";
@@ -78,12 +93,16 @@
   # A comma separated list of element IDs to disable. Available IDs:
   #   window_border, top_bar, timeline, controls, volume,
   #   idle_indicator, audio_indicator, buffering_indicator, pause_indicator
-  # disable_elements=
+  disable_elements = [
+    "pause_indicator"
+    # "top_bar"
+    "window_border"
+  ];
   #
   ## List of mpv.conf properties respected by uosc:
   # osd-font, osd-playlist-entry, slang
 
-  controls_size = 32;
+  controls_size = 32; # 32::
   controls_margin = 8;
   controls_spacing = 2;
   # controls_persistency=

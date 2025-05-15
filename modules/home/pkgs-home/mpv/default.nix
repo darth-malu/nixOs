@@ -1,26 +1,27 @@
 { pkgs, osConfig, ... }:
-let
 
-mpvScripts = with pkgs.mpvScripts; [
-  mpris
-  # mpv-discord #TODO too much work lol
-  # sponsorblock # TODO not need?
-  quality-menu # allows you to change the streamed video and audio quality (ytdl-format) on the fly.
-  youtube-upnext # C-u (configurablea) , space to append
-  mpv-cheatsheet # use ?
-  mpv-playlistmanager # S-Enter to add to playlist
-  # uosc
-  modernx-zydezu
-  thumbfast # thumbnails
-];
-
-in
 {
   programs.mpv = {
     enable = true;
 
-scripts = mpvScripts;
+scripts = with pkgs.mpvScripts; [
+  mpris
+  # mpv-discord #TODO too much work lol
+  # sponsorblock # TODO not need?
+  # quality-menu
+  youtube-upnext # C-u (configurable) , space to append
+  mpv-cheatsheet # use ?
+  mpv-playlistmanager # S-Enter to add to playlist
+  uosc
+  memo # recent files menu
+  # modernx-zydezu
+  thumbfast
+];
+
 scriptOpts = {
+
+# uosc = import ./scripts/uosc.nix;
+uosc = import ./scriptOpts/uosc.nix;
 
 modernx-zydezu = import ./scriptOpts/modernx-zydezu.nix;
 
@@ -42,11 +43,27 @@ Y = "script-binding quality_menu/video_formats_toggle";
 "ctrl+s" = "async screenshot"; # ! Utils > Screenshot
 "esc" = "quit"; # ! Quit
 
-};
+"s" = "script-binding uosc/subtitles"; # ! Subtitles
+"a" = "script-binding uosc/audio"; # ! Audio tracks
+"q" = "script-binding uosc/stream-quality"; # ! Stream quality
+"p" = "script-binding uosc/items"; # ! Playlist
+"c" = "script-binding uosc/chapters"; # ! Chapters
+"o" = "script-binding uosc/open-file"; # ! Navigation > Open file
+"O" = "script-binding uosc/show-in-directory"; # ! Utils > Show in directory
+"alt+i" = "script-binding uosc/keybinds"; # ! Utils > Key bindings
+# "alt+>" = "script-binding uosc/delete-file-next"; # ! Navigation > Delete file & Next
+# "alt+<" = "script-binding uosc/delete-file-prev"; # ! Navigation > Delete file & Prev
+# "alt+esc" = "script-binding uosc/delete-file-quit"; # ! Navigation > Delete file & Quit
+          # set video-aspect-override "-1"         #! Utils > Aspect ratio > Default
+          # set video-aspect-override "16:9"       #! Utils > Aspect ratio > 16:9
+          # set video-aspect-override "4:3"        #! Utils > Aspect ratio > 4:3
+          # set video-aspect-override "2.35:1"     #! Utils > Aspect ratio > 2.35:1
+          # script-binding uosc/audio-device       #! Utils > Audio devices
+          # script-binding uosc/editions           #! Utils > Editions
+          # script-binding uosc/open-config-directory #! Utils > Open config directory
+          # script-binding uosc/update             #! Utils > Update uosc
 
-extraInput = ''
- b  quit #! Quit
-'';
+};
 
 profiles = {
   # mpv/mpv.conf

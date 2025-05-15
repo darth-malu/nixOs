@@ -11,7 +11,7 @@ scripts = with pkgs.mpvScripts; [
   # quality-menu
   youtube-upnext # C-u (configurable) , space to append
   mpv-cheatsheet # use ?
-  mpv-playlistmanager # S-Enter to add to playlist
+  # mpv-playlistmanager # S-Enter to add to playlist
   uosc
   memo # recent files menu
   # modernx-zydezu
@@ -24,8 +24,6 @@ scriptOpts = {
 uosc = import ./scriptOpts/uosc.nix;
 
 modernx-zydezu = import ./scriptOpts/modernx-zydezu.nix;
-
-playlistmanager = import ./scriptOpts/playlistManager.nix;
 
 };
 
@@ -82,7 +80,7 @@ profiles = {
 config = {
 
 osd-on-seek = false;
-osd-font = "VictorMono Nerd Font";
+osd-font = "quicksand"; #VictorMono Nerd Font
 osd-font-size = 38; # 55::
 osd-bar = false; # nice with uosc
 osc = false; # for modernx
@@ -138,7 +136,7 @@ vo =
     "gpu";
 
 # ytdl-format = "bestvideo+bestaudio"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
-ytdl-format = "bv*[height<=1080]+ba/b[height<=1080]"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
+ytdl-format = "bv[height<=1080]+ba/b[height<=1080]"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
 
 cache = true; # yes, no , auto
 cache-pause = true; # buffering insteaad of stutter :)

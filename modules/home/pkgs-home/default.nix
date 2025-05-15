@@ -63,6 +63,7 @@ in
       sway-audio-idle-inhibit
       wev
       # tldr - using emacs one lol
+
       # disk management
       duf
       ncdu
@@ -101,7 +102,7 @@ in
 
       ventoy-full # usb imager #woeusb
 
-      # perfmon
+      # perfomance monitoring
       mission-center
       iftop
       nethogs
@@ -121,9 +122,9 @@ in
       bluemail # TODO move to mu4e
 
       # Entertainment
-      lollypop
+      # lollypop # cantata better
       mpc-cli
-      ymuse
+      # ymuse # rudimentary
       cantata
       youtube-tui # https://siriusmart.github.io/youtube-tui/
       spotify
@@ -131,11 +132,10 @@ in
 
       # productivity
       buku # TODO: test
-      groff
-      ghostscript
+      # groff
+      # ghostscript
       # obsidian
       # glow # TODO: test this extensively # see quart for blog with markdown
-      #productivity
       #blender
       # blender-hip # accelarated render
       # freeglut

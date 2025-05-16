@@ -68,13 +68,20 @@ profiles = {
   fast = {
     vo =
       if osConfig.networking.hostName == "carthage" then
-        "vaapi"
-      else if osConfig.networking.hostName == "tangier" then
-        # "vdpau"
-        "nvdec"
+        "gpu"
+        # "vaapi"
       else
-        "";
+        # "vdpau"
+        "nvdec" ;
   }; # video output backend to use
+  high-quality = {
+    vo =
+      if osConfig.networking.hostName == "carthage" then
+        "gpu-next" # change to gpu if issues
+      else
+        # "vdpau"
+        "nvdec" ;
+  };
 };
 
 config = {
@@ -97,24 +104,13 @@ audio-device =
 
 fs = false; # fullscreen
 # fs-screen = # all, current, 0-32
-# keep-open = true; # after playback ends - TODO make script for youtube. close otherwise
-# livemarkers = #FIXME test if failed
-#   if osConfig.networking.hostName == "carthage" then
-#     true
-#   else if osConfig.networking.hostName == "tangier" then
-#     false
-#   else
-#     false;
-# force-window = false; # FIXME not working for audio # immediate, true, | Do not wait with showing the video window until it has loaded. (This will resize the window once video is loaded. Also always shows a window with audio.)
-# sub-bold = true;
 
 profile =
   if osConfig.networking.hostName == "carthage" then
     "high-quality"
-  else if osConfig.networking.hostName == "tangier" then
-    "fast"
   else
-    "";
+    "fast";
+
 gpu-context = "wayland";
 
 video-sync =
@@ -125,9 +121,8 @@ video-sync =
   else
     "audio";
 
-hwdec = "auto"; # hardware decoding, auto,auto-safe, vaapi (unsafe), set vaapi only if necessary
+hwdec = "auto"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
 vo =
-  # video output drivers experimental (gpu-next ) should be better, gpu,NOTE vaapi lowquality, vdpau -x11
   if osConfig.networking.hostName == "carthage" then
     "gpu-next"
   else if osConfig.networking.hostName == "tangier" then

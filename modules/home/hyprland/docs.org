@@ -10,7 +10,7 @@
 | =kill=      | go into kill mode - click an app to close it                                                                     |                           |
 | =setcursor= | Sets the cursor theme and reloads the cursor manager. Will set the theme for everything except GTK, because GTK. |                           |
 | =notify=    | Sends a notification using the built-in Hyprland notification system.                                            |                           |
-| =info=    |                                                                                                                  |                           |
+| =info=      |                                                                                                                  |                           |
 | =batch=     |                                                                                                                  |                           |
 | =flags=     |                                                                                                                  |                           |
 |-----------+------------------------------------------------------------------------------------------------------------------+---------------------------|

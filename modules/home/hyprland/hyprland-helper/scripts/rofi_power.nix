@@ -141,7 +141,7 @@ run_cmd() {
         amixer set Master mute
         systemctl suspend
         ;;
-      '--logout') uwsm stop ;; #hyprctl dispatch exit
+      '--logout') uwsm stop ;; #hyprctl dispatch exit -non-uwsm #uwsm stop -uwsm
       esac
     else
       exit 0

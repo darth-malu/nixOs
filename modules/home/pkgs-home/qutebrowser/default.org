@@ -35,32 +35,31 @@
 * searchEngines
 #+begin_src nix :tangle default.nix
   searchEngines = {
-    w = "https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1";
-    aw = "https://wiki.archlinux.org/?search={}";
-    nw = "https://wiki.nixos.org/index.php?search={}";
-    mn = "https://mynixos.com/search?q={}";
-    npS = "https://search.nixos.org/packages?channel=24.11&from=0&size=50&sort=relevance&type=packages&query={}";
-    npU = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
-    # g = "https://www.google.com/search?hl=en&amp;q={}";
-    g = "https://www.google.com/search?hl=en&q={}";
-    b = "https://search.brave.com/search?q={}";
-    yt =  "https://www.youtube.com/results?search_query={}";
+    w   =  "https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1";
+    aw  =  "https://wiki.archlinux.org/?search={}";
+    nw  =  "https://wiki.nixos.org/index.php?search={}";
+    mn  =  "https://mynixos.com/search?q={}";
+    nps =  "https://search.nixos.org/packages?channel=24.11&from=0&size=50&sort=relevance&type=packages&query={}";
+    npu =  "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
+    # g =  "https://www.google.com/search?hl=en&amp;q={}";
+    g   =  "https://www.google.com/search?hl=en&q={}";
+    b   =  "https://search.brave.com/search?q={}";
+    yt  =  "https://www.youtube.com/results?search_query={}";
     gh  =  "https://github.com/search?o=desc&q={}&s=stars";
-    t   =    "https://www.thesaurus.com/browse/{}";
+    t   =  "https://www.thesaurus.com/browse/{}";
   };
 #+end_src
-* settings
-url.searchengines
-source: qute://settings
+* settings =config.py=
 #+begin_src nix :tangle default.nix
 settings = {
-  # config.py
-  colors.hints = {
-    bg = "#000000";
-    fg = "#ffffff";
+  colors = {
+    hints = {
+        bg = "#000000";
+        fg = "#ffffff";
+    };
+    tabs.bar.bg = "#000000";
+    webpage.darkmode.enabled = true;
   };
-  colors.tabs.bar.bg = "#000000";
-  colors.webpage.darkmode.enabled = true;
   tabs = {
     close_mouse_button = "right"; # right, middle::
     # position = "top";
@@ -77,12 +76,13 @@ settings = {
     session = true;
     interval = 10000; # milliseconds
   };
-  # url.start_pages = "https://www.google.com"; #FIXME not work
-  # tabs.tabs_are_windows = true; #wack lol
 };
 #+end_src
 
-* extraConfig
+url.searchengines
+source: qute://settings
+outputs to: @@config.py@@
+* extraConfig =config.py=
 extra lines added to qutebrowser config.py
 
 #+begin_src nix :tangle no

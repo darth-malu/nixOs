@@ -19,14 +19,14 @@
       "$yazi_kitty" = "uwsm app -s a -- kitty -1 --instance-group yazi -e yazi";
       "$yazi_ghostty" = "uwsm app -s a -- ghostty -e yazi";
 
-      "$file_browser_rofi" = "rofi -show filebrowser -sidebar-mode -theme-str 'window {height: 620px; width : 800px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
+      "$file_browser_rofi" = "rofi -show filebrowser -sidebar-mode -theme-str 'window {height: 820px; width : 1000px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
       "$rofi_open_windows" =  "rofi -show window -theme-str 'window {width : 800px;}' -theme-str 'listview {lines: 8; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
       # "-theme-str 'window {width : 800px; fullscreen: true;}" +
       # " -theme-str 'element {background-image: linear-gradient(white/5%, white/20%);border-color: lightblue /15%;}'";
       # "$menu_rofi" = "rofi -show drun -run-command \"hyprctl dispatch -- exec [workspace emptym] uwsm app -s a -- {cmd}\"";
       "$menu_rofi" = "rofi -show drun";
       # "$emoji_rofi" = "rofi -show emoji";
-      "$clip_rofi" = "cliphist list | rofi -dmenu | cliphist decode | wl-copy";
+      "$clip_rofi" = "cliphist list | rofi -dmenu -theme-str 'window {width : 650px;}' -p '' | cliphist decode | wl-copy";
       # "$calc_rofi" = "rofi -show calc";
       # "$obsidian_rofi" = "rofi -show obsidian";
       "$gaps" = "gaps toggle_gaps_out";
@@ -62,7 +62,7 @@ bind =
 
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- freetube"
   "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
-  "$mod, Q, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
+  "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
 
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
@@ -95,7 +95,7 @@ bind =
 
 # "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 "$mod $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
-"$mod $cl, Q, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"$mod $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 "$mod , left, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 
 "$mod $cl, KP_Left, focuswindow, class:^(google-chrome)$"

@@ -56,7 +56,7 @@
               yt-dlp -P "$HOME/Videos/YtDlp/keniaWOKE/" "''${@:2}"
               ;;
              *)
-              printf '%s\n' "Invalid option. Usage: yT a|mv|k 'url1' 'url2' ..."
+              printf '%s\n' "Invalid option. Usage: yT a| v|k 'url1' 'url2' ..."
               ;;
             esac
         }

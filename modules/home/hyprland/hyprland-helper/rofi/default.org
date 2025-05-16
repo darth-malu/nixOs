@@ -1,0 +1,156 @@
+#+title: rofi
+
+* start
+#+begin_src nix :tangle default.nix
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+#+end_src
+
+* imports
+#+begin_src nix :tangle default.nix
+{
+  imports = [ ./theme.nix ];
+#+end_src
+
+* options
+#+begin_src nix :tangle default.nix
+options.rofi = {
+  enable = lib.mkEnableOption "rofi";
+};
+#+end_src
+
+* config
+** enable
+#+begin_src nix :tangle default.nix
+config = lib.mkIf config.rofi.enable {
+  programs.rofi = {
+    enable = pkgs.lib.mkDefault true;
+#+end_src
+
+** top-level config
+#+begin_src nix :tangle default.nix
+package = pkgs.rofi-wayland;
+cycle = true;
+location = "center";
+font = "SpaceMono Nerd Font 12";
+# plugins = with pkgs; [ rofi-emoji rofi-obsidian rofi-calc ];
+terminal = "${pkgs.kitty}/bin/kitty";
+# terminal = "uwsm app -s a kitty";
+# package = pkgs-unstable.rofi-wayland.override { plugins = with pkgs-unstable; [ rofi-emoji rofi-obsidian rofi-calc ]; };
+#yoffset = 3;
+#+end_src
+
+** extraConfig
+*** start
+#+begin_src nix :tangle default.nix
+extraConfig = {
+#+end_src
+
+*** run-command
+#+begin_src nix :tangle default.nix
+run-command = "hyprctl dispatch -- exec [workspace emptym] uwsm app -s a -- {cmd}";
+# rofi -e "my message"
+#+end_src
+*** modes
+#+begin_src nix :tangle default.nix
+modes = [
+  "window"
+  "drun"
+  "filebrowser"
+];
+#+end_src
+
+*** display-{mode} /string/
+#+begin_src nix :tangle default.nix
+display-drun = " ";
+display-run = " ";
+display-dmenu = " ";
+display-filebrowser = " ";
+display-window = " "; # 
+#+end_src
+
+*** window settings
+#+begin_src nix :tangle default.nix
+window-thumbnail = true;
+# hide-active-window = true;
+window-format = "{w}{c}.{t}";
+#+end_src
+
+*** click-to-exit
+#+begin_src nix :tangle default.nix
+click-to-exit = true;
+#+end_src
+
+*** kb-primary kb-secondary
+#+begin_src nix :tangle default.nix
+kb-primary-paste = "Control+V,Shift+Insert";
+kb-secondary-paste = "Control+v,Insert";
+# kb-toggle-case-sensitivity #TODO: assign later
+# icon-theme = "candy icons";
+# icon-size = 58;
+#+end_src
+
+*** select stuff
+#+begin_src nix :tangle default.nix
+ml-row-down = "ScrollDown";
+hover-select = true;
+me-select-entry = "";
+me-accept-entry = "MousePrimary";
+kb-delete-entry = "Shift+space"; # TODO: make this backspace
+auto-select = true; # When one entry is left, automatically select it.
+#+end_src
+
+*** desktop cache
+#+begin_src nix :tangle default.nix
+drun-use-desktop-cache = true; # slow PC, Build and use a cache with the content of desktop files to reload when enabled -> -drun-reload-desktop-cache flag
+drun-reload-desktop-cache = true;
+# pid = "/home/malu/.rofi.pid"; #FIXME:
+# replace = true;
+#+end_src
+
+*** misc
+#+begin_src nix :tangle default.nix
+monitor = 4; # 1 - currently focused monitor, 2;; - currently focused window, 3 - mouse (see more in docs), 4 - monitor with the focused window, 5-monitor with mouse pointer::
+
+# dpi = 1; # 0 - aauto-detect based on x11 screen size(similar to i3 and gtk), 1 - auto based on monitor rofi is on
+# matching = "normal"; #normal ::, regex, glob(slower for large list), fuzzy, prefix
+# no-lazy-grab = true; # Disables lazy grab, this forces the keyboard being grabbed before gui is shown.
+
+scroll-method = 1; # 0 page::, 1 - continuous
+#+end_src
+* DOCS
+:source:[[https://davatorium.github.io/rofi/current/rofi.1/]]
+** available modes
+| window  |   |
+| windocd |   |
+| run     |   |
+| drun    |   |
+| ssh     |   |
+| keys    |   |
+| script  |   |
+| combi   |   |
+** dmenu
+:source:[[https://davatorium.github.io/rofi/current/rofi-dmenu.5/]]
+*** dmenu specific commandline flags
++ ~-p~ prompt
+  can specify emoji here 🫠
+#+begin_src sh
+echo "a|b|c|d|e" | rofi -sep '|' -dmenu -p "monkey"
+#+end_src
++ ~-l~ number of lines to show 25::
+  #+begin_src sh
+rofi -dmenu -l 25
+  #+end_src
++ ~i~ case insensitive search
+
+* EOF
+#+begin_src nix :tangle default.nix
+}; # end of programs.rofi
+ }; #end of config
+  }; #imports
+   } #EOF - end of attrSet
+#+end_src

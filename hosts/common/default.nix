@@ -20,26 +20,40 @@ boot = {
 };
 
 networking = {
-    wireless = {
-        enable = false; # wpa_supplicant enable
-        userControlled.enable = true; # wpa_supplicant_gui
-    };
-    # hostId = (lib.mkIf config.networking.hostName == "tangier") "92d08a60"; #FIXME: see syntax on this attempt to call something which is not a function but a Boolean: false
-    networkmanager = {
-        enable = true; # might be on by default # add user to group
-        dns = "none"; # dnsmasq, default::, systemd-resolved
-        # wifi.powersave = if config.networking.hostName == "tangier" then true else false;
-        wifi = {
-            powersave = true; # TODO see if has issues?
-            backend = "wpa_supplicant"; # wpa_supplicant::, iwd
-        };
-        logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
-    };
-    #NOTE: self managing dns test
-    dhcpcd.enable = false;
-    useDHCP = lib.mkDefault true;
-    # interfaces.enp5s0.useDHCP = lib.mkDefault true;
-    nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
+
+wireless = {
+  enable = false; # wpa_supplicant enable
+  userControlled.enable = true; # wpa_supplicant_gui
+};
+
+networkmanager = {
+  enable = true; # might be on by default # add user to group
+  dns = "none"; # dnsmasq, default::, systemd-resolved
+  wifi = {
+    powersave = true; # TODO see if has issues?
+    backend = "wpa_supplicant"; # wpa_supplicant::, iwd
+  };
+  logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
+};
+
+modemmanager = {
+  enable = true;
+};
+
+timeServers = [
+  "0.nixos.pool.ntp.org"
+  "1.nixos.pool.ntp.org"
+  "2.nixos.pool.ntp.org"
+  "3.nixos.pool.ntp.org"
+];
+
+dhcpcd.enable = true; # TODO discern which to keep or not
+useDHCP =  false;
+interfaces.enp5s0.useDHCP = true; #overrides default in useDHCP unless null
+# interfaces.wlp4s0.useDHCP = true;
+# interfaces.enp5s0.useDHCP = lib.mkDefault true;
+nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
+
 };
 
 hardware = {

@@ -34,28 +34,71 @@ boot = {
 #+end_src
 
 * networking stuffs
+** start
 #+begin_src nix :tangle default.nix
 networking = {
-    wireless = {
-        enable = false; # wpa_supplicant enable
-        userControlled.enable = true; # wpa_supplicant_gui
-    };
-    # hostId = (lib.mkIf config.networking.hostName == "tangier") "92d08a60"; #FIXME: see syntax on this attempt to call something which is not a function but a Boolean: false
-    networkmanager = {
-        enable = true; # might be on by default # add user to group
-        dns = "none"; # dnsmasq, default::, systemd-resolved
-        # wifi.powersave = if config.networking.hostName == "tangier" then true else false;
-        wifi = {
-            powersave = true; # TODO see if has issues?
-            backend = "wpa_supplicant"; # wpa_supplicant::, iwd
-        };
-        logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
-    };
-    #NOTE: self managing dns test
-    dhcpcd.enable = false;
-    useDHCP = lib.mkDefault true;
-    # interfaces.enp5s0.useDHCP = lib.mkDefault true;
-    nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
+#+end_src
+
+** wireless
+#+begin_src nix :tangle default.nix
+wireless = {
+  enable = false; # wpa_supplicant enable
+  userControlled.enable = true; # wpa_supplicant_gui
+};
+#+end_src
+
+** networkmanager
+#+begin_src nix :tangle default.nix
+networkmanager = {
+  enable = true; # might be on by default # add user to group
+  dns = "none"; # dnsmasq, default::, systemd-resolved
+  wifi = {
+    powersave = true; # TODO see if has issues?
+    backend = "wpa_supplicant"; # wpa_supplicant::, iwd
+  };
+  logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
+};
+#+end_src
+
+*** extra
+fccUnlockScripts: List of FCC unlock scripts to enable on the system, behaving as described in https://modemmanager.org/docs/modemmanager/fcc-unlock/#integration-with-third-party-fcc-unlock-tools.
+example:
+#+begin_src nix
+[{ id = "03f0:4e1d"; path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/03f0:4e1d"; }]
+#+end_src
+
+** modemmanager
+#+begin_src nix :tangle default.nix
+modemmanager = {
+  enable = true;
+};
+#+end_src
+
+** supplicant
+** time servers
+#+begin_src nix :tangle default.nix
+timeServers = [
+  "0.nixos.pool.ntp.org"
+  "1.nixos.pool.ntp.org"
+  "2.nixos.pool.ntp.org"
+  "3.nixos.pool.ntp.org"
+];
+#+end_src
+
+** dhcp
+useDHCP: Whether to use DHCP to obtain an IP address and other configuration for all network interfaces that do not have any manually configured IPv4 addresses.
+
+#+begin_src nix :tangle default.nix
+dhcpcd.enable = true; # TODO discern which to keep or not
+useDHCP =  false;
+interfaces.enp5s0.useDHCP = true; #overrides default in useDHCP unless null
+# interfaces.wlp4s0.useDHCP = true;
+# interfaces.enp5s0.useDHCP = lib.mkDefault true;
+nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
+#+end_src
+
+** end
+#+begin_src nix :tangle default.nix
 };
 #+end_src
 ** TODO investigate issue with school wpa

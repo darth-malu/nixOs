@@ -123,7 +123,7 @@ system = "x86_64-linux"; # system = builtins.currentSystem;??
     };
 #+end_src
 
-*** allowUnfreePredicate | permittedInsecurePackages
+*** pkgs | allowUnfreePredicate | permittedInsecurePackages
 #+begin_src nix :tangle flake.nix
 pkgs = import nixpkgs {
   inherit  system;
@@ -247,10 +247,10 @@ tangier =
 
 *** teal environment / python
 #+begin_src nix :tangle flake.nix
-devShells.${system}.default = pkgs.mkShell {
-    buildInputs = with pkgs; [
+devShells.default = pkgs.mkShell {
+    packages = [
         #inputs.python-nixpkgs.legacyPackages.${system}.python313
-        (python3.withPackages (python-pkgs: with python-pkgs; [
+        (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
         pandas
         numpy
         seaborn
@@ -258,7 +258,13 @@ devShells.${system}.default = pkgs.mkShell {
         tkinter
         pip
         requests
+        ttkbootstrap
         ]))
+    ];
+
+    env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+      pkgs.stdenv.cc.cc.lib
+      pkgs.libz
     ];
     # shellHook = ''
     #     if [ ! -d .venv ]; then
@@ -267,7 +273,7 @@ devShells.${system}.default = pkgs.mkShell {
     #     source .venv/bin/activate
     # '';
     shellHook = ''
-                echo "welcome to your dev env lul"
+      echo "welcome to your dev env lul"
     '';
 };
 #+end_src
@@ -284,10 +290,7 @@ env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
   pkgs.stdenv.cc.cc.lib
 ];
 #+end_src
-**** nix way - bundle packages in python instance
-Then use nix-shell
-pypkgs / p
-#+begin_src nix :tangle pythonShell.nix
+#+begin_src nix :tangle no
 pkgs.mkShell = {
     packages = [
     (pkgs.python3.withPackages(p: with p[
@@ -296,6 +299,40 @@ pkgs.mkShell = {
     ]))
     ];
 }
+#+end_src
+**** nix way - bundle packages in python instance
+Then use nix-shell
+pypkgs / p
+*** guy
+#+begin_src nix :tangle no
+    devShells.${system} = {
+      simple = pkgs.mkShell {
+        packages = [ pkgs.hello ];
+        shellHook = ''
+          ${pkgs.hello}/bin/hello
+        '';
+      };
+
+      default = pkgs.mkShell {
+        packages = [
+          # newer versions of redis are not packaged in
+          # nixpkgs, so we're using valkey, an open-source
+          # fork of redis maintained by the Linux Foundation
+          # pkgs.valkey
+
+          # pkgs.nodejs_22
+          # pkgs.nodePackages.pnpm
+
+          # the friendly interactive shell!
+          pkgs.fish
+        ];
+
+        # shellHook = ''
+          # ${pkgs.valkey}/bin/valkey-server ${valkeyConf} &
+          # exec fish
+        # '';
+      };
+    };
 #+end_src
 
 *** shellHook

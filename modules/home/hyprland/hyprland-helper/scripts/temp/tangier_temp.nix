@@ -12,8 +12,8 @@ pkgs.writeShellScriptBin "temp" ''
   }
 
   celcius_gpu_temp () {
-      local temp
-      temp="$(raw_gpu_temp)"
+      # local temp
+      local temp="$(raw_gpu_temp)"
       echo -n "$(( temp/1000 ))"
   }
 

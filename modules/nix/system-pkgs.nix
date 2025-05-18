@@ -67,7 +67,7 @@
         pwvucontrol
         playerctl
         wireplumber
-        ntfs3g
+        # ntfs3g
         lsof # list open files/ports**
         usbutils # lsusb, usb-devices, usb-view(optional gui)
         jmtpfs # mtp drivers

@@ -11,9 +11,8 @@
 
   config = lib.mkIf config.gnome.enable {
     services = {
-      # gnome.core-utilities.enable = false; # disable all gnome apps
       gnome = {
-        core-utilities.enable = true;
+        core-apps.enable = true;
         localsearch.enable = false;
         tinysparql.enable = false;
       };

@@ -139,10 +139,10 @@ tangier =
     ];
   };
 
-devShells.${system}.default = pkgs.mkShell {
-    buildInputs = with pkgs; [
+devShells.default = pkgs.mkShell {
+    packages = [
         #inputs.python-nixpkgs.legacyPackages.${system}.python313
-        (python3.withPackages (python-pkgs: with python-pkgs; [
+        (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
         pandas
         numpy
         seaborn
@@ -150,7 +150,13 @@ devShells.${system}.default = pkgs.mkShell {
         tkinter
         pip
         requests
+        ttkbootstrap
         ]))
+    ];
+
+    env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+      pkgs.stdenv.cc.cc.lib
+      pkgs.libz
     ];
     # shellHook = ''
     #     if [ ! -d .venv ]; then
@@ -159,7 +165,7 @@ devShells.${system}.default = pkgs.mkShell {
     #     source .venv/bin/activate
     # '';
     shellHook = ''
-                echo "welcome to your dev env lul"
+      echo "welcome to your dev env lul"
     '';
 };
 

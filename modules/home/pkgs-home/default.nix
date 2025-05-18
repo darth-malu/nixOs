@@ -24,20 +24,20 @@ let
     }
   );
 
-  R-with-my-packages = pkgs.rWrapper.override {
-    packages = with pkgs.rPackages; [
-      ggplot2
-      dplyr
-      xts
-    ];
-  };
-  RStudio-with-my-packages = pkgs.rstudioWrapper.override {
-    packages = with pkgs.rPackages; [
-      ggplot2
-      dplyr
-      xts
-    ];
-  };
+  # R-with-my-packages = pkgs.rWrapper.override {
+  #   packages = with pkgs.rPackages; [
+  #     ggplot2
+  #     dplyr
+  #     xts
+  #   ];
+  # };
+  # RStudio-with-my-packages = pkgs.rstudioWrapper.override {
+  #   packages = with pkgs.rPackages; [
+  #     ggplot2
+  #     dplyr
+  #     xts
+  #   ];
+  # };
 in
 {
   imports = [
@@ -112,6 +112,8 @@ in
       #gnome.nautilus gnome.sushi gnome.file-roller gnome.yelp
 
       trash-cli # for move to trash mpv
+      # xorg.libxcb # for ffmpeg x11grab?
+      wf-recorder
 
       telegram-desktop
       discord
@@ -177,6 +179,10 @@ in
 
       # LSP stuff
       nil
+      pyright
+      bash-language-server
+      # basedpyright
+      black
       # nixd
       nixfmt-rfc-style # official - needed to use formatting with :lang nix
 
@@ -204,11 +210,25 @@ in
       libxml2
       python313Packages.isort
       python313Packages.pyflakes
-      nose2pytest
+      # nose2pytest
+      pyenv
 
       # web
       html-tidy
 
+      (pkgs.python3.withPackages (
+        python-pkgs: with python-pkgs; [
+          pandas
+          # numpy
+          seaborn
+          matplotlib
+          tkinter
+          # pip
+          requests
+          ttkbootstrap
+          # pandasql
+        ]
+      ))
       # lsp
       nodejs_24 # consider npm for auto install of servers in lsp-mode
 
@@ -234,14 +254,14 @@ in
       miru
       #syncyomi - sync tachiyomi progress across devices
     ])
-    ++ (with pkgs; [
+    ++ [
       # NOTE: school
       # nodePackages.vercel
       # netbeans
       # wpsoffice
       # R-with-my-packages
       # RStudio-with-my-packages
-    ])
+    ]
     ++ (with pkgs; [
       # hyrpland
       hyprpicker

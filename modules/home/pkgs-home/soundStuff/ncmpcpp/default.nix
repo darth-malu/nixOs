@@ -113,7 +113,7 @@ header_window_color = 136; # page title #holy purplee
 color1 = 112;
 color2 = 136;
 
-song_columns_list_format = "(40)[39]{t} | (30)[39]{a} (25)[39]{b} (5)[39]{l}"; # clean
+song_columns_list_format = "(40)[39]{t} | (30)[39]{a} | (30)[39]{f} (25)[39]{b} (5)[39]{l}"; # clean
 #nice : 38
 
 song_list_format = "{$5%t}|{$6%f$9} $r %p %b      {$4%a$1$9}$9";

@@ -15,6 +15,7 @@
         prettier
         org-tidy
         ebuku
+        # lsp-pyright
         # emacs-all-the-icons-fonts
       ];
     # overrides = self: super: rec {

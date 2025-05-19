@@ -3,8 +3,9 @@ pkgs.writeShellScriptBin "temp" ''
 
   gpu_temp() {
     # Returns temperature in millidegrees Celsius (multiplied by 1000).
-    local raw_temp="$(cat /sys/class/drm/card1/device/hwmon/hwmon2/temp1_input 2> /dev/null)"
-    echo -n "$(($raw_temp / 1000))"
+    # local raw_temp="$(cat /sys/class/drm/card1/device/hwmon/hwmon2/temp1_input 2> /dev/null)"
+    # echo -n "$(($raw_temp / 1000))"
+    printf '%d' "$(($(cat /sys/class/drm/card1/device/hwmon/hwmon2/temp1_input 2> /dev/null) / 1000))"
   }
 
   gpu_fan() {

@@ -589,10 +589,12 @@
           "clock" = {
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
             timezone = "Africa/Nairobi";
-            format-alt = "{:%Y-%m-%d}";
+            format-alt = "{:%d-%m-%Y}";
             min-length = 15;
             max-length = 16;
             format = "{:%a %d,  %I:%M %p }";
+            # format = "{%k:%M %p }";
+            # format = "{%R}";
             tooltip = true;
             calendar = {
               "mode" = "month";

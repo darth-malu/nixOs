@@ -179,33 +179,39 @@ now_playing_suffix = "  ";
 
 ** external editor
 #+begin_src nix :tangle default.nix
-external_editor = "/home/malu/.nix-profile/bin/emacsclient";
+external_editor = "/home/malu/.nix-profile/bin/emacsclient -nc";
 use_console_editor = true;#TODO: what is sit doing?
-
 #+end_src
 
 ** cursor position
-- centered_cursor = yes/no
-        If enabled, currently highlighted position in the list will be always centered.
-
-- autocenter_mode = yes/no
-        Default state for autocenter mode at start.
 #+begin_src nix :tangle default.nix
 # functionality
 centered_cursor = true; #playing focus
 autocenter_mode = true; # Centers highlight on current song during switch
 
+
+#+end_src
+
+
++ centered_cursor = yes/no
+        If enabled, currently highlighted position in the list will be always centered.
+
++ autocenter_mode = yes/no
+        Default state for autocenter mode at start.
+** misc
+#+begin_src nix :tangle default.nix
+block_search_constraints_change_if_items_found = true; # fields in Search engine above "Reset" will be blocked after successful searching
+
 cyclic_scrolling = true;
 
-#ignore_diacritics = true; # local language ^ pronounciation marker eg. shadda, umlauts TODO : investigate if this is what is causing issues with -
-#ignore_leading_the = true;
-
-block_search_constraints_change_if_items_found = true; # fields in Search engine above "Reset" will be blocked after successful searching
 display_bitrate = false;
 
 enable_window_title = true;
-#+end_src
 
+ignore_diacritics = true; # local language ^ pronounciation marker eg. shadda, umlauts TODO : investigate if this is what is causing issues with -
+
+ignore_leading_the = true;
+#+end_src
 ** tags
 #+begin_src nix :tangle default.nix
 tag_editor_extended_numeration = true;
@@ -262,13 +268,36 @@ header_visibility = true; # If enabled, header window will be displayed, otherwi
 header_window_color = 136; # page title #holy purplee
 #+end_src
 
-** colors
+** colors | list format
 *** color1, color2
 One of colors used in Song info, Tiny tag editor and Search engine.
 
 #+begin_src nix :tangle default.nix
 color1 = 112;
 color2 = 136;
+#+end_src
+
+*** list/column format
+**** column list
+#+begin_src nix :tangle default.nix
+# song_columns_list_format = "(40)[39]{t} | (30)[39]{a} | (30)[39]{f} (25)[39]{b} (5)[39]{l}"; # clean
+song_columns_list_format = "(40)[39]{t} (30)[39]{a} (25)[39]{b} (5)[39]{l}"; # alternatives dont work in column list
+#nice : 38
+#+end_src
+
+**** song list
+#+begin_src nix :tangle default.nix
+song_list_format = "{$5%t} | {$6%f$9} $r %p %b      {$4%a$1$9}$9";
+#+end_src
+
+**** current item
+#+begin_src nix :tangle default.nix
+current_item_prefix = "$(142)$r"; # highlight current
+#+end_src
+
+**** current item-inactive
+#+begin_src nix :tangle default.nix
+current_item_inactive_column_prefix = "$(24)$r"; #nice purp
 #+end_src
 
 *** docs
@@ -303,10 +332,7 @@ Note: If you want to set limit on maximal length of a tag, just put the appropri
 
 Note: Format that is similar to "%a - %t" (i.e. without any additional braces) is equal to "{%a - %t}", so if one of the tags is missing, you'll get nothing.
 
-Text can have different color than the main window, e.g. if you want length to be green, write $3%l$9.
-
 Available values for colors:
-
 - 0 - default window color (discards all other colors)
 - 1 - black
 - 2 - red
@@ -321,28 +347,6 @@ Available values for colors:
 Note: colors can be nested, so if you write $2some$5text$9, it'll disable only usage of blue color and make red the current one.
 
 source:[[https://www.mankier.com/1/ncmpcpp#Bindings]]
-
-*** list/column format
-**** column list
-#+begin_src nix :tangle default.nix
-song_columns_list_format = "(40)[39]{t} | (30)[39]{a} | (30)[39]{f} (25)[39]{b} (5)[39]{l}"; # clean
-#nice : 38
-#+end_src
-
-**** song list
-#+begin_src nix :tangle default.nix
-song_list_format = "{$5%t}|{$6%f$9} $r %p %b      {$4%a$1$9}$9";
-#+end_src
-
-**** current item
-#+begin_src nix :tangle default.nix
-current_item_prefix = "$(142)$r"; # highlight current
-#+end_src
-
-**** current item-inactive
-#+begin_src nix :tangle default.nix
-current_item_inactive_column_prefix = "$(24)$r"; #nice purp
-#+end_src
 
 *** alternative header
 #+begin_src nix :tangle default.nix

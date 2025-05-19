@@ -63,22 +63,24 @@ jump_to_now_playing_song_at_start = true;
 now_playing_prefix = "  ";#TODO:check how to filter out songs from playlist
 now_playing_suffix = "  ";
 
-external_editor = "/home/malu/.nix-profile/bin/emacsclient";
+external_editor = "/home/malu/.nix-profile/bin/emacsclient -nc";
 use_console_editor = true;#TODO: what is sit doing?
 
 # functionality
 centered_cursor = true; #playing focus
 autocenter_mode = true; # Centers highlight on current song during switch
 
+block_search_constraints_change_if_items_found = true; # fields in Search engine above "Reset" will be blocked after successful searching
+
 cyclic_scrolling = true;
 
-#ignore_diacritics = true; # local language ^ pronounciation marker eg. shadda, umlauts TODO : investigate if this is what is causing issues with -
-#ignore_leading_the = true;
-
-block_search_constraints_change_if_items_found = true; # fields in Search engine above "Reset" will be blocked after successful searching
 display_bitrate = false;
 
 enable_window_title = true;
+
+ignore_diacritics = true; # local language ^ pronounciation marker eg. shadda, umlauts TODO : investigate if this is what is causing issues with -
+
+ignore_leading_the = true;
 
 tag_editor_extended_numeration = true;
 empty_tag_marker = "*empty*";
@@ -113,10 +115,11 @@ header_window_color = 136; # page title #holy purplee
 color1 = 112;
 color2 = 136;
 
-song_columns_list_format = "(40)[39]{t} | (30)[39]{a} | (30)[39]{f} (25)[39]{b} (5)[39]{l}"; # clean
+# song_columns_list_format = "(40)[39]{t} | (30)[39]{a} | (30)[39]{f} (25)[39]{b} (5)[39]{l}"; # clean
+song_columns_list_format = "(40)[39]{t} (30)[39]{a} (25)[39]{b} (5)[39]{l}"; # alternatives dont work in column list
 #nice : 38
 
-song_list_format = "{$5%t}|{$6%f$9} $r %p %b      {$4%a$1$9}$9";
+song_list_format = "{$5%t} | {$6%f$9} $r %p %b      {$4%a$1$9}$9";
 
 current_item_prefix = "$(142)$r"; # highlight current
 

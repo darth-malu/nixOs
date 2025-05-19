@@ -166,6 +166,7 @@ in
           en-science
         ]
       ))
+      hunspell
       clang-tools
       wordnet # :tools +dictionary dep
       # :tools lookup & :lang org +roam

@@ -9,13 +9,15 @@ scripts = with pkgs.mpvScripts; [
   # mpv-discord #TODO too much work lol
   # sponsorblock # TODO not need?
   # quality-menu
-  youtube-upnext # C-u (configurable) , space to append
+  youtube-upnext # C-u (configurable) , space to append. 'up next'/recommended youtube videos
   mpv-cheatsheet # use ?
   # mpv-playlistmanager # S-Enter to add to playlist
   uosc
   memo # recent files menu
   # modernx-zydezu
   thumbfast
+  evafast # provides evafast/toggle script-binding for speeding up independently of the hybrid key.
+  eisa01.smartskip
 ];
 
 scriptOpts = {
@@ -41,14 +43,15 @@ Y = "script-binding quality_menu/video_formats_toggle";
 "ctrl+s" = "async screenshot"; # ! Utils > Screenshot
 "esc" = "quit"; # ! Quit
 
-"s" = "script-binding uosc/subtitles"; # ! Subtitles
-"a" = "script-binding uosc/audio"; # ! Audio tracks
-"q" = "script-binding uosc/stream-quality"; # ! Stream quality
-"p" = "script-binding uosc/items"; # ! Playlist
-"c" = "script-binding uosc/chapters"; # ! Chapters
-"o" = "script-binding uosc/open-file"; # ! Navigation > Open file
-"O" = "script-binding uosc/show-in-directory"; # ! Utils > Show in directory
+s = "script-binding uosc/subtitles"; # ! Subtitles
+a = "script-binding uosc/audio"; # ! Audio tracks
+q = "script-binding uosc/stream-quality"; # ! Stream quality
+p = "script-binding uosc/items"; # ! Playlist
+c = "script-binding uosc/chapters"; # ! Chapters
+o = "script-binding uosc/open-file"; # ! Navigation > Open file
+O = "script-binding uosc/show-in-directory"; # ! Utils > Show in directory
 "alt+i" = "script-binding uosc/keybinds"; # ! Utils > Key bindings
+tab =  "script-binding uosc/toggle-ui"; # ! darth toggle
 # "alt+>" = "script-binding uosc/delete-file-next"; # ! Navigation > Delete file & Next
 # "alt+<" = "script-binding uosc/delete-file-prev"; # ! Navigation > Delete file & Prev
 # "alt+esc" = "script-binding uosc/delete-file-quit"; # ! Navigation > Delete file & Quit

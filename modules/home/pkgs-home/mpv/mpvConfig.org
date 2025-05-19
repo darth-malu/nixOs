@@ -21,15 +21,20 @@ scripts = with pkgs.mpvScripts; [
   # mpv-discord #TODO too much work lol
   # sponsorblock # TODO not need?
   # quality-menu
-  youtube-upnext # C-u (configurable) , space to append
+  youtube-upnext # C-u (configurable) , space to append. 'up next'/recommended youtube videos
   mpv-cheatsheet # use ?
   # mpv-playlistmanager # S-Enter to add to playlist
   uosc
   memo # recent files menu
   # modernx-zydezu
   thumbfast
+  evafast # provides evafast/toggle script-binding for speeding up independently of the hybrid key.
+  eisa01.smartskip
 ];
 #+end_src
+
+smartskip: https://github.com/Eisa01/mpv-scripts
+
 *** script opts
 built-in scripts exist see Man:mpv
 **** start
@@ -48,6 +53,10 @@ modernx-zydezu = import ./scriptOpts/modernx-zydezu.nix;
 **** [[file:scriptOpts/playlistManager.nix][playlistmanager]]
 #+begin_src nix :tangle no
 playlistmanager = import ./scriptOpts/playlistManager.nix;
+#+end_src
+**** [[file:scriptOpts/memo.nix][memo]]
+#+begin_src nix :tangle no
+memo = import ./scriptOpts/memo.nix;
 #+end_src
 
 **** discord rich presence
@@ -89,14 +98,15 @@ Y = "script-binding quality_menu/video_formats_toggle";
 
 *** uosc bindings
 #+begin_src nix :tangle default.nix
-"s" = "script-binding uosc/subtitles"; # ! Subtitles
-"a" = "script-binding uosc/audio"; # ! Audio tracks
-"q" = "script-binding uosc/stream-quality"; # ! Stream quality
-"p" = "script-binding uosc/items"; # ! Playlist
-"c" = "script-binding uosc/chapters"; # ! Chapters
-"o" = "script-binding uosc/open-file"; # ! Navigation > Open file
-"O" = "script-binding uosc/show-in-directory"; # ! Utils > Show in directory
+s = "script-binding uosc/subtitles"; # ! Subtitles
+a = "script-binding uosc/audio"; # ! Audio tracks
+q = "script-binding uosc/stream-quality"; # ! Stream quality
+p = "script-binding uosc/items"; # ! Playlist
+c = "script-binding uosc/chapters"; # ! Chapters
+o = "script-binding uosc/open-file"; # ! Navigation > Open file
+O = "script-binding uosc/show-in-directory"; # ! Utils > Show in directory
 "alt+i" = "script-binding uosc/keybinds"; # ! Utils > Key bindings
+tab =  "script-binding uosc/toggle-ui"; # ! darth toggle
 # "alt+>" = "script-binding uosc/delete-file-next"; # ! Navigation > Delete file & Next
 # "alt+<" = "script-binding uosc/delete-file-prev"; # ! Navigation > Delete file & Prev
 # "alt+esc" = "script-binding uosc/delete-file-quit"; # ! Navigation > Delete file & Quit
@@ -109,6 +119,10 @@ Y = "script-binding quality_menu/video_formats_toggle";
           # script-binding uosc/open-config-directory #! Utils > Open config directory
           # script-binding uosc/update             #! Utils > Update uosc
 #+end_src
+**** adding items to menu
+Text after #! is an item title.
+source: [[https://github.com/tomasklaen/uosc?tab=readme-ov-file#adding-items-to-menu][uosc - adding items to menu (github)]]
+
 **** default keybindings uosc
 not part of the setup
 
@@ -267,18 +281,18 @@ video-sync =
 
 **** notes
 
-audio:	Time video frames to audio. This is the most robust mode, because the player doesn't have to assume anything about how the display behaves. The disadvantage is that it can lead to occasional frame drops or repeats. If audio is disabled, this uses the system clock. This is the default mode.
+audio:        Time video frames to audio. This is the most robust mode, because the player doesn't have to assume anything about how the display behaves. The disadvantage is that it can lead to occasional frame drops or repeats. If audio is disabled, this uses the system clock. This is the default mode.
 display-resample:
- 	Resample audio to match the video. This mode will also try to adjust audio speed to compensate for other drift. (This means it will play the audio at a different speed every once in a while to reduce the A/V difference.)
+         Resample audio to match the video. This mode will also try to adjust audio speed to compensate for other drift. (This means it will play the audio at a different speed every once in a while to reduce the A/V difference.)
 display-resample-vdrop:
- 	Resample audio to match the video. Drop video frames to compensate for drift.
+         Resample audio to match the video. Drop video frames to compensate for drift.
 display-resample-desync:
- 	Like the previous mode, but no A/V compensation.
-display-tempo:	Same as display-resample, but apply audio speed changes to audio filters instead of resampling to avoid the change in pitch. Beware that some audio filters don't do well with a speed close to 1. It is recommend to use a conditional profile to automatically switch to display-resample when speed gets too close to 1 for your filter setup. Use (speed * video_speed_correction) to get the actual playback speed in the condition. See Conditional auto profiles for details.
-display-vdrop:	Drop or repeat video frames to compensate desyncing video. (Although it should have the same effects as audio, the implementation is very different.)
-display-adrop:	Drop or repeat audio data to compensate desyncing video. This mode will cause severe audio artifacts if the real monitor refresh rate is too different from the reported or forced rate. Since mpv 0.33.0, this acts on entire audio frames, instead of single samples.
-display-desync:	Sync video to display, and let audio play on its own.
-desync:	Sync video according to system clock, and let audio play on its own.
+         the previous mode, but no A/V compensation.
+display-tempo:        Same as display-resample, but apply audio speed changes to audio filters instead of resampling to avoid the change in pitch. Beware that some audio filters don't do well with a speed close to 1. It is recommend to use a conditional profile to automatically switch to display-resample when speed gets too close to 1 for your filter setup. Use (speed * video_speed_correction) to get the actual playback speed in the condition. See Conditional auto profiles for details.
+display-vdrop:        Drop or repeat video frames to compensate desyncing video. (Although it should have the same effects as audio, the implementation is very different.)
+display-adrop:        Drop or repeat audio data to compensate desyncing video. This mode will cause severe audio artifacts if the real monitor refresh rate is too different from the reported or forced rate. Since mpv 0.33.0, this acts on entire audio frames, instead of single samples.
+display-desync:        Sync video to display, and let audio play on its own.
+desync:        Sync video according to system clock, and let audio play on its own.
 
 *** video output drivers + hardware decoding
 
@@ -409,7 +423,7 @@ https://github.com/tomasklaen/uosc/blob/HEAD/src/uosc.conf
 **** timeline
 #+begin_src nix :tangle scriptOpts/uosc.nix
 # Display style of current position. available: line, bar
-timeline_style = "line";
+timeline_style = "bar";
 
 # Line display style config
 timeline_line_width = 1; #2::
@@ -418,7 +432,7 @@ timeline_line_width = 1; #2::
 timeline_cache = true;
 
 # Timeline size when fully expanded, in pixels, 0 to disable
-timeline_size=20; #40::
+timeline_size=25; #40::
 
 # Comma separated states when element should always be fully visible.
 # Available: paused, audio, image, video, idle, windowed, fullscreen
@@ -553,15 +567,15 @@ shuffle = true;
 
 **** languages / localization
 #+begin_src nix :tangle scriptOpts/uosc.nix
+languages = [
+  "slang"
+  "en"
+];
 # Localization language priority from highest to lowest.
 # Also controls what languages are fetched by `download-subtitles` menu.
 # Built in languages can be found in `uosc/intl`.
 # `slang` is a keyword to inherit values from `--slang` mpv config.
 # Supports paths to custom json files: `languages=~~/custom.json,slang,en`
-languages = [
-  "slang"
-  "en"
-];
 #+end_src
 
 **** subtitles
@@ -574,12 +588,12 @@ subtitles_directory = "~~/subtitles";
 # Prefix the path with `!` to force all subtitles to be saved there. Example: `!~~/subtitles`
 **** pause indicator
 #+begin_src nix :tangle scriptOpts/uosc.nix
-pause_indicator = "static"; # flash, static, manual(controlled by flash-pause-indicator and decide-pause-indicator commands)
+pause_indicator = "flash"; # flash, static, manual(controlled by flash-pause-indicator and decide-pause-indicator commands)
 #+end_src
 
 **** stream options
 #+begin_src nix :tangle scriptOpts/uosc.nix
-stream_quality_options = "1080,720";
+stream_quality_options = "1080,720,480";
 #+end_src
 
 Sizes to list in stream quality menu
@@ -771,6 +785,37 @@ button_glow_amount = 5;                 # glow intensity when "glow" hover effec
   l = "loadfiles";
 }
 #+end_src
+** memo
+defaults so far
+#+begin_src nix :tangle no
+{
+  h  = "script-binding memo-history";
+  # memo-next
+}
+#+end_src
+
+source:[[github:po5/memo?tab=readme-ov-file#custom-keybinds][Memo (github)]]
+
+=memo-history=
+Brings up the recent files menu, or closes it if already open. Default key is h.
+
+=memo-next=
+Jumps to the next page of history entries, if there is one. Also opens the menu if it's closed.
+
+=memo-prev=
+Jumps to the previous page of history entries, if there is one. Also opens the menu if it's closed.
+
+=memo-last=
+Opens the last non-deleted file that isn't the current file, and isn't in the same directory if hide_same_dir=yes. Also closes the menu if it's open.
+
+=memo-search=
+Brings up a search box, type your keywords. If using the vanilla menu, press Enter to submit.
+This finds entries that contain every keyword. Enclose your search in double quotes for exact matches.
+Users of uosc can also start typing right from the standard history menu to start a search (requires menu_type_to_search=yes in uosc.conf).
+
+=memo-log=
+Writes an entry for the current file. Intended for manual bookmarking with enabled=no.
+
 * video sync
 - audio: Time video frames to audio. This is the most robust mode, because the player doesn't have to assume anything about how the display behaves. The disadvantage is that it can lead to occasional frame drops or repeats. If audio is disabled, this uses the system clock. This is the default mode.
 - display-resample:

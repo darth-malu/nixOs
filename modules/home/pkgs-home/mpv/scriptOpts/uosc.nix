@@ -1,7 +1,7 @@
 {
 
 # Display style of current position. available: line, bar
-timeline_style = "line";
+timeline_style = "bar";
 
 # Line display style config
 timeline_line_width = 1; #2::
@@ -10,7 +10,7 @@ timeline_line_width = 1; #2::
 timeline_cache = true;
 
 # Timeline size when fully expanded, in pixels, 0 to disable
-timeline_size=20; #40::
+timeline_size=25; #40::
 
 # Comma separated states when element should always be fully visible.
 # Available: paused, audio, image, video, idle, windowed, fullscreen
@@ -55,21 +55,21 @@ shuffle = true;
 # This simply makes the next selected playlist or directory item be random, just
 # like any other player in the world. It also has an easily togglable control button.
 
+languages = [
+  "slang"
+  "en"
+];
 # Localization language priority from highest to lowest.
 # Also controls what languages are fetched by `download-subtitles` menu.
 # Built in languages can be found in `uosc/intl`.
 # `slang` is a keyword to inherit values from `--slang` mpv config.
 # Supports paths to custom json files: `languages=~~/custom.json,slang,en`
-languages = [
-  "slang"
-  "en"
-];
 
 subtitles_directory = "~~/subtitles";
 
-pause_indicator = "static"; # flash, static, manual(controlled by flash-pause-indicator and decide-pause-indicator commands)
+pause_indicator = "flash"; # flash, static, manual(controlled by flash-pause-indicator and decide-pause-indicator commands)
 
-stream_quality_options = "1080,720";
+stream_quality_options = "1080,720,480";
 
 # Scale the interface by this factor
 scale = 1; # 1::

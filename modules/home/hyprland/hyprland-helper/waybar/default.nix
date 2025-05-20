@@ -82,8 +82,18 @@
               "group/tray_clock"
               # "idle_inhibitor"
               # "group/power-profiles-idle-inhibitor"
-              "power-profiles-daemon"
-            ];
+              # "power-profiles-daemon"
+            ]
+            ++ (
+              if osConfig.networking.hostName == "carthage" then
+                [
+                  "group/power-profiles-idle-inhibitor"
+                ]
+              else
+                [
+                  "power-profiles-daemon"
+                ]
+            );
 
           "hyprland/workspaces" = {
             format = "{name}";

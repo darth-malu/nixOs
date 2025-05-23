@@ -12,15 +12,15 @@ pkgs.writeShellScriptBin "volume_dunst" ''
   earphones_ID=$(sink_getter 'Ellesmere HDMI' 'null')
   easy_sink_ID=$(sink_getter 'Easy Effects' 'null')
 
-  shibuya_assets="/home/malu/Shibuya/modules/home/hyprland/hyprland-helper/scripts/assets/"
-  speaker_pic="$shibuya_assets/icons8-speaker-40.png"
-  bt_pic="$shibuya_assets/icons8-bluetooth-windows-11-color/icons8-bluetooth-48.png"
-  ear_pic="$shibuya_assets/icons8-airpods-pro-max-windows-11-color/icons8-airpods-pro-max-48.png"
+  shibuya_icons="$HOME/Shibuya/assets/icons"
+  speaker_pic="$shibuya_icons/icons8-speaker-40.png"
+  bt_pic="$shibuya_icons/icons8-bluetooth-windows-11-color/icons8-bluetooth-48.png"
+  ear_pic="$shibuya_icons/icons8-airpods-pro-max-windows-11-color/icons8-airpods-pro-max-48.png"
 
-  unmute_pic="$shibuya_assets/icons8-lol-office-m/icons8-lol-30.png"
-  mute_pic="$shibuya_assets/silent/icons8-silent-30.png"
-  max_volume="$shibuya_assets/icons8-audio-50.png"
-  volume_zero="$shibuya_assets/vol_zero.png"
+  unmute_pic="$shibuya_icons/mute-unmute/icons8-lol-office-m/icons8-lol-30.png"
+  mute_pic="$shibuya_icons/mute-unmute/silent/icons8-silent-30.png"
+  max_volume="$shibuya_icons/icons8-audio-bubbles/icons8-audio-100.png"
+  volume_zero="$shibuya_icons/vol_zero.png"
 
   get_volume() {
       wpctl get-volume @DEFAULT_SINK@ | awk '{printf "%.0f\n", $2 * 100}'
@@ -52,13 +52,9 @@ pkgs.writeShellScriptBin "volume_dunst" ''
   }
 
   dunst_func() {
-      local int_volume
-      local output_medium
-      local mute_status
-      # local mute_pic
-      output_medium=$(get_current_sink)
-      int_volume=$(get_volume)
-      mute_status=$(get_mute_status)
+      local output_medium=$(get_current_sink)
+      local int_volume=$(get_volume)
+      local mute_status=$(get_mute_status)
 
       case $1 in
       "add_sub")

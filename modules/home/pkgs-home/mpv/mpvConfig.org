@@ -423,7 +423,7 @@ https://github.com/tomasklaen/uosc/blob/HEAD/src/uosc.conf
 **** timeline
 #+begin_src nix :tangle scriptOpts/uosc.nix
 # Display style of current position. available: line, bar
-timeline_style = "bar";
+timeline_style = "line";
 
 # Line display style config
 timeline_line_width = 1; #2::

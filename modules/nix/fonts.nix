@@ -16,8 +16,8 @@
         texlivePackages.nunito
         inter
         quicksand
-        lato # unneeded?
-        cascadia-code
+        # lato # unneeded?
+        # cascadia-code
         iosevka-comfy.comfy
       ]
       ++ [
@@ -29,7 +29,7 @@
         fantasque-sans-mono
         zed-mono
         daddy-time-mono
-        shure-tech-mono
+        # shure-tech-mono
         jetbrains-mono
         # fira-code
         victor-mono
@@ -40,7 +40,7 @@
         martian-mono
         sauce-code-pro
         # hasklug # kinda looks like sauce code pro
-        tinos # similar to times new roman
+        # tinos # similar to times new roman
         # iosevka-term
         # iosevka
         # DroidSansMono #FIXME: broken
@@ -48,7 +48,7 @@
         lekton
         lilex # kinda nice actually
         geist-mono
-        agave
+        # agave
         caskaydia-cove
         monofur
         symbols-only # for wezterm/terminal in general glyphs, also emacs

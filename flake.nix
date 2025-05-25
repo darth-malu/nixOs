@@ -4,7 +4,9 @@
 
   nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-  yazi.url = "github:sxyazi/yazi";
+yazi.url = "github:sxyazi/yazi";
+
+hyprswitch.url = "github:h3rmt/hyprswitch/release";
 
 home-manager = {
   url = "github:nix-community/home-manager";

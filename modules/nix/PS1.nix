@@ -1,17 +1,44 @@
 ''
+REDT="$(tput setaf 199)"
+GRON="$(tput setaf 43)"
+RESET="\[$(tput sgr0)\]"
+BOLD="\[$(tput bold)\]"
+# DIM="\[$(tput dim)\]"
+
+EXIT_COLOR=""
+
+# This function runs before each prompt
 exitstatus() {
   local stat="$?"
   if [[ $stat -ne 0 ]]; then
-    printf "%s" "$(tput setaf 199)" # 161
+    EXIT_COLOR="\[$REDT\]"
   else
-    printf "%s" "$(tput setaf 43)"
+    EXIT_COLOR="\[$GRON\]"
   fi
 }
 
-EXIT_COLOR="\[\$(exitstatus)\]"
-BOLD="\[$(tput bold)\]"
-# DIM="\[$(tput dim)\]"
-RESET="\[$(tput sgr0)\]"
+# EXIT_COLOR="\[\$(exitstatus)\]"
 
-PS1="\n$EXIT_COLOR$BOLD \w $RESET"
+PROMPT_COLOR=32 # green
+
+# PS1="\n$EXIT_COLOR$BOLD \w $RESET"
+PROMPT_COMMAND=exitstatus
+
+# if [ "$TERM" != "dumb" ] || [ -n "$INSIDE_EMACS" ]; then
+if [ "$TERM" != "dumb" ]; then
+  if [ -n "$INSIDE_EMACS" ]; then
+    # Emacs term mode doesn't support xterm title escape sequence (\e]0;)
+    PS1="\n\[\033[$PROMPT_COLOR\][\u@\h:\w]\\$\[\033[0m\] "
+  else
+    PS1="\n$GRON$BOLD \w $RESET"
+  fi
+  if test "$TERM" = "xterm"; then
+    PS1="\[\033]2;\h:\u:\w\007\]$PS1"
+  fi
+fi
+#\033 same as \e
+# u - user
+# h - host
+# w - cwd
+# \$ for normal # for root
 ''

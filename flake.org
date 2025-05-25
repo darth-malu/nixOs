@@ -19,7 +19,12 @@
 
 ** yazi
 #+begin_src nix :tangle flake.nix
-  yazi.url = "github:sxyazi/yazi";
+yazi.url = "github:sxyazi/yazi";
+#+end_src
+
+** hyprswitch
+#+begin_src nix :tangle flake.nix
+hyprswitch.url = "github:h3rmt/hyprswitch/release";
 #+end_src
 
 ** emacs overlay
@@ -197,7 +202,6 @@ modules = [
 #+begin_src nix :tangle no
     {environment.systemPackages = [neovimConf.neovim];}
 #+end_src
-
 *** home manager
 #+begin_src nix :tangle flake.nix
 inputs.home-manager.nixosModules.home-manager {

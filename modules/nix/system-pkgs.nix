@@ -11,10 +11,10 @@
     ./sync-thing
     ./ssh
     ./bash.nix
-    ./qemu
+    # ./qemu
   ];
 
-  qemuNix.enable = if config.networking.hostName == "carthage" then true else false;
+  # qemuNix.enable = if config.networking.hostName == "carthage" then true else false;
 
   services = {
     locate.enable = false; # i dont use this...fd/fzf

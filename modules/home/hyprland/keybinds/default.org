@@ -268,7 +268,7 @@ see hyprswitch:
 
 *** waybar
 #+begin_src nix :tangle default.nix
-  "$mod ,Home,execr, killalll-SIGUSR1 .waybar-wrapped" # toggle waybar
+  "$mod ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
   "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 #+end_src
 *** gaps script

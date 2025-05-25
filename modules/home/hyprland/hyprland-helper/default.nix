@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -19,6 +19,7 @@
     nautilus
     sushi
     yelp
+    inputs.hyprswitch.packages.x86_64-linux.default
     file-roller
   ];
 }

@@ -1,9 +1,5 @@
 { pkgs }:
-#TODO make a terminal pop up with interactive del
 
-# let
-#   pattern = "\${1:-\"*home_backup\"}";
-# in
 pkgs.writeShellScriptBin "clr_backup" ''
 
   find_backup() {
@@ -17,17 +13,21 @@ pkgs.writeShellScriptBin "clr_backup" ''
     read -r -p "Are you sure you want to remove these backups? (y/N) " response
 
     # Only delete if the user confirms
-    if [[ -z "$response" || "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then # empty response or y
-      if find "$HOME" -maxdepth 3 -iname "$pattern" -type f -delete; then
-        echo "Backups removed."
-      else
-        echo "An error occured whilst deleting the backups"
-      fi
-    elif [[ "$response" =~ ^([nN])$ ]]; then
-        printf 'no/Deletion Cancelled \n'
-    else
-      echo "Deletion failedd!!."
-    fi
+    case "$response" in
+      [yY] | [yY][eE][sS])
+        if find "$HOME" -maxdepth 3 -iname "$pattern" -type f -delete; then
+          echo "Backups removed."
+        else
+          echo "An error occurred while deleting the backups."
+        fi
+        ;;
+      [nN] | [nN][oO])
+        echo "Deletion cancelled."
+        ;;
+      *)
+        echo "Invalid response. No files were deleted."
+        ;;
+    esac
   }
 
   # Call the function, allowing the user to pass a pattern as an argument

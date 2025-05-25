@@ -17,11 +17,11 @@ lib.mkIf osConfig.hyprland.enable {
 #+begin_src nix themes.nix
 home.pointerCursor = {
   enable = true; # false::
+  gtk.enable = true; # waybar, gtk apps
   hyprcursor = {
     size = 24; # 32::
     enable = true;
   };
-  gtk.enable = true; # waybar, gtk apps
   x11 = {
     enable = true; # false:: xwayland?
     # defaultCursor = pkgs.
@@ -68,10 +68,12 @@ iconTheme = {
   # name = "gruvbox-plus-icons";
 };
 #+end_src
+
 + gtk.iconTheme.name
     The name of the icon theme within the package
 + gtk.iconTheme.package
     Package providing the icon theme
+
 ** gtk2, gtk3, gtk4 start
 #+begin_src nix :tangle themes.nix
 gtk2 = {

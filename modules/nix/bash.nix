@@ -1,7 +1,7 @@
 {
   programs.bash = {
     completion.enable = true;
-    promptInit = import ./PS1.nix;
+    promptInit = import ./PS1/PS1.nix;
     enableLsColors = true;
     #blesh.enable = true;
     undistractMe = {

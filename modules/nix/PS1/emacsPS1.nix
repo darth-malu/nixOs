@@ -1,19 +1,18 @@
 ''
-REDT="$(tput setaf 199)"
-GRON="$(tput setaf 43)"
+REDT="\[$(tput setaf 199)\]"
+GRON="\[$(tput setaf 43)\]"
 RESET="\[$(tput sgr0)\]"
 BOLD="\[$(tput bold)\]"
 # DIM="\[$(tput dim)\]"
-
 EXIT_COLOR=""
 
 # This function runs before each prompt
 exitstatus() {
   local stat="$?"
   if [[ $stat -ne 0 ]]; then
-    EXIT_COLOR="\[$REDT\]"
+    EXIT_COLOR="$REDT" # Red for non-zero (failure)
   else
-    EXIT_COLOR="\[$GRON\]"
+    EXIT_COLOR="$GRON" # Green for zero (success)
   fi
 }
 
@@ -24,6 +23,7 @@ PROMPT_COLOR=32 # green
 # PS1="\n$EXIT_COLOR$BOLD \w $RESET"
 PROMPT_COMMAND=exitstatus
 
+# Check if we're in a "dumb" terminal (no color support) or Emacs
 # if [ "$TERM" != "dumb" ] || [ -n "$INSIDE_EMACS" ]; then
 if [ "$TERM" != "dumb" ]; then
   if [ -n "$INSIDE_EMACS" ]; then
@@ -32,6 +32,10 @@ if [ "$TERM" != "dumb" ]; then
   else
     PS1="\n$GRON$BOLD \w $RESET"
   fi
+
+  # Set xterm window title (applies only to xterm-compatible terminals)
+  # \033]2; sets the title, \007 is the bell character to terminate the sequence
+
   if test "$TERM" = "xterm"; then
     PS1="\[\033]2;\h:\u:\w\007\]$PS1"
   fi

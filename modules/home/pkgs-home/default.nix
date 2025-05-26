@@ -59,10 +59,10 @@ let
 
     # LSP stuff
     nil
-    # pyright
+    pyright
     # bash-language-server
     # basedpyright
-    # black
+    black
     # nixd
     nixfmt-rfc-style # official - needed to use formatting with :lang nix
 

@@ -79,7 +79,10 @@ using grimblast from hypr team 🤪
 
 *** kill active
 #+begin_src nix :tangle default.nix
-"$mod ,space, killactive"
+# "$mod ,space, killactive"
+"$al ,F4, killactive"
+"$mod ,ESC, killactive"
+"$mod ,grave, killactive"
 "$mod, mouse:275, killactive,"
 #+end_src
 
@@ -293,7 +296,7 @@ see hyprswitch:
 *** focus previously focused window, cycle next, previous_per_monitor
 #+begin_src nix :tangle default.nix
 # "$mod,K, Workspace, previous_per_monitor"
-"$mod,K, focuscurrentorlast"
+  "$mod,K, focuscurrentorlast"
   "$mod $sl, k, focusmonitor, +1"
   "$mod, mouse:276, Workspace, previous_per_monitor"
   "$mod, semicolon, cyclenext"

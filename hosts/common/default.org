@@ -3,7 +3,7 @@
 
 * header
 #+begin_src nix :tangle default.nix
-{config, lib, pkgs, options, ...}:
+{config, modulesPath, lib, pkgs, options, ...}:
 #+end_src
 * imports
 #+begin_src nix :tangle default.nix

@@ -80,6 +80,7 @@ pkgs = import nixpkgs {
       # "steam-run"
       "youtube-upnext"
       "evafast"
+      "nvidia-x11"
     ];
     permittedInsecurePackages = [
       "ventoy-1.1.05"

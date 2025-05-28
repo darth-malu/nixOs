@@ -5,28 +5,7 @@
   inputs,
   ...
 }:
-let
-  tex = (
-    pkgs.texlive.combine {
-      inherit (pkgs.texlive)
-        scheme-basic
-        scheme-medium
-        dvisvgm
-        dvipng # for preview and export as html
-        wrapfig
-        amsmath
-        ulem
-        hyperref
-        capt-of
-        ;
-      #(setq org-latex-compiler "lualatex")
-      #(setq org-preview-latex-default-process 'dvisvgm)
-    }
-  );
 
-  emax = with pkgs; import ./emacs-pkgs.nix;
-
-in
 {
   imports = [
     ./yt-dlp.nix
@@ -41,6 +20,8 @@ in
     ../bash
     ../hyprland
     ../textEditor
+    ./programs.nix
+    ./services.nix
     inputs.nyaa.homeManagerModule
   ];
 
@@ -70,7 +51,6 @@ in
       #aria2#NOTE: learn
       qbittorrent
 
-      # ntfs3g # NOTE: trying whichever which way
       tokei
 
       # archive
@@ -95,20 +75,17 @@ in
       # perfomance monitoring
       mission-center
       iftop
+      iotop-c
+      iotop
       nethogs
 
-      #gnome.nautilus gnome.sushi gnome.file-roller gnome.yelp
-
       trash-cli # for move to trash mpv
-      # xorg.libxcb # for ffmpeg x11grab?
       wf-recorder
 
       telegram-desktop
       discord
       whatsapp-for-linux # socials
 
-      # browserr
-      # chromium
       # lynx # terminal browser pretty fun -> on emacs now
       google-chrome
       # bluemail # TODO move to mu4e
@@ -124,16 +101,7 @@ in
 
       # productivity
       buku # TODO: test
-      # groff
-      # ghostscript
-      # obsidian
-      # glow # TODO: test this extensively # see quart for blog with markdown
-      #blender
-      # blender-hip # accelarated render
-      # freeglut
-      # gcc
     ]
-    ++ emax
     ++ (with pkgs; [
       # creative space
       #(ffmpeg.override { withXcb = true;  })
@@ -176,31 +144,4 @@ in
           [ ]
       );
 
-  programs = import ./programs.nix;
-
-  services = {
-    # kdeconnect.enable = true;
-    blueman-applet.enable = lib.mkIf osConfig.hyprland.enable true;
-    udiskie = {
-      enable = lib.mkIf osConfig.hyprland.enable true;
-      tray = "auto"; # works
-      notify = true;
-      automount = false; # better?
-      # appindicator = true; # use if no icon shows...uses appindicator3
-      settings = {
-        # config written to .config/udiskie/config.yml
-        # https://github.com/coldfix/udiskie/blob/master/doc/udiskie.8.txt#configuration
-        # program_options = {
-        #   udisks_version = 2;
-        #   tray = true;
-        # };
-        # icon_names.media = [ "media-optical" ];
-        # file-manager = "kitty -e 'yazi'";
-        file-manager = "kitty -e 'yazi'";
-        terminal = "${pkgs.kitty}/bin/kitty -e yazi";
-        # file-manager = "/home/malu/.nix-profile/bin/yazi";
-        # file-manager = "xdg-open";
-      };
-    };
-  };
 }

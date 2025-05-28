@@ -4,7 +4,6 @@
 
 
 imports = [
-  # (modulesPath + "/installer/scan/not-detected.nix")
   ../common
   ./nvidia.nix
 ];
@@ -53,7 +52,7 @@ nix = {
     '';
 };
 
-# powerManagement.cpuFreqGovernor = lib.mkDefault "powersave"; # TODO: test effects of this, and add to waybar
+powerManagement.cpuFreqGovernor = lib.mkDefault "powersave"; # TODO: test effects of this, and add to waybar
 hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
 networking = {

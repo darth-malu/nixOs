@@ -9,6 +9,7 @@
 #+begin_src nix :tangle default.nix
 {
   imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/nix
     ./users/malu.nix
     ./storage-common.nix

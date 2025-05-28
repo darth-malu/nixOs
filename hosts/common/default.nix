@@ -2,6 +2,7 @@
 
 {
   imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/nix
     ./users/malu.nix
     ./storage-common.nix

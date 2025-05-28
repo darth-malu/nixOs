@@ -47,5 +47,6 @@
   };
 
   # Load nvidia driver for Xorg and Wayland
+  # https://nixos.org/manual/nixos/stable/options#opt-services.xserver.videoDrivers
   services.xserver.videoDrivers = [ "nvidia" ];
 }

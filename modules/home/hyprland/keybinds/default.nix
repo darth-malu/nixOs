@@ -53,7 +53,9 @@ bindr = [
 
 # "$mod ,space, killactive"
 "$al ,F4, killactive"
-"$mod ,ESC, killactive"
+"$mod ,Escape, killactive"
+"$mod ALT, $ar, killactive"
+"$mod $sl, space, killactive"
 "$mod ,grave, killactive"
 "$mod, mouse:275, killactive,"
 
@@ -88,6 +90,9 @@ bind =
 # Workspaces
   "$al, KP_Enter,workspace ,emptym"
   "$mod, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
+  # "$mod, v, exec, togglefloating"
+  # "$mod, v, exec, resizeaactive exact 80% 80%"
+  # "$mod, v, exec, centerwindow"
 
   "$mod, KP_Divide, togglesplit" # dwindle
   "$mod, KP_Multiply, pseudo"
@@ -216,6 +221,11 @@ bind =
 bindm = [
   "$mod $cl, mouse:272, movewindow"
   "$mod $cl, mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
+  "ALT, mouse:272, movewindow"
+];
+
+bindc = [
+  "ALT, mouse:272, togglefloating"
 ];
 
 bindel =

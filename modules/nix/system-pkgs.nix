@@ -75,9 +75,7 @@
         util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
         kitty
         bc
-        tldr
-        # xdg-user-dirs
-        # xdg-utils # xdg-open, xdg-mime, xdg-desktop-menu/icon #TODO: see if needed
+        # tldr # emacs better
         dotool # test if working
         micro
       ])

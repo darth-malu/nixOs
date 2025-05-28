@@ -110,6 +110,7 @@ let
         isort
         nose2pytest
         grip
+        conda
       ]
     ))
     # lsp

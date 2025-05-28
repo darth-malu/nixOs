@@ -81,8 +81,10 @@ using grimblast from hypr team 🤪
 #+begin_src nix :tangle default.nix
 # "$mod ,space, killactive"
 "$al ,F4, killactive"
-"$mod ,ESC, killactive"
-"$mod ,grave, killactive"
+"$mod ,Escape, killactive"
+# "$mod ALT, $ar, killactive"
+# "$mod $sl, space, killactive"
+# "$mod ,grave, killactive"
 "$mod, mouse:275, killactive,"
 #+end_src
 
@@ -136,6 +138,9 @@ bind =
 # Workspaces
   "$al, KP_Enter,workspace ,emptym"
   "$mod, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
+  # "$mod, v, exec, togglefloating"
+  # "$mod, v, exec, resizeaactive exact 80% 80%"
+  # "$mod, v, exec, centerwindow"
 #+end_src
 
 *** toggle dwindle/pseudo
@@ -319,19 +324,26 @@ see hyprswitch:
 );
 #+end_src
 
-** bindm ( mouse binding )
+** bindm/c ( mouse binding )
 |--------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------|
 | Name         | Description               | Params                                                                                                                                   |
 |--------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------|
 | movewindow   | moves the active window   | none                                                                                                                                     |
 | resizewindow | resizes the active window | 1 - resize and keep window aspect ratio, 2 - resize and ignore keepaspectratio window rule/prop, none or anything else for normal resize |
 |--------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------|
+LMB -> 272
+RMB -> 273
 
 #+begin_src nix :tangle default.nix
 #mouse binds have one less arg
 bindm = [
   "$mod $cl, mouse:272, movewindow"
   "$mod $cl, mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
+  "ALT, mouse:272, movewindow"
+];
+
+bindc = [
+  "ALT, mouse:272, togglefloating"
 ];
 #+end_src
 
@@ -409,7 +421,10 @@ bind = SUPER, Tab, bringactivetotop,    # bring it to the top
 | s    | seperate                                      | will arbitrarily combine keys between each mod/key, see [Keysym combos](#keysym-combos) above. |
 | d    | has description                               |                                                                                                |
 | p    | bypass the app's requests to inhibit keybinds |                                                                                                |
+|      |                                               |                                                                                                |
 |------+-----------------------------------------------+------------------------------------------------------------------------------------------------|
+=c= -> click, will trigger on release of a key or button as long as the mouse cursor stays inside binds:drag_threshold.
+=g= -> drag, will trigger on release of a key or button as long as the mouse cursor moves outside binds:drag_threshold.
 
 *** Description to keybindings
 You can describe your keybind with the description flag. Your description always goes in front of the dispatcher and should never contain the character ,!

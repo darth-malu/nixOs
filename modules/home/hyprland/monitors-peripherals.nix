@@ -16,6 +16,7 @@ let
           ];
           binds = {
             allow_workspace_cycles = true; # workpsaces dontn forget their previous workspaces
+            drag_threshold = 10;
           };
           cursor = {
             # no_warps = true; #false (keybind focus etc warping):: #TODO: see if needed

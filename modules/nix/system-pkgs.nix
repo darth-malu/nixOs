@@ -88,11 +88,11 @@
             hyprpicker
             hyprpolkitagent
             hyprsunset
-            libappindicator
+            # libappindicator # TODO test if needed
             libappindicator-gtk3
             # polkit_gnome
             libcanberra-gtk3
-            libcanberra
+            # libcanberra # TODO test if needed both
             # libsecret # secrets lul
             # lib.mkIf (config.networking.hostName == "tangier") with pkgs; [brightnessctl]
             #kdePackages.qt6ct kdePackages.qtwayland -- see if needed
@@ -108,7 +108,7 @@
         else
           (
             if config.services.desktopManager.plasma6.enable then
-              with pkgs.kdePackages;
+              # with pkgs.kdePackages;
               [
                 # hello
                 # filelight

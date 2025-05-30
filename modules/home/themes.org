@@ -119,9 +119,7 @@ qt = {
   platformTheme.name = "adwaita-dark"; #kvantum , gtk, gnome, kde, gtk3, **deprecated
   # platformTheme.name = "qtct"; # "gtk", "gtk3", "gnome", "adwaita", "lxqt", "qtct", "kde" or (submodule) #qt6ct
   # platformTheme = "gnome";
-  style = {
-    name = "adwaita-dark";
-  };
+  style.name = "adwaita-dark";
 };
 #+end_src
 
@@ -152,6 +150,7 @@ The options are:
 - =kvantum=: Use styles from kvantum.
 
   =NOTE= platformTheme: gnome deprecated use 'adwaita'
+* missing adwaita thems
 * end
 #+begin_src nix :tangle themes.nix
 }

@@ -2,7 +2,7 @@
 {
   imports =
     [
-      ./pkgs-home
+      ./pkgs
       ./xdg
       ./variables.nix
     ]

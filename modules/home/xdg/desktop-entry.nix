@@ -1,6 +1,7 @@
 {
   Emacs = {
     name = "maluEmacs";
+    genericName = "Emacss";
     terminal = false; # terminal app?
     #prefersNonDefaultGPU = true; # if true prefers powerful discrete gpu
     type = "Application"; # Link, Directory, Application
@@ -8,7 +9,7 @@
       "Development"
       "TextEditor"
     ];
-    startupNotify = true;
+    # startupNotify = true;
     comment = "tooltip test 🫠"; # tooltip for the entry
     # exec = "emacsclient -c %U";
     exec = "emacsclient -c";

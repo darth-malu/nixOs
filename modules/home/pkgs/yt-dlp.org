@@ -1,5 +1,6 @@
 #+title: Yt Dlp
 #+auto_tangle: t
+#+startup: content indent
 
 * start
 #+begin_src nix :tangle yt-dlp.nix

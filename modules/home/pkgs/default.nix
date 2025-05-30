@@ -45,6 +45,7 @@
       # squirreldisk #kinda nice
       # qdiskinfo
       # win-disk-writer
+      #
       # qalculate-qt # #FIXME:for rofi?
       dotool
       # calc
@@ -78,6 +79,7 @@
       iotop-c
       iotop
       nethogs
+      inxi
 
       trash-cli # for move to trash mpv
       wf-recorder

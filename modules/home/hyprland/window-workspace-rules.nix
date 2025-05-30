@@ -54,9 +54,10 @@
       "workspace emptym, class:org.qutebrowser.qutebrowser"
       "workspace emptym, class:obsidian"
       "workspace emptym, class:spotube"
-      # "workspace emptym, mpv" NOTE: launches fs not need :)
-      "monitor HDMI-A-1, class:mpv"
       "workspace emptym, class:Emacs"
+
+      "workspace emptym, class:mpv"
+      "monitor HDMI-A-1, class:mpv"
     ];
 
     windowrulev2 = [

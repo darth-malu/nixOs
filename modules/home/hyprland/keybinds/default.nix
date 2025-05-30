@@ -54,9 +54,9 @@ bindr = [
 # "$mod ,space, killactive"
 "$al ,F4, killactive"
 "$mod ,Escape, killactive"
-"$mod ALT, $ar, killactive"
-"$mod $sl, space, killactive"
-"$mod ,grave, killactive"
+# "$mod ALT, $ar, killactive"
+# "$mod $sl, space, killactive"
+# "$mod ,grave, killactive"
 "$mod, mouse:275, killactive,"
 
 ];
@@ -249,14 +249,14 @@ bindl =
 
 binde =
   [# Date
-    "$mod, T, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/modules/home/hyprland/hyprland-helper/scripts/assets/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
-    "$mod $sl, T, execr,${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/modules/home/hyprland/hyprland-helper/scripts/assets/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
+    "$mod, T, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
+    "$mod $sl, T, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
   ]
   ++[
     #dunst pop
-    "$mod $sl,i,exec, songart"
-    ", Pause, exec, songart"
-    "$mod, Next, exec, songart"
+    "$mod $sl,i,execr, songart"
+    ", Pause, execr, songart"
+    "$mod, Next, execr, songart"
   ]++
   [#rest
     "SUPER ,KP_Enter, exec, gaps custom" # set according to hyprland config default

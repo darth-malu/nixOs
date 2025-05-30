@@ -28,8 +28,10 @@ scripts = with pkgs.mpvScripts; [
   memo # recent files menu
   # modernx-zydezu
   thumbfast
-  evafast # provides evafast/toggle script-binding for speeding up independently of the hybrid key.
+  # evafast # provides evafast/toggle script-binding for speeding up independently of the hybrid key. TODO need?
   eisa01.smartskip
+  visualizer
+  # webtorrent-mpv-hook
 ];
 #+end_src
 
@@ -50,14 +52,73 @@ uosc = import ./scriptOpts/uosc.nix;
 #+begin_src nix :tangle default.nix
 modernx-zydezu = import ./scriptOpts/modernx-zydezu.nix;
 #+end_src
-**** [[file:scriptOpts/playlistManager.nix][playlistmanager]]
+**** playlistManager
+
 #+begin_src nix :tangle no
-playlistmanager = import ./scriptOpts/playlistManager.nix;
+playlistmanager =
+# KEY show-text "Shuffled playlist" ; script-message playlistmanager shuffle
+{
+  p = "show-text 'Shuffled playlist'; script-message playlistmanager shuffle";
+  l = "loadfiles";
+};
 #+end_src
-**** [[file:scriptOpts/memo.nix][memo]]
+
+**** memo
 #+begin_src nix :tangle no
-memo = import ./scriptOpts/memo.nix;
+memo = {
+  h = "script-binding memo-history";
+  # memo-next
+  # memo-search
+  #
+};
 #+end_src
+**** evafast
+Tap right arrow key to seek like default mpv, hold it down to fast-forward.
+Playback speed will smoothly ramp up and wind back down.
+
+Provides the evafast/toggle script-binding for speeding up independently of the hybrid key.
+**** webtorrent-mpv-hook
+#+begin_src nix :tangle no
+webtorrent-mpv-hook = {
+  # Path to save downloaded files in. Can be set to "memory" to store all files in RAM.
+  path="~/Downloads/temp"; # ./::
+  # Maximum number of connections.
+  maxConns=100;
+  # Port to use for webtorrent web-server.
+  # If it's already in use a random port will be chosen instead.
+  port=8888;
+  # Enable μTP support.
+  utp=yes;
+  # Enable DHT.
+  dht=yes;
+  # Enable local service discovery.
+  lsd=yes;
+  # Download speed limit in bytes/sec.
+  # downloadLimit=-1;
+  # Upload speed limit in bytes/sec.
+  # uploadLimit=-1;
+  # Specify the node command to use.
+  # Usefull if the command is called nodejs on your system.
+  # node_path=node;
+  # The same text style options as in stats.conf is also available.
+};
+#+end_src
+
+=usage:= ~mpv <torrent-id>~
+Where torrent-id is one of:
+ - magnet link
+ - info-hash
+ - path or url to .torrent file
+
+An overlay will be shown with info/progress. It will be closed automatically when playback starts.
+It can also be toggled manually with =p= (default).
+
+Multi-file torrents are opened as a playlist.
+
+
+**** eisa01.smartskip
+
+https://github.com/Eisa01/mpv-scripts?tab=readme-ov-file#default-keybinds
 
 **** discord rich presence
 #+begin_src nix :tangle no
@@ -90,10 +151,11 @@ Y = "script-binding quality_menu/video_formats_toggle";
 # "tab" = "script-binding uosc/toggle-ui";
 # "menu" = "script-binding uosc/menu";
 # "mbtn_right" = "script-binding uosc/menu";
-# "mbtn_left" = "space cycle pause; show-text \"\${filename}\n\${time-pos} / \${duration} (\${percent-pos}%)\"; osd-bar show-progress";
-"mbtn_left" = "cycle pause; show-progress";
-"ctrl+s" = "async screenshot"; # ! Utils > Screenshot
+"mbtn_right" = "space cycle pause; show-text \"\${filename}\n\${time-pos} / \${duration} (\${percent-pos}%)\"; osd-bar show-progress";
+# "mbtn_left" = "cycle pause; show-progress";
+# "ctrl+s" = "async screenshot"; # ! Utils > Screenshot
 "esc" = "quit"; # ! Quit
+# p = "script-binding webtorrent/toggle-info";
 #+end_src
 
 *** uosc bindings

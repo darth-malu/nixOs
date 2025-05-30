@@ -1,7 +1,7 @@
 {
 
 # Display style of current position. available: line, bar
-timeline_style = "bar";
+timeline_style = "line";
 
 # Line display style config
 timeline_line_width = 1; #2::
@@ -10,7 +10,7 @@ timeline_line_width = 1; #2::
 timeline_cache = true;
 
 # Timeline size when fully expanded, in pixels, 0 to disable
-timeline_size=25; #40::
+timeline_size=20; #40::
 
 # Comma separated states when element should always be fully visible.
 # Available: paused, audio, image, video, idle, windowed, fullscreen

@@ -102,9 +102,10 @@ bind =
 
 *** browsers
 #+begin_src nix :tangle default.nix
-  "$mod, F, exec, [workspace emptym] uwsm app -s a -- freetube"
+  "$mod, KP_1, exec, [workspace emptym] uwsm app -s a -- freetube"
   "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
+  "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
 #+end_src
 *** kitty
 #+begin_src nix :tangle default.nix

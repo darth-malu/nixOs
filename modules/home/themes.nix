@@ -54,7 +54,7 @@ gtk4 = {
     #     #gtk-theme-name = ''Nightfox:Dark''; #eg nautilus
     #     gtk-theme-name = "Nightfox-Dark"; #eg nautilus
     #     gtk-cursor-blink = false;
-    gtk-recent-files-limit = 20;
+    # gtk-recent-files-limit = 20;
     gtk-application-prefer-dark-theme = 1;
   };
   #   # extraCss = #gtk-4.0/gtk.css
@@ -69,9 +69,7 @@ qt = {
   platformTheme.name = "adwaita-dark"; #kvantum , gtk, gnome, kde, gtk3, **deprecated
   # platformTheme.name = "qtct"; # "gtk", "gtk3", "gnome", "adwaita", "lxqt", "qtct", "kde" or (submodule) #qt6ct
   # platformTheme = "gnome";
-  style = {
-    name = "adwaita-dark";
-  };
+  style.name = "adwaita-dark";
 };
 
 }

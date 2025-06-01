@@ -19,7 +19,7 @@ scripts = with pkgs.mpvScripts; [
   # evafast # provides evafast/toggle script-binding for speeding up independently of the hybrid key. TODO need?
   eisa01.smartskip
   visualizer
-  # webtorrent-mpv-hook
+  webtorrent-mpv-hook
 ];
 
 scriptOpts = {
@@ -40,7 +40,7 @@ Y = "script-binding quality_menu/video_formats_toggle";
 # "tab" = "script-binding uosc/toggle-ui";
 # "menu" = "script-binding uosc/menu";
 # "mbtn_right" = "script-binding uosc/menu";
-"mbtn_right" = "space cycle pause; show-text \"\${filename}\n\${time-pos} / \${duration} (\${percent-pos}%)\"; osd-bar show-progress";
+"mbtn_right" = "cycle pause; show-text \"\${filename}\n\${time-pos} / \${duration} (\${percent-pos}%)\"; osd-bar show-progress";
 # "mbtn_left" = "cycle pause; show-progress";
 # "ctrl+s" = "async screenshot"; # ! Utils > Screenshot
 "esc" = "quit"; # ! Quit

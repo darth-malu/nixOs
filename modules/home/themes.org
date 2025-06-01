@@ -98,7 +98,7 @@ gtk4 = {
     #     #gtk-theme-name = ''Nightfox:Dark''; #eg nautilus
     #     gtk-theme-name = "Nightfox-Dark"; #eg nautilus
     #     gtk-cursor-blink = false;
-    gtk-recent-files-limit = 20;
+    # gtk-recent-files-limit = 20;
     gtk-application-prefer-dark-theme = 1;
   };
   #   # extraCss = #gtk-4.0/gtk.css

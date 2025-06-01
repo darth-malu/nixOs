@@ -11,15 +11,17 @@
 
   config = lib.mkIf config.gnome.enable {
     services = {
+      desktopManager.gnome.enable = true;
+      displayManager.gdm.enable = true;
       gnome = {
         core-apps.enable = true;
         localsearch.enable = false;
         tinysparql.enable = false;
       };
-      xserver = {
-        displayManager.gdm.enable = true;
-        desktopManager.gnome.enable = true;
-      };
+      # xserver = {
+      #   displayManager.gdm.enable = true;
+      #   desktopManager.gnome.enable = true;
+      # };
     };
 
     services.udev.packages = [ pkgs.gnome-settings-daemon ];

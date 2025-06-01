@@ -56,6 +56,10 @@
 
       # archive
       # zip xz unzip p7zip
+      # testing for yazi #
+      zip
+      unzip
+      p7zip
 
       #rofimoji bemoji
       modem-manager-gui

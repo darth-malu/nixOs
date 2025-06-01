@@ -23,8 +23,9 @@ yazi.url = "github:sxyazi/yazi";
 #+end_src
 
 ** hyprswitch
-#+begin_src nix :tangle flake.nix
-hyprswitch.url = "github:h3rmt/hyprswitch/release";
+#+begin_src nix :tangle no
+hyprshell.url = "github:H3rmt/hyprswitch?ref=hyprshell";
+hyprshell.inputs.nixpkgs.follows = "nixpkgs";
 #+end_src
 
 ** emacs overlay
@@ -190,21 +191,6 @@ nixosConfigurations = {
 #+begin_src nix :tangle flake.nix
 modules = [
 #+end_src
-
-*** emacs overlay
-#+begin_src nix :tangle flake.nix
-# { nixpkgs.overlays = [ (import self.inputs.emacs-overlay) ]; } # emacs overlay
-#+end_src
-
-*** carthage nix config (hosts/carthage)
-#+begin_src nix :tangle flake.nix
-./hosts/carthage
-#+end_src
-
-*** nvf
-#+begin_src nix :tangle no
-    {environment.systemPackages = [neovimConf.neovim];}
-#+end_src
 *** home manager
 #+begin_src nix :tangle flake.nix
 inputs.home-manager.nixosModules.home-manager {
@@ -217,6 +203,20 @@ inputs.home-manager.nixosModules.home-manager {
     extraSpecialArgs = { inherit inputs pkgs system; };
   };
 }
+#+end_src
+
+*** carthage nix config (hosts/carthage)
+#+begin_src nix :tangle flake.nix
+./hosts/carthage
+#+end_src
+
+*** nvf
+#+begin_src nix :tangle no
+    {environment.systemPackages = [neovimConf.neovim];}
+#+end_src
+*** emacs overlay
+#+begin_src nix :tangle flake.nix
+# { nixpkgs.overlays = [ (import self.inputs.emacs-overlay) ]; } # emacs overlay
 #+end_src
 
 *** end of modules

@@ -28,26 +28,32 @@
   };
 
   config = lib.mkIf config.homeHyprland.enable {
+
+    # Enable programs
     dunst.enable = true;
     waybar.enable = true;
     rofi.enable = true;
+    hyprpaper.enable = true;
+    hypridle.enable = true;
+    hyprlock.enable = true;
+
     wayland.windowManager.hyprland = {
       # configures Hyprland and adds it to your user’s PATH, but does not make certain system-level changes. the NixOS module makes system-level changes such as adding a desktop session entry.
       enable = true;
       package = null;
       portalPackage = null;
-      systemd = {
-        # enable = false; # import to systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE #WARN: last change true -> false
-        # enableXdgAutostart = true;
-        # extraCommands = [# Extra commands to be run after D-Bus activation.
-        # "systemctl --user stop hyprland-session.target"
-        # "systemctl --user start hyprland-session.target"
-        # ];
-        variables = [
-          # imported to systemd dbus enviroments
-          "--all" # does dbus-update-activation-environment --systemd --all
-        ];
-      };
+      # systemd = {
+      # enable = false; # import to systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE #WARN: last change true -> false
+      # enableXdgAutostart = true;
+      # extraCommands = [# Extra commands to be run after D-Bus activation.
+      # "systemctl --user stop hyprland-session.target"
+      # "systemctl --user start hyprland-session.target"
+      # ];
+      # variables = [
+      # imported to systemd dbus enviroments
+      # "--all" # does dbus-update-activation-environment --systemd --all
+      # ];
+      # };
       extraConfig = ''
         # █▀█ █▀▀ █▀ █ ▀█ █▀▀
         # █▀▄ ██▄ ▄█ █ █▄ ██▄

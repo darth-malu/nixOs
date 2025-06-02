@@ -75,24 +75,12 @@ devices = {
 
 ** folders
 *** shibuya
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
 folders = {
   "Shibuya" = {         # Name of folder in Syncthing, also the folder ID
     path = "/home/malu/Shibuya";    # Which folder to add to Syncthing
     devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
   };
-#+end_src
-
-*** taskwarrior
-#+begin_src nix :tangle no
-"Taskwarrior" = {
-  path = "/home/malu/.task";
-  devices = [
-    "tangier"
-    "carthage"
-  ];
-  type = "sendreceive";
-};
 #+end_src
 
 *** yt videos
@@ -138,10 +126,10 @@ folders = {
 
 *** music
 **** TODO make sharepoint better
-#+begin_src nix :tangle no
+#+begin_src nix :tangle yes
 "music" = {
   path = "/home/malu/Music/homeMusic";
-  devices = ["tangier" "carthage" ];
+  devices = [ "carthage" ];
   type = "receiveonly";
 };
 #+end_src
@@ -155,14 +143,6 @@ folders = {
 };
 #+end_src
 
-*** obsidian vaults
-#+begin_src nix :tangle default.nix
-  "myVaults" = {
-    path = "/home/malu/obsidianVaults";
-    devices = ["tangier" "carthage"];
-  };
-#+end_src
-
 *** sharepoint
 #+begin_src nix :tangle default.nix
   "sharepoint" = {
@@ -171,7 +151,7 @@ folders = {
   };
 #+end_src
 *** org, org-roam
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
 "org" = {
   path = "/home/malu/org";
   devices = ["tangier" "carthage"];
@@ -184,7 +164,7 @@ folders = {
 }; # end of folders
 #+end_src
 *** emacs config
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
 "doom-emacs" = {
   path = "/home/malu/.doom.d";
   devices = ["tangier" "carthage"];
@@ -192,7 +172,7 @@ folders = {
 
 #+end_src
 ** password theme user gui
-*** TODO set password as harsh instead
+*** TODO set password as hash instead
 #+begin_src nix :tangle default.nix
 gui = {
   theme = "black";

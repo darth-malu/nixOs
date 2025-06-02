@@ -1,57 +1,76 @@
 #+auto_tangle: t
 
+* header, start :misc:
 #+begin_src nix :tangle default.nix
 {modulesPath, lib, config,...}:
 
 {
-  imports = [
-    # (modulesPath + "/installer/scan/not-detected.nix") #in common now
-    ./amd.nix
-    ../common
-    # ../common/users/remote-builder.nix # removed from common only for carthage now
-  ];
-
-
-  boot = {
-    # supportedFilesystems = { ntfs-3g = true; ext4 = true; }; # can also be list # supportedFilesystems = [ "ntfs" ];
-    supportedFilesystems = [ "ntfs" ];
-    initrd = {
-      # kernelModules = [ "dm-snapshot" ]; #load amd driver (amdgpu) early user space # Force loads to initrd
-      availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ]; # available to initram but only loaded on demand
-      systemd = {
-        network = {
-          wait-online.enable = false; # since using networkmanager not networkd;
-        };
-      };
-    };
-    kernelModules = ["kvm-amd" "wl"]; # second stage of boot process # not modules needed to boot root fs
-    # kernelParams = [# parameterrs for kernel command line
-    #   "video=HDMI-A-1:1920x1080@240"
-    #   "video=DP-3:1920x1080@60"
-    # ];
-  };
-
-  hardware = {
-    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    # enableAllFirmware = true; # enable all firmware regardless of license #for bt to work in HSP/HFP mode
-    # enableAllHardware = true; # Enable support for most hardware
-  };
-
 #+end_src
 
-* hostId
+* imports
+#+begin_src nix :tangle default.nix
+imports = [
+  # (modulesPath + "/installer/scan/not-detected.nix") #in common now
+  ./amd.nix
+  ../common
+  # ../common/users/remote-builder.nix # removed from common only for carthage now
+];
+#+end_src
+
+* boot
+#+begin_src nix :tangle default.nix
+boot = {
+  # supportedFilesystems = { ntfs-3g = true; ext4 = true; }; # can also be list # supportedFilesystems = [ "ntfs" ];
+  # supportedFilesystems = [ "ntfs" ];
+  initrd = {
+    # kernelModules = [ "dm-snapshot" ]; #load amd driver (amdgpu) early user space # Force loads to initrd
+    availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ]; # available to initram but only loaded on demand
+    systemd = {
+      network = {
+        wait-online.enable = false; # since using networkmanager not networkd;
+      };
+    };
+  };
+  kernelModules = ["kvm-amd" "wl"]; # second stage of boot process # not modules needed to boot root fs
+  # kernelParams = [# parameterrs for kernel command line
+  #   "video=HDMI-A-1:1920x1080@240"
+  #   "video=DP-3:1920x1080@60"
+  # ];
+};
+#+end_src
+
+* microcode
+Update the CPU microcode for AMD processors
+
+#+begin_src nix :tangle default.nix
+hardware = {
+  cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  # enableAllFirmware = true; # enable all firmware regardless of license #for bt to work in HSP/HFP mode
+  # enableAllHardware = true; # Enable support for most hardware
+};
+#+end_src
+
+* networking.hostId
 use: ~head -c 8 /etc/machine-id~ or ~head -c4 /dev/urandom | od -A none -t x4~
 
 #+begin_src nix :tangle default.nix
 networking = {
-  hostName = "carthage"; # Define your hostname.
+  hostName = "carthage";
   hostId = "7435d550";
 };
 #+end_src
 
-* stateVersion and end
+* stateVersion
 #+begin_src nix :tangle default.nix
 system.stateVersion = "24.11";
+#+end_src
+
+* hostPlatform
+#+begin_src nix :tangle default.nix
 nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+#+end_src
+
+* end
+#+begin_src nix :tangle default.nix
 }
 #+end_src

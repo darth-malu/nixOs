@@ -1,44 +1,46 @@
 {modulesPath, lib, config,...}:
 
 {
-  imports = [
-    # (modulesPath + "/installer/scan/not-detected.nix") #in common now
-    ./amd.nix
-    ../common
-    # ../common/users/remote-builder.nix # removed from common only for carthage now
-  ];
 
+imports = [
+  # (modulesPath + "/installer/scan/not-detected.nix") #in common now
+  ./amd.nix
+  ../common
+  # ../common/users/remote-builder.nix # removed from common only for carthage now
+];
 
-  boot = {
-    # supportedFilesystems = { ntfs-3g = true; ext4 = true; }; # can also be list # supportedFilesystems = [ "ntfs" ];
-    supportedFilesystems = [ "ntfs" ];
-    initrd = {
-      # kernelModules = [ "dm-snapshot" ]; #load amd driver (amdgpu) early user space # Force loads to initrd
-      availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ]; # available to initram but only loaded on demand
-      systemd = {
-        network = {
-          wait-online.enable = false; # since using networkmanager not networkd;
-        };
+boot = {
+  # supportedFilesystems = { ntfs-3g = true; ext4 = true; }; # can also be list # supportedFilesystems = [ "ntfs" ];
+  # supportedFilesystems = [ "ntfs" ];
+  initrd = {
+    # kernelModules = [ "dm-snapshot" ]; #load amd driver (amdgpu) early user space # Force loads to initrd
+    availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ]; # available to initram but only loaded on demand
+    systemd = {
+      network = {
+        wait-online.enable = false; # since using networkmanager not networkd;
       };
     };
-    kernelModules = ["kvm-amd" "wl"]; # second stage of boot process # not modules needed to boot root fs
-    # kernelParams = [# parameterrs for kernel command line
-    #   "video=HDMI-A-1:1920x1080@240"
-    #   "video=DP-3:1920x1080@60"
-    # ];
   };
+  kernelModules = ["kvm-amd" "wl"]; # second stage of boot process # not modules needed to boot root fs
+  # kernelParams = [# parameterrs for kernel command line
+  #   "video=HDMI-A-1:1920x1080@240"
+  #   "video=DP-3:1920x1080@60"
+  # ];
+};
 
-  hardware = {
-    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    # enableAllFirmware = true; # enable all firmware regardless of license #for bt to work in HSP/HFP mode
-    # enableAllHardware = true; # Enable support for most hardware
-  };
+hardware = {
+  cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  # enableAllFirmware = true; # enable all firmware regardless of license #for bt to work in HSP/HFP mode
+  # enableAllHardware = true; # Enable support for most hardware
+};
 
 networking = {
-  hostName = "carthage"; # Define your hostname.
+  hostName = "carthage";
   hostId = "7435d550";
 };
 
 system.stateVersion = "24.11";
+
 nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
 }

@@ -84,6 +84,10 @@
       iotop
       nethogs
       inxi
+      amdgpu_top
+
+      # TODO EXP - see if icons will be fixed
+      libadwaita
 
       trash-cli # for move to trash mpv
       wf-recorder
@@ -107,6 +111,7 @@
 
       # productivity
       buku # TODO: test
+      jetbrains.pycharm-community-bin
     ]
     ++ (with pkgs; [
       # creative space

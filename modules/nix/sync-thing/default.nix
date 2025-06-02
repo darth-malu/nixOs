@@ -31,12 +31,6 @@ devices = {
   };
 };
 
-folders = {
-  "Shibuya" = {         # Name of folder in Syncthing, also the folder ID
-    path = "/home/malu/Shibuya";    # Which folder to add to Syncthing
-    devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
-  };
-
 "ytVid-tangier" = {
   path = "/home/malu/Videos/YtDlp";
   devices = [ "tangier" ]; # send to device listed here
@@ -66,31 +60,10 @@ folders = {
   type = "sendreceive";
 };
 
-  "myVaults" = {
-    path = "/home/malu/obsidianVaults";
-    devices = ["tangier" "carthage"];
-  };
-
   "sharepoint" = {
     path = "/home/malu/sharepoint";
     devices = ["tangier" "carthage"];
   };
-
-"org" = {
-  path = "/home/malu/org";
-  devices = ["tangier" "carthage"];
-};
-
-"org-roam" = {
-  path = "/home/malu/org-roam";
-  devices = ["tangier" "carthage"];
-};
-}; # end of folders
-
-"doom-emacs" = {
-  path = "/home/malu/.doom.d";
-  devices = ["tangier" "carthage"];
-};
 
 gui = {
   theme = "black";

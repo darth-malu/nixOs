@@ -28,6 +28,7 @@
         # ly.enable = false;
       };
       desktopManager.plasma6.enable = true;
+      blueman.enable = false; # TODO test if works
     };
 
     programs.dconf.enable = true;

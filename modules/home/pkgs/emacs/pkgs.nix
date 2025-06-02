@@ -58,7 +58,7 @@ in
     # bash-language-server
     # basedpyright
     black
-    # nixd
+    nixd # for zed as well
     nixfmt-rfc-style # official - needed to use formatting with :lang nix
 
     emacs-lsp-booster # TODO: test if this works

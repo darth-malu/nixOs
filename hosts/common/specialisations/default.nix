@@ -1,4 +1,23 @@
 { lib, config, ... }:
+let
+  plasmaSpecialisation = {
+    configuration = {
+      # top level attributes
+      system.nixos.tags = [ "PLASMA" ]; # disable if needed
+      hyprland.enable = lib.mkForce false;
+      kde.enable = lib.mkForce true;
+      gnome.enable = lib.mkForce false;
+    };
+  };
+  gnomeSpecialisation = {
+    configuration = {
+      system.nixos.tags = [ "GNOME" ];
+      hyprland.enable = lib.mkForce false;
+      kde.enable = lib.mkForce false;
+      gnome.enable = lib.mkForce true;
+    };
+  };
+in
 {
   imports = [
     ./hyprland.nix
@@ -13,33 +32,11 @@
   specialisation =
     if config.networking.hostName == "carthage" then
       {
-        plasmoid = {
-          configuration = {
-            # top level attributes
-            system.nixos.tags = [ "PLASMA" ]; # disable if needed
-            hyprland.enable = lib.mkForce false;
-            kde.enable = lib.mkForce true;
-            gnome.enable = lib.mkForce false;
-          };
-        };
-        gnome = {
-          configuration = {
-            system.nixos.tags = [ "GNOME" ];
-            hyprland.enable = lib.mkForce false;
-            kde.enable = lib.mkForce false;
-            gnome.enable = lib.mkForce true;
-          };
-        };
+        plasmoid = plasmaSpecialisation;
+        gnome = gnomeSpecialisation;
       }
     else
       {
-        plasmoid = {
-          configuration = {
-            system.nixos.tags = [ "PLASMA" ];
-            hyprland.enable = lib.mkForce false;
-            kde.enable = lib.mkForce true;
-            gnome.enable = lib.mkForce false;
-          };
-        };
+        plasmoid = plasmaSpecialisation;
       };
 }

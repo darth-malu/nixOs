@@ -6,6 +6,24 @@
 # lib.mkIf osConfig.services.desktopManager.plasma6.enable {
 lib.mkIf osConfig.hyprland.enable {
 
+home.pointerCursor = {
+  enable = true; # false::
+  gtk.enable = true; # waybar, gtk apps
+  hyprcursor = {
+    size = 24; # 32::
+    enable = false;
+  };
+  x11 = {
+    enable = true; # false:: xwayland?
+    # defaultCursor = pkgs.
+  };
+  # name = "Bibata-Modern-Ice";
+  # package = pkgs.bibata-cursors;
+  name = "google-cursor";
+  package = pkgs.google-cursor;
+  size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
+};
+
 gtk = {
   enable = true;
   #font = {
@@ -25,8 +43,8 @@ theme = {
 };
 
 iconTheme = {
-  # package = pkgs.kora-icon-theme; name = "kora-icon-theme";
-  package = pkgs.candy-icons; name = "candy-icons";
+  package = pkgs.kora-icon-theme; name = "kora-icon-theme";
+  # package = pkgs.candy-icons; name = "candy-icons";
   # package = pkgs.windows10-icons; name = "windows10-icons";
   # package = pkgs.gruvbox-plus-icons;
   # name = "gruvbox-plus-icons";

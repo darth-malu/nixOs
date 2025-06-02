@@ -11,7 +11,8 @@
     enable = lib.mkEnableOption "Hyprland";
   };
 
-  config = {
+  config = lib.mkIf config.hyprland.enable {
+    system.nixos.tags = [ "Hyprland" ];
     programs = {
       hyprland = {
         # required even with homeManager for system functions -> xdg, session files

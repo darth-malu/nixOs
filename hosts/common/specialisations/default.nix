@@ -1,21 +1,28 @@
-{ lib, config, ... }:
+{ lib, ... }:
 let
-  plasmaSpecialisation = {
-    configuration = {
-      # top level attributes
-      system.nixos.tags = [ "PLASMA" ]; # disable if needed
-      hyprland.enable = lib.mkForce false;
-      kde.enable = lib.mkForce true;
-      gnome.enable = lib.mkForce false;
-    };
+  plasmaSpecialisation.configuration = {
+    # top level attributes
+    system.nixos.tags = [ "PLASMA" ]; # disable if needed
+    hyprland.enable = lib.mkForce false;
+    kde.enable = lib.mkForce true;
+    gnome.enable = lib.mkForce false;
   };
-  gnomeSpecialisation = {
-    configuration = {
-      system.nixos.tags = [ "GNOME" ];
-      hyprland.enable = lib.mkForce false;
-      kde.enable = lib.mkForce false;
-      gnome.enable = lib.mkForce true;
-    };
+
+  gnomeSpecialisation.configuration = {
+    system.nixos.tags = [ "GNOME" ];
+    hyprland.enable = lib.mkForce false;
+    kde.enable = lib.mkForce false;
+    gnome.enable = lib.mkForce true;
+  };
+
+  hyprlandSpecialisation.configuration = {
+    system.nixos.tags = [ "HYPRLAND" ];
+    environment.etc."specialisation".text = "vaxrys";
+    # inheritParentConfig = true;
+    hyprland.enable = lib.mkForce true;
+    kde.enable = lib.mkForce false;
+    gnome.enable = lib.mkForce false;
+    programs.dconf.enable = true;
   };
 in
 {
@@ -25,18 +32,13 @@ in
     ./gnome.nix
   ];
 
-  hyprland.enable = lib.mkDefault true;
-  kde.enable = lib.mkDefault false;
+  hyprland.enable = lib.mkDefault false;
+  kde.enable = lib.mkDefault true;
   gnome.enable = lib.mkDefault false;
 
-  specialisation =
-    if config.networking.hostName == "carthage" then
-      {
-        plasmoid = plasmaSpecialisation;
-        gnome = gnomeSpecialisation;
-      }
-    else
-      {
-        plasmoid = plasmaSpecialisation;
-      };
+  specialisation = {
+    # plasmoid = plasmaSpecialisation;
+    hyprland.configuration = hyprlandSpecialisation;
+    # gnome = gnomeSpecialisation;
+  };
 }

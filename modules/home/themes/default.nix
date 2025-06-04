@@ -17,16 +17,16 @@ home.pointerCursor = {
   gtk.enable = true; # waybar, gtk apps
   hyprcursor = {
     size = 24; # 32::
-    enable = false;
+    enable = true;
   };
   x11 = {
     enable = true; # false:: xwayland?
     # defaultCursor = pkgs.
   };
-  # name = "Bibata-Modern-Ice";
-  # package = pkgs.bibata-cursors;
-  name = "google-cursor";
-  package = pkgs.google-cursor;
+  name = "Bibata-Modern-Ice";
+  package = pkgs.bibata-cursors;
+  # name = "google-cursor";
+  # package = pkgs.google-cursor;
   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
 };
 

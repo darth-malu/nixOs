@@ -13,10 +13,10 @@
       '';
       extraPackages =
         epkgs: with epkgs; [
-          # treesit-grammars.with-all-grammars
+          treesit-grammars.with-all-grammars # for bash-ts-mode
           # magit
           vterm
-          # mu4e
+          mu4e
           # prettier
           # org-tidy
           # ebuku

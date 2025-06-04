@@ -6,12 +6,18 @@
   ...
 }:
 
+let
+  inherit (inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}) mesa;
+  # myMesa =
+  #   inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers;
+in
 {
   options.hyprland = {
     enable = lib.mkEnableOption "Hyprland";
   };
 
   config = lib.mkIf config.hyprland.enable {
+    hardware.graphics.package = mesa;
     system.nixos.tags = [ "Hyprland" ];
     programs = {
       hyprland = {
@@ -23,7 +29,6 @@
         portalPackage =
           inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; # make sure to also set the portal package, so that they are in sync
       };
-      # dconf.enable = lib.mkDefault true; # TODO see if needed . for not showing gtk theme in kde?
     };
     services = {
       udisks2 = {
@@ -31,11 +36,11 @@
         mountOnMedia = true;
       };
       power-profiles-daemon.enable = true;
-      upower.enable = true; # TODO transfer to tangier only after testing
+      upower.enable = lib.mkIf (config.networking.hostName == "tangier") true;
       blueman.enable = true; # TODO test if works
       gvfs.enable = true;
     };
-    # (lib.mkIf config.networking.hostName == "tangier") services.upower.enable = true;
+
     security.polkit = {
       enable = true;
       extraConfig = ''
@@ -56,20 +61,5 @@
         });
       '';
     };
-    # systemd = {
-    #   user.services.hyprpolkitagent = {
-    #     description = "hyprpolkitagent";
-    #     wantedBy = [ "graphical-session.target" ];
-    #     wants = [ "graphical-session.target" ];
-    #     after = [ "graphical-session.target" ];
-    #     serviceConfig = {
-    #         Type = "simple";
-    #         ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
-    #         Restart = "on-failure";
-    #         RestartSec = 1;
-    #         TimeoutStopSec = 10;
-    #       };
-    #   };
-    # }; # FIXME does not work
   };
 }

@@ -5,8 +5,8 @@
       [
         # xdg set by uwsm
         # "HYPRCURSOR_THEME,material-cursors"
-        # "HYPRCURSOR_THEME,theme_GoogleDot-Violet"
-        # "HYPRCURSOR_SIZE,24"
+        "HYPRCURSOR_THEME,theme_GoogleDot-Violet"
+        "HYPRCURSOR_SIZE,24"
         "SLURP_ARGS, -d -b -B F050F022 -b 10101022 -c ff00ff"
 
         # "QT_AUTO_SCREEN_SCALE_FACTOR,1" # enable auto scaling based on the monitors pixel density

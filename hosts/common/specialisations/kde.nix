@@ -5,18 +5,8 @@
   ...
 }:
 {
-  # system.nixos.tags = ["kdeBoi"];
-  # inheritParentConfig = true;
-  # environment.etc."specialisation".text = "gnome";
-
-  # users.users.maluware = {
-  #   isNormalUser =  true;
-  #   hashedPassword = "$6$HdXvkPgtduU6S.v8$twGdcmP6g4usswK71O3mRwWUYU.OOdN79ANLtEQvUpIYAyzNJ42ch0NnwEQOKBgMMOz8gXgF.tpqY7MXNjBFW0";
-  #   uid = 1005;
-  #   extraGroups = [ "networkmanager" "video" ];
-  # };
   options.kde = {
-    enable = lib.mkEnableOption "Plasma";
+    enable = lib.mkEnableOption "Plasma module";
   };
 
   config = lib.mkIf config.kde.enable {

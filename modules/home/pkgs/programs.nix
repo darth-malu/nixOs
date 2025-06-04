@@ -4,50 +4,9 @@
   programs = {
     home-manager.enable = true; # Let Home Manager install and manage itself.
 
-    java = {
-      enable = true;
-      # package = pkgs.jdk23;
-    };
-
-    ripgrep = {
-      enable = true;
-      arguments = [
-        # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
-        "--max-columns-preview"
-        "--colors=line:style:bold"
-      ];
-    };
-
-    zoxide = {
-      enable = true;
-      enableBashIntegration = true;
-      options = [ "--cmd cd" ];
-    };
-
-    comodoro.enable = false;
-
-    lsd = import ./misc/lsd.nix;
-
     # eza = {
     #   enable = true;
     # };
-
-    pandoc.enable = true;
-
-    fd = import ./misc/fd.nix;
-
-    freetube = import ./misc/freetube.nix;
-
-    fastfetch = import ./misc/fastfetch.nix;
-
-    git-credential-oauth = {
-      enable = true;
-      extraFlags = [ "-device" ];
-    };
-
-    lazygit = import ./misc/lazygit.nix;
-
-    fzf = import ./misc/fzf.nix;
 
     bat = {
       enable = true;
@@ -82,16 +41,57 @@
       };
     };
 
-    spotify-player = import ./misc/spotify-player.nix;
-
-    zathura = import ./misc/zathura.nix;
+    bashmount.enable = true;
 
     btop.enable = true;
 
-    bashmount.enable = true;
+    comodoro.enable = false;
+
+    fastfetch = import ./misc/fastfetch.nix;
+
+    fd = import ./misc/fd.nix;
+
+    freetube = import ./misc/freetube.nix;
+
+    fzf = import ./misc/fzf.nix;
+
+    git-credential-oauth = {
+      enable = true;
+      extraFlags = [ "-device" ];
+    };
+
+    java = {
+      enable = true;
+      # package = pkgs.jdk23;
+    };
+
+    lazygit = import ./misc/lazygit.nix;
+
+    lsd = import ./misc/lsd.nix;
 
     nyaa = import ./misc/nyaa.nix;
     # nix-index.enable = false;
     # nh.enable = true;
+
+    pandoc.enable = true;
+
+    ripgrep = {
+      enable = true;
+      arguments = [
+        # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+        "--max-columns-preview"
+        "--colors=line:style:bold"
+      ];
+    };
+
+    spotify-player = import ./misc/spotify-player.nix;
+
+    zathura = import ./misc/zathura.nix;
+
+    zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+      options = [ "--cmd cd" ];
+    };
   };
 }

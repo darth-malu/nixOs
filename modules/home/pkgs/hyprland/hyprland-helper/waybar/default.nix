@@ -11,7 +11,7 @@
   };
 
   config = lib.mkIf config.waybar.enable {
-    programs.waybar = lib.mkIf osConfig.programs.hyprland.enable {
+    programs.waybar = lib.mkIf osConfig.hyprland.enable {
       enable = true;
       # systemd = {
       # enable = true; # clashes with uwsm?

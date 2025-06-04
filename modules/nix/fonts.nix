@@ -40,18 +40,12 @@
         fantasque-sans-mono
         ubuntu-mono
         symbols-only # for wezterm/terminal in general glyphs, also emacs
-        # fira-mono
         # shure-tech-mono
-        # fira-code
         # agave
         # caskaydia-cove
         # lilex # kinda nice actually
         # hasklug # kinda looks like sauce code pro
         # tinos # similar to times new roman
-        # iosevka-term
-        # iosevka
-        # DroidSansMono #FIXME: broken
-        # "3270" #FIXME: broken
       ]);
   };
 }

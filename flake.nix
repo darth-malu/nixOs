@@ -105,7 +105,7 @@ inputs.home-manager.nixosModules.home-manager {
   home-manager = {
     verbose = true;
     backupFileExtension = "home_backup"; # useful for clearance script
-    users.malu = import ./modules/home.nix;
+    users.malu = import ./modules/home/home.nix;
     useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
     useUserPackages = false; # if false ... uses nix-profile for home apps
     extraSpecialArgs = { inherit inputs pkgs system; };
@@ -113,8 +113,6 @@ inputs.home-manager.nixosModules.home-manager {
 }
 
 ./hosts/carthage
-
-# { nixpkgs.overlays = [ (import self.inputs.emacs-overlay) ]; } # emacs overlay
 
 ];
 }; # end of carthage config
@@ -133,7 +131,7 @@ tangier =
         home-manager = {
           verbose = true;
           backupFileExtension = "bakup"; # conflict management,append .backup to existing conf. files
-          users.malu = import ./modules/home.nix;
+          users.malu = import ./modules/home/home.nix;
           useGlobalPkgs = true; # dont use private instance of pkgs which is the default
           useUserPackages = false; # if false:: ... uses nix-profile for home apps
           extraSpecialArgs = { inherit  pkgs inputs system; };

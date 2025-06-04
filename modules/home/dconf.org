@@ -1,9 +1,0 @@
-:PROPERTIES:
-:ID:       e18bcfd7-9eb9-4b03-ae12-ad8ddc120cc9
-:END:
-#+title: Dconf
-
-
-[[attachment:_20250313_103927screenshot.png]]
-
-error in [[file:dconf.nix]]

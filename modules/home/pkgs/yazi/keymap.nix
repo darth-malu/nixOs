@@ -6,7 +6,7 @@ manager.keymap = [
   { on = [ "g" "c" ];       run = "cd ~/.config";     desc = ".config";}
   { on = [ "g" "d" ];       run = "cd ~/Documents";   desc = "Documents"; }
   { on = [ "g" "p" ];       run = "cd ~/Pictures";   desc = "Go to the pictures directory"; }
-  { on = [ "g" "g" ];       run = "cd ~/Pictures/grimblast";   desc = "grimblast"; }
+  { on = [ "g" "G" ];       run = "cd ~/Pictures/grimblast";   desc = "grimblast"; }
   { on = [ "g" "x" ];       run = "cd ~/Downloads";   desc = "Go to the downloads directory"; }
   { on = [ "g" "s" ];       run = "cd ~/Shibuya";   desc = "~/Shibuya"; }
   { on = [ "g" "v" ];       run = "cd ~/Videos";   desc = "VIDEOS dir"; }

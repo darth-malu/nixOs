@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./pkgs.nix
+    ./emacsPkgs.nix
   ];
 
   config = {
@@ -13,13 +13,13 @@
       '';
       extraPackages =
         epkgs: with epkgs; [
-          treesit-grammars.with-all-grammars
-          magit
+          # treesit-grammars.with-all-grammars
+          # magit
           vterm
-          mu4e
-          prettier
-          org-tidy
-          ebuku
+          # mu4e
+          # prettier
+          # org-tidy
+          # ebuku
           # lsp-pyright
           # emacs-all-the-icons-fonts
         ];
@@ -33,9 +33,9 @@
       enable = true; # emacs daemon
       # startWithUserSession = true; # whether to launch Emacs servicee with the systemd session. boolean or "graphical" (default.target::) #TODO test without
       defaultEditor = true;
-      socketActivation.enable = false; # Whether to enable systemd socket activation for the Emacs service. # NOTE: very slow to launch
+      socketActivation.enable = true; # Whether to enable systemd socket activation for the Emacs service. # NOTE: very slow to launch
       client = {
-        enable = false; # false::, generation of Emacs client desktop file.
+        enable = true; # false::, generation of Emacs client desktop file. FIXME not work?
         arguments = [
           "-c" # open in emacs frame / GUI frame
           # "-a 'emacs'"

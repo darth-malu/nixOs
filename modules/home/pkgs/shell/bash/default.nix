@@ -10,6 +10,14 @@
       # ignore duplicate commands, ignore commands starting with a space
       #HISTCONTROL="ignoreboth:erasedups"; #ignoreboth=space+ingoredups , : - delimeter
     };
+    shellOptions = [
+      # prefix with ~ to unset
+      "histappend"
+      "checkwinsize"
+      "extglob" # extended globbing
+      "globstar"
+      "checkjobs"
+    ];
     historyFileSize = 100000;
     shellAliases = import ./alias.nix;
     historySize = 10000;
@@ -69,13 +77,5 @@
           source "$(fzf-share)/completion.bash"
         fi
       '';
-    shellOptions = [
-      # prefix with ~ to unset
-      "histappend"
-      "checkwinsize"
-      "extglob" # extended globbing
-      "globstar"
-      "checkjobs"
-    ];
   };
 }

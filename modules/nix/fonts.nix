@@ -3,55 +3,55 @@
 {
   fonts = {
     enableDefaultPackages = true;
-    enableGhostscriptFonts = true;
+    # enableGhostscriptFonts = true; # TODO see if needed
     packages =
       with pkgs;
       [
-        #terminus_font noto-fonts fira-code noto-fonts-cjk-sans
-        fira-code
-        fira-math
-        monaspace
         jetbrains-mono
         font-awesome
-        texlivePackages.nunito
+        texlivePackages.nunito # kinda like quicksand
         inter
         quicksand
+        iosevka-comfy.comfy
         # lato # unneeded?
         # cascadia-code
-        iosevka-comfy.comfy
+        # fira-code
+        # fira-math
       ]
       ++ [
-        # fonts
+        # emacs fonts
         emacs-all-the-icons-fonts
+        noto-fonts-color-emoji
+        noto-fonts
       ]
       ++ (with pkgs.nerd-fonts; [
-        # fira-mono
-        fantasque-sans-mono
+        space-mono
         zed-mono
         daddy-time-mono
-        # shure-tech-mono
         jetbrains-mono
-        # fira-code
         victor-mono
-        ubuntu-mono
-        space-mono
-        mononoki
-        # monaspace
+        monaspace
         martian-mono
         sauce-code-pro
+        lekton
+        geist-mono
+        monofur # nice stylistic
+        mononoki # kinda nice style
+        fantasque-sans-mono
+        ubuntu-mono
+        symbols-only # for wezterm/terminal in general glyphs, also emacs
+        # fira-mono
+        # shure-tech-mono
+        # fira-code
+        # agave
+        # caskaydia-cove
+        # lilex # kinda nice actually
         # hasklug # kinda looks like sauce code pro
         # tinos # similar to times new roman
         # iosevka-term
         # iosevka
         # DroidSansMono #FIXME: broken
         # "3270" #FIXME: broken
-        lekton
-        lilex # kinda nice actually
-        geist-mono
-        # agave
-        caskaydia-cove
-        monofur
-        symbols-only # for wezterm/terminal in general glyphs, also emacs
       ]);
   };
 }

@@ -6,6 +6,12 @@
 # lib.mkIf osConfig.services.desktopManager.plasma6.enable {
 lib.mkIf osConfig.hyprland.enable {
 
+ dconf.settings = {
+   "/org/gnome/desktop/interface" = {
+     gtk-theme = "'Nightfox-Dark'";
+   };
+ };
+
 home.pointerCursor = {
   enable = true; # false::
   gtk.enable = true; # waybar, gtk apps

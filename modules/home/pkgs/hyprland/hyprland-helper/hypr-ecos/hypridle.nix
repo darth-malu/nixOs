@@ -1,4 +1,4 @@
-{ lib, config }:
+{ lib, config, ... }:
 {
   options.hypridle = {
     enable = lib.mkEnableOption "hypridle";

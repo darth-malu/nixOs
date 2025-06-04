@@ -7,12 +7,12 @@
 
 {
   options.waybar = {
-    enable = lib.mkEnableOption "waybar";
+    enable = lib.mkEnableOption "Enable waybar on hyprland";
   };
 
   config = lib.mkIf config.waybar.enable {
-    programs.waybar = {
-      enable = lib.mkIf osConfig.hyprland.enable true;
+    programs.waybar = lib.mkIf osConfig.programs.hyprland.enable {
+      enable = true;
       # systemd = {
       # enable = true; # clashes with uwsm?
       # target = "graphical-session.target"; # config.wayland.systemd.target::

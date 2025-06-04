@@ -11,7 +11,7 @@
     ./sync-thing
     ./ssh
     ./bash.nix
-    # ./qemu
+    ./qemu
   ];
 
   # qemuNix.enable = if config.networking.hostName == "carthage" then true else false;
@@ -87,7 +87,7 @@
             # hyprcursor
             hyprpicker
             hyprpolkitagent
-            hyprsunset
+            # hyprsunset
             # libappindicator # TODO test if needed
             libappindicator-gtk3
             # polkit_gnome

@@ -13,19 +13,15 @@
     ./soundStuff
     ./mpv
     ./git.nix
-    # ./tmux
-    ./emacs
     ./yazi
-    ../terminal
-    ../bash
-    ../hyprland
-    ../textEditor
+    ./shell
+    ./hyprland
+    ./textEditor
     ./programs.nix
     ./services.nix
     inputs.nyaa.homeManagerModule
   ];
 
-  # modules
   homeHyprland.enable = lib.mkIf osConfig.hyprland.enable true;
 
   home.packages =
@@ -105,12 +101,12 @@
       mpc-cli
       # ymuse # rudimentary
       cantata
-      youtube-tui # https://siriusmart.github.io/youtube-tui/
+      # youtube-tui # https://siriusmart.github.io/youtube-tui/
       spotify
       easyeffects
 
       # productivity
-      buku # TODO: test
+      # buku # TODO: test
       jetbrains.pycharm-community-bin
     ]
     ++ (with pkgs; [
@@ -121,7 +117,7 @@
       spotube
       spotify-cli-linux
       spotube
-      kdePackages.kdenlive
+      # kdePackages.kdenlive
       # digikam
     ])
     ++ (with pkgs; [
@@ -129,7 +125,7 @@
       # komikku # broken
       mangal
       ani-cli
-      miru
+      # miru # issue launching -kde
       #syncyomi - sync tachiyomi progress across devices
     ])
     ++ (with pkgs; [

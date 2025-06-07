@@ -8,9 +8,9 @@
 {
   services = {
     # kdeconnect.enable = true;
-    blueman-applet.enable = lib.mkIf osConfig.hyprland.enable true;
+    blueman-applet.enable = lib.mkIf osConfig.programs.hyprland.enable true;
     udiskie = {
-      enable = lib.mkIf osConfig.hyprland.enable true;
+      enable = lib.mkIf osConfig.programs.hyprland.enable true;
       tray = "auto"; # works
       notify = true;
       automount = false; # better?

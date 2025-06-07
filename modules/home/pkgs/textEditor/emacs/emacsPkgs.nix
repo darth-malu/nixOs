@@ -87,27 +87,6 @@ in
     # web
     html-tidy
 
-    (pkgs.python3.withPackages (
-      python-pkgs: with python-pkgs; [
-        pandas
-        # numpy
-        seaborn
-        matplotlib
-        tkinter
-        # pip
-        requests
-        ttkbootstrap
-        # pandasql
-        #emacs
-        weasyprint
-        pytest
-        pyflakes
-        isort
-        nose2pytest
-        grip
-        conda
-      ]
-    ))
     # lsp
     nodejs_24 # consider npm for auto install of servers in lsp-mode
   ];

@@ -65,9 +65,10 @@ bind =
   [
     # "$mod, F1,exec,  killall -9 spotify || [workspace emptym] uwsm app -- spotify"
 
-  "$mod, F, exec, [workspace emptym] uwsm app -s a -- freetube"
+  "$mod, KP_1, exec, [workspace emptym] uwsm app -s a -- freetube"
   "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
+  "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
 
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
@@ -97,21 +98,21 @@ bind =
   "$mod, KP_Divide, togglesplit" # dwindle
   "$mod, KP_Multiply, pseudo"
 
-"$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
+# "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
 "$mod $cl, D, focuswindow, class:^(Emacs)$"
-"$mod , up, focuswindow, class:^(Emacs)$"
+# "$mod , up, focuswindow, class:^(Emacs)$"
 
 # "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
-"$mod $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+# "$mod $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 "$mod $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
-"$mod , left, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+# "$mod , left, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 
-"$mod $cl, KP_Left, focuswindow, class:^(google-chrome)$"
+# "$mod $cl, KP_Left, focuswindow, class:^(google-chrome)$"
 "$mod $cl, C, focuswindow, class:^(google-chrome)$"
-"$mod ,right, focuswindow, class:^(google-chrome)$"
+# "$mod ,right, focuswindow, class:^(google-chrome)$"
 
 "$mod $cl, m, focuswindow, class:^(mpv)$"
-"$mod , down, focuswindow, class:^(mpv)$"
+# "$mod , down, focuswindow, class:^(mpv)$"
 
 "$mod $cl, F, focuswindow, class:^(Freetube)$"
 
@@ -259,15 +260,15 @@ binde =
     "$mod, Next, execr, songart"
   ]++
   [#rest
-    "SUPER ,KP_Enter, exec, gaps custom" # set according to hyprland config default
+    "$mod ,KP_Enter, exec, gaps custom" # set according to hyprland config default
 
     # increase/decrease gaps
-    "SUPER,KP_Add, exec, gaps increment_gap"
-    "SUPER,KP_Subtract, exec, gaps decrease_gap"
+    "$mod,KP_Add, exec, gaps increment_gap"
+    "$mod,KP_Subtract, exec, gaps decrease_gap"
 
-    "SUPER $al,KP_Enter, exec, gaps gaps_in_reset"
-    "SUPER $al,KP_Add, exec, gaps gaps_in_add"
-    "SUPER $al,KP_Subtract, exec, gaps gaps_in_sub"
+    "$mod $al, KP_Enter, exec, gaps gaps_in_reset"
+    "$mod $al, KP_Add, exec, gaps gaps_in_add"
+    "$mod $al, KP_Subtract, exec, gaps gaps_in_sub"
   ];
 };
  };

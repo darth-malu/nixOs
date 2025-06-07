@@ -22,11 +22,39 @@
     inputs.nyaa.homeManagerModule
   ];
 
-  homeHyprland.enable = lib.mkIf osConfig.hyprland.enable true;
+  homeHyprland.enable = lib.mkIf osConfig.programs.hyprland.enable true;
 
   home.packages =
     with pkgs;
     [
+      (pkgs.python3.withPackages (
+        python-pkgs: with python-pkgs; [
+          #PYRPLE
+          conda
+          # pyqt6
+          pyside6
+          pytube
+          pandas
+          # numpy
+          seaborn
+          matplotlib
+          tkinter
+          # pip
+          requests
+          ttkbootstrap
+          # pandasql
+          #emacs
+          weasyprint
+          pytest
+          pyflakes
+          isort
+          nose2pytest
+          grip
+
+        ]
+      ))
+    ]
+    ++ [
       sway-audio-idle-inhibit
       wev
       # tldr - using emacs one lol

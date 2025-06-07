@@ -17,13 +17,13 @@ in
   };
 
   config = lib.mkIf config.hyprland.enable {
-    hardware.graphics.package = mesa;
+    # hardware.graphics.package = mesa;
     system.nixos.tags = [ "Hyprland" ];
     programs = {
       hyprland = {
         # required even with homeManager for system functions -> xdg, session files
         enable = true; # also enables XDPH
-        withUWSM = lib.mkDefault true;
+        withUWSM = true;
         # xwayland.enable = true; # true::
         package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; # set package + portal if using flake
         portalPackage =

@@ -20,23 +20,23 @@
         preload =
           if osConfig.networking.hostName == "carthage" then
             [
-              "$HOME/Pictures/wallpapers/singed-4096x2305.jpg"
-              "$HOME/Pictures/wallpapers/jinx.png"
-              "$HOME/Pictures/wallpapers/thresh_purp.png"
+              "$HOME/Pictures/wallpaperS/jinx.png"
+              "$HOME/Pictures/wallpaperS/thresh_purp.png"
+              "$HOME/Pictures/wallpaperS/singed-4096x2305.jpg"
             ]
           else if osConfig.networking.hostName == "tangier" then
-            [ "$HOME/Pictures/wallpapers/vi_xander.png" ]
+            [ "$HOME/Pictures/wallpaperS/vi_xander.png" ]
           else
             [ ];
         # wallpaper = wall;
         wallpaper =
           if osConfig.networking.hostName == "carthage" then
             [
-              "HDMI-A-1,$HOME/Pictures/wallpapers/jinx.png"
-              "DP-3,$HOME/Pictures/wallpapers/singed-4096x2305.jpg"
+              "HDMI-A-1,$HOME/Pictures/wallpaperS/jinx.png"
+              "DP-3,$HOME/Pictures/wallpaperS/singed-4096x2305.jpg"
             ]
           else if osConfig.networking.hostName == "tangier" then
-            [ "eDP-1,$HOME/Pictures/wallpapers/vi_xander.png" ]
+            [ "eDP-1,$HOME/Pictures/wallpaperS/vi_xander.png" ]
           else
             [ ];
       };

@@ -8,7 +8,7 @@
       ./xdg
     ]
     ++ (
-      if osConfig.hyprland.enable then
+      if osConfig.programs.hyprland.enable then
         [
           ./themes
         ]

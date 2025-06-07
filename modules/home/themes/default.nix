@@ -4,7 +4,7 @@
 #   gruvboxplus = import ../home/gruvbox-plus.nix { inherit pkgs;};
 # in
 # lib.mkIf osConfig.services.desktopManager.plasma6.enable {
-lib.mkIf osConfig.hyprland.enable {
+lib.mkIf osConfig.programs.hyprland.enable {
 
  dconf.settings = {
    "/org/gnome/desktop/interface" = {
@@ -23,10 +23,8 @@ home.pointerCursor = {
     enable = true; # false:: xwayland?
     # defaultCursor = pkgs.
   };
-  name = "Bibata-Modern-Ice";
-  package = pkgs.bibata-cursors;
-  # name = "google-cursor";
-  # package = pkgs.google-cursor;
+  # name = "Bibata-Modern-Ice"; package = pkgs.bibata-cursors;
+  name = "google-cursor"; # package = pkgs.google-cursor;
   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
 };
 

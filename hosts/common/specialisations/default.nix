@@ -17,7 +17,7 @@ let
 
   hyprlandSpecialisation.configuration = {
     system.nixos.tags = [ "HYPRLAND" ];
-    environment.etc."specialisation".text = "vaxrys";
+    # environment.etc."specialisation".text = "vaxrys";
     # inheritParentConfig = true;
     hyprland.enable = lib.mkForce true;
     kde.enable = lib.mkForce false;
@@ -32,13 +32,13 @@ in
     ./gnome.nix
   ];
 
-  hyprland.enable = lib.mkDefault false;
-  kde.enable = lib.mkDefault true;
+  hyprland.enable = lib.mkDefault true;
+  kde.enable = lib.mkDefault false;
   gnome.enable = lib.mkDefault false;
 
   specialisation = {
-    # plasmoid = plasmaSpecialisation;
-    hyprland.configuration = hyprlandSpecialisation;
+    plasmoid = plasmaSpecialisation;
+    # hyprland = hyprlandSpecialisation;
     # gnome = gnomeSpecialisation;
   };
 }

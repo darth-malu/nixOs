@@ -291,7 +291,8 @@
               if osConfig.networking.hostName == "carthage" then
                 [
                   "disk"
-                  "disk#home"
+                  "disk#mutsu"
+                  "disk#hyogo"
                   "disk#linuxHdd"
                   "disk#extraHdd"
                 ]
@@ -570,30 +571,37 @@
 
           "disk" = {
             interval = 90;
-            format = " \t{specific_free:0.1f} GiB";
-            "unit" = "GB";
+            format = " \t{specific_free:0.1f} GiB"; # 
+            unit = "GB";
             path = "/";
-          };
-
-          "disk#home" = {
-            interval = 90;
-            format = "   {specific_free:0.1f} Gib";
-            path = "/home";
-            "unit" = "GB";
           };
 
           "disk#linuxHdd" = {
             interval = 90;
             format = "   {specific_free:0.1f} Gib"; # 
             path = "/media/linuxHdd";
+            unit = "GB";
+          };
+
+          "disk#hyogo" = {
+            interval = 90;
+            format = "󰡚   {specific_free:0.1f} Gib"; # 
+            path = "/media/hyogo";
             "unit" = "GB";
+          };
+
+          "disk#mutsu" = {
+            interval = 90;
+            format = "󰡗   {specific_free:0.1f} Gib"; #  
+            path = "/media/mutsu";
+            unit = "GB";
           };
 
           "disk#extraHdd" = {
             interval = 90;
             format = "   {specific_free:0.1f} Gib"; # 󰨡
             path = "/media/extraHdd";
-            "unit" = "GB";
+            unit = "GB";
           };
 
           "clock" = {

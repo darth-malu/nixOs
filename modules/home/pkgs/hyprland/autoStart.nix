@@ -1,7 +1,7 @@
 {
   wayland.windowManager.hyprland.settings.exec-once = [
-    # "systemctl --user enable --now hyprpolkitagent.service"
-    # "systemctl --user enable --now hyprsunset.service"
+    "systemctl --user enable --now hyprpolkitagent.service"
+    # "systemctl --user enable --now hyprsunset.service" #TODO write a script to auto do this
     "uwsm app -s b sway-audio-idle-inhibit" # TODO test this
     "[workspace special:easy silent] uwsm app -s a easyeffects"
     # "uwsm app -s a qbittorent" # FIXME not work

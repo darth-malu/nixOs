@@ -6,15 +6,10 @@
 # lib.mkIf osConfig.services.desktopManager.plasma6.enable {
 lib.mkIf osConfig.programs.hyprland.enable {
 
- dconf.settings = {
-   "/org/gnome/desktop/interface" = {
-     gtk-theme = "'Nightfox-Dark'";
-   };
- };
-
 home.pointerCursor = {
   enable = true; # false::
   gtk.enable = true; # waybar, gtk apps
+  dotIcons.enable = true; # Whether to enable .icons config generation for home.pointerCursor
   hyprcursor = {
     size = 24; # 32::
     enable = true;
@@ -23,8 +18,7 @@ home.pointerCursor = {
     enable = true; # false:: xwayland?
     # defaultCursor = pkgs.
   };
-  # name = "Bibata-Modern-Ice"; package = pkgs.bibata-cursors;
-  name = "google-cursor"; # package = pkgs.google-cursor;
+  name = "google-cursor";  package = pkgs.google-cursor;
   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
 };
 
@@ -36,22 +30,24 @@ gtk = {
   #};
 
 cursorTheme = {
-  package = pkgs.bibata-cursors; name = "Bibata-Modern-Ice";
+  # package = pkgs.bibata-cursors; name = "Bibata-Modern-Ice";
+  name = "google-cursor"; package = pkgs.google-cursor;
   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
-};#NOTE: not needed?
+};
 
 theme = {
-  name = "Nightfox-Dark";
-  package = pkgs.nightfox-gtk-theme;
+  name = "nightfox-gtk-theme";  package = pkgs.nightfox-gtk-theme;
+  # name = "breeze-gtk";  package = pkgs.kdePackages.breeze-gtk;
+  # name = "yaru";  package = pkgs.yaru-theme;
   # name = "tokyonight-gtk-theme"; package = pkgs.Tokyonight-Moon;
 };
 
 iconTheme = {
-  package = pkgs.kora-icon-theme; name = "kora-icon-theme";
-  # package = pkgs.candy-icons; name = "candy-icons";
-  # package = pkgs.windows10-icons; name = "windows10-icons";
-  # package = pkgs.gruvbox-plus-icons;
-  # name = "gruvbox-plus-icons";
+  # name = "kora-icon-theme"; package = pkgs.kora-icon-theme;
+  name = "candy-icons"; package = pkgs.candy-icons;
+  # name = "windows10-icons"; package = pkgs.windows10-icons;
+  # name = "papirus-icon-theme"; package = pkgs.papirus-icon-theme;
+  # name = "gruvbox-plus-icons";  package = pkgs.gruvbox-plus-icons;
 };
 
 gtk2 = {

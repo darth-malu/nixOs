@@ -68,7 +68,7 @@ pkgs = import nixpkgs {
       # "obsidian"
       "wpsoffice"
       # "broadcom-sta"
-      # "windows10-icons"
+      "windows10-icons"
       # "whatsapp-emoji-linux"
       "aspell-dict-en-science"
       "davinci-resolve"

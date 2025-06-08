@@ -1,6 +1,6 @@
 ''
 
-  #disk.home, #disk.linuxHdd,#disk.extraHdd {
+  #disk.home,#disk.mutsu,#disk.hyogo, #disk.linuxHdd,#disk.extraHdd {
     padding:0px;
     margin: 4px 0px 3px 0px;
     border-radius: 0px;

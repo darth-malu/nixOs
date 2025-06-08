@@ -26,6 +26,7 @@
     ];
 
     "text/pdf" = [ "zathura.desktop" ];
+    "text/x-script.python;" = [ "emacsclient.desktop" ];
 
     "image/png" = [ "viewnior.desktop" ]; # add logic to check for x11
     "image/jpeg" = [ "viewnior.desktop" ]; # imv.desktop

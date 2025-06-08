@@ -56,24 +56,34 @@
       "workspace emptym, class:spotube"
       "workspace emptym, class:Emacs"
 
+      # PYTHON
+      "workspace emptym, class:getting-started.py"
+      "center, class:main.py"
+      "float, class:main.py"
+
       "workspace emptym, class:mpv"
       "monitor HDMI-A-1, class:mpv"
     ];
 
     windowrulev2 = [
       "noblur,class:^()$,title:^()$" # for chrome weird menus clear border
+
       "noblur,class:^(Xdg-desktop-portal-gtk)$,title:^(All Files)$" # for chrome weird menus clear border
       "noborder,class:^(Xdg-desktop-portal-gtk)$,title:^(All Files)$" # for chrome weird menus clear border
 
       "workspace emptym, initialClass:^(discord)$, initialTitle:^(.*)(Discord)$"
-      "workspace emptym, initialClass:^(vesktop)$, initialTitle:^(.*)(DIscord)$"
       "workspace emptym silent, class:^(discord)$, title:(Discord Updater)"
+
+      "workspace emptym, initialClass:^(org.qbittorrent.qBittorrent)$, initialTitle:^(.*)(qBittorrent v5.1.0)$"
 
       "size 80% 80%, initialClass:^(Viewnior)$"
 
+      "workspace emptym, initialClass:^(google-chrome)$"
+
       "suppressevent maximize, class:.*"
       "size 70% 70%,title:^(Select)(.*)"
-      "workspace emptym, initialClass:^(zen-alpha)$, initialTitle:^(Zen Browser)$"
+      # "workspace emptym, initialClass:^(zen-alpha)$, initialTitle:^(Zen Browser)$"
+
       "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0" # fix some dragging issues with xwayland
     ]; # class:[regex],initialClass,initialTitle,floating, focus etc
 

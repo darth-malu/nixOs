@@ -2,7 +2,7 @@
 
 manager.keymap = [
 
-  { on = [ "g" "h" ];       run = "cd ~";             desc = "Go to the home directory"; }
+{ on = [ "g" "h" ];       run = "cd ~";             desc = "Go to the home directory"; }
   { on = [ "g" "c" ];       run = "cd ~/.config";     desc = ".config";}
   { on = [ "g" "d" ];       run = "cd ~/Documents";   desc = "Documents"; }
   { on = [ "g" "p" ];       run = "cd ~/Pictures";   desc = "Go to the pictures directory"; }
@@ -13,6 +13,8 @@ manager.keymap = [
   { on = [ "g" "m" ];       run = "cd ~/Music";   desc = "MUSIC"; }
   { on = [ "g" "M" ];       run = "cd /media/";          desc = "media directory"; }
   { on = [ "g" "<Space>" ]; run = "cd --interactive"; desc = "Go to a directory interactively"; }
+
+{ on = [ "Tab" ]; run = "spot"; desc = "Display file information with the preset or user-customized spotter."; }
 
   { on = [ "<Esc>" ]; run = "escape";             desc = "Exit visual mode, clear selected, or cancel search"; }
   { on = [ "q" ];     run = "quit";               desc = "Exit the process"; }

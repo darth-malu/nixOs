@@ -114,7 +114,7 @@ bind =
 "$mod $cl, m, focuswindow, class:^(mpv)$"
 # "$mod , down, focuswindow, class:^(mpv)$"
 
-"$mod $cl, F, focuswindow, class:^(Freetube)$"
+"$mod $cl, F, focuswindow, class:^(firefox)$"
 
 "$mod, m, togglespecialworkspace, magic"
 "$mod SHIFT, m, movetoworkspace, special:magic"
@@ -148,8 +148,8 @@ bind =
   "$mod, mouse_up, workspace, m+1"
   "$mod, mouse_down, workspace, m-1"
 
-  # "$mod ,left, workspace,m-1"
-  # "$mod ,right,workspace,m+1"
+  "$mod ,left, togglegroup"
+  "$mod ,right,workspace,m+1"
 
   "$mod ,H, workspace,m-1"
   "$mod ,L,workspace,m+1"

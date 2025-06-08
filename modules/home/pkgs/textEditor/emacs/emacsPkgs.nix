@@ -31,15 +31,14 @@ in
     # :email mu4e
     # mu
     # isync
-    # :checkers spell
     # Because emacs expects the dictionaries to be on the same directory as aspell, they won't be picked up. To fix it install the aspellWithDicts package, specifying the dictionaries you want to use:
-    # (aspellWithDicts (
-    #   ds: with ds; [
-    #     en
-    #     en-computers
-    #     en-science
-    #   ]
-    # ))
+    (aspellWithDicts (
+      ds: with ds; [
+        en
+        en-computers
+        en-science
+      ]
+    ))
     hunspell
     # clang-tools
     wordnet # :tools +dictionary dep

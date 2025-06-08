@@ -105,7 +105,6 @@
       mission-center
       iftop
       iotop-c
-      iotop
       nethogs
       inxi
       amdgpu_top

@@ -188,7 +188,7 @@ see hyprswitch:
 #+end_src
 **** freetube
 #+begin_src nix :tangle default.nix
-"$mod $cl, F, focuswindow, class:^(Freetube)$"
+"$mod $cl, F, focuswindow, class:^(firefox)$"
 #+end_src
 
 *** special workspaces / scratch
@@ -235,8 +235,8 @@ see hyprswitch:
   "$mod, mouse_up, workspace, m+1"
   "$mod, mouse_down, workspace, m-1"
 
-  # "$mod ,left, workspace,m-1"
-  # "$mod ,right,workspace,m+1"
+  "$mod ,left, togglegroup"
+  "$mod ,right,workspace,m+1"
 
   "$mod ,H, workspace,m-1"
   "$mod ,L,workspace,m+1"

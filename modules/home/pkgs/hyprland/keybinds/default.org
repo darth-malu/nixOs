@@ -77,17 +77,6 @@ using grimblast from hypr team 🤪
   "$cl, Print, exec, grimblast --cursor --notify copy active"
 #+end_src
 
-*** kill active
-#+begin_src nix :tangle default.nix
-# "$mod ,space, killactive"
-"$al ,F4, killactive"
-"$mod ,Escape, killactive"
-# "$mod ALT, $ar, killactive"
-# "$mod $sl, space, killactive"
-# "$mod ,grave, killactive"
-"$mod, mouse:275, killactive,"
-#+end_src
-
 *** ender
 #+begin_src nix :tangle default.nix
 ];
@@ -132,6 +121,14 @@ bind =
 #+begin_src nix :tangle default.nix
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] $emacs"
+#+end_src
+
+*** activekill
+#+begin_src nix :tangle default.nix
+"$mod ,space, killactive"
+"$al ,F4, killactive"
+"$mod ,Escape, killactive"
+"$mod, mouse:275, killactive,"
 #+end_src
 
 *** empty workspace, toggle floating

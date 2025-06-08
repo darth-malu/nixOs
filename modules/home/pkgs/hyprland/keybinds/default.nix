@@ -51,14 +51,6 @@ bindr = [
   "$al, Print, exec, grimblast --notify copy area"
   "$cl, Print, exec, grimblast --cursor --notify copy active"
 
-# "$mod ,space, killactive"
-"$al ,F4, killactive"
-"$mod ,Escape, killactive"
-# "$mod ALT, $ar, killactive"
-# "$mod $sl, space, killactive"
-# "$mod ,grave, killactive"
-"$mod, mouse:275, killactive,"
-
 ];
 
 bind =
@@ -87,6 +79,11 @@ bind =
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] $emacs"
+
+"$mod ,space, killactive"
+"$al ,F4, killactive"
+"$mod ,Escape, killactive"
+"$mod, mouse:275, killactive,"
 
 # Workspaces
   "$al, KP_Enter,workspace ,emptym"

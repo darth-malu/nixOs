@@ -30,7 +30,7 @@ pkgs.writeShellScriptBin "songart" ''
     track_id=''${track_id##*/}
     cover_path="$cover_dir/$track_id.jpeg"
     album_art=$(grep 'artUrl' <(playerctl -p spotify metadata))
-    album_art=''${album_art##* }
+    album_art=''${album_art##*}
 
     # download art if not exists
     if [[ ! -f "$cover_path" ]]; then

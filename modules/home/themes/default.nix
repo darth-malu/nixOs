@@ -9,7 +9,7 @@ lib.mkIf osConfig.programs.hyprland.enable {
 home.pointerCursor = {
   enable = true; # false::
   gtk.enable = true; # waybar, gtk apps
-  dotIcons.enable = true; # Whether to enable .icons config generation for home.pointerCursor
+  dotIcons.enable = true;
   hyprcursor = {
     size = 24; # 32::
     enable = true;
@@ -18,7 +18,8 @@ home.pointerCursor = {
     enable = true; # false:: xwayland?
     # defaultCursor = pkgs.
   };
-  name = "google-cursor";  package = pkgs.google-cursor;
+  name = "Bibata-Modern-Ice"; package = pkgs.bibata-cursors;
+  # name = "google-cursor";  package = pkgs.google-cursor;
   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
 };
 

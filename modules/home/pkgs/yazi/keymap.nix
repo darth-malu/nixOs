@@ -1,6 +1,6 @@
 {
 
-manager.keymap = [
+mgr.keymap = [
 
 { on = [ "g" "h" ];       run = "cd ~";             desc = "Go to the home directory"; }
   { on = [ "g" "c" ];       run = "cd ~/.config";     desc = ".config";}
@@ -13,8 +13,6 @@ manager.keymap = [
   { on = [ "g" "m" ];       run = "cd ~/Music";   desc = "MUSIC"; }
   { on = [ "g" "M" ];       run = "cd /media/";          desc = "media directory"; }
   { on = [ "g" "<Space>" ]; run = "cd --interactive"; desc = "Go to a directory interactively"; }
-
-{ on = [ "Tab" ]; run = "spot"; desc = "Display file information with the preset or user-customized spotter."; }
 
   { on = [ "<Esc>" ]; run = "escape";             desc = "Exit visual mode, clear selected, or cancel search"; }
   { on = [ "q" ];     run = "quit";               desc = "Exit the process"; }
@@ -93,8 +91,8 @@ manager.keymap = [
   #{ on = [ ":" ];         run = [ "escape --visual"; "shell --block" ];              desc = "Run a shell command (block the UI until the command finishes);" }
 
   { on = [ "." ];         run = "hidden toggle";                                     desc = "Toggle the visibility of hidden files"; }
-  { on = [ "s" ];         run = "search fd";                                         desc = "Search files by name using fd"; }
-  { on = [ "S" ];         run = "search rg";                                         desc = "Search files by content using ripgrep"; }
+  { on = [ "s" ];         run = "search --via=fd";                                         desc = "Search files by name using fd"; }
+  { on = [ "S" ];         run = "search --via=rg";                                         desc = "Search files by content using ripgrep"; }
   { on = [ "<C-s>" ];     run = "search none";                                       desc = "Cancel the ongoing search"; }
   { on = [ "z" ];         run = "plugin zoxide";                                       desc = "Jump to a directory using zoxide"; }
   { on = [ "Z" ];         run = "plugin fzf";                                          desc = "Jump to a directory, or reveal a file using fzf"; }
@@ -102,6 +100,7 @@ manager.keymap = [
   { on = [ "m"  "s" ]; run = "linemode size";        desc = "Set linemode to size"; }
   { on = [ "m"  "p" ]; run = "linemode permissions"; desc = "Set linemode to permissions"; }
   { on = [ "m"  "m" ]; run = "linemode mtime";       desc = "Set linemode to mtime"; }
+  { on = [ "m"  "b" ]; run = "linemode btime";       desc = "Set linemode to btime"; }
   { on = [ "m"  "n" ]; run = "linemode none";        desc = "Set linemode to none"; }
 
   { on = [ "c"  "c" ]; run = [ "escape --visual"  "copy path" ];             desc = "Copy the absolute path"; }
@@ -145,6 +144,8 @@ manager.keymap = [
   { on = [ "{" ]; run = "tab_swap -1"; desc = "Swap the current tab with the previous tab"; }
   { on = [ "}" ]; run = "tab_swap 1";  desc = "Swap the current tab with the next tab"; }
 
+{ on =  "Tab"; run = "spot"; desc = "Display file information with the preset or user-customized spotter."; }
+
 ];
 
 tasks.keymap = [
@@ -154,10 +155,15 @@ tasks.keymap = [
   { on = [ "w" "c" ]; run = "tasks close"; desc = "Show the tasks manager"; }
 ];
 
+spot.keymap = [
+  { on =  "Tab"; run = "help"; desc = "Display file information with the preset or user-customized spotter."; }
+];
+
 manager.prepend_keymap = [
   {on = [ "l" ]; run = "plugin smart-enter"; desc = "Enter child dir or open file";}
   {on = [ "p" ]; run = "plugin smart-paste"; desc = "Paste into the hovered directory or CWD";}
   {on = [ "t" ]; run = "plugin smart-tab"; desc = "Create a tab and enter the hovered directory";}
+  {on = [ "g" "f" ]; run = "search_do --via=fd --args='-d 3'"; desc = "Switch to the flat view with a max depth of 3";}
 ];
 
 input.prepend_keymap = [

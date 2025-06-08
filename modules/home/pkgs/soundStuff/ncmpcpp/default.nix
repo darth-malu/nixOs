@@ -13,9 +13,11 @@ bindings = [
 
 {key = "l"; command = "next_column";}
 
-{key = "L";command = "next_screen";}
+# {key = "L";command = "next_screen";}
+{key = "L";command = "master_screen";}
 
-{ key = "H"; command = "previous_screen"; }
+# { key = "H"; command = "previous_screen"; }
+{ key = "H"; command = "slave_screen"; }
 
 { key = "h"; command = "previous_column"; }
 

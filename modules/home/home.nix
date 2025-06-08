@@ -6,7 +6,7 @@
     [
       ./pkgs
       ./xdg
-      ./editorConfig.nix
+      # ./editorConfig.nix # works nicely
     ]
     ++ (
       if osConfig.programs.hyprland.enable then

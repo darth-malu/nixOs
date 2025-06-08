@@ -151,19 +151,6 @@ bind =
   "$mod ,H, workspace,m-1"
   "$mod ,L,workspace,m+1"
 
-# Keypad navigation
-# Switch workspaces with mod + [ numpad 0-9]
-  "$mod, KP_End, workspace, 1"#TODO: do for loop make this cleaner
-  "$mod, KP_Down, workspace, 2"
-  "$mod, KP_Next, workspace, 3"
-  "$mod, KP_Left, workspace, 4"
-  "$mod, KP_Begin, workspace, 5"
-  "$mod, KP_Right, workspace, 6"
-  "$mod, KP_Home, workspace, 7"
-  "$mod, KP_Up, workspace, 8"
-  "$mod, KP_Prior, workspace, 9"
-  "$mod, KP_Insert, workspace, 10"
-
 # Move active window to a workspace with mod + SHIFT + [ numpad 0-9]
 # --> movetoworkspacesilent exists
 #KEYPAD
@@ -181,11 +168,6 @@ bind =
   "$mod ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
   "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 
-# gaps
-"$mod $sl,KP_Enter, exec, gaps reset"
-"$mod ,KP_Enter, exec, gaps custom"
-"$mod ,$ar, exec, gaps toggle_gaps_out"#toggle gaps on/off
-
   "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
   "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
   "$mod $sl, bracketright, swapnext"
@@ -193,11 +175,12 @@ bind =
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
 
 # "$mod,K, Workspace, previous_per_monitor"
-  "$mod,K, focuscurrentorlast"
+"$mod,K, focuscurrentorlast"
   "$mod $sl, k, focusmonitor, +1"
   "$mod, mouse:276, Workspace, previous_per_monitor"
   "$mod, semicolon, cyclenext"
 ]
+
 ++ (
   # workspaces
   # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
@@ -256,8 +239,9 @@ binde =
     ", Pause, execr, songart"
     "$mod, Next, execr, songart"
   ]++
-  [#rest
-    "$mod ,KP_Enter, exec, gaps custom" # set according to hyprland config default
+  [
+    #GAPS
+    "$mod ,KP_Enter, exec, gaps reset_zero" # set according to hyprland config default
 
     # increase/decrease gaps
     "$mod,KP_Add, exec, gaps increment_gap"
@@ -266,6 +250,9 @@ binde =
     "$mod $al, KP_Enter, exec, gaps gaps_in_reset"
     "$mod $al, KP_Add, exec, gaps gaps_in_add"
     "$mod $al, KP_Subtract, exec, gaps gaps_in_sub"
+
+    "$mod ,KP_Enter, exec, gaps reset_config"
+    "$mod ,$ar, exec, gaps toggle_gaps_out"# gaps on/off
   ];
 };
  };

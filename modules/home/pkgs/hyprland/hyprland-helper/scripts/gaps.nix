@@ -3,56 +3,9 @@
 pkgs.writeShellScriptBin "gaps" ''
 msgTag="hypr_gaps"
 
-set_gaps() {
-  case "$1" in
-  "0")
-    hyprctl keyword dwindle:no_gaps_when_only "$1"
-    hyprctl keyword general:gaps_out 4
-    ;;
-  "1")
-    hyprctl keyword dwindle:no_gaps_when_only "$1"
-    hyprctl keyword general:gaps_out 0
-    ;;
-  "2")
-    hyprctl keyword dwindle:no_gaps_when_only "$1"
-    hyprctl keyword general:gaps_out 4
-    ;;
-  esac
-}
-
-get_gaps_status() {
-  # returns bool 0/1(off/on)
-  hyprctl getoption dwindle:no_gaps_when_only | grep int | cut -d ' ' -f2
-}
-
 current_gaps_out_size() {
   #outputs clean number eg. 10
   hyprctl getoption general:gaps_out | grep custom | cut -d ' ' -f3
-}
-
-gap_out_toggle() {
-  local gap_status
-
-  gap_status=$(get_gaps_status)
-  case $gap_status in
-  "1")
-    dunstify -t 1000 -a "changegaps" -u low \
-      -i "~/.darth/iconss/gap_on.png" \
-      -h string:x-dunst-stack-tag:$msgTag "Gaps:True"
-    set_gaps 0
-    ;;
-  "0")
-    dunstify -t 1000 -a "changegaps" -u low \
-      -i "~/.darth/iconss/gap_off.png" \
-      -h string:x-dunst-stack-tag:$msgTag "Gaps:Zero"
-    set_gaps 1
-    ;;
-  *)
-    dunstify -t 1000 -a "changegaps" -u low \
-      -i "icons/volume-off-solid" \
-      -h string:x-dunst-stack-tag:$msgTag "Error in gaps_out_toggle "
-    ;;
-  esac
 }
 
 gaps_in_size() {
@@ -60,91 +13,124 @@ gaps_in_size() {
   hyprctl getoption general:gaps_in | grep custom | cut -d ' ' -f3
 }
 
+config_gaps_reader() {
+  #NOTE: space essential in regex incase of comments in file
+  case "$1" in
+  "gaps_in")
+    grep -E '\s+gaps_in' "$HOME/Shibuya/modules/home/pkgs/hyprland/ui.nix" | tr -cd [:digit:]
+    ;;
+  "gaps_out")
+    grep -E '\s+gaps_out' "$HOME/Shibuya/modules/home/pkgs/hyprland/ui.nix" | tr -cd [:digit:]
+    ;;
+  esac
+}
+
 gap_incrementer() {
-  #gaps_out
   local current_gap_out=$(current_gaps_out_size)
-  local max_gap_out_size=50
-  local min_gaps_out_size=0
-  local counter_gaps_out=1
-  local config_gap_out=$(grep -E '\s+gaps_out' "/home/malu/Shibuya/modules/home/hyprland/ui.nix" | tr -cd "[:digit:]") #NOTE: space essential in regex incase of comments in file
-  local config_gap_in=$(grep -E '\s+gaps_in' "/home/malu/Shibuya/modules/home/hyprland/ui.nix" | tr -cd "[:digit:]")
 
-  #Gaps in
   local current_gap_in=$(gaps_in_size)
-  local max_gap_in_size=50
-  local min_gap_in_size=2
-  #local default_gaps_in=4
-  #local default_gaps_in=$config_gap_in
-  local counter_gaps_in=2
-
-  #toggle
-  #local tog="toggle_gaps_out"
-  #no_gaps="-"
-  # add_gaps="+"
 
   case "$1" in
   "gaps_in_add")
-    if [ "$current_gap_in" -lt $max_gap_in_size ]; then
-      local new_gap=$((current_gap_in + counter_gaps_in))
+    if [ "$current_gap_in" -lt 50 ]; then
+      local new_gap=$((current_gap_in + 2))
+      local icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-divider-30.png"
+
       hyprctl keyword general:gaps_in "$new_gap"
+
       dunstify -t 1000 -a "changegaps" -u low \
-        -i ~/.darth/iconss/up.png \
+        -i "$icon" \
         -h string:x-dunst-stack-tag:$msgTag "Gaps in: $new_gap"
     fi
     ;;
   "gaps_in_sub")
-    if [ "$current_gap_in" -ge $min_gap_in_size ]; then
-      local new_gap=$((current_gap_in - counter_gaps_in))
+    if [ "$current_gap_in" -ge 2 ]; then
+      local new_gap=$((current_gap_in - 2))
+      local icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-merge-vertical-30.png"
+
       hyprctl keyword general:gaps_in "$new_gap"
-      dunstify -t 1000 -a "changegaps" -u low \
-        -i ~/.darth/iconss/down3.png \
+
+      dunstify -t 1000 -a "changegaps" \
+        -u low \
+        -i "$icon" \
         -h string:x-dunst-stack-tag:$msgTag "Gaps in: $new_gap"
     fi
     ;;
   "gaps_in_reset")
-    #hyprctl keyword general:gaps_in $default_gaps_in
-    hyprctl keyword general:gaps_in "$config_gap_in"
+    local icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-curly-arrow-30.png"
+    local config_gaps_in=$(config_gaps_reader 'gaps_in')
+    local config_gaps_out=$(config_gaps_reader 'gaps_out')
+
+    hyprctl keyword general:gaps_in "$config_gaps_in"
+
     dunstify -t 1000 -a "changegaps" -u low \
-      -i ~/.darth/iconss/down3.png \
-      -h string:x-dunst-stack-tag:$msgTag "Gaps reset to default $config_gap_in"
+      -i "$icon" \
+      -h string:x-dunst-stack-tag:$msgTag "Gaps-in RESET ($config_gaps_in)"
     ;;
   "increment_gap")
-    if [ "$current_gap_out" -le $max_gap_out_size ]; then
-      local new_gap=$((current_gap_out + counter_gaps_out))
+    if [ "$current_gap_out" -le 50 ]; then
+      local icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-up-arrow-30.png"
+      local new_gap=$((current_gap_out + 1))
+
       hyprctl keyword general:gaps_out "$new_gap"
+
       dunstify -t 1000 -a "changegaps" -u low \
-        -i ~/.darth/iconss/up.png \
-        -h string:x-dunst-stack-tag:$msgTag "Gaps out: $new_gap"
+        -i "$icon" \
+        -h string:x-dunst-stack-tag:$msgTag "Gaps out ($new_gap)"
     fi
     ;;
   "decrease_gap")
-    if [ "$current_gap_out" -gt "$min_gaps_out_size" ]; then
-      local new_gap=$((current_gap_out - counter_gaps_out))
+    if [ "$current_gap_out" -gt 0 ]; then
+      local new_gap=$((current_gap_out - 2))
+      local icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-down-arrow-30.png"
+
       hyprctl keyword general:gaps_out "$new_gap"
+
       dunstify -t 1000 -a "changegaps" -u low \
-        -i ~/.darth/iconss/down3.png \
-        -h string:x-dunst-stack-tag:$msgTag "Gaps out: $new_gap"
+        -i "$icon" \
+        -h string:x-dunst-stack-tag:$msgTag "Gaps out ($new_gap)"
     fi
     ;;
   "toggle_gaps_out")
-    gap_out_toggle
+    if [ "$current_gap_out" -gt 0 ]; then
+      local icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-adjust-40.png"
+
+      hyprctl keyword general:gaps_out 0
+
+      dunstify -t 1000 -a "changegaps" -u low \
+        -i "$icon" \
+        -h string:x-dunst-stack-tag:$msgTag "Gaps turned OFF"
+    else
+      local icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-switch-on-30.png"
+
+      hyprctl keyword general:gaps_out $(config_gaps_reader 'gaps_out')
+
+      dunstify -t 1000 -a "changegaps" -u low \
+        -i "$icon" \
+        -h string:x-dunst-stack-tag:$msgTag "Gaps turned ON"
+
+    fi
     ;;
-  "reset")
-    hyprctl keyword general:gaps_out "$min_gaps_out_size"
+  "reset_config")
+    local icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-u-turn-to-left-30.png"
+    local gaps_out=$(config_gaps_reader 'gaps_out')
+
+    hyprctl keyword general:gaps_out "$gaps_out"
+
     dunstify -t 1000 -a "changegaps" \
       -u low \
-      -i icons/volume-off-solid \
-      -h string:x-dunst-stack-tag:$msgTag "Gaps reset to: $min_gaps_out_size"
+      -i $icon \
+      -h string:x-dunst-stack-tag:$msgTag "Gaps reset to: ($gaps_out)"
     ;;
-  "custom")
-    hyprctl keyword general:gaps_out "$config_gap_out"
+  "reset_zero")
+    local icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-u-turn-to-left-30.png"
+
+    hyprctl keyword general:gaps_out 0
+
     dunstify -t 1000 -a "changegaps" \
       -u low \
-      -i icons/volume-off-solid \
-      -h string:x-dunst-stack-tag:$msgTag "Gaps out reset to custom config defaults : $config_gap_out"
-    ;;
-  *)
-    dunstify "Something is wrong with gap_incrementer"
+      -i $icon \
+      -h string:x-dunst-stack-tag:$msgTag "Gaps out reset to ZERO"
     ;;
   esac
 }

@@ -31,6 +31,7 @@
         python-pkgs: with python-pkgs; [
           #PYRPLE
           conda
+          jupyter-core
           # pyqt6
           pyside6
           pytube
@@ -50,7 +51,6 @@
           isort
           nose2pytest
           grip
-
         ]
       ))
     ]

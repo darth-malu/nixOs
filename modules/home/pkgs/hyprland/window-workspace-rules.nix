@@ -36,7 +36,7 @@
       "center, title:(.*)(save to)(.*)"
 
       #"idleinhibit focus, vlc"
-      "idleinhibit fullscreen, title:firefox"
+      # "idleinhibit fullscreen, title:firefox"
 
       #"idleinhibit focus, zen-alpha"#TODO: make this better withh dbus tool
       "idleinhibit focus, class:chromium"
@@ -49,12 +49,8 @@
       "center(1), class:Viewnior" # center([opt]); opt =1 -> respect monitor reserved area
 
       "nofocus, title:(Discord Updater)"
-      "workspace emptym, class:^(Chromium-browser)$"
-      "workspace emptym, class:google-chrome" # TODO: do this with array?
-      "workspace emptym, class:org.qutebrowser.qutebrowser"
       "workspace emptym, class:obsidian"
       "workspace emptym, class:spotube"
-      "workspace emptym, class:Emacs"
 
       # PYTHON
       "workspace emptym, class:getting-started.py"
@@ -78,7 +74,7 @@
 
       "size 80% 80%, initialClass:^(Viewnior)$"
 
-      "workspace emptym, initialClass:^(google-chrome)$"
+      "workspace emptym, initialClass:Emacs, initialTitle:^(.*)(Doom Emacs)$"
 
       "suppressevent maximize, class:.*"
       "size 70% 70%,title:^(Select)(.*)"

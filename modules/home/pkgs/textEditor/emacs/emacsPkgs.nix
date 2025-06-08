@@ -54,7 +54,7 @@ in
     # LSP stuff
     nil
     pyright
-    # bash-language-server
+    bash-language-server
     # basedpyright
     black
     nixd # for zed as well

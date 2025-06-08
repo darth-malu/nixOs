@@ -15,11 +15,11 @@ home.pointerCursor = {
     enable = true;
   };
   x11 = {
-    enable = true; # false:: xwayland?
-    # defaultCursor = pkgs.
+    enable = true;
+    defaultCursor = "X_cursor"; # letf_ptr::
   };
-  name = "Bibata-Modern-Ice"; package = pkgs.bibata-cursors;
-  # name = "google-cursor";  package = pkgs.google-cursor;
+  # name = "Bibata-Modern-Ice"; package = pkgs.bibata-cursors;
+  name = "google-cursor";  package = pkgs.google-cursor;
   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
 };
 

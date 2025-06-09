@@ -80,7 +80,7 @@
       layers_hog_keyboard_focus = true; # keyboard interactive layers keep focus on mouse move, fix bittorrent etc pop ups
       #background_colur = 0x111111;
     };
-    # cursor.no_hardware_cursors = true; # nvidia lul
+
     cursor = {
       no_warps = true;
       enable_hyprcursor = true;
@@ -90,10 +90,12 @@
       #warp_on_change_workspace = true; # cursor to last focused window
       sync_gsettings_theme = true; # true::
     };
+
     binds = {
       workspace_center_on = 1; # Whether switching workspaces should center the cursor on the workspace (0) or on the last active window for that workspace (1)
       workspace_back_and_forth = true;
     };
+
     animations = {
       enabled = true;
       bezier = [
@@ -107,39 +109,8 @@
       ];
       first_launch_animation = false;
       animation = [
-        # default stable
-        # "windows, 1, 4, custom"
-        # "workspaces, 1, 4, default, slide"
-        # "windows, 1, 5, myBezier, popin"
-        # "windowsOut, 1, 2, default"
-        # "windowsOut, 1, 2, myBezier, popin"
-        # "workspaces, 1, 2, default, slide"
-
-        # "windows, 1, 5, easeInOutQuad, popin 20%"
-        # "windowsOut, 1, 7, default, popin 80%"
-        # "windowsOut, 1, 2, easeOutQuad, fade"
-        # "windowsOut, 1, 3, myBezier"
-        # notes
-        # poping % - not clean for windowsIn
-
-        # "windowsIn, 1, 2, easeInOutQuad, popin"
         "windows, 1, 2, easeInOutQuad, popin"
-        # "workspaces, 1, 4, myBezier, slide"
-
-        # "border, 1, 4, myBezier"
-        # "windows, 1, 5, easeInOutQuad, popin"
-        # "borderangle, 1, 8, darthBez, loop" #loop,once? default
-        # "borderangle, 1, 4, myBezier" #loop,once? default
-        # "fade, 1, 7, default"
-
-        # "fade, 0"
-
-        # "fadeIn, 1, 6, easeInOutQuad"
-        # experimental
         "workspaces, 1, 3, easeInOutQuad, slide"
-        # "specialWorkspace, default, slidevert"
-        # "specialWorkspaceIn, easeInOutQuad, slide bottom"
-        # "specialWorkspaceOut, easeInOutQuad, slide up"
       ];
     };
 

@@ -10,14 +10,14 @@
     ./fonts.nix
     ./sync-thing
     ./ssh
-    ./bash.nix
+    ./Bash
     ./qemu
   ];
 
   # qemuNix.enable = if config.networking.hostName == "carthage" then true else false;
 
   services = {
-    locate.enable = false; # i dont use this...fd/fzf
+    locate.enable = true;
     fstrim = {
       enable = true;
       interval = "weekly";
@@ -27,7 +27,7 @@
       pulse.enable = true;
       alsa = {
         enable = true;
-        support32Bit = false; # check if needed
+        # support32Bit = false; # check if needed
       };
       wireplumber.enable = true;
       #extraConfig.pipewire."92-low-latency" = {#FIXME: crackling
@@ -57,7 +57,7 @@
         lshw
         efibootmgr
         curl
-        dash
+        # dash
         procs
         #glib
         #gsettings-qt

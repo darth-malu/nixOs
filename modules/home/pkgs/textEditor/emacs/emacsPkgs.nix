@@ -19,12 +19,56 @@ let
   );
 in
 {
+  programs.emacs.extraPackages =
+    epkgs: with epkgs; [
+      treesit-grammars.with-all-grammars # for bash-ts-mode
+      vterm
+      # mu4e
+      # jupyter
+      # prettier
+      # org-tidy
+      # ebuku
+      # lsp-pyright
+      # emacs-all-the-icons-fonts
+    ];
+  # overrides = self: super: rec {
+  #   haskell-mode = self.melpaPackages.haskell-mode;
+  #     # ...
+  #   };
+
   home.packages = with pkgs; [
     # NOTE: EMACS
     xclip
     tex
     libtool
     shellcheck
+    (pkgs.python3.withPackages (
+      python-pkgs: with python-pkgs; [
+        #PYRPLE
+        conda
+        jupyter-core
+        jupyter-console
+        # jupyterlab-server
+        pyside6
+        pytube
+        pandas
+        # numpy
+        seaborn
+        matplotlib
+        tkinter
+        # pip
+        requests
+        ttkbootstrap
+        # pandasql
+        #emacs
+        weasyprint
+        pytest
+        pyflakes
+        isort
+        nose2pytest
+        grip
+      ]
+    ))
     # cmake
     # gnumake
     ## Module dependencies
@@ -41,9 +85,8 @@ in
     ))
     hunspell
     # clang-tools
-    wordnet # :tools +dictionary dep
-    # :tools lookup & :lang org +roam
-    sqlite
+    wordnet # +dictionary
+    sqlite # org-roam
     # :tools editorconfig
     editorconfig-core-c # per-project style config
     # :lang nix
@@ -51,13 +94,12 @@ in
     zstd # for undo-fu-session/undo-tree compression
     binutils # native-comp needs 'as', provided by this
 
-    # LSP stuff
     nil
+    nixd # for zed as well
     pyright
-    bash-language-server
+    # bash-language-server # I never really have bash files to edit lol
     # basedpyright
     black
-    nixd # for zed as well
     nixfmt-rfc-style # official - needed to use formatting with :lang nix
 
     emacs-lsp-booster # TODO: test if this works

@@ -27,34 +27,6 @@
   home.packages =
     with pkgs;
     [
-      (pkgs.python3.withPackages (
-        python-pkgs: with python-pkgs; [
-          #PYRPLE
-          conda
-          jupyter-core
-          # pyqt6
-          pyside6
-          pytube
-          pandas
-          # numpy
-          seaborn
-          matplotlib
-          tkinter
-          # pip
-          requests
-          ttkbootstrap
-          # pandasql
-          #emacs
-          weasyprint
-          pytest
-          pyflakes
-          isort
-          nose2pytest
-          grip
-        ]
-      ))
-    ]
-    ++ [
       sway-audio-idle-inhibit
       wev
       # tldr - using emacs one lol
@@ -82,6 +54,7 @@
       # zip xz unzip p7zip
       # testing for yazi #
       zip
+      xz
       unzip
       p7zip
 

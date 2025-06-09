@@ -160,6 +160,9 @@ spot.keymap = [
 ];
 
 manager.prepend_keymap = [
+  {on = [ "!" ]; run = "shell \"$SHELL\" --block"; desc = "open $SHELL here";}
+  {on = [ "<C-l>" ]; run = "shell -- dragon -x -i -T \"$1\""; desc = "drag and drop via dragon";}
+  {on = [ "y" ]; run = "'shell -- for path in \"$@\"; do echo \"file://$path\"; done | wl-copy -t text/uri-list', \"yank\""; desc = "copy selected files to clipboard when copying";}
   {on = [ "l" ]; run = "plugin smart-enter"; desc = "Enter child dir or open file";}
   {on = [ "p" ]; run = "plugin smart-paste"; desc = "Paste into the hovered directory or CWD";}
   {on = [ "t" ]; run = "plugin smart-tab"; desc = "Create a tab and enter the hovered directory";}

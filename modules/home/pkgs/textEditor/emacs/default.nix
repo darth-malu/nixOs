@@ -11,22 +11,6 @@
       extraConfig = ''
         (setq standard-indent 2)
       '';
-      extraPackages =
-        epkgs: with epkgs; [
-          treesit-grammars.with-all-grammars # for bash-ts-mode
-          # magit
-          vterm
-          mu4e
-          # prettier
-          # org-tidy
-          # ebuku
-          # lsp-pyright
-          # emacs-all-the-icons-fonts
-        ];
-      # overrides = self: super: rec {
-      #   haskell-mode = self.melpaPackages.haskell-mode;
-      #     # ...
-      #   };
     };
 
     services.emacs = {

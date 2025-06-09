@@ -18,12 +18,12 @@
         action_alias launch_window launch --type=window --cwd=current
         action_alias launch_os_window launch --type=os-window --cwd=current
         action_alias launch_tab launch --type=tab --cwd=current
+
         enabled_layouts tall:bias=60;full_size=1;mirrored=false,fat:bias 80
       '';
     settings =
       {
         # term =  "xterm-256color";
-        # term = "xterm-256color";
         scrollback_lines = 10000;
         enable_audio_bell = false;
         # update_check_interval = 0;
@@ -75,8 +75,8 @@
         sync_to_monitor = "no"; # not recommended for high mouse/keyboard RR (input latency - set to no), yes:: - prevents tearing when scrolling
         allow_remote_control = false; # used for arch update
 
-        input_delay = 0; # 3:: # can cause flicker if terminal application does full screen redraw with every loop. **maybe my issue with ncmpcpp
-        repaint_delay = 2; # 10(100fps):: # delay between screen updates in milliseconds. decreasing increases FPS at the cost of CPU. ssync_to_monitor = no advised unless highrr
+        # input_delay = 0; # 3:: # can cause flicker if terminal application does full screen redraw with every loop. **maybe my issue with ncmpcpp
+        # repaint_delay = 2; # 10(100fps):: # delay between screen updates in milliseconds. decreasing increases FPS at the cost of CPU. ssync_to_monitor = no advised unless highrr
         wayland_enable_ime = false;
 
         bell_on_tab = "💎"; # bell_on_tab = " ";

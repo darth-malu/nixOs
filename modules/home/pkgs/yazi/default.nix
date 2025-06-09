@@ -6,6 +6,7 @@
     enableBashIntegration = true;
     keymap = import ./keymap.nix;
     theme = import ./theme.nix;
+    initLua = ./init.lua;
     shellWrapperName = "y"; # yy::
     plugins = import ./plugins;
     settings = {

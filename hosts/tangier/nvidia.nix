@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true; # temporarily
+  # nixpkgs.config.allowUnfree = true; # temporarily
   hardware = {
     graphics = {
       enable = true; # opengl?

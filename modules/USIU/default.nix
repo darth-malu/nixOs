@@ -1,4 +1,4 @@
-{pkgs}:
+{pkgs, lib, ...}:
 {
 
 programs.adb = {
@@ -7,7 +7,7 @@ programs.adb = {
 
 environment.systemPackages = with pkgs; [
   android-studio
-  androidenv.androidPkgs_9_0.platform-tools
+  # androidenv.androidPkgs_9_0.platform-tools
 ];
 
 }

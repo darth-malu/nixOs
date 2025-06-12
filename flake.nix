@@ -67,7 +67,6 @@ pkgs = import nixpkgs {
       "spotify"
       # "obsidian"
       "wpsoffice"
-      # "broadcom-sta"
       "windows10-icons"
       # "whatsapp-emoji-linux"
       "aspell-dict-en-science"
@@ -78,8 +77,6 @@ pkgs = import nixpkgs {
       # "steam-run"
       "youtube-upnext"
       "evafast"
-      "nvidia-x11"
-      "nvidia-x11-570.153.02-6.12.30"
     ];
     permittedInsecurePackages = [
       "ventoy-1.1.05"
@@ -111,8 +108,6 @@ inputs.home-manager.nixosModules.home-manager {
     extraSpecialArgs = { inherit inputs pkgs system; };
   };
 }
-
-import ./modules/USIU
 
 ./hosts/carthage
 

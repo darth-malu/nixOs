@@ -3,7 +3,7 @@
 
 * start
 #+begin_src nix :tangle default.nix
-{pkgs}:
+{pkgs, lib, ...}:
 {
 #+end_src
 * adb
@@ -17,7 +17,7 @@ programs.adb = {
 #+begin_src nix :tangle default.nix
 environment.systemPackages = with pkgs; [
   android-studio
-  androidenv.androidPkgs_9_0.platform-tools
+  # androidenv.androidPkgs_9_0.platform-tools
 ];
 #+end_src
 

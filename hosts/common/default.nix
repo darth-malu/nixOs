@@ -9,7 +9,14 @@
     ./specialisations
   ];
 
-nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["broadcom-sta"];
+nixpkgs.config = {
+  allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "broadcom-sta"
+    "android-studio-stable"
+    "nvidia-x11"
+    "nvidia-x11-570.153.02-6.12.30"
+  ];
+};
 
 boot = {
   extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
@@ -28,7 +35,7 @@ wireless = {
 };
 
 networkmanager = {
-  enable = lib.mkIf (config.hostname == "carthage") true; # might be on by default # add user to group
+  enable = lib.mkIf (config.networking.hostName == "carthage") true; # might be on by default # add user to group
   dns = "none"; # dnsmasq, default::, systemd-resolved
   wifi = {
     powersave = true; # TODO see if has issues?

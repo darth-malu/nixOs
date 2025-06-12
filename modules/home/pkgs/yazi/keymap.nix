@@ -150,7 +150,7 @@ mgr.keymap = [
 
 tasks.keymap = [
   { on = [ "w" ]; run = "tasks show"; desc = "Show the tasks manager"; } #TODO for test
-  { on = [ "w" "t" ]; run = "tasks show"; desc = "Show the tasks manager"; }
+  # { on = [ "w" "t" ]; run = "tasks show"; desc = "Show the tasks manager"; }
   { on = [ "w" "i" ]; run = "tasks inspect"; desc = "tasks inspector"; }
   { on = [ "w" "c" ]; run = "tasks close"; desc = "Show the tasks manager"; }
 ];
@@ -159,10 +159,10 @@ spot.keymap = [
   { on =  "Tab"; run = "help"; desc = "Display file information with the preset or user-customized spotter."; }
 ];
 
-manager.prepend_keymap = [
+mgr.prepend_keymap = [
   {on = [ "!" ]; run = "shell \"$SHELL\" --block"; desc = "open $SHELL here";}
   {on = [ "<C-l>" ]; run = "shell -- dragon -x -i -T \"$1\""; desc = "drag and drop via dragon";}
-  {on = [ "y" ]; run = "'shell -- for path in \"$@\"; do echo \"file://$path\"; done | wl-copy -t text/uri-list', \"yank\""; desc = "copy selected files to clipboard when copying";}
+  # {on = [ "y" ]; run = "shell -- for path in \"$@\"; do echo \"file://$path\"; done | wl-copy -t text/uri-list, \"yank\""; desc = "copy selected files to clipboard when copying";}
   {on = [ "l" ]; run = "plugin smart-enter"; desc = "Enter child dir or open file";}
   {on = [ "p" ]; run = "plugin smart-paste"; desc = "Paste into the hovered directory or CWD";}
   {on = [ "t" ]; run = "plugin smart-tab"; desc = "Create a tab and enter the hovered directory";}

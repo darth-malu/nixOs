@@ -14,13 +14,4 @@
     "remotebuild"
     "malu"
   ];
-
-  # programs.ssh.extraConfig = ''
-  #   Host carthage
-  #     HostName 192.168.100.5
-  #     Port 22
-  #     User remotebuild
-  #     IdentitiesOnly yes
-  #     IdentityFile /home/malu/.ssh/id_ed25519.pub
-  # '';
 }

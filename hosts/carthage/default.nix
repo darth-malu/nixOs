@@ -6,7 +6,7 @@ imports = [
   # (modulesPath + "/installer/scan/not-detected.nix") #in common now
   ./amd.nix
   ../common
-  # ../common/users/remote-builder.nix # removed from common only for carthage now
+  ../common/users/remote-builder.nix # removed from common only for carthage now
 ];
 
 boot = {

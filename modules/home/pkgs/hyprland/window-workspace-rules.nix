@@ -55,6 +55,8 @@
       # PYTHON
       "workspace emptym, class:getting-started.py"
       "center, class:main.py"
+      "center, class:Maluware-yt"
+      "center, title:Darth-Yt"
       "float, class:main.py"
 
       "workspace emptym, class:mpv"

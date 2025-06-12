@@ -13,6 +13,7 @@
         AllowUsers = [
           "malu"
           "git"
+          "remotebuild"
         ]; # [ "user1" "user2 "] or null(all users allowed)::
         # AllowUsers = null; # works
       };

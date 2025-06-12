@@ -112,6 +112,8 @@ inputs.home-manager.nixosModules.home-manager {
   };
 }
 
+import ./modules/USIU
+
 ./hosts/carthage
 
 ];

@@ -204,6 +204,10 @@ inputs.home-manager.nixosModules.home-manager {
   };
 }
 #+end_src
+*** school stuff / USIU
+#+begin_src nix :tangle flake.nix
+import ./modules/USIU
+#+end_src
 
 *** carthage nix config (hosts/carthage)
 #+begin_src nix :tangle flake.nix

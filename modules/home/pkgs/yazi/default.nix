@@ -10,7 +10,7 @@
     shellWrapperName = "y"; # yy::
     plugins = import ./plugins;
     settings = {
-      manager = {
+      mgr = {
         layout = [
           1
           4
@@ -45,21 +45,21 @@
       opener = {
         play = [
           {
-            run = "mpv \"$@\"";
+            run = "mpv $@";
             orphan = true;
             for = "unix";
           }
         ];
         edit = [
           {
-            run = "$EDITOR \"$@\"";
+            run = "$EDITOR $@";
             block = true;
             for = "unix";
           }
         ];
         open = [
           {
-            run = "xdg-open \"$@\"";
+            run = "xdg-open $@";
             desc = "Open files with xdg-open";
           }
         ];

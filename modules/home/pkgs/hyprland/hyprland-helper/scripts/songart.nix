@@ -21,6 +21,10 @@ pkgs.writeShellScriptBin "songart" ''
     convert_to_percentage "$(playerctl volume)"
   } # remove need for local volume in every case block, very neat 🫠
 
+  spotify_metadata() {
+    printf '%s' "$(playerctl -p spotify metadata --format '󰎍    {{title}}\n    {{artist}}\n    {{album}}')"
+  }
+
   spotify_art() {
     local cover_dir="/tmp/spotify_covers"
     local cover_path album_art track_id metadata
@@ -45,15 +49,15 @@ pkgs.writeShellScriptBin "songart" ''
         printf '%s' "$cover_path"
         ;;
       "title")
-        local title="$(playerctl -p spotify metadata --format '󰎍    {{title}}\n    {{artist}}\n    {{album}}')"
-        printf '%b' "$title"
+        spotify_metadata
         ;;
     esac
   }
 
+
   dunstify_preview() {
     local mpd_album_art="$(generate_preview)"
-    local mpd_format="$(mpc --format '[[󰎍    %title%  \n][      %audioformat%]\n    %artist%  \n    %album%  ]] | [%file%]' current)"
+    local mpd_format="$(mpc --format '[[󰎍    %title% \n][      %audioformat%] - %position% \n   %artist%  \n    %album%  ]] | [%file%]' current)"
     local spotify_format=$(printf '%b' "$(playerctl metadata --format '󰎍    {{title}}\n   {{artist}}\n    {{album}}')")
     # local spotify_album_art=$(playerctl -p spotify metadata mpris:artUrl)
     local art=$(spotify_art 'art')
@@ -92,7 +96,9 @@ pkgs.writeShellScriptBin "songart" ''
               ;;
           "spotify_volume")
               # echo "/tmp/cover.jpeg"
-              art=$(spotify_art 'art')
+
+              # art=$(spotify_art 'art')
+
               local title=$(spotify_art 'title')
 
               ${pkgs.libnotify}/bin/notify-send \

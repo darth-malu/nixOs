@@ -35,7 +35,7 @@
   # status = {
   # };
 
-  manager = {
+  mgr = {
     tab_active = {
       fg = "#e4e4e4";
       bg = "#166F63";

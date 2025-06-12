@@ -28,7 +28,7 @@ wireless = {
 };
 
 networkmanager = {
-  enable = true; # might be on by default # add user to group
+  enable = lib.mkIf (config.hostname == "carthage") true; # might be on by default # add user to group
   dns = "none"; # dnsmasq, default::, systemd-resolved
   wifi = {
     powersave = true; # TODO see if has issues?

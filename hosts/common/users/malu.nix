@@ -19,6 +19,10 @@
       "networkmanager" # allow access to the NetworkManager daemon and be able to configure and add new networks
       #"video" #backlight control
       #"audio"
+
+      # android
+      "adbusers" # grand user access to Android Debug Bridge
+      "kvm"
     ];
     packages = with pkgs; [
       firefox

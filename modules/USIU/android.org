@@ -1,0 +1,27 @@
+#+title: Android
+#+auto_tangle: t
+
+* start
+#+begin_src nix :tangle default.nix
+{pkgs}:
+{
+#+end_src
+* adb
+#+begin_src nix :tangle default.nix
+programs.adb = {
+  enable = true;
+};
+#+end_src
+
+* Android Studio
+#+begin_src nix :tangle default.nix
+environment.systemPackages = with pkgs; [
+  android-studio
+  androidenv.androidPkgs_9_0.platform-tools
+];
+#+end_src
+
+* End
+#+begin_src nix :tangle default.nix
+}
+#+end_src

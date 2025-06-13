@@ -8,6 +8,7 @@
   keyBindings = {
     normal = {
       "<ctrl-v>" = "spawn mpv {url}";
+      "<ctrl-m>" = "hint links spawn mpv {hint-url}";
       # ",p" = "spawn --userscript qute-pass";
       # ",l" = ''config-cycle spellcheck.languages ["en-GB"] ["en-US"]'';
       "<f1>" = lib.mkMerge [
@@ -38,30 +39,69 @@
   };
 
 settings = {
-  colors = {
-    hints = {
-        bg = "#000000";
-        fg = "#ffffff";
-    };
-    tabs.bar.bg = "#000000";
-    webpage.darkmode.enabled = true;
+
+colors = {
+  hints = {
+    bg = "#000000";
+    fg = "#ffffff";
+  };
+  completion = {
+    fg = "white";
+    item.selected.bg = "#a100f2";    # #e8c000::
   };
   tabs = {
-    close_mouse_button = "right"; # right, middle::
-    # position = "top";
-    select_on_remove = "last-used"; # Which tab to select when the focused tab is removed.
-    show = "multiple"; # multiple, always::, never, switching
-    width = "10%"; # in px or % - vertical mode
+    bar.bg = "#00000000";       # color or entire bar
+    odd.bg = "#00000000";       # odd rows
+    even.bg = "#00000000";      # transparency tech
+
+    selected.odd.bg = "#8f00ff"; # C3D898
+    selected.even.bg = "#8f00ff";
   };
-  downloads.location.suggestion = "both"; # path::, filename, both
-  scrolling = {
-    smooth = true;
-    bar = "when-searching"; # overlay::, when-searching, never, always
+  webpage.darkmode= {
+    enabled = true;
+    # algorithm = "lightness-cielab";
+    # policy.images = "never";
   };
-  auto_save = {
-    session = true;
-    interval = 10000; # milliseconds
+};
+
+completion = {
+  # shrink = false;
+};
+
+tabs = {
+  close_mouse_button = "right"; # right, middle::
+  # position = "top";
+  select_on_remove = "last-used"; # Which tab to select when the focused tab is removed.
+  show = "multiple"; # multiple, always::, never, switching
+  width = "10%"; # in px or % - if vertical mode
+  title.elide = "none";  # position of ellipsis (...)
+  undo_stack_size = 50;  # 100::
+  favicons = {
+    show = "always";            # always::, never, pinned
+    scale = 0.9;
   };
+  indicator = {
+    width = 2;
+  };
+};
+
+downloads.location.suggestion = "both"; # path::, filename, both
+
+scrolling = {
+  smooth = true;
+  bar = "when-searching"; # overlay::, when-searching, never, always
+};
+
+ zoom = {
+   default = "110%";
+   # levels = [];
+
+};
+ auto_save = {
+   session = true;
+   interval = 10000; # milliseconds
+ };
+
 };
 
   }; # end of programs.

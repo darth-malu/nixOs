@@ -83,7 +83,9 @@
       amdgpu_top
 
       # TODO EXP - see if icons will be fixed
-      libadwaita
+      # libadwaita
+      # THEMING
+      pastel # color generator
 
       trash-cli # for move to trash mpv
       wf-recorder
@@ -108,6 +110,7 @@
       # productivity
       # buku # TODO: test
       jetbrains.pycharm-community-bin
+      jetbrains.rider # c#
     ]
     ++ (with pkgs; [
       # creative space

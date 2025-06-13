@@ -1,6 +1,9 @@
 { pkgs, osConfig, ... }:
 
 {
+  imports = [
+   ./non-nixpkgs-scripts
+  ];
   programs.mpv = {
     enable = true;
 
@@ -54,6 +57,8 @@ q = "script-binding uosc/stream-quality"; # ! Stream quality
 p = "script-binding uosc/items"; # ! Playlist
 
 c = "script-binding uosc/chapters"; # ! Chapters
+
+# d = "script-message-to youtube_download menu"; # ! Download
 
 o = "script-binding uosc/open-file"; # ! Navigation > Open file
 

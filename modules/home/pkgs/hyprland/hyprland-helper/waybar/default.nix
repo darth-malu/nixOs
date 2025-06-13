@@ -11,7 +11,7 @@
   };
 
   config = lib.mkIf config.waybar.enable {
-    programs.waybar = lib.mkIf osConfig.programs.hyprland.enable {
+    programs.waybar = {
       enable = true;
       # systemd = {
       # enable = true; # clashes with uwsm?
@@ -704,19 +704,19 @@
             };
             random-icons = {
               #"off" = "<span color=\"#f53c3c\"></span> ";
-              "off" = "";
-              "on" = " ";
+              off = "";
+              on = " ";
             };
 
             repeat-icons = {
-              "on" = "";
-              "off" = "";
+              on = "🔁"; # 
+              off = "";
             };
 
             single-icons = {
-              "on" = "";
-              "off" = "";
-              #"on" = "🔂";
+              # "on" = "";
+              off = "";
+              on = "🔂";
             };
 
             state-icons = {

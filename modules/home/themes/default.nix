@@ -16,10 +16,11 @@ home.pointerCursor = {
   };
   x11 = {
     enable = true;
-    defaultCursor = "X_cursor"; # letf_ptr::
+    # defaultCursor = "X_cursor"; # letf_ptr::
   };
-  # name = "Bibata-Modern-Ice"; package = pkgs.bibata-cursors;
-  name = "google-cursor";  package = pkgs.google-cursor;
+  name = "Bibata-Modern-Ice"; package = pkgs.bibata-cursors;
+  # name = "bibata-cursors"; package = pkgs.bibata-cursors;
+  # name = "google-cursor";  package = pkgs.google-cursor; # FIXME
   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
 };
 
@@ -37,9 +38,9 @@ cursorTheme = {
 };
 
 theme = {
-  name = "nightfox-gtk-theme";  package = pkgs.nightfox-gtk-theme;
+  # name = "nightfox-gtk-theme";  package = pkgs.nightfox-gtk-theme;
   # name = "breeze-gtk";  package = pkgs.kdePackages.breeze-gtk;
-  # name = "yaru";  package = pkgs.yaru-theme;
+  name = "yaru";  package = pkgs.yaru-theme;
   # name = "tokyonight-gtk-theme"; package = pkgs.Tokyonight-Moon;
 };
 

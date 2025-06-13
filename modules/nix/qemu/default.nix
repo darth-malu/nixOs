@@ -15,6 +15,9 @@
     programs.virt-manager.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
 
+    users.groups.libvirtd.members = ["malu"];
+  # users.users.<myuser>.extraGroups = [ "libvirtd" ];
+
     systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
 
     };

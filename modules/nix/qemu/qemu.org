@@ -2,7 +2,7 @@
 #+auto_tangle: t
 
 * start
-#+begin_src emacs-lisp :tangle default.nix
+#+begin_src nix :tangle default.nix
 { lib, pkgs, config, ...}:
 
 {
@@ -19,10 +19,14 @@
     virtualisation.libvirtd.enable = true;
     programs.virt-manager.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
+
+    users.groups.libvirtd.members = ["malu"];
+  # users.users.<myuser>.extraGroups = [ "libvirtd" ];
+
 #+end_src
 
 * Uefi support
-#+begin_src emacs-lisp :tangle default.nix
+#+begin_src nix :tangle default.nix
 
     systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
 #+end_src

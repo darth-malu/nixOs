@@ -94,7 +94,7 @@
 
       # created empty
       # "special:quanta, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:quanta;] uwsm app -s a kitty'\""
-      "special:magic, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:magic;float;size 89% 85%] kitty'\"" # might need center(1)
+      "special:scratch, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:scratch;float;size 89% 85%] kitty'\"" # might need center(1)
       # "special:nc, on-created-empty:sh -c \"hyprctl dispatch exec '[workspace special:nc; ] kitty -e ncmpcpp'\""
 
       # ncmpcpp

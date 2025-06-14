@@ -44,6 +44,10 @@
       background-color: rgba(40, 44, 52, 0.74);
   }
 
+  window#waybar.org.qutebrowser.qutebrowser {
+      background-color: rgba(108,107,120,0.24);
+  }
+
   window#waybar.solo {
       border-bottom: 0px solid #ffffff;
   }

@@ -20,23 +20,23 @@
         preload =
           if osConfig.networking.hostName == "carthage" then
             [
-              "$HOME/Pictures/wallpaperS/jinx.png"
-              "$HOME/Pictures/wallpaperS/thresh_purp.png"
-              "$HOME/Pictures/wallpaperS/singed-4096x2305.jpg"
+              "$HOME/Pictures/wallpaperS/games/riot games/jinx.png"
+              "$HOME/Pictures/wallpaperS/games/riot games/thresh_purp.png"
+              "$HOME/Pictures/wallpaperS/games/riot games/singed-4096x2305.jpg"
             ]
           else if osConfig.networking.hostName == "tangier" then
-            [ "$HOME/Pictures/wallpaperS/vi_xander.png" ]
+            [ "$HOME/Pictures/wallpaperS/games/riot games/vi_xander.png" ]
           else
             [ ];
         # wallpaper = wall;
         wallpaper =
           if osConfig.networking.hostName == "carthage" then
             [
-              "HDMI-A-1,$HOME/Pictures/wallpaperS/jinx.png"
-              "DP-3,$HOME/Pictures/wallpaperS/singed-4096x2305.jpg"
+              "HDMI-A-1,$HOME/Pictures/wallpaperS/games/riot games/jinx.png"
+              "DP-3,$HOME/Pictures/wallpaperS/games/riot games/singed-4096x2305.jpg"
             ]
           else if osConfig.networking.hostName == "tangier" then
-            [ "eDP-1,$HOME/Pictures/wallpaperS/vi_xander.png" ]
+            [ "eDP-1,$HOME/Pictures/wallpaperS/games/riot games/vi_xander.png" ]
           else
             [ ];
       };

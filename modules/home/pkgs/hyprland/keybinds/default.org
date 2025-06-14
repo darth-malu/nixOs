@@ -163,7 +163,17 @@ see hyprswitch:
 #+begin_src nix :tangle default.nix
 # "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
 "$mod $cl, D, focuswindow, class:^(Emacs)$"
-# "$mod , up, focuswindow, class:^(Emacs)$"
+#+end_src
+
+**** yazi
+#+begin_src nix :tangle default.nix
+"$mod $cl, Y, focuswindow, title:^(Yazi)(.*)$"
+  # "$mod , up, focuswindow, class:^(Emacs)$"
+#+end_src
+**** nautilus
+#+begin_src nix :tangle default.nix
+"$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
+  # "$mod , up, focuswindow, class:^(Emacs)$"
 #+end_src
 **** qutebrowser
 #+begin_src nix :tangle default.nix

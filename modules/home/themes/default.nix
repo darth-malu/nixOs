@@ -40,25 +40,25 @@ cursorTheme = {
 theme = {
   name = "Nightfox-Dark";  package = pkgs.nightfox-gtk-theme;
   # name = "breeze-gtk";  package = pkgs.kdePackages.breeze-gtk;
-  # name = "Yaru-";  package = pkgs.yaru-theme;
+  # name = "Yaru-Dark";  package = pkgs.yaru-theme;
   # name = "tokyonight-gtk-theme"; package = pkgs.Tokyonight-Moon;
 };
 
 iconTheme = {
-  # name = "kora-icon-theme"; package = pkgs.kora-icon-theme;
   name = "kora"; package = pkgs.kora-icon-theme;
-  # name = "whitesur-icon-theme"; package = pkgs.whitesur-icon-theme;
+  # name = "WhiteSur"; package = pkgs.whitesur-icon-theme;
   # name = "candy-icons"; package = pkgs.candy-icons;
-  # name = "windows10-icons"; package = pkgs.windows10-icons;
-  # name = "papirus-icon-theme"; package = pkgs.papirus-icon-theme;
+  # name = "Papirus-Dark"; package = pkgs.papirus-icon-theme;
+
   # name = "gruvbox-plus-icons";  package = pkgs.gruvbox-plus-icons;
+  # name = "Windows10-icons"; package = pkgs.windows10-icons;
 };
 
 gtk2 = {
   extraConfig = ''
         "gtk-can-change-accels" = "1"
       '';
-  configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc"; #FIXME not working?
+  configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 };
 
 gtk3 = {

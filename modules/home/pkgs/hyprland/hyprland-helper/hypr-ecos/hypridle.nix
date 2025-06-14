@@ -5,11 +5,11 @@
   };
   config = lib.mkIf config.hypridle.enable {
     services.hypridle = {
-      enable = true; # install
+      enable = true;
       settings = {
         general = {
           after_sleep_cmd = "hyprctl dispatch dpms on";
-          ignore_dbus_inhibit = false;
+          # ignore_dbus_inhibit = false;
           lock_cmd = "hyprlock";
         };
         listener = [

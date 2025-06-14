@@ -97,7 +97,12 @@ bind =
 
 # "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
 "$mod $cl, D, focuswindow, class:^(Emacs)$"
-# "$mod , up, focuswindow, class:^(Emacs)$"
+
+"$mod $cl, Y, focuswindow, title:^(Yazi)(.*)$"
+  # "$mod , up, focuswindow, class:^(Emacs)$"
+
+"$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
+  # "$mod , up, focuswindow, class:^(Emacs)$"
 
 # "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 # "$mod $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"

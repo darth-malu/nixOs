@@ -1,5 +1,4 @@
 {
-  osConfig,
   lib,
   config,
   ...
@@ -14,22 +13,12 @@
     ./autoStart.nix
     ./hyprland-helper
   ];
-  # ++ (
-  #   if osConfig.networking.hostName == "tangier" then
-  #     [
-  #       ./plugins.nix
-  #     ]
-  #   else
-  #     [ ]
-  # );
 
   options.homeHyprland = {
     enable = lib.mkEnableOption "Enable Hyprland home config";
   };
 
   config = lib.mkIf config.homeHyprland.enable {
-
-    # Enable programs
     dunst.enable = true;
     waybar.enable = true;
     rofi.enable = true;

@@ -88,16 +88,13 @@
 
     workspace = [
       # comma seperate extra rules
+
       # GENERAL: f fullscreen, w window count, m monitor, n name workspaace n[bool], n[s:string], n[e:string], s[bool] special or not eg. special:scratchpad,
       "w[tv1],border:false" # no gaps when only = 1 # w[(flags)A-B], w[(flags)X], t tiled, v visible windows,f floating
       #"w[tv1],border:false,gapsout:2, gapsin:0"
       "f[1], gapsout:0, gapsin:0"
 
-      # created empty
-      # "special:quanta, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:quanta;] uwsm app -s a kitty'\""
-      # "special:magic, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:magic;float;size 89% 85%] kitty'\"" # might need center(1)
-      "special:magic, on-created-empty:sh -c 'hyprctl dispatch -- exec [workspace special:magic;float;size 89% 85%] kitty'" # might need center(1)
-      # "special:nc, on-created-empty:sh -c \"hyprctl dispatch exec '[workspace special:nc; ] kitty -e ncmpcpp'\""
+      "special:magic, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:magic;float;size 89% 85%] kitty'\"" # might need center(1)
 
       # ncmpcpp
       "special:nc, on-created-empty:sh -c \"hyprctl dispatch exec '[workspace special:nc; ] kitty -e ncmpcpp'\", monitor:HDMI-A-1"

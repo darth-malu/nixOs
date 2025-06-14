@@ -13,18 +13,6 @@
 lib.mkIf osConfig.programs.hyprland.enable {
 #+end_src
 
-* Dconf
-#+begin_src nix :tangle no
- dconf.settings = {
-   "/org/gnome/desktop/interface" = {
-     # gtk-theme = "Nightfox-Dark";
-     gtk-theme = "nightfox-gtk-theme";
-
-   };
- };
-#+end_src
-Jun 07 16:23:49 carthage hm-activate-malu[19264]: Activating dconfSettings
-Jun 07 16:23:49 carthage hm-activate-malu[19682]: error: [/org/gnome/desktop/interface]: gtk-theme: invalid path: dconf key must not contain two consecutive slashes
 * home
 #+begin_src nix :tangle default.nix
 home.pointerCursor = {
@@ -61,8 +49,7 @@ gtk = {
   #};
 #+end_src
 
-** waybar?, gtk apps cursor
-*** cursor theme
+** cursor theme (waybar, gtk apps)
 #+begin_src nix :tangle default.nix
 cursorTheme = {
   # package = pkgs.bibata-cursors; name = "Bibata-Modern-Ice";
@@ -71,38 +58,36 @@ cursorTheme = {
 };
 #+end_src
 
-*** nautilus etc theme, gtk theme + icons
+** gtk theme
 #+begin_src nix :tangle default.nix
 theme = {
   name = "Nightfox-Dark";  package = pkgs.nightfox-gtk-theme;
   # name = "breeze-gtk";  package = pkgs.kdePackages.breeze-gtk;
-  # name = "Yaru-";  package = pkgs.yaru-theme;
+  # name = "Yaru-Dark";  package = pkgs.yaru-theme;
   # name = "tokyonight-gtk-theme"; package = pkgs.Tokyonight-Moon;
-};
-
-iconTheme = {
-  # name = "kora-icon-theme"; package = pkgs.kora-icon-theme;
-  name = "kora"; package = pkgs.kora-icon-theme;
-  # name = "whitesur-icon-theme"; package = pkgs.whitesur-icon-theme;
-  # name = "candy-icons"; package = pkgs.candy-icons;
-  # name = "windows10-icons"; package = pkgs.windows10-icons;
-  # name = "papirus-icon-theme"; package = pkgs.papirus-icon-theme;
-  # name = "gruvbox-plus-icons";  package = pkgs.gruvbox-plus-icons;
 };
 #+end_src
 
-+ gtk.iconTheme.name
-    The name of the icon theme within the package
-+ gtk.iconTheme.package
-    Package providing the icon theme
+** iconTheme
+#+begin_src nix :tangle default.nix
+iconTheme = {
+  name = "kora"; package = pkgs.kora-icon-theme;
+  # name = "WhiteSur"; package = pkgs.whitesur-icon-theme;
+  # name = "candy-icons"; package = pkgs.candy-icons;
+  # name = "Papirus-Dark"; package = pkgs.papirus-icon-theme;
 
-** gtk2, gtk3, gtk4 start
+  # name = "gruvbox-plus-icons";  package = pkgs.gruvbox-plus-icons;
+  # name = "Windows10-icons"; package = pkgs.windows10-icons;
+};
+#+end_src
+
+** gtk2, gtk3, gtk4 extraConfig
 #+begin_src nix :tangle default.nix
 gtk2 = {
   extraConfig = ''
         "gtk-can-change-accels" = "1"
       '';
-  configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc"; #FIXME not working?
+  configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 };
 
 gtk3 = {
@@ -172,7 +157,18 @@ The options are:
 - =kvantum=: Use styles from kvantum.
 
   =NOTE= platformTheme: gnome deprecated use 'adwaita'
-* missing adwaita thems
+* Dconf
+#+begin_src nix :tangle no
+ dconf.settings = {
+   "/org/gnome/desktop/interface" = {
+     # gtk-theme = "Nightfox-Dark";
+     gtk-theme = "nightfox-gtk-theme";
+
+   };
+ };
+#+end_src
+Jun 07 16:23:49 carthage hm-activate-malu[19264]: Activating dconfSettings
+Jun 07 16:23:49 carthage hm-activate-malu[19682]: error: [/org/gnome/desktop/interface]: gtk-theme: invalid path: dconf key must not contain two consecutive slashes
 * end
 #+begin_src nix :tangle default.nix
 }

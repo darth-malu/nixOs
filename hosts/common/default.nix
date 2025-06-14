@@ -1,4 +1,4 @@
-{config, modulesPath, lib, pkgs, options, ...}:
+{config, modulesPath, lib, pkgs, ...}:
 
 {
   imports = [
@@ -35,7 +35,7 @@ wireless = {
 };
 
 networkmanager = {
-  enable = lib.mkIf (config.networking.hostName == "carthage") true; # might be on by default # add user to group
+  enable = true; # might be on by default # add user to group
   dns = "none"; # dnsmasq, default::, systemd-resolved
   wifi = {
     powersave = true; # TODO see if has issues?

@@ -2,7 +2,6 @@
   wayland.windowManager.hyprland.settings = {
     windowrule = [
       # case sensitive, plain regex(class) | title
-      # centerwindow - center current window(floating only)
       "float, title:file_progress"
       "float, title:confirm"
       "float, title:dialog"
@@ -17,8 +16,7 @@
       "float, title:^(Media viewer)$"
       "float, title:^(Volume Control)$"
       "float, title:^(Picture-in-Picture)$"
-      # "centerwindow, floating:1"
-      "size 75% 80%, floating:1" # exact screen size... can use only window size also x% y%
+      # "size 75% 80%, floating:1" # exact screen size... can use only window size also x% y% :FIXME: cause issues with all popup menus lol
       "size 75% 80%, title:^(Sign in)(.*)$"
 
       #"size 1160 960, title:^(Volume Control)$"
@@ -38,19 +36,17 @@
       #"idleinhibit focus, vlc"
       # "idleinhibit fullscreen, title:firefox"
 
-      #"idleinhibit focus, zen-alpha"#TODO: make this better withh dbus tool
-      "idleinhibit focus, class:chromium"
-      "idleinhibit focus, class:ncmpcpp"
+      # "idleinhibit focus, class:ncmpcpp"
 
       "workspace special:quanta silent, class:qbittorrent"
 
-      "float, class:Viewnior"
+      # "float, class:Viewnior"
       #"size 80% 80%, Viewnior"
-      "center(1), class:Viewnior" # center([opt]); opt =1 -> respect monitor reserved area
+      # "center(1), class:Viewnior" # center([opt]); opt =1 -> respect monitor reserved area
 
       "nofocus, title:(Discord Updater)"
-      "workspace emptym, class:obsidian"
-      "workspace emptym, class:spotube"
+      # "workspace emptym, class:obsidian"
+      # "workspace emptym, class:spotube"
 
       # PYTHON
       "workspace emptym, class:getting-started.py"
@@ -74,15 +70,20 @@
 
       "workspace emptym, initialClass:^(org.qbittorrent.qBittorrent)$, initialTitle:^(.*)(qBittorrent v5.1.0)$"
 
-      "size 80% 80%, initialClass:^(Viewnior)$"
+      "size 80% 80%, initialClass:^(viewnior)$"
+      "center , initialClass:^(viewnior)$"
+      "float , initialClass:^(viewnior)$"
+
+      "float , initialClass:^(org.telegram.desktop)$, initialTitle:^(Telegram)(.*)$"
+      "size 80% 60%, initialClass:^(org.telegram.desktop)$, initialTitle:^(Telegram)(.*)$"
 
       "workspace emptym, initialClass:Emacs, initialTitle:^(.*)(Doom Emacs)$"
 
       "suppressevent maximize, class:.*"
-      "size 70% 70%,title:^(Select)(.*)"
+      # "size 70% 70%,title:^(Select)(.*)"
       # "workspace emptym, initialClass:^(zen-alpha)$, initialTitle:^(Zen Browser)$"
 
-      "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0" # fix some dragging issues with xwayland
+      # "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0" # fix some dragging issues with xwayland, FIXME: see if causing xwayland issues
     ]; # class:[regex],initialClass,initialTitle,floating, focus etc
 
     workspace = [
@@ -94,7 +95,8 @@
 
       # created empty
       # "special:quanta, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:quanta;] uwsm app -s a kitty'\""
-      "special:scratch, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:scratch;float;size 89% 85%] kitty'\"" # might need center(1)
+      # "special:magic, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:magic;float;size 89% 85%] kitty'\"" # might need center(1)
+      "special:magic, on-created-empty:sh -c 'hyprctl dispatch -- exec [workspace special:magic;float;size 89% 85%] kitty'" # might need center(1)
       # "special:nc, on-created-empty:sh -c \"hyprctl dispatch exec '[workspace special:nc; ] kitty -e ncmpcpp'\""
 
       # ncmpcpp

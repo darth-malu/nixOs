@@ -57,7 +57,7 @@ bind =
   [
     # "$mod, F1,exec,  killall -9 spotify || [workspace emptym] uwsm app -- spotify"
 
-  "$mod, KP_1, exec, [workspace emptym] uwsm app -s a -- freetube"
+  "$mod, KP_End, exec, [workspace emptym] uwsm app -s a -- freetube"
   "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
@@ -80,15 +80,15 @@ bind =
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] $emacs"
 
-"$mod ,space, killactive"
+# "$mod ,space, killactive"
 "$al ,F4, killactive"
 "$mod ,Escape, killactive"
 "$mod, mouse:275, killactive,"
 
 # Workspaces
   "$al, KP_Enter,workspace ,emptym"
-  "$mod, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
-  # "$mod, v, exec, togglefloating"
+  "$mod $sl, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
+  "$mod, v, togglefloating"
   # "$mod, v, exec, resizeaactive exact 80% 80%"
   # "$mod, v, exec, centerwindow"
 
@@ -111,7 +111,7 @@ bind =
 "$mod $cl, m, focuswindow, class:^(mpv)$"
 # "$mod , down, focuswindow, class:^(mpv)$"
 
-"$mod $cl, F, focuswindow, class:^(firefox)$"
+"$mod $cl, KP_End, focuswindow, class:^(FreeTube)$"
 
 "$mod, m, togglespecialworkspace, magic"
 "$mod SHIFT, m, movetoworkspace, special:magic"
@@ -134,26 +134,38 @@ bind =
   "$mod , o, movetoworkspace, emptym"
   "$mod $sl, o, movetoworkspacesilent, emptym"
 
-  "$mod $cl, h, movefocus, l"
-  "$mod $cl, l, movefocus, r"
-  "$mod $cl, k, movefocus, u"
-  "$mod $cl, j, movefocus, d"
-  #Scroll throught windows in a workspace
+  "$mod $sl, h, movefocus, l"
+  "$mod $sl, l, movefocus, r"
+  "$mod $sl, k, movefocus, u"
+  "$mod $sl, j, movefocus, d"
   #bind="$mod SHIFT,Left,layoutmsg,swapnext"
 
 # next/prev workspace
   "$mod, mouse_up, workspace, m+1"
   "$mod, mouse_down, workspace, m-1"
 
-  "$mod ,left, togglegroup"
-  "$mod ,right,workspace,m+1"
+  "$mod ,up, togglegroup"
+  "$mod ,down, lockactivegroup, toggle"
+  "$mod ,right,changegroupactive,f" # back
+  "$mod ,left,changegroupactive,b" # back
 
   "$mod ,H, workspace,m-1"
-  "$mod ,L,workspace,m+1"
+  "$mod ,L, workspace,m+1"
+
+# Keypad navigation
+# Switch workspaces with mod + [ numpad 0-9]
+  "$mod, KP_End, workspace, 1"#TODO: do for loop make this cleaner
+  "$mod, KP_Down, workspace, 2"
+  "$mod, KP_Next, workspace, 3"
+  "$mod, KP_Left, workspace, 4"
+  "$mod, KP_Begin, workspace, 5"
+  "$mod, KP_Right, workspace, 6"
+  "$mod, KP_Home, workspace, 7"
+  "$mod, KP_Up, workspace, 8"
+  "$mod, KP_Prior, workspace, 9"
+  "$mod, KP_Insert, workspace, 10"
 
 # Move active window to a workspace with mod + SHIFT + [ numpad 0-9]
-# --> movetoworkspacesilent exists
-#KEYPAD
   "$mod $sl, KP_End, movetoworkspace, 1"
   "$mod $sl, KP_Down, movetoworkspace, 2"
   "$mod $sl, KP_Next, movetoworkspace, 3"
@@ -166,7 +178,7 @@ bind =
   "$mod $sl, KP_Insert, movetoworkspace, 10"
 
   "$mod ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
-  "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
+  # "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 
   "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
   "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1

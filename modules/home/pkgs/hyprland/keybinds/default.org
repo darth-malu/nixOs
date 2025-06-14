@@ -91,7 +91,7 @@ bind =
 
 *** browsers
 #+begin_src nix :tangle default.nix
-  "$mod, KP_1, exec, [workspace emptym] uwsm app -s a -- freetube"
+  "$mod, KP_End, exec, [workspace emptym] uwsm app -s a -- freetube"
   "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
@@ -125,7 +125,7 @@ bind =
 
 *** activekill
 #+begin_src nix :tangle default.nix
-"$mod ,space, killactive"
+# "$mod ,space, killactive"
 "$al ,F4, killactive"
 "$mod ,Escape, killactive"
 "$mod, mouse:275, killactive,"
@@ -135,8 +135,8 @@ bind =
 #+begin_src nix :tangle default.nix
 # Workspaces
   "$al, KP_Enter,workspace ,emptym"
-  "$mod, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
-  # "$mod, v, exec, togglefloating"
+  "$mod $sl, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
+  "$mod, v, togglefloating"
   # "$mod, v, exec, resizeaactive exact 80% 80%"
   # "$mod, v, exec, centerwindow"
 #+end_src
@@ -185,7 +185,7 @@ see hyprswitch:
 #+end_src
 **** freetube
 #+begin_src nix :tangle default.nix
-"$mod $cl, F, focuswindow, class:^(firefox)$"
+"$mod $cl, KP_End, focuswindow, class:^(FreeTube)$"
 #+end_src
 
 *** special workspaces / scratch
@@ -215,13 +215,12 @@ see hyprswitch:
   "$mod $sl, o, movetoworkspacesilent, emptym"
 #+end_src
 
-*** move focus
+*** move focus | same workspace
 #+begin_src nix :tangle default.nix
-  "$mod $cl, h, movefocus, l"
-  "$mod $cl, l, movefocus, r"
-  "$mod $cl, k, movefocus, u"
-  "$mod $cl, j, movefocus, d"
-  #Scroll throught windows in a workspace
+  "$mod $sl, h, movefocus, l"
+  "$mod $sl, l, movefocus, r"
+  "$mod $sl, k, movefocus, u"
+  "$mod $sl, j, movefocus, d"
   #bind="$mod SHIFT,Left,layoutmsg,swapnext"
 #+end_src
 
@@ -232,15 +231,17 @@ see hyprswitch:
   "$mod, mouse_up, workspace, m+1"
   "$mod, mouse_down, workspace, m-1"
 
-  "$mod ,left, togglegroup"
-  "$mod ,right,workspace,m+1"
+  "$mod ,up, togglegroup"
+  "$mod ,down, lockactivegroup, toggle"
+  "$mod ,right,changegroupactive,f" # back
+  "$mod ,left,changegroupactive,b" # back
 
   "$mod ,H, workspace,m-1"
-  "$mod ,L,workspace,m+1"
+  "$mod ,L, workspace,m+1"
 #+end_src
 
 **** go to workspace
-#+begin_src nix :tangle no
+#+begin_src nix :tangle yes
 # Keypad navigation
 # Switch workspaces with mod + [ numpad 0-9]
   "$mod, KP_End, workspace, 1"#TODO: do for loop make this cleaner
@@ -256,10 +257,9 @@ see hyprswitch:
 #+end_src
 
 **** move workspace
+movetoworkspacesilent exists
 #+begin_src nix :tangle default.nix
 # Move active window to a workspace with mod + SHIFT + [ numpad 0-9]
-# --> movetoworkspacesilent exists
-#KEYPAD
   "$mod $sl, KP_End, movetoworkspace, 1"
   "$mod $sl, KP_Down, movetoworkspace, 2"
   "$mod $sl, KP_Next, movetoworkspace, 3"
@@ -275,7 +275,7 @@ see hyprswitch:
 *** waybar
 #+begin_src nix :tangle default.nix
   "$mod ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
-  "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
+  # "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 #+end_src
 
 *** move workspace/window to different monitors

@@ -3,7 +3,7 @@
 #+startup: content indent
 
 * start
-#+begin_src nix :tangle yt-dlp.nix
+#+begin_src nix :tangle default.nix
 {
   #NOTES:
   # --ignore-config - to disable config for a single run
@@ -12,7 +12,7 @@
 #+end_src
 
 * extraConfig
-#+begin_src nix :tangle yt-dlp.nix
+#+begin_src nix :tangle default.nix
 # $XDG_CONFIG_HOME/yt-dlp/config
 extraConfig =
 ''
@@ -204,7 +204,7 @@ $ yt-dlp -S "+codec:h264"
 
 * settings
 # $XDG_CONFIG_HOME/yt-dlp/config.
-#+begin_src nix :tangle yt-dlp.nix
+#+begin_src nix :tangle default.nix
 settings = {
   embed-thumbnail = true;
   no-overwrites = true; # Do not overwrite existing output files
@@ -223,7 +223,7 @@ settings = {
 #+end_src
 
 * end
-#+begin_src nix :tangle yt-dlp.nix
+#+begin_src nix :tangle default.nix
 };
  }
 #+end_src

@@ -18,9 +18,9 @@ home.pointerCursor = {
     enable = true;
     # defaultCursor = "X_cursor"; # letf_ptr::
   };
-  name = "Bibata-Modern-Ice"; package = pkgs.bibata-cursors;
+  # name = "Bibata-Modern-Ice"; package = pkgs.bibata-cursors;
   # name = "bibata-cursors"; package = pkgs.bibata-cursors;
-  # name = "google-cursor";  package = pkgs.google-cursor; # FIXME
+  name = "GoogleDot-White";  package = pkgs.google-cursor; # on xwayland stuff like waybar, intelliJ
   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
 };
 
@@ -38,15 +38,17 @@ cursorTheme = {
 };
 
 theme = {
-  # name = "nightfox-gtk-theme";  package = pkgs.nightfox-gtk-theme;
+  name = "Nightfox-Dark";  package = pkgs.nightfox-gtk-theme;
   # name = "breeze-gtk";  package = pkgs.kdePackages.breeze-gtk;
-  name = "yaru";  package = pkgs.yaru-theme;
+  # name = "Yaru-";  package = pkgs.yaru-theme;
   # name = "tokyonight-gtk-theme"; package = pkgs.Tokyonight-Moon;
 };
 
 iconTheme = {
   # name = "kora-icon-theme"; package = pkgs.kora-icon-theme;
-  name = "candy-icons"; package = pkgs.candy-icons;
+  name = "kora"; package = pkgs.kora-icon-theme;
+  # name = "whitesur-icon-theme"; package = pkgs.whitesur-icon-theme;
+  # name = "candy-icons"; package = pkgs.candy-icons;
   # name = "windows10-icons"; package = pkgs.windows10-icons;
   # name = "papirus-icon-theme"; package = pkgs.papirus-icon-theme;
   # name = "gruvbox-plus-icons";  package = pkgs.gruvbox-plus-icons;

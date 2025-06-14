@@ -3,7 +3,7 @@
 
 * header
 #+begin_src nix :tangle default.nix
-{config, modulesPath, lib, pkgs, options, ...}:
+{config, modulesPath, lib, pkgs, ...}:
 #+end_src
 * imports
 #+begin_src nix :tangle default.nix
@@ -59,7 +59,7 @@ wireless = {
 ** networkmanager
 #+begin_src nix :tangle default.nix
 networkmanager = {
-  enable = lib.mkIf (config.networking.hostName == "carthage") true; # might be on by default # add user to group
+  enable = true; # might be on by default # add user to group
   dns = "none"; # dnsmasq, default::, systemd-resolved
   wifi = {
     powersave = true; # TODO see if has issues?
@@ -69,18 +69,17 @@ networkmanager = {
 };
 #+end_src
 
-*** extra
-fccUnlockScripts: List of FCC unlock scripts to enable on the system, behaving as described in https://modemmanager.org/docs/modemmanager/fcc-unlock/#integration-with-third-party-fcc-unlock-tools.
-example:
-#+begin_src nix
-[{ id = "03f0:4e1d"; path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/03f0:4e1d"; }]
-#+end_src
-
 ** modemmanager
 #+begin_src nix :tangle default.nix
 modemmanager = {
   enable = true;
 };
+#+end_src
+
+fccUnlockScripts: List of FCC unlock scripts to enable on the system, behaving as described in https://modemmanager.org/docs/modemmanager/fcc-unlock/#integration-with-third-party-fcc-unlock-tools.
+example:
+#+begin_src nix
+[{ id = "03f0:4e1d"; path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/03f0:4e1d"; }]
 #+end_src
 
 ** supplicant

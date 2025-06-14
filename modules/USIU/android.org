@@ -7,6 +7,18 @@
 {
 #+end_src
 * adb
+This will add additional udev rules for unprivileged access as well as add adb to your $PATH.
+
+Alternatively, if you don't want to install adb globally but do want to configure the udev rules, you can:
+
+#+begin_src nix
+{
+  services.udev.packages = [
+    pkgs.android-udev-rules
+  ];
+}
+#+end_src
+
 #+begin_src nix :tangle default.nix
 programs.adb = {
   enable = true;
@@ -17,8 +29,25 @@ programs.adb = {
 #+begin_src nix :tangle default.nix
 environment.systemPackages = with pkgs; [
   android-studio
+  # android-tools
   # androidenv.androidPkgs_9_0.platform-tools
+  # androidenv.androidPkgs.all.packages.platforms.v36
 ];
+#+end_src
+
+=Android-tools=
+Currently the following tools are supported:
++ adb
++ fastboot
++ mke2fs.android (required by fastboot)
++ simg2img, img2simg, append2simg
++ lpdump, lpmake, lpadd, lpflash, lpunpack
++ mkbootimg, unpack_bootimg, repack_bootimg, avbtool
++ mkdtboimg
+
+* hardware acceleration
+#+begin_src nix :tangle default.nix
+  users.users.malu.extraGroups = ["kvm" "adbusers"];
 #+end_src
 
 * End

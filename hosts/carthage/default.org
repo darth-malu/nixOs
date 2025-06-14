@@ -27,6 +27,7 @@ boot = {
     availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ]; # available to initram but only loaded on demand
     systemd = {
       network = {
+        enable = false;
         wait-online.enable = false; # since using networkmanager not networkd;
       };
     };

@@ -37,15 +37,18 @@ in
   #   };
 
   home.packages = with pkgs; [
-    # NOTE: EMACS
+    # prettier
+    prettierd # prettier as a daemon, for improved speed
     xclip
     tex
     libtool
     shellcheck
+    # micromamba
+    # conda
     (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [
         #PYRPLE
-        conda
+        # conda
         jupyter-core
         jupyter-console
         # jupyterlab-server
@@ -97,7 +100,9 @@ in
     nil
     nixd # for zed as well
     pyright
-    # bash-language-server # I never really have bash files to edit lol
+    bash-language-server # I never really have bash files to edit lol
+    jdt-language-server
+    lua-language-server
     # basedpyright
     black
     nixfmt-rfc-style # official - needed to use formatting with :lang nix

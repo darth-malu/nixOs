@@ -8,7 +8,7 @@
 
 {
   imports = [
-    ./yt-dlp.nix
+    ./yt-dlp
     ./qutebrowser
     ./soundStuff
     ./mpv

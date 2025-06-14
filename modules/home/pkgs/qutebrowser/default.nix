@@ -9,6 +9,7 @@
     normal = {
       "<ctrl-v>" = "spawn mpv {url}";
       "<ctrl-m>" = "hint links spawn mpv {hint-url}";
+      "<^>" = "tab-focus last";
       # ",p" = "spawn --userscript qute-pass";
       # ",l" = ''config-cycle spellcheck.languages ["en-GB"] ["en-US"]'';
       "<f1>" = lib.mkMerge [
@@ -17,6 +18,12 @@
         "config-cycle statusbar.show in-mode always"
         "config-cycle scrolling.bar never always"
       ];
+      "<f9>" = lib.mkMerge [
+        "config-cycle colors.webpage.darkmode.enabled false true"
+        # "config-cycle statusbar.show in-mode always"
+        # "config-cycle scrolling.bar never always"
+      ];
+      "<f10>" = "config-cycle statusbar.show never always";
     };
     prompt = {
         "<ctrl-y>" = "prompt-yes";
@@ -66,6 +73,11 @@ colors = {
 
 completion = {
   # shrink = false;
+};
+
+statusbar = {
+  show = "always";              # in-mode, always, never
+  # widgets = ["keypress"  "search_match"  "url"  "scroll"  "history"  "tabs"  "progress"];
 };
 
 tabs = {

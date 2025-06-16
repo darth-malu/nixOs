@@ -45,6 +45,7 @@ in
     shellcheck
     # micromamba
     # conda
+    qtcreator
     (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [
         #PYRPLE

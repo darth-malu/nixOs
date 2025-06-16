@@ -19,18 +19,19 @@
       "$yazi_kitty" = "uwsm app -s a -- kitty -1 --instance-group yazi -e yazi";
       "$yazi_ghostty" = "uwsm app -s a -- ghostty -e yazi";
 
-      "$file_browser_rofi" = "rofi -show filebrowser -sidebar-mode -theme-str 'window {height: 820px; width : 1000px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
-      "$rofi_open_windows" =  "rofi -show window -theme-str 'window {width : 800px;}' -theme-str 'listview {lines: 8; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
-      # "-theme-str 'window {width : 800px; fullscreen: true;}" +
-      # " -theme-str 'element {background-image: linear-gradient(white/5%, white/20%);border-color: lightblue /15%;}'";
-      # "$menu_rofi" = "rofi -show drun -run-command \"hyprctl dispatch -- exec [workspace emptym] uwsm app -s a -- {cmd}\"";
-      "$menu_rofi" = "rofi -show drun";
-      # "$emoji_rofi" = "rofi -show emoji";
-      "$clip_rofi" = "cliphist list | rofi -dmenu -theme-str 'window {width : 650px;}' -p '' | cliphist decode | wl-copy";
-      # "$calc_rofi" = "rofi -show calc";
-      # "$obsidian_rofi" = "rofi -show obsidian";
       "$gaps" = "gaps toggle_gaps_out";
       "$emacs" = "uwsm app -s a -- emacsclient -c";
+
+"$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; width : 1000px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
+"$rofi_open_windows" =  "rofi -show window -theme-str 'window {width : 920px;}' -theme-str 'listview {lines:15; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
+# "-theme-str 'window {width : 800px; fullscreen: true;}" +
+# " -theme-str 'element {background-image: linear-gradient(white/5%, white/20%);border-color: lightblue /15%;}'";
+# "$menu_rofi" = "rofi -show drun -run-command \"hyprctl dispatch -- exec [workspace emptym] uwsm app -s a -- {cmd}\"";
+"$menu_rofi" = "rofi -show drun";
+# "$emoji_rofi" = "rofi -show emoji";
+"$clip_rofi" = "cliphist list | rofi -dmenu -theme-str 'window {width : 750px;}' -p '' | cliphist decode | wl-copy";
+# "$calc_rofi" = "rofi -show calc";
+# "$obsidian_rofi" = "rofi -show obsidian";
 
 bindr = [
 
@@ -66,8 +67,8 @@ bind =
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
 
   "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
-  "$mod, P, exec, $menu_rofi"
-  "$mod $cl, space, exec, pkill rofi || $file_browser_rofi"
+  "$mod , P, exec, $menu_rofi"
+  "$mod , R, exec, pkill rofi || $file_browser_rofi"
   "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
 
   # open windows

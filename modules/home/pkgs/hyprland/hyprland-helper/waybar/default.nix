@@ -709,14 +709,13 @@
             };
 
             repeat-icons = {
-              on = "🔁"; # 
+              on = ""; # 🔁
               off = "";
             };
 
             single-icons = {
-              # "on" = "";
               off = "";
-              on = "🔂";
+              on = "󰑘"; # 🔂
             };
 
             state-icons = {

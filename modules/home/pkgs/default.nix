@@ -50,7 +50,6 @@
 
       tokei
 
-      # archive
       # zip xz unzip p7zip
       # testing for yazi #
       zip
@@ -92,7 +91,7 @@
 
       telegram-desktop
       discord
-      whatsapp-for-linux # socials
+      whatsapp-for-linux
 
       # lynx # terminal browser pretty fun -> on emacs now
       google-chrome
@@ -110,6 +109,7 @@
       # productivity
       # buku # TODO: test
       jetbrains.pycharm-community-bin
+      wpsoffice
       jetbrains.rider # c#
     ]
     ++ (with pkgs; [
@@ -130,10 +130,6 @@
       ani-cli
       # miru # issue launching -kde
       #syncyomi - sync tachiyomi progress across devices
-    ])
-    ++ (with pkgs; [
-      # hyrpland
-      hyprpicker
     ])
     ++
       # NOTE: selective

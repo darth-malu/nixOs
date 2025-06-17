@@ -140,7 +140,8 @@
             gimp
             obs-studio
             obs-cli
-            ffmpeg-full # full vs vanilla?
+            # ffmpeg-full # full vs vanilla?
+            ffmpeg
           ]
         else if osConfig.networking.hostName == "tangier" then
           [

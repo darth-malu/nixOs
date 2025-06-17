@@ -9,19 +9,18 @@
 
 scripts = with pkgs.mpvScripts; [
   mpris
-  # mpv-discord #TODO too much work lol
   # sponsorblock # TODO not need?
   # quality-menu
   youtube-upnext # C-u (configurable) , space to append. 'up next'/recommended youtube videos
   mpv-cheatsheet # use ?
-  # mpv-playlistmanager # S-Enter to add to playlist
+  mpv-playlistmanager # S-Enter to add to playlist
   uosc
   memo # recent files menu
   # modernx-zydezu
   thumbfast
   # evafast # provides evafast/toggle script-binding for speeding up independently of the hybrid key. TODO need?
-  eisa01.smartskip
-  visualizer
+  # eisa01.smartskip
+  # visualizer
   webtorrent-mpv-hook
 ];
 

@@ -1,4 +1,9 @@
-{ pkgs, osConfig, ... }:
+{
+  pkgs,
+  osConfig,
+  lib,
+  ...
+}:
 
 let
   # sample_script = import ./spript.nix {inherit pkgs;};
@@ -14,17 +19,27 @@ let
     else
       import ./temp/carthage_temp.nix { inherit pkgs; };
   clr_backup = import ./clr_backup.nix { inherit pkgs; };
+  mount_hdd = import ./mount_hdd.nix { inherit pkgs; };
 in
 {
-  home.packages = [
-    # sample_script
-    songart
-    pause_play
-    mpris_vol
-    volume_dunst
-    rofi_power
-    gaps
-    temp
-    clr_backup
-  ];
+  home.packages =
+    (
+      if osConfig.networking.hostName == "carthage" then
+        [
+          mount_hdd
+        ]
+      else
+        [ ]
+    )
+    ++ [
+      # sample_script
+      songart
+      pause_play
+      mpris_vol
+      volume_dunst
+      rofi_power
+      gaps
+      temp
+      clr_backup
+    ];
 }

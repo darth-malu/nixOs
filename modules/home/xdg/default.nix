@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}:
 
 {
   xdg = {
@@ -7,8 +12,8 @@
     mime = {
       enable = true;
     };
-    mimeApps = import ./mime.nix;
-    # desktopEntries = import ./desktop-entry.nix;
+    mimeApps = import ./src/mime.nix;
+    desktopEntries = import ./src/desktopEntries.nix;
     userDirs = {
       enable = true;
       createDirectories = false; # false::, Whether to enable automatic creation of the XDG user directories.
@@ -19,7 +24,7 @@
       };
     };
     autostart = {
-      enable = true;
+      enable = lib.mkIf (osConfig.networking.hostName == "carthage") true;
       readOnly = true; # Make XDG_CONFIG_HOME/autostart a symlink to a readonly directory so that programs cannot install arbitrary autostart services.
       entries = [
         "${pkgs.qbittorrent}/share/applications/org.qbittorrent.qBittorrent.desktop"

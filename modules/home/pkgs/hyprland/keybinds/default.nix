@@ -58,7 +58,7 @@ bind =
   [
     # "$mod, F1,exec,  killall -9 spotify || [workspace emptym] uwsm app -- spotify"
 
-  "$mod, KP_End, exec, [workspace emptym] uwsm app -s a -- freetube"
+  "$mod , T, exec, [workspace emptym] uwsm app -s a -- freetube"
   "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
@@ -117,7 +117,7 @@ bind =
 "$mod $cl, m, focuswindow, class:^(mpv)$"
 # "$mod , down, focuswindow, class:^(mpv)$"
 
-"$mod $cl, KP_End, focuswindow, class:^(FreeTube)$"
+"$mod $cl, T, focuswindow, class:^(FreeTube)$"
 
 "$mod, m, togglespecialworkspace, magic"
 "$mod SHIFT, m, movetoworkspace, special:magic"
@@ -248,8 +248,8 @@ bindl =
 
 binde =
   [# Date
-    "$mod, T, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
-    "$mod $sl, T, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
+    "$mod, Prior, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
+    "$mod $sl, Prior, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
   ]
   ++[
     #dunst pop

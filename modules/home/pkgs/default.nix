@@ -52,10 +52,10 @@
 
       # zip xz unzip p7zip
       # testing for yazi #
-      zip
-      xz
-      unzip
-      p7zip
+      # zip
+      # xz
+      # unzip
+      # p7zip
 
       #rofimoji bemoji
       modem-manager-gui
@@ -131,24 +131,18 @@
       # miru # issue launching -kde
       #syncyomi - sync tachiyomi progress across devices
     ])
-    ++
-      # NOTE: selective
-      (
-        if osConfig.networking.hostName == "carthage" then
-          with pkgs;
-          [
-            gimp
-            obs-studio
-            obs-cli
-            # ffmpeg-full # full vs vanilla?
-            ffmpeg
-          ]
-        else if osConfig.networking.hostName == "tangier" then
-          [
-            ffmpeg
-          ]
-        else
-          [ ]
-      );
+    ++ (
+      if osConfig.networking.hostName == "carthage" then
+        with pkgs;
+        [
+          gimp
+          obs-studio
+          obs-cli
+          ffmpeg-full # full vs vanilla?
+          # ffmpeg
+        ]
+      else
+        [ ffmpeg ]
+    );
 
 }

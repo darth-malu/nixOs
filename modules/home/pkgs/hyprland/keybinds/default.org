@@ -118,6 +118,7 @@ bind =
 
   # open windows
   "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
+  "$mod, space, exec, pkill rofi || $rofi_open_windows"
   "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
   # power menu
@@ -133,8 +134,8 @@ bind =
 *** activekill
 #+begin_src nix :tangle default.nix
 # "$mod ,space, killactive"
+# "$mod ,Escape, killactive"
 "$al ,F4, killactive"
-"$mod ,Escape, killactive"
 "$mod, mouse:275, killactive,"
 #+end_src
 
@@ -169,7 +170,7 @@ see hyprswitch:
 **** emacs
 #+begin_src nix :tangle default.nix
 # "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
-"$mod $cl, D, focuswindow, class:^(Emacs)$"
+"$mod $cl, D, focuswindow, class:^(emacs)$"
 #+end_src
 
 **** yazi

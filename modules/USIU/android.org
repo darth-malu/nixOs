@@ -1,9 +1,10 @@
 #+title: Android
 #+auto_tangle: t
+#+startup: content indent
 
 * start
 #+begin_src nix :tangle default.nix
-{pkgs, lib, ...}:
+{pkgs, lib, config, ...}:
 {
 #+end_src
 * adb
@@ -27,12 +28,16 @@ programs.adb = {
 
 * Android Studio
 #+begin_src nix :tangle default.nix
-environment.systemPackages = with pkgs; [
-  android-studio
+  environment.systemPackages = [pkgs.android-studio ];
+    # if config.networking.hostName == "carthage" then
+    #   [
+    #     pkgs.android-studio-full
+    #   ]
+    # else
+    #   [ pkgs.android-studio ];
   # android-tools
   # androidenv.androidPkgs_9_0.platform-tools
   # androidenv.androidPkgs.all.packages.platforms.v36
-];
 #+end_src
 
 =Android-tools=
@@ -44,6 +49,11 @@ Currently the following tools are supported:
 + lpdump, lpmake, lpadd, lpflash, lpunpack
 + mkbootimg, unpack_bootimg, repack_bootimg, avbtool
 + mkdtboimg
+
+* accept licenses
+#+begin_src nix :tangle no
+android_sdk.accept_license = true;
+#+end_src
 
 * hardware acceleration
 #+begin_src nix :tangle default.nix

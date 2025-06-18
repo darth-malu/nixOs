@@ -45,7 +45,8 @@ theme = {
 };
 
 iconTheme = {
-  name = "kora"; package = pkgs.kora-icon-theme;
+  name = "Colloid-Catppuccin-Dark"; package = pkgs.colloid-icon-theme.override {schemeVariants = ["catppuccin"];};
+  # name = "kora"; package = pkgs.kora-icon-theme;
   # name = "WhiteSur"; package = pkgs.whitesur-icon-theme;
   # name = "candy-icons"; package = pkgs.candy-icons;
   # name = "Papirus-Dark"; package = pkgs.papirus-icon-theme;
@@ -55,9 +56,9 @@ iconTheme = {
 };
 
 gtk2 = {
-  extraConfig = ''
-        "gtk-can-change-accels" = "1"
-      '';
+  # extraConfig = ''
+  #       "gtk-can-change-accels" = "1"
+  #     ''; #TODO see importance
   configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 };
 

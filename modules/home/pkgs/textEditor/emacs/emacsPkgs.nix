@@ -23,6 +23,9 @@ in
     epkgs: with epkgs; [
       treesit-grammars.with-all-grammars # for bash-ts-mode
       vterm
+      # clang-format # FIXME
+      # mbsync # for mu4e FIXME
+      djvu
       # mu4e
       # jupyter
       # prettier
@@ -39,10 +42,14 @@ in
   home.packages = with pkgs; [
     # prettier
     prettierd # prettier as a daemon, for improved speed
+    gnumake # for compiling vterm
     xclip
     tex
+    offlineimap # for mu4e
     libtool
     shellcheck
+    csharpier # c# formatter
+    mu # mu4e
     # micromamba
     # conda
     qtcreator

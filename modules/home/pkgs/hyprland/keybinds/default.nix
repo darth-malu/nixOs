@@ -73,6 +73,7 @@ bind =
 
   # open windows
   "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
+  "$mod, space, exec, pkill rofi || $rofi_open_windows"
   "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
   # power menu
@@ -82,8 +83,8 @@ bind =
   "$mod, D, exec, [workspace emptym] $emacs"
 
 # "$mod ,space, killactive"
+# "$mod ,Escape, killactive"
 "$al ,F4, killactive"
-"$mod ,Escape, killactive"
 "$mod, mouse:275, killactive,"
 
 # Workspaces
@@ -97,7 +98,7 @@ bind =
   "$mod, KP_Multiply, pseudo"
 
 # "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
-"$mod $cl, D, focuswindow, class:^(Emacs)$"
+"$mod $cl, D, focuswindow, class:^(emacs)$"
 
 "$mod $cl, Y, focuswindow, title:^(Yazi)(.*)$"
   # "$mod , up, focuswindow, class:^(Emacs)$"

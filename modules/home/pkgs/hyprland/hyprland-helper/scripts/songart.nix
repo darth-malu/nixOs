@@ -1,24 +1,26 @@
 { pkgs }:
 
 pkgs.writeShellScriptBin "songart" ''
+  mkdir -p "/tmp/spotify_covers"
   msgTag="mpris_volume"
 
   generate_preview () {
-    local current_file album
-    local musicDir="/home/malu/Music"
-    local previewDir="/home/malu/Music/ncmpcppStuff/previews"
-    local preview_path="$previewDir/$album_base64"
-
-    read -r current_file album <<< "$(${pkgs.mpc}/bin/mpc --format "$musicDir"/%file%'\t'%album% current)"
+    local current_file album album_base64 preview_path musicDir
+    current_file="$(${pkgs.mpc}/bin/mpc --format /home/malu/Music/%file% current)"
+    album="$(${pkgs.mpc}/bin/mpc --format %album% current)"
     album_base64="$(printf '%s' $album | base64).png"
+    previewDir="/home/malu/Music/ncmpcppStuff/previews"
+    preview_path="$previewDir/$album_base64"
 
-    [ -f "$preview_path" ] || ${pkgs.ffmpeg}/bin/ffmpeg -y -i "$current_file" -an -vf scale=128:128 "$preview_path" &> /dev/null
+    [ -f "$preview_path" ] || ffmpeg -y -i "$current_file" -an -vf scale=128:128 "$preview_path" 2> /dev/null
 
     printf '%s' "$preview_path"
   }
 
   get_volume() {
-    awk "BEGIN { printf \"%.0f\", $(playerctl volume) * 100 }"
+    # awk "BEGIN { printf \"%.0f\", $(playerctl volume) * 100 }"
+    local vol=$(playerctl volume)
+    printf '%.0f' "$(echo "$vol * 100" | bc)"
   }
 
   spotify_artUrl() {
@@ -47,11 +49,11 @@ pkgs.writeShellScriptBin "songart" ''
   spotify() {
     local album_art="$(spotify_artUrl)"
     local cover_path="$(spotify_cover_path)"
+
+
     # download art if not exists
     if [[ ! -f "$cover_path" ]]; then
       # Create the directory if it doesn't exist
-      mkdir -p "/tmp/spotify_covers"
-      # curl
       curl -s "$album_art" -o "$cover_path"
     fi
 
@@ -70,15 +72,16 @@ pkgs.writeShellScriptBin "songart" ''
   }
 
   dunstify_preview() {
+    status_playerctl="$(playerctl -p mpd status 2> /dev/null)"
     # check if mpd/ncmpcpp
-    if [[ "$(playerctl -p mpd status)" == "Playing" ]]; then
+    if [[ "$status_playerctl" == "Playing" ]]; then
       local mpd_album_art="$(generate_preview)"
       local mpd_format="$(mpd_metadata_formatted)"
       ${pkgs.libnotify}/bin/notify-send -h string:x-dunst-stack-tag:$msgTag \
         -t 1600 "$mpd_format" \
         -i "$mpd_album_art"
     # check spotify
-    elif [[ "$(playerctl -p spotify status)" == "Playing" ]]; then
+    elif [[ "$status_playerctl" == "Playing" ]]; then
         local spotify_format=$(spotify_metadata_formatted)
         local spotify_art=$(spotify 'art')
         ${pkgs.libnotify}/bin/notify-send -h string:x-dunst-stack-tag:$msgTag \

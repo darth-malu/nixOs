@@ -83,7 +83,7 @@
         if config.programs.hyprland.enable then
           with pkgs;
           [
-            wl-clipboard-rs # rust wl-clipboard better?
+            wl-clipboard # rust wl-clipboard better?
             # hyprcursor
             hyprpicker
             hyprpolkitagent

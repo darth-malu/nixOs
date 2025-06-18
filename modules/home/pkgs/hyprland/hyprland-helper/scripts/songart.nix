@@ -6,8 +6,8 @@ pkgs.writeShellScriptBin "songart" ''
 
   generate_preview () {
     local current_file album album_base64 preview_path musicDir
-    current_file="$(${pkgs.mpc}/bin/mpc --format /home/malu/Music/%file% current)"
-    album="$(${pkgs.mpc}/bin/mpc --format %album% current)"
+    current_file="$(mpc --format /home/malu/Music/%file% current)"
+    album="$(mpc --format %album% current)"
     album_base64="$(printf '%s' $album | base64).png"
     previewDir="/home/malu/Music/ncmpcppStuff/previews"
     preview_path="$previewDir/$album_base64"
@@ -25,11 +25,6 @@ pkgs.writeShellScriptBin "songart" ''
 
   spotify_artUrl() {
     playerctl -p spotify metadata --format '{{mpris:artUrl}}'
-
-  }
-
-  spotify_metadata_formatted() {
-    printf '%b' "$(playerctl -p spotify metadata --format '󰎍    {{title}} \n   {{artist}} \n    {{album}} ')"
   }
 
   spotify_track_id() {
@@ -59,31 +54,34 @@ pkgs.writeShellScriptBin "songart" ''
 
     case $1 in
       "art")
-        printf '%b' "$cover_path"
+        printf '%s' "$cover_path"
         ;;
       "title")
-        spotify_metadata_formatted
+        printf '%b' "$(playerctl -p spotify metadata --format ' 󰎍    {{title}} \n   {{artist}} \n    {{album}} ')"
         ;;
     esac
   }
 
   mpd_metadata_formatted() {
-    mpc --format '[[󰎍    %title% \n][      %audioformat%] - %position% \n   %artist%  \n    %album%  ]] | [%file%]' current
+    mpc --format '[[ 󰎍    %title% \n][      %audioformat%] - %position% \n   %artist%  \n    %album%  ]] | [%file%]' current
   }
 
   dunstify_preview() {
     status_playerctl="$(playerctl -p mpd status 2> /dev/null)"
+    status_spotify="$(playerctl -p spotify status 2> /dev/null)"
     # check if mpd/ncmpcpp
     if [[ "$status_playerctl" == "Playing" ]]; then
       local mpd_album_art="$(generate_preview)"
       local mpd_format="$(mpd_metadata_formatted)"
+
       ${pkgs.libnotify}/bin/notify-send -h string:x-dunst-stack-tag:$msgTag \
         -t 1600 "$mpd_format" \
         -i "$mpd_album_art"
     # check spotify
-    elif [[ "$status_playerctl" == "Playing" ]]; then
-        local spotify_format=$(spotify_metadata_formatted)
+    elif [[ "$status_spotify" == "Playing" ]]; then
+        local spotify_format=$(spotify 'title')
         local spotify_art=$(spotify 'art')
+
         ${pkgs.libnotify}/bin/notify-send -h string:x-dunst-stack-tag:$msgTag \
           -t 1600 "$spotify_format" \
           -i "$spotify_art"
@@ -96,8 +94,8 @@ pkgs.writeShellScriptBin "songart" ''
       case $1 in
           "ncmpcpp_volume")
             album_art="$(generate_preview)"
-            volume="$(${pkgs.mpc}/bin/mpc volume | tr -cd '[:digit:]')"
-            title_artist="$(${pkgs.mpc}/bin/mpc --format "%title%\t󰎍\t$volume\t" current)"
+            volume="$(mpc volume | tr -cd '[:digit:]')"
+            title_artist="$(mpc --format "%title%\t󰎍\t$volume\t" current)"
             ${pkgs.libnotify}/bin/notify-send \
               -t 1000 -a "changeVolume" \
               -u low \

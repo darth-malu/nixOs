@@ -28,9 +28,9 @@
 # " -theme-str 'element {background-image: linear-gradient(white/5%, white/20%);border-color: lightblue /15%;}'";
 # "$menu_rofi" = "rofi -show drun -run-command \"hyprctl dispatch -- exec [workspace emptym] uwsm app -s a -- {cmd}\"";
 "$menu_rofi" = "rofi -show drun";
-# "$emoji_rofi" = "rofi -show emoji";
+"$emoji_rofi" = "rofi -show emoji";
 "$clip_rofi" = "cliphist list | rofi -dmenu -theme-str 'window {width : 750px;}' -p '' | cliphist decode | wl-copy";
-# "$calc_rofi" = "rofi -show calc";
+"$calc_rofi" = "rofi -show calc";
 # "$obsidian_rofi" = "rofi -show obsidian";
 
 bindr = [
@@ -77,7 +77,13 @@ bind =
   "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
   # power menu
-  "$mod, Delete, exec, pkill rofi || rofi_power"
+  ", XF86HomePage, exec, pkill rofi || rofi_power"
+
+  # calculator
+  ", XF86Calculator, exec, pkill rofi || $calc_rofi"
+
+  # emoji
+  "$mod, Delete, exec, pkill rofi || $emoji_rofi"
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] $emacs"

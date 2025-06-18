@@ -16,19 +16,20 @@ config = lib.mkIf config.rofi.enable {
   programs.rofi = {
     enable = pkgs.lib.mkDefault true;
 
-  cycle = true;
-  location = "center";
-  font = "SpaceMono Nerd Font 12";
-  plugins = with pkgs; [ rofi-emoji rofi-calc ];
-  terminal = "${pkgs.kitty}/bin/kitty";
-  # terminal = "uwsm app -s a kitty";
-  # package = pkgs.rofi-wayland-unwrapped;
-  package = pkgs.rofi-wayland.override {
-    plugins = with pkgs; [
-      rofi-emoji
-      rofi-calc
-    ];
-  };
+cycle = true;
+location = "center";
+font = "SpaceMono Nerd Font 12";
+# plugins = with pkgs; [ rofi-emoji rofi-calc ];
+terminal = "${pkgs.kitty}/bin/kitty";
+
+# terminal = "uwsm app -s a kitty";
+# package = pkgs.rofi-wayland-unwrapped;
+package = pkgs.rofi-wayland.override {
+  plugins = with pkgs; [
+    rofi-emoji
+    rofi-calc
+  ];
+};
 #yoffset = 3;
 
 extraConfig = {
@@ -40,6 +41,8 @@ modes = [
   "window"
   "drun"
   "filebrowser"
+  "calc"
+  "emoji"
 ];
 
 display-drun = " ";

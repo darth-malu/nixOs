@@ -101,6 +101,7 @@
       # lollypop # cantata better
       mpc-cli
       # ymuse # rudimentary
+      smplayer
       cantata
       # youtube-tui # https://siriusmart.github.io/youtube-tui/
       spotify
@@ -116,8 +117,6 @@
       # creative space
       #(ffmpeg.override { withXcb = true;  })
       # davinci-resolve
-      #  ffmpeg
-      spotube
       spotify-cli-linux
       spotube
       # kdePackages.kdenlive
@@ -139,7 +138,6 @@
           obs-studio
           obs-cli
           ffmpeg-full # full vs vanilla?
-          # ffmpeg
         ]
       else
         [ ffmpeg ]

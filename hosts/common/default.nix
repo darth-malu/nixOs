@@ -57,8 +57,8 @@ timeServers = [
 
 dhcpcd.enable = true; # TODO discern which to keep or not
 useDHCP =  false;
-interfaces.enp5s0.useDHCP = if osConfig.networking.hostName == "tangier" then false else true; #overrides default in useDHCP unless null
-interfaces.wlp4s0.useDHCP = if osConfig.networking.hostName == "tangier" then true else false;
+interfaces.enp5s0.useDHCP = if config.networking.hostName == "tangier" then false else true; #overrides default in useDHCP unless null
+interfaces.wlp4s0.useDHCP = if config.networking.hostName == "tangier" then true else false;
 # interfaces.enp5s0.useDHCP = lib.mkDefault true;
 nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
 

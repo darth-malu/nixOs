@@ -29,7 +29,12 @@ boot = {
     "sd_mod" #scsi device and some sata
     "sr_mod" ]; # cd drive
   initrd.kernelModules = [ ];
-  kernelModules = [ ];
+  initrd.systemd.network = {
+    enable = false;
+    wait-online.enable = false; # since using networkmanager not networkd;
+  }
+  kernelModules = [ "kvm-intel" ];
+  # kernelParams =[];
   extraModulePackages = [ ];
 
   loader = {

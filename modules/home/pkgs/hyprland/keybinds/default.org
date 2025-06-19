@@ -128,7 +128,7 @@ bind =
   ", XF86Calculator, exec, pkill rofi || $calc_rofi"
 
   # emoji
-  "$mod, Delete, exec, pkill rofi || $emoji_rofi"
+  "$mod, Insert, exec, pkill rofi || $emoji_rofi"
 #+end_src
 
 *** emacs
@@ -140,7 +140,7 @@ bind =
 *** activekill
 #+begin_src nix :tangle default.nix
 # "$mod ,space, killactive"
-# "$mod ,Escape, killactive"
+"$mod ,Escape, killactive"
 "$al ,F4, killactive"
 "$mod, mouse:275, killactive,"
 #+end_src
@@ -338,7 +338,15 @@ movetoworkspacesilent exists
         ]
     ) 9
   )
-);
+)
+#+end_src
+*** Tangier-bind
+#+begin_src nix :tangle default.nix
+++ (if osConfig.networking.hostName == "tangier" then
+  [
+  "$mod, Delete, exec, pkill rofi || rofi_power"
+  ]
+  else []);
 #+end_src
 
 ** bindm/c ( mouse binding )

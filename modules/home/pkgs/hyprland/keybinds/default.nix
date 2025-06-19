@@ -83,13 +83,13 @@ bind =
   ", XF86Calculator, exec, pkill rofi || $calc_rofi"
 
   # emoji
-  "$mod, Delete, exec, pkill rofi || $emoji_rofi"
+  "$mod, Insert, exec, pkill rofi || $emoji_rofi"
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] $emacs"
 
 # "$mod ,space, killactive"
-# "$mod ,Escape, killactive"
+"$mod ,Escape, killactive"
 "$al ,F4, killactive"
 "$mod, mouse:275, killactive,"
 
@@ -221,7 +221,13 @@ bind =
         ]
     ) 9
   )
-);
+)
+
+++ (if osConfig.networking.hostName == "tangier" then
+  [
+  "$mod, Delete, exec, pkill rofi || rofi_power"
+  ]
+  else []);
 
 #mouse binds have one less arg
 bindm = [

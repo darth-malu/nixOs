@@ -20,7 +20,7 @@ boot = {
   initrd.systemd.network = {
     enable = false;
     wait-online.enable = false; # since using networkmanager not networkd;
-  }
+  };
   kernelModules = [ "kvm-intel" ];
   # kernelParams =[];
   extraModulePackages = [ ];

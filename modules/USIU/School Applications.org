@@ -1,4 +1,4 @@
-#+title: Android
+#+title: School Applications
 #+auto_tangle: t
 #+startup: content indent
 
@@ -7,7 +7,8 @@
 {pkgs, lib, config, ...}:
 {
 #+end_src
-* adb
+* Android
+** adb
 This will add additional udev rules for unprivileged access as well as add adb to your $PATH.
 
 Alternatively, if you don't want to install adb globally but do want to configure the udev rules, you can:
@@ -26,7 +27,7 @@ programs.adb = {
 };
 #+end_src
 
-* Android Studio
+** Android Studio
 #+begin_src nix :tangle default.nix
   environment.systemPackages = [pkgs.android-studio ];
     # if config.networking.hostName == "carthage" then
@@ -50,12 +51,12 @@ Currently the following tools are supported:
 + mkbootimg, unpack_bootimg, repack_bootimg, avbtool
 + mkdtboimg
 
-* accept licenses
+** accept licenses
 #+begin_src nix :tangle no
 android_sdk.accept_license = true;
 #+end_src
 
-* hardware acceleration
+** hardware acceleration
 #+begin_src nix :tangle default.nix
   users.users.malu.extraGroups = ["kvm" "adbusers"];
 #+end_src

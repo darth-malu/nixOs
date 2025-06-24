@@ -36,6 +36,7 @@
 bindr = [
 
   "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
+  "$mod, E, exec, [workspace emptym] uwsm app -s a -- dolphin"
   "$mod, Y, exec, [workspace emptym] $yazi_kitty"
 
 "$mod $al, C, exec, hyprpicker -an"
@@ -77,7 +78,7 @@ bind =
   "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
   # power menu
-  ", XF86HomePage, exec, pkill rofi || rofi_power"
+  "$mod, Delete, exec, pkill rofi || rofi_power"
 
   # calculator
   ", XF86Calculator, exec, pkill rofi || $calc_rofi"
@@ -112,6 +113,8 @@ bind =
 "$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
   # "$mod , up, focuswindow, class:^(Emacs)$"
 
+"$mod $cl, N, focuswindow, class:org.kde.dolphin"
+
 # "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 # "$mod $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 "$mod $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
@@ -132,8 +135,8 @@ bind =
 # "$mod, q, togglespecialworkspace, quanta"
 # "$mod SHIFT, q, movetoworkspace, special:quanta"
 
-"$mod, e, togglespecialworkspace, easy"
-"$mod SHIFT, e, movetoworkspace, special:easy"
+"$mod, Next, togglespecialworkspace, easy"
+"$mod SHIFT, Next, movetoworkspace, special:easy"
 
 "$mod, i, togglespecialworkspace, nc"
 #"$mod SHIFT, i, movetoworkspace, special:nc" no need to move shit into it using this for songart
@@ -221,13 +224,7 @@ bind =
         ]
     ) 9
   )
-)
-
-++ (if osConfig.networking.hostName == "tangier" then
-  [
-  "$mod, Delete, exec, pkill rofi || rofi_power"
-  ]
-  else []);
+);
 
 #mouse binds have one less arg
 bindm = [
@@ -241,23 +238,31 @@ bindc = [
 ];
 
 bindel =
-  if osConfig.networking.hostName == "tangier" then
-    import ./laptop_bindings.nix
-  else
-    import ./pc_bindings.nix;
-
-bindl =
   [
     #-----------------------PLAY/PAUSE------------------#
     ", XF86AudioPlay, execr, pause_play"
     # mute
-    ",  F4, execr, volume_dunst toggle_mute"
+    ",  XF86AudioMute, execr, volume_dunst toggle_mute"
 
     ##---------------Sink-Switch--------------#
     "$mod, F12, execr, volume_dunst earphones"
     "$mod, F11, execr, volume_dunst speaker"
     "$mod, F10, execr, volume_dunst bluetooth"
-  ];
+
+    ", XF86AudioRaiseVolume, execr, volume_dunst 2%+"
+    ", XF86AudioLowerVolume, execr, volume_dunst 2%-"
+
+    #-----------------------NEXT/PREV------------------#
+    ", XF86AudioNext, execr, playerctl next "
+    ", XF86AudioPrev, execr, playerctl previous"
+   ]++
+    (
+      if osConfig.networking.hostName == "carthage" then
+    [
+    ", F8, execr, playerctl next "
+    ", F6, execr, playerctl previous"
+    ", F7, execr, pause_play"
+    ] else [""]);
 
 binde =
   [# Date
@@ -268,7 +273,6 @@ binde =
     #dunst pop
     "$mod $sl,i,execr, songart"
     ", Pause, execr, songart"
-    "$mod, Next, execr, songart"
   ]++
   [
     #GAPS

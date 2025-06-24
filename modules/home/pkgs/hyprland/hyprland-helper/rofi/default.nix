@@ -64,10 +64,10 @@ kb-secondary-paste = "Control+v,Insert";
 # icon-size = 58;
 
 ml-row-down = "ScrollDown";
-hover-select = true;
+hover-select = false;
 me-select-entry = "";
 me-accept-entry = "MousePrimary";
-kb-delete-entry = "Shift+space"; # TODO: make this backspace
+kb-delete-entry = "Shift+BackSpace"; # Shift+space;;
 auto-select = true; # When one entry is left, automatically select it.
 
 drun-use-desktop-cache = true; # slow PC, Build and use a cache with the content of desktop files to reload when enabled -> -drun-reload-desktop-cache flag

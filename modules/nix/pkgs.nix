@@ -46,6 +46,12 @@
     # };
   };
 
+  programs = {
+    vim = {
+      enable = true;
+    };
+  };
+
   environment = {
     # List of packages installed in system profile. To search, run: $ nix search wget
     systemPackages =
@@ -78,7 +84,7 @@
         bc
         # tldr # emacs better
         dotool # test if working
-        micro
+        # micro
       ])
       ++ (
         if config.programs.hyprland.enable then

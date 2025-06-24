@@ -11,6 +11,7 @@
     };
     amdgpu = {
       #initrd.enable = true; #  # early userspace, fix low res in boot scrn
+      # overdrive.enable = true;
       opencl.enable = true; # Whether to enable OpenCL support using ROCM runtime library. # TODO see if need and where needed
       amdvlk = {
         enable = true; # amd vulkan driver
@@ -18,7 +19,10 @@
       };
     };
   };
-  environment.systemPackages = with pkgs; [ lact ];
-  systemd.packages = with pkgs; [ lact ]; # pkgs providing systemd units and hooks
-  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+  # environment.systemPackages = with pkgs; [ lact ];
+  # systemd.packages = with pkgs; [ lact ]; # pkgs providing systemd units and hooks
+  # systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+  # services.lact = {
+  #   enable = true;
+  # };
 }

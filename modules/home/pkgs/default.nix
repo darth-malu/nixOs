@@ -30,7 +30,8 @@
       sway-audio-idle-inhibit
       wev
       # tldr - using emacs one lol
-
+      kdePackages.dolphin
+      kdePackages.konsole
       # disk management
       duf
       ncdu
@@ -81,9 +82,7 @@
       inxi
       amdgpu_top
 
-      # TODO EXP - see if icons will be fixed
       # libadwaita
-      # THEMING
       pastel # color generator
 
       trash-cli # for move to trash mpv
@@ -101,7 +100,7 @@
       # lollypop # cantata better
       mpc-cli
       # ymuse # rudimentary
-      smplayer
+      # smplayer
       cantata
       # youtube-tui # https://siriusmart.github.io/youtube-tui/
       spotify
@@ -112,13 +111,15 @@
       jetbrains.pycharm-community-bin
       wpsoffice
       jetbrains.rider # c#
+      dotnet-sdk
+      dotnet-repl
     ]
     ++ (with pkgs; [
       # creative space
       #(ffmpeg.override { withXcb = true;  })
       # davinci-resolve
       spotify-cli-linux
-      spotube
+      # spotube
       # kdePackages.kdenlive
       # digikam
     ])

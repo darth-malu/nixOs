@@ -58,6 +58,7 @@ bindr = [
 **** file manager
 #+begin_src nix :tangle default.nix
   "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
+  "$mod, E, exec, [workspace emptym] uwsm app -s a -- dolphin"
   "$mod, Y, exec, [workspace emptym] $yazi_kitty"
 #+end_src
 
@@ -122,7 +123,7 @@ bind =
   "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
   # power menu
-  ", XF86HomePage, exec, pkill rofi || rofi_power"
+  "$mod, Delete, exec, pkill rofi || rofi_power"
 
   # calculator
   ", XF86Calculator, exec, pkill rofi || $calc_rofi"
@@ -189,6 +190,10 @@ see hyprswitch:
 "$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
   # "$mod , up, focuswindow, class:^(Emacs)$"
 #+end_src
+**** dolphin
+#+begin_src nix :tangle default.nix
+"$mod $cl, N, focuswindow, class:org.kde.dolphin"
+#+end_src
 **** qutebrowser
 #+begin_src nix :tangle default.nix
 # "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
@@ -220,8 +225,8 @@ see hyprswitch:
 # "$mod, q, togglespecialworkspace, quanta"
 # "$mod SHIFT, q, movetoworkspace, special:quanta"
 
-"$mod, e, togglespecialworkspace, easy"
-"$mod SHIFT, e, movetoworkspace, special:easy"
+"$mod, Next, togglespecialworkspace, easy"
+"$mod SHIFT, Next, movetoworkspace, special:easy"
 
 "$mod, i, togglespecialworkspace, nc"
 #"$mod SHIFT, i, movetoworkspace, special:nc" no need to move shit into it using this for songart
@@ -338,16 +343,17 @@ movetoworkspacesilent exists
         ]
     ) 9
   )
-)
+);
 #+end_src
 *** Tangier-bind
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
 ++ (if osConfig.networking.hostName == "tangier" then
   [
   "$mod, Delete, exec, pkill rofi || rofi_power"
   ]
   else []);
 #+end_src
+*** carthage-bind
 
 ** bindm/c ( mouse binding )
 |--------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------|
@@ -372,8 +378,8 @@ bindc = [
 ];
 #+end_src
 
-** bindel
-#+begin_src nix :tangle default.nix
+** bindel laptop | pc
+#+begin_src nix :tangle no
 bindel =
   if osConfig.networking.hostName == "tangier" then
     import ./laptop_bindings.nix
@@ -383,18 +389,32 @@ bindel =
 
 ** bindl
 #+begin_src nix :tangle default.nix
-bindl =
+bindel =
   [
     #-----------------------PLAY/PAUSE------------------#
     ", XF86AudioPlay, execr, pause_play"
     # mute
-    ",  F4, execr, volume_dunst toggle_mute"
+    ",  XF86AudioMute, execr, volume_dunst toggle_mute"
 
     ##---------------Sink-Switch--------------#
     "$mod, F12, execr, volume_dunst earphones"
     "$mod, F11, execr, volume_dunst speaker"
     "$mod, F10, execr, volume_dunst bluetooth"
-  ];
+
+    ", XF86AudioRaiseVolume, execr, volume_dunst 2%+"
+    ", XF86AudioLowerVolume, execr, volume_dunst 2%-"
+
+    #-----------------------NEXT/PREV------------------#
+    ", XF86AudioNext, execr, playerctl next "
+    ", XF86AudioPrev, execr, playerctl previous"
+   ]++
+    (
+      if osConfig.networking.hostName == "carthage" then
+    [
+    ", F8, execr, playerctl next "
+    ", F6, execr, playerctl previous"
+    ", F7, execr, pause_play"
+    ] else [""]);
 #+end_src
 
 ** binde
@@ -410,7 +430,6 @@ binde =
     #dunst pop
     "$mod $sl,i,execr, songart"
     ", Pause, execr, songart"
-    "$mod, Next, execr, songart"
   ]++
   [
     #GAPS

@@ -674,8 +674,8 @@
             format-ethernet = "   {bandwidthDownBytes}       {bandwidthUpBytes}";
             interval = 2;
             format-linked = "{ifname} (No IP) ";
-            #format-disconnected = "⚠  No net";
-            format-disconnected = "⚠️  No net ❗";
+            # format-disconnected = "⚠️  No net ❗";
+            format-disconnected = "⚠ No net ";
             tooltip = false;
           };
 

@@ -55,6 +55,9 @@
       # screen_shader
     };
 
+    # render = {
+    #   explicit-sync = 2; # 2-auto based on gpu driver::,1 - yes, 0-no
+    # };
     misc = {
       font_family = "JetBrainsMono Nerd Font";
       # font_family = "quicksand";

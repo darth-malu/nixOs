@@ -138,18 +138,11 @@ tangier =
     ];
   };
 
-devShells.default = pkgs.mkShell {
+devShells.${system}.default = pkgs.mkShell {
     packages = [
         #inputs.python-nixpkgs.legacyPackages.${system}.python313
         (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
-        pandas
-        numpy
-        seaborn
-        matplotlib
-        tkinter
         pip
-        requests
-        ttkbootstrap
         ]))
     ];
 

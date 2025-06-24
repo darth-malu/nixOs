@@ -32,8 +32,8 @@ gtk = {
   #};
 
 cursorTheme = {
-  # package = pkgs.bibata-cursors; name = "Bibata-Modern-Ice";
-  name = "google-cursor"; package = pkgs.google-cursor;
+  name = "Bibata-Modern-Ice"; package = pkgs.bibata-cursors;
+  # name = "google-cursor"; package = pkgs.google-cursor;
   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
 };
 

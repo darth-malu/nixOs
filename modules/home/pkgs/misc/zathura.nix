@@ -1,7 +1,7 @@
 {
   enable = true;
   options = {
-    # this are the :set options
+    # :set
     default-bg = "#000000";
     default-fg = "#FFFFFF";
     statusbar-h-padding = 0;
@@ -17,14 +17,17 @@
     highlight-active-color = "#623CEA"; # #00BC00::, #75DBCD
     # highlight-transparency = ""; # 0.5::
     guioptions = "none"; # no statusbar
-    adjust-open = "best-fit"; # opening zathura defaults
+    adjust-open = "best-fit";
     smoth-scroll = true;
     font = "Iosevka Comfy semibold 10";
   };
   mappings = {
+    # :map
     u = "scroll half-up";
     d = "scroll half-down";
     D = "toggle_page_mode"; # single | double page viewing mode
+    N = "toggle_statusbar";
+    M = "toggle_inputbar";
   };
   # extraConfig = ''
   # '';# zathurarc

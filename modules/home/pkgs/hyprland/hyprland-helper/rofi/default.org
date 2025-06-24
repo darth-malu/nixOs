@@ -108,10 +108,10 @@ kb-secondary-paste = "Control+v,Insert";
 *** select stuff
 #+begin_src nix :tangle default.nix
 ml-row-down = "ScrollDown";
-hover-select = true;
+hover-select = false;
 me-select-entry = "";
 me-accept-entry = "MousePrimary";
-kb-delete-entry = "Shift+space"; # TODO: make this backspace
+kb-delete-entry = "Shift+BackSpace"; # Shift+space;;
 auto-select = true; # When one entry is left, automatically select it.
 #+end_src
 

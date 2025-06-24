@@ -35,8 +35,8 @@ wireless = {
 };
 
 networkmanager = {
-  enable = true; # might be on by default # add user to group
-  # dns = "none"; # dnsmasq, default::, systemd-resolved
+  enable = true; # add user to group
+  dns = "none"; # dnsmasq, default::, systemd-resolved
   wifi = {
     powersave = true; # TODO see if has issues?
     backend = "wpa_supplicant"; # wpa_supplicant::, iwd

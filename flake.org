@@ -211,6 +211,16 @@ inputs.home-manager.nixosModules.home-manager {
 #+begin_src nix :tangle no
     {environment.systemPackages = [neovimConf.neovim];}
 #+end_src
+*** overlay for python fix
+#+begin_src nix :tangle no
+{
+  python3Packages = python3Packages // {
+    lxml-html-clean = python3Packages.lxml-html-clean.overrideAttrs (oldAttrs: {
+      doCheck = false;
+    });
+  };
+}
+#+end_src
 *** emacs overlay
 #+begin_src nix :tangle no
 # { nixpkgs.overlays = [ (import self.inputs.emacs-overlay) ]; } # emacs overlay
@@ -252,18 +262,11 @@ tangier =
 
 *** teal environment / python
 #+begin_src nix :tangle flake.nix
-devShells.default = pkgs.mkShell {
+devShells.${system}.default = pkgs.mkShell {
     packages = [
         #inputs.python-nixpkgs.legacyPackages.${system}.python313
         (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
-        pandas
-        numpy
-        seaborn
-        matplotlib
-        tkinter
         pip
-        requests
-        ttkbootstrap
         ]))
     ];
 

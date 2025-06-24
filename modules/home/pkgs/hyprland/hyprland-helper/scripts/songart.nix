@@ -57,7 +57,7 @@ pkgs.writeShellScriptBin "songart" ''
         printf '%s' "$cover_path"
         ;;
       "title")
-        printf '%b' "$(playerctl -p spotify metadata --format ' 󰎍    {{title}} \n   {{artist}} \n    {{album}} ')"
+        printf '%b' "$(playerctl -p spotify metadata --format '󰎍    {{title}} \n   {{artist}} \n    {{album}} ')"
         ;;
     esac
   }

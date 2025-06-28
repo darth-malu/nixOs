@@ -55,22 +55,21 @@ in
     qtcreator
     (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [
-        #PYRPLE
-        # conda
         jupyter-core
         jupyter-console
         # jupyterlab-server
         pyside6
         pytube
         pandas
-        # numpy
+        numpy
         seaborn
         matplotlib
         tkinter
-        # pip
+
         requests
         ttkbootstrap
         # pandasql
+
         #emacs
         weasyprint
         pytest

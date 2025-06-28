@@ -21,7 +21,12 @@ nixpkgs.config = {
 boot = {
   extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   loader = {
-    systemd-boot.enable = true;
+    systemd-boot = {
+      enable = true;
+      editor = false;           # true:: allow editing kernel commandline before boot
+      # windows
+      # sortKey = "nixos"; #https://uapi-group.org/specifications/specs/boot_loader_specification/#sorting
+    };
     efi.canTouchEfiVariables = true;
     timeout = 2;
   };
@@ -104,18 +109,18 @@ security = {
 
 sudo = {
   enable = true;
-  extraRules = [{
-    commands = [
+  extraRules = [
+    { commands = [
       #{
       #command = "${pkgs.systemd}/bin/systemctl suspend";
       #options = [ "NOPASSWD" ];
       #}
 
-      {
+      # {
         # command = "/run/current-system/sw/bin/nixos-rebuild";
-        command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
-        options = [ "NOPASSWD" ];
-      }
+      #   command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
+      #   options = [ "NOPASSWD" ];
+      # }
 
       #{
       #command = "${pkgs.systemd}/bin/reboot";
@@ -127,11 +132,13 @@ sudo = {
       #}
       {
         command = "${pkgs.util-linux}/bin/fdisk -l";
-        options = [ "NOPASSWD" ];
+        options = [ "SETENV" "NOPASSWD" ];
       }
     ];
-    #groups = [ "wheel" ];
-  }];
+    # groups = [ "wheel" ];
+    users = ["malu"];
+  }
+  ];
 };
 
 polkit = {

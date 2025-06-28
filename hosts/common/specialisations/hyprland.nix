@@ -2,14 +2,14 @@
   inputs,
   lib,
   config,
+  pkgs-unstable,
   pkgs,
   ...
 }:
 
 let
   inherit (inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}) mesa;
-  # myMesa =
-  #   inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers;
+  # myMesa = (inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}) mesa.drivers;
 in
 {
   options.hyprland = {

@@ -1,14 +1,20 @@
 {
-  description = "maluware";
+  description = "Kenyan Tinkerer makes a flake -- 🫥";
   inputs = {
 
-  nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+
+  nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
 yazi.url = "github:sxyazi/yazi";
 
 home-manager = {
-  url = "github:nix-community/home-manager";
+  url = "github:nix-community/home-manager/release-25.05";
   inputs.nixpkgs.follows = "nixpkgs";
+};
+home-manager-unstable = {
+  url = "github:nix-community/home-manager";
+  inputs.nixpkgs.follows = "nixpkgs-unstable";
 };
 
 # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -45,17 +51,18 @@ hyprland-plugins = {
 
 nyaa = {
   url = "github:Beastwick18/nyaa";
-  inputs.nixpkgs.follows = "nixpkgs";#TODO: find out what follows does exactly
+  inputs.nixpkgs.follows = "nixpkgs-unstable";
 };
 
 };
 
-outputs = inputs@{nixpkgs , ...}:
+outputs = inputs@{nixpkgs , nixpkgs-unstable, ...}:
 
 let
 
 system = "x86_64-linux"; # system = builtins.currentSystem;??
 
+lib = nixpkgs.lib;
 pkgs = import nixpkgs {
   inherit  system;
   config = {
@@ -67,6 +74,7 @@ pkgs = import nixpkgs {
       "spotify"
       # "obsidian"
       "wpsoffice"
+      "warp-terminal"
       "windows10-icons"
       # "whatsapp-emoji-linux"
       "aspell-dict-en-science"
@@ -78,15 +86,16 @@ pkgs = import nixpkgs {
       "youtube-upnext"
       "evafast"
       "rider"
+      "android-studio-stable"
+      "broadcom-sta"
     ];
     permittedInsecurePackages = [
       "ventoy-1.1.05"
     ];
   };
-  # overlays = [
-  #   (import self.inputs.emacs-overlay) # with flakes
-  # ];
-};
+};                              # End of pkgs
+
+pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
 
 in
 {
@@ -95,7 +104,7 @@ nixosConfigurations = {
   carthage =
     nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs system; };
+      specialArgs = { inherit inputs pkgs pkgs-unstable system; };
 
 modules = [
 
@@ -106,7 +115,7 @@ inputs.home-manager.nixosModules.home-manager {
     users.malu = import ./modules/home/home.nix;
     useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
     useUserPackages = false; # if false ... uses nix-profile for home apps
-    extraSpecialArgs = { inherit inputs pkgs system; };
+    extraSpecialArgs = { inherit inputs pkgs pkgs-unstable system; };
   };
 }
 
@@ -118,7 +127,7 @@ inputs.home-manager.nixosModules.home-manager {
 tangier =
   nixpkgs.lib.nixosSystem {
     inherit system;
-    specialArgs = { inherit inputs system; };
+    specialArgs = { inherit inputs pkgs pkgs-unstable  system; };
     modules = [
 
       ./hosts/tangier
@@ -132,7 +141,7 @@ tangier =
           users.malu = import ./modules/home/home.nix;
           useGlobalPkgs = true; # dont use private instance of pkgs which is the default
           useUserPackages = false; # if false:: ... uses nix-profile for home apps
-          extraSpecialArgs = { inherit  pkgs inputs system; };
+          extraSpecialArgs = { inherit pkgs-unstable pkgs inputs system; };
         };
       }
     ];

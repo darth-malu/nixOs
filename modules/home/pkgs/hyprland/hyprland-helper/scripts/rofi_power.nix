@@ -1,163 +1,118 @@
-{pkgs}:
+{ pkgs }:
 
-# pkgs.writers.writeDashBin "rofi_power"
-pkgs.writeShellScriptBin "rofi_power"
-''
-# upt="$(uptime | awk '{print $1}')"
-upt="$(uptime | tr -s ' ' | cut -d ' ' -f2)"
+pkgs.writeShellScriptBin "rofi_power" ''
+  shutdown="⏻  Shutdown"
+  reboot="  Reboot"
+  lock="  Lock"
+  suspend="󰒲  Suspend"
+  timer="󱫣  Timer"
+  cancel="󰔞  Cancel"
 
-shutdown="$(printf '⏻    Shutdown')"
-reboot="$(printf '    Reboot')"
-lock="$(printf '    Lock')"
-suspend="$(printf '󰒲    Suspend')"
-logout="$(printf '    Logout')"
-timer="$(printf '󱫣    Timer')"
-cancel="$(printf '󰔞    Cancel')"
+  yes="✅"
+  no="⛔"
+  # yes='  ja'
+  # no='  nein'
 
-yes='  ja'
-no='  nein'
-#no='  No'
+  RESTART="⏻  "
+  SHUT="  "
 
-rofi_main() {
-  #-p "" \height:250px;
-  rofi -dmenu \
-    -p "$upt" \
-    -theme-str 'window {location: west;  width: 550px; padding: 0; margin: 0;}' \
-    -theme-str 'mainbox {children: [ "message","inputbar", "listview" ];}' \
-    -theme-str 'listview {columns: 2; lines: 3;cycle: true;}' \
-    -theme-str 'inputbar {horizontal-align: 0.0; border: 0; children: [ "entry" ];}' \
-    -theme-str 'entry {horizontal-align: 0.0; border: 0; blink: false;cursor-color: rgb(220,20,60);cursor-width: 0px;}' \
-    -theme-str 'message {border: 0;}' \
-    -theme-str 'element {orientation: horizontal;padding: 15px 0px 15px 0px; margin: 0; width: 10px;}' \
-    -theme-str 'element-text {horizontal-align: 0.0;vertical-align: 0.5;}' \
-    -i
-  # -theme-str 'textbox {horizontal-align: 0.0;}' \
-  #-mesg "$uptime" \
-  #-theme-str 'element-icon { orientation: vertical;}' \
-  #-theme-str 'mainbox {children: [ "message", "listview", "inputbar" ];}'
-  #for case insens :)
-  #-theme-str 'mainbox {children: [ "message", "entry", "listview" ];}' \
-  #-theme-str '#window {location: south west; fullscreen: false; width: 220px; font: "GeistMono Nerd Font 12"; padding: 4;border: 1;}' \
-}
+  main_window() {
+    rofi -dmenu \
+      -p "$(uptime | awk '{print $1}')" \
+      -theme-str 'window {anchor: west; location: west;  width: 350px; padding: 0px; margin: 0px; border: 0px;}' \
+      -theme-str 'listview {columns: 2; lines: 3; fixed-column: false; cycle: true; padding: 0px; margin: 0px; border: 0px;}' \
+      -theme-str 'inputbar {horizontal-align: 0.0; border: 0px; children: [ "prompt","entry" ];}' \
+      -theme-str 'prompt {font: "Monofur Nerd Font 13";}' \
+      -theme-str 'entry {expand: false; horizontal-align: 0.0; border: 0; blink: false;cursor-color: rgb(220,20,60);cursor-width: 0px;}' \
+      -theme-str 'element {padding: 6px 0px;}' \
+      -theme-str 'element-text {vertical-align: 0.5; horizontal-align: 0.0; padding: 0px;}' \
+      -i
+  }
 
-# default -sep is \n lul
-run_rofi() {
-  printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n" "$lock" "$logout" "$reboot" "$suspend" "$shutdown" "$timer" "$cancel" | rofi_main
-}
+  main_window_options() {
+    printf "%s\n%s\n%s\n%s\n%s\n%s\n" \
+      "$lock" "$reboot" "$suspend" "$shutdown" "$timer" "$cancel" | main_window
+  }
 
-confirm_exit() {
-  printf '%s\n%s\n' "$yes" "$no" | confirm_actions
-  #printf "%s\n%s\n" "$yes" "$no" | confirm_actions
-}
-#TODO: make better banner
-restart_shut_timer_confirm() {
-  rofi -dmenu \
-    -theme-str 'window {  location: west; anchor: west; fullscreen: false; height:160;width: 220; padding:0;margin: 0;border: 0;orientation : horizontal;}' \
-    -theme-str 'mainbox {children: [  "listview" ];}' \
-    -theme-str 'listview { dynamic: false;columns: 2;fixed-columns : false; lines: 1; cycle: "true"; orientation : horizontal;}' \
-    -theme-str 'element {horizontal-align: 0.9;border: 1;margin:0; orientation: vertical;}' \
-    -theme-str 'element-text {font: "JetBrainsMono Nerd Font 38";padding: 0px 0px 25px 30px; horizontal-align: 0.0;}' \
-    -theme-str 'message {border: 0;}' \
-    -theme-str 'textbox {horizontal-align: 0.0;}' \
-    -p 'Confirmation' \
-    -mesg 'icons za restart ama zima'
-}
+  restart_shutdown_timer_picker() {
+    rofi -dmenu \
+      -theme-str 'window {location: west; anchor: west; fullscreen: false; padding:0px; margin: 0px; border: 0px;}' \
+      -theme-str 'mainbox {children: [ "listview" ];}' \
+      -theme-str 'listview {dynamic: false; columns: 2; fixed-columns: false; cycle: "true"; layout: horizontal;}' \
+      -theme-str 'element {horizontal-align: 0.0;border: 0;margin:0;}' \
+      -theme-str 'element-text {font: "JetBrainsMono Nerd Font 38"; padding: 0px 0px; horizontal-align: 0.0;}'
+  }
 
-confirm_actions() {
-  rofi -dmenu \
-    -theme-str 'window {location: west; anchor: west; fullscreen: false; border: 0; fixed-height: false; dynamic: false; height:90px; width: 300px;}' \
-    -theme-str 'mainbox {children: [ "message", "listview" ];}' \
-    -theme-str 'listview {columns: 2; lines: 1; orientation : horizontal; fixed-columns: false;}' \
-    -theme-str 'element {orientation: horizontal; padding: 0; margin: 4;}' \
-    -theme-str 'element-text {horizontal-align: 0.0;orientation: horizontal;}' \
-    -theme-str 'textbox {horizontal-align: 0.0;}' \
-    -p 'Confirmation' \
-    -mesg 'Uko sure bro?'
-}
+  ndio_au_la() {
+    rofi -dmenu \
+      -theme-str 'window {location: west; anchor: west; fullscreen: false; border: 0px; fixed-height: false; dynamic: false; height:80px; width: 200px;}' \
+      -theme-str 'mainbox {children: [ "message", "listview" ];}' \
+      -theme-str 'listview {columns: 2; lines: 1; orientation : horizontal; fixed-columns: false;}' \
+      -theme-str 'element {orientation: horizontal; padding: 0; margin: 4;}' \
+      -theme-str 'element-text {horizontal-align: 0.0; orientation: horizontal; width: 100px;}' \
+      -theme-str 'textbox {horizontal-align: 0.0;}' \
+      -mesg 'Uko sure?'
+  }
 
-SHUT="$(printf '⏻ ')"
-RESTART="$(printf ' ')"
-# menu itselverticalf
+  confirm_exit() {
+    printf '%s\n%s\n' "$yes" "$no" | ndio_au_la
+  }
 
-shut_or_restart() {
-  printf "%s\n%s" "$RESTART" "$SHUT" | restart_shut_timer_confirm
-}
+  shut_or_restart() {
+    printf "%s\n%s\n" "$RESTART" "$SHUT" | restart_shutdown_timer_picker
+  }
 
-iconic() {
-  local cancel="/home/malu/Shibuya/assets/icons/icons8-cancel-3d-plastilina/icons8-cancel-45.png"
-  local shutdown="/home/malu/Shibuya/assets/icons/icons8-shutdown-office-l/icons8-shutdown-40.png"
-  local restart="/home/malu/Shibuya/assets/icons/restart/icons8-restart-50.png"
-  case $1 in
-  "restart")
-    printf '%s' "$restart"
-    ;;
-  "shutdown")
-    printf '%s' "$shutdown"
-    ;;
-  "cancel")
-    printf '%s' "$cancel"
-    ;;
-  esac
-}
+  run_cmd() {
+    local icons_dir="/home/malu/Shibuya/assets/icons/"
+    local icon_cancel="$icons_dir/icons8-cancel-3d-plastilina/icons8-cancel-45.png"
+    local icon_shutdown="$icons_dir/icons8-shutdown-office-l/icons8-shutdown-40.png"
+    local icon_restart="$icons_dir/icons8-restart-50.png"
 
-# pass answer to function
-# Execute Command
-run_cmd() {
-  case "$1" in
-  # custom timer
-  "timer") #TODO add timers for 2...10 timers and custom one
-    restart_shut="$(shut_or_restart)"
-    case "$restart_shut" in
-    "$RESTART")
-      shutdown -r +5
-      # systemctl reboot
-      #notify-send "Restart in 5 min"
-      notify-send "Restarting in 5min " \
-        -i $(iconic 'restart')
-      canberra-gtk-play -i service-logout
+    case $1 in
+    "timer") #TODO add timers for 2...10 timers and custom one
+      case "$(shut_or_restart)" in
+      "$RESTART")
+        #notify-send "Restart in 5 min"
+        notify-send "Restarting in 5min " -i "$icon_restart"
+        canberra-gtk-play -i service-logout
+        shutdown -r +3
+        ;;
+      "$SHUT")
+        notify-send "Shutting Down in 5min  " -i "$icon_shutdown"
+        canberra-gtk-play -i service-logout
+        shutdown +3
+        ;;
+      esac
       ;;
-    "$SHUT")
-      notify-send "Shutting Down in 5min  " \
-        -i $(iconic 'shutdown')
-      shutdown +5
-      canberra-gtk-play -i service-logout
-      #notify-send "Shutdown in 5 min"
+    "cancel")
+      notify-send "Shutdown -c (cancelled)  " -i "$icon_cancel"
+      canberra-gtk-play -i window-attention
+      shutdown -c
+      ;;
+    *)
+      if [ "$(confirm_exit)" = "$yes" ]; then
+        case $1 in
+        '--shutdown') systemctl poweroff ;;
+        '--reboot') systemctl reboot ;;
+        '--suspend')
+          mpc -q pause
+          amixer set Master mute
+          systemctl suspend
+          ;;
+        esac
+      else
+        exit 0
+      fi
       ;;
     esac
-    ;;
-  "cancel")
-    shutdown -c
-    notify-send "Shutdown -c (cancelled)  " \
-      -i $(iconic 'cancel')
-    canberra-gtk-play -i window-attention
-    ;;
-  *)
-    if [ "$(confirm_exit)" = "$yes" ]; then
-      case "$1" in
-      '--shutdown') systemctl poweroff ;;
-      '--reboot') systemctl reboot ;;
-      '--suspend')
-        mpc -q pause
-        amixer set Master mute
-        systemctl suspend
-        ;;
-      '--logout') uwsm stop ;; #hyprctl dispatch exit -non-uwsm #uwsm stop -uwsm
-      esac
-    else
-      exit 0
-    fi
-    ;;
-  esac
-}
+  }
 
-case "$(run_rofi)" in
-"$shutdown") run_cmd --shutdown ;;
-"$reboot") run_cmd --reboot ;;
-"$lock") hyprlock ;;
-# "$lock") dash -c ~/.config/hypr/scripts/sway_lock_idle/lock.sh ;;
-"$suspend") run_cmd --suspend ;;
-"$logout") run_cmd --logout ;;
-"$timer") run_cmd timer ;;
-"$cancel") run_cmd cancel ;;
-esac
+  case "$(main_window_options)" in
+  "$shutdown") run_cmd --shutdown ;;
+  "$reboot") run_cmd --reboot ;;
+  "$lock") hyprlock ;;
+  "$suspend") run_cmd --suspend ;;
+  "$timer") run_cmd timer ;;
+  "$cancel") run_cmd cancel ;;
+  esac
 ''

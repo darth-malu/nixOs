@@ -45,30 +45,33 @@ modes = [
   "emoji"
 ];
 
-display-drun = " ";
-display-run = " ";
-display-dmenu = " ";
-display-filebrowser = " ";
-display-window = " "; # 
+display-drun = "";
+display-run = "";
+display-dmenu = "";
+display-emoji = "❄️";
+display-calc = "🧮";
+display-filebrowser = "📂";
+display-window = ""; # 
 
-window-thumbnail = true;
-# hide-active-window = true;
-window-format = "{w}{c}.{t}";
+window-thumbnail = true; # FIXME not working
+# hide-active-window = true; #FIXME not working
+window-format = "{w}{c}  .  {t}";
 
 click-to-exit = true;
 
 kb-primary-paste = "Control+V,Shift+Insert";
 kb-secondary-paste = "Control+v,Insert";
 # kb-toggle-case-sensitivity #TODO: assign later
-# icon-theme = "candy icons";
-# icon-size = 58;
+
+icon-theme = "Yaru";
+# icon-size = 88;#not working
 
 ml-row-down = "ScrollDown";
 hover-select = false;
-me-select-entry = "";
+me-select-entry = "MouseSecondary";
 me-accept-entry = "MousePrimary";
-kb-delete-entry = "Shift+BackSpace"; # Shift+space;;
-auto-select = true; # When one entry is left, automatically select it.
+kb-delete-entry = "Shift+space"; # Shift+space;;
+auto-select = false; # When one entry is left, automatically select it.
 
 drun-use-desktop-cache = true; # slow PC, Build and use a cache with the content of desktop files to reload when enabled -> -drun-reload-desktop-cache flag
 drun-reload-desktop-cache = true;

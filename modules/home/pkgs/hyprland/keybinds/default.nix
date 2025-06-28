@@ -22,15 +22,16 @@
       "$gaps" = "gaps toggle_gaps_out";
       "$emacs" = "uwsm app -s a -- emacsclient -c";
 
-"$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; width : 1000px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
+# "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; width : 1000px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
+# "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; fullscreen: false; width : 1000px;}' -theme-str 'entry {placeholder: \"🔎 search files ...\";}' -theme-str 'element-icon {size: 2.5em;horizontal-align: 0.5;vertical-align: 0.5;}'";
+"$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; fullscreen: false; width : 1000px;}' -theme-str 'element-text {hightlight: underline red;}' -theme-str 'element-icon {size: 2.5em;horizontal-align: 0.5;vertical-align: 0.5;}'";
 "$rofi_open_windows" =  "rofi -show window -theme-str 'window {width : 920px;}' -theme-str 'listview {lines:15; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
-# "-theme-str 'window {width : 800px; fullscreen: true;}" +
 # " -theme-str 'element {background-image: linear-gradient(white/5%, white/20%);border-color: lightblue /15%;}'";
 # "$menu_rofi" = "rofi -show drun -run-command \"hyprctl dispatch -- exec [workspace emptym] uwsm app -s a -- {cmd}\"";
-"$menu_rofi" = "rofi -show drun";
+"$menu_rofi" = "rofi -show drun -theme-str 'listview {require-input: true;}'";
 "$emoji_rofi" = "rofi -show emoji";
 "$clip_rofi" = "cliphist list | rofi -dmenu -theme-str 'window {width : 750px;}' -p '' | cliphist decode | wl-copy";
-"$calc_rofi" = "rofi -show calc";
+"$calc_rofi" = "rofi -show calc -p '🪓";
 # "$obsidian_rofi" = "rofi -show obsidian";
 
 bindr = [
@@ -67,15 +68,15 @@ bind =
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
 
-  "$mod, mouse:272, exec, pkill rofi || $menu_rofi"
-  "$mod , P, exec, $menu_rofi"
+  "$mod $cl, mouse:272, exec, pkill rofi || $menu_rofi"
+  "$mod , P, exec, pkill rofi || $menu_rofi"
   "$mod , R, exec, pkill rofi || $file_browser_rofi"
   "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
 
   # open windows
   "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
   "$mod, space, exec, pkill rofi || $rofi_open_windows"
-  "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
+  "$mod $cl, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
   # power menu
   "$mod, Delete, exec, pkill rofi || rofi_power"
@@ -84,7 +85,7 @@ bind =
   ", XF86Calculator, exec, pkill rofi || $calc_rofi"
 
   # emoji
-  "$mod, Insert, exec, pkill rofi || $emoji_rofi"
+  "$mod, period, exec, pkill rofi || $emoji_rofi"
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] $emacs"
@@ -105,7 +106,7 @@ bind =
   "$mod, KP_Multiply, pseudo"
 
 # "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
-"$mod $cl, D, focuswindow, class:^(emacs)$"
+"$mod $cl, D, focuswindow, class:^(Emacs)$"
 
 "$mod $cl, Y, focuswindow, title:^(Yazi)(.*)$"
   # "$mod , up, focuswindow, class:^(Emacs)$"
@@ -170,16 +171,16 @@ bind =
 
 # Keypad navigation
 # Switch workspaces with mod + [ numpad 0-9]
-  "$mod, KP_End, workspace, 1"#TODO: do for loop make this cleaner
-  "$mod, KP_Down, workspace, 2"
-  "$mod, KP_Next, workspace, 3"
-  "$mod, KP_Left, workspace, 4"
-  "$mod, KP_Begin, workspace, 5"
-  "$mod, KP_Right, workspace, 6"
-  "$mod, KP_Home, workspace, 7"
-  "$mod, KP_Up, workspace, 8"
-  "$mod, KP_Prior, workspace, 9"
-  "$mod, KP_Insert, workspace, 10"
+  "$mod, KP_End, focusworkspaceoncurrentmonitor, 1"#TODO: do for loop make this cleaner
+  "$mod, KP_Down, focusworkspaceoncurrentmonitor, 2"
+  "$mod, KP_Next, focusworkspaceoncurrentmonitor, 3"
+  "$mod, KP_Left, focusworkspaceoncurrentmonitor, 4"
+  "$mod, KP_Begin, focusworkspaceoncurrentmonitor, 5"
+  "$mod, KP_Right, focusworkspaceoncurrentmonitor, 6"
+  "$mod, KP_Home, focusworkspaceoncurrentmonitor, 7"
+  "$mod, KP_Up, focusworkspaceoncurrentmonitor, 8"
+  "$mod, KP_Prior, focusworkspaceoncurrentmonitor, 9"
+  "$mod, KP_Insert, focusworkspaceoncurrentmonitor, 10"
 
 # Move active window to a workspace with mod + SHIFT + [ numpad 0-9]
   "$mod $sl, KP_End, movetoworkspace, 1"
@@ -196,10 +197,7 @@ bind =
   "$mod ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
   # "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 
-  "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
-  "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
   "$mod $sl, bracketright, swapnext"
-  "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
 
 # "$mod,K, Workspace, previous_per_monitor"
@@ -210,11 +208,7 @@ bind =
 ]
 
 ++ (
-  # workspaces
-  # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-  builtins.concatLists (#TODO: learn more about builtins
-    builtins.genList (
-      i:
+  builtins.concatLists (builtins.genList ( i:
       let
         ws = i + 1;
       in
@@ -224,13 +218,24 @@ bind =
         ]
     ) 9
   )
-);
+)
+
+++ (if osConfig.networking.hostName == "tangier" then [] else
+   [
+  "$mod $cl,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
+  "$mod $cl,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
+  "$mod ,bracketleft, movewindow, mon:0"
+  "$mod ,bracketright, movewindow, mon:1"
+  "$mod $al,bracketleft, movewindow, mon:0 silent"
+  "$mod $al,bracketright, movewindow, mon:1 silent"
+  "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
+]);
 
 #mouse binds have one less arg
 bindm = [
-  "$mod $cl, mouse:272, movewindow"
-  "$mod $cl, mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
-  "ALT, mouse:272, movewindow"
+  "$mod , mouse:272, movewindow"
+  "$mod , mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
+  # "ALT, mouse:272, movewindow"
 ];
 
 bindc = [
@@ -242,12 +247,12 @@ bindel =
     #-----------------------PLAY/PAUSE------------------#
     ", XF86AudioPlay, execr, pause_play"
     # mute
-    ",  XF86AudioMute, execr, volume_dunst toggle_mute"
+    ", XF86AudioMute, execr, volume_dunst toggle_mute"
 
     ##---------------Sink-Switch--------------#
-    "$mod, F12, execr, volume_dunst earphones"
-    "$mod, F11, execr, volume_dunst speaker"
-    "$mod, F10, execr, volume_dunst bluetooth"
+    # "$mod, F12, execr, volume_dunst earphones"
+    # "$mod, F11, execr, volume_dunst speaker"
+    # "$mod, F10, execr, volume_dunst bluetooth"
 
     ", XF86AudioRaiseVolume, execr, volume_dunst 2%+"
     ", XF86AudioLowerVolume, execr, volume_dunst 2%-"
@@ -262,7 +267,7 @@ bindel =
     ", F8, execr, playerctl next "
     ", F6, execr, playerctl previous"
     ", F7, execr, pause_play"
-    ] else [""]);
+    ] else []);
 
 binde =
   [# Date

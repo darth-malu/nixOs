@@ -65,6 +65,7 @@
       # taskwarrior-tui
 
       # utilities
+      warp-terminal
       file
       lsof # list open files/ports**
       usbutils # lsusb, usb-devices, usb-view(optional gui)
@@ -113,6 +114,9 @@
       jetbrains.rider # c#
       dotnet-sdk
       dotnet-repl
+
+      # icons
+      yaru-theme
     ]
     ++ (with pkgs; [
       # creative space

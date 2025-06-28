@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   lib,
   config,
   ...
@@ -24,11 +25,11 @@
       # };
     };
 
-    services.udev.packages = [ pkgs.gnome-settings-daemon ];
+    services.udev.packages = [ pkgs-unstable.gnome-settings-daemon ];
 
     environment = {
-      systemPackages = [ pkgs.gnomeExtensions.appindicator ];
-      gnome.excludePackages = with pkgs; [
+      systemPackages = [ pkgs-unstable.gnomeExtensions.appindicator ];
+      gnome.excludePackages = with pkgs-unstable; [
         orca
         baobab
         epiphany

@@ -7,7 +7,7 @@
   config = {
     programs.emacs = {
       enable = true;
-      # package = pkgs.emacs-pgtk; # emacs, emacs-gtk, emacs-nox, emacs-pgtk
+      package = pkgs.emacs-pgtk; # emacs, emacs-gtk, emacs-nox, emacs-pgtk
       # extraConfig = ''
       #   (setq standard-indent 2)
       # ''; # init.el

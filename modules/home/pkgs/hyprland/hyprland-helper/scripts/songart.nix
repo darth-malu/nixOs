@@ -63,7 +63,7 @@ pkgs.writeShellScriptBin "songart" ''
   }
 
   mpd_metadata_formatted() {
-    mpc --format '[[ 󰎍    %title% \n][      %audioformat%] - %position% \n   %artist%  \n    %album%  ]] | [%file%]' current
+    mpc --format '[[󰎍    %title% \n][      %audioformat%] - %position% \n   %artist%  \n    %album%  ]] | [%file%]' current
   }
 
   dunstify_preview() {

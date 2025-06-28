@@ -20,7 +20,7 @@ home.pointerCursor = {
   };
   # name = "Bibata-Modern-Ice"; package = pkgs.bibata-cursors;
   # name = "bibata-cursors"; package = pkgs.bibata-cursors;
-  name = "GoogleDot-White";  package = pkgs.google-cursor; # on xwayland stuff like waybar, intelliJ
+  name = "GoogleDot-Black";  package = pkgs.google-cursor; # android-studio
   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
 };
 
@@ -45,7 +45,7 @@ theme = {
 };
 
 iconTheme = {
-  name = "Colloid-Catppuccin-Dark"; package = pkgs.colloid-icon-theme.override {schemeVariants = ["catppuccin"];};
+  name = "Colloid-Catppuccin"; package = pkgs.colloid-icon-theme.override {schemeVariants = ["catppuccin"];};
   # name = "kora"; package = pkgs.kora-icon-theme;
   # name = "WhiteSur"; package = pkgs.whitesur-icon-theme;
   # name = "candy-icons"; package = pkgs.candy-icons;

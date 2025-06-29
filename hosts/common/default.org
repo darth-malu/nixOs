@@ -44,10 +44,45 @@ boot = {
     efi.canTouchEfiVariables = true;
     timeout = 2;
   };
+  # initrd.kernelModules = if config.networking.hostName == "carthage" then [  "dm-snapshot" ] else [];
+  initrd.availableKernelModules = if config.networking.hostName == "carthage" then
+    ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"]
+    else
+    ["xhci_pci" # usb 3.0
+    "ehci_pci" # usb 2.0
+    "ahci" # sata
+    "usb_storage"  # usb mass storage devices - hdd, flash
+    "sd_mod" #scsi device and some sata
+    "sr_mod" # cd drive
+    ];
+  initrd.kernelModules = [ ];
+  initrd.systemd.network = {
+    enable = false;
+    wait-online.enable = false; # since using networkmanager not networkd;
+  };
+  kernelModules = if config.networking.hostName == "tangier" then
+                  [ "kvm-intel"] else
+                  [ "kvm-amd" "wl" ];
+  # kernelParams = [# parameterrs for kernel command line
+  #   "video=HDMI-A-1:1920x1080@240"
+  #   "video=DP-3:1920x1080@60"
+  # ];
+  # supportedFilesystems = { ntfs-3g = true; ext4 = true; }; # can also be list # supportedFilesystems = [ "ntfs" ];
 };
 #+end_src
 
 https://search.nixos.org/options?channel=25.05&show=boot.loader.systemd-boot.sortKey&from=0&size=50&sort=relevance&type=packages&query=boot.loader.systemd
+
+* services - libinput , zfs
+#+begin_src nix :tangle default.nix
+services = {
+  libinput.enable = if config.networking.hostName == "tangier" then true else false; # touchpad, should be on by default
+  zfs = {
+    autoSnapshot.enable = true; #TODO: see sanoid in man configuration.nix
+    trim.enable = true; # true::
+  };
+};
+#+end_src
 
 * networking stuffs
 ** start
@@ -56,7 +91,7 @@ networking = {
 #+end_src
 
 ** wireless
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
 wireless = {
   enable = false; # wpa_supplicant enable
   userControlled.enable = true; # wpa_supplicant_gui
@@ -101,17 +136,23 @@ timeServers = [
 #+end_src
 
 ** dhcp
+
 useDHCP: Whether to use DHCP to obtain an IP address and other configuration for all network interfaces that do not have any manually configured IPv4 addresses.
 
 #+begin_src nix :tangle default.nix
 dhcpcd.enable = true; # TODO discern which to keep or not
 useDHCP =  false;
-interfaces.enp5s0.useDHCP = if config.networking.hostName == "tangier" then false else true; #overrides default in useDHCP unless null
-interfaces.wlp4s0.useDHCP = if config.networking.hostName == "tangier" then true else false;
-# interfaces.enp5s0.useDHCP = lib.mkDefault true;
-nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" "8.8.4.4" ]; #"8.8.8.8" #"8.8.4.4" ];
+interfaces.enp5s0.useDHCP = if config.networking.hostName == "carthage" then true else false; #overrides default in useDHCP unless null
+interfaces.wl01.useDHCP = if config.networking.hostName == "tangier" then true else false;
+nameservers = [ "1.1.1.1" "1.0.0.1" ]; #"8.8.8.8" #"8.8.4.4" ];
 #+end_src
 
+use ~ip link~ to see all available interfaces
+
+# Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+# (the default) this is the recommended approach. When using systemd-networkd it's
+# still possible to use this option, but it's recommended to use it in conjunction
+# with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
 ** end
 #+begin_src nix :tangle default.nix
 };
@@ -353,17 +394,17 @@ i18n = {
     LC_TIME = "en_US.UTF-8";
   };
 };
-# Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-# (the default) this is the recommended approach. When using systemd-networkd it's
-# still possible to use this option, but it's recommended to use it in conjunction
-# with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs set
 #+end_src
 
 * timezone
 #+begin_src nix :tangle default.nix
 time.timeZone = "Africa/Nairobi";
 #+end_src
+* hostPlatform
+#+begin_src nix :tangle default.nix
+nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs set
+#+end_src
+
 * system.stateVersion -- dont delete/change
 #+begin_src nix :tangle default.nix
 system.stateVersion = "24.11";

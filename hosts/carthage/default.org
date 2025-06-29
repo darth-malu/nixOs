@@ -1,8 +1,8 @@
 #+auto_tangle: t
 
-* header, start :misc:
+* header, start
 #+begin_src nix :tangle default.nix
-{modulesPath, lib, config,...}:
+{lib, config,...}:
 
 {
 #+end_src
@@ -10,33 +10,10 @@
 * imports
 #+begin_src nix :tangle default.nix
 imports = [
-  # (modulesPath + "/installer/scan/not-detected.nix") #in common now
   ./amd.nix
   ../common
   ../common/users/remote-builder.nix # removed from common only for carthage now
 ];
-#+end_src
-
-* boot
-#+begin_src nix :tangle default.nix
-boot = {
-  # supportedFilesystems = { ntfs-3g = true; ext4 = true; }; # can also be list # supportedFilesystems = [ "ntfs" ];
-  initrd = {
-    # kernelModules = [ "dm-snapshot" ]; #load amd driver (amdgpu) early user space # Force loads to initrd
-    availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ]; # available to initram but only loaded on demand
-    systemd = {
-      network = {
-        enable = false;
-        wait-online.enable = false; # since using networkmanager not networkd;
-      };
-    };
-  };
-  kernelModules = ["kvm-amd" "wl"]; # second stage of boot process # not modules needed to boot root fs
-  # kernelParams = [# parameterrs for kernel command line
-  #   "video=HDMI-A-1:1920x1080@240"
-  #   "video=DP-3:1920x1080@60"
-  # ];
-};
 #+end_src
 
 * microcode
@@ -58,16 +35,6 @@ networking = {
   hostName = "carthage";
   hostId = "7435d550";
 };
-#+end_src
-
-* stateVersion
-#+begin_src nix :tangle default.nix
-system.stateVersion = "24.11";
-#+end_src
-
-* hostPlatform
-#+begin_src nix :tangle default.nix
-nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 #+end_src
 
 * end

@@ -7,8 +7,6 @@ pkgs.writeShellScriptBin "clr_backup" ''
     local files_to_delete="$(${pkgs.fd}/bin/fd -d 3 -t f --glob "$backup_pattern"  $HOME)"
 
     if [ -n "$files_to_delete" ]; then # -n: true if string > 0
-      # CRITICAL FIX: Pipe the null-delimited list to xargs -0 for safe and correct printing.
-      # xargs -0 -n 1 printf '%s\n' ensures each filename (even with spaces) is printed on a new line.
       printf '%s\n%s\n' 'Files to be deleted are::' "$files_to_delete"
       read -r -p "Are you sure you want to remove these backups? (Y/n) " response
 

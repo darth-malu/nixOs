@@ -165,8 +165,12 @@ bind =
 
   "$mod ,up, togglegroup"
   "$mod ,down, lockactivegroup, toggle"
-  "$mod ,right,changegroupactive,f" # back
-  "$mod ,left,changegroupactive,b" # back
+
+  "$mod ,right,changegroupactive,f"
+  "$mod ,left,changegroupactive,b"
+
+  "$mod $sl , right, movewindoworgroup, r"
+  "$mod $sl , left, movewindoworgroup, l"
 
   "$mod ,H, workspace,m-1"
   "$mod ,L, workspace,m+1"

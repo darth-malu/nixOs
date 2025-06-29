@@ -3,11 +3,8 @@
 
 * start
 #+begin_src nix :tangle default.nix
-{config,modulesPath, pkgs, lib, options, ...}:
+{config, pkgs, lib, ...}:
 {
-#+end_src
-
-#+begin_src nix :tangle default.nix
 #+end_src
 
 * imports
@@ -18,35 +15,8 @@ imports = [
 ];
 #+end_src
 
-* boot
-#+begin_src nix :tangle default.nix
-boot = {
-  initrd.availableKernelModules = [
-    "xhci_pci" # usb 3.0
-    "ehci_pci" # usb 2.0
-    "ahci" # sata
-    "usb_storage"  # usb mass storage devices - hdd, flash
-    "sd_mod" #scsi device and some sata
-    "sr_mod" ]; # cd drive
-  initrd.kernelModules = [ ];
-  initrd.systemd.network = {
-    enable = false;
-    wait-online.enable = false; # since using networkmanager not networkd;
-  };
-  kernelModules = [ "kvm-intel" ];
-  # kernelParams =[];
-  extraModulePackages = [ ];
-
-  loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-    timeout = 2;
-  };
-};
-#+end_src
-
 * nix
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
 nix = {
   distributedBuilds = false;
   buildMachines = [ { # makes it so i dont have to use --builders "ssh://myuser@builder <other builder specification>"
@@ -90,27 +60,6 @@ networking = {
 # still possible to use this option, but it's recommended to use it in conjunction
 # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
 # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
-#+end_src
-
-* services - libinput , zfs
-#+begin_src nix :tangle default.nix
-services = {
-  libinput.enable = true; # touchpad, should be on by default
-  zfs = {
-    autoSnapshot.enable = true; #TODO: see sanoid in man configuration.nix
-    trim.enable = true; # true::
-  };
-};
-#+end_src
-
-* timezone
-#+begin_src nix :tangle default.nix
-time.timeZone = "Africa/Nairobi";
-#+end_src
-
-* system state version
-#+begin_src nix :tangle default.nix
-system.stateVersion = "24.11";
 #+end_src
 
 * end

@@ -88,7 +88,7 @@ timeServers = [
 ];
 
 dhcpcd.enable = true; # true:: # TODO discern which to keep or not
-useDHCP =  true;
+useDHCP =  false;
 interfaces.enp5s0.useDHCP = if config.networking.hostName == "carthage" then true else false; #overrides default in useDHCP unless null
 interfaces.wlo1.useDHCP = if config.networking.hostName == "tangier" then true else false;
 nameservers = [ "1.1.1.1" "1.0.0.1" ]; #"8.8.8.8" #"8.8.4.4" ];

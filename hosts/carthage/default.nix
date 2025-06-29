@@ -11,7 +11,6 @@ imports = [
 
 boot = {
   # supportedFilesystems = { ntfs-3g = true; ext4 = true; }; # can also be list # supportedFilesystems = [ "ntfs" ];
-  # supportedFilesystems = [ "ntfs" ];
   initrd = {
     # kernelModules = [ "dm-snapshot" ]; #load amd driver (amdgpu) early user space # Force loads to initrd
     availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ]; # available to initram but only loaded on demand

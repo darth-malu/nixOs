@@ -79,7 +79,6 @@
 
       "workspace emptym, initialClass:emacs, initialTitle:^(.*)(Doom Emacs)$"
       "workspace emptym, initialClass:Emacs, initialTitle:^(.*)(Doom Emacs)$"
-      "workspace emptym, initialClass:Emacs, initialTitle:^(.*)(Doom Emacs)$"
 
       "suppressevent maximize, class:.*"
       # "size 70% 70%,title:^(Select)(.*)"

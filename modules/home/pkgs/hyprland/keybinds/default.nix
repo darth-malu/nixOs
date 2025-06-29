@@ -24,21 +24,23 @@
 
 # "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; width : 1000px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
 # "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; fullscreen: false; width : 1000px;}' -theme-str 'entry {placeholder: \"🔎 search files ...\";}' -theme-str 'element-icon {size: 2.5em;horizontal-align: 0.5;vertical-align: 0.5;}'";
-"$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; fullscreen: false; width : 1000px;}' -theme-str 'element-text {hightlight: underline red;}' -theme-str 'element-icon {size: 2.5em;horizontal-align: 0.5;vertical-align: 0.5;}'";
+# "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 750px; fullscreen: false; width : 1400px;}' -theme-str 'listview {fixed-columns: true; flow: horizontal; columns: 4; lines: 5;}' -theme-str 'element-text {horizontal-align: 0.5;vertical-align: 0.5;}' -theme-str 'element-icon {size: 2.5em;horizontal-align: 0.5;vertical-align: 0.5;}'";
+"$file_browser_rofi" = "rofi -show filebrowser -filebrowser-command 'xdg-open' -filebrowser-directory '/home/malu' -theme '/home/malu/Shibuya/modules/home/pkgs/hyprland/keybinds/rofi-themes/fileBrowser.rasi'";
 "$rofi_open_windows" =  "rofi -show window -theme-str 'window {width : 920px;}' -theme-str 'listview {lines:15; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
 # " -theme-str 'element {background-image: linear-gradient(white/5%, white/20%);border-color: lightblue /15%;}'";
 # "$menu_rofi" = "rofi -show drun -run-command \"hyprctl dispatch -- exec [workspace emptym] uwsm app -s a -- {cmd}\"";
 "$menu_rofi" = "rofi -show drun -theme-str 'listview {require-input: true;}'";
 "$emoji_rofi" = "rofi -show emoji";
 "$clip_rofi" = "cliphist list | rofi -dmenu -theme-str 'window {width : 750px;}' -p '' | cliphist decode | wl-copy";
-"$calc_rofi" = "rofi -show calc -p '🪓";
+"$calc_rofi" = "rofi -show calc -p '🪓'";
 # "$obsidian_rofi" = "rofi -show obsidian";
 
 bindr = [
 
   "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
   "$mod, E, exec, [workspace emptym] uwsm app -s a -- dolphin"
-  "$mod, Y, exec, [workspace emptym] $yazi_kitty"
+  "$mod, Y, exec, [workspace special:magic;float; size 80% 80%] $yazi_kitty"
+  "$mod $sl, Y, exec, [workspace emptym] $yazi_kitty"
 
 "$mod $al, C, exec, hyprpicker -an"
 "$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""
@@ -106,7 +108,7 @@ bind =
   "$mod, KP_Multiply, pseudo"
 
 # "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
-"$mod $cl, D, focuswindow, class:^(Emacs)$"
+"$mod $cl, D, focuswindow, class:^(emacs)$"
 
 "$mod $cl, Y, focuswindow, title:^(Yazi)(.*)$"
   # "$mod , up, focuswindow, class:^(Emacs)$"

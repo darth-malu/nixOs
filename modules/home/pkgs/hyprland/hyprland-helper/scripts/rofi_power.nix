@@ -13,13 +13,13 @@ pkgs.writeShellScriptBin "rofi_power" ''
   # yes='  ja'
   # no='  nein'
 
-  RESTART="⏻  "
-  SHUT="  "
+  RESTART="⏻"
+  SHUT=""
 
   main_window() {
     rofi -dmenu \
       -p "$(uptime | awk '{print $1}')" \
-      -theme-str 'window {anchor: west; location: west;  width: 350px; padding: 0px; margin: 0px; border: 0px;}' \
+      -theme-str 'window {anchor: west; location: west; fixed-columns: false;  width: 350px; padding: 0px; margin: 0px; border: 0px;}' \
       -theme-str 'listview {columns: 2; lines: 3; fixed-column: false; cycle: true; padding: 0px; margin: 0px; border: 0px;}' \
       -theme-str 'inputbar {horizontal-align: 0.0; border: 0px; children: [ "prompt","entry" ];}' \
       -theme-str 'prompt {font: "Monofur Nerd Font 13";}' \
@@ -36,18 +36,18 @@ pkgs.writeShellScriptBin "rofi_power" ''
 
   restart_shutdown_timer_picker() {
     rofi -dmenu \
-      -theme-str 'window {location: west; anchor: west; fullscreen: false; padding:0px; margin: 0px; border: 0px;}' \
+      -theme-str 'window {location: west; anchor: west;  fullscreen: false; padding:0px; margin: 0px; border: 0px;}' \
       -theme-str 'mainbox {children: [ "listview" ];}' \
       -theme-str 'listview {dynamic: false; columns: 2; fixed-columns: false; cycle: "true"; layout: horizontal;}' \
-      -theme-str 'element {horizontal-align: 0.0;border: 0;margin:0;}' \
-      -theme-str 'element-text {font: "JetBrainsMono Nerd Font 38"; padding: 0px 0px; horizontal-align: 0.0;}'
+      -theme-str 'element {horizontal-align: 0.0;border: 0;width: 130px; margin:0;}' \
+      -theme-str 'element-text {font: "Symbols Nerd Font 38"; padding: 0px 0px; horizontal-align: 0.0;}'
   }
 
   ndio_au_la() {
     rofi -dmenu \
-      -theme-str 'window {location: west; anchor: west; fullscreen: false; border: 0px; fixed-height: false; dynamic: false; height:80px; width: 200px;}' \
+      -theme-str 'window {location: west; anchor: west; fullscreen: false; border: 0px; fixed-height: false; dynamic: false; width: 200px;}' \
       -theme-str 'mainbox {children: [ "message", "listview" ];}' \
-      -theme-str 'listview {columns: 2; lines: 1; orientation : horizontal; fixed-columns: false;}' \
+      -theme-str 'listview {columns: 2; lines: 1; layout : horizontal; fixed-columns: false;}' \
       -theme-str 'element {orientation: horizontal; padding: 0; margin: 4;}' \
       -theme-str 'element-text {horizontal-align: 0.0; orientation: horizontal; width: 100px;}' \
       -theme-str 'textbox {horizontal-align: 0.0;}' \

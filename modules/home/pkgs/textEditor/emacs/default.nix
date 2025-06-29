@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, osConfig, ... }:
 {
   imports = [
     ./emacsPkgs.nix
@@ -7,7 +7,8 @@
   config = {
     programs.emacs = {
       enable = true;
-      package = (if config.networking.hostName == "tangier" then pkgs.emacs else pkgs.emacs-pgtk); # emacs, emacs-gtk, emacs-nox, emacs-pgtk
+      package = if osConfig.networking.hostName == "tangier" then pkgs.emacs else pkgs.emacs-pgtk; # emacs, emacs-gtk, emacs-nox, emacs-pgtk
+      # package = pkgs.emacs-gtk;
       # extraConfig = ''
       #   (setq standard-indent 2)
       # ''; # init.el

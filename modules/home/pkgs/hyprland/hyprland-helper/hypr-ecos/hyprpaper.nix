@@ -25,7 +25,7 @@
               "$HOME/Pictures/wallpaperS/games/riot games/singed-4096x2305.jpg"
             ]
           else if osConfig.networking.hostName == "tangier" then
-            [ "$HOME/Pictures/wallpaperS/games/riot games/vi_xander.png" ]
+            [ "$HOME/Pictures/wallpaperS/games/riot games/singed-4096x2305.jpg" ]
           else
             [ ];
         # wallpaper = wall;
@@ -36,7 +36,7 @@
               "DP-3,$HOME/Pictures/wallpaperS/games/riot games/singed-4096x2305.jpg"
             ]
           else if osConfig.networking.hostName == "tangier" then
-            [ "eDP-1,$HOME/Pictures/wallpaperS/games/riot games/vi_xander.png" ]
+            [ "eDP-1,$HOME/Pictures/wallpaperS/games/riot games/singed-4096x2305.jpg" ]
           else
             [ ];
       };

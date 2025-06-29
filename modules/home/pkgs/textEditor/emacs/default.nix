@@ -7,7 +7,7 @@
   config = {
     programs.emacs = {
       enable = true;
-      package = if config.networking.hostName == "tangier" then pkgs.emacs else pkgs.emacs-pgtk; # emacs, emacs-gtk, emacs-nox, emacs-pgtk
+      package = (if config.networking.hostName == "tangier" then pkgs.emacs else pkgs.emacs-pgtk); # emacs, emacs-gtk, emacs-nox, emacs-pgtk
       # extraConfig = ''
       #   (setq standard-indent 2)
       # ''; # init.el

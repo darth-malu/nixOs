@@ -65,7 +65,7 @@
       # taskwarrior-tui
 
       # utilities
-      warp-terminal
+      # warp-terminal # insane bloat
       file
       lsof # list open files/ports**
       usbutils # lsusb, usb-devices, usb-view(optional gui)
@@ -111,9 +111,9 @@
       # buku # TODO: test
       jetbrains.pycharm-community-bin
       wpsoffice
-      jetbrains.rider # c#
+      # jetbrains.rider # c#
       dotnet-sdk
-      dotnet-repl
+      # dotnet-repl
 
       # icons
       yaru-theme

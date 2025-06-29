@@ -56,11 +56,14 @@ nyaa = {
 
 };
 
-outputs = inputs@{nixpkgs , nixpkgs-unstable, ...}:
+outputs = inputs@{nixpkgs , nixpkgs-unstable, home-manager, ...}:
 
 let
 
 system = "x86_64-linux"; # system = builtins.currentSystem;??
+
+lib-unstable = nixpkgs-unstable.lib;
+pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
 
 lib = nixpkgs.lib;
 pkgs = import nixpkgs {
@@ -95,8 +98,6 @@ pkgs = import nixpkgs {
   };
 };                              # End of pkgs
 
-pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
-
 in
 {
 
@@ -104,11 +105,11 @@ nixosConfigurations = {
   carthage =
     nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs pkgs pkgs-unstable system; };
+      specialArgs = { inherit inputs pkgs-unstable; };
 
 modules = [
 
-inputs.home-manager.nixosModules.home-manager {
+home-manager.nixosModules.home-manager {
   home-manager = {
     verbose = true;
     backupFileExtension = "home_backup"; # useful for clearance script
@@ -127,14 +128,14 @@ inputs.home-manager.nixosModules.home-manager {
 tangier =
   nixpkgs.lib.nixosSystem {
     inherit system;
-    specialArgs = { inherit inputs pkgs pkgs-unstable  system; };
+    specialArgs = { inherit inputs pkgs-unstable system; };
     modules = [
 
       ./hosts/tangier
 
       # {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
 
-      inputs.home-manager.nixosModules.home-manager {
+      home-manager.nixosModules.home-manager {
         home-manager = {
           verbose = true;
           backupFileExtension = "bakup"; # conflict management,append .backup to existing conf. files

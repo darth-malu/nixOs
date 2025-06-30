@@ -70,6 +70,8 @@
 
       "workspace emptym, initialClass:^(org.qbittorrent.qBittorrent)$, initialTitle:^(.*)(qBittorrent v5.1.0)$"
 
+      "noinitialfocus, initialClass:^(jetbrains-studio)$, floating:1"
+
       "size 80% 80%, initialClass:^(viewnior)$"
       "center , initialClass:^(viewnior)$"
       "float , initialClass:^(viewnior)$"

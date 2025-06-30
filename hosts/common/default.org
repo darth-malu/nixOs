@@ -105,7 +105,7 @@ networkmanager = {
   dns = "none"; # dnsmasq, default::, systemd-resolved
   wifi = {
     powersave = true; # TODO see if has issues?
-    backend = "wpa_supplicant"; # wpa_supplicant::, iwd
+    # backend = "wpa_supplicant"; # wpa_supplicant::, iwd
   };
   logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
 };

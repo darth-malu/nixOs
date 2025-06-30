@@ -39,8 +39,8 @@ bindr = [
 
   "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
   "$mod, E, exec, [workspace emptym] uwsm app -s a -- dolphin"
-  "$mod, Y, exec, [workspace special:magic;float; size 80% 80%] $yazi_kitty"
-  "$mod $sl, Y, exec, [workspace emptym] $yazi_kitty"
+  "$mod , Y, exec, [workspace emptym] $yazi_kitty"
+  "$mod $sl, Y, exec, [workspace special:magic;float; size 80% 80%] $yazi_kitty"
 
 "$mod $al, C, exec, hyprpicker -an"
 "$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""

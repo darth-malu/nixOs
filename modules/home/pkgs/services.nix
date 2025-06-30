@@ -13,8 +13,8 @@
       enable = lib.mkIf osConfig.programs.hyprland.enable true;
       tray = "auto"; # works
       notify = true;
-      automount = false; # better?
-      # appindicator = true; # use if no icon shows...uses appindicator3
+      automount = true; # better?
+      appindicator = true; # use if no icon shows...uses appindicator3
       settings = {
         # config written to .config/udiskie/config.yml
         # https://github.com/coldfix/udiskie/blob/master/doc/udiskie.8.txt#configuration

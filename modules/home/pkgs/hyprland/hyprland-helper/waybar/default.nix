@@ -12,7 +12,7 @@
 
   config = lib.mkIf config.waybar.enable {
     programs.waybar = {
-      enable = true;
+      enable = lib.mkIf osConfig.programs.hyprland.enable true;
       # systemd = {
       # enable = true; # clashes with uwsm?
       # target = "graphical-session.target"; # config.wayland.systemd.target::

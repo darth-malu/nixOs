@@ -11,16 +11,15 @@
   };
 
   config = lib.mkIf config.kde.enable {
-    services = {
-      displayManager = {
-        sddm.enable = lib.mkDefault true;
-        sddm.wayland.enable = lib.mkDefault true;
-        defaultSession = "plasma";
-        # ly.enable = false;
-      };
-      desktopManager.plasma6.enable = true;
-      blueman.enable = false; # TODO test if works
+    services.displayManager = {
+      sddm.enable = lib.mkDefault true;
+      sddm.wayland.enable = lib.mkDefault true;
+      defaultSession = "plasma";
+      # ly.enable = false;
     };
+    services.desktopManager.plasma6.enable = true;
+
+    services.blueman.enable = false; # TODO test if works
 
     programs.dconf.enable = true;
 

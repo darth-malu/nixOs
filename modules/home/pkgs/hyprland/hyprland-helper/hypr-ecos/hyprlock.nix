@@ -20,10 +20,7 @@
 
         background = [
           {
-            #path = "/home/malu/Pictures/Screenshots/FirstFlake.png";
-            # path = "/media/linuxHdd/Pictures/wallpaper/city_minima.jpg";
-            # path = "/media/linuxHdd/Pictures/wallpaper/city_minima.jpg";
-            path = "/home/malu/Pictures/wallpapers/cthulthu.png";
+            path = "/home/malu/Pictures/wallpaperS/abstract || misc/cthulthu.png";
             blur_passes = 2;
             blur_size = 2;
           }

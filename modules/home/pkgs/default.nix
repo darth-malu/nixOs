@@ -30,8 +30,8 @@
       sway-audio-idle-inhibit
       wev
       # tldr - using emacs one lol
-      kdePackages.dolphin
-      kdePackages.konsole
+      # kdePackages.dolphin # FIXME launching shit not working on hyprland
+      # kdePackages.konsole
       # disk management
       duf
       ncdu

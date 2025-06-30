@@ -14,7 +14,6 @@
       tray = "auto"; # works
       notify = true;
       automount = true; # better?
-      appindicator = true; # use if no icon shows...uses appindicator3
       settings = {
         # config written to .config/udiskie/config.yml
         # https://github.com/coldfix/udiskie/blob/master/doc/udiskie.8.txt#configuration
@@ -22,9 +21,13 @@
         #   udisks_version = 2;
         #   tray = true;
         # };
-        # icon_names.media = [ "media-optical" ];
+        icon_names.media = [
+          "media-optical"
+          "drive-removable-media"
+        ];
         # file-manager = "kitty -e 'yazi'";
-        file-manager = "kitty -e 'yazi'";
+        file-manager = "xdg-open";
+        menu = "flat"; # nested::
         terminal = "${pkgs.kitty}/bin/kitty -e yazi";
         # file-manager = "/home/malu/.nix-profile/bin/yazi";
         # file-manager = "xdg-open";

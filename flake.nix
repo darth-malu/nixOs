@@ -12,6 +12,7 @@ home-manager = {
   url = "github:nix-community/home-manager/release-25.05";
   inputs.nixpkgs.follows = "nixpkgs";
 };
+
 home-manager-unstable = {
   url = "github:nix-community/home-manager";
   inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -103,13 +104,13 @@ in
 
 nixosConfigurations = {
   carthage =
-    nixpkgs.lib.nixosSystem {
+    nixpkgs-unstable.lib.nixosSystem {
       inherit system;
       specialArgs = { inherit inputs pkgs-unstable; };
 
 modules = [
 
-home-manager.nixosModules.home-manager {
+inputs.home-manager-unstable.nixosModules.home-manager {
   home-manager = {
     verbose = true;
     backupFileExtension = "home_backup"; # useful for clearance script

@@ -226,15 +226,14 @@ bind =
   )
 )
 
-++ (if osConfig.networking.hostName == "tangier" then [] else
-   [
-  "$mod $cl,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
-  "$mod $cl,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
-  "$mod ,bracketleft, movewindow, mon:0"
-  "$mod ,bracketright, movewindow, mon:1"
+++ (if osConfig.networking.hostName == "tangier" then [] else [
+  "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
+  "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
+  "$mod $sl,bracketleft, movewindow, mon:0"
+  "$mod $sl,bracketright, movewindow, mon:1"
   "$mod $al,bracketleft, movewindow, mon:0 silent"
   "$mod $al,bracketright, movewindow, mon:1 silent"
-  "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
+  "$mod $cl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
 ]);
 
 #mouse binds have one less arg

@@ -1,5 +1,3 @@
-{ pkgs, inputs, ... }:
-
 {
   imports = [
     ./dunst.nix
@@ -9,19 +7,6 @@
     ./scripts
     ./hypr-ecos
     # inputs.hyprshell.homeModules.hyprshell
-  ];
-
-  home.packages = with pkgs; [
-    grimblast
-    slurp
-    viewnior
-    vlc
-    cliphist
-    nautilus
-    sushi
-    yelp
-    # inputs.hyprswitch.packages.x86_64-linux.default
-    file-roller
   ];
 
   # programs.hyprshell = {

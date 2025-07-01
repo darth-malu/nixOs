@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   osConfig,
   inputs,
   ...
@@ -146,6 +147,23 @@
         ]
       else
         [ ffmpeg ]
+    )
+    ++ (
+      if config.homeHyprland.enable then
+        with pkgs;
+        [
+          grimblast
+          slurp
+          viewnior
+          vlc
+          cliphist
+          nautilus
+          sushi
+          yelp
+          # inputs.hyprswitch.packages.x86_64-linux.default
+          file-roller
+        ]
+      else
+        [ ]
     );
-
 }

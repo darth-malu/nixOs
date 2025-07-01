@@ -8,7 +8,6 @@
     programs.emacs = {
       enable = true;
       package = if osConfig.networking.hostName == "tangier" then pkgs.emacs else pkgs.emacs-pgtk; # emacs, emacs-gtk, emacs-nox, emacs-pgtk
-      # package = pkgs.emacs-pgtk;
       # extraConfig = ''
       #   (setq standard-indent 2)
       # ''; # init.el
@@ -21,7 +20,7 @@
       socketActivation.enable = true; # Whether to enable systemd socket activation for the Emacs service. # TODO see if conflicting with startWithUSerSession
       client.enable = false; # false::, generation of Emacs client desktop file.
       client.arguments = [
-        "-c" # open in emacs frame / GUI frame
+        "-r" # --reuse-frame (reuse frame if exists, otherwise create a new frame) - --create-frame/-c
         # "-a 'emacs'"
       ];
 

@@ -39,12 +39,16 @@ emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e
 nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 #+end_src
 
-** home-manager
+** home-manager ✅
 #+begin_src nix :tangle flake.nix
 home-manager = {
   url = "github:nix-community/home-manager/release-25.05";
   inputs.nixpkgs.follows = "nixpkgs";
 };
+#+end_src
+
+** home-manager-unstable ⚠
+#+begin_src nix :tangle flake.nix
 home-manager-unstable = {
   url = "github:nix-community/home-manager";
   inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -120,10 +124,10 @@ outputs = inputs@{nixpkgs , nixpkgs-unstable, home-manager, ...}:
 #+end_src
 
 ** let start
+*** start
 #+begin_src nix :tangle flake.nix
 let
 #+end_src
-
 *** system
 #+begin_src nix :tangle flake.nix
 system = "x86_64-linux"; # system = builtins.currentSystem;??
@@ -191,7 +195,7 @@ overlays = [
 ];
 #+end_src
 
-*** let end
+*** end
 #+begin_src nix :tangle flake.nix
 in
 {
@@ -202,11 +206,12 @@ in
 packages.${system}.my-neovim = neovimConf.neovim; # NVF
 #+end_src
 
-** CARTHAGE
+** CARTHAGE nixosConfigurations
+
 #+begin_src nix :tangle flake.nix
 nixosConfigurations = {
   carthage =
-    nixpkgs.lib.nixosSystem {
+    nixpkgs-unstable.lib.nixosSystem {
       inherit system;
       specialArgs = { inherit inputs pkgs-unstable; };
 #+end_src
@@ -217,7 +222,7 @@ modules = [
 #+end_src
 *** home manager
 #+begin_src nix :tangle flake.nix
-home-manager.nixosModules.home-manager {
+inputs.home-manager-unstable.nixosModules.home-manager {
   home-manager = {
     verbose = true;
     backupFileExtension = "home_backup"; # useful for clearance script

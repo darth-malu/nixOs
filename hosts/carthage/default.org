@@ -36,6 +36,18 @@ networking = {
   hostId = "7435d550";
 };
 #+end_src
+** kdeConnect networking
+#+begin_src nix :tangle default.nix
+  networking.firewall = rec {
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+    allowedUDPPortRanges = allowedTCPPortRanges;
+  };
+#+end_src
 
 * end
 #+begin_src nix :tangle default.nix

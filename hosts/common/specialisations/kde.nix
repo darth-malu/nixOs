@@ -28,6 +28,7 @@
         # plasma-browser-integration
         # elisa
         # konsole
+        ksystemlog
         oxygen
       ];
       # systemPackages = with pkgs; [

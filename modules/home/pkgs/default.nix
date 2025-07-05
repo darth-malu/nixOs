@@ -4,6 +4,7 @@
   config,
   osConfig,
   inputs,
+  system,
   ...
 }:
 
@@ -20,6 +21,7 @@
     ./textEditor
     ./programs.nix
     ./services.nix
+    ./kdeconnect.nix
     inputs.nyaa.homeManagerModule
   ];
 
@@ -90,6 +92,7 @@
       trash-cli # for move to trash mpv
       wf-recorder
 
+      inputs.quickshell.packages.${system}.default
       telegram-desktop
       discord
       whatsapp-for-linux
@@ -112,6 +115,8 @@
       # buku # TODO: test
       jetbrains.pycharm-community-bin
       wpsoffice
+      # vscodium-fhs
+      # vscodium
       # jetbrains.rider # c#
       dotnet-sdk
       # dotnet-repl

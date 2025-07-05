@@ -316,7 +316,7 @@ movetoworkspacesilent exists
 
 *** move workspace/window to different monitors
 #+begin_src nix :tangle default.nix
-  "$mod $sl, bracketright, swapnext"
+  "$mod $cl, bracketright, swapnext"
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
 #+end_src
 

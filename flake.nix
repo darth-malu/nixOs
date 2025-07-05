@@ -8,6 +8,15 @@
 
 yazi.url = "github:sxyazi/yazi";
 
+  quickshell = {
+    # add ?ref=<tag> to track a tag
+    url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+
+    # THIS IS IMPORTANT
+    # Mismatched system dependencies will lead to crashes and other issues.
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
 home-manager = {
   url = "github:nix-community/home-manager/release-25.05";
   inputs.nixpkgs.follows = "nixpkgs";

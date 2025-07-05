@@ -24,7 +24,17 @@
 #+begin_src nix :tangle flake.nix
 yazi.url = "github:sxyazi/yazi";
 #+end_src
+** quickshell 🖥
+#+begin_src nix :tangle flake.nix
+  quickshell = {
+    # add ?ref=<tag> to track a tag
+    url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
 
+    # THIS IS IMPORTANT
+    # Mismatched system dependencies will lead to crashes and other issues.
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+#+end_src
 ** hyprswitch
 #+begin_src nix :tangle no
 hyprshell.url = "github:H3rmt/hyprswitch?ref=hyprshell";
@@ -244,6 +254,11 @@ evaluation warning: You have set specialArgs.pkgs, which means that options like
 #+begin_src nix :tangle no
 inputs.nixpkgs.nixosModules.readOnlyPkgs
 #+end_src
+*** quickshell
+#+begin_src nix :tangle no
+inputs.quickshell.packages.${system}.default
+#+end_src
+
 *** carthage nix config (hosts/carthage)
 #+begin_src nix :tangle flake.nix
 ./hosts/carthage

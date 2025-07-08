@@ -1,0 +1,81 @@
+''
+    (
+    		address: "127.0.0.1:6600",
+    		password: None,
+    		theme: None,
+    		cache_dir: "~/Music/rmpc/CACHE",
+    		lyrics_dir: "~/Music/rmpc/lyrics",
+    		on_song_change: "songart",
+    		volume_step: 5,
+    		max_fps: 30,
+    		scrolloff: 5,
+    		wrap_navigation: true,
+    		enable_mouse: true,
+    		enable_config_hot_reload: true,
+    		status_update_interval_ms: 1000,
+    		select_current_song_on_change: false,
+    		browser_song_sort: [Disc, Track, Artist, Title],
+    		cava: (
+    				framerate: 60, // default 60
+    				autosens: true, // default true
+    				sensitivity: 100, // default 100
+    				lower_cutoff_freq: 50, // not passed to cava if not provided
+    				higher_cutoff_freq: 10000, // not passed to cava if not provided
+    				input: (
+    						method: Fifo,
+    						source: "/tmp/mpd.fifo",
+    						sample_rate: 44100,
+    						channels: 2,
+    						sample_bits: 16,
+    				),
+    				smoothing: (
+    						noise_reduction: 77, // default 77
+    						monstercat: false, // default false
+    						waves: false, // default false
+    				),
+    				// this is a list of floating point numbers thats directly passed to cava
+    				// they are passed in order that they are defined
+    				eq: []
+    		),
+  		layout: Split(
+  			direction: Vertical,
+  			panes: [
+  				(
+  					size: "8",
+  					pane: Split(
+  						direction: Horizontal,
+  						panes: [
+  							(
+  								size: "21",
+  								pane: Pane(AlbumArt),
+  							),
+  							(
+  								size: "100%",
+  								pane: Split(
+  									direction: Vertical,
+  									panes: [
+  										(
+  											size: "5",
+  											pane: Pane(Header),
+  										),
+  										(
+  											size: "1",
+  											pane: Pane(ProgressBar),
+  										),
+  										(
+  											size: "3",
+  											pane: Pane(Tabs),
+  										),
+  									]
+  								)
+  							),
+  						]
+  					),
+  				),
+  				(
+  					size: "100%",
+  					pane: Pane(TabContent),
+  				),
+  			],
+  		),
+    )''

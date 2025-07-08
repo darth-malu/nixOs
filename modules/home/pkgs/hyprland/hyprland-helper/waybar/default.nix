@@ -35,7 +35,7 @@
             if osConfig.networking.hostName == "carthage" then
               [
                 "HDMI-A-1"
-                # "DP-1"
+                "DP-3"
               ]
             else if osConfig.networking.hostName == "tangier" then
               [ "eDP-1" ]
@@ -569,7 +569,7 @@
             tooltip = false;
           };
 
-          "disk" = {
+          disk = {
             interval = 90;
             format = " \t{specific_free:0.1f} GiB"; # 
             unit = "GB";
@@ -604,13 +604,15 @@
             unit = "GB";
           };
 
-          "clock" = {
+          clock = {
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
             timezone = "Africa/Nairobi";
-            format-alt = "{:%d-%m-%Y}";
-            min-length = 15;
-            max-length = 16;
-            format = "{:%a %d,  %I:%M %p }";
+            # min-length = 15;
+            # max-length = 16;
+            # format = "{:%a %d,  %I:%M %p }";
+            # format-alt = "{:%d-%m-%Y}";
+            format-alt = "{:%a %d,  %I:%M %p }";
+            format = "{:%H:%M}";
             # format = "{%k:%M %p }";
             # format = "{%R}";
             tooltip = true;
@@ -631,6 +633,7 @@
             actions = {
               "on-click-right" = "mode";
               "on-scroll-down" = "shift_down";
+              "on-scroll-up" = "shift_up";
             };
           };
 

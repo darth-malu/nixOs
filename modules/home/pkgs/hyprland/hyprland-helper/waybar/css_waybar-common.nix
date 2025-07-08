@@ -189,11 +189,10 @@
   #clock {
       font-size: 12px;
       color: rgba(154 ,208 ,194, 0.96);
-      /*border-radius: 16px;*/
       padding: 0px 1px 0px 1px;
-      margin: 2px 0px 2px 0px;
-      /*background: rgba(0 ,0 ,0, 0.569);*/
-      /*background: rgba(154 ,208 ,194, 0.12);*/
+      margin: 2px 4px 2px 4px;
+      background: rgba(0 ,0 ,0, 0.569);
+      /* background: rgba(154 ,208 ,194, 0.12); */
   }
 
   #keyboard-state{

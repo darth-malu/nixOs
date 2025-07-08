@@ -67,6 +67,8 @@ bind =
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
 
+ "$mod $sl, T, execr, python '/home/malu/CODE/PyQt6/youtubr/main.py'"
+
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
 
@@ -153,10 +155,10 @@ bind =
   "$mod , o, movetoworkspace, emptym"
   "$mod $sl, o, movetoworkspacesilent, emptym"
 
-  "$mod $sl, h, movefocus, l"
-  "$mod $sl, l, movefocus, r"
-  "$mod $sl, k, movefocus, u"
-  "$mod $sl, j, movefocus, d"
+  "$mod $cl, h, movefocus, l"
+  "$mod $cl, l, movefocus, r"
+  "$mod $cl, k, movefocus, u"
+  "$mod $cl, j, movefocus, d"
   #bind="$mod SHIFT,Left,layoutmsg,swapnext"
 
 # next/prev workspace
@@ -188,7 +190,6 @@ bind =
   "$mod, KP_Prior, focusworkspaceoncurrentmonitor, 9"
   "$mod, KP_Insert, focusworkspaceoncurrentmonitor, 10"
 
-# Move active window to a workspace with mod + SHIFT + [ numpad 0-9]
   "$mod $sl, KP_End, movetoworkspace, 1"
   "$mod $sl, KP_Down, movetoworkspace, 2"
   "$mod $sl, KP_Next, movetoworkspace, 3"
@@ -203,11 +204,11 @@ bind =
   "$mod ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
   # "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 
-  "$mod $cl, bracketright, swapnext"
+  "$mod $sl, bracketright, swapnext"
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
 
 # "$mod,K, Workspace, previous_per_monitor"
-"$mod,K, focuscurrentorlast"
+  "$mod,K, focuscurrentorlast"
   "$mod $sl, k, focusmonitor, +1"
   "$mod, mouse:276, Workspace, previous_per_monitor"
   "$mod, semicolon, cyclenext"
@@ -226,15 +227,22 @@ bind =
   )
 )
 
-++ (if osConfig.networking.hostName == "tangier" then [] else [
-  "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
-  "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
-  "$mod $sl,bracketleft, movewindow, mon:0"
-  "$mod $sl,bracketright, movewindow, mon:1"
-  "$mod $al,bracketleft, movewindow, mon:0 silent"
-  "$mod $al,bracketright, movewindow, mon:1 silent"
-  "$mod $cl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
-]);
+++ (if osConfig.networking.hostName == "tangier" then
+  [
+  "$mod, Delete, exec, pkill rofi || rofi_power"
+  ]
+  else [
+    # "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
+    # "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
+    "$mod ,bracketleft, movewindow, mon:0"
+    "$mod ,bracketright, movewindow, mon:1"
+
+    "$mod $cl,bracketleft, movewindow, mon:0 silent"
+    "$mod $cl,bracketright, movewindow, mon:1 silent"
+
+    "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
+    # "$mod $cl, bracketright, swapactiveworkspaces HDMI-A-1 DP-3"
+  ]);
 
 #mouse binds have one less arg
 bindm = [

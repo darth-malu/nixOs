@@ -14,7 +14,7 @@
       # ",l" = ''config-cycle spellcheck.languages ["en-GB"] ["en-US"]'';
       "<f1>" = lib.mkMerge [
         # TODO see more info on lib.mkMerge
-        "config-cycle tabs.show never always"
+        "config-cycle tabs.show never switching"
         "config-cycle statusbar.show in-mode always"
         "config-cycle scrolling.bar never always"
       ];
@@ -65,7 +65,7 @@ colors = {
     selected.even.bg = "#8f00ff";
   };
   webpage.darkmode= {
-    enabled = true;
+    enabled = false;
     # algorithm = "lightness-cielab";
     # policy.images = "never";
   };
@@ -82,19 +82,19 @@ statusbar = {
 
 tabs = {
   close_mouse_button = "right"; # right, middle::
-  # position = "top";
   select_on_remove = "last-used"; # Which tab to select when the focused tab is removed.
-  show = "multiple"; # multiple, always::, never, switching
-  width = "10%"; # in px or % - if vertical mode
+  show = "switching"; # always::, never, switching, multiple
+  width = "20%"; # in px or % - if vertical mode
   title.elide = "none";  # position of ellipsis (...)
   undo_stack_size = 50;  # 100::
   favicons = {
     show = "always";            # always::, never, pinned
-    scale = 0.9;
+    scale = 1.0;
   };
   indicator = {
     width = 2;
   };
+  position = "left";
 };
 
 downloads.location.suggestion = "both"; # path::, filename, both

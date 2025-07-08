@@ -106,7 +106,7 @@
       mpc-cli
       # ymuse # rudimentary
       # smplayer
-      cantata
+      # cantata # old af
       # youtube-tui # https://siriusmart.github.io/youtube-tui/
       spotify
       easyeffects

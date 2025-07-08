@@ -55,11 +55,12 @@ in
     qtcreator
     (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [
-        jupyter-core
+        # jupyter-core
         jupyter-console
         # jupyterlab-server
         pyside6
-        pytube
+        # pytube
+        pytubefix
         pandas
         numpy
         seaborn

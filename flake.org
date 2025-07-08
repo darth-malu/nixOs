@@ -12,358 +12,247 @@
   inputs = {
 #+end_src
 
-** nixpkgs - stable ✅
+** nixpkgs
 #+begin_src nix :tangle flake.nix
-  nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-#+end_src
-** nixpkgs - unstable ⚠
-#+begin_src nix :tangle flake.nix
-  nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 #+end_src
 ** yazi
 #+begin_src nix :tangle flake.nix
-yazi.url = "github:sxyazi/yazi";
+    yazi.url = "github:sxyazi/yazi";
 #+end_src
 ** quickshell 🖥
 #+begin_src nix :tangle flake.nix
-  quickshell = {
-    # add ?ref=<tag> to track a tag
-    url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    quickshell = {
+      # add ?ref=<tag> to track a tag
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
 
-    # THIS IS IMPORTANT
-    # Mismatched system dependencies will lead to crashes and other issues.
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+      # THIS IS IMPORTANT
+      # Mismatched system dependencies will lead to crashes and other issues.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 #+end_src
 ** hyprswitch
 #+begin_src nix :tangle no
-hyprshell.url = "github:H3rmt/hyprswitch?ref=hyprshell";
-hyprshell.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    hyprshell.url = "github:H3rmt/hyprswitch?ref=hyprshell";
+    hyprshell.inputs.nixpkgs.follows = "nixpkgs";
 #+end_src
 
-** emacs overlay
-for emacs28? latest
-#+begin_src nix :tangle no
-emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
-
-nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
-#+end_src
-
-** home-manager ✅
+** home-manager
 #+begin_src nix :tangle flake.nix
-home-manager = {
-  url = "github:nix-community/home-manager/release-25.05";
-  inputs.nixpkgs.follows = "nixpkgs";
-};
-#+end_src
-
-** home-manager-unstable ⚠
-#+begin_src nix :tangle flake.nix
-home-manager-unstable = {
-  url = "github:nix-community/home-manager";
-  inputs.nixpkgs.follows = "nixpkgs-unstable";
-};
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 #+end_src
 
 ** nvf - neovim
 #+begin_src nix :tangle no
-# obsidian-nvim.url = "github:epwalsh/obsidian.nvim";
-# Required, nvf works best and only directly supports flakes
-nvf = {
-  url = "github:notashelf/nvf";
-  inputs.nixpkgs.follows = "nixpkgs"; # This is safe to do as nvf does not depend on a binary cache
-  # Optionally, you can also override individual plugins
-  # inputs.obsidian-nvim.follows = "obsidian-nvim"; # <- this will use the obsidian-nvim from your inputs
-};
+    # obsidian-nvim.url = "github:epwalsh/obsidian.nvim";
+    # Required, nvf works best and only directly supports flakes
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs"; # This is safe to do as nvf does not depend on a binary cache
+      # Optionally, you can also override individual plugins
+      # inputs.obsidian-nvim.follows = "obsidian-nvim"; # <- this will use the obsidian-nvim from your inputs
+    };
 #+end_src
 
 ** hyprland ecos
 #+begin_src nix :tangle flake.nix
-# hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-hyprland.url = "github:hyprwm/Hyprland"; # with cachix
-# hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
-# hyprland-plugins.inputs.hyprland.follows = "hyprland";
+    # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland.url = "github:hyprwm/Hyprland"; # with cachix
+    # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+    # hyprland-plugins.inputs.hyprland.follows = "hyprland";
 
-hyprlock = {
-  url = "github:hyprwm/hyprlock";
-  inputs = {
-    hyprgraphics.follows = "hyprland/hyprgraphics";
-    hyprlang.follows = "hyprland/hyprlang";
-    hyprutils.follows = "hyprland/hyprutils";
-    nixpkgs.follows = "hyprland/nixpkgs";
-    systems.follows = "hyprland/systems";
-  };
-};
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs = {
+        hyprgraphics.follows = "hyprland/hyprgraphics";
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
 
-hyprpaper = { # TODO: test if needed
-  url = "github:hyprwm/hyprpaper";
-  inputs = {
-    hyprgraphics.follows = "hyprland/hyprgraphics";
-    hyprlang.follows = "hyprland/hyprlang";
-    hyprutils.follows = "hyprland/hyprutils";
-    nixpkgs.follows = "hyprland/nixpkgs";
-    systems.follows = "hyprland/systems";
-  };
-};
+    hyprpaper = { # TODO: test if needed
+      url = "github:hyprwm/hyprpaper";
+      inputs = {
+        hyprgraphics.follows = "hyprland/hyprgraphics";
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
 
-hyprland-plugins = {
-    url = "github:hyprwm/hyprland-plugins";
-    inputs.hyprland.follows = "hyprland";
-};
-#+end_src
+    hyprland-plugins = {
+        url = "github:hyprwm/hyprland-plugins";
+        inputs.hyprland.follows = "hyprland";
+    };
+  #+end_src
 
 ** nyaa
 #+begin_src nix :tangle flake.nix
-nyaa = {
-  url = "github:Beastwick18/nyaa";
-  inputs.nixpkgs.follows = "nixpkgs-unstable";
-};
+    nyaa = {
+      url = "github:Beastwick18/nyaa";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 #+end_src
 
 ** end inputs
 #+begin_src nix :tangle flake.nix
-};
+  };
 #+end_src
 
 -----
+
 * outputs
-# Note the use of `self` which allows reusing flake's outputs in itself
-
 #+begin_src nix :tangle flake.nix
-outputs = inputs@{nixpkgs , nixpkgs-unstable, home-manager, ...}:
+  outputs = inputs@{nixpkgs , home-manager, ...}: # Note the use of `self` which allows reusing flake's outputs in itself
 #+end_src
-
-** let start
-*** start
+** let..in
 #+begin_src nix :tangle flake.nix
-let
-#+end_src
-*** system
-#+begin_src nix :tangle flake.nix
-system = "x86_64-linux"; # system = builtins.currentSystem;??
-#+end_src
+  let
+    system = "x86_64-linux"; # system = builtins.currentSystem;??
 
-*** nvf
-#+begin_src nix :tangle no
-    neovimConf = inputs.nvf.lib.neovimConfiguration {
-        inherit (nixpkgs.legacyPackages.${system}) pkgs;
-        modules = [ ./modules/nvf];
+    # neovimConf = inputs.nvf.lib.neovimConfiguration {
+    #     inherit (nixpkgs.legacyPackages.${system}) pkgs;
+    #     modules = [ ./modules/nvf];
+    # };
+
+    # pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = import nixpkgs {
+      inherit  system;
+      config = {
+        allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+          "discord"
+          "google-chrome"
+          "bluemail"
+          "ventoy"
+          "spotify"
+          # "obsidian"
+          "wpsoffice"
+          "warp-terminal"
+          "windows10-icons"
+          # "whatsapp-emoji-linux"
+          "aspell-dict-en-science"
+          "davinci-resolve"
+          # "steam"
+          # "steam-original"
+          # "steam-unwrapped"
+          # "steam-run"
+          "youtube-upnext"
+          "evafast"
+          "rider"
+          "android-studio-stable"
+          "broadcom-sta"
+        ];
+        permittedInsecurePackages = [
+          "ventoy-1.1.05"
+        ];
+      };
     };
+  in
+  {
+    # packages.${system}.my-neovim = neovimConf.neovim; # NVF
 #+end_src
 
-*** pkgs | allowUnfreePredicate | permittedInsecurePackages
-#+begin_src nix :tangle no
-pkgs = nixpkgs.legacyPackages.${system};
-lib = nixpkgs.lib;
-#+end_src
-
+** CARTHAGE
 #+begin_src nix :tangle flake.nix
-lib-unstable = nixpkgs-unstable.lib;
-pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
-
-lib = nixpkgs.lib;
-pkgs = import nixpkgs {
-  inherit  system;
-  config = {
-    allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-      "discord"
-      "google-chrome"
-      "bluemail"
-      "ventoy"
-      "spotify"
-      # "obsidian"
-      "wpsoffice"
-      "warp-terminal"
-      "windows10-icons"
-      # "whatsapp-emoji-linux"
-      "aspell-dict-en-science"
-      "davinci-resolve"
-      # "steam"
-      # "steam-original"
-      # "steam-unwrapped"
-      # "steam-run"
-      "youtube-upnext"
-      "evafast"
-      "rider"
-      "android-studio-stable"
-      "broadcom-sta"
-    ];
-    permittedInsecurePackages = [
-      "ventoy-1.1.05"
-    ];
+  nixosConfigurations = {
+    carthage = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs system; };
+        modules = [
+          ./hosts/carthage
+          # inputs.quickshell.packages.${system}.default
+          # {environment.systemPackages = [neovimConf.neovim];}
+          inputs.home-manager.nixosModules.home-manager {
+            home-manager = {
+              verbose = true;
+              backupFileExtension = "home_backup";
+              users.malu = import ./modules/home/home.nix;
+              useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
+              useUserPackages = false; # if false ... uses nix-profile for home apps
+              extraSpecialArgs = { inherit inputs pkgs system; };
+            };
+          }
+        ];
   };
-};                              # End of pkgs
-
-#+end_src
-*** overlays
-#+begin_src nix :tangle no
-overlays = [
-  #   (import self.inputs.emacs-overlay) # with flakes
-  (final:prev: {
-    myCoolAttr = 5;
-  })
-];
-#+end_src
-
-*** end
-#+begin_src nix :tangle flake.nix
-in
-{
-#+end_src
-
-** nvf
-#+begin_src nix :tangle no
-packages.${system}.my-neovim = neovimConf.neovim; # NVF
-#+end_src
-
-** CARTHAGE nixosConfigurations
-
-#+begin_src nix :tangle flake.nix
-nixosConfigurations = {
-  carthage =
-    nixpkgs-unstable.lib.nixosSystem {
-      inherit system;
-      specialArgs = { inherit inputs pkgs-unstable; };
-#+end_src
-
-*** start modules
-#+begin_src nix :tangle flake.nix
-modules = [
-#+end_src
-*** home manager
-#+begin_src nix :tangle flake.nix
-inputs.home-manager-unstable.nixosModules.home-manager {
-  home-manager = {
-    verbose = true;
-    backupFileExtension = "home_backup"; # useful for clearance script
-    users.malu = import ./modules/home/home.nix;
-    useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
-    useUserPackages = false; # if false ... uses nix-profile for home apps
-    extraSpecialArgs = { inherit inputs pkgs pkgs-unstable system; };
-  };
-}
-#+end_src
-*** readonly
-evaluation warning: You have set specialArgs.pkgs, which means that options like nixpkgs.config
-                    and nixpkgs.overlays will be ignored. If you wish to reuse an already created
-                    pkgs, which you know is configured correctly for this NixOS configuration,
-                    please import the `nixosModules.readOnlyPkgs` module from the nixpkgs flake or
-                    `(modulesPath + "/misc/nixpkgs/read-only.nix"), and set `{ nixpkgs.pkgs = <your pkgs>; }`.
-                    This properly disables the ignored options to prevent future surprises.
-
-#+begin_src nix :tangle no
-inputs.nixpkgs.nixosModules.readOnlyPkgs
-#+end_src
-*** quickshell
-#+begin_src nix :tangle no
-inputs.quickshell.packages.${system}.default
-#+end_src
-
-*** carthage nix config (hosts/carthage)
-#+begin_src nix :tangle flake.nix
-./hosts/carthage
-#+end_src
-
-*** nvf
-#+begin_src nix :tangle no
-    {environment.systemPackages = [neovimConf.neovim];}
-#+end_src
-*** overlay for python fix
-#+begin_src nix :tangle no
-{
-  python3Packages = python3Packages // {
-    lxml-html-clean = python3Packages.lxml-html-clean.overrideAttrs (oldAttrs: {
-      doCheck = false;
-    });
-  };
-}
-#+end_src
-*** emacs overlay
-#+begin_src nix :tangle no
-# { nixpkgs.overlays = [ (import self.inputs.emacs-overlay) ]; } # emacs overlay
-#+end_src
-
-*** end of modules
-#+begin_src nix :tangle flake.nix
-];
-}; # end of carthage config
 #+end_src
 
 ** tangier
 #+begin_src nix :tangle flake.nix
-tangier =
-  nixpkgs.lib.nixosSystem {
-    inherit system;
-    specialArgs = { inherit inputs pkgs-unstable system; };
-    modules = [
-
-      ./hosts/tangier
-
-      # {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
-
-      home-manager.nixosModules.home-manager {
-        home-manager = {
-          verbose = true;
-          backupFileExtension = "bakup"; # conflict management,append .backup to existing conf. files
-          users.malu = import ./modules/home/home.nix;
-          useGlobalPkgs = true; # dont use private instance of pkgs which is the default
-          useUserPackages = false; # if false:: ... uses nix-profile for home apps
-          extraSpecialArgs = { inherit pkgs-unstable pkgs inputs system; };
-        };
-      }
-    ];
-  };
+  tangier = nixpkgs.lib.nixosSystem {
+      inherit system;
+      specialArgs = { inherit inputs system; };
+      modules = [
+        ./hosts/tangier
+        # inputs.quickshell.packages.${system}.default
+        # {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
+        home-manager.nixosModules.home-manager {
+          home-manager = {
+            verbose = true;
+            backupFileExtension = "home_backup";
+            users.malu = import ./modules/home/home.nix;
+            useGlobalPkgs = true; # dont use private instance of pkgs which is the default
+            useUserPackages = false; # if false:: ... uses nix-profile for home apps
+            extraSpecialArgs = { inherit inputs pkgs system; };
+          };
+        }
+      ];
+    };
 #+end_src
 
 ** devshell - nix develop
-
 *** teal environment / python
-#+begin_src nix :tangle flake.nix
-devShells.${system}.default = pkgs.mkShell {
-    packages = [
-        #inputs.python-nixpkgs.legacyPackages.${system}.python313
-        (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
-        pip
-        ]))
-    ];
+#+begin_src nix :tangle no
+  devShells.${system}.default = pkgs.mkShell {
+      packages = [
+          #inputs.python-nixpkgs.legacyPackages.${system}.python313
+          (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
+          pip
+          ]))
+      ];
 
-    env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
-      pkgs.stdenv.cc.cc.lib
-      pkgs.libz
-    ];
-    # shellHook = ''
-    #     if [ ! -d .venv ]; then
-    #         python -m venv .venv
-    #     fi
-    #     source .venv/bin/activate
-    # '';
-    shellHook = ''
-      echo "welcome to your dev env lul"
-    '';
-};
+      env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+        pkgs.stdenv.cc.cc.lib
+        pkgs.libz
+      ];
+      # shellHook = ''
+      #     if [ ! -d .venv ]; then
+      #         python -m venv .venv
+      #     fi
+      #     source .venv/bin/activate
+      # '';
+      shellHook = ''
+        echo "welcome to your dev env lul"
+      '';
+  };
 #+end_src
 *** vimjoyer new
 **** non nix
 then use nix-shell
 #+begin_src nix :tangle no
-packages = [
-  pkgs.python3
-];
+  packages = [
+    pkgs.python3
+  ];
 
-env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
-  pkgs.libz
-  pkgs.stdenv.cc.cc.lib
-];
-#+end_src
-#+begin_src nix :tangle no
-pkgs.mkShell = {
-    packages = [
-    (pkgs.python3.withPackages(p: with p[
-        pandas
-        requests
-    ]))
-    ];
-}
+  env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+    pkgs.libz
+    pkgs.stdenv.cc.cc.lib
+  ];
+  #+end_src
+  #+begin_src nix :tangle no
+  pkgs.mkShell = {
+      packages = [
+      (pkgs.python3.withPackages(p: with p[
+          pandas
+          requests
+      ]))
+      ];
+  }
 #+end_src
 **** nix way - bundle packages in python instance
 Then use nix-shell
@@ -402,10 +291,10 @@ pypkgs / p
 
 *** shellHook
 Optional: Set up a Python virtual environment automatically
-
+** end of out outputs
 * EOF
 #+begin_src nix :tangle flake.nix
-   }; # end of nixosConfigurations
-  }; # end of let
-}
+    }; # end of nixosConfigurations
+  };   # end of outputs
+}    # EOF
 #+end_src

@@ -3,21 +3,21 @@
     windowrule = [
       # case sensitive, plain regex(class) | title
       "float, title:file_progress"
-      "float, title:confirm"
-      "float, title:dialog"
-      "float, title:download"
-      "float, title:notification"
-      "float, title:error"
-      "float, title:splash"
-      "float, title:confirmreset"
-      "float, title:Open File"
-      "float, title:branchdialog"
+      # "float, title:confirm"
+      # "float, title:dialog"
+      # "float, title:download"
+      # "float, title:notification"
+      # "float, title:error"
+      # "float, title:splash"
+      # "float, title:confirmreset"
+      # "float, title:Open File"
+      # "float, title:branchdialog"
       "float, class:org.gnome.FileRoller"
       "float, title:^(Media viewer)$"
       "float, title:^(Volume Control)$"
       "float, title:^(Picture-in-Picture)$"
       # "size 75% 80%, floating:1" # exact screen size... can use only window size also x% y% :FIXME: cause issues with all popup menus lol
-      "size 75% 80%, title:^(Sign in)(.*)$"
+      # "size 75% 80%, title:^(Sign in)(.*)$"
 
       #"size 1160 960, title:^(Volume Control)$"
       #"move 5 315, title:^(Volume Control)$"
@@ -26,6 +26,7 @@
 
       # "float, pwvucontrol"
       "float, class:com.saivert.pwvucontrol"
+      "float, class:Maluware-yt"
       #"center(1), com.saivert.pwvucontrol"
 
       # Select files dialog
@@ -38,7 +39,7 @@
 
       # "idleinhibit focus, class:ncmpcpp"
 
-      "workspace special:quanta silent, class:qbittorrent"
+      "workspace special:magic silent, class:^(org.qbittorrent.qBittorrent)$"
 
       # "float, class:Viewnior"
       #"size 80% 80%, Viewnior"

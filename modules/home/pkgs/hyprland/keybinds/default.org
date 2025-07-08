@@ -107,6 +107,10 @@ bind =
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
 #+end_src
+*** MaluwareYt
+#+begin_src nix :tangle default.nix
+ "$mod $sl, T, execr, python '/home/malu/CODE/PyQt6/youtubr/main.py'"
+#+end_src
 *** kitty
 #+begin_src nix :tangle default.nix
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
@@ -249,15 +253,15 @@ see hyprswitch:
 
 *** move focus | same workspace
 #+begin_src nix :tangle default.nix
-  "$mod $sl, h, movefocus, l"
-  "$mod $sl, l, movefocus, r"
-  "$mod $sl, k, movefocus, u"
-  "$mod $sl, j, movefocus, d"
+  "$mod $cl, h, movefocus, l"
+  "$mod $cl, l, movefocus, r"
+  "$mod $cl, k, movefocus, u"
+  "$mod $cl, j, movefocus, d"
   #bind="$mod SHIFT,Left,layoutmsg,swapnext"
 #+end_src
 
 *** workspaces
-**** +/- workspaces, left/right workspaces
+**** +/- workspaces, left/right workspaces | groups
 #+begin_src nix :tangle default.nix
 # next/prev workspace
   "$mod, mouse_up, workspace, m+1"
@@ -276,7 +280,7 @@ see hyprswitch:
   "$mod ,L, workspace,m+1"
 #+end_src
 
-**** go to workspace | carthage
+**** go/move workspace | carthage
 #+begin_src nix :tangle yes
 # Keypad navigation
 # Switch workspaces with mod + [ numpad 0-9]
@@ -290,12 +294,7 @@ see hyprswitch:
   "$mod, KP_Up, focusworkspaceoncurrentmonitor, 8"
   "$mod, KP_Prior, focusworkspaceoncurrentmonitor, 9"
   "$mod, KP_Insert, focusworkspaceoncurrentmonitor, 10"
-#+end_src
 
-**** move workspace
-movetoworkspacesilent exists
-#+begin_src nix :tangle default.nix
-# Move active window to a workspace with mod + SHIFT + [ numpad 0-9]
   "$mod $sl, KP_End, movetoworkspace, 1"
   "$mod $sl, KP_Down, movetoworkspace, 2"
   "$mod $sl, KP_Next, movetoworkspace, 3"
@@ -308,22 +307,24 @@ movetoworkspacesilent exists
   "$mod $sl, KP_Insert, movetoworkspace, 10"
 #+end_src
 
+movetoworkspacesilent exists
+
 *** waybar
 #+begin_src nix :tangle default.nix
   "$mod ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
   # "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 #+end_src
 
-*** move workspace/window to different monitors
+*** swap position in workspace clockwise
 #+begin_src nix :tangle default.nix
-  "$mod $cl, bracketright, swapnext"
+  "$mod $sl, bracketright, swapnext"
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
 #+end_src
 
 *** focus previously focused window, cycle next, previous_per_monitor
 #+begin_src nix :tangle default.nix
 # "$mod,K, Workspace, previous_per_monitor"
-"$mod,K, focuscurrentorlast"
+  "$mod,K, focuscurrentorlast"
   "$mod $sl, k, focusmonitor, +1"
   "$mod, mouse:276, Workspace, previous_per_monitor"
   "$mod, semicolon, cyclenext"
@@ -345,25 +346,24 @@ movetoworkspacesilent exists
   )
 )
 #+end_src
-*** Tangier-bind
-#+begin_src nix :tangle no
+*** Tangier-Carthage-bind
+#+begin_src nix :tangle yes
 ++ (if osConfig.networking.hostName == "tangier" then
   [
   "$mod, Delete, exec, pkill rofi || rofi_power"
   ]
-  else []);
-#+end_src
-*** carthage-bind || monitors
-#+begin_src nix :tangle default.nix
-++ (if osConfig.networking.hostName == "tangier" then [] else [
-  "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
-  "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
-  "$mod $sl,bracketleft, movewindow, mon:0"
-  "$mod $sl,bracketright, movewindow, mon:1"
-  "$mod $al,bracketleft, movewindow, mon:0 silent"
-  "$mod $al,bracketright, movewindow, mon:1 silent"
-  "$mod $cl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
-]);
+  else [
+    # "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
+    # "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
+    "$mod ,bracketleft, movewindow, mon:0"
+    "$mod ,bracketright, movewindow, mon:1"
+
+    "$mod $cl,bracketleft, movewindow, mon:0 silent"
+    "$mod $cl,bracketright, movewindow, mon:1 silent"
+
+    "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
+    # "$mod $cl, bracketright, swapactiveworkspaces HDMI-A-1 DP-3"
+  ]);
 #+end_src
 ** bindm/c ( mouse binding )
 |--------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------|

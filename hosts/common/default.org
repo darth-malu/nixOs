@@ -311,6 +311,7 @@ nix.optimise = {
   randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
   # persistent = false; # true::
 };
+nix.settings.auto-optimise-store = false;#optimise with everybuild nix-store --optimise (manual) # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy. #false::
 #+end_src
 ** nix garbage collector
 #+begin_src nix :tangle default.nix
@@ -326,7 +327,6 @@ nix.gc = { # garbage collector
 ** nix settings
 #+begin_src nix :tangle default.nix
 nix.settings = {
-  auto-optimise-store = false; #optimise with everybuild #nix-store optimise ->manual # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy. #false::
   allowed-users = [
     "@wheel"
     "malu"
@@ -337,13 +337,13 @@ nix.settings = {
     "https://cache.nixos.org?priority=10"
     "https://hyprland.cachix.org"
     "https://nix-community.cachix.org"
-    "https://helix.cachix.org"
+    # "https://helix.cachix.org"
     "https://yazi.cachix.org"
   ]; #"https://cache.nixos.org" #used automatically by nix pkg mgr "https://konradmalik.cachix.org"
   trusted-public-keys = [
     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-    "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
+    # "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
     #"cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="

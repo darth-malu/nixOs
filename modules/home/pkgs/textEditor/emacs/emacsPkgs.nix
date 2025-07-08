@@ -109,13 +109,14 @@ in
     nixd # for zed as well
     pyright
     bash-language-server # I never really have bash files to edit lol
+    omnisharp-roslyn # c#
     jdt-language-server
-    lua-language-server
-    # basedpyright
+    # lua-language-server
+    basedpyright
     black
     nixfmt-rfc-style # official - needed to use formatting with :lang nix
 
-    emacs-lsp-booster # TODO: test if this works
+    emacs-lsp-booster
 
     # org stuff
     scrot # for org-screenshot-take

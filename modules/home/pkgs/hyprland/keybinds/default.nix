@@ -11,8 +11,8 @@
       "$cr" = "Control_R";
       "$sl" = "SHIFT_L";
       "$sr" = "SHIFT_R";
-      "$date_short" = "$(date +'%I:%M %p')"; # add -u (utc)
-      "$date_long" = "$(date +'%a,%d %b%t%I:%M %p')";
+      "$date_short" = "`date +'%I:%M %p'`"; # add -u (utc)
+      "$date_long" = "`date +'%a,%d %b%t%I:%M %p'`";
       "$kitty" = "uwsm app -s a -- kitty -1 --instance-group kitty";
       "$ghostty" = "uwsm app -s a -- ghostty";
       "$wezterm" = "uwsm app -s a -- wezterm";
@@ -21,6 +21,7 @@
 
       "$gaps" = "gaps toggle_gaps_out";
       "$emacs" = "uwsm app -s a -- emacsclient -c";
+      # "$DP_MON"="`hyprctl monitors | awk '/^Monitor DP/ {print $2; exit}'`";
 
 # "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; width : 1000px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
 # "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; fullscreen: false; width : 1000px;}' -theme-str 'entry {placeholder: \"🔎 search files ...\";}' -theme-str 'element-icon {size: 2.5em;horizontal-align: 0.5;vertical-align: 0.5;}'";
@@ -240,8 +241,10 @@ bind =
     "$mod $cl,bracketleft, movewindow, mon:0 silent"
     "$mod $cl,bracketright, movewindow, mon:1 silent"
 
-    "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
-    # "$mod $cl, bracketright, swapactiveworkspaces HDMI-A-1 DP-3"
+    # "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
+    "$mod $sl, bracketleft, exec, hyprctl dispatch swapactiveworkspaces HDMI-A-1 `hyprctl monitors | awk '/^Monitor DP/ {print $2}'`"
+    # "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 `hyprctl monitors | grep DP | cut -d ' ' -f2`"
+    # "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 DP-3"
   ]);
 
 #mouse binds have one less arg

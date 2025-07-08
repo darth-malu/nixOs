@@ -20,8 +20,9 @@
       ];
       "<f9>" = lib.mkMerge [
         "config-cycle colors.webpage.darkmode.enabled false true"
-        # "config-cycle statusbar.show in-mode always"
-        # "config-cycle scrolling.bar never always"
+      ];
+      "<f12>" = lib.mkMerge [
+        "config-cycle tabs.show switching always"
       ];
       "<f10>" = "config-cycle statusbar.show never always";
     };
@@ -84,7 +85,7 @@ tabs = {
   close_mouse_button = "right"; # right, middle::
   select_on_remove = "last-used"; # Which tab to select when the focused tab is removed.
   show = "switching"; # always::, never, switching, multiple
-  width = "20%"; # in px or % - if vertical mode
+  width = "15%"; # in px or % - if vertical mode
   title.elide = "none";  # position of ellipsis (...)
   undo_stack_size = 50;  # 100::
   favicons = {

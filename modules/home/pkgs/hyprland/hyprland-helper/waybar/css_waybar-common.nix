@@ -510,9 +510,10 @@
 
   #idle_inhibitor {
       padding:0px;
-      /*font-size:11px;*/
-      margin: 0px 0px 0px 6px;
+      # font-size:11px;
+      margin: 0px 6px 0px 6px;
       background-color: #d46547;
+      font-size: 16px;
   }
 
   #idle_inhibitor.activated {
@@ -524,8 +525,6 @@
   #idle_inhibitor.deactivated {
       background-color: transparent;
       color: rgba(159 ,162 ,178, 0.5);
-      font-size: 16px;
-      padding: 0px 0px 0px 0px;
   }
 
   #idle_inhibitor.deactivated:hover {

@@ -510,7 +510,7 @@
 
   #idle_inhibitor {
       padding:0px;
-      # font-size:11px;
+      /* font-size:11px; */
       margin: 0px 6px 0px 6px;
       background-color: #d46547;
       font-size: 16px;

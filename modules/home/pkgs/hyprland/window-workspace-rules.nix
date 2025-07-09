@@ -39,7 +39,7 @@
 
       # "idleinhibit focus, class:ncmpcpp"
 
-      "workspace special:magic silent, class:^(org.qbittorrent.qBittorrent)$"
+      "workspace special:scratch silent, class:^(org.qbittorrent.qBittorrent)$"
 
       # "float, class:Viewnior"
       #"size 80% 80%, Viewnior"

@@ -111,7 +111,8 @@ bind =
   "$mod, KP_Multiply, pseudo"
 
 # "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
-"$mod $cl, D, focuswindow, class:^(emacs)$"
+# "$mod $cl, D, focuswindow, class:^(emacs)$"
+# "$mod $cl, D, focuswindow, initialTitle:(.*)(Doom Emacs)$"
 
 "$mod $cl, Y, focuswindow, title:^(Yazi)(.*)$"
   # "$mod , up, focuswindow, class:^(Emacs)$"
@@ -231,6 +232,7 @@ bind =
 ++ (if osConfig.networking.hostName == "tangier" then
   [
   "$mod, Delete, exec, pkill rofi || rofi_power"
+    "$mod $cl, D, focuswindow, class:^(Emacs)$"
   ]
   else [
     # "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
@@ -242,9 +244,12 @@ bind =
     "$mod $cl,bracketright, movewindow, mon:1 silent"
 
     # "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
+    # "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 `hyprctl monitors | awk '/^Monitor DP/ {print $2}'`; dispatch focusmonitor +1;\""
     "$mod $sl, bracketleft, exec, hyprctl dispatch swapactiveworkspaces HDMI-A-1 `hyprctl monitors | awk '/^Monitor DP/ {print $2}'`"
     # "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 `hyprctl monitors | grep DP | cut -d ' ' -f2`"
     # "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 DP-3"
+
+    "$mod $cl, D, focuswindow, class:^(emacs)$"
   ]);
 
 #mouse binds have one less arg

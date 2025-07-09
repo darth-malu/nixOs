@@ -21,14 +21,12 @@
       border-bottom-right-radius: 12px;
       padding: 0px 2px 0px 2px;
       font-size:11px;
-      color: rgba(72 ,191 ,227, 0.69);
       color: rgba(159 ,162 ,178, 1);
       background: rgba(72 ,191 ,227, 0.16);
       /*font-family: nunito;*/
   }
 
   #custom-gpu {
-      color: rgba(255 ,107 ,107, 0.86);
       color: rgba(255 ,107 ,107, 0.96);
       background: rgba(255 ,107 ,107, 0.23);
       border: 1px solid rgba(255 ,107 ,107, 0.23);

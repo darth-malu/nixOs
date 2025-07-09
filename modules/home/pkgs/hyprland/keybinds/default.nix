@@ -206,7 +206,7 @@ bind =
   "$mod ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
   # "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 
-  "$mod $sl, bracketright, swapnext"
+  "$mod $sl, semicolon, swapnext"
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
 
 # "$mod,K, Workspace, previous_per_monitor"
@@ -240,11 +240,11 @@ bind =
     "$mod ,bracketleft, movewindow, mon:0"
     "$mod ,bracketright, movewindow, mon:1"
 
-    "$mod $cl,bracketleft, movewindow, mon:0 silent"
-    "$mod $cl,bracketright, movewindow, mon:1 silent"
+    # "$mod $cl,bracketleft, movewindow, mon:0 silent"
+    # "$mod $cl,bracketright, movewindow, mon:1 silent"
 
     # "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
-    # "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 `hyprctl monitors | awk '/^Monitor DP/ {print $2}'`; dispatch focusmonitor +1;\""
+    "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 `hyprctl monitors | awk '/^Monitor DP/ {print $2}'`; dispatch focusmonitor +1;\""
     "$mod $sl, bracketleft, exec, hyprctl dispatch swapactiveworkspaces HDMI-A-1 `hyprctl monitors | awk '/^Monitor DP/ {print $2}'`"
     # "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 `hyprctl monitors | grep DP | cut -d ' ' -f2`"
     # "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 DP-3"

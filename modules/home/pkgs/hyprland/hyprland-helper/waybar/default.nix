@@ -56,8 +56,8 @@
               if osConfig.networking.hostName == "tangier" then
                 [
                   # tangier
-                  "group/disk_memory"
-                  "group/ssd-mpris"
+                  "group/disk_mpris"
+                  "group/ssd-temp_memory"
                   "group/cpu_freq"
                   "group/temp_wireplumber"
                   "battery"
@@ -438,34 +438,34 @@
             ];
           };
 
-          "group/ssd-mpris" = {
+          "group/ssd-temp_memory" = {
             orientation = "horizontal";
             cursor = true;
             drawer = {
               transition-duration = 680;
-              transition-left-to-right = true;
+              transition-left-to-right = false;
               children-class = "ssd";
               click-to-reveal = true;
             };
             modules = [
               "custom/ssd_temp"
-              "mpris"
-              "mpd"
+              "memory"
             ];
           };
 
-          "group/disk_memory" = {
+          "group/disk_mpris" = {
             orientation = "horizontal";
             cursor = true;
             drawer = {
               transition-duration = 680;
-              transition-left-to-right = true;
+              transition-left-to-right = false;
               children-class = "gpuperf";
               click-to-reveal = true;
             };
             modules = [
               "disk"
-              "memory"
+              "mpris"
+              "mpd"
             ];
           };
           "group/nvme-temp_memory" = {
@@ -799,6 +799,7 @@
             modules = [
               "backlight"
               "idle_inhibitor"
+              # "battery"
             ];
           };
         };

@@ -1,7 +1,7 @@
 ''
   * {
       /* `otf-font-awesome` is required to be installed for icons */
-      font-family: quicksand,nunito,JetBrainsMono Nerd Font,ubuntu,fontawesome;
+      font-family: quicksand,nunito,JetBrainsMono Nerd Font Propo,ubuntu,fontawesome;
       min-height: 0;
       /*min-width: 0px;*/
       font-weight: bold;
@@ -24,6 +24,7 @@
       color: rgba(154 ,208 ,194, 0.86);
       margin: 0px 13px 0px 14px;
       font-size:14px;
+      font-family: nunito;
       /* background-color: rgba(8 ,41 ,41, 0.65); */
       background-color: rgba(8 ,41 ,41, 0.58);
       border-radius: 18px;
@@ -191,7 +192,7 @@
       color: rgba(154 ,208 ,194, 0.96);
       padding: 0px 1px 0px 1px;
       margin: 2px 4px 2px 4px;
-      background: rgba(0 ,0 ,0, 0.569);
+      /* background: rgba(0 ,0 ,0, 0.569); */
       /* background: rgba(154 ,208 ,194, 0.12); */
   }
 

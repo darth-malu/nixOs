@@ -366,7 +366,7 @@
             orientation = "horizontal";
             drawer = {
               transition-duration = 400;
-              transition-left-to-right = false;
+              transition-left-to-right = true;
               children-class = "drawer-child";
               click-to-reveal = true;
             };
@@ -533,7 +533,7 @@
 
           "cpu" = {
             interval = 10;
-            format = " \t{usage}%";
+            format = "   {usage}%";
             tooltip = false;
             max-length = 7;
             min-length = 7;
@@ -571,7 +571,7 @@
 
           disk = {
             interval = 90;
-            format = " \t{specific_free:0.1f} GiB"; # 
+            format = "   {specific_free:0.1f} GiB"; # 
             unit = "GB";
             path = "/";
           };
@@ -640,7 +640,7 @@
           "memory" = {
             interval = 30;
             # format-alt = "🧠 {}%";
-            format-alt = "🧠 {used:0.1f}GB";
+            format-alt = "🧠  {used:0.1f}GB";
             # format = "🧠 {used:0.1f}GB";
             format = "🧠 {percentage}%";
             # max-length = 10;

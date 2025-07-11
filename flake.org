@@ -109,7 +109,7 @@
 
 * outputs
 #+begin_src nix :tangle flake.nix
-  outputs = inputs@{nixpkgs , home-manager, ...}: # Note the use of `self` which allows reusing flake's outputs in itself
+  outputs = inputs@{nixpkgs , home-manager, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 #+end_src
 ** let..in
 #+begin_src nix :tangle flake.nix

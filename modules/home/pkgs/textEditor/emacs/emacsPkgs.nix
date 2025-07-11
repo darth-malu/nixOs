@@ -68,7 +68,7 @@ in
         tkinter
 
         requests
-        ttkbootstrap
+        ttkbootstrap # MOVED to Qt😄
         # pandasql
 
         #emacs

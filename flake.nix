@@ -59,7 +59,7 @@
 
   };
 
-  outputs = inputs@{nixpkgs , home-manager, ...}: # Note the use of `self` which allows reusing flake's outputs in itself
+  outputs = inputs@{nixpkgs , home-manager, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 
   let
     system = "x86_64-linux"; # system = builtins.currentSystem;??

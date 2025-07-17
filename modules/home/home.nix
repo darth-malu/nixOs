@@ -23,10 +23,10 @@
     homeDirectory = "/home/malu";
     preferXdgDirectories = true;
     sessionPath = [
-      "$HOME/.emacs.d/bin" # doom
+      "$HOME/.emacs.d/bin"
     ];
     sessionVariables = {
-      # EDITOR = "emacs";
+      EDITOR = "emacsclient -nw";
       #MANPAGER="nvim +Man!";
       #MANWIDTH=999;
       LSP_USE_PLISTS = "true"; # for emacs? TODO see how to have this inside emacs itself

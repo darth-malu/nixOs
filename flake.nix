@@ -105,26 +105,29 @@
   {
     # packages.${system}.my-neovim = neovimConf.neovim; # NVF
 
-  nixosConfigurations = {
-    carthage = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs system; };
-        modules = [
-          ./hosts/carthage
-          # inputs.quickshell.packages.${system}.default
-          # {environment.systemPackages = [neovimConf.neovim];}
-          inputs.home-manager.nixosModules.home-manager {
-            home-manager = {
-              verbose = true;
-              backupFileExtension = "home_backup";
-              users.malu = import ./modules/home/home.nix;
-              useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
-              useUserPackages = false; # if false ... uses nix-profile for home apps
-              extraSpecialArgs = { inherit inputs pkgs system; };
-            };
-          }
-        ];
+nixosConfigurations = {
+  carthage = nixpkgs.lib.nixosSystem {
+    inherit system;
+    specialArgs = { inherit inputs system; };
+
+modules = [
+  ./hosts/carthage
+  # {environment.systemPackages = [neovimConf.neovim];}
+
+inputs.home-manager.nixosModules.home-manager {
+  home-manager = {
+    verbose = true;
+    backupFileExtension = "home_backup";
+    # users.malu = import ./modules/home/home.nix;
+    users.malu = ./modules/home/home.nix;
+    useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
+    useUserPackages = false; # if false ... uses nix-profile for home apps
+    extraSpecialArgs = { inherit inputs pkgs system; };
   };
+}
+
+];  # modules
+ };  # carthage
 
   tangier = nixpkgs.lib.nixosSystem {
       inherit system;

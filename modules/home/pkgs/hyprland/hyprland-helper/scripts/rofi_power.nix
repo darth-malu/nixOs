@@ -3,10 +3,10 @@
 pkgs.writeShellScriptBin "rofi_power" ''
   shutdown="⏻  Shutdown"
   reboot="  Reboot"
-  lock="  Lock"
-  suspend="󰒲  Suspend"
-  timer="󱫣  Timer"
-  cancel="󰔞  Cancel"
+  lock="🔒 Lock" #
+  suspend="💤  Suspend" # 󰒲
+  timer="⏰ Timer" #󱫣󰔞
+  cancel="❌  Cancel"
 
   yes="✅"
   no="⛔"

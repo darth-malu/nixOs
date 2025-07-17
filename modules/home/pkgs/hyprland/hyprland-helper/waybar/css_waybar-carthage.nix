@@ -20,10 +20,10 @@
       border-top-right-radius: 12px;
       border-bottom-right-radius: 12px;
       padding: 0px 2px 0px 2px;
-      font-size:11px;
       color: rgba(159 ,162 ,178, 1);
       background: rgba(72 ,191 ,227, 0.16);
       /*font-family: nunito;*/
+      /* font-family: VictorMono Nerd Font Propo; */
   }
 
   #custom-gpu {
@@ -49,6 +49,7 @@
       padding: 0px 0px;
       border-left: 1px solid rgba(254 ,127 ,45, 0.19);
       font-family: nunito;
+      /* font-family: VictorMono Nerd Font Propo; */
   }
 
   #custom-gpu_freq {
@@ -57,6 +58,7 @@
       font-family: nunito;
       margin: 4px 0px 3px 0px;
       padding: 0px 3px;
+      /* font-family: VictorMono Nerd Font Propo; */
   }
 
   /*#custom/gpu_freq:hover {*/
@@ -72,9 +74,8 @@
       padding: 0px 2px 0px 3px;
       border-bottom-right-radius: 12px;
       border-top-right-radius: 12px;
-      font-size: 11px;
       /* font-family: nunito; */
-      /* font-family: VictorMono Nerd Font; */
+      /* font-family: VictorMono Nerd Font Propo; */
       background: rgba(255 ,107 ,107, 0.23);
   }
 
@@ -83,6 +84,6 @@
   }
 
   #custom-gpu_temp, #temperature, #custom-nvme_temp {
-      font-size: 11px;
+      font-size: 10px;
   }
 ''

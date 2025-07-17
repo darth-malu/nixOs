@@ -123,6 +123,7 @@ in
 
     # export dep
     wkhtmltopdf
+    groff # ms-pdf export
 
     nodePackages.js-beautify # js/css/html format
     stylelint # css linter

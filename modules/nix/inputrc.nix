@@ -8,12 +8,12 @@
 
           # experiment
           # str: text color and background
-          set active-region-start-color \e[01;33m
+          # set active-region-start-color \e[01;33m # bright red - not all readline shows hightlight of region
 
           # undoes the effect of start-color to normal terminal
-          set active-region-end-color
+          # set active-region-end-color
 
-          set completion-display-width 80
+          set completion-display-width 100 # width of completion columns, 80;;
 
           # - and _ as same if completion-ignore-case is on
           set completion-map-case on
@@ -30,11 +30,11 @@
           # tilde expansion on word completion, def: off
           # set expand-tilde on
 
-          # set print-completions-horizontally on
+          set print-completions-horizontally on # like zsh?
 
           # Vi
           set editing-mode vi
-          set keymap vi-insert
+          set keymap vi-insert  # start in insert mode
           set show-mode-in-prompt on
 
           # 1 - begin , 2 -end
@@ -48,22 +48,23 @@
           set vi-cmd-mode-string \1\e[1 q\e]12;orange\a\2
           # set vi-cmd-mode-string \1\e[1 q\e]12;purple\a\2
 
-          # if in vi command mode
           $if mode=vi
             "\e[D":  backward-char
             "\M-[C": forward-char
-            "\eh":   backward-char
-            "\M-l":  forward-char
-            "\e[5~": history-search-backward
-            "\e[6~": history-search-forward
+            "\eh":   backward-char # M-h go to normal mode then move one char
+            "\M-l":  forward-char  # M-l
+            "\e[5~": history-search-backward # page up
+            "\e[6~": history-search-forward  # page down
+
+            "\C-x\"": "\"\"\C-b" # FIXME
             # C-j - RET - enter for next line instead enter lol best shortcut fr like # alot of conflict eg tmux
             # "\C-l":"clear\n"
           $endif
 
           $if Bash
-            "C-q":  quoted-insert
-            "\e[A": history-search-backward
-            "\e[B": history-search-forward
+            "C-q":  quoted-insert # Insert the next character literally, ignoring its special meaning.
+            "\e[A": history-search-backward # up arrow
+            "\e[B": history-search-forward # down arrow
 
             # prepare to type a quoted word --
             # insert open and close double quotes
@@ -80,6 +81,12 @@
             "\M-\C-v": "\C-a\C-k$\C-y\M-\C-e\C-a\C-y="
           $endif
 
+          # Arrows
+          # \e[D - Left
+          # \e[C - Right
+          # \e[A - Up
+          # \e[B - Down
+
           # Arrow keys in 8 bit keypad mode
           #
           #"\M-\C-OD":       backward-char
@@ -94,7 +101,8 @@
           #"\M-\C-[A":       previous-history
           #"\M-\C-[B":       next-history
 
-          set show-all-if-unmodified On # double tab to single tab
+          set show-all-if-unmodified On #single tab instead of double tab
+
           # complete word, show possible compleetions if still ambiguous
           set show-all-if-ambiguous On
 
@@ -103,7 +111,7 @@
           #security by preventing accidental execution of control characters in text, \e[200~ at the beginning and \e[201~ at the end
           set enable-bracketed-paste on # fix weird double indent?
 
-          set echo-control-characters off # control char as symbol rather than command, eg. C-l to clear to work need off
+          set echo-control-characters of control char as symbol rather than command when off, eg. C-l to clear to work need off
 
           # Color files by types
 
@@ -114,7 +122,7 @@
 
           set mark-symlinked-directories On
           set colored-completion-prefix On # color common prefix cmp
-          set menu-complete-display-prefix On
+          set menu-complete-display-prefix On # show shared prefix
 
           # suffix for file type like with ls -F
           set page-completions off # pager like show of many possible completions

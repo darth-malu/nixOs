@@ -52,7 +52,7 @@
       #aria2#NOTE: learn
       qbittorrent
 
-      tokei
+      # tokei
 
       # zip xz unzip p7zip
       # testing for yazi #

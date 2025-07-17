@@ -135,8 +135,8 @@
               "(.*)~" = "$1";
               # "v(.*)" = "  $1";
               # "v(.*)" = "  $1";
-              "v." = "  $1";
-              "v" = "$1";
+              # "v." = "  $1";
+              # "v" = "$1";
             };
           };
 
@@ -146,7 +146,7 @@
               if osConfig.networking.hostName == "tangier" then
                 "/sys/class/hwmon/hwmon4/temp1_input"
               else
-                "/sys/class/hwmon/hwmon2/temp1_input"; # carthage? TODO: test
+                "/sys/class/hwmon/hwmon1/temp1_input"; # carthage? TODO: write script that checks name
             critical-threshold = 80;
             # format-critical = "{temperatureC}° {icon}";
             # format-critical = "{temperatureC}° {icon}";
@@ -168,10 +168,10 @@
             tooltip-format = "Power profile: {profile}\nDriver: {driver}";
             tooltip = true;
             format-icons = {
-              default = "🧊"; # ☯
+              default = "🧊";
               performance = "⚡";
-              balanced = "🧊️";
-              power-saver = "☘️"; # 
+              balanced = "☯";
+              power-saver = ""; # ☘
             };
           };
 
@@ -206,8 +206,8 @@
             max-volume = 100;
             scroll-step = 2;
             tooltip = false;
-            min-length = 5;
-            max-length = 5;
+            # min-length = 5;
+            # max-length = 5;
           };
 
           "tray" = {
@@ -640,9 +640,9 @@
           "memory" = {
             interval = 30;
             # format-alt = "🧠 {}%";
-            format-alt = "🧠  {used:0.1f}GB";
+            format-alt = "🧠   {used:0.1f}GB";
             # format = "🧠 {used:0.1f}GB";
-            format = "🧠 {percentage}%";
+            format = "🧠   {percentage}%";
             # max-length = 10;
           };
 

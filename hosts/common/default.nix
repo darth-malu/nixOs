@@ -211,12 +211,12 @@ nix.optimise = {
   randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
   # persistent = false; # true::
 };
-nix.settings.auto-optimise-store = false;#optimise with everybuild nix-store --optimise (manual) # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy. #false::
 
-nix.gc = { # garbage collector
+nix.settings.auto-optimise-store = true;#optimise with everybuild nix-store --optimise (manual) # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy. #false::
+
+nix.gc = {
   automatic = true;
-  dates = "weekly";
-  #dates = "03:15";
+  dates = "weekly"; # "03:15";
   options = "--delete-older-than 14d";
   # randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
   # persistent = false; # true::

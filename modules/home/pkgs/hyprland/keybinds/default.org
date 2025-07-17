@@ -110,7 +110,7 @@ bind =
 #+end_src
 *** MaluwareYt
 #+begin_src nix :tangle default.nix
- "$mod $sl, T, execr, python '/home/malu/CODE/PyQt6/youtubr/main.py'"
+ "$mod $sl, T, execr, python '/home/malu/.code/PyQt6/youtubr/main.py'"
 #+end_src
 *** kitty
 #+begin_src nix :tangle default.nix
@@ -371,7 +371,7 @@ movetoworkspacesilent exists
 
     # "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
     "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}'); dispatch focusmonitor +1;\""
-    "$mod $sl space, bracketleft, exec, hyprctl dispatch swapactiveworkspaces HDMI-A-1 `hyprctl monitors | awk '/^Monitor DP/ {print $2}'`"
+    # "$mod $sl space, bracketleft, exec, hyprctl dispatch swapactiveworkspaces HDMI-A-1 `hyprctl monitors | awk '/^Monitor DP/ {print $2}'`"
     # "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 `hyprctl monitors | grep DP | cut -d ' ' -f2`"
     # "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 DP-3"
 

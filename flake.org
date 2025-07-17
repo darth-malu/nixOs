@@ -160,27 +160,95 @@
 
 ** CARTHAGE
 #+begin_src nix :tangle flake.nix
-  nixosConfigurations = {
-    carthage = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs system; };
-        modules = [
-          ./hosts/carthage
-          # inputs.quickshell.packages.${system}.default
-          # {environment.systemPackages = [neovimConf.neovim];}
-          inputs.home-manager.nixosModules.home-manager {
-            home-manager = {
-              verbose = true;
-              backupFileExtension = "home_backup";
-              users.malu = import ./modules/home/home.nix;
-              useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
-              useUserPackages = false; # if false ... uses nix-profile for home apps
-              extraSpecialArgs = { inherit inputs pkgs system; };
-            };
-          }
-        ];
-  };
+nixosConfigurations = {
+  carthage = nixpkgs.lib.nixosSystem {
+    inherit system;
+    specialArgs = { inherit inputs system; };
 #+end_src
+
+*** Modules
+**** start | nix import
+#+begin_src nix :tangle flake.nix
+modules = [
+  ./hosts/carthage
+  # {environment.systemPackages = [neovimConf.neovim];}
+#+end_src
+
+**** Home-manager
+***** As Module
+#+begin_src nix :tangle flake.nix
+inputs.home-manager.nixosModules.home-manager {
+  home-manager = {
+    verbose = true;
+    backupFileExtension = "home_backup";
+    # users.malu = import ./modules/home/home.nix;
+    users.malu = ./modules/home/home.nix;
+    useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
+    useUserPackages = false; # if false ... uses nix-profile for home apps
+    extraSpecialArgs = { inherit inputs pkgs system; };
+  };
+}
+#+end_src
+
+extraSpecialArgs: By default packages will be installed to $HOME/.nix-profile but they can be installed to /etc/profiles if true
+
+By default, Home Manager uses a private pkgs instance that is configured via the home-manager.users.<name>.nixpkgs options.
+  To instead use the global pkgs that is configured via the system level nixpkgs options, set userGlobalPkgs = true
+  This saves an extra Nixpkgs evaluation, adds consistency, and removes the dependency on NIX_PATH, which is otherwise used for importing Nixpkgs.
+
+To troubleshoot home manager:
+#+begin_src sh
+systemctl status "home-manager-$USER.service"
+#+end_src
+
+=To automatically create flake in /etc/nixos=
+#+begin_src sh
+nix flake new /etc/nixos -t github:nix-community/home-manager#nixos
+#+end_src
+
+***** StandAlone
+This will generate a flake.nix and a home.nix file in ~/.config/home-manager, creating the directory if it does not exist:
+=Unstable=
+  #+begin_src shell
+  nix run home-manager/master -- init --switch
+  #+end_src
+
+=Stable=
+  #+begin_src shell
+  nix run home-manager/release-25.05 -- init --switch
+  #+end_src
+
+to override default config directory:
+  #+begin_src sh
+nix run home-manager/$branch -- init --switch ~/hmconf
+# And after the initial activation.
+home-manager switch --flake ~/hmconf
+  #+end_src
+
+If you omit the --switch option then the activation will not happen. This is useful if you want to inspect and edit the configuration before activating it.
+
+After the initial activation has completed successfully then building and activating your flake-based configuration is as simple as:
+#+begin_src sh
+home-manager switch
+#+end_src
+
+The flake inputs are not automatically updated by Home Manager. You need to use the standard =nix flake update= command for that.
+
+If you only want to update a single flake input, then the command =nix flake lock --update-input <input>= can be used.
+
+You can also pass flake-related options such as =--recreate-lock-file= or =--update-input <input>= to home-manager when building or switching, and these options will be forwarded to nix build.
+See the NixOS Wiki page for details.
+***** Module AutoImport
+Home manager imports all modules from the /modules/program /modules/services:
++ all nix files
++ all subdirectories (with default.nix)
++ _files: excluded from autoImport
+**** Ender
+#+begin_src nix :tangle flake.nix
+];  # modules
+ };  # carthage
+#+end_src
+
 
 ** tangier
 #+begin_src nix :tangle flake.nix

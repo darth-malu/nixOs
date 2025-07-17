@@ -207,7 +207,6 @@
       color: rgba(255 ,200 ,0, 0.8);
       background: rgba(255 ,200 ,0, 0.14);
       margin: 4px 0px 3px 6px;
-      padding: 0px 4px 0px 2px;
       border: 1px solid rgba(255 ,200 ,0, 0.23);
       border-bottom-left-radius: 12px;
       border-top-left-radius: 12px;
@@ -319,7 +318,7 @@
       border-bottom-right-radius: 12px;
       border-top-right-radius: 12px;
       font-size: 10px;
-      /*font-family: nunito;*/
+      /* font-family: VictorMono Nerd Font Propo; */
       background: rgba(255 ,200 ,0, 0.14);
   }
 
@@ -362,60 +361,6 @@
       margin: 0px 7px 0px 6px;
       font-size: 11px;
       color: rgba(159 ,162 ,178, 1);
-  }
-
-  #custom-gpu {
-      color: rgba(255 ,107 ,107, 0.86);
-      color: rgba(255 ,107 ,107, 0.96);
-      background: rgba(255 ,107 ,107, 0.23);
-      border: 1px solid rgba(255 ,107 ,107, 0.23);
-      border-bottom-left-radius: 12px;
-      border-top-left-radius: 12px;
-      /*font-family: nunito;*/
-      margin: 4px 0px 3px 4px;
-      padding: 0px 0px 0px 6px;
-  }
-
-
-  #custom-gpu:hover {
-      background: rgba(255 ,107 ,107, 0.32);
-  }
-
-  #custom-gpu_fans {
-      color: rgba(255 ,107 ,107, 0.76);
-      background: rgba(255 ,107 ,107, 0.23);
-      font-size: 12px;
-      margin: 4px 0px 3px 0px;
-      padding: 0px 0px;
-      border-left: 1px solid rgba(254 ,127 ,45, 0.19);
-      font-family: nunito;
-  }
-
-  #custom-gpu_freq {
-      color: rgba(255 ,107 ,107, 0.86);
-      background: rgba(255 ,107 ,107, 0.23);
-      font-family: nunito;
-      margin: 4px 0px 3px 0px;
-      padding: 0px 3px;
-  }
-
-  /*#custom/gpu_freq:hover {*/
-      /*background: rgba(255 ,107 ,107, 0.23);*/
-  /*}*/
-
-
-  #custom-gpu_temp {
-      color: rgba(159 ,162 ,178, 0.96);
-      /* margin: 4px 0px 3px 0px; */
-      /* padding:0px 2px 0px 3px; */
-      margin: 4px 0px 3px 0px;
-      padding: 0px 2px 0px 3px;
-      border-bottom-right-radius: 12px;
-      border-top-right-radius: 12px;
-      font-size: 11px;
-      /* font-family: nunito; */
-      /* font-family: VictorMono Nerd Font; */
-      background: rgba(255 ,107 ,107, 0.23);
   }
 
   #custom-swap_workspace {

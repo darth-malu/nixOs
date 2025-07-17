@@ -1,6 +1,14 @@
+#+title: Rmpc configuration
+#+auto_tangle: t
+
+* Start
+#+begin_src nix :tangle rmpc-config.nix
 ''
   (
+#+end_src
 
+* Misc
+#+begin_src nix :tangle rmpc-config.nix
   address: "127.0.0.1:6600",
   password: None,
   theme: None,
@@ -15,13 +23,27 @@
   status_update_interval_ms: 1000,
   select_current_song_on_change: false,
   browser_song_sort: [Disc, Track, Artist, Title],
+#+end_src
 
+** Progress bar
+#+begin_src nix :tangle rmpc-config.nix
   progressbar_look: `["[", "─", "⊙", "┄", "]"],
+#+end_src
 
+** select current song on change
+#+begin_src nix :tangle rmpc-config.nix
   select_current_song_on_change: false,
+#+end_src
 
+** max fps
+#+begin_src nix :tangle rmpc-config.nix
   max_fps: 30,
+#+end_src
 
+progress_bar: (symbols: [start, elapsed, thumb, track, end]
+
+* cava
+#+begin_src nix :tangle rmpc-config.nix
 cava: (
   framerate: 60, // default 60
     autosens: true, // default true
@@ -44,7 +66,10 @@ cava: (
             // they are passed in order that they are defined
             eq: []
 ),
+#+end_src
 
+* layout
+#+begin_src nix :tangle rmpc-config.nix
 layout: Split(
   direction: Vertical,
     panes: [
@@ -86,5 +111,9 @@ layout: Split(
       ),
     ],
 ),
+#+end_src
 
+* Endo
+#+begin_src nix :tangle rmpc-config.nix
 )''
+#+end_src

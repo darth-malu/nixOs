@@ -16,6 +16,11 @@
 #+begin_src nix :tangle flake.nix
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 #+end_src
+
+nixos-unstable-small exist...smaller, update faster but require more to be built from source
+
+https://nixos.wiki/wiki/Nix_channels
+
 ** yazi
 #+begin_src nix :tangle flake.nix
     yazi.url = "github:sxyazi/yazi";
@@ -25,9 +30,6 @@
     quickshell = {
       # add ?ref=<tag> to track a tag
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-
-      # THIS IS IMPORTANT
-      # Mismatched system dependencies will lead to crashes and other issues.
       inputs.nixpkgs.follows = "nixpkgs";
     };
 #+end_src
@@ -109,7 +111,7 @@
 
 * outputs
 #+begin_src nix :tangle flake.nix
-  outputs = inputs@{nixpkgs , home-manager, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
+  outputs = inputs@{nixpkgs, home-manager, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 #+end_src
 ** let..in
 #+begin_src nix :tangle flake.nix
@@ -122,10 +124,11 @@
     # };
 
     # pkgs = nixpkgs.legacyPackages.${system};
-    pkgs = import nixpkgs {
+    lib = nixpkgs.lib;
+    pkgs = import nixpkgs { # using nixpkgs.allw for nixos-pkgs
       inherit  system;
       config = {
-        allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+        allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
           "discord"
           "google-chrome"
           "bluemail"
@@ -144,12 +147,12 @@
           # "steam-run"
           "youtube-upnext"
           "evafast"
-          "rider"
           "android-studio-stable"
-          "broadcom-sta"
+          # "broadcom-sta"
         ];
         permittedInsecurePackages = [
           "ventoy-1.1.05"
+          "broadcom-sta-6.30.223.271-57-6.12.38"
         ];
       };
     };
@@ -175,21 +178,21 @@ modules = [
 #+end_src
 
 **** Home-manager
-***** As Module
+***** As Module 🐐
 #+begin_src nix :tangle flake.nix
-inputs.home-manager.nixosModules.home-manager {
-  home-manager = {
-    verbose = true;
-    backupFileExtension = "home_backup";
-    # users.malu = import ./modules/home/home.nix;
-    users.malu = ./modules/home/home.nix;
-    useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
-    useUserPackages = false; # if false ... uses nix-profile for home apps
-    extraSpecialArgs = { inherit inputs pkgs system; };
-  };
-}
+  home-manager.nixosModules.home-manager {
+    home-manager = {
+      verbose = true;
+      backupFileExtension = "home_bak";
+      useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
+      useUserPackages = false; # if false ... uses nix-profile for home apps
+      extraSpecialArgs = { inherit inputs pkgs system; };
+      users.malu = import ./modules/home/home.nix;
+    };
+  }
 #+end_src
 
+****** Extras
 extraSpecialArgs: By default packages will be installed to $HOME/.nix-profile but they can be installed to /etc/profiles if true
 
 By default, Home Manager uses a private pkgs instance that is configured via the home-manager.users.<name>.nixpkgs options.
@@ -248,7 +251,6 @@ Home manager imports all modules from the /modules/program /modules/services:
 ];  # modules
  };  # carthage
 #+end_src
-
 
 ** tangier
 #+begin_src nix :tangle flake.nix

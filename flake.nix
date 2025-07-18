@@ -9,9 +9,6 @@
     quickshell = {
       # add ?ref=<tag> to track a tag
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-
-      # THIS IS IMPORTANT
-      # Mismatched system dependencies will lead to crashes and other issues.
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -59,7 +56,7 @@
 
   };
 
-  outputs = inputs@{nixpkgs , home-manager, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
+  outputs = inputs@{nixpkgs, home-manager, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 
   let
     system = "x86_64-linux"; # system = builtins.currentSystem;??
@@ -70,10 +67,11 @@
     # };
 
     # pkgs = nixpkgs.legacyPackages.${system};
-    pkgs = import nixpkgs {
+    lib = nixpkgs.lib;
+    pkgs = import nixpkgs { # using nixpkgs.allw for nixos-pkgs
       inherit  system;
       config = {
-        allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+        allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
           "discord"
           "google-chrome"
           "bluemail"
@@ -92,12 +90,12 @@
           # "steam-run"
           "youtube-upnext"
           "evafast"
-          "rider"
           "android-studio-stable"
-          "broadcom-sta"
+          # "broadcom-sta"
         ];
         permittedInsecurePackages = [
           "ventoy-1.1.05"
+          "broadcom-sta-6.30.223.271-57-6.12.38"
         ];
       };
     };
@@ -114,17 +112,16 @@ modules = [
   ./hosts/carthage
   # {environment.systemPackages = [neovimConf.neovim];}
 
-inputs.home-manager.nixosModules.home-manager {
-  home-manager = {
-    verbose = true;
-    backupFileExtension = "home_backup";
-    # users.malu = import ./modules/home/home.nix;
-    users.malu = ./modules/home/home.nix;
-    useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
-    useUserPackages = false; # if false ... uses nix-profile for home apps
-    extraSpecialArgs = { inherit inputs pkgs system; };
-  };
-}
+  home-manager.nixosModules.home-manager {
+    home-manager = {
+      verbose = true;
+      backupFileExtension = "home_bak";
+      useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
+      useUserPackages = false; # if false ... uses nix-profile for home apps
+      extraSpecialArgs = { inherit inputs pkgs system; };
+      users.malu = import ./modules/home/home.nix;
+    };
+  }
 
 ];  # modules
  };  # carthage

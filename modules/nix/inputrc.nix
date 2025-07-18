@@ -13,7 +13,8 @@
           # undoes the effect of start-color to normal terminal
           # set active-region-end-color
 
-          set completion-display-width 100 # width of completion columns, 80;;
+          # width of completion columns, 80;;
+          set completion-display-width 100
 
           # - and _ as same if completion-ignore-case is on
           set completion-map-case on
@@ -30,11 +31,11 @@
           # tilde expansion on word completion, def: off
           # set expand-tilde on
 
-          set print-completions-horizontally on # like zsh?
+          # like zsh?
+          set print-completions-horizontally on
 
-          # Vi
           set editing-mode vi
-          set keymap vi-insert  # start in insert mode
+          set keymap vi-insert 
           set show-mode-in-prompt on
 
           # 1 - begin , 2 -end
@@ -51,20 +52,25 @@
           $if mode=vi
             "\e[D":  backward-char
             "\M-[C": forward-char
-            "\eh":   backward-char # M-h go to normal mode then move one char
-            "\M-l":  forward-char  # M-l
-            "\e[5~": history-search-backward # page up
-            "\e[6~": history-search-forward  # page down
+            "\eh":   backward-char 
+            "\M-l":  forward-char 
+            "\e[5~": history-search-backward 
+            "\e[6~": history-search-forward 
 
-            "\C-x\"": "\"\"\C-b" # FIXME
+            "\C-x\"": "\"\"\C-b" 
             # C-j - RET - enter for next line instead enter lol best shortcut fr like # alot of conflict eg tmux
             # "\C-l":"clear\n"
           $endif
 
+            # C-j - RET - enter for next line instead enter lol best shortcut fr like # alot of conflict eg tmux
+            # "\C-l":"clear\n"
+            # "\eh":   backward-char # M-h go to normal mode then move one char
+
           $if Bash
-            "C-q":  quoted-insert # Insert the next character literally, ignoring its special meaning.
-            "\e[A": history-search-backward # up arrow
-            "\e[B": history-search-forward # down arrow
+            # Insert the next character literally, ignoring its special meaning.
+            "C-q":  quoted-insert
+            "\e[A": history-search-backward
+            "\e[B": history-search-forward
 
             # prepare to type a quoted word --
             # insert open and close double quotes
@@ -101,7 +107,8 @@
           #"\M-\C-[A":       previous-history
           #"\M-\C-[B":       next-history
 
-          set show-all-if-unmodified On #single tab instead of double tab
+          #single tab instead of double tab
+          set show-all-if-unmodified On
 
           # complete word, show possible compleetions if still ambiguous
           set show-all-if-ambiguous On
@@ -116,17 +123,22 @@
           # Color files by types
 
           # Note that this may cause completion text blink in some terminals (e.g. xterm).
-          set colored-stats On #use LS_COLORS
+          #use LS_COLORS
+          set colored-stats On
 
-          set visible-stats On # Append char to indicate type
+          # Append char to indicate type
+          set visible-stats On
 
           set mark-symlinked-directories On
-          set colored-completion-prefix On # color common prefix cmp
-          set menu-complete-display-prefix On # show shared prefix
+
+          # color common prefix cmp
+          set colored-completion-prefix On
+
+          # show shared prefix
+          set menu-complete-display-prefix On
 
           # suffix for file type like with ls -F
           set page-completions off # pager like show of many possible completions
-
         ''
       );
     };

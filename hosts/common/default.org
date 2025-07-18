@@ -26,6 +26,9 @@ nixpkgs.config = {
     "nvidia-x11"
     "nvidia-x11-570.153.02-6.12.30"
   ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "broadcom-sta-6.30.223.271-57-6.12.38"
+  ];
 };
 
 #+end_src

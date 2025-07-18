@@ -19,10 +19,9 @@
     ./shell
     ./hyprland
     ./textEditor
-    ./programs.nix
-    ./services.nix
     ./kdeconnect.nix
     inputs.nyaa.homeManagerModule
+    ../programs
   ];
 
   homeHyprland.enable = lib.mkIf osConfig.programs.hyprland.enable true;

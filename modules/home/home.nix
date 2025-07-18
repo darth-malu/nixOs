@@ -1,36 +1,19 @@
-{ osConfig, ... }:
 {
-  # imports = [ ../modules/home ];
+  imports = [
+    ./xdg
+    ./sessionVariables.nix
+    ./pkgs
+    ./programs
+    ./services
+  ];
 
-  imports =
-    [
-      ./pkgs
-      ./xdg
-      # ./editorConfig.nix # works nicely
-    ]
-    ++ (
-      if osConfig.programs.hyprland.enable then
-        [
-          ./themes
-        ]
-      else
-        [ ]
-    );
+  programs.home-manager.enable = true; # Let Home Manager install and manage itself.
 
   home = {
     username = "malu";
     #groupname = "darth";
     homeDirectory = "/home/malu";
     preferXdgDirectories = true;
-    sessionPath = [
-      "$HOME/.emacs.d/bin"
-    ];
-    sessionVariables = {
-      EDITOR = "emacsclient -nw";
-      #MANPAGER="nvim +Man!";
-      #MANWIDTH=999;
-      LSP_USE_PLISTS = "true"; # for emacs? TODO see how to have this inside emacs itself
-    };
     stateVersion = "24.11";
   };
 

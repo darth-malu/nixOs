@@ -21,7 +21,8 @@
       socketActivation.enable = true; # Whether to enable systemd socket activation for the Emacs service. # TODO see if conflicting with startWithUSerSession
       client.enable = false; # false::, generation of Emacs client desktop file.
       client.arguments = [
-        "-r" # --reuse-frame (reuse frame if exists, otherwise create a new frame) - --create-frame/-c
+        # "-r" # --reuse-frame (reuse frame if exists, otherwise create a new frame) - --create-frame/-c
+        "-nw"
         # "-a 'emacs'"
       ];
 

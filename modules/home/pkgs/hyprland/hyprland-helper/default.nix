@@ -6,6 +6,7 @@
     ./waybar
     ./scripts
     ./hypr-ecos
+    ./themes
     # inputs.hyprshell.homeModules.hyprshell
   ];
 

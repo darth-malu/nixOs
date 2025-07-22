@@ -15,7 +15,6 @@
       # tldr - using emacs one lol
       # kdePackages.dolphin # FIXME launching shit not working on hyprland
       # kdePackages.konsole
-      # disk management
       duf
       ncdu
       # superfile # kinda cool but dont need

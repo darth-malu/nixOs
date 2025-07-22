@@ -56,11 +56,10 @@ pkgs.writeShellScriptBin "temp" ''
   }
 
   raw_ssd_temp () {
-      local ssd_temp
-      local temp
-      ssd_temp="$(cat /sys/class/hwmon/hwmon1/temp1_input 2> /dev/null)" #get temp in mC
-      temp=$(echo "scale=2; $nvme_temp / 1000" | bc) # convert to C
-      printf "%.0f\n" "$temp" # temp float - int
+      # local ssd_temp="$(cat /sys/class/hwmon/hwmon1/temp1_input 2> /dev/null)" #get temp in mC
+      # local temp=$(echo "scale=2; $nvme_temp / 1000" | bc) # convert to C
+      # printf "%.0f\n" "$temp" # temp float - int
+      awk '{print $0 /1000}' /sys/class/hwmon/hwmon1/temp1_input
   }
 
 

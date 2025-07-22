@@ -8,7 +8,6 @@
     ./services
   ];
 
-  programs.home-manager.enable = true; # Let Home Manager install and manage itself.
   home = {
     username = "malu";
     #groupname = "darth";

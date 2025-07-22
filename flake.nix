@@ -141,7 +141,7 @@ tangier = nixpkgs-unstable.lib.nixosSystem {
         users.malu = import ./modules/home/home.nix;
         useGlobalPkgs = true; # dont use private instance of pkgs which is the default
         useUserPackages = false; # if false:: ... uses nix-profile for home apps
-        extraSpecialArgs = { inherit pkgs-unstable inputs system; };
+        extraSpecialArgs = { inherit pkgs pkgs-unstable inputs system; };
       };
     }
   ];

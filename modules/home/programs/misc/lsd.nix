@@ -16,6 +16,7 @@
       name = {
         ".cargo" = "";
         ".trash" = "";
+        ".Trash-1000" = "🗑";
       };
     };
     size = {

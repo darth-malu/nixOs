@@ -121,7 +121,7 @@
 
           "hyprland/window" = {
             format = "{}";
-            # icon = true;
+            icon = true;
             icon-size = 17;
             separate-outputs = true; # Show the active window of the monitor the bar belongs to, instead of the focused window.
             cursor = true;
@@ -198,9 +198,15 @@
             ];
           };
 
-          "wireplumber" = {
-            format = "{volume} "; # 🎙️
-            format-muted = "";
+          "wireplumber#sink" = {
+            node-type = "Audio/Sink";
+            format = "{volume} {icon} "; # 🎙{node_name}
+            format-icons = [
+              ""
+              ""
+              ""
+            ];
+            format-muted = "🔇";
             on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
             on-click-backward = "pwvucontrol";
             max-volume = 100;
@@ -208,6 +214,18 @@
             tooltip = false;
             # min-length = 5;
             # max-length = 5;
+          };
+
+          "wireplumber#source" = {
+            # TODO: make a script to do this
+            node-type = "Audio/Source";
+            format = "{volume}% ";
+            on-click-backward = "pwvucontrol";
+            format-muted = "";
+            on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+            on-scroll-up = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.05+";
+            on-scroll-down = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.05-";
+            scroll-step = 5;
           };
 
           "tray" = {
@@ -326,7 +344,8 @@
               click-to-reveal = true;
             };
             modules = [
-              "wireplumber"
+              "wireplumber#source"
+              "wireplumber#sink"
               "mpris"
               "mpd"
             ];
@@ -358,7 +377,8 @@
             };
             modules = [
               "temperature"
-              "wireplumber"
+              "wireplumber#sink"
+              "wireplumber#source"
             ];
           };
 

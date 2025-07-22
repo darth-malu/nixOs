@@ -1,5 +1,12 @@
-{pkgs, osConfig, ...}:
+#+auto_tangle: t
+#+startup: content indent
 
+* variables
+#+begin_src nix :tangle default.nix
+{pkgs, osConfig, ...}:
+#+end_src
+
+#+begin_src nix :tangle default.nix
 {
   wayland.windowManager.hyprland = {
     settings = {
@@ -22,11 +29,15 @@
       "$gaps" = "gaps toggle_gaps_out";
       "$emacs" = "uwsm app -s a -- emacsclient -c";
       # "$DP_MON"="`hyprctl monitors | awk '/^Monitor DP/ {print $2; exit}'`";
+#+end_src
 
+=rofi=
+-sidebar-mode
+#+begin_src nix :tangle default.nix
 # "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; width : 1000px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
 # "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; fullscreen: false; width : 1000px;}' -theme-str 'entry {placeholder: \"🔎 search files ...\";}' -theme-str 'element-icon {size: 2.5em;horizontal-align: 0.5;vertical-align: 0.5;}'";
 # "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 750px; fullscreen: false; width : 1400px;}' -theme-str 'listview {fixed-columns: true; flow: horizontal; columns: 4; lines: 5;}' -theme-str 'element-text {horizontal-align: 0.5;vertical-align: 0.5;}' -theme-str 'element-icon {size: 2.5em;horizontal-align: 0.5;vertical-align: 0.5;}'";
-"$file_browser_rofi" = "rofi -show filebrowser -filebrowser-command 'xdg-open' -filebrowser-directory '/home/malu' -theme '/home/malu/Shibuya/modules/home/pkgs/hyprland/keybinds/rofi-themes/fileBrowser.rasi'";
+"$file_browser_rofi" = "rofi -show filebrowser -filebrowser-command 'xdg-open' -filebrowser-directory '/home/malu' -theme '/home/malu/Shibuya/modules/home/programs/hyprland/keybinds/rofi-themes/fileBrowser.rasi'";
 "$rofi_open_windows" =  "rofi -show window -theme-str 'window {width : 920px;}' -theme-str 'listview {lines:15; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
 # " -theme-str 'element {background-image: linear-gradient(white/5%, white/20%);border-color: lightblue /15%;}'";
 # "$menu_rofi" = "rofi -show drun -run-command \"hyprctl dispatch -- exec [workspace emptym] uwsm app -s a -- {cmd}\"";
@@ -35,19 +46,39 @@
 "$clip_rofi" = "cliphist list | rofi -dmenu -theme-str 'window {width : 750px;}' -p '' | cliphist decode | wl-copy";
 "$calc_rofi" = "rofi -show calc -p '🪓'";
 # "$obsidian_rofi" = "rofi -show obsidian";
+#+end_src
 
+listview:
++ lines: 8
+* bindings
+** bindr
+*** starter
+#+begin_src nix :tangle default.nix
 bindr = [
+#+end_src
 
+*** productivity
+**** file manager
+#+begin_src nix :tangle default.nix
   "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
   "$mod, E, exec, [workspace emptym] uwsm app -s a -- dolphin"
   "$mod , Y, exec, [workspace emptym] $yazi_kitty"
   "$mod $sl, Y, exec, [workspace special:magic;float; size 80% 80%] $yazi_kitty"
+#+end_src
 
+*** hyprpicker
+#+begin_src nix :tangle default.nix
 "$mod $al, C, exec, hyprpicker -an"
 "$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""
-
+#+end_src
+*** ghostty
+#+begin_src nix :tangle default.nix
   "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
+#+end_src
+*** screenshots
+using grimblast from hypr team 🤪
 
+#+begin_src nix :tangle default.nix
 # ", Print, exec, grimblast --cursor --notify copysave output"
   ", Print, exec, grimblast --cursor --notify copy output"
   "$sl, Print, exec, grimblast --cursor --notify copysave screen"
@@ -56,23 +87,39 @@ bindr = [
   "SUPER, Print, exec, grimblast --cursor --notify copysave output"
   "$al, Print, exec, grimblast --notify copy area"
   "$cl, Print, exec, grimblast --cursor --notify copy active"
+#+end_src
 
+*** ender
+#+begin_src nix :tangle default.nix
 ];
-
+#+end_src
+** bind
+*** starter
+#+begin_src nix :tangle default.nix
 bind =
   [
     # "$mod, F1,exec,  killall -9 spotify || [workspace emptym] uwsm app -- spotify"
+#+end_src
 
+*** browsers
+#+begin_src nix :tangle default.nix
   "$mod , T, exec, [workspace emptym] uwsm app -s a -- freetube"
   "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
-
+#+end_src
+*** MaluwareYt
+#+begin_src nix :tangle default.nix
  "$mod $sl, T, execr, python '/home/malu/.code/PyQt6/youtubr/main.py'"
-
+#+end_src
+*** kitty
+#+begin_src nix :tangle default.nix
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
+#+end_src
 
+*** rofi
+#+begin_src nix :tangle default.nix
 # Menu
   "$mod $cl, mouse:272, exec, pkill rofi || $menu_rofi"
   "$mod , P, exec, pkill rofi || $menu_rofi"
@@ -96,51 +143,96 @@ bind =
 
   # emoji
   "$mod, period, exec, pkill rofi || $emoji_rofi"
+#+end_src
 
+*** emacs
+#+begin_src nix :tangle default.nix
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] $emacs"
+#+end_src
 
+*** activekill
+#+begin_src nix :tangle default.nix
 # "$mod ,space, killactive"
 "$mod ,Escape, killactive"
 "$al ,F4, killactive"
 "$mod, mouse:275, killactive,"
+#+end_src
 
+*** empty workspace, toggle floating
+#+begin_src nix :tangle default.nix
 # Workspaces
   "$al, KP_Enter,workspace ,emptym"
   "$mod $sl, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
   "$mod, v, togglefloating"
   # "$mod, v, exec, resizeaactive exact 80% 80%"
   # "$mod, v, exec, centerwindow"
+#+end_src
 
+*** toggle dwindle/pseudo
+#+begin_src nix :tangle default.nix
   "$mod, KP_Divide, togglesplit" # dwindle
   "$mod, KP_Multiply, pseudo"
-
+#+end_src
+*** obs
+#+begin_src nix :tangle no
+    # "$cl $sl, R, pass, ^(com.obsproject.Studio)$"
+    # "$cl $sl, S, pass, ^(com.obsproject.Studio)$"
+    # "$cl $sl, [, pass, ^(com.obsproject.Studio)$"
+    # "$cl $sl, ], pass, ^(com.obsproject.Studio)$"
+    # "$cl $sl, \, pass, ^(com.obsproject.Studio)$"
+    # "$cl $sl, -, pass, ^(com.obsproject.Studio)$"
+    "SUPER $sl, F10, sendshortcut, $cl $sl, R, class:^(com\.obsproject\.Studio)$"
+#+end_src
+*** focus favorite apps
+#NOTE for KP need to bind with numlock off identifier
+see hyprswitch:
+**** emacs
+#+begin_src nix :tangle default.nix
 # "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
 # "$mod $cl, D, focuswindow, class:^(emacs)$"
 # "$mod $cl, D, focuswindow, initialTitle:(.*)(Doom Emacs)$"
+#+end_src
 
+**** yazi
+#+begin_src nix :tangle default.nix
 "$mod $cl, Y, focuswindow, title:^(Yazi)(.*)$"
   # "$mod , up, focuswindow, class:^(Emacs)$"
-
+#+end_src
+**** nautilus
+#+begin_src nix :tangle default.nix
 "$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
   # "$mod , up, focuswindow, class:^(Emacs)$"
-
+#+end_src
+**** dolphin
+#+begin_src nix :tangle default.nix
 "$mod $cl, N, focuswindow, class:org.kde.dolphin"
-
+#+end_src
+**** qutebrowser
+#+begin_src nix :tangle default.nix
 # "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 # "$mod $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 "$mod $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 # "$mod , left, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
-
+#+end_src
+**** chrome
+#+begin_src nix :tangle default.nix
 # "$mod $cl, KP_Left, focuswindow, class:^(google-chrome)$"
 "$mod $cl, C, focuswindow, class:^(google-chrome)$"
 # "$mod ,right, focuswindow, class:^(google-chrome)$"
-
+#+end_src
+**** mpv
+#+begin_src nix :tangle default.nix
 "$mod $cl, m, focuswindow, class:^(mpv)$"
 # "$mod , down, focuswindow, class:^(mpv)$"
-
+#+end_src
+**** freetube
+#+begin_src nix :tangle default.nix
 "$mod $cl, T, focuswindow, class:^(FreeTube)$"
+#+end_src
 
+*** special workspaces / scratch
+#+begin_src nix :tangle default.nix
 "$mod, m, togglespecialworkspace, magic"
 "$mod SHIFT, m, movetoworkspace, special:magic"
 
@@ -157,17 +249,27 @@ bind =
 "$mod SHIFT, S, movetoworkspace, special:scratch"
 
 #"$mod, t, togglespecialworkspace, Tixati" #"$mod SHIFT, T, movetoworkspace, special:Tixati"
+#+end_src
 
+*** move to empty workspace
+#+begin_src nix :tangle default.nix
 # move to empty
   "$mod , o, movetoworkspace, emptym"
   "$mod $sl, o, movetoworkspacesilent, emptym"
+#+end_src
 
+*** move focus | same workspace
+#+begin_src nix :tangle default.nix
   "$mod $cl, h, movefocus, l"
   "$mod $cl, l, movefocus, r"
   "$mod $cl, k, movefocus, u"
   "$mod $cl, j, movefocus, d"
   #bind="$mod SHIFT,Left,layoutmsg,swapnext"
+#+end_src
 
+*** workspaces
+**** +/- workspaces, left/right workspaces | groups
+#+begin_src nix :tangle default.nix
 # next/prev workspace
   "$mod, mouse_up, workspace, m+1"
   "$mod, mouse_down, workspace, m-1"
@@ -183,7 +285,10 @@ bind =
 
   "$mod ,H, workspace,m-1"
   "$mod ,L, workspace,m+1"
+#+end_src
 
+**** go/move workspace | carthage
+#+begin_src nix :tangle yes
 # Keypad navigation
 # Switch workspaces with mod + [ numpad 0-9]
   "$mod, KP_End, focusworkspaceoncurrentmonitor, 1"#TODO: do for loop make this cleaner
@@ -207,20 +312,34 @@ bind =
   "$mod $sl, KP_Up, movetoworkspace, 8"
   "$mod $sl, KP_Prior, movetoworkspace, 9"
   "$mod $sl, KP_Insert, movetoworkspace, 10"
+#+end_src
 
+movetoworkspacesilent exists
+
+*** waybar
+#+begin_src nix :tangle default.nix
   "$mod ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
   # "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
+#+end_src
 
+*** swap position in workspace clockwise
+#+begin_src nix :tangle default.nix
   "$mod $sl, semicolon, swapnext"
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
+#+end_src
 
+*** focus previously focused window, cycle next, previous_per_monitor
+#+begin_src nix :tangle default.nix
 # "$mod,K, Workspace, previous_per_monitor"
   "$mod,K, focuscurrentorlast"
   "$mod $sl, k, focusmonitor, +1"
   "$mod, mouse:276, Workspace, previous_per_monitor"
   "$mod, semicolon, cyclenext"
 ]
+#+end_src
 
+*** workspaces 1-10 with home row
+#+begin_src nix :tangle default.nix
 ++ (
   builtins.concatLists (builtins.genList ( i:
       let
@@ -233,7 +352,9 @@ bind =
     ) 9
   )
 )
-
+#+end_src
+*** Tangier-Carthage-bind
+#+begin_src nix :tangle yes
 ++ (if osConfig.networking.hostName == "tangier" then
   [
   "$mod, Delete, exec, pkill rofi || rofi_power"
@@ -256,7 +377,18 @@ bind =
 
     "$mod $cl, D, focuswindow, class:^(emacs)$"
   ]);
+#+end_src
+** bindm/c ( mouse binding )
+|--------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------|
+| Name         | Description               | Params                                                                                                                                   |
+|--------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------|
+| movewindow   | moves the active window   | none                                                                                                                                     |
+| resizewindow | resizes the active window | 1 - resize and keep window aspect ratio, 2 - resize and ignore keepaspectratio window rule/prop, none or anything else for normal resize |
+|--------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------|
+LMB -> 272
+RMB -> 273
 
+#+begin_src nix :tangle default.nix
 #mouse binds have one less arg
 bindm = [
   "$mod , mouse:272, movewindow"
@@ -267,7 +399,19 @@ bindm = [
 bindc = [
   "ALT, mouse:272, togglefloating"
 ];
+#+end_src
 
+** bindel laptop | pc
+#+begin_src nix :tangle no
+bindel =
+  if osConfig.networking.hostName == "tangier" then
+    import ./laptop_bindings.nix
+  else
+    import ./pc_bindings.nix;
+#+end_src
+
+** bindl
+#+begin_src nix :tangle default.nix
 bindel =
   [
     #-----------------------PLAY/PAUSE------------------#
@@ -294,7 +438,12 @@ bindel =
     ", F6, execr, playerctl previous"
     ", F7, execr, pause_play"
     ] else []);
+#+end_src
 
+** binde
+[[file:~/Shibuya/modules/home/hyprland-helper/scripts/gaps.nix][The gaps script]]
+
+#+begin_src nix :tangle default.nix
 binde =
   [# Date
     "$mod, Prior, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
@@ -323,3 +472,43 @@ binde =
 };
  };
 }
+#+end_src
+** notes
+*** multiple binds to one key
+# to switch between windows in a floating workspace
+bind = SUPER, Tab, cyclenext,           # change focus to another window
+bind = SUPER, Tab, bringactivetotop,    # bring it to the top
+
+*** bind flags
+|------+-----------------------------------------------+------------------------------------------------------------------------------------------------|
+| flag | use case                                      | extra                                                                                          |
+|------+-----------------------------------------------+------------------------------------------------------------------------------------------------|
+| l    | locked                                        | will aso when when an input inhibitor is active. eg lockscreen                                 |
+| r    | release                                       | trigger on release of a key                                                                    |
+| o    | longPress                                     | trigger on longpress                                                                           |
+| e    | repeat                                        | repeat when held                                                                               |
+| n    | non-consuming                                 | key/mouse events will be passed to the active window in addition to triggering the dispatcher. |
+| m    | mouse                                         |                                                                                                |
+| t    | transparent                                   | cannot be shadowed by other binds                                                              |
+| i    | ignore mods                                   | will ignore modifiers                                                                          |
+| s    | seperate                                      | will arbitrarily combine keys between each mod/key, see [Keysym combos](#keysym-combos) above. |
+| d    | has description                               |                                                                                                |
+| p    | bypass the app's requests to inhibit keybinds |                                                                                                |
+|      |                                               |                                                                                                |
+|------+-----------------------------------------------+------------------------------------------------------------------------------------------------|
+=c= -> click, will trigger on release of a key or button as long as the mouse cursor stays inside binds:drag_threshold.
+=g= -> drag, will trigger on release of a key or button as long as the mouse cursor moves outside binds:drag_threshold.
+
+*** Description to keybindings
+You can describe your keybind with the description flag. Your description always goes in front of the dispatcher and should never contain the character ,!
+
+bindd = MODS, key, description, dispatcher, params
+
+for example,
+
+#+begin_quote
+bindd = SUPER, Q, Open my favourite terminal, exec, kitty
+#+end_quote
+
+If you want to access your description you can use hyprctl binds. For more information have a look at Using Hyprctl.
+

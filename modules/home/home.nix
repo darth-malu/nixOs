@@ -1,14 +1,14 @@
+{ lib, ... }:
 {
   imports = [
     ./xdg
     ./sessionVariables.nix
-    ./pkgs
+    # ./pkgs
     ./programs
     ./services
   ];
 
   programs.home-manager.enable = true; # Let Home Manager install and manage itself.
-
   home = {
     username = "malu";
     #groupname = "darth";

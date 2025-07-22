@@ -1,9 +1,32 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  osConfig,
+  ...
+}:
 
 {
 
-  programs = {
+  imports = [
+    ./yt-dlp
+    ./qutebrowser
+    ./soundStuff
+    ./mpv
+    ./git.nix
+    ./yazi
+    ./shell
+    ./hyprland
+    ./textEditor
+    ./kdeconnect.nix
+    inputs.nyaa.homeManagerModule
+    ./pkgs.nix
+  ];
 
+  homeHyprland.enable = lib.mkIf osConfig.programs.hyprland.enable true;
+
+  programs = {
+    home-manager.enable = true; # Let Home Manager install and manage itself.
     # eza = {
     #   enable = true;
     # };

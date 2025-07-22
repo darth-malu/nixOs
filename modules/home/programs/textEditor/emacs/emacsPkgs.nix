@@ -52,7 +52,7 @@ in
     mu # mu4e
     # micromamba
     # conda
-    qtcreator
+    # qtcreator
     (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [
         # jupyter-core
@@ -62,7 +62,7 @@ in
         # pytube
         pytubefix
         pandas
-        numpy
+        # numpy
         seaborn
         matplotlib
         tkinter

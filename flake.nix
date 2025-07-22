@@ -2,7 +2,8 @@
   description = "Kenyan Tinkerer makes a flake -- 🫥";
   inputs = {
 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     yazi.url = "github:sxyazi/yazi";
 
@@ -13,8 +14,13 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager-unstable = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -56,7 +62,7 @@
 
   };
 
-  outputs = inputs@{nixpkgs, home-manager, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
+  outputs = inputs@{nixpkgs, nixpkgs-unstable, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 
   let
     system = "x86_64-linux"; # system = builtins.currentSystem;??
@@ -66,28 +72,23 @@
     #     modules = [ ./modules/nvf];
     # };
 
-    # pkgs = nixpkgs.legacyPackages.${system};
-    lib = nixpkgs.lib;
-    pkgs = import nixpkgs { # using nixpkgs.allw for nixos-pkgs
+    pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+    home = inputs.home-manager;
+    home-unstable = inputs.home-manager-unstable;
+    pkgs = import nixpkgs {
       inherit  system;
       config = {
-        allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+        allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
           "discord"
           "google-chrome"
           "bluemail"
           "ventoy"
           "spotify"
-          # "obsidian"
           "wpsoffice"
           "warp-terminal"
           "windows10-icons"
-          # "whatsapp-emoji-linux"
           "aspell-dict-en-science"
           "davinci-resolve"
-          # "steam"
-          # "steam-original"
-          # "steam-unwrapped"
-          # "steam-run"
           "youtube-upnext"
           "evafast"
           "android-studio-stable"
@@ -95,7 +96,6 @@
         ];
         permittedInsecurePackages = [
           "ventoy-1.1.05"
-          "broadcom-sta-6.30.223.271-57-6.12.38"
         ];
       };
     };
@@ -104,21 +104,22 @@
     # packages.${system}.my-neovim = neovimConf.neovim; # NVF
 
 nixosConfigurations = {
-  carthage = nixpkgs.lib.nixosSystem {
+  carthage = nixpkgs-unstable.lib.nixosSystem {
     inherit system;
-    specialArgs = { inherit inputs system; };
+    specialArgs = { inherit pkgs-unstable inputs system; };
 
 modules = [
   ./hosts/carthage
   # {environment.systemPackages = [neovimConf.neovim];}
 
-  home-manager.nixosModules.home-manager {
+  # home-manager.nixosModules.home-manager {
+  home-unstable.nixosModules.home-manager {
     home-manager = {
       verbose = true;
       backupFileExtension = "home_bak";
       useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
       useUserPackages = false; # if false ... uses nix-profile for home apps
-      extraSpecialArgs = { inherit inputs pkgs system; };
+      extraSpecialArgs = { inherit pkgs pkgs-unstable inputs system; };
       users.malu = import ./modules/home/home.nix;
     };
   }
@@ -126,26 +127,59 @@ modules = [
 ];  # modules
  };  # carthage
 
-  tangier = nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = { inherit inputs system; };
-      modules = [
-        ./hosts/tangier
-        # inputs.quickshell.packages.${system}.default
-        # {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
-        home-manager.nixosModules.home-manager {
-          home-manager = {
-            verbose = true;
-            backupFileExtension = "home_backup";
-            users.malu = import ./modules/home/home.nix;
-            useGlobalPkgs = true; # dont use private instance of pkgs which is the default
-            useUserPackages = false; # if false:: ... uses nix-profile for home apps
-            extraSpecialArgs = { inherit inputs pkgs system; };
-          };
-        }
-      ];
-    };
+tangier = nixpkgs-unstable.lib.nixosSystem {
+  inherit system;
+  specialArgs = { inherit pkgs-unstable inputs system; };
+  modules = [
+    ./hosts/tangier
+    # inputs.quickshell.packages.${system}.default
+    # {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
+    home-unstable.nixosModules.home-manager {
+      home-manager = {
+        verbose = true;
+        backupFileExtension = "home_backup";
+        users.malu = import ./modules/home/home.nix;
+        useGlobalPkgs = true; # dont use private instance of pkgs which is the default
+        useUserPackages = false; # if false:: ... uses nix-profile for home apps
+        extraSpecialArgs = { inherit pkgs-unstable inputs system; };
+      };
+    }
+  ];
+};
 
-    }; # end of nixosConfigurations
+}; #End of NixConfigurations
+
+  devShells.${system}.default = pkgs.mkShell {
+    buildInputs = with pkgs; [
+      # numpy
+        (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
+          # pip
+          # numpy
+          adblock
+        ]))
+    ];
+
+    shellHook = ''
+      echo "$USER:: welcome to your dev env lul 🧊"
+    '';
+
+    # packages = [
+        #inputs.python-nixpkgs.legacyPackages.${system}.python313
+    #     (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
+    #     pip
+    #     ]))
+    # ];
+    # env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+    #   pkgs.stdenv.cc.cc.lib
+    #   pkgs.libz
+    # ];
+    # shellHook = ''
+    #     if [ ! -d .venv ]; then
+    #         python -m venv .venv
+    #     fi
+    #     source .venv/bin/activate
+    # '';
+  };
+
   };   # end of outputs
 }    # EOF

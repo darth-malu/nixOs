@@ -1,4 +1,5 @@
 #+auto_tangle: t
+#+startup: indent content
 
 * header, start
 #+begin_src nix :tangle default.nix

@@ -9,7 +9,6 @@
     uid = 1000;
     homeMode = "755";
     description = "Darth Malu"; # appears as kde user
-    #shell = [ pkgs.zsh pkgs.nushell ];
     shell = pkgs.bash;
     #useDefaultShell = true;
     extraGroups = [
@@ -19,7 +18,6 @@
       "networkmanager" # allow access to the NetworkManager daemon and be able to configure and add new networks
       #"video" #backlight control
       #"audio"
-
       # android
       "adbusers" # grand user access to Android Debug Bridge
       "kvm"
@@ -40,5 +38,5 @@
   users.groups = {
     darth.gid = 1000; # instantiate group darth #TODO: see groups id range implications
   };
-
+  programs.command-not-found.enable = false;
 }

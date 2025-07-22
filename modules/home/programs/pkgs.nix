@@ -1,31 +1,6 @@
-{
-  pkgs,
-  lib,
-  config,
-  osConfig,
-  inputs,
-  system,
-  ...
-}:
+{ pkgs }:
 
 {
-  imports = [
-    ./yt-dlp
-    ./qutebrowser
-    ./soundStuff
-    ./mpv
-    ./git.nix
-    ./yazi
-    ./shell
-    ./hyprland
-    ./textEditor
-    ./kdeconnect.nix
-    inputs.nyaa.homeManagerModule
-    ../programs
-  ];
-
-  homeHyprland.enable = lib.mkIf osConfig.programs.hyprland.enable true;
-
   home.packages =
     with pkgs;
     [
@@ -145,6 +120,7 @@
         with pkgs;
         [
           gimp
+          darktable
           obs-studio
           obs-cli
           ffmpeg-full # full vs vanilla?

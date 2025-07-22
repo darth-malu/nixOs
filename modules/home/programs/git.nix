@@ -1,7 +1,7 @@
 {
   programs.git = {
     enable = true;
-    userName = "darth-malu"; # darth-malu
+    userName = "darth-malu";
     userEmail = "darth-malu@github.com";
     ignores = [
       "*.swp"

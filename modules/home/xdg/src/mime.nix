@@ -26,13 +26,13 @@
     ];
 
     "text/pdf" = [
-      "emacsclient.desktop"
       "zathura.desktop"
+      "emacsclient.desktop"
     ];
 
     "application/pdf" = [
-      "emacsclient.desktop"
       "org.pwmt.zathura.desktop"
+      "emacsclient.desktop"
     ];
 
     "text/x-script.python;" = [ "emacsclient.desktop" ];

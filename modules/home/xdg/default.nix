@@ -25,7 +25,7 @@
       };
     };
     autostart = {
-      enable = lib.mkIf (osConfig.networking.hostName == "carthage") true;
+      enable = lib.mkIf (osConfig.networking.hostName == "carthage") false;
       readOnly = true; # Make XDG_CONFIG_HOME/autostart a symlink to a readonly directory so that programs cannot install arbitrary autostart services.
       entries = [
         "${pkgs.qbittorrent}/share/applications/org.qbittorrent.qBittorrent.desktop"

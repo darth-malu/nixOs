@@ -23,18 +23,18 @@
       "$emacs" = "uwsm app -s a -- emacsclient -c";
       # "$DP_MON"="`hyprctl monitors | awk '/^Monitor DP/ {print $2; exit}'`";
 
-# "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; width : 1000px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
-# "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; fullscreen: false; width : 1000px;}' -theme-str 'entry {placeholder: \"🔎 search files ...\";}' -theme-str 'element-icon {size: 2.5em;horizontal-align: 0.5;vertical-align: 0.5;}'";
-# "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 750px; fullscreen: false; width : 1400px;}' -theme-str 'listview {fixed-columns: true; flow: horizontal; columns: 4; lines: 5;}' -theme-str 'element-text {horizontal-align: 0.5;vertical-align: 0.5;}' -theme-str 'element-icon {size: 2.5em;horizontal-align: 0.5;vertical-align: 0.5;}'";
-"$file_browser_rofi" = "rofi -show filebrowser -filebrowser-command 'xdg-open' -filebrowser-directory '/home/malu' -theme '/home/malu/Shibuya/modules/home/programs/hyprland/keybinds/rofi-themes/fileBrowser.rasi'";
-"$rofi_open_windows" =  "rofi -show window -theme-str 'window {width : 920px;}' -theme-str 'listview {lines:15; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
-# " -theme-str 'element {background-image: linear-gradient(white/5%, white/20%);border-color: lightblue /15%;}'";
-# "$menu_rofi" = "rofi -show drun -run-command \"hyprctl dispatch -- exec [workspace emptym] uwsm app -s a -- {cmd}\"";
-"$menu_rofi" = "rofi -show drun -theme-str 'listview {require-input: true;}'";
-"$emoji_rofi" = "rofi -show emoji";
-"$clip_rofi" = "cliphist list | rofi -dmenu -theme-str 'window {width : 750px;}' -p '' | cliphist decode | wl-copy";
-"$calc_rofi" = "rofi -show calc -p '🪓'";
-# "$obsidian_rofi" = "rofi -show obsidian";
+  # "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; width : 1000px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
+  # "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; fullscreen: false; width : 1000px;}' -theme-str 'entry {placeholder: \"🔎 search files ...\";}' -theme-str 'element-icon {size: 2.5em;horizontal-align: 0.5;vertical-align: 0.5;}'";
+  # "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 750px; fullscreen: false; width : 1400px;}' -theme-str 'listview {fixed-columns: true; flow: horizontal; columns: 4; lines: 5;}' -theme-str 'element-text {horizontal-align: 0.5;vertical-align: 0.5;}' -theme-str 'element-icon {size: 2.5em;horizontal-align: 0.5;vertical-align: 0.5;}'";
+  "$file_browser_rofi" = "rofi -show filebrowser -filebrowser-command 'xdg-open' -filebrowser-directory '/home/malu' -theme '/home/malu/Shibuya/modules/home/programs/hyprland/keybinds/rofi-themes/fileBrowser.rasi'";
+  "$rofi_open_windows" =  "rofi -show window -theme-str 'window {width : 920px;}' -theme-str 'listview {lines:15; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
+  # " -theme-str 'element {background-image: linear-gradient(white/5%, white/20%);border-color: lightblue /15%;}'";
+  # "$menu_rofi" = "rofi -show drun -run-command \"hyprctl dispatch -- exec [workspace emptym] uwsm app -s a -- {cmd}\"";
+  "$menu_rofi" = "rofi -show drun -theme-str 'listview {require-input: true;}'";
+  "$emoji_rofi" = "rofi -show emoji";
+  "$clip_rofi" = "cliphist list | rofi -dmenu -theme-str 'window {width : 750px;}' -p '' | cliphist decode | wl-copy";
+  "$calc_rofi" = "rofi -show calc -p '🪓' -theme-str 'listview {require-input: true;}'";
+  # "$obsidian_rofi" = "rofi -show obsidian";
 
 bindr = [
 
@@ -46,7 +46,7 @@ bindr = [
 "$mod $al, C, exec, hyprpicker -an"
 "$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""
 
-  "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
+  # "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
 
 # ", Print, exec, grimblast --cursor --notify copysave output"
   ", Print, exec, grimblast --cursor --notify copy output"
@@ -105,12 +105,10 @@ bind =
 "$al ,F4, killactive"
 "$mod, mouse:275, killactive,"
 
-# Workspaces
-  "$al, KP_Enter,workspace ,emptym"
+  # Workspaces
+  "$mod $cl, Return , workspace, emptym"
   "$mod $sl, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
   "$mod, v, togglefloating"
-  # "$mod, v, exec, resizeaactive exact 80% 80%"
-  # "$mod, v, exec, centerwindow"
 
   "$mod, KP_Divide, togglesplit" # dwindle
   "$mod, KP_Multiply, pseudo"

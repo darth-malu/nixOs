@@ -21,6 +21,7 @@
     ./kdeconnect.nix
     inputs.nyaa.homeManagerModule
     ./pkgs.nix
+    ./gpg.nix
   ];
 
   homeHyprland.enable = lib.mkIf osConfig.programs.hyprland.enable true;

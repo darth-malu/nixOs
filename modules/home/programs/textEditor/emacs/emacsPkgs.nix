@@ -34,10 +34,37 @@ in
       # lsp-pyright
       # emacs-all-the-icons-fonts
     ];
-  # overrides = self: super: rec {
-  #   haskell-mode = self.melpaPackages.haskell-mode;
-  #     # ...
-  #   };
+
+  programs.mbsync = {
+    enable = true;
+    extraConfig = ''
+      IMAPAccount gmail
+      Host imap.gmail.com
+      User justinmalu@gmail.com
+      PassCmd "cat ~/Documents/gog.txt"
+      SSLType IMAPS
+      CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+      IMAPStore gmail-remote
+      Account gmail
+
+      MaildirStore gmail-local
+      Subfolders Verbatim
+      Path ~/Mail/
+      Inbox ~/Mail/Inbox
+
+      # With mbsync 1.4.0 and later: Use 'Far' instead of 'Master', and
+      # 'Near' instead of 'Slave'.
+      Channel gmail
+      Far :gmail-remote:
+      Near :gmail-local:
+      Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" "[Gmail]/Trash"
+      Create Both
+      SyncState *
+    '';
+    groups = {
+    };
+  };
 
   home.packages = with pkgs; [
     # prettier
@@ -48,7 +75,12 @@ in
     offlineimap # for mu4e
     libtool
     shellcheck
+
+    # c#
     csharpier # c# formatter
+    mono
+    csharprepl
+
     mu # mu4e
     # micromamba
     # conda
@@ -80,7 +112,7 @@ in
         grip
       ]
     ))
-    # cmake
+    cmake # vterm
     # gnumake
     ## Module dependencies
     # :email mu4e
@@ -124,6 +156,7 @@ in
     # export dep
     wkhtmltopdf
     groff # ms-pdf export
+    ghostscript
 
     nodePackages.js-beautify # js/css/html format
     stylelint # css linter

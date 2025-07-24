@@ -17,6 +17,7 @@
       # kdePackages.konsole
       duf
       ncdu
+      libsecret
       # superfile # kinda cool but dont need
       #testdisk # also installs photorec
       # testdisk-qt
@@ -98,6 +99,7 @@
       # vscodium
       # jetbrains.rider # c#
       dotnet-sdk
+      # dotnet-sdk_9
       # dotnet-repl
 
       # icons

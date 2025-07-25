@@ -190,6 +190,8 @@ gapless-audio = true; # no, yes, weak:: #Try to play consecutive audio files wit
 border = false; # for mordernx etc
 embeddedfonts = true;
 screenshot-format = "png"; # jpeg, png, webp, avif, jxl
+idle = true;
+force-window = true;
 # dither = true; #   Can help reduce banding artifacts, especially in 8-bit content.
 
 }; # end of config

@@ -106,7 +106,7 @@ bind =
 "$mod, mouse:275, killactive,"
 
   # Workspaces
-  "$mod $cl, Return , workspace, emptym"
+  "$mod $al, Return , workspace, emptym"
   "$mod $sl, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
   "$mod, v, togglefloating"
 
@@ -116,6 +116,8 @@ bind =
 # "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
 # "$mod $cl, D, focuswindow, class:^(emacs)$"
 # "$mod $cl, D, focuswindow, initialTitle:(.*)(Doom Emacs)$"
+
+"$mod $cl $sl, D, focuswindow, class:^(discord)$"
 
 "$mod $cl, Y, focuswindow, title:^(Yazi)(.*)$"
   # "$mod , up, focuswindow, class:^(Emacs)$"
@@ -130,9 +132,9 @@ bind =
 "$mod $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 # "$mod , left, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 
-# "$mod $cl, KP_Left, focuswindow, class:^(google-chrome)$"
 "$mod $cl, C, focuswindow, class:^(google-chrome)$"
-# "$mod ,right, focuswindow, class:^(google-chrome)$"
+
+"$mod $cl, Return, focuswindow, class:^(kitty)$"
 
 "$mod $cl, m, focuswindow, class:^(mpv)$"
 # "$mod , down, focuswindow, class:^(mpv)$"
@@ -297,9 +299,11 @@ binde =
   [# Date
     "$mod, Prior, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
     "$mod $sl, Prior, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
+
+    "$mod, backslash, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
+    "$mod $sl, backslash, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
   ]
   ++[
-    #dunst pop
     "$mod $sl,i,execr, songart"
     ", Pause, execr, songart"
   ]++

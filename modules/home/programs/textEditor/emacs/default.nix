@@ -2,9 +2,13 @@
 {
   imports = [
     ./emacsPkgs.nix
+    # ./mbsync.nix
+    ./mbsync_edmundmiller.nix
   ];
 
   config = {
+    emacs-mail.enable = true;
+
     programs.emacs = {
       enable = true;
       package = if osConfig.networking.hostName == "tangier" then pkgs.emacs else pkgs.emacs-pgtk; # emacs, emacs-gtk, emacs-nox, emacs-pgtk
@@ -16,22 +20,23 @@
 
     services.emacs = {
       enable = true; # emacs daemon
-      startWithUserSession = if osConfig.networking.hostName == "tangier" then false else true; # whether to launch Emacs servicee with the systemd session. boolean or "graphical" (default.target::) #FIXME high cpu usage tangier
-      defaultEditor = true;
+      # whether to launch Emacs service with the systemd user session. "graphical" -> graphical-session.target ( if true -> default.target::)
+      # startWithUserSession = if osConfig.networking.hostName == "tangier" then false else true;
+      startWithUserSession = if osConfig.networking.hostName == "tangier" then false else "graphical";
+      # defaultEditor = false; # $EDITOR
       socketActivation.enable = true;
       client = {
         # Whether to enable systemd socket activation for the Emacs service. # TODO see if conflicting with startWithUSerSession
         enable = true; # false::, generation of Emacs client desktop file.
         arguments = [
-          # "-r" # --reuse-frame (reuse frame if exists, otherwise create a new frame) - --create-frame/-c
-          "-nw"
+          "-c" # -r --reuse-frame (reuse frame if exists, otherwise create a new frame) - --create-frame/-c
+          # "-nw"
           # "-a 'emacs'"
         ];
       };
-
-      # package =;
-      # extraOptions = ''
-      # '';
+      extraOptions = [
+        "-r"
+      ];
     };
   };
 }

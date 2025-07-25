@@ -1,0 +1,31 @@
+{ inputs, config, ... }:
+{
+  imports = [
+    inputs.nyaa.homeManagerModule
+  ];
+  #https://github.com/Beastwick18/nyaa/wiki/General-Configuration
+  programs.nyaa = {
+    enable = true;
+    # theme = "Dracula"; # Dracula, Gruvbox, Catppuccin Macchiato, Default - also user themes
+    # default_source = "Nyaa"; # Nyaa:: , TorrentGalaxy, Sukebei
+    download_client = "qBittorrent";
+    # timeout = 30; # request timeout for sources and clients (measured in seconds)
+    # cursor_padding = 4; # cursor padding for input fields
+    scroll_padding = 6; # scroll padding for results table
+    # client.qbittorent = {
+    #   base_url = "http://localhost:8080";
+    #   username = "admin";
+    #   password = "admin1234";
+    #   use_magnet = true;
+    #   sequential_download = true;
+    #   prioritize_first_last_pieces = true;
+    #   download_dir = "${config.home.homeDirectory}/Videos/Anime/";
+    # };
+    # notifications = {
+    #   position = "TopRight";
+    #   duration = 3.0;
+    #   max_width = 75;
+    #   animation_speed = 4.0;
+    # };
+  };
+}

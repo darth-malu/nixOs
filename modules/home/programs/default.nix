@@ -3,6 +3,7 @@
   inputs,
   lib,
   osConfig,
+  config,
   ...
 }:
 
@@ -18,10 +19,11 @@
     ./shell
     ./hyprland
     ./textEditor
-    ./kdeconnect.nix
-    inputs.nyaa.homeManagerModule
+    # ./kdeconnect.nix
     ./pkgs.nix
     ./gpg.nix
+    ./nyaa.nix
+    ./vim.nix
   ];
 
   homeHyprland.enable = lib.mkIf osConfig.programs.hyprland.enable true;
@@ -60,7 +62,6 @@
 
     lsd = import ./misc/lsd.nix;
 
-    nyaa = import ./misc/nyaa.nix;
     # nix-index.enable = false;
     # nh.enable = true;
 

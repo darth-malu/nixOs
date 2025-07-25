@@ -12,7 +12,7 @@
 
   config = lib.mkIf config.waybar.enable {
     programs.waybar = {
-      enable = lib.mkIf osConfig.programs.hyprland.enable true;
+      enable = true;
       # systemd = {
       # enable = true; # clashes with uwsm?
       # target = "graphical-session.target"; # config.wayland.systemd.target::
@@ -21,10 +21,8 @@
         (
           if osConfig.networking.hostName == "carthage" then
             import ./css_waybar-carthage.nix
-          else if osConfig.networking.hostName == "tangier" then
-            import ./css_waybar-tangier.nix
           else
-            import ./css_waybar-carthage.nix
+            import ./css_waybar-tangier.nix
         )
         + import ./css_waybar-common.nix;
       settings = {
@@ -37,10 +35,8 @@
                 "HDMI-A-1"
                 "DP-3"
               ]
-            else if osConfig.networking.hostName == "tangier" then
-              [ "eDP-1" ]
             else
-              [ ];
+              [ "eDP-1" ];
           layer = "bottom";
           modules-center = [ ];
           modules-left = [

@@ -38,15 +38,13 @@ in
     mu
     # prettier
     prettierd # prettier as a daemon, for improved speed
-    gnumake # for compiling vterm
+    # gnumake # for compiling vterm
     xclip
     tex
-    # offlineimap # for mu4e
     libtool
     shellcheck
     libclang # java
 
-    # c#
     csharpier # c# formatter
     csharprepl # coolest repl
 
@@ -76,8 +74,7 @@ in
         grip
       ]
     ))
-    # cmake # vterm
-    # gnumake
+    cmake # vterm
     ## Module dependencies
     # Because emacs expects the dictionaries to be on the same directory as aspell, they won't be picked up. To fix it install the aspellWithDicts package, specifying the dictionaries you want to use:
     (aspellWithDicts (
@@ -90,7 +87,6 @@ in
     hunspell
     wordnet # +dictionary
     sqlite # org-roam
-    # :tools editorconfig
     editorconfig-core-c # per-project style config
     # :lang nix
     age

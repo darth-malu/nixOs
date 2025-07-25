@@ -1,7 +1,8 @@
 {
   home.sessionVariables = {
-    EDITOR = "emacsclient -nw";
-    VISUAL = "emacs -r";
+    # EDITOR = "emacsclient -nw";
+    EDITOR = "vim";
+    # VISUAL = "emacs -r";
     #MANPAGER="nvim +Man!";
     #MANWIDTH=999;
     LSP_USE_PLISTS = "true"; # for emacs? TODO see how to have this inside emacs itself

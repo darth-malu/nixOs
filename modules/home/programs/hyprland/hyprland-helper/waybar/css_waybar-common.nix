@@ -5,14 +5,14 @@
       min-height: 0;
       /*min-width: 0px;*/
       font-weight: bold;
-      margin: 0;
+      margin: 0px;
       border: none;
       border-radius: 0;
   }
 
   tooltip {
       font-size: 12px;
-      padding: 0;
+      padding: 0px;
       background: #183D3D;
       /*margin: 6px 4px 6px 4px;*/
       border-radius: 10px;
@@ -75,7 +75,7 @@
       /*box-shadow: inset 0 -3px transparent;*/
       /* Avoid rounded borders under each button name */
       border: none;
-      border-radius: 0;
+      border-radius: 0px;
   }
 
   button:hover {

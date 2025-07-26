@@ -1,0 +1,23 @@
+#+title: Udev
+#+auto_tangle: t
+
+* Bread On Penguin 🐧
+** UDEV
+ACTION=="add" "remove"
+KERNEL=="sd[f-h][0-9]
+ENV{ID_FS_UUID}=="uid"
+RUN==
+** config
+#+begin_src nix :tangle default.nix
+{
+  services.udev = {
+    enable = true;
+    extraRules = ''
+      ACTION=="add",
+
+    '';
+
+  };
+}
+
+#+end_src

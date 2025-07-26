@@ -5,6 +5,8 @@
     ./enVars.nix
     ../USIU
     ./systemd
+    ./programs
+    ./core
     # ./overlays.nix
   ];
 }

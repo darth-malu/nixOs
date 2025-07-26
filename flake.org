@@ -52,6 +52,14 @@ https://nixos.wiki/wiki/Nix_channels
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 #+end_src
+** plasma-manager
+#+begin_src nix :tangle flake.nix
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+#+end_src
 
 ** nvf - neovim
 #+begin_src nix :tangle no
@@ -175,6 +183,10 @@ nixosConfigurations = {
 modules = [
   ./hosts/carthage
   # {environment.systemPackages = [neovimConf.neovim];}
+#+end_src
+**** plasma-manger
+#+begin_src nix :tangle flake.nix
+  # inputs.plasma-manager.homeManagerModules.plasma-manager
 #+end_src
 
 **** Home-manager

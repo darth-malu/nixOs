@@ -119,7 +119,7 @@
       set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
       " Keybindds
-      nnoremap <leader>\ :nohlsearch<CR>
+      " nnoremap <leader>\ :nohlsearch<CR>
     '';
   };
 }

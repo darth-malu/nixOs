@@ -23,6 +23,12 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland.url = "github:hyprwm/Hyprland"; # with cachix
     # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
@@ -110,6 +116,8 @@ nixosConfigurations = {
 modules = [
   ./hosts/carthage
   # {environment.systemPackages = [neovimConf.neovim];}
+
+  # inputs.plasma-manager.homeManagerModules.plasma-manager
 
   # home-manager.nixosModules.home-manager {
   home-unstable.nixosModules.home-manager {

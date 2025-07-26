@@ -24,6 +24,7 @@
     ./gpg.nix
     ./nyaa.nix
     ./vim.nix
+    # ./kde
   ];
 
   homeHyprland.enable = lib.mkIf osConfig.programs.hyprland.enable true;

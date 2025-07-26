@@ -39,7 +39,6 @@
       #};
       #};
     };
-    # udev.enable = true; # true::
     # dbus = {
     #   implementation = lib.mkDefault "broker"; #"broker" , "dbus"
     # };

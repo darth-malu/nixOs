@@ -92,7 +92,6 @@
           "youtube-upnext"
           "evafast"
           "android-studio-stable"
-          # "broadcom-sta"
         ];
         permittedInsecurePackages = [
           "ventoy-1.1.05"

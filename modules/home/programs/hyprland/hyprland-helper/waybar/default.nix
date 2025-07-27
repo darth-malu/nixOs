@@ -47,53 +47,52 @@
             "hyprland/workspaces"
             "hyprland/window" # NOTE needed for transparency effects
           ];
-          modules-right =
-            [
-              # common front - since its sequential layering
-              "group/resize_network"
-            ]
-            ++ (
-              if osConfig.networking.hostName == "tangier" then
-                [
-                  # tangier
-                  "group/disk_mpris"
-                  "group/ssd-temp_memory"
-                  "group/cpu_freq"
-                  "group/temp_wireplumber"
-                  "battery"
-                  # "backlight"
-                  "group/backlight_idle"
-                ]
-              else if osConfig.networking.hostName == "carthage" then
-                [
-                  "group/gpu_mpris"
-                  "group/gpu_temp_network_block"
-                  "group/all_disks"
-                  #"custom/nvme_temp"
-                  "group/nvme-temp_memory"
-                  "group/cpu_block"
-                  "group/temp_wireplumber"
-                ]
-              else
-                [ ]
-            )
-            ++ [
-              # common rear
-              "group/tray_clock"
-              # "idle_inhibitor"
-              # "group/power-profiles-idle-inhibitor"
-              # "power-profiles-daemon"
-            ]
-            ++ (
-              if osConfig.networking.hostName == "carthage" then
-                [
-                  "group/power-profiles-idle-inhibitor"
-                ]
-              else
-                [
-                  "power-profiles-daemon"
-                ]
-            );
+          modules-right = [
+            # common front - since its sequential layering
+            "group/resize_network"
+          ]
+          ++ (
+            if osConfig.networking.hostName == "tangier" then
+              [
+                # tangier
+                "group/disk_mpris"
+                "group/ssd-temp_memory"
+                "group/cpu_freq"
+                "group/temp_wireplumber"
+                "battery"
+                # "backlight"
+                "group/backlight_idle"
+              ]
+            else if osConfig.networking.hostName == "carthage" then
+              [
+                "group/gpu_mpris"
+                "group/gpu_temp_network_block"
+                "group/all_disks"
+                #"custom/nvme_temp"
+                "group/nvme-temp_memory"
+                "group/cpu_block"
+                "group/temp_wireplumber"
+              ]
+            else
+              [ ]
+          )
+          ++ [
+            # common rear
+            "group/tray_clock"
+            # "idle_inhibitor"
+            # "group/power-profiles-idle-inhibitor"
+            # "power-profiles-daemon"
+          ]
+          ++ (
+            if osConfig.networking.hostName == "carthage" then
+              [
+                "group/power-profiles-idle-inhibitor"
+              ]
+            else
+              [
+                "power-profiles-daemon"
+              ]
+          );
 
           "hyprland/workspaces" = {
             format = "{name}";
@@ -147,7 +146,7 @@
                 "/sys/class/hwmon/hwmon4/temp1_input"
               else
                 "/sys/class/hwmon/hwmon1/temp1_input"; # carthage? TODO: write script that checks name
-            critical-threshold = 80;
+            critical-threshold = if osConfig.networking.hostName == "tangier" then 90 else 80;
             # format-critical = "{temperatureC}° {icon}";
             # format-critical = "{temperatureC}° {icon}";
             # interval = 8;

@@ -64,7 +64,7 @@ let
         # Default or pc settings here
         wayland.windowManager.hyprland.settings = {
           monitor = [
-            "eDP-1,highres,auto,1.333333"
+            "eDP-1,highres,auto,1" # 1.333333
           ];
           xwayland = {
             force_zero_scaling = true;

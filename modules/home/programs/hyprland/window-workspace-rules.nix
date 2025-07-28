@@ -61,6 +61,9 @@
     ];
 
     windowrulev2 = [
+
+      "suppressevent maximize, class:.*"
+
       "noblur,class:^()$,title:^()$" # for chrome weird menus clear border
 
       "noblur,class:^(Xdg-desktop-portal-gtk)$,title:^(All Files)$" # for chrome weird menus clear border
@@ -82,8 +85,8 @@
 
       "workspace emptym, initialClass:emacs, initialTitle:^(.*)(Doom Emacs)$"
       "workspace emptym, initialClass:Emacs, initialTitle:^(.*)(Doom Emacs)$"
+      "workspace emptym, initialClass:Emacs, initialTitle:^(.*)(GNU Emacs at tangier)$"
 
-      "suppressevent maximize, class:.*"
       # "size 70% 70%,title:^(Select)(.*)"
       # "workspace emptym, initialClass:^(zen-alpha)$, initialTitle:^(Zen Browser)$"
 

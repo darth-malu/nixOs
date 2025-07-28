@@ -10,6 +10,8 @@
   home.packages =
     with pkgs;
     [
+      nasm
+      ed
       sway-audio-idle-inhibit
       wev
       # tldr - using emacs one lol

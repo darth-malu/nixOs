@@ -13,10 +13,11 @@
     shellOptions = [
       # prefix with ~ to unset
       "histappend"
-      "checkwinsize"
+      # "checkwinsize" # on default
       "extglob" # extended globbing
       "globstar"
       "checkjobs"
+      "cmdhist" # save multi-line cmd into one line
     ];
     historyFileSize = 100000;
     shellAliases = import ./alias.nix;

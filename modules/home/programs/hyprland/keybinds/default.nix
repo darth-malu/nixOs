@@ -48,7 +48,6 @@ bindr = [
 
   # "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
 
-# ", Print, exec, grimblast --cursor --notify copysave output"
   ", Print, exec, grimblast --cursor --notify copy output"
   "$sl, Print, exec, grimblast --cursor --notify copysave screen"
 

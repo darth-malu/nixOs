@@ -13,7 +13,7 @@
   "ctrl+shift+space=close_surface" # genius
 
   # tabs
-  "alt+right=move_tab:1" #1 -right
+  "alt+right=move_tab:1" # 1 -right
   "alt+left=move_tab:-1" # left -1
   # "ctrl+shift+enter=new_window"
   "ctrl+alt+enter=new_tab"

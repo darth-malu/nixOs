@@ -115,7 +115,6 @@ https://nixos.wiki/wiki/Nix_channels
       inputs.nixpkgs.follows = "nixpkgs";
     };
 #+end_src
-
 ** end inputs
 #+begin_src nix :tangle flake.nix
   };

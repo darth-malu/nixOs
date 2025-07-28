@@ -1,13 +1,6 @@
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-
-{
   imports = [
-    ./services_and_timers.nix
+    ./services+timers
   ];
 
   # systemd.extraConfig = ''DefaultTimeOutStopSec=10s '';

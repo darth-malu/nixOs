@@ -3,12 +3,12 @@
 pkgs.writeShellScriptBin "clr_backup" ''
 
   find_backup() {
-    local backup_pattern="''${1:-*.home_backup}";
-    local files_to_delete="$(${pkgs.fd}/bin/fd -d 3 -t f --glob "$backup_pattern"  $HOME)"
+    local backup_pattern="''${1:-*.home_bak}";
+    local files_to_delete="$(${pkgs.fd}/bin/fd -d 3 -t f --glob "$backup_pattern"  $HOME/.config)"
 
     if [ -n "$files_to_delete" ]; then # -n: true if string > 0
-      printf '%s\n%s\n' 'Files to be deleted are::' "$files_to_delete"
-      read -r -p "Are you sure you want to remove these backups? (Y/n) " response
+      printf '%s\n%s\n' "Files to be deleted are::" "$files_to_delete"
+      read -r -p "Are you sure you want to remove these backups? (Y/n) \n" response
 
       case "$response" in
         [yY]* | "") # match y/Yes/Yeah and blank RET"

@@ -6,6 +6,6 @@
     "f12" = "launch_tab ncmpcpp";
     # "SUPER + f12" = "launch_tab taskwarrior-tui";
     "f11" = "launch_window --location vsplit ncmpcpp";
-    "f5" = "new_window_with_cwd";
+    # "f5" = "new_window_with_cwd";
   };
 }

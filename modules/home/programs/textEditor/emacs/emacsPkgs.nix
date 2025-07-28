@@ -66,6 +66,8 @@ in
         ttkbootstrap # MOVED to Qt😄
         # pandasql
 
+        pyinstaller
+
         #emacs
         weasyprint
         pytest

@@ -43,7 +43,7 @@
         # bash
         ''
            if uwsm check may-start; then
-             exec uwsm start -S hyprland-uwsm.desktop
+             exec uwsm start hyprland-uwsm.desktop
           fi
         ''
       else

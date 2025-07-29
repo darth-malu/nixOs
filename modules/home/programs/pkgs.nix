@@ -1,8 +1,8 @@
 {
-  pkgs,
-  osConfig,
-  inputs,
   config,
+  inputs,
+  osConfig,
+  pkgs,
   ...
 }:
 
@@ -10,8 +10,8 @@
   home.packages =
     with pkgs;
     [
-      nasm
       ed
+      nasm
       sway-audio-idle-inhibit
       wev
       # tldr - using emacs one lol

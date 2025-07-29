@@ -61,6 +61,8 @@ in
         seaborn
         matplotlib
         tkinter
+        nuitka
+        pyinstaller
 
         requests
         ttkbootstrap # MOVED to Qt😄

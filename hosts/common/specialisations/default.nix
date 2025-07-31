@@ -22,7 +22,7 @@ let
     hyprland.enable = lib.mkForce true;
     kde.enable = lib.mkForce false;
     gnome.enable = lib.mkForce false;
-    programs.dconf.enable = true;
+    programs.dconf.enable = true; # TODO: see need
   };
 in
 {

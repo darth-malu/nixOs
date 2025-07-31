@@ -104,6 +104,10 @@
       # dotnet-sdk_9
       # dotnet-repl
 
+      # C
+      libgcc
+      nasm
+
       # icons
       yaru-theme
     ]
@@ -133,6 +137,12 @@
           obs-studio
           obs-cli
           ffmpeg-full # full vs vanilla?
+          #STEAM
+          mangohud
+          lutris
+          bottles
+          heroic
+          protonup-qt # GUI for installing custom Proton versions like GE_Proton
         ]
       else
         [ ffmpeg ]

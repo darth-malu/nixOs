@@ -14,7 +14,7 @@
     programs.waybar = {
       enable = true;
       systemd = {
-        enable = true; # clashes with uwsm?
+        enable = true;
         # target = "graphical-session.target"; # config.wayland.systemd.target::
       };
       style =

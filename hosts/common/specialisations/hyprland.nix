@@ -17,7 +17,7 @@ in
 
   config = lib.mkIf config.hyprland.enable {
     hardware.graphics.package = mesa;
-    system.nixos.tags = [ "Hyprland" ];
+    # system.nixos.tags = [ "Hyprland" ];
     programs = {
       hyprland = {
         # required even with homeManager for system functions -> xdg, session files

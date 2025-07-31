@@ -40,10 +40,9 @@
       # if (osConfig.kde.enable == false) then # INFO: only launch when hyrpland option is enabled
       if (osConfig.kde.enable == false) then
         #loginshell
-        # bash
         ''
            if uwsm check may-start; then
-             exec uwsm start hyprland-uwsm.desktop
+             exec uwsm start -S hyprland-uwsm.desktop
           fi
         ''
       else

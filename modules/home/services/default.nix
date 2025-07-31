@@ -10,7 +10,7 @@
     # kdeconnect.enable = true;
     blueman-applet.enable = lib.mkIf osConfig.programs.hyprland.enable true;
     udiskie = {
-      enable = lib.mkIf osConfig.programs.hyprland.enable true;
+      enable = lib.mkIf osConfig.programs.hyprland.enable false;
       tray = "auto"; # works
       notify = true;
       automount = true; # better?

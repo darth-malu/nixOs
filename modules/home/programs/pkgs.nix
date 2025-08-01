@@ -139,6 +139,9 @@
           bottles
           heroic
           protonup-qt # GUI for installing custom Proton versions like GE_Proton
+          # wine
+          wine64
+          winetricks
         ]
       else
         [ ffmpeg ]

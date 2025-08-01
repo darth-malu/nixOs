@@ -221,6 +221,7 @@
             on-scroll-up = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.05+";
             on-scroll-down = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.05-";
             scroll-step = 5;
+            max-volume = 100;
           };
 
           "tray" = {

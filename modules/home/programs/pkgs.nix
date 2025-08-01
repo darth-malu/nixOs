@@ -79,7 +79,6 @@
       discord
       whatsapp-for-linux
 
-      # lynx # terminal browser pretty fun -> on emacs now
       google-chrome
       # bluemail # TODO move to mu4e
 
@@ -99,10 +98,7 @@
       wpsoffice
       # vscodium-fhs
       # vscodium
-      # jetbrains.rider # c#
       dotnet-sdk
-      # dotnet-sdk_9
-      # dotnet-repl
 
       # C
       libgcc

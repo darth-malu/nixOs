@@ -104,6 +104,13 @@ kb-primary-paste = "Control+V,Shift+Insert";
 kb-secondary-paste = "Control+v,Insert";
 # kb-toggle-case-sensitivity #TODO: assign later
 #+end_src
+*** Remap scroll down
+#+begin_src nix :tangle default.nix
+kb-row-down = "Control+j,Down";
+kb-row-up = "Control+k,Up";
+kb-remove-to-eol = "";
+kb-accept-entry = "KP_Enter,Return";
+#+end_src
 
 *** icons
 #+begin_src nix :tangle default.nix

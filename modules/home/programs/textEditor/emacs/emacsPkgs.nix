@@ -76,6 +76,9 @@ in
         pyflakes
         isort
         grip
+
+        # C
+        clang-tools
       ]
     ))
     cmake # vterm

@@ -26,6 +26,7 @@
       ]
       ++ (with pkgs.nerd-fonts; [
         space-mono
+        menlo-lg
         zed-mono
         daddy-time-mono
         jetbrains-mono

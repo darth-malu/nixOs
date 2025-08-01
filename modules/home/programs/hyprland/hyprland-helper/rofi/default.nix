@@ -63,6 +63,11 @@ kb-primary-paste = "Control+V,Shift+Insert";
 kb-secondary-paste = "Control+v,Insert";
 # kb-toggle-case-sensitivity #TODO: assign later
 
+kb-row-down = "Control+j,Down";
+kb-row-up = "Control+k,Up";
+kb-remove-to-eol = "";
+kb-accept-entry = "KP_Enter,Return";
+
 icon-theme = "Yaru";
 # icon-size = 88;#not working
 

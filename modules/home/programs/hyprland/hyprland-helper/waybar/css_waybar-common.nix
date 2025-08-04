@@ -305,9 +305,9 @@
   }
 
   #wireplumber.muted {
-      background-color: #9d0006;
+      color: #9d0006;
       margin: 3px 3px 3px 3px;
-      padding: 0px 6px 0px 6px;
+      /* padding: 0px 6px 0px 6px; */
       border-radius: 12px;
   }
 

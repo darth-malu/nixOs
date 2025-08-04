@@ -3,6 +3,7 @@
   inputs,
   osConfig,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 
@@ -10,16 +11,67 @@
   home.packages =
     with pkgs;
     [
+      # MISCELLANEOUS
+      # calc
+      # icons
+      # kdePackages.dolphin # FIXME launching shit not working on hyprland
+      # libadwaita
+      # qalculate-qt # #FIXME:for rofi?
+      #aria2#NOTE: learn
+      #rofimoji bemoji
+      dotool
+      kdePackages.konsole
+      libsecret
+      modem-manager-gui
+      modemmanager # saves the day with no internet
+      pastel # color generator
+      ventoy-full # usb imager #woeusb
+      wev
+      yaru-theme
+    ]
+    ++ (with pkgs; [
+      # support
+      # tokei
+      # zip xz unzip p7zip
+      # testing for yazi #
+      # zip
+      # xz
+      # unzip
+      # p7zip
+    ])
+    ++ (with pkgs; [
+      jetbrains.pycharm-community-bin
+      dotnet-sdk
+      libgcc
       ed
       nasm
-      sway-audio-idle-inhibit
-      wev
-      # tldr - using emacs one lol
-      # kdePackages.dolphin # FIXME launching shit not working on hyprland
-      # kdePackages.konsole
+      # vscodium-fhs
+      # vscodium
+    ])
+    ++ (with pkgs; [
+      wpsoffice
+    ])
+    ++ (with pkgs; [
+      # utilities
+      # warp-terminal # insane bloat
+      file # need for yazi mimedetectionetc.
+      lsof # list open files/ports**
+      usbutils # lsusb, usb-devices, usb-view(optional gui)
+      pciutils # lspci
+      util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
+      lm_sensors
+    ])
+    ++ (with pkgs; [
+      # perfomance monitoring
+      mission-center
+      iftop # TODO seems powerful investigate more
+      iotop-c # laggy?
+      # iotop #basic
+      nethogs
+      inxi
+      amdgpu_top
       duf
       ncdu
-      libsecret
       # superfile # kinda cool but dont need
       #testdisk # also installs photorec
       # testdisk-qt
@@ -27,94 +79,34 @@
       # squirreldisk #kinda nice
       # qdiskinfo
       # win-disk-writer
-      #
-      # qalculate-qt # #FIXME:for rofi?
-      dotool
-      # calc
-      #aria2#NOTE: learn
-      qbittorrent
-
-      # tokei
-
-      # zip xz unzip p7zip
-      # testing for yazi #
-      # zip
-      # xz
-      # unzip
-      # p7zip
-
-      #rofimoji bemoji
-      modem-manager-gui
-      modemmanager # saves the day with no internet
-      # taskwarrior3
-      # taskwarrior-tui
-
-      # utilities
-      # warp-terminal # insane bloat
-      file
-      lsof # list open files/ports**
-      usbutils # lsusb, usb-devices, usb-view(optional gui)
-      pciutils # lspci
-      util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
-      lm_sensors
-
-      ventoy-full # usb imager #woeusb
-
-      # perfomance monitoring
-      mission-center
-      iftop
-      iotop-c
-      nethogs
-      inxi
-      amdgpu_top
-
-      # libadwaita
-      pastel # color generator
-
-      trash-cli # for move to trash mpv
-      wf-recorder
-
-      inputs.quickshell.packages.${system}.default
+    ])
+    ++ (with pkgs; [
+      # google-chrome
+      chromium
       telegram-desktop
       discord
       whatsapp-for-linux
-
-      google-chrome
-      # bluemail # TODO move to mu4e
-
-      # Entertainment
-      # lollypop # cantata better
-      mpc-cli
-      # ymuse # rudimentary
-      # smplayer
-      # cantata # old af
-      # youtube-tui # https://siriusmart.github.io/youtube-tui/
-      spotify
-      easyeffects
-
-      # productivity
-      # buku # TODO: test
-      jetbrains.pycharm-community-bin
-      wpsoffice
-      # vscodium-fhs
-      # vscodium
-      dotnet-sdk
-
-      # C
-      libgcc
-      nasm
-
-      # icons
-      yaru-theme
-    ]
+    ])
     ++ (with pkgs; [
-      # creative space
-      #(ffmpeg.override { withXcb = true;  })
+      # cantata # old af
       # davinci-resolve
-      spotify-cli-linux
-      # spotube
-      # kdePackages.kdenlive
       # digikam
+      # lollypop # cantata better
+      # smplayer
+      spotube
+      # ymuse # rudimentary
+      # youtube-tui # https://siriusmart.github.io/youtube-tui/
+      easyeffects
+      helvum
+      mpc-cli
+      nautilus
+      qbittorrent
+      spotify
+      spotify-cli-linux
+      sway-audio-idle-inhibit
+      trash-cli # for move to trash mpv
+      vlc
+      wf-recorder
     ])
     ++ (with pkgs; [
       # NOTE: MANGA stuff
@@ -128,21 +120,32 @@
       if osConfig.networking.hostName == "carthage" then
         with pkgs;
         [
-          gimp
+          # heroic
+          # mastodon
+          # protonup-qt # GUI for installing custom Proton versions like GE_Proton
+          # protonup-rs
+          # steam-run
+          # wine
           darktable
-          obs-studio
-          obs-cli
           ffmpeg-full # full vs vanilla?
-          #STEAM
-          mangohud
-          lutris
+          gimp
+          blender-hip
+          inkscape-with-extensions
+          kdePackages.kdenlive
+          obs-cli
+          obs-studio
+        ]
+        ++ (with pkgs-unstable; [
+          # winetricks
+          davinci-resolve
           bottles
           heroic
-          protonup-qt # GUI for installing custom Proton versions like GE_Proton
-          # wine
+          lutris
+          mangohud
+          protonplus
+          # protonup
           wine64
-          winetricks
-        ]
+        ])
       else
         [ ffmpeg ]
     )
@@ -150,16 +153,15 @@
       if config.homeHyprland.enable then
         with pkgs;
         [
+          # inputs.hyprswitch.packages.x86_64-linux.default
+          cliphist
+          file-roller
           grimblast
           slurp
-          viewnior
-          vlc
-          cliphist
-          nautilus
           sushi
+          viewnior
           yelp
-          # inputs.hyprswitch.packages.x86_64-linux.default
-          file-roller
+          inputs.quickshell.packages.${system}.default
         ]
       else
         [ ]

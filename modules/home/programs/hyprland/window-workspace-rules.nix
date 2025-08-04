@@ -54,6 +54,8 @@
       "center, class:main.py"
       "center, class:Maluware-yt"
       "center, title:Darth-Yt"
+      # "center, class:youtubr"
+      "float, class:youtubr"
       "float, class:main.py"
 
       "workspace emptym, class:mpv"

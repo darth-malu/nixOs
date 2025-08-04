@@ -57,13 +57,14 @@ pkgs.writeShellScriptBin "songart" ''
         printf '%s' "$cover_path"
         ;;
       "title")
-        printf '%b' "$(playerctl -p spotify metadata --format '󰎍    {{title}} \n   {{artist}} \n    {{album}} ')"
+        printf '%b' "$(playerctl -p spotify metadata --format '󰎍    {{title}} \n   {{artist}} \n    {{album}} ')"
         ;;
     esac
   }
 
   mpd_metadata_formatted() {
-    mpc --format '[[󰎍    %title% \n][      %audioformat%] - %position% \n   %artist%  \n    %album%  ]] | [%file%]' current
+    local position=$(mpc | awk '/#/ {print $2}')
+    mpc --format "[[󰎍    %title% \n] [     %audioformat%]  $position\n    %artist%  \n    %album%  ]] | [%file%]" current
   }
 
   dunstify_preview() {

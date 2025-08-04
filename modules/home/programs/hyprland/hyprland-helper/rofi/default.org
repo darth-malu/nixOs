@@ -93,6 +93,11 @@ window-thumbnail = true; # FIXME not working
 window-format = "{w}{c}  .  {t}";
 #+end_src
 
+w: desktop name
+t: title of window
+n: name
+r: role
+c: class
 *** click-to-exit
 #+begin_src nix :tangle default.nix
 click-to-exit = true;

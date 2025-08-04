@@ -168,6 +168,8 @@
               balanced = "☯";
               power-saver = ""; # ☘
             };
+            on-scroll-down = "hyprctl hyprsunset gamma -10";
+            on-scroll-up = "hyprctl hyprsunset gamma +10";
           };
 
           "battery" = {
@@ -214,7 +216,7 @@
           "wireplumber#source" = {
             # TODO: make a script to do this
             node-type = "Audio/Source";
-            format = "{volume}% ";
+            format = "{volume} ";
             on-click-backward = "pwvucontrol";
             format-muted = "";
             on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
@@ -256,7 +258,7 @@
             modules = [
               "custom/gpu"
               "mpris"
-              "mpd"
+              # "mpd"
             ];
           };
 
@@ -511,7 +513,7 @@
           };
           "custom/gpu" = {
             exec = "cat /sys/class/drm/card1/device/gpu_busy_percent";
-            format = " \t{}%  ";
+            format = " \t{}%  ";
             return-type = "";
             interval = 10;
             min-length = 5;
@@ -687,15 +689,16 @@
           };
 
           "network" = {
-            format-wifi = "  {essid} {bandwidthDownBytes}";
-            format-icons = [ ];
-            format-wifi-alt = "  {bandwidthDownBytes}      {bandwidthUpBytes}";
+            format-wifi = "  {essid} {signalStrength} {bandwidthDownBytes}"; # 
+            # format-icons = [ ];
+            format-wifi-alt = "  {bandwidthDownBytes}      {bandwidthUpBytes}";
             format-ethernet = "   {bandwidthDownBytes}       {bandwidthUpBytes}";
             interval = 2;
             format-linked = "{ifname} (No IP) ";
             # format-disconnected = "⚠️  No net ❗";
-            format-disconnected = "⚠ No net ";
+            format-disconnected = "No net ⚠";
             tooltip = false;
+            # format-icons
           };
 
           # "custom/weather" = {

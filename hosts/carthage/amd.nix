@@ -26,8 +26,13 @@
   };
   environment.variables = {
     ROC_ENABLE_PRE_VEGA = "1"; # enable opencl polaris;
-    LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+    # LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib";
   };
-  environment.systemPackages = with pkgs; [ clinfo ]; # open cli verification
-  services.lact.enable = true;
+  environment.systemPackages = with pkgs; [
+    clinfo
+    lact
+  ]; # open cli verification
+  # services.lact.enable = true;  # FIXME does not exist
+  systemd.packages = with pkgs; [ lact ];
+  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 }

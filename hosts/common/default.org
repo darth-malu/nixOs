@@ -21,6 +21,7 @@
 nixpkgs.config = {
   allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "broadcom-sta"
+    "n8n"
     "android-studio-stable"
     "steam-unwrapped"
     "nvidia-x11"

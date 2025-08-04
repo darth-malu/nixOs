@@ -9,11 +9,14 @@
       [
         jetbrains-mono
         font-awesome
-        texlivePackages.nunito # kinda like quicksand
+        texlivePackages.nunito
+        texlivePackages.plex
         inter
         quicksand
         iosevka-comfy.comfy
-        # lato # unneeded?
+        ibm-plex
+        inconsolata
+        lato # unneeded?
         # cascadia-code
         # fira-code
         # fira-math
@@ -25,6 +28,7 @@
         noto-fonts
       ]
       ++ (with pkgs.nerd-fonts; [
+        envy-code-r
         space-mono
         meslo-lg
         zed-mono
@@ -36,11 +40,11 @@
         sauce-code-pro
         lekton
         geist-mono
-        monofur # nice stylistic
-        mononoki # kinda nice style
+        monofur
+        mononoki
         fantasque-sans-mono
         ubuntu-mono
-        symbols-only # for wezterm/terminal in general glyphs, also emacs
+        symbols-only
         # shure-tech-mono
         # agave
         # caskaydia-cove

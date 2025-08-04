@@ -13,36 +13,51 @@
       size = {
         binaryPrefix = "si";
       };
-      color = "blue";
+      # color = "blue";
       # separator = "  ";
       separator = " ";
+      color = {
+        keys = "blue"; # Key color
+        title = "red"; # Title color
+      };
+      bar = {
+        width = 10; # Width of percentage bars
+        charElapsed = "■"; # Character for elapsed portion
+        charTotal = "-"; # Character for total portion
+      };
+      percent = {
+        type = 9; # 1=number, 2=bar, 3=both, 9=colored number
+        color = {
+          green = "green";
+          yellow = "light_yellow";
+          red = "light_red";
+        };
+      };
     };
     modules = [
-      # "os"
       {
-        "type" = "os";
-        "key" = "DISTRO";
-        "keyColor" = "red";
+        type = "os";
+        key = "OS";
+        keyColor = "cyan";
+        format = "{name} {version}";
       }
       {
-        type = "datetime";
-        key = "Date";
-        format = "{1}-{3}-{11}";
+        "type" = "cpu";
+        "format" = "{name} ({cores-physical}C/{cores-logical}T) @ {freq-max}";
       }
-      {
-        type = "datetime";
-        key = "Time";
-        format = "{14}:{17}:{20}";
-      }
-      "break"
+      "gpu"
+      "disk"
+      "de"
+      "wm"
+      # "break"
       "player"
       # "media"
-      # {
-      #   "type" = "media";
-      #   "key" = "NOW PLAYING";
-      #   "format" = "{?artist}{artist} - {?}{title}";
-      #   "keyColor" = "cyan";
-      # }
+      {
+        "type" = "media";
+        "key" = "NOW PLAYING";
+        "format" = "{?artist}{artist} - {?}{title}";
+        "keyColor" = "cyan";
+      }
       # "break"
       {
         "type" = "display";
@@ -51,8 +66,8 @@
         # "format" = "{width}x{height} @ {refresh-rate} Hz - {physical-width}x{physical-height} mm ({inch} inches, {ppi} ppi)";
         "format" = "{width}x{height} @ {refresh-rate} Hz";
       }
-      # "uptime"
-      "packages"
+      "uptime"
+      # "packages"
     ];
   };
 }

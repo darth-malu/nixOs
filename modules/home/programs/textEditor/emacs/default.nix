@@ -22,7 +22,7 @@
       enable = true; # emacs daemon
       # whether to launch Emacs service with the systemd user session. "graphical" -> graphical-session.target ( if true -> default.target::)
       # startWithUserSession = if osConfig.networking.hostName == "tangier" then false else true;
-      startWithUserSession = if osConfig.networking.hostName == "tangier" then false else "graphical";
+      startWithUserSession = if osConfig.networking.hostName == "tangier" then false else true;
       # defaultEditor = false; # $EDITOR
       socketActivation.enable = true;
       client = {

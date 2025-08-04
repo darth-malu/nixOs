@@ -5,8 +5,6 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
-    yazi.url = "github:sxyazi/yazi";
-
     quickshell = {
       # add ?ref=<tag> to track a tag
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -21,12 +19,6 @@
     home-manager-unstable = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
     };
 
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -78,41 +70,47 @@
     #     modules = [ ./modules/nvf];
     # };
 
-    pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+    config = {
+      allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+        "discord"
+        "google-chrome"
+        "bluemail"
+        "ventoy"
+        "spotify"
+        "steam"
+        "steam-unwrapped"
+        "wpsoffice"
+        "xow_dongle-firmware"
+        "warp-terminal"
+        "windows10-icons"
+        "aspell-dict-en-science"
+        "davinci-resolve"
+        "youtube-upnext"
+        "evafast"
+        "android-studio-stable"
+      ];
+      permittedInsecurePackages = [
+        "ventoy-1.1.05"
+      ];
+    };
+    # pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
+    pkgs-unstable = import nixpkgs-unstable {
+      inherit  system;
+      inherit config;
+    };
     home = inputs.home-manager;
     home-unstable = inputs.home-manager-unstable;
     pkgs = import nixpkgs {
       inherit  system;
-      config = {
-        allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-          "discord"
-          "google-chrome"
-          "bluemail"
-          "ventoy"
-          "spotify"
-          "steam"
-          "steam-unwrapped"
-          "wpsoffice"
-          "xow_dongle-firmware"
-          "warp-terminal"
-          "windows10-icons"
-          "aspell-dict-en-science"
-          "davinci-resolve"
-          "youtube-upnext"
-          "evafast"
-          "android-studio-stable"
-        ];
-        permittedInsecurePackages = [
-          "ventoy-1.1.05"
-        ];
-      };
+      inherit config;
     };
   in
   {
     # packages.${system}.my-neovim = neovimConf.neovim; # NVF
 
 nixosConfigurations = {
-  carthage = nixpkgs-unstable.lib.nixosSystem {
+  # carthage = nixpkgs-unstable.lib.nixosSystem {
+  carthage = nixpkgs.lib.nixosSystem {
     inherit system;
     specialArgs = { inherit pkgs-unstable inputs system; };
 
@@ -120,10 +118,8 @@ modules = [
   ./hosts/carthage
   # {environment.systemPackages = [neovimConf.neovim];}
 
-  # inputs.plasma-manager.homeManagerModules.plasma-manager
-
-  # home-manager.nixosModules.home-manager {
-  home-unstable.nixosModules.home-manager {
+  home.nixosModules.home-manager {
+  # home-unstable.nixosModules.home-manager {
     home-manager = {
       verbose = true;
       backupFileExtension = "home_bak";

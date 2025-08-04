@@ -23,7 +23,7 @@ nixos-unstable-small exist...smaller, update faster but require more to be built
 https://nixos.wiki/wiki/Nix_channels
 
 ** yazi
-#+begin_src nix :tangle flake.nix
+#+begin_src nix :tangle no
     yazi.url = "github:sxyazi/yazi";
 #+end_src
 ** quickshell 🖥
@@ -53,7 +53,7 @@ https://nixos.wiki/wiki/Nix_channels
     };
 #+end_src
 ** plasma-manager
-#+begin_src nix :tangle flake.nix
+#+begin_src nix :tangle no
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -136,34 +136,39 @@ https://nixos.wiki/wiki/Nix_channels
     #     modules = [ ./modules/nvf];
     # };
 
-    pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+    config = {
+      allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+        "discord"
+        "google-chrome"
+        "bluemail"
+        "ventoy"
+        "spotify"
+        "steam"
+        "steam-unwrapped"
+        "wpsoffice"
+        "xow_dongle-firmware"
+        "warp-terminal"
+        "windows10-icons"
+        "aspell-dict-en-science"
+        "davinci-resolve"
+        "youtube-upnext"
+        "evafast"
+        "android-studio-stable"
+      ];
+      permittedInsecurePackages = [
+        "ventoy-1.1.05"
+      ];
+    };
+    # pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
+    pkgs-unstable = import nixpkgs-unstable {
+      inherit  system;
+      inherit config;
+    };
     home = inputs.home-manager;
     home-unstable = inputs.home-manager-unstable;
     pkgs = import nixpkgs {
       inherit  system;
-      config = {
-        allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-          "discord"
-          "google-chrome"
-          "bluemail"
-          "ventoy"
-          "spotify"
-          "steam"
-          "steam-unwrapped"
-          "wpsoffice"
-          "xow_dongle-firmware"
-          "warp-terminal"
-          "windows10-icons"
-          "aspell-dict-en-science"
-          "davinci-resolve"
-          "youtube-upnext"
-          "evafast"
-          "android-studio-stable"
-        ];
-        permittedInsecurePackages = [
-          "ventoy-1.1.05"
-        ];
-      };
+      inherit config;
     };
   in
   {
@@ -174,7 +179,8 @@ https://nixos.wiki/wiki/Nix_channels
 *** init | specialArgs
 #+begin_src nix :tangle flake.nix
 nixosConfigurations = {
-  carthage = nixpkgs-unstable.lib.nixosSystem {
+  # carthage = nixpkgs-unstable.lib.nixosSystem {
+  carthage = nixpkgs.lib.nixosSystem {
     inherit system;
     specialArgs = { inherit pkgs-unstable inputs system; };
 #+end_src
@@ -187,15 +193,15 @@ modules = [
   # {environment.systemPackages = [neovimConf.neovim];}
 #+end_src
 **** plasma-manger
-#+begin_src nix :tangle flake.nix
-  # inputs.plasma-manager.homeManagerModules.plasma-manager
+#+begin_src nix :tangle no
+  inputs.plasma-manager.homeManagerModules.plasma-manager
 #+end_src
 
 **** Home-manager
 ***** As Module 🐐
 #+begin_src nix :tangle flake.nix
-  # home-manager.nixosModules.home-manager {
-  home-unstable.nixosModules.home-manager {
+  home.nixosModules.home-manager {
+  # home-unstable.nixosModules.home-manager {
     home-manager = {
       verbose = true;
       backupFileExtension = "home_bak";

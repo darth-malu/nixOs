@@ -8,13 +8,17 @@
 {
   imports = [
     ./sync-thing
-    ./qemu
+    # ./qemu
+    ./virtualisation
+    ./steam.nix
   ];
 
   qemuNix.enable = if config.networking.hostName == "carthage" then true else false;
+  steamy.enable = if config.networking.hostName == "carthage" then true else false;
 
   services = {
     locate.enable = true;
+    gvfs.enable = true;
     fstrim = {
       enable = true;
       interval = "weekly";
@@ -53,8 +57,6 @@
       (with pkgs; [
         libnotify # notify-send
         wget
-        # appimage-run # for appiamges to run
-        clinfo # verify OpenCl
         #cpufrequtils
         lshw
         efibootmgr
@@ -77,6 +79,7 @@
         util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
         kitty
         bc
+        wl-clipboard # rust wl-clipboard better?
         # tldr # emacs better
         dotool # test if working
         # micro
@@ -85,11 +88,9 @@
         if config.programs.hyprland.enable then
           with pkgs;
           [
-            wl-clipboard # rust wl-clipboard better?
             # hyprcursor
             hyprpicker
             hyprpolkitagent
-            hyprsunset
             # libappindicator # TODO test if needed
             libappindicator-gtk3
             # polkit_gnome

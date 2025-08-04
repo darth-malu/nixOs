@@ -16,7 +16,7 @@ in
   };
 
   config = lib.mkIf config.hyprland.enable {
-    hardware.graphics.package = mesa;
+    # hardware.graphics.package = mesa;
     # system.nixos.tags = [ "Hyprland" ];
     programs = {
       hyprland = {
@@ -37,7 +37,6 @@ in
       power-profiles-daemon.enable = true;
       upower.enable = lib.mkIf (config.networking.hostName == "tangier") true;
       blueman.enable = true; # TODO test if works
-      gvfs.enable = true;
     };
 
     security.polkit = {

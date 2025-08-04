@@ -5,6 +5,7 @@
     ../USIU
     ./programs
     ./core
+    # ./app-image.nix
     # ./overlays.nix
   ];
 }

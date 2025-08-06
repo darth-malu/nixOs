@@ -20,7 +20,6 @@
       #aria2#NOTE: learn
       #rofimoji bemoji
       dotool
-      kdePackages.konsole
       libsecret
       modem-manager-gui
       modemmanager # saves the day with no internet
@@ -44,7 +43,6 @@
       dotnet-sdk
       libgcc
       ed
-      nasm
       # vscodium-fhs
       # vscodium
     ])
@@ -63,13 +61,11 @@
     ])
     ++ (with pkgs; [
       # perfomance monitoring
-      mission-center
       iftop # TODO seems powerful investigate more
       iotop-c # laggy?
       # iotop #basic
       nethogs
       inxi
-      amdgpu_top
       duf
       ncdu
       # superfile # kinda cool but dont need
@@ -129,11 +125,14 @@
           darktable
           ffmpeg-full # full vs vanilla?
           gimp
-          blender-hip
+          blender-hip # Hardware accelerated rendering
           inkscape-with-extensions
           kdePackages.kdenlive
           obs-cli
           obs-studio
+          amdgpu_top
+          mission-center
+          nasm
         ]
         ++ (with pkgs-unstable; [
           # winetricks

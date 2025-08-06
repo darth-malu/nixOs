@@ -18,14 +18,14 @@ let
     else
       import ./temp/carthage_temp.nix { inherit pkgs; };
   clr_backup = import ./clr_backup.nix { inherit pkgs; };
-  mount_hdd = import ./mount_hdd.nix { inherit pkgs; };
+  # mount_hdd = import ./mount_hdd.nix { inherit pkgs; };
 in
 {
   home.packages =
     (
       if osConfig.networking.hostName == "carthage" then
         [
-          mount_hdd
+          # mount_hdd
         ]
       else
         [ ]

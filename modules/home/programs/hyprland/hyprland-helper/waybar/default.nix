@@ -218,12 +218,13 @@
             node-type = "Audio/Source";
             format = "{volume} ";
             on-click-backward = "pwvucontrol";
+            tooltip = false;
             format-muted = "";
             on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
             on-scroll-up = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.05+";
             on-scroll-down = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.05-";
             scroll-step = 5;
-            max-volume = 100;
+            # max-volume = 100; #FIXME
           };
 
           "tray" = {

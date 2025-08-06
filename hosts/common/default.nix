@@ -29,7 +29,7 @@
         "nvidia-x11-570.153.02-6.12.30"
       ];
     permittedInsecurePackages = [
-      "broadcom-sta-6.30.223.271-57-6.12.40"
+      "broadcom-sta-6.30.223.271-57-6.12.41"
     ];
   };
 
@@ -39,10 +39,10 @@
       # theme = ""; # bgrt
       # font = "${pkgs.dejavu_fonts.minimal}/share/fonts/truetype/DejaVuSans.ttf";
       # extraConfig
-      logo = pkgs.fetchurl {
-        url = "https://nixos.org/logo/nixos-hires.png";
-        sha256 = "1ivzgd7iz0i06y36p8m5w48fd8pjqwxhdaavc0pxs7w1g7mcy5si";
-      }; # "${pkgs.nixos-icons}/share/icons/hicolor/48x48/apps/nix-snowflake-white.png"
+      # logo = pkgs.fetchurl {
+      #   url = "https://nixos.org/logo/nixos-hires.png";
+      #   sha256 = "1ivzgd7iz0i06y36p8m5w48fd8pjqwxhdaavc0pxs7w1g7mcy5si";
+      # }; # "${pkgs.nixos-icons}/share/icons/hicolor/48x48/apps/nix-snowflake-white.png"
     };
     extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
     loader = {

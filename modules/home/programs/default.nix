@@ -35,7 +35,7 @@
     #   enable = true;
     # };
 
-    bashmount.enable = true;
+    bashmount.enable = false;
 
     btop.enable = true;
 

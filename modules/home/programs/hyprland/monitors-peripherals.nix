@@ -6,6 +6,7 @@ let
       {
         wayland.windowManager.hyprland.settings = {
           monitor = [
+            # head /sys/class/drm/*/status with monitors connected
             # monitor = name, resolution, position, scale:: to disable use -> monitor = name, disable
             # position -> special values(auto, auto-right/left/up/down) in pixels.calculated from the top-left corner
             # resolution -> highrr, highres, preferred

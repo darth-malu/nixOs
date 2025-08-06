@@ -2,6 +2,10 @@
   imports = [
     ./kitty
     # ./wezterm
-    ./ghostty
+    # ./ghostty
+  ];
+
+  home.packages = [
+    # kdePackages.konsole
   ];
 }

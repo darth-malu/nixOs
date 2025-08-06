@@ -3,7 +3,7 @@
   hardware = {
     graphics = {
       enable = true;
-      enable32Bit = true; # wine
+      enable32Bit = true; # wine #vulkan 32 bit, vulkan on by default with radv
       extraPackages = with pkgs; [
         # Additional packages to add to the default graphics driver lookup path. This can be used to add OpenCL drivers, VA-API/VDPAU drivers, etc.
         amdvlk
@@ -22,11 +22,15 @@
         # supportExperimental.enable = true; #false::
       };
     };
-
   };
+
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  ]; # Most software has the HIP libraries hard-coded. You can work around it on NixOS by using:
+
   environment.variables = {
     ROC_ENABLE_PRE_VEGA = "1"; # enable opencl polaris;
-    # LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+    LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib";
   };
   environment.systemPackages = with pkgs; [
     clinfo

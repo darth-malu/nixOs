@@ -133,6 +133,7 @@
           amdgpu_top
           mission-center
           nasm
+          firebase-tools
         ]
         ++ (with pkgs-unstable; [
           # winetricks

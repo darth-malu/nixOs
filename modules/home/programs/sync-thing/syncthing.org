@@ -27,7 +27,7 @@ Note: if you don’t persist the configDir, the device ID will change after each
    overrideDevices = true;
    overrideFolders = true; # Whether to delete the folders which are not configured via the folders option
    tray = true;
-   passwordFile = ./syncPass
+   passwordFile = ./syncPass;
  #+end_src
 
 * settings
@@ -42,17 +42,17 @@ Syncthing creates a 'Sync' folder in your home directory every time it regenerat
 nix-shell -p syncthing --run "syncthing generate --config myconfig/"
 
 #+begin_src nix :tangle default.nix
-devices = {
-  "tangier" = {
-    id = "RIYCPC3-U3UCO5N-WLM7WNB-5372SAE-RSGUD4Y-BFIWCUC-WPOII3S-N2EGNAB";
-    name = "Hp laptop"
-  };
+  devices = {
+    "tangier" = {
+      id = "RIYCPC3-U3UCO5N-WLM7WNB-5372SAE-RSGUD4Y-BFIWCUC-WPOII3S-N2EGNAB";
+      name = "Hp laptop";
+    };
 
-  "carthage" = {
-    name = "Custom pc"
-    id = "DEOOZ33-AWZH56X-4QBF224-QG7LXVY-YXWCGBL-VCWZ3G4-ZWID3ZN-QHBPKQU";
+    "carthage" = {
+      name = "Custom pc";
+      id = "DEOOZ33-AWZH56X-4QBF224-QG7LXVY-YXWCGBL-VCWZ3G4-ZWID3ZN-QHBPKQU";
+    };
   };
-};
 #+end_src
 
 *** notes no config

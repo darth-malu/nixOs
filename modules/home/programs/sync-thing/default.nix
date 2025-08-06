@@ -11,21 +11,21 @@
    overrideDevices = true;
    overrideFolders = true; # Whether to delete the folders which are not configured via the folders option
    tray = true;
-   passwordFile = ./syncPass
+   passwordFile = ./syncPass;
 
 settings = {
 
-devices = {
-  "tangier" = {
-    id = "RIYCPC3-U3UCO5N-WLM7WNB-5372SAE-RSGUD4Y-BFIWCUC-WPOII3S-N2EGNAB";
-    name = "Hp laptop"
-  };
+  devices = {
+    "tangier" = {
+      id = "RIYCPC3-U3UCO5N-WLM7WNB-5372SAE-RSGUD4Y-BFIWCUC-WPOII3S-N2EGNAB";
+      name = "Hp laptop";
+    };
 
-  "carthage" = {
-    name = "Custom pc"
-    id = "DEOOZ33-AWZH56X-4QBF224-QG7LXVY-YXWCGBL-VCWZ3G4-ZWID3ZN-QHBPKQU";
+    "carthage" = {
+      name = "Custom pc";
+      id = "DEOOZ33-AWZH56X-4QBF224-QG7LXVY-YXWCGBL-VCWZ3G4-ZWID3ZN-QHBPKQU";
+    };
   };
-};
 
 folders = {
   "Shibuya" = {         # Name of folder in Syncthing, also the folder ID

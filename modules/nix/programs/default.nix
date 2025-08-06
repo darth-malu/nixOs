@@ -2,7 +2,7 @@
 {
   imports = [
     ./pkgs.nix
-    ./sync-thing
+    # ./sync-thing
   ];
 
   config = {

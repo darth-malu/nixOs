@@ -16,6 +16,7 @@
       systemd = {
         enable = true;
         # target = "graphical-session.target"; # config.wayland.systemd.target::
+        target = "graphical-session.target"; # config.wayland.systemd.target::
       };
       style =
         (

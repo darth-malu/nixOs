@@ -1,78 +1,73 @@
-{pkgs}:
+{ pkgs }:
 
 pkgs.writeShellScriptBin "pause_play" ''
-query_playerctl() {
-    playerctl -l
-}
+  query_playerctl() {
+      playerctl -l
+  }
 
-# general_playing_status () {
-# playerctl status 2>/dev/null
-# }
+  music_playing_state() {
+      #ingest ... eg mpd, then check if playing and return Playing/Paused
+      for player in $(query_playerctl); do
+          case $player in
+          "mpd" | "spotify" | "lollypop")
+              playerctl -p "$player" status
+              ;;
+          esac
+      done
+  }
 
-music_playing_state() {
-    #ingest ... eg mpd, then check if playing and return Playing/Paused
-    for player in $(query_playerctl); do
-        case $player in
-        "mpd" | "spotify" | "lollypop")
-            playerctl -p "$player" status
-            ;;
-        esac
-    done
-}
+  check_running() {
+      preg -xc "$@" >/dev/null || pgrep -fc "$@" >/dev/null
+  }
 
-check_running() {
-    preg -xc "$@" >/dev/null || pgrep -fc "$@" >/dev/null
-}
+  player_active() {
+      # eg output: mpd, spotify
+      playerctl metadata --format '{{ playerName }}' | sed '/^$/d'
+  }
 
-player_active() {
-    # eg output: mpd, spotify
-    playerctl metadata --format '{{ playerName }}' | sed '/^$/d'
-}
+  pause_player() {
+      local active_player
 
-pause_player() {
-    local active_player
+      #local current_player=$(playerctl metadata --format '{{ playerName }}')
+      #local players=$(query_playerctl)
+      #local any_playing=$(general_playing_status)
 
-    #local current_player=$(playerctl metadata --format '{{ playerName }}')
-    #local players=$(query_playerctl)
-    #local any_playing=$(general_playing_status)
+      active_player=$(player_active)
 
-    active_player=$(player_active)
+      case $active_player in
+      "spotify")
+          playerctl -p "$(active_player)" play-pause
+          ;;
+      "Lollypop")
+          playerctl -p Lollypop play-pause
+          ;;
+      "mpd")
+          mpc toggle
+          ;;
+      firefox* | *brave* | chromium*) #NOTE: this is a simple shell glob not bash glob
+          #while spotify or lollypop in background pause those first
+          #if [[ ( $(check_running "spotify") || $(check_running "python3 /sbin/lollypop") || $(check_running "ncmpcpp") ) && $(music_playing_state) == "Playing" ]]; then
 
-    case $active_player in
-    "spotify")
-        playerctl -p "$(active_player)" play-pause
-        ;;
-    "Lollypop")
-        playerctl -p Lollypop play-pause
-        ;;
-    "mpd")
-        mpc toggle
-        ;;
-    firefox* | *brave* | chromium*) #NOTE: this is a simple shell glob not bash glob
-        #while spotify or lollypop in background pause those first
-        #if [[ ( $(check_running "spotify") || $(check_running "python3 /sbin/lollypop") || $(check_running "ncmpcpp") ) && $(music_playing_state) == "Playing" ]]; then
+          case $(music_playing_state) in
+          "Playing")
+              playerctl -ps spotify play-pause || mpc toggle
+              dunstify -i /home/malu/Shibuya/assets/icons/icons8-pause-50.png "Music paused "
+              ;;
+          *)
+              playerctl -ps firefox play-pause
+              # dunstify "Nothing is playing right now"
+              ;;
+          esac
+          ;;
+      *)
+          if check_running "spotify" || check_running "python3 /sbin/lollypop"; then
+              playerctl -ps spotify play-pause || playerctl -sp Lollypop play-pause
+          else
+              playerctl -ps "$(active_player)" play-pause
+          fi
+          ;;
+      esac
+  }
 
-        case $(music_playing_state) in
-        "Playing")
-            playerctl -ps spotify play-pause || mpc toggle
-            dunstify -i /home/malu/Shibuya/assets/icons8-pause-48.png "Music paused "
-            ;;
-        *)
-            playerctl -ps firefox play-pause
-            # dunstify "Nothing is playing right now"
-            ;;
-        esac
-        ;;
-    *)
-        if check_running "spotify" || check_running "python3 /sbin/lollypop"; then
-            playerctl -ps spotify play-pause || playerctl -sp Lollypop play-pause
-        else
-            playerctl -ps "$(active_player)" play-pause
-        fi
-        ;;
-    esac
-}
-
-pause_player
-
+  pause_player
 ''

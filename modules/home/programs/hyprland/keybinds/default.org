@@ -104,7 +104,8 @@ bind =
 *** browsers
 #+begin_src nix :tangle default.nix
   "$mod , T, exec, [workspace emptym] uwsm app -s a -- freetube"
-  "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
+  # "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
+  "$mod, C, exec, [workspace emptym] uwsm app -s a -- chromium"
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
 #+end_src
@@ -133,7 +134,7 @@ bind =
   # open windows
   "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
   "$mod, space, exec, pkill rofi || $rofi_open_windows"
-  "$mod $cl, mouse:273, exec, pkill rofi || $rofi_open_windows"
+  "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
   # power menu
   "$mod, Delete, exec, pkill rofi || rofi_power"
@@ -220,7 +221,8 @@ see hyprswitch:
 #+end_src
 **** chrome
 #+begin_src nix :tangle default.nix
-"$mod $cl, C, focuswindow, class:^(google-chrome)$"
+# "$mod $cl, C, focuswindow, class:^(google-chrome)$"
+"$mod $cl, C, focuswindow, class:^(chromium-browser)$"
 #+end_src
 **** kitty
 #+begin_src nix :tangle default.nix

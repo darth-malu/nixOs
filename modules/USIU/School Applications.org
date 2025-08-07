@@ -4,7 +4,7 @@
 
 * start
 #+begin_src nix :tangle default.nix
-{pkgs, lib, config, ...}:
+{pkgs, pkgs-unstable, lib, config, ...}:
 {
 #+end_src
 * Android
@@ -29,7 +29,7 @@ programs.adb = {
 
 ** Android Studio
 #+begin_src nix :tangle default.nix
-  environment.systemPackages = [pkgs.android-studio ];
+  environment.systemPackages = [pkgs-unstable.android-studio ];
     # if config.networking.hostName == "carthage" then
     #   [
     #     pkgs.android-studio-full

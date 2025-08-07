@@ -329,7 +329,7 @@
   #tray {
       opacity: 1;
       border-radius: 12px;
-      margin: 4px 2px 3px 6px;
+      margin: 4px 2px 3px 4px;
       padding:0px 4px;
       min-width: 0px;
       background: rgba(154 ,208 ,194, 0.12);

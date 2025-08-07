@@ -2,6 +2,7 @@
   osConfig,
   lib,
   config,
+  pkgs-unstable,
   ...
 }:
 
@@ -12,11 +13,12 @@
 
   config = lib.mkIf config.waybar.enable {
     programs.waybar = {
+      package = pkgs-unstable.waybar;
       enable = true;
       systemd = {
         enable = true;
         # target = "graphical-session.target"; # config.wayland.systemd.target::
-        target = "graphical-session.target"; # config.wayland.systemd.target::
+        # target = "graphical-session.target"; # config.wayland.systemd.target::
       };
       style =
         (
@@ -196,6 +198,23 @@
             ];
           };
 
+          "wireplumber" = {
+            format = "{volume} {icon} "; # 🎙{node_name}
+            format-icons = [
+              ""
+              ""
+              ""
+            ];
+            format-muted = "🔇";
+            on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+            on-click-backward = "pwvucontrol";
+            max-volume = 100;
+            scroll-step = 2;
+            tooltip = false;
+            # min-length = 5;
+            # max-length = 5;
+          };
+
           "wireplumber#sink" = {
             node-type = "Audio/Sink";
             format = "{volume} {icon} "; # 🎙{node_name}
@@ -219,7 +238,7 @@
             node-type = "Audio/Source";
             format = "{volume} ";
             on-click-backward = "pwvucontrol";
-            tooltip = false;
+            # tooltip = false;
             format-muted = "";
             on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
             on-scroll-up = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.05+";
@@ -377,8 +396,9 @@
             };
             modules = [
               "temperature"
-              "wireplumber#sink"
-              "wireplumber#source"
+              # "wireplumber#sink"
+              # "wireplumber#source"
+              "wireplumber"
             ];
           };
 

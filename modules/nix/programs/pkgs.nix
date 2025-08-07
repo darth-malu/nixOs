@@ -95,7 +95,7 @@
             libappindicator-gtk3
             # polkit_gnome
             # libcanberra-gtk3
-            libcanberra
+            # libcanberra
             # libsecret # secrets lul
             # lib.mkIf (config.networking.hostName == "tangier") with pkgs; [brightnessctl]
             #kdePackages.qt6ct kdePackages.qtwayland -- see if needed

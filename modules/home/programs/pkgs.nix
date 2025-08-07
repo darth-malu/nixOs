@@ -134,10 +134,11 @@
           mission-center
           nasm
           firebase-tools
+          # davinci-resolve
         ]
         ++ (with pkgs-unstable; [
           # winetricks
-          davinci-resolve
+          # davinci-resolve
           bottles
           heroic
           lutris

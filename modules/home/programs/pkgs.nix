@@ -48,7 +48,8 @@
     ])
     ++ (with pkgs; [
       # wpsoffice
-      libreoffice-qt-still
+      # libreoffice-qt-still
+      libreoffice-still
       ripgrep-all
     ])
     ++ (with pkgs; [

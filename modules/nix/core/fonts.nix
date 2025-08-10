@@ -20,6 +20,7 @@
         # cascadia-code
         # fira-code
         # fira-math
+        office-code-pro # try
       ]
       ++ [
         # emacs fonts
@@ -30,7 +31,7 @@
       ++ (with pkgs.nerd-fonts; [
         envy-code-r
         space-mono
-        meslo-lg
+        meslo-lg # try
         zed-mono
         daddy-time-mono
         jetbrains-mono

@@ -299,7 +299,7 @@
 
   #wireplumber {
       font-size: 13px;
-      margin: 2px 0px 3px 4px;
+      margin: 2px 2px 3px 6px;
       padding: 0px 0px;
       color: rgba(255 ,158 ,170, 0.89);
   }
@@ -329,7 +329,7 @@
   #tray {
       opacity: 1;
       border-radius: 12px;
-      margin: 4px 2px 3px 4px;
+      margin: 4px 2px 3px 0px;
       padding:0px 4px;
       min-width: 0px;
       background: rgba(154 ,208 ,194, 0.12);

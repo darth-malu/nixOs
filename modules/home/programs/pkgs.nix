@@ -47,7 +47,9 @@
       # vscodium
     ])
     ++ (with pkgs; [
-      wpsoffice
+      # wpsoffice
+      libreoffice-qt-still
+      ripgrep-all
     ])
     ++ (with pkgs; [
       # utilities
@@ -128,6 +130,9 @@
           blender-hip # Hardware accelerated rendering
           inkscape-with-extensions
           kdePackages.kdenlive
+          kdePackages.mlt
+          mediainfo
+          # melt  #collison with mlt
           obs-cli
           obs-studio
           amdgpu_top

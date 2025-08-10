@@ -29,7 +29,7 @@ nixpkgs.config = {
     "nvidia-x11-570.153.02-6.12.30"
   ];
   permittedInsecurePackages = [
-    "broadcom-sta-6.30.223.271-57-6.12.40"
+    "broadcom-sta-6.30.223.271-57-6.12.41"
   ];
 };
 
@@ -38,6 +38,9 @@ nixpkgs.config = {
 * boot
 #+begin_src nix :tangle default.nix
 boot = {
+  plymouth = {
+    enable = true;
+  };
   extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   loader = {
     systemd-boot = {
@@ -49,7 +52,10 @@ boot = {
     efi.canTouchEfiVariables = true;
     timeout = 2;
   };
-  # initrd.kernelModules = if config.networking.hostName == "carthage" then [  "dm-snapshot" ] else [];
+  initrd.kernelModules = if config.networking.hostName == "carthage" then [
+    # "dm-snapshot"               # lvm
+    "amdgpu"
+  ] else [];
   initrd.availableKernelModules = if config.networking.hostName == "carthage" then
     ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"]
     else
@@ -60,14 +66,19 @@ boot = {
     "sd_mod" #scsi device and some sata
     "sr_mod" # cd drive
     ];
-  initrd.kernelModules = [ ];
   initrd.systemd.network = {
     enable = false;
     wait-online.enable = false; # since using networkmanager not networkd;
   };
   kernelModules = if config.networking.hostName == "tangier" then
-                  [ "kvm-intel"] else
-                  [ "kvm-amd" "wl" ];
+                  [
+                    "kvm-intel"
+                    "wl"
+                  ] else
+                  [
+                    "kvm-amd"
+                    "wl"        # broadcomm closed source
+                  ];
   # kernelParams = [# parameterrs for kernel command line
   #   "video=HDMI-A-1:1920x1080@240"
   #   "video=DP-3:1920x1080@60"
@@ -104,6 +115,7 @@ wireless = {
 #+end_src
 
 ** networkmanager
+
 #+begin_src nix :tangle default.nix
 networkmanager = {
   enable = true; # add user to group
@@ -116,6 +128,7 @@ networkmanager = {
 };
 #+end_src
 
+DNS = "none" # Disable NetworkManager's internal DNS resolution
 ** modemmanager
 #+begin_src nix :tangle default.nix
 modemmanager = {
@@ -144,12 +157,16 @@ timeServers = [
 
 useDHCP: Whether to use DHCP to obtain an IP address and other configuration for all network interfaces that do not have any manually configured IPv4 addresses.
 
+Not needed when managing dns ourselves 😄
+
 #+begin_src nix :tangle default.nix
-# dhcpcd.enable = true; # true:: # NOTE not sure if needed with networkmnager on
+# dhcpcd.enable = true; # true::
 # useDHCP =  false;
 # interfaces.enp5s0.useDHCP = if config.networking.hostName == "carthage" then true else false; #overrides default in useDHCP unless null
 # interfaces.wlo1.useDHCP = if config.networking.hostName == "tangier" then true else false;
-nameservers = [ "1.1.1.1" "1.0.0.1" ]; #"8.8.8.8" #"8.8.4.4" ];
+
+# Manual DNS config
+nameservers = [ "1.1.1.1" "1.0.0.1"  "8.8.8.8" "8.8.4.4" ];
 #+end_src
 
 use ~ip link~ to see all available interfaces

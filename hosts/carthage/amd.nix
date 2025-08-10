@@ -25,12 +25,12 @@
   };
 
   systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+    # "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ]; # Most software has the HIP libraries hard-coded. You can work around it on NixOS by using:
 
   environment.variables = {
     ROC_ENABLE_PRE_VEGA = "1"; # enable opencl polaris;
-    LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+    # LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib"; #TODO see if this needed
   };
   environment.systemPackages = with pkgs; [
     clinfo

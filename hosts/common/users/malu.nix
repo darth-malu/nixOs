@@ -20,7 +20,7 @@
       #"audio"
 
       # android
-      "adbusers" # grand user access to Android Debug Bridge
+      "adbusers" # grant user access to Android Debug Bridge
       "kvm"
     ];
     packages = with pkgs; [

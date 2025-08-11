@@ -145,14 +145,14 @@ modules = [
 ];  # modules
  };  # carthage
 
-tangier = nixpkgs-unstable.lib.nixosSystem {
+tangier = nixpkgs.lib.nixosSystem {
   inherit system;
   specialArgs = { inherit pkgs-unstable inputs system; };
   modules = [
     ./hosts/tangier
     # inputs.quickshell.packages.${system}.default
     # {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
-    home-unstable.nixosModules.home-manager {
+    home.nixosModules.home-manager {
       home-manager = {
         verbose = true;
         backupFileExtension = "home_backup";

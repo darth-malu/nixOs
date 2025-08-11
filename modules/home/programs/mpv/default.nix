@@ -30,7 +30,7 @@
           };
 
           # ffmpeg = pkgs.ffmpeg-full;
-          ffmpeg_5 = pkgs.ffmpeg_5-full;
+          # ffmpeg_5 = pkgs.ffmpeg_5-full;
         }
   );
 

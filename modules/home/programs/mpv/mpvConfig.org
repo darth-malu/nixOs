@@ -14,12 +14,40 @@
   ];
   programs.mpv = {
     enable = true;
+      package = (
+        pkgs.mpv-unwrapped.wrapper {
+          scripts = with pkgs.mpvScripts; [
+            mpris
+            # sponsorblock # TODO not need?
+            # quality-menu
+            youtube-upnext # C-u (configurable) , space to append. 'up next'/recommended youtube videos
+            mpv-cheatsheet # use ?
+            mpv-playlistmanager # S-Enter to add to playlist
+            uosc
+            memo # recent files menu
+            # modernx-zydezu
+            thumbfast
+            # evafast # provides evafast/toggle script-binding for speeding up independently of the hybrid key. TODO need?
+            # eisa01.smartskip
+            # visualizer
+            webtorrent-mpv-hook
+          ];
+
+          mpv = pkgs.mpv-unwrapped.override {
+            waylandSupport = true;
+          };
+
+          # ffmpeg = pkgs.ffmpeg-full;
+          ffmpeg_5 = pkgs.ffmpeg_5-full;
+        }
+  );
+
 #+end_src
 
 ** scripts, scriptOpts
 *** scripts
-**** nixpkgs
-#+begin_src nix :tangle default.nix
+
+#+begin_src nix :tangle no
 scripts = with pkgs.mpvScripts; [
   mpris
   # sponsorblock # TODO not need?
@@ -39,7 +67,6 @@ scripts = with pkgs.mpvScripts; [
 #+end_src
 
 smartskip: https://github.com/Eisa01/mpv-scripts
-**** ~ nixpkgs
 
 *** script opts
 built-in scripts exist see Man:mpv
@@ -55,6 +82,16 @@ uosc = import ./scriptOpts/uosc.nix;
 **** [[file:scriptOpts/modernx-zydezu.nix][modernX-zydezu]]
 #+begin_src nix :tangle default.nix
 modernx-zydezu = import ./scriptOpts/modernx-zydezu.nix;
+#+end_src
+**** discord rich presence
+#+begin_src nix :tangle default.nix
+mpv_discordRPC = {
+  rpc_wrapper = "lua-discordRPC";
+  periodic_timer = 1;
+  cover_art = true;
+  active = true;
+  key_toggle = "D";
+};
 #+end_src
 **** playlistManager
 
@@ -123,16 +160,6 @@ Multi-file torrents are opened as a playlist.
 
 https://github.com/Eisa01/mpv-scripts?tab=readme-ov-file#default-keybinds
 
-**** discord rich presence
-#+begin_src nix :tangle no
-mpv_discordRPC = {
-  rpc_wrapper = "lua-discordRPC";
-  periodic_timer = 1;
-  cover_art = true;
-  active = true;
-  key_toggle = "D";
-};
-#+end_src
 **** end
 #+begin_src nix :tangle default.nix
 };

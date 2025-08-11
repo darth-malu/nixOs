@@ -3,7 +3,7 @@
   systemd = {
     services = {
       "hdd-mount" = {
-        enable = if config.networking.hostName == "tangier" then true else false;
+        # enable = if config.networking.hostName == "tangier" then true else false;
         description = "This unit is made to solve my HDD mounting issues 😃";
         script = ''
           mount_units=(
@@ -13,7 +13,7 @@
             media-linuxHdd.mount
           )
           for unit in "''${mount_units[@]}"; do
-            systemctl start $unit
+            systemctl start $unit || echo "Failed to start $unit"
           done
         '';
         serviceConfig = {
@@ -21,6 +21,10 @@
           User = "root"; # root , malu
           RemainAfterExit = true; # Prevents the service from automatically starting on rebuild. See https://discourse.nixos.org/t/how-to-prevent-custom-systemd-service-from-restarting-on-nixos-rebuild-switch/43431
         };
+        # after = [
+        #   "local-fs.target"
+        #   "dev-disk-by\\x2duuid-*.device"
+        # ];
         wantedBy = [ "multi-user.target" ]; # 🟢 This makes it run at boo
       };
     };

@@ -34,6 +34,7 @@
   };
 
   boot = {
+    # kernelPackages # change linux kernel
     plymouth = {
       enable = true;
     };
@@ -48,37 +49,6 @@
       efi.canTouchEfiVariables = true;
       timeout = 2;
     };
-    initrd.kernelModules =
-      if config.networking.hostName == "carthage" then
-        [
-          # "dm-snapshot"               # lvm
-          # "amdgpu" # see hardware.amdgpu.intird
-        ]
-      else
-        [ ];
-    initrd.availableKernelModules =
-      if config.networking.hostName == "carthage" then
-        [
-          "nvme"
-          "xhci_pci"
-          "ahci"
-          "usbhid"
-          "usb_storage"
-          "sd_mod"
-        ]
-      else
-        [
-          "xhci_pci" # usb 3.0
-          "ehci_pci" # usb 2.0
-          "ahci" # sata
-          "usb_storage" # usb mass storage devices - hdd, flash
-          "sd_mod" # scsi device and some sata
-          "sr_mod" # cd drive
-        ];
-    initrd.systemd.network = {
-      enable = false;
-      wait-online.enable = false; # since using networkmanager not networkd;
-    };
     kernelModules =
       if config.networking.hostName == "tangier" then
         [
@@ -90,6 +60,39 @@
           "kvm-amd"
           "wl" # broadcomm closed source
         ];
+    initrd = {
+      kernelModules =
+        if config.networking.hostName == "carthage" then
+          [
+            # "dm-snapshot"               # lvm
+            # "amdgpu" # see hardware.amdgpu.intird
+          ]
+        else
+          [ ];
+      availableKernelModules =
+        if config.networking.hostName == "carthage" then
+          [
+            "nvme"
+            "xhci_pci"
+            "ahci"
+            "usbhid"
+            "usb_storage"
+            "sd_mod"
+          ]
+        else
+          [
+            "xhci_pci" # usb 3.0
+            "ehci_pci" # usb 2.0
+            "ahci" # sata
+            "usb_storage" # usb mass storage devices - hdd, flash
+            "sd_mod" # scsi device and some sata
+            "sr_mod" # cd drive
+          ];
+      systemd.network = {
+        enable = false;
+        wait-online.enable = false; # since using networkmanager not networkd;
+      };
+    };
     # kernelParams = [# parameterrs for kernel command line
     #   "video=HDMI-A-1:1920x1080@240"
     #   "video=DP-3:1920x1080@60"

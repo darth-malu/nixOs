@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     ./kitty
@@ -6,6 +7,6 @@
   ];
 
   home.packages = [
-    # kdePackages.konsole
+    pkgs.kdePackages.konsole
   ];
 }

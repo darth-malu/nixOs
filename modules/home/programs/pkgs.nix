@@ -19,10 +19,7 @@
       # qalculate-qt # #FIXME:for rofi?
       #aria2#NOTE: learn
       #rofimoji bemoji
-      dotool
       libsecret
-      modem-manager-gui
-      modemmanager # saves the day with no internet
       pastel # color generator
       ventoy-full # usb imager #woeusb
       wev
@@ -39,7 +36,7 @@
       # p7zip
     ])
     ++ (with pkgs; [
-      jetbrains.pycharm-community-bin
+      # jetbrains.pycharm-community-bin
       dotnet-sdk
       libgcc
       ed
@@ -79,12 +76,14 @@
       # qdiskinfo
       # win-disk-writer
     ])
-    ++ (with pkgs; [
-      # google-chrome
+    ++ (with pkgs-unstable; [
       chromium
       telegram-desktop
       discord
       whatsapp-for-linux
+      modem-manager-gui
+      modemmanager # saves the day with no internet
+      dotool
     ])
     ++ (with pkgs; [
       # cantata # old af
@@ -92,14 +91,12 @@
       # digikam
       # lollypop # cantata better
       # smplayer
-      spotube
       # ymuse # rudimentary
       # youtube-tui # https://siriusmart.github.io/youtube-tui/
       easyeffects
       helvum
       mpc-cli
       nautilus
-      qbittorrent
       spotify
       spotify-cli-linux
       sway-audio-idle-inhibit
@@ -107,7 +104,11 @@
       vlc
       wf-recorder
     ])
-    ++ (with pkgs; [
+    ++ (with pkgs-unstable; [
+      spotube
+      qbittorrent
+    ])
+    ++ (with pkgs-unstable; [
       # NOTE: MANGA stuff
       # komikku # broken
       mangal
@@ -117,9 +118,8 @@
     ])
     ++ (
       if osConfig.networking.hostName == "carthage" then
-        with pkgs;
+        with pkgs-unstable;
         [
-          # heroic
           # mastodon
           # protonup-qt # GUI for installing custom Proton versions like GE_Proton
           # protonup-rs
@@ -136,15 +136,15 @@
           # melt  #collison with mlt
           obs-cli
           obs-studio
-          amdgpu_top
           mission-center
           nasm
           firebase-tools
           # davinci-resolve
         ]
-        ++ (with pkgs-unstable; [
+        ++ ([
           # winetricks
           # davinci-resolve
+          amdgpu_top
           bottles
           heroic
           lutris
@@ -152,6 +152,7 @@
           protonplus
           # protonup
           wine64
+          # wine-wayland
         ])
       else
         [ ffmpeg ]

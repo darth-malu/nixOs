@@ -39,7 +39,7 @@
 
       # "idleinhibit focus, class:ncmpcpp"
 
-      "workspace special:scratch silent, class:^(org.qbittorrent.qBittorrent)$"
+      # "workspace special:scratch silent, class:^(org.qbittorrent.qBittorrent)$" # TODO get popups only
 
       # "float, class:Viewnior"
       #"size 80% 80%, Viewnior"
@@ -55,7 +55,7 @@
       "center, class:Maluware-yt"
       "center, title:Darth-Yt"
       # "center, class:youtubr"
-      "float, class:youtubr"
+      "center, class:youtubr"
       "float, class:main.py"
 
       "workspace emptym, class:mpv"

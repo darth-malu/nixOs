@@ -171,8 +171,6 @@
               balanced = "☯";
               power-saver = ""; # ☘
             };
-            on-scroll-down = "hyprctl hyprsunset gamma -10";
-            on-scroll-up = "hyprctl hyprsunset gamma +10";
           };
 
           "battery" = {
@@ -826,6 +824,8 @@
             };
             on-click-backward = "hyprctl keyword monitor DP-1,disable && notify-send -i '/home/malu/Shibuya/assets/icons/toggle-on-glassmorphism/icons8-toggle-off-48.png' false";
             on-click-forward = "hyprctl keyword monitor DP-1,highres,0x0,1 && notify-send -i '/home/malu/Shibuya/assets/icons/toggle-off-glassmorphism/icons8-toggle-on-48.png' true";
+            on-scroll-down = "hyprctl hyprsunset gamma -10";
+            on-scroll-up = "hyprctl hyprsunset gamma +10";
           };
 
           "group/backlight_idle" = {

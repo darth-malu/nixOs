@@ -10,30 +10,20 @@ pkgs.writeShellScriptBin "temp" ''
       cat /sys/class/drm/card1/device/hwmon/hwmon0/fan1_input # returns number eg 700 - rpm
   }
 
-  gpu_busy() {                  # %
+  gpu_busy() {   # %
       cat /sys/class/drm/card1/device/gpu_busy_percent 2> /dev/null
   }
 
   gpu_frequency() {
-      #outputs [:digit:]Mhz eg 600Mhz
-      # list with current *
-      #cat /sys/class/drm/card1/device/pp_dpm_mclk | grep "*"
-      # grep -oE "\s+[0-9]*.*\*" </sys/class/drm/card1/device/pp_dpm_sclk | tr -cd "[:alnum:]" 2> /dev/null
+      # outputs [:digit:]Mhz eg 600Mhz # pick current -> *
       awk '/*/ {print $2}' /sys/class/drm/card1/device/pp_dpm_sclk
   }
 
   nvme_temp() {
-      # nvme_temp="$(cat /sys/class/hwmon/hwmon0/temp1_input 2> /dev/null)" #get temp in mC
-      local nvme_temp="$(cat /sys/class/hwmon/hwmon1/temp1_input)" #get temp in mC
-      local temp=$(echo "scale=2; $nvme_temp / 1000" | bc)         # convert to C
-      printf "%.0f\n" "$temp"                                # temp float - int
-
       awk '{print int($0/1000)}' /sys/class/hwmon/hwmon1/temp1_input
   }
 
   ssd_temp() {
-      # local ssd_temp="$(cat /sys/class/hwmon/hwmon1/temp1_input 2>/dev/null)" #get temp in mC
-      # printf "%.0f\n" "$(echo "scale=2; $(cat /sys/class/hwmon/hwmon1/temp1_input 2>/dev/null) / 1000" | bc)"                                           # temp float - int
       awk '{ print int($0/1000)}' /sys/class/hwmon/hwmon1/temp1_input
   }
 

@@ -37,6 +37,17 @@
       };
     };
 
+    # hyprsunset = { # TODO: test if needed
+    #   url = "github:hyprwm/hyprsunset";
+    #   inputs = {
+    #     hyprgraphics.follows = "hyprland/hyprgraphics";
+    #     hyprlang.follows = "hyprland/hyprlang";
+    #     hyprutils.follows = "hyprland/hyprutils";
+    #     nixpkgs.follows = "hyprland/nixpkgs";
+    #     systems.follows = "hyprland/systems";
+    #   };
+    # };
+
     hyprpaper = { # TODO: test if needed
       url = "github:hyprwm/hyprpaper";
       inputs = {
@@ -91,6 +102,7 @@
       ];
       permittedInsecurePackages = [
         "ventoy-1.1.05"
+        "libsoup-2.74.3"
       ];
     };
     # pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config

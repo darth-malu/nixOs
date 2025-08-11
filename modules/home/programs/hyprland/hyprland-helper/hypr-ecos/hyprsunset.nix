@@ -1,7 +1,9 @@
+# { inputs, pkgs, ... }:
 {
   services.hyprsunset = {
     enable = true;
-    # extraArgs = [ "--identity" ];
+    # package = inputs.hyprsunset.packages.${pkgs.system}.hyprsunset;
+    extraArgs = [ "--identity" ];
     # transitions = {
     #   sunrise = {
     #     calendar = "*-*-* 06:00:00"; # TODO systemd time?

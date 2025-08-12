@@ -23,13 +23,17 @@
     programs.dconf.enable = true;
 
     environment = {
-      plasma6.excludePackages = with pkgs.kdePackages; [
-        # plasma-browser-integration
-        # elisa
-        # konsole
-        ksystemlog
-        oxygen
-      ];
+      plasma6.excludePackages =
+        with pkgs.kdePackages;
+        [
+          plasma-browser-integration # enable for kdeconnect
+          # elisa
+          # konsole
+          ksystemlog
+          oxygen
+        ]
+        ++ (with pkgs; [
+        ]);
       # systemPackages = with pkgs; [
       # jetbrains.pycharm-community
       # ];

@@ -10,7 +10,7 @@
     ./sync-thing
     # ./qemu
     ./virtualisation
-    ./steam.nix
+    ./gaming
   ];
 
   qemuNix.enable = if config.networking.hostName == "carthage" then true else false;

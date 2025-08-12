@@ -11,23 +11,16 @@
   home.packages =
     with pkgs;
     [
-      # MISCELLANEOUS
-      # calc
-      # icons
-      # kdePackages.dolphin # FIXME launching shit not working on hyprland
-      # libadwaita
+      # pastel # color generator
       # qalculate-qt # #FIXME:for rofi?
+      # yaru-theme
       #aria2#NOTE: learn
-      #rofimoji bemoji
-      libsecret
-      pastel # color generator
+      libsecret # TODO use
       ventoy-full # usb imager #woeusb
       wev
-      yaru-theme
     ]
     ++ (with pkgs; [
       # support
-      # tokei
       # zip xz unzip p7zip
       # testing for yazi #
       # zip
@@ -37,11 +30,14 @@
     ])
     ++ (with pkgs; [
       # jetbrains.pycharm-community-bin
-      dotnet-sdk
-      libgcc
-      ed
-      # vscodium-fhs
+      # tokei
       # vscodium
+      # vscodium-fhs
+      dotnet-sdk
+      ed
+      firebase-tools
+      libgcc
+      nasm
     ])
     ++ (with pkgs; [
       # wpsoffice
@@ -50,31 +46,30 @@
       ripgrep-all
     ])
     ++ (with pkgs; [
+      # gsmartcontrol
+      # iotop #basic
+      # perfomance monitoring
+      # qdiskinfo
+      # squirreldisk #kinda nice
+      # superfile # kinda cool but dont need
+      # testdisk-qt
       # utilities
       # warp-terminal # insane bloat
-      file # need for yazi mimedetectionetc.
-      lsof # list open files/ports**
-      usbutils # lsusb, usb-devices, usb-view(optional gui)
-      pciutils # lspci
-      util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
-      lm_sensors
-    ])
-    ++ (with pkgs; [
-      # perfomance monitoring
-      iftop # TODO seems powerful investigate more
-      iotop-c # laggy?
-      # iotop #basic
-      nethogs
-      inxi
-      duf
-      ncdu
-      # superfile # kinda cool but dont need
-      #testdisk # also installs photorec
-      # testdisk-qt
-      # gsmartcontrol
-      # squirreldisk #kinda nice
-      # qdiskinfo
       # win-disk-writer
+      #testdisk # also installs photorec
+      duf
+      file # need for yazi mimedetectionetc.
+      iftop # TODO seems powerful investigate more
+      inxi
+      iotop-c # laggy?
+      lm_sensors
+      lsof # list open files/ports**
+      mission-center
+      ncdu
+      nethogs
+      pciutils # lspci
+      usbutils # lsusb, usb-devices, usb-view(optional gui)
+      util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
     ])
     ++ (with pkgs-unstable; [
       chromium
@@ -87,7 +82,7 @@
     ])
     ++ (with pkgs; [
       # cantata # old af
-      # davinci-resolve
+      # davinci-resolve #NOTE crash on stable
       # digikam
       # lollypop # cantata better
       # smplayer
@@ -103,13 +98,14 @@
       trash-cli # for move to trash mpv
       vlc
       wf-recorder
+      kdePackages.kdenlive
+      kdePackages.mlt
     ])
     ++ (with pkgs-unstable; [
       spotube
       qbittorrent
     ])
     ++ (with pkgs-unstable; [
-      # NOTE: MANGA stuff
       # komikku # broken
       mangal
       ani-cli
@@ -121,38 +117,23 @@
         with pkgs-unstable;
         [
           # mastodon
+          # melt  #collison with mlt
           # protonup-qt # GUI for installing custom Proton versions like GE_Proton
           # protonup-rs
           # steam-run
           # wine
+          blender-hip # Hardware accelerated rendering
           darktable
+          davinci-resolve
           ffmpeg-full # full vs vanilla?
           gimp
-          blender-hip # Hardware accelerated rendering
           inkscape-with-extensions
-          kdePackages.kdenlive
-          kdePackages.mlt
           mediainfo
-          # melt  #collison with mlt
           obs-cli
           obs-studio
-          mission-center
-          nasm
-          firebase-tools
-          # davinci-resolve
         ]
         ++ ([
-          # winetricks
           # davinci-resolve
-          amdgpu_top
-          bottles
-          heroic
-          lutris
-          mangohud
-          protonplus
-          # protonup
-          wine64
-          # wine-wayland
         ])
       else
         [ ffmpeg ]
@@ -165,11 +146,11 @@
           cliphist
           file-roller
           grimblast
+          inputs.quickshell.packages.${system}.default
           slurp
           sushi
           viewnior
           yelp
-          inputs.quickshell.packages.${system}.default
         ]
       else
         [ ]

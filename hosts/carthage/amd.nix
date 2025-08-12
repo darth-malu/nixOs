@@ -8,6 +8,8 @@
       # Additional packages to add to the default graphics driver lookup path. This can be used to add OpenCL drivers, VA-API/VDPAU drivers, etc.
       # amdvlk
       # rocmPackages.clr.icd # opencl
+      # rocmPackages.clr
+      # mesa.opencl
     ];
     extraPackages32 = with pkgs-unstable; [
       # driversi686Linux.amdvlk # TODO test if need
@@ -20,8 +22,8 @@
     amdvlk = {
       enable = true; # amd vulkan driver
       package = pkgs-unstable.amdvlk;
+      supportExperimental.enable = true; # false::
     };
-    # amdvlk.supportExperimental.enable = true; # false::
   };
 
   # systemd.tmpfiles.rules = [
@@ -45,8 +47,9 @@
 
   environment.variables = {
     ROC_ENABLE_PRE_VEGA = "1"; # enable opencl polaris;
-    LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib"; # TODO see if this needed
-    # AMD_VULKAN_ICD = "RADV";
+    # When a program is installed in your environment, these libraries should be found automatically. However, this is not the case in a `nix-shell`. use LD_L*
+    LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+    # AMD_VULKAN_ICD = "RADV"; # AMDVLK ::, RADV
   };
   # services.lact.enable = true; # NOTE in unstable only
   environment.systemPackages = [ pkgs-unstable.lact ];

@@ -37,7 +37,7 @@
 
     bashmount.enable = false;
 
-    btop.enable = true;
+    btop.enable = import ./misc/btop.nix;
 
     comodoro.enable = false;
 

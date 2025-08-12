@@ -4,6 +4,7 @@
     ./enVars.nix
     ../USIU
     ./programs
+    ./services
     ./core
     # ./app-image.nix
     # ./overlays.nix

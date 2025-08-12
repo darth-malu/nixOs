@@ -52,17 +52,17 @@ scripts = with pkgs.mpvScripts; [
   mpris
   # sponsorblock # TODO not need?
   # quality-menu
-  youtube-upnext # C-u (configurable) , space to append. 'up next'/recommended youtube videos
-  mpv-cheatsheet # use ?
-  mpv-playlistmanager # S-Enter to add to playlist
+  youtube-upnext # [C-u] (configurable) , space to append. 'up next'/recommended youtube videos
+  # mpv-cheatsheet # use ?
+  mpv-playlistmanager # [S-Enter] to add to playlist
   uosc
-  memo # recent files menu
+  memo # recent files menu [H]
   # modernx-zydezu
   thumbfast
   # evafast # provides evafast/toggle script-binding for speeding up independently of the hybrid key. TODO need?
   # eisa01.smartskip
   # visualizer
-  webtorrent-mpv-hook
+  # webtorrent-mpv-hook # use anicli
 ];
 #+end_src
 
@@ -173,7 +173,7 @@ bindings = {
 
 *** misc
 #+begin_src nix :tangle default.nix
-Y = "script-binding quality_menu/video_formats_toggle";
+# Y = "script-binding quality_menu/video_formats_toggle";
 # Alt+f script-binding quality_menu/audio_formats_toggle
 # "ctrl+a" = "script-message osc-visibility cycle";
 # "ctrl+f" = "script-binding subtitle_lines/list_subtitles";
@@ -186,8 +186,9 @@ Y = "script-binding quality_menu/video_formats_toggle";
 # p = "script-binding webtorrent/toggle-info";
 #+end_src
 
-*** uosc bindings
-#+begin_src nix :tangle default.nix
+*** FIXME uosc bindings
+no need since using defaults
+#+begin_src nix :tangle no
 s = "script-binding uosc/subtitles"; # ! Subtitles
 
 a = "script-binding uosc/audio"; # ! Audio tracks
@@ -207,9 +208,13 @@ O = "script-binding uosc/show-in-directory"; # ! Utils > Show in directory
 "alt+i" = "script-binding uosc/keybinds"; # ! Utils > Key bindings
 
 tab =  "script-binding uosc/toggle-ui"; # ! darth toggle
-# "alt+>" = "script-binding uosc/delete-file-next"; # ! Navigation > Delete file & Next
-# "alt+<" = "script-binding uosc/delete-file-prev"; # ! Navigation > Delete file & Prev
-# "alt+esc" = "script-binding uosc/delete-file-quit"; # ! Navigation > Delete file & Quit
+
+"alt+>" = "script-binding uosc/delete-file-next"; # ! Navigation > Delete file & Next
+
+"alt+<" = "script-binding uosc/delete-file-prev"; # ! Navigation > Delete file & Prev
+
+"alt+esc" = "script-binding uosc/delete-file-quit"; # ! Navigation > Delete file & Quit
+
           # set video-aspect-override "-1"         #! Utils > Aspect ratio > Default
           # set video-aspect-override "16:9"       #! Utils > Aspect ratio > 16:9
           # set video-aspect-override "4:3"        #! Utils > Aspect ratio > 4:3

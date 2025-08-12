@@ -20,13 +20,11 @@
       wev
     ]
     ++ (with pkgs; [
-      # support
-      # zip xz unzip p7zip
       # testing for yazi #
-      # zip
-      # xz
-      # unzip
-      # p7zip
+      zip # Compressor/archiver for creating and modifying zipfiles.
+      xz # General-purpose data compression software, successor of LZMA
+      unzip # Extraction utility for archives compressed in .zip format
+      p7zip # New p7zip fork with additional codecs and improvements (forked from https://sourceforge.net/projec…
     ])
     ++ (with pkgs; [
       # jetbrains.pycharm-community-bin
@@ -61,11 +59,11 @@
       file # need for yazi mimedetectionetc.
       iftop # TODO seems powerful investigate more
       inxi
+      ncdu
       iotop-c # laggy?
       lm_sensors
       lsof # list open files/ports**
       mission-center
-      ncdu
       nethogs
       pciutils # lspci
       usbutils # lsusb, usb-devices, usb-view(optional gui)
@@ -92,23 +90,31 @@
       helvum
       mpc-cli
       nautilus
+      qbittorrent
       spotify
-      spotify-cli-linux
+      # spotify-cli-linux
       sway-audio-idle-inhibit
       trash-cli # for move to trash mpv
       vlc
+      clapper
       wf-recorder
-      kdePackages.kdenlive
-      kdePackages.mlt
+      handbrake # FIXME lag on open
+      audacity
+      # tenacity
+      kando
+      # pipeline # flatpak better?
+      # qqmusic
     ])
     ++ (with pkgs-unstable; [
-      spotube
-      qbittorrent
+      spotube # FIXME issues tu
+      kdePackages.audiotube
+      fooyin
     ])
     ++ (with pkgs-unstable; [
       # komikku # broken
       mangal
       ani-cli
+      # kazumi # watch anime online with danmaku support
       # miru # issue launching -kde
       #syncyomi - sync tachiyomi progress across devices
     ])
@@ -124,13 +130,15 @@
           # wine
           blender-hip # Hardware accelerated rendering
           darktable
-          davinci-resolve
+          # davinci-resolve
           ffmpeg-full # full vs vanilla?
           gimp
           inkscape-with-extensions
-          mediainfo
           obs-cli
           obs-studio
+          # kdePackages.kdenlive # FIXME see if flatpak better
+          # kdePackages.mlt
+          # mediainfo
         ]
         ++ ([
           # davinci-resolve
@@ -144,13 +152,13 @@
         [
           # inputs.hyprswitch.packages.x86_64-linux.default
           cliphist
-          file-roller
+          # file-roller
           grimblast
           inputs.quickshell.packages.${system}.default
           slurp
           sushi
           viewnior
-          yelp
+          # yelp
         ]
       else
         [ ]

@@ -9,6 +9,7 @@
   services = {
     # kdeconnect.enable = true;
     blueman-applet.enable = lib.mkIf osConfig.programs.hyprland.enable true;
+    blanket.enable = true;
     udiskie = {
       enable = lib.mkIf osConfig.programs.hyprland.enable false;
       tray = "auto"; # works

@@ -99,6 +99,8 @@
         "youtube-upnext"
         "evafast"
         "android-studio-stable"
+        "qqmusic"
+"libvgm"
       ];
       permittedInsecurePackages = [
         "ventoy-1.1.05"

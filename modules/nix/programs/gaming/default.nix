@@ -10,7 +10,7 @@
     ./steam.nix
   ];
 
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     amdgpu_top
     bottles
     # winetricks

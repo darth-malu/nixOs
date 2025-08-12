@@ -165,8 +165,6 @@ https://nixos.wiki/wiki/Nix_channels
         "youtube-upnext"
         "evafast"
         "android-studio-stable"
-        "qqmusic"
-"libvgm"
       ];
       permittedInsecurePackages = [
         "ventoy-1.1.05"

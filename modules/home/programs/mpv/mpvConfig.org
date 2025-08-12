@@ -5,10 +5,27 @@
 * main config
 #+begin_src nix :tangle default.nix
 { pkgs, osConfig, ... }:
+{
 #+end_src
+** mpd-discord service
+#+begin_src nix :tangle default.nix
+services.mpd-discord-rpc = {
+  enable = true;
+  # package
+  settings = {
+    hosts = [ "localhost:6600" ];
+    format = {
+      details = "$title";
+      state = "On $album by $artist";
+    };
+  };
+};
+#+end_src
+
+https://github.com/JakeStanger/mpd-discord-rpc#configuration.
+
 ** start/enable mpv
 #+begin_src nix :tangle default.nix
-{
   imports = [
    ./non-nixpkgs-scripts
   ];
@@ -63,11 +80,11 @@ scripts = with pkgs.mpvScripts; [
   # eisa01.smartskip
   # visualizer
   # webtorrent-mpv-hook # use anicli
+  mpv-discord
 ];
 #+end_src
 
 smartskip: https://github.com/Eisa01/mpv-scripts
-
 *** script opts
 built-in scripts exist see Man:mpv
 **** start
@@ -84,7 +101,7 @@ uosc = import ./scriptOpts/uosc.nix;
 modernx-zydezu = import ./scriptOpts/modernx-zydezu.nix;
 #+end_src
 **** discord rich presence
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
 mpv_discordRPC = {
   rpc_wrapper = "lua-discordRPC";
   periodic_timer = 1;

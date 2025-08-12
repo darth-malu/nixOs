@@ -5,9 +5,8 @@
     playlistDirectory = "/home/malu/Music/ncmpcppStuff/playlists";
     dataDir = "/home/malu/.local/share/mpd";
     dbFile = "/home/malu/.local/share/mpd/db";
-
-    extraConfig = # mpd.conf
-      ''
+    extraConfig # mpd.conf
+      = ''
         audio_output {
           type "pipewire"
           name "Pipewire Sound Server"
@@ -32,7 +31,7 @@
         }
 
         auto_update             "yes"
-        auto_update_depth       "2"
+        # auto_update_depth       "2"
         follow_outside_symlinks "yes"
         follow_inside_symlinks  "yes"
 

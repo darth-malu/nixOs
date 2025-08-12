@@ -96,19 +96,19 @@
       sway-audio-idle-inhibit
       trash-cli # for move to trash mpv
       vlc
-      clapper
+      # clapper
       wf-recorder
       handbrake # FIXME lag on open
       audacity
       # tenacity
-      kando
+      # kando
       # pipeline # flatpak better?
       # qqmusic
     ])
     ++ (with pkgs-unstable; [
       spotube # FIXME issues tu
-      kdePackages.audiotube
-      fooyin
+      # kdePackages.audiotube
+      # fooyin
     ])
     ++ (with pkgs-unstable; [
       # komikku # broken

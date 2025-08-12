@@ -1,18 +1,6 @@
 { pkgs, osConfig, ... }:
+
 {
-
-services.mpd-discord-rpc = {
-  enable = true;
-  # package
-  settings = {
-    hosts = [ "localhost:6600" ];
-    format = {
-      details = "$title";
-      state = "On $album by $artist";
-    };
-  };
-};
-
   imports = [
    ./non-nixpkgs-scripts
   ];
@@ -52,6 +40,14 @@ scriptOpts = {
 uosc = import ./scriptOpts/uosc.nix;
 
 modernx-zydezu = import ./scriptOpts/modernx-zydezu.nix;
+
+mpv_discordRPC = {
+  rpc_wrapper = "lua-discordRPC";
+  periodic_timer = 1;
+  cover_art = true;
+  active = true;
+  key_toggle = "D";
+};
 
 };
 

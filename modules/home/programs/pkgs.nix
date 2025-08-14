@@ -128,7 +128,7 @@
           # protonup-rs
           # steam-run
           # wine
-          blender-hip # Hardware accelerated rendering
+          # blender-hip # Hardware accelerated rendering NOTE later after pos
           darktable
           # davinci-resolve
           ffmpeg-full # full vs vanilla?

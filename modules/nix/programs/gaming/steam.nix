@@ -46,6 +46,12 @@
       capSysNice = true; # Add cap_sys_nice capability to the GameScope binary so that it may renice itself.
     };
 
+    environment.systemPackages = with pkgs; [
+      # Trying gamescope recording
+      # gst_all_1.gstreamer
+      # pulseaudioFull
+    ];
+
     hardware.xone.enable = true; # support for the xbox controller USB dongle
 
     environment.sessionVariables = {

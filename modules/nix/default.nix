@@ -7,6 +7,6 @@
     ./services
     ./core
     # ./app-image.nix
-    # ./overlays.nix
+    ./overlays.nix
   ];
 }

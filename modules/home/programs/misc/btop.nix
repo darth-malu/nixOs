@@ -15,7 +15,7 @@
     proc_tree = false;
     proc_gradient = true;
   };
-  theme = {
+  themes = {
     my-theme = ''
       theme[main_bg]="#282a36"
       theme[main_fg]="#f8f8f2"

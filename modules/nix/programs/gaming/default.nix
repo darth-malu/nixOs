@@ -14,20 +14,21 @@
   environment.systemPackages =
     with pkgs;
     [
-      amdgpu_top
-      mangohud
-      protonplus
-      lutris
+      # lutris
       # protonup
-      # wine64 # 64-bit only
-      # support both 32-bit and 64-bit applications
       # wine-wayland
+      # wine64 # 64-bit only
+      mangohud
     ]
     ++ (with pkgs-unstable; [
-      # lutris
-      heroic
+      lutris
+      # heroic-unwrapped # FHS
+      heroic # without fhs
+      protonplus
       bottles
+      wineWowPackages.stable # support both 32-bit and 64-bit applications
       winetricks
-      wineWowPackages.stable
+      amdgpu_top
+      # wine64
     ]);
 }

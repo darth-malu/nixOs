@@ -86,7 +86,7 @@ bind =
   # open windows
   "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
   "$mod, space, exec, pkill rofi || $rofi_open_windows"
-  "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
+  "$mod $cl, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
   # power menu
   "$mod, Delete, exec, pkill rofi || rofi_power"
@@ -98,7 +98,10 @@ bind =
   "$mod, period, exec, pkill rofi || $emoji_rofi"
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
-  "$mod, D, exec, [workspace emptym] $emacs"
+  "$mod, E, exec, [workspace emptym] $emacs"
+
+# "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
+  "$mod, D, exec, [workspace emptym] discord"
 
 # "$mod ,space, killactive"
 "$mod ,Escape, killactive"
@@ -113,11 +116,19 @@ bind =
   "$mod, KP_Divide, togglesplit" # dwindle
   "$mod, KP_Multiply, pseudo"
 
+    # "$cl $sl, R, pass, ^(com.obsproject.Studio)$"
+    # "$cl $sl, S, pass, ^(com.obsproject.Studio)$"
+    # "$cl $sl, [, pass, ^(com.obsproject.Studio)$"
+    # "$cl $sl, ], pass, ^(com.obsproject.Studio)$"
+    # "$cl $sl, \, pass, ^(com.obsproject.Studio)$"
+    # "$cl $sl, -, pass, ^(com.obsproject.Studio)$"
+    "SUPER $sl, F10, sendshortcut, $cl $sl, R, class:^(com\.obsproject\.Studio)$"
+
 # "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
 # "$mod $cl, D, focuswindow, class:^(emacs)$"
 # "$mod $cl, D, focuswindow, initialTitle:(.*)(Doom Emacs)$"
 
-"$mod $cl $sl, D, focuswindow, class:^(discord)$"
+"$mod $cl, D, focuswindow, class:^(discord)$"
 
 "$mod $cl, Y, focuswindow, title:^(Yazi)(.*)$"
   # "$mod , up, focuswindow, class:^(Emacs)$"
@@ -238,7 +249,7 @@ bind =
 ++ (if osConfig.networking.hostName == "tangier" then
   [
   "$mod, Delete, exec, pkill rofi || rofi_power"
-    "$mod $cl, D, focuswindow, class:^(Emacs)$"
+    "$mod $cl, E, focuswindow, class:^(Emacs)$"
   ]
   else [
     # "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
@@ -255,7 +266,7 @@ bind =
     # "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 `hyprctl monitors | grep DP | cut -d ' ' -f2`"
     # "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 DP-3"
 
-    "$mod $cl, D, focuswindow, class:^(emacs)$"
+    "$mod $cl, E, focuswindow, class:^(emacs)$"
   ]);
 
 #mouse binds have one less arg

@@ -85,6 +85,7 @@
       allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
         "discord"
         "google-chrome"
+        "ciscoPacketTracer8"
         "bluemail"
         "ventoy"
         "spotify"
@@ -103,6 +104,7 @@
       permittedInsecurePackages = [
         "ventoy-1.1.05"
         "libsoup-2.74.3"
+        # "libxml2-2.13.8" # for cisco?
       ];
     };
     # pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config

@@ -18,7 +18,7 @@
 
   services = {
     locate.enable = true;
-    gvfs.enable = true;
+    gvfs.enable = true; # sets GIO_EXTRA_MODULES, used for accessing trash/network filesystems
     fstrim = {
       enable = true;
       interval = "weekly";

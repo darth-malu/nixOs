@@ -35,9 +35,11 @@
     #   enable = true;
     # };
 
+    # gpu-screen-recorder.enable = true; #NOTE only in unstable
+
     bashmount.enable = false;
 
-    btop.enable = import ./misc/btop.nix;
+    btop = import ./misc/btop.nix;
 
     comodoro.enable = false;
 

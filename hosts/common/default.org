@@ -23,6 +23,7 @@
       pkg:
       builtins.elem (lib.getName pkg) [
         "broadcom-sta"
+        "ciscoPacketTracer8"
         "n8n"
         "android-studio-stable"
         "steam-unwrapped"
@@ -33,6 +34,7 @@
       ];
     permittedInsecurePackages = [
       "broadcom-sta-6.30.223.271-57-6.12.41"
+      "libxml2-2.13.8" # for cisco
     ];
   };
 #+end_src

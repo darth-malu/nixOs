@@ -25,7 +25,7 @@
 
     decoration = {
       shadow = {
-        enabled = true;
+        enabled = if osConfig.networking.hostName == "carthage" then true else false;
         #"col.shadow" = "rgba(1E202966)";
         #shadow_range = 60;
         color = "0xee1a1a1a";
@@ -35,9 +35,8 @@
         render_power = 3;
         scale = 0.97;
       };
-
       blur = {
-        enabled = true;
+        enabled = if osConfig.networking.hostName == "carthage" then true else false;
         size = 2; # 2,,
         passes = 3; # 2,,
         xray = true; # if enabled, floating windows will ignore tiled windows in their blur. Only available if new_optimizations is true. Will reduce overhead on floating blur significantly.
@@ -63,7 +62,7 @@
       # font_family = "quicksand";
       # force_default_wallpaper = if osConfig.networking.hostName == "carthage" then "0" else "1"; #anime mascot wallpapers
       force_default_wallpaper = 2; # -1 random, 2 (anime), 0/1 - disable anime
-      # vfr = true; # true:: recommend leave on# lower the amount of sent frames when nothing is happening on-screen.
+      vfr = if osConfig.networking.hostName == "carthage" then true else false; # true:: recommend leave on# lower the amount of sent frames when nothing is happening on-screen. battery
       vrr = if osConfig.networking.hostName == "carthage" then 1 else 0; # 1 -on,2 -fullscreen # adaptive sync
       new_window_takes_over_fullscreen = 2; # 2 - unfullscreen, 1 -takes over, -nothing/staybehind -0
       close_special_on_empty = true;
@@ -73,7 +72,7 @@
       # splash_font_family = "VictorMono Nerd Font"; # FIXME not working lol ofcourse
       key_press_enables_dpms = true; # false:: #wakes monitor if key pressed
       # middle_click_paste = if osConfig.networking.hostName == "carthage" then false else true;
-      middle_click_paste = true;
+      # middle_click_paste = true;
       # animate_manual_resizes = true;
       focus_on_activate = true; # solves rofi issue lol # focus apps that request to be focused(activate request)
       #mouse_move_enables_dpms = true
@@ -83,7 +82,6 @@
       layers_hog_keyboard_focus = true; # keyboard interactive layers keep focus on mouse move, fix bittorrent etc pop ups
       #background_colur = 0x111111;
     };
-
     cursor = {
       no_warps = true;
       enable_hyprcursor = true;
@@ -102,6 +100,7 @@
     animations = {
       enabled = true;
       bezier = [
+        # TODO better animations
         "myBezier, 0.05, 0.9, 0.1, 1.05"
         "darthBez,0.5, 0, 0.75, 0"
         "easeOutBack, 0.34, 1.56, 0.64, 1"

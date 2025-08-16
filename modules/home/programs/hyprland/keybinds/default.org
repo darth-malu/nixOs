@@ -134,7 +134,7 @@ bind =
   # open windows
   "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
   "$mod, space, exec, pkill rofi || $rofi_open_windows"
-  "$mod, mouse:273, exec, pkill rofi || $rofi_open_windows"
+  "$mod $cl, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
   # power menu
   "$mod, Delete, exec, pkill rofi || rofi_power"
@@ -149,7 +149,13 @@ bind =
 *** emacs
 #+begin_src nix :tangle default.nix
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
-  "$mod, D, exec, [workspace emptym] $emacs"
+  "$mod, E, exec, [workspace emptym] $emacs"
+#+end_src
+
+*** discord
+#+begin_src nix :tangle default.nix
+# "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
+  "$mod, D, exec, [workspace emptym] discord"
 #+end_src
 
 *** activekill
@@ -174,7 +180,7 @@ bind =
   "$mod, KP_Multiply, pseudo"
 #+end_src
 *** obs
-#+begin_src nix :tangle no
+#+begin_src nix :tangle yes
     # "$cl $sl, R, pass, ^(com.obsproject.Studio)$"
     # "$cl $sl, S, pass, ^(com.obsproject.Studio)$"
     # "$cl $sl, [, pass, ^(com.obsproject.Studio)$"
@@ -195,7 +201,7 @@ see hyprswitch:
 
 **** discord
 #+begin_src nix :tangle default.nix
-"$mod $cl $sl, D, focuswindow, class:^(discord)$"
+"$mod $cl, D, focuswindow, class:^(discord)$"
 #+end_src
 
 **** yazi
@@ -365,7 +371,7 @@ movetoworkspacesilent exists
 ++ (if osConfig.networking.hostName == "tangier" then
   [
   "$mod, Delete, exec, pkill rofi || rofi_power"
-    "$mod $cl, D, focuswindow, class:^(Emacs)$"
+    "$mod $cl, E, focuswindow, class:^(Emacs)$"
   ]
   else [
     # "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
@@ -382,7 +388,7 @@ movetoworkspacesilent exists
     # "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 `hyprctl monitors | grep DP | cut -d ' ' -f2`"
     # "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 DP-3"
 
-    "$mod $cl, D, focuswindow, class:^(emacs)$"
+    "$mod $cl, E, focuswindow, class:^(emacs)$"
   ]);
 #+end_src
 ** bindm/c ( mouse binding )

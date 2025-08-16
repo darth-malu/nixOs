@@ -7,6 +7,7 @@
     };
     removed = {
       # as if the .desktop file was not listing this mimetype in the first place
+      "video/mp4" = "fr.handbrake.ghb.desktop";
     };
   };
 
@@ -43,6 +44,7 @@
     "image/webp" = [ "viewnior.desktop" ];
 
     "audio/mpeg" = [ "mpv.desktop" ];
+    "video/mp4" = [ "mpv.desktop" ];
 
     "inode/directory" = [
       "org.kde.Dolphin.desktop"

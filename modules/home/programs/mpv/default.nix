@@ -4,16 +4,20 @@
   imports = [
    ./non-nixpkgs-scripts
   ];
+
+  home.packages = [
+    pkgs.trash-cli    # move to trash functionality
+  ];
+
   programs.mpv = {
     enable = true;
-      package = (
-        pkgs.mpv-unwrapped.wrapper {
+      package = (pkgs.mpv-unwrapped.wrapper {
           scripts = with pkgs.mpvScripts; [
             mpris
             # sponsorblock # TODO not need?
             # quality-menu
             youtube-upnext # C-u (configurable) , space to append. 'up next'/recommended youtube videos
-            mpv-cheatsheet # use ?
+            # mpv-cheatsheet # use ?
             mpv-playlistmanager # S-Enter to add to playlist
             uosc
             memo # recent files menu
@@ -22,17 +26,14 @@
             # evafast # provides evafast/toggle script-binding for speeding up independently of the hybrid key. TODO need?
             # eisa01.smartskip
             # visualizer
-            webtorrent-mpv-hook
+            # webtorrent-mpv-hook
           ];
-
           mpv = pkgs.mpv-unwrapped.override {
             waylandSupport = true;
           };
-
           # ffmpeg = pkgs.ffmpeg-full;
           # ffmpeg_5 = pkgs.ffmpeg_5-full;
-        }
-  );
+        });
 
 scriptOpts = {
 
@@ -40,14 +41,6 @@ scriptOpts = {
 uosc = import ./scriptOpts/uosc.nix;
 
 modernx-zydezu = import ./scriptOpts/modernx-zydezu.nix;
-
-mpv_discordRPC = {
-  rpc_wrapper = "lua-discordRPC";
-  periodic_timer = 1;
-  cover_art = true;
-  active = true;
-  key_toggle = "D";
-};
 
 };
 

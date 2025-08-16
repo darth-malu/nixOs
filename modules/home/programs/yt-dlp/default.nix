@@ -12,6 +12,7 @@ extraConfig =
     -P "subtitle:subs"
     -P "thumbnail:thumbnail"
     # -P "thumbnail:%(title)s\%(title)s.%(ext)s" # will put thumbnail in folder with same name as video
+
     # Save all videos under YouTube directory in your home directory
     -o "%(channel)s-%(title)s.%(ext)s"
 
@@ -22,7 +23,8 @@ extraConfig =
     # Download the best video available but no better than 1080p,
     # -f "bv*[height<=1080]+ba/b[height<=1080]"
     -f "bv[height<=1080]+ba/b[height<=1080]"
-    -S "fps,codec:mp4:mp3"
+
+    # -S "fps,codec:mp4:mp3"
 '';
 
 settings = {

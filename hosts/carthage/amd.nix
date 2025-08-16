@@ -1,4 +1,5 @@
 { pkgs-unstable, ... }:
+
 {
   # previously hardware.opengl
   hardware.graphics = {
@@ -12,7 +13,7 @@
       # mesa.opencl
     ];
     extraPackages32 = with pkgs-unstable; [
-      # driversi686Linux.amdvlk # TODO test if need
+      driversi686Linux.amdvlk # TODO test if need
     ];
   };
   hardware.amdgpu = {
@@ -21,8 +22,8 @@
     opencl.enable = true; # Whether to enable OpenCL support using ROCM runtime library.
     amdvlk = {
       enable = true; # amd vulkan driver
-      package = pkgs-unstable.amdvlk;
-      supportExperimental.enable = true; # false::
+      # package = pkgs-unstable.amdvlk;
+      # supportExperimental.enable = true; # false::
     };
   };
 
@@ -49,12 +50,12 @@
     ROC_ENABLE_PRE_VEGA = "1"; # enable opencl polaris;
     # When a program is installed in your environment, these libraries should be found automatically. However, this is not the case in a `nix-shell`. use LD_L*
     LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib";
-    AMD_VULKAN_ICD = "RADV"; # AMDVLK ::, RADV
+    # AMD_VULKAN_ICD = "RADV"; # AMDVLK ::, RADV
     VDPAU_DRIVER = "radeonsi"; # NOTE try as fix for openCl issues
   };
-  # services.lact.enable = true; # NOTE in unstable only
-  environment.systemPackages = [ pkgs-unstable.lact ];
-  systemd.packages = [ pkgs-unstable.lact ];
-  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+  services.lact.enable = true; # NOTE in unstable only
+  # environment.systemPackages = [ pkgs-unstable.lact ];
+  # systemd.packages = [ pkgs-unstable.lact ];
+  # systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 
 }

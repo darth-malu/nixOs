@@ -21,21 +21,20 @@
     programs.gamemode = {
       # https://www.mankier.com/8/gamemoded
       enable = true;
+      # enableRenice  = true;     # true::
       settings = {
         general = {
           renice = 10; # 0::-20 - user must be in gamemode group
         };
-
         # Warning: GPU optimisations have the potential to damage hardware
         gpu = {
           apply_gpu_optimisations = "accept-responsibility"; # 0::
           gpu_device = 0; # /sys/class/drm/card0/
           amd_performance_level = "high";
         };
-
         custom = {
-          start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
-          end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+          start = "${pkgs.libnotify}/bin/notify-send -i /home/malu/Shibuya/assets/icons8-ps-controller-48.png 'GameMode started'";
+          end = "${pkgs.libnotify}/bin/notify-send -i /home/malu/Shibuya/assets/icons8-ps-controller-48.png 'GameMode ended'";
           # script_timeout = 10;
         };
       };

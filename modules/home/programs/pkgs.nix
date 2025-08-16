@@ -31,16 +31,15 @@
       # tokei
       # vscodium
       # vscodium-fhs
-      dotnet-sdk
+      # dotnet-sdk
       ed
       firebase-tools
-      libgcc
-      nasm
+      # libgcc
+      # nasm
     ])
     ++ (with pkgs; [
       # wpsoffice
       # libreoffice-qt-still
-      libreoffice-still
       ripgrep-all
     ])
     ++ (with pkgs; [
@@ -80,25 +79,21 @@
     ])
     ++ (with pkgs; [
       # cantata # old af
-      # davinci-resolve #NOTE crash on stable
       # digikam
       # lollypop # cantata better
       # smplayer
       # ymuse # rudimentary
       # youtube-tui # https://siriusmart.github.io/youtube-tui/
       easyeffects
-      helvum
       mpc-cli
       nautilus
       qbittorrent
       spotify
       # spotify-cli-linux
       sway-audio-idle-inhibit
-      trash-cli # for move to trash mpv
-      vlc
       # clapper
       wf-recorder
-      handbrake # FIXME lag on open
+      gpu-screen-recorder
       audacity
       # tenacity
       # kando
@@ -106,7 +101,6 @@
       # qqmusic
     ])
     ++ (with pkgs-unstable; [
-      spotube # FIXME issues tu
       # kdePackages.audiotube
       # fooyin
     ])
@@ -123,6 +117,8 @@
         with pkgs-unstable;
         [
           # mastodon
+          spotube # FIXME issues tu
+          libreoffice-still
           # melt  #collison with mlt
           # protonup-qt # GUI for installing custom Proton versions like GE_Proton
           # protonup-rs
@@ -130,6 +126,11 @@
           # wine
           # blender-hip # Hardware accelerated rendering NOTE later after pos
           darktable
+          davinci-resolve # NOTE crash on stable
+          handbrake # FIXME lag on open
+          vlc
+          helvum
+          coppwr
           # davinci-resolve
           ffmpeg-full # full vs vanilla?
           gimp
@@ -140,8 +141,12 @@
           # kdePackages.mlt
           # mediainfo
         ]
-        ++ ([
-          # davinci-resolve
+        ++ (with pkgs.gst_all_1; [
+          # nautilus gst
+          gst-plugins-good
+          gst-plugins-bad
+          gst-plugins-ugly
+          gst-libav
         ])
       else
         [ ffmpeg ]

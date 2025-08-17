@@ -1,19 +1,19 @@
-{ pkgs-unstable, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   # previously hardware.opengl
   hardware.graphics = {
     enable = true; # vulkan #/run/opengl-driver
     enable32Bit = true; # wine needs , vulkan 32 bit, vulkan on by default with radv
-    extraPackages = with pkgs-unstable; [
+    extraPackages = with pkgs; [
       # Additional packages to add to the default graphics driver lookup path. This can be used to add OpenCL drivers, VA-API/VDPAU drivers, etc.
       # amdvlk
       # rocmPackages.clr.icd # opencl
       # rocmPackages.clr
       # mesa.opencl
     ];
-    extraPackages32 = with pkgs-unstable; [
-      driversi686Linux.amdvlk # TODO test if need
+    extraPackages32 = with pkgs; [
+      # driversi686Linux.amdvlk # TODO test if need
     ];
   };
   hardware.amdgpu = {
@@ -22,7 +22,7 @@
     opencl.enable = true; # Whether to enable OpenCL support using ROCM runtime library.
     amdvlk = {
       enable = true; # amd vulkan driver
-      # package = pkgs-unstable.amdvlk;
+      # package = pkgs.amdvlk;
       # supportExperimental.enable = true; # false::
     };
   };
@@ -33,9 +33,9 @@
 
   # systemd.tmpfiles.rules =
   #   let
-  #     rocmEnv = pkgs-unstable.symlinkJoin {
+  #     rocmEnv = pkgs.symlinkJoin {
   #       name = "rocm-combined";
-  #       paths = with pkgs-unstable.rocmPackages; [
+  #       paths = with pkgs.rocmPackages; [
   #         rocblas
   #         hipblas
   #         clr
@@ -49,13 +49,13 @@
   environment.variables = {
     ROC_ENABLE_PRE_VEGA = "1"; # enable opencl polaris;
     # When a program is installed in your environment, these libraries should be found automatically. However, this is not the case in a `nix-shell`. use LD_L*
-    LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+    # LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib";
     # AMD_VULKAN_ICD = "RADV"; # AMDVLK ::, RADV
-    VDPAU_DRIVER = "radeonsi"; # NOTE try as fix for openCl issues
+    # VDPAU_DRIVER = "radeonsi"; # NOTE try as fix for openCl issues
   };
-  services.lact.enable = true; # NOTE in unstable only
-  # environment.systemPackages = [ pkgs-unstable.lact ];
-  # systemd.packages = [ pkgs-unstable.lact ];
-  # systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+  # services.lact.enable = true; # NOTE in unstable only
+  environment.systemPackages = [ pkgs-unstable.lact ];
+  systemd.packages = [ pkgs-unstable.lact ];
+  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 
 }

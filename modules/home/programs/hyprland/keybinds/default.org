@@ -280,26 +280,22 @@ see hyprswitch:
   #bind="$mod SHIFT,Left,layoutmsg,swapnext"
 #+end_src
 
-*** workspaces
-**** +/- workspaces, left/right workspaces | groups
+*** Group bar
 #+begin_src nix :tangle default.nix
-# next/prev workspace
-  "$mod, mouse_up, workspace, m+1"
-  "$mod, mouse_down, workspace, m-1"
-
-  "$mod ,up, togglegroup"
+"$mod ,up, togglegroup"
   "$mod ,down, lockactivegroup, toggle"
 
   "$mod ,right,changegroupactive,f"
   "$mod ,left,changegroupactive,b"
 
+  "$mod ,apostrophe,changegroupactive,f"
+  "$mod ,quotedbl,changegroupactive,b"
+
   "$mod $sl , right, movewindoworgroup, r"
   "$mod $sl , left, movewindoworgroup, l"
-
-  "$mod ,H, workspace,m-1"
-  "$mod ,L, workspace,m+1"
 #+end_src
 
+*** workspaces
 **** go/move workspace | carthage
 #+begin_src nix :tangle yes
 # Keypad navigation
@@ -328,6 +324,16 @@ see hyprswitch:
 #+end_src
 
 movetoworkspacesilent exists
+
+**** +/- workspaces, left/right workspaces | groups
+#+begin_src nix :tangle default.nix
+# next/prev workspace
+"$mod, mouse_up, workspace, m+1"
+  "$mod, mouse_down, workspace, m-1"
+
+  "$mod ,H, workspace,m-1"
+  "$mod ,L, workspace,m+1"
+#+end_src
 
 *** waybar
 #+begin_src nix :tangle default.nix

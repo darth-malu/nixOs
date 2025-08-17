@@ -8,6 +8,14 @@
 {
 #+end_src
 * Android
+** cisco packet tracer
+#+begin_src nix :tangle default.nix
+  environment.systemPackages = with pkgs-unstable; [
+    # ciscoPacketTracer8
+    ciscoPacketTracer7
+  ];
+#+end_src
+
 ** adb
 This will add additional udev rules for unprivileged access as well as add adb to your $PATH.
 
@@ -21,24 +29,24 @@ Alternatively, if you don't want to install adb globally but do want to configur
 }
 #+end_src
 
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
 programs.adb = {
   enable = true;
 };
 #+end_src
 
 ** Android Studio
-#+begin_src nix :tangle default.nix
-  environment.systemPackages = [pkgs-unstable.android-studio ];
-    # if config.networking.hostName == "carthage" then
-    #   [
-    #     pkgs.android-studio-full
-    #   ]
-    # else
-    #   [ pkgs.android-studio ];
-  # android-tools
-  # androidenv.androidPkgs_9_0.platform-tools
-  # androidenv.androidPkgs.all.packages.platforms.v36
+#+begin_src nix :tangle no
+environment.systemPackages = [pkgs-unstable.android-studio ];
+# if config.networking.hostName == "carthage" then
+#   [
+#     pkgs.android-studio-full
+#   ]
+# else
+#   [ pkgs.android-studio ];
+# android-tools
+# androidenv.androidPkgs_9_0.platform-tools
+# androidenv.androidPkgs.all.packages.platforms.v36
 #+end_src
 
 =Android-tools=

@@ -55,40 +55,54 @@
     };
 
     # render = {
-    #   explicit-sync = 2; # 2-auto based on gpu driver::,1 - yes, 0-no
+    # explicit-sync = 2; # 2-auto based on gpu driver::,1 - yes, 0-no
     # };
+    group = {
+      group_on_movetoworkspace = true; # false::whether using movetoworkspace[silent] will merge the window into the workspace’s solitary unlocked group
+      groupbar = {
+        font_family = "nunito"; # misc:font_family if not specified
+        font_size = 14; # 8::
+        # stacked = true; # render the groupbar as a vertical stack
+        "col.active" = "0x8600FFF5"; # 0x66ffff00
+        "col.inactive" = "0x3300FFF5";
+        # col.locked_active
+        # col.locked_inactive
+        keep_upper_gap = false;
+      };
+    };
     misc = {
-      font_family = "JetBrainsMono Nerd Font";
+      # "col.splash" = "rgba(195,232,141,1.0)";
+      # animate_manual_resizes = true;
+      # disable_xdg_env_checks = false; #false::
       # font_family = "quicksand";
       # force_default_wallpaper = if osConfig.networking.hostName == "carthage" then "0" else "1"; #anime mascot wallpapers
-      force_default_wallpaper = 2; # -1 random, 2 (anime), 0/1 - disable anime
-      vfr = if osConfig.networking.hostName == "carthage" then true else false; # true:: recommend leave on# lower the amount of sent frames when nothing is happening on-screen. battery
-      vrr = if osConfig.networking.hostName == "carthage" then 1 else 0; # 1 -on,2 -fullscreen # adaptive sync
-      new_window_takes_over_fullscreen = 2; # 2 - unfullscreen, 1 -takes over, -nothing/staybehind -0
-      close_special_on_empty = true;
-      disable_hyprland_logo = true; # wallpaper + logo lol
-      #disable_splash_rendering = true
-      # "col.splash" = "rgba(195,232,141,1.0)";
-      # splash_font_family = "VictorMono Nerd Font"; # FIXME not working lol ofcourse
-      key_press_enables_dpms = true; # false:: #wakes monitor if key pressed
       # middle_click_paste = if osConfig.networking.hostName == "carthage" then false else true;
       # middle_click_paste = true;
-      # animate_manual_resizes = true;
-      focus_on_activate = true; # solves rofi issue lol # focus apps that request to be focused(activate request)
-      #mouse_move_enables_dpms = true
       # mouse_move_focuses_monitor = true; #true::
-      #initial_workspace_tracking = 1; #0, 1::(single-shot), 2 -persistent/children
-      # disable_xdg_env_checks = false; #false::
-      layers_hog_keyboard_focus = true; # keyboard interactive layers keep focus on mouse move, fix bittorrent etc pop ups
+      # splash_font_family = "VictorMono Nerd Font"; # FIXME not working lol ofcourse
       #background_colur = 0x111111;
+      #disable_splash_rendering = true
+      #initial_workspace_tracking = 1; #0, 1::(single-shot), 2 -persistent/children
+      #mouse_move_enables_dpms = true
+      close_special_on_empty = true;
+      disable_hyprland_logo = true; # wallpaper + logo lol
+      focus_on_activate = true; # solves rofi issue lol # focus apps that request to be focused(activate request)
+      font_family = "JetBrainsMono Nerd Font";
+      force_default_wallpaper = 2; # -1 random, 2 (anime), 0/1 - disable anime
+      key_press_enables_dpms = true; # false:: #wakes monitor if key pressed
+      layers_hog_keyboard_focus = true; # keyboard interactive layers keep focus on mouse move, fix bittorrent etc pop ups
+      new_window_takes_over_fullscreen = 2; # 2 - unfullscreen, 1 -takes over, -nothing/staybehind -0
+      vfr = if osConfig.networking.hostName == "carthage" then true else false; # true:: recommend leave on# lower the amount of sent frames when nothing is happening on-screen. battery
+      vrr = if osConfig.networking.hostName == "carthage" then 1 else 0; # 1 -on,2 -fullscreen # adaptive sync
     };
     cursor = {
-      no_warps = true;
-      enable_hyprcursor = true;
+      # warp_back_after_non_mouse_input = true; # Warp the cursor back to where it was after using a non-mouse input to move it, and then returning back to mouse.
       #no_hardware_cursors = true; #invis cursor
       #persistent_warps = true; # maintain cursor position on switch rather than center
-      hide_on_key_press = true;
       #warp_on_change_workspace = true; # cursor to last focused window
+      enable_hyprcursor = true;
+      hide_on_key_press = true;
+      no_warps = true;
       sync_gsettings_theme = true; # true::
     };
 
@@ -109,7 +123,8 @@
         "easeOutQuad, 0.25, 0.46, 0.45, 0.94"
         "easeInOutQuad,0.65, 0, 0.35, 1"
       ];
-      first_launch_animation = false;
+      # first_launch_animation = false;
+      workspace_wraparound = true;
       animation = [
         "windows, 1, 2, easeInOutQuad, popin"
         "workspaces, 1, 3, easeInOutQuad, slide"

@@ -25,7 +25,7 @@
       ];
     permittedInsecurePackages = [
       "broadcom-sta-6.30.223.271-57-6.12.41"
-      "libxml2-2.13.8" # for cisco
+      "libxml2-2.13.8" # for cisco?
     ];
   };
 
@@ -100,6 +100,8 @@
       trim.enable = true; # true::
     };
   };
+
+  hardware.usbStorage.manageShutdown = true;
 
   networking = {
 

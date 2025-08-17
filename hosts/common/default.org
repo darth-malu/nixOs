@@ -34,7 +34,7 @@
       ];
     permittedInsecurePackages = [
       "broadcom-sta-6.30.223.271-57-6.12.41"
-      "libxml2-2.13.8" # for cisco
+      "libxml2-2.13.8" # for cisco?
     ];
   };
 #+end_src
@@ -117,6 +117,11 @@ https://search.nixos.org/options?channel=25.05&show=boot.loader.systemd-boot.sor
       trim.enable = true; # true::
     };
   };
+#+end_src
+
+* usb storage gracefull powr off
+#+begin_src nix :tangle default.nix
+  hardware.usbStorage.manageShutdown = true;
 #+end_src
 
 * networking stuffs

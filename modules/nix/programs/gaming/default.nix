@@ -15,7 +15,7 @@
     with pkgs;
     [
       # lutris
-      # protonup
+      protonup
       # wine-wayland
       # wine64 # 64-bit only
       mangohud
@@ -24,7 +24,7 @@
       lutris
       # heroic-unwrapped # FHS
       heroic # without fhs
-      protonplus
+      # protonplus
       bottles
       wineWowPackages.stable # support both 32-bit and 64-bit applications
       winetricks

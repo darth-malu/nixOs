@@ -37,7 +37,12 @@
   /*}*/
 
 
+  /* window#waybar.mpv, window#waybar.spotify { */
   window#waybar.mpv {
+      background-color: rgba(40, 44, 52, 0.0);
+  }
+
+  window#waybar.spotify {
       background-color: rgba(40, 44, 52, 0.0);
   }
 

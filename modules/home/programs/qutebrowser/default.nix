@@ -8,6 +8,8 @@
   keyBindings = {
     normal = {
       "<ctrl-v>" = "spawn mpv {url}";
+      "x" = "tab-close";
+      "X" = "undo";
       "<ctrl-m>" = "hint links spawn mpv {hint-url}";
       "<^>" = "tab-focus last";
       # ",p" = "spawn --userscript qute-pass";

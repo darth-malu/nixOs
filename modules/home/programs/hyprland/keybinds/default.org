@@ -119,6 +119,11 @@ bind =
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
 #+end_src
 
+*** pwvucontrol
+#+begin_src nix :tangle default.nix
+  "$mod , XF86Tools, exec, pwvucontrol"
+#+end_src
+
 *** rofi
 #+begin_src nix :tangle default.nix
 # Menu

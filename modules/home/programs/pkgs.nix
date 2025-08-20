@@ -126,7 +126,7 @@
           # wine
           # blender-hip # Hardware accelerated rendering NOTE later after pos
           darktable
-          davinci-resolve # NOTE crash on stable
+          # davinci-resolve # NOTE crash on stable
           handbrake # FIXME lag on open
           vlc
           helvum

@@ -9,7 +9,7 @@
 #+end_src
 * Android
 ** cisco packet tracer
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
   environment.systemPackages = with pkgs-unstable; [
     # ciscoPacketTracer8
     ciscoPacketTracer7

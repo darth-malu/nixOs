@@ -85,8 +85,6 @@
       allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
         "discord"
         "google-chrome"
-        # "ciscoPacketTracer8"
-        "ciscoPacketTracer7"
         "bluemail"
         "ventoy"
         "spotify"

@@ -7,7 +7,7 @@ pkgs.writeShellScriptBin "temp" ''
   }
 
   gpu_fan() {
-      cat /sys/class/drm/card1/device/hwmon/hwmon0/fan1_input # returns number eg 700 - rpm
+      cat /sys/class/drm/card1/device/hwmon/hwmon*/fan1_input # returns number eg 700 - rpm
   }
 
   gpu_busy() {   # %

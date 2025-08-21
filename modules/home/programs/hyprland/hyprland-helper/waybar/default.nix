@@ -535,7 +535,7 @@
             exec = "cat /sys/class/drm/card1/device/gpu_busy_percent";
             format = " \t{}%  ";
             return-type = "";
-            interval = 10;
+            interval = 5;
             min-length = 5;
             max-length = 8;
             tooltip = false;
@@ -543,7 +543,7 @@
 
           "custom/gpu_temp" = {
             exec = "temp gpu_temp";
-            interval = 10;
+            interval = 5;
             format = "{} °";
             retur-type = "";
             min-length = 3; # absolut min lul
@@ -553,7 +553,7 @@
 
           "custom/gpu_fans" = {
             exec = "temp gpu_fans";
-            interval = 10;
+            interval = 5;
             format = "{} rpm";
             return-type = "";
             min-length = 8;
@@ -570,7 +570,7 @@
           };
 
           "cpu" = {
-            interval = 10;
+            interval = 5;
             format = "   {usage}%";
             tooltip = false;
             max-length = 7;
@@ -709,7 +709,7 @@
           };
 
           "network" = {
-            format-wifi = "  {essid} {signalStrength} {bandwidthDownBytes}"; # 
+            format-wifi = "  {essid} [{signalStrength}] {bandwidthDownBytes}"; # 
             # format-icons = [ ];
             format-wifi-alt = "  {bandwidthDownBytes}      {bandwidthUpBytes}";
             format-ethernet = "   {bandwidthDownBytes}       {bandwidthUpBytes}";

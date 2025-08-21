@@ -121,7 +121,7 @@ bind =
 
 *** pwvucontrol
 #+begin_src nix :tangle default.nix
-  "$mod , XF86Tools, exec, pwvucontrol"
+  ", XF86Tools, exec, pkill pwvucontrol ||  pwvucontrol"
 #+end_src
 
 *** rofi

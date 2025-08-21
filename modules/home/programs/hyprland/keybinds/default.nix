@@ -73,7 +73,7 @@ bind =
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
 
-  "$mod , XF86Tools, exec, pwvucontrol"
+  ", XF86Tools, exec, pkill pwvucontrol ||  pwvucontrol"
 
 # Menu
   "$mod $cl, mouse:272, exec, pkill rofi || $menu_rofi"

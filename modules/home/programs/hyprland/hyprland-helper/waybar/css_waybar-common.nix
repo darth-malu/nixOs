@@ -37,14 +37,11 @@
   /*}*/
 
 
-  /* window#waybar.mpv, window#waybar.spotify { */
-  window#waybar.mpv {
+  window#waybar.discord, window#waybar.steam, window#waybar.mpv, window#waybar.spotify {
+  /* window#waybar.mpv { */
       background-color: rgba(40, 44, 52, 0.0);
   }
 
-  window#waybar.spotify {
-      background-color: rgba(40, 44, 52, 0.0);
-  }
 
   window#waybar.Emacs {
       background-color: rgba(40, 44, 52, 0.74);
@@ -54,9 +51,9 @@
       background-color: rgba(108,107,120,0.24);
   }
 
-  window#waybar.solo {
-      border-bottom: 0px solid #ffffff;
-  }
+  /* window#waybar.solo { */
+  /*     border-bottom: 0px solid #ffffff; */
+  /* } */
 
   window#waybar.empty {
       border-bottom: 0px solid #ffffff;
@@ -65,6 +62,7 @@
 
   window#waybar.hidden {
       opacity: 0.2;
+      background-color: rgba(0,0,0,1);
   }
 
   #submap, #submap.resize {

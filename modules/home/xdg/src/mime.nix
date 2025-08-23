@@ -8,6 +8,7 @@
     removed = {
       # as if the .desktop file was not listing this mimetype in the first place
       "video/mp4" = "fr.handbrake.ghb.desktop";
+      "video/x-matroska" = "fr.handbrake.ghb.desktop";
     };
   };
 
@@ -45,6 +46,7 @@
 
     "audio/mpeg" = [ "mpv.desktop" ];
     "video/mp4" = [ "mpv.desktop" ];
+    "video/x-matroska" = [ "mpv.desktop" ];
 
     "inode/directory" = [
       "org.kde.Dolphin.desktop"

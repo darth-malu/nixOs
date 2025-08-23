@@ -36,7 +36,7 @@
         scale = 0.97;
       };
       blur = {
-        enabled = if osConfig.networking.hostName == "carthage" then true else false;
+        enabled = true;
         size = 2; # 2,,
         passes = 3; # 2,,
         xray = true; # if enabled, floating windows will ignore tiled windows in their blur. Only available if new_optimizations is true. Will reduce overhead on floating blur significantly.

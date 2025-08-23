@@ -48,6 +48,7 @@
   searchEngines = {
     w   =  "https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1";
     aw  =  "https://wiki.archlinux.org/?search={}";
+    pdb  =  "https://www.protondb.com/search?q={}";
     nw  =  "https://wiki.nixos.org/index.php?search={}";
     mn  =  "https://mynixos.com/search?q={}";
     nps =  "https://search.nixos.org/packages?channel=24.11&from=0&size=50&sort=relevance&type=packages&query={}";

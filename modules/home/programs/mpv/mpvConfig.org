@@ -190,7 +190,7 @@ bindings = {
 
 *** FIXME uosc bindings
 no need since using defaults
-#+begin_src nix :tangle no
+#+begin_src nix :tangle default.nix
 s = "script-binding uosc/subtitles"; # ! Subtitles
 
 a = "script-binding uosc/audio"; # ! Audio tracks

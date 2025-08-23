@@ -19,7 +19,10 @@
       border:1px solid #116A7B;
   }
 
-  /*window#waybar.floating*/
+  /* window#waybar.floating { */
+  /*    background-color: rgba(0,0,0,1); */
+  /* } */
+
   window#waybar {
       color: rgba(154 ,208 ,194, 0.86);
       margin: 0px 13px 0px 14px;
@@ -37,18 +40,14 @@
   /*}*/
 
 
-  window#waybar.discord, window#waybar.steam, window#waybar.mpv, window#waybar.spotify {
   /* window#waybar.mpv { */
+  window#waybar.Emacs, window#waybar.discord, window#waybar.steam, window#waybar.mpv, window#waybar.spotify {
       background-color: rgba(40, 44, 52, 0.0);
   }
 
 
-  window#waybar.Emacs {
-      background-color: rgba(40, 44, 52, 0.74);
-  }
-
   window#waybar.org.qutebrowser.qutebrowser {
-      background-color: rgba(108,107,120,0.24);
+      background-color: rgba(40,44,22,0.5);
   }
 
   /* window#waybar.solo { */

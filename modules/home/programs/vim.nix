@@ -21,7 +21,8 @@
     extraConfig = # .vimrc
       ''
         colorscheme onedark
-        set relativenumber
+        " set relativenumber
+        set number
         set shiftwidth=2
         set tabstop=2
         set cursorline

@@ -22,10 +22,10 @@
       ''
         colorscheme onedark
         " set relativenumber
-        set number
+        " set number
+        " set cursorline
         set shiftwidth=2
         set tabstop=2
-        set cursorline
         syntax on
 
         " Differnt cursor for different mode"

@@ -50,7 +50,7 @@ pkgs.writeShellScriptBin "temp" ''
   raw_nvme_temp () {
       local nvme_temp
       local temp
-      nvme_temp="$(cat /sys/class/hwmon/hwmon0/temp1_input 2> /dev/null)" #get temp in mC
+      nvme_temp="$(cat /sys/class/hwmon/hwmon0/temp1_input 2> /dev/null)" # mC
       temp=$(echo "scale=2; $nvme_temp / 1000" | bc) # convert to C
       printf "%.0f\n" "$temp" # temp float - int
   }
@@ -64,7 +64,7 @@ pkgs.writeShellScriptBin "temp" ''
 
 
   proc_cpu () {
-  awk -F': ' '/cpu MHz/ { sum += $2; count++ } END { if (count > 0) printf "%.2f\n", (sum / count) / 1000 }' /proc/cpuinfo
+    awk -F': ' '/cpu MHz/ { sum += $2; count++ } END { if (count > 0) printf "%.2f\n", (sum / count) / 1000 }' /proc/cpuinfo
   }
 
   device_picker () {

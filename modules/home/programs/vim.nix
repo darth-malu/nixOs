@@ -4,23 +4,23 @@
     enable = true;
     defaultEditor = true;
     plugins = with pkgs.vimPlugins; [
-      nerdtree
-      vim-fugitive
+      # dracula-vim
+      # embark-vim
+      # gruvbox
+      # neodark-vim
+      # nightfly
+      # nord-vim
+      # vim-airline
       ale
       gruvbox-material
-      embark-vim
-      # nightfly
-      # dracula-vim
+      nerdtree
       onedark-vim
-      neodark-vim
-      # gruvbox
-      # vim-airline
       vim-commentary
-      # nord-vim
+      vim-fugitive
     ];
     extraConfig = # .vimrc
       ''
-        colorscheme neodark
+        colorscheme onedark
         set relativenumber
         set shiftwidth=2
         set tabstop=2
@@ -28,19 +28,19 @@
         syntax on
 
         " Differnt cursor for different mode"
-        " set guicursor=n-v-c:block,i:ver25,r:hor20
+        set guicursor=n-v-c:block,i:ver25,r:hor20
 
         " Disable compatibility with vi which can cause unexpected issues.
         set nocompatible
 
         " Enable type file detection. Vim will be able to try to detect the type of file is use.
-        " filetype on
+        filetype on
 
         " Enable plugins and load plugin for the detected file type.
-        " filetype plugin on
+        filetype plugin on
 
         " Load an indent file for the detected file type.
-        " filetype indent on
+        filetype indent on
 
         " spaces instead of tabs
         set expandtab
@@ -50,8 +50,8 @@
 
         " Pressing the letter o will open a new line below the current one.
         " Exit insert mode after creating a new line above or below the current line.
-        nnoremap o o<esc>
-        nnoremap O O<esc>
+        " nnoremap o o<esc>
+        " nnoremap O O<esc>
 
         " Map the F5 key to run a Python script inside Vim.
         " We map F5 to a chain of commands here.
@@ -59,7 +59,7 @@
         " <CR> (carriage return) is like pressing the enter key.
         " !clear runs the external clear screen command.
         " !python3 % executes the current file with Python.
-        nnoremap <f5> :w <CR>:!clear <CR>:!python3 % <CR>
+        " nnoremap <f5> :w <CR>:!clear <CR>:!python3 % <CR>
 
         " You can split the window in Vim by typing :split or :vsplit.
         " Navigate the split view easier by pressing CTRL+j, CTRL+k, CTRL+h, or CTRL+l.
@@ -76,8 +76,8 @@
         noremap <c-right> <c-w><
 
         " NERDTree specific mappings.
-        " Map the F3 key to toggle NERDTree open and close.
-        nnoremap <F3> :NERDTreeToggle<cr>
+        " Map the _ key to toggle NERDTree open and close.
+        nnoremap <_> :NERDTreeToggle<cr>
 
         " Have nerdtree ignore certain files and directories.
         let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
@@ -113,7 +113,7 @@
         set wildmenu
 
         " Make wildmenu behave like similar to Bash completion.
-        set wildmode=list:longest
+        " set wildmode=list:longest
 
         " There are certain files that we would never want to edit with Vim.
         " Wildmenu will ignore files with these extensions.

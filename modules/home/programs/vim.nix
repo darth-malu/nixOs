@@ -12,15 +12,15 @@
       # nord-vim
       # vim-airline
       ale
-      gruvbox-material
+      # gruvbox-material
       nerdtree
-      onedark-vim
+      # onedark-vim
       vim-commentary
       vim-fugitive
     ];
     extraConfig = # .vimrc
       ''
-        colorscheme onedark
+        " colorscheme onedark
         " set relativenumber
         " set number
         " set cursorline

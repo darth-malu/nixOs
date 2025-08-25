@@ -21,13 +21,13 @@
         # target = "graphical-session.target"; # config.wayland.systemd.target::
       };
       style =
-        (
+        import ./css_waybar-common.nix
+        + (
           if osConfig.networking.hostName == "carthage" then
             import ./css_waybar-carthage.nix
           else
             import ./css_waybar-tangier.nix
-        )
-        + import ./css_waybar-common.nix;
+        );
       settings = {
         mainBar = {
           # height = 20; #so funny
@@ -47,19 +47,16 @@
             "hyprland/window" # NOTE needed for transparency effects
           ];
           modules-right = [
-            # common front - since its sequential layering
             "group/resize_network"
           ]
           ++ (
             if osConfig.networking.hostName == "tangier" then
               [
-                # tangier
                 "group/disk_mpris"
                 "group/ssd-temp_memory"
                 "group/cpu_freq"
                 "group/temp_wireplumber"
                 "battery"
-                # "backlight"
                 "group/backlight_idle"
               ]
             else if osConfig.networking.hostName == "carthage" then
@@ -67,7 +64,6 @@
                 "group/gpu_mpris"
                 "group/gpu_temp_network_block"
                 "group/all_disks"
-                #"custom/nvme_temp"
                 "group/nvme-temp_memory"
                 "group/cpu_block"
                 "group/temp_wireplumber"
@@ -76,11 +72,7 @@
               [ ]
           )
           ++ [
-            # common rear
             "group/tray_clock"
-            # "idle_inhibitor"
-            # "group/power-profiles-idle-inhibitor"
-            # "power-profiles-daemon"
           ]
           ++ (
             if osConfig.networking.hostName == "carthage" then
@@ -112,7 +104,7 @@
           };
 
           "hyprland/submap" = {
-            format = "✌ {}";
+            format = "💤 {}";
             max-length = 8;
             tooltip = false;
           };
@@ -120,7 +112,7 @@
           "hyprland/window" = {
             format = "{}";
             icon = true;
-            icon-size = 17;
+            icon-size = if osConfig.networking.hostName == "tangier" then 19 else 17;
             separate-outputs = true; # Show the active window of the monitor the bar belongs to, instead of the focused window.
             cursor = true;
             on-scroll-up = "hyprctl dispatch workspace m-1"; # m- monitor, e -all open, r- m+empty
@@ -181,7 +173,7 @@
               "critical" = 10;
             };
             "interval" = 10;
-            "format" = "{capacity}%  {icon}";
+            "format" = "{capacity}% {icon}";
             "format-charging" = "{capacity}% ";
             "format-plugged" = "{capacity}% ";
             "format-alt" = "{time} {icon}";
@@ -248,6 +240,12 @@
           "tray" = {
             spacing = 8; # 10;;
             icon-size = 12;
+            expand = true; # dynamically consume left over SPC
+            # reverse-direction = true;
+            # show-passive-items = true; # false::
+            icons = {
+              # "blueman" = "bluetooth";
+            };
           };
 
           "group/power-profiles-idle-inhibitor" = {

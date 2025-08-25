@@ -29,7 +29,7 @@
         "xow_dongle-firmware"
       ];
     permittedInsecurePackages = [
-      "broadcom-sta-6.30.223.271-57-6.12.42"
+      "broadcom-sta-6.30.223.271-57-6.12.43"
       # "libxml2-2.13.8" # for cisco?
     ];
   };
@@ -153,7 +153,7 @@
     bluetooth = {
       # enable = lib.mkIf config.networking.hostName == "tangier" true; # works lol..maajabu
       # hsphfpd = true; #Whether to enable support for hsphfpd[-prototype] implementation.
-      enable = true; # works lol..maajabu
+      enable = if config.networking.hostName == "tangier" then false else true; # works lol..maajabu
       powerOnBoot = true; # power on default controller on boot
       settings = {
         # Set configuration for system-wide bluetooth (/etc/bluetooth/main.conf). See https://github.com/bluez/bluez/blob/master/src/main.conf for full list of options.

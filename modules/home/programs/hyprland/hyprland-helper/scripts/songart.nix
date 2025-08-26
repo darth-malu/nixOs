@@ -38,7 +38,7 @@ pkgs.writeShellScriptBin "songart" ''
   }
 
   spotify_title() {
-    playerctl -p spotify metadata --format '     {{title}}\n      {{artist}}\n     {{album}}'
+    playerctl -p spotify metadata --format '     {{title}}\n     {{artist}}\n     {{album}}'
   }
 
   spotify() {

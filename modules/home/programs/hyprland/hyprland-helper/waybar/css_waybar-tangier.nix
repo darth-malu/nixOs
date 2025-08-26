@@ -65,7 +65,7 @@
       /* background: rgba(72 ,191 ,227, 0.00); */
       color: rgba(72 ,191 ,227, 0.70);
       /* padding: 0px 4px; */
-      margin: 0px 3px 2px 3px;
+      margin: 0px 3px;
       font-size: 16px;
       /* background-color: rgba(34,36,54,0.0); */
   }
@@ -86,7 +86,7 @@
 
   #idle_inhibitor {
       padding:0px;
-      margin: 4px 6px 0px 6px;
+      margin: 2px 6px 0px 6px;
       font-size: 16px;
   }
 ''

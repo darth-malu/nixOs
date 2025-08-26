@@ -165,7 +165,7 @@
             };
           };
 
-          battery = {
+          "battery" = {
             "states" = {
               "good" = 95;
               "half" = 50;
@@ -188,7 +188,7 @@
             ];
           };
 
-          wireplumber = {
+          "wireplumber" = {
             format = "{volume} {icon} "; # 🎙{node_name}
             format-icons = [
               ""

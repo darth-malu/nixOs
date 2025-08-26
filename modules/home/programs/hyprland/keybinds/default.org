@@ -342,8 +342,8 @@ movetoworkspacesilent exists
 
 *** waybar
 #+begin_src nix :tangle default.nix
-  "$mod ,Home, execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
-  "$mod ,End, execr, killall .waybar-wrapped || uwsm app waybar"
+  "$mod ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
+  # "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 #+end_src
 
 *** swap position in workspace clockwise
@@ -425,33 +425,17 @@ bindc = [
 ];
 #+end_src
 
-** bindl
-*** Quickshell implementation
-#+begin_src nix :tangle default.nix
+** bindel laptop | pc
+#+begin_src nix :tangle no
 bindel =
-  [
-    ", XF86AudioPlay, execr, pause_play"
-    ", XF86AudioMute, execr, volume_dunst toggle_mute"
-
-
-    ", XF86AudioRaiseVolume, execr, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%+"
-    ", XF86AudioLowerVolume, execr, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%-"
-
-    #-----------------------NEXT/PREV------------------#
-    ", XF86AudioNext, execr, playerctl next "
-    ", XF86AudioPrev, execr, playerctl previous"
-   ]++
-    (
-      if osConfig.networking.hostName == "carthage" then
-    [
-    ", F8, execr, playerctl next "
-    ", F6, execr, playerctl previous"
-    ", F7, execr, pause_play"
-    ] else []);
+  if osConfig.networking.hostName == "tangier" then
+    import ./laptop_bindings.nix
+  else
+    import ./pc_bindings.nix;
 #+end_src
 
-*** OLD - dunst
-#+begin_src nix :tangle no
+** bindl
+#+begin_src nix :tangle default.nix
 bindel =
   [
     #-----------------------PLAY/PAUSE------------------#
@@ -479,6 +463,7 @@ bindel =
     ", F7, execr, pause_play"
     ] else []);
 #+end_src
+
 ** binde
 [[file:~/Shibuya/modules/home/hyprland-helper/scripts/gaps.nix][The gaps script]]
 

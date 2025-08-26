@@ -225,8 +225,8 @@ bind =
   "$mod ,H, workspace,m-1"
   "$mod ,L, workspace,m+1"
 
-  "$mod ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
-  # "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
+  "$mod ,Home, execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
+  "$mod ,End, execr, killall .waybar-wrapped || uwsm app waybar"
 
   "$mod $sl, semicolon, swapnext"
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
@@ -287,18 +287,12 @@ bindc = [
 
 bindel =
   [
-    #-----------------------PLAY/PAUSE------------------#
     ", XF86AudioPlay, execr, pause_play"
-    # mute
     ", XF86AudioMute, execr, volume_dunst toggle_mute"
 
-    ##---------------Sink-Switch--------------#
-    # "$mod, F12, execr, volume_dunst earphones"
-    # "$mod, F11, execr, volume_dunst speaker"
-    # "$mod, F10, execr, volume_dunst bluetooth"
 
-    ", XF86AudioRaiseVolume, execr, volume_dunst 2%+"
-    ", XF86AudioLowerVolume, execr, volume_dunst 2%-"
+    ", XF86AudioRaiseVolume, execr, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%+"
+    ", XF86AudioLowerVolume, execr, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%-"
 
     #-----------------------NEXT/PREV------------------#
     ", XF86AudioNext, execr, playerctl next "

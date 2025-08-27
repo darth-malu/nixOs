@@ -11,26 +11,6 @@
   home.packages =
     with pkgs;
     [
-      # Quickshell stuffs
-      qt6.qtimageformats
-      qt6.qt5compat # shader fx
-      qt6.qtmultimedia # flicko shell
-      qt6.qtdeclarative # qtdecl types in path
-      (inputs.quickshell.packages.${system}.default.override (prevqs: {
-        debug = true;
-        qt6 = prevqs.qt6.overrideScope (
-          _: prevqt: {
-            qtdeclarative = prevqt.qtdeclarative.overrideAttrs (prev: {
-              cmakeBuildType = "Debug";
-              dontStrip = true;
-            });
-          }
-        );
-      }))
-      grim
-      imagemagick # screenshot
-    ]
-    ++ [
       # pastel # color generator
       # qalculate-qt # #FIXME:for rofi?
       # yaru-theme

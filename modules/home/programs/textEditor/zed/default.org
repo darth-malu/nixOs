@@ -1,4 +1,5 @@
 #+title: zed config
+#+auto_tangle:t
 
 * start/enabler
 #+begin_src nix :tangle default.nix
@@ -12,9 +13,12 @@ Whether to enable Zed, the high performance, multiplayer code editor from the cr
 
 * misc
 #+begin_src nix :tangle default.nix
-#extensions = ["nix" "toml" "elixir" "make"];
-# package = pkgs.zed-editor;
-# extensions = ["nix" "python"];
+    extensions = [ "qml" "nix" "python" "make"];
+    # package = pkgs.zed-editor;
+    extraPackages = [
+      # pkgs.nixd
+      # pkgs.nil
+    ];
 #+end_src
 
 * userSettings
@@ -30,6 +34,9 @@ userSettings = {
 
 ** misc
 #+begin_src nix :tangle default.nix
+features = {
+  copilot = false;
+};
 relative_line_numbers = true;
 auto_install_extensions = {
   nix = true;
@@ -110,7 +117,7 @@ search = {
   case_sensitive = false;
   include_ignored = false;
   regex = false;
-},
+};
 #+end_src
 
 ** editors tab bar
@@ -118,7 +125,7 @@ search = {
 "tab_bar" = {
   "show" = true;
   "show_nav_history_buttons" = true;
-  "show_tab_bar_buttons" = true
+  "show_tab_bar_buttons" = true;
 };
 #+end_src
 
@@ -165,7 +172,7 @@ scrollbar = {
 
 ** cursor
 #+begin_src nix :tangle default.nix
-cursor_shape = "block" # block, bar::, underline, hollow
+cursor_shape = "block"; # block, bar::, underline, hollow
 #+end_src
 ** mouse
 #+begin_src nix :tangle default.nix
@@ -192,16 +199,16 @@ project_panel = {
 languages = {
   "Python" = {
     tab_size = 4;
-    indent_guides.enabled = true;
+    #indent_guides.enabled = true;
     format_on_save = true;
     soft_wrap = "preferred_line_length";
+    formatter = "language_server";
   };
   "nix" = {
     tab_size = 2;
     language_servers = [
       "nil"
       "nixd"
-      "..."
     ];
     prettier = {
       allowed = true;
@@ -252,6 +259,12 @@ lsp = {
   #    };
   #  };
 
+    qml = {
+      binary = {
+        arguments = ["-E" "additional-args"];
+      };
+      tab_size = 2;
+    };
   # nixd = {
   #   settings = {
   #     diagnostic = {
@@ -436,7 +449,8 @@ userKeymaps = [
 #+end_src
 * Ender
 #+begin_src nix :tangle default.nix
-}; # end of user settings
- }; # end of programs.zed
-  } # EOF
+      }; # end of user settings
+    }; # end of programs.zed
+  };
+}
 #+end_src

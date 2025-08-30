@@ -15,6 +15,7 @@
       "histappend"
       # "checkwinsize" # on default
       "extglob" # extended globbing
+      "nullglob" # incase empty...return empty not literal str with **
       "globstar"
       "checkjobs"
       "cmdhist" # save multi-line cmd into one line

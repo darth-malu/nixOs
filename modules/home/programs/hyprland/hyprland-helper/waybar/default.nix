@@ -707,7 +707,7 @@
           };
 
           "network" = {
-            format-wifi = "  {essid} [{signalStrength}] {bandwidthDownBytes}"; # 
+            format-wifi = "  {essid} --{signalStrength}-- {bandwidthDownBytes}"; # 
             # format-icons = [ ];
             format-wifi-alt = "  {bandwidthDownBytes}      {bandwidthUpBytes}";
             format-ethernet = "   {bandwidthDownBytes}       {bandwidthUpBytes}";

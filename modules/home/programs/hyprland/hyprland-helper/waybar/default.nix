@@ -710,13 +710,12 @@
             format-wifi = "  {essid} --{signalStrength}-- {bandwidthDownBytes}"; # 
             # format-icons = [ ];
             format-wifi-alt = "  {bandwidthDownBytes}      {bandwidthUpBytes}";
-            format-ethernet = "   {bandwidthDownBytes}       {bandwidthUpBytes}";
+            format-ethernet = "󰈀  {bandwidthDownBytes}       {bandwidthUpBytes}";
+            format-linked = "{ifname} (No IP) 󰈁";
+            format-disconnected = "No net ⚠️";
             interval = 2;
-            format-linked = "{ifname} (No IP) ";
-            # format-disconnected = "⚠️  No net ❗";
-            format-disconnected = "No net ⚠";
+            # format-disconnected = "No net ⚠";
             tooltip = false;
-            # format-icons
           };
 
           # "custom/weather" = {

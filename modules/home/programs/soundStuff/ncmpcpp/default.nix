@@ -153,7 +153,8 @@ display_volume_level = true;
 volume_change_step = 2;
 
 progressbar_color = 24;
-progressbar_look = "─⊙┄";
+# progressbar_look = "─⊙┄";
+progressbar_look = "─⊙ ";
 #progressbar_look = "─░─";
 progressbar_elapsed_color = 74;
 #progressbar_elapsed_color = 24; # muted
@@ -170,7 +171,8 @@ search_engine_display_mode = "columns";
 browser_display_mode = "columns";
 playlist_display_mode = "columns";
 playlist_editor_display_mode = "columns";
-browser_playlist_prefix = " - ";
+# browser_playlist_prefix = " - ";
+# browser_playlist_prefix = " -> ";
 #clock_display_seconds = yes
 
 lines_scrolled = 8;

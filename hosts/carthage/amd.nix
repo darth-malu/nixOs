@@ -57,5 +57,4 @@
   environment.systemPackages = [ pkgs-unstable.lact ];
   systemd.packages = [ pkgs-unstable.lact ];
   systemd.services.lactd.wantedBy = [ "multi-user.target" ];
-
 }

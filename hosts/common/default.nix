@@ -29,7 +29,7 @@
         "xow_dongle-firmware"
       ];
     permittedInsecurePackages = [
-      "broadcom-sta-6.30.223.271-57-6.12.43"
+      "broadcom-sta-6.30.223.271-57-6.12.44"
       # "libxml2-2.13.8" # for cisco?
     ];
   };
@@ -108,8 +108,17 @@
 
   hardware.usbStorage.manageShutdown = true;
 
+  programs.nm-applet = true; # started automatically with the graphical session
   networking = {
-
+    wireless = {
+      enable = true;
+      networks = {
+        Measles = {
+          psk = "vaccinate";
+        };
+        free.wifi = { }; # Public wireless network
+      };
+    };
     networkmanager = {
       enable = true; # add user to group
       dns = "none"; # dnsmasq, default::, systemd-resolved
@@ -118,19 +127,21 @@
         # backend = "wpa_supplicant"; # wpa_supplicant::, iwd
       };
       logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
+      unmanaged = [
+        "*"
+        "except:type:wwan"
+        "except:type:gsm"
+      ];
     };
-
     modemmanager = {
       enable = true;
     };
-
     timeServers = [
       "0.nixos.pool.ntp.org"
       "1.nixos.pool.ntp.org"
       "2.nixos.pool.ntp.org"
       "3.nixos.pool.ntp.org"
     ];
-
     # dhcpcd.enable = true; # true::
     # useDHCP =  false;
     # interfaces.enp5s0.useDHCP = if config.networking.hostName == "carthage" then true else false; #overrides default in useDHCP unless null
@@ -143,7 +154,6 @@
       "8.8.8.8"
       "8.8.4.4"
     ];
-
   };
 
   hardware = {

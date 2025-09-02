@@ -205,6 +205,7 @@ nixosConfigurations = {
 modules = [
   ./hosts/carthage
   # {environment.systemPackages = [neovimConf.neovim];}
+  {environment.systemPackages = [pkgs.nixos-rebuild-ng];} #  alternatively to replace old rebuild: system.rebuild.enableNg
 #+end_src
 ***** plasma-manger
 #+begin_src nix :tangle no

@@ -5,16 +5,16 @@
   hardware.graphics = {
     enable = true; # vulkan #/run/opengl-driver
     enable32Bit = true; # wine needs , vulkan 32 bit, vulkan on by default with radv
-    extraPackages = with pkgs; [
-      # Additional packages to add to the default graphics driver lookup path. This can be used to add OpenCL drivers, VA-API/VDPAU drivers, etc.
-      # amdvlk
-      # rocmPackages.clr.icd # opencl
-      # rocmPackages.clr
-      # mesa.opencl
-    ];
-    extraPackages32 = with pkgs; [
-      # driversi686Linux.amdvlk # TODO test if need
-    ];
+    # extraPackages = with pkgs; [
+    # Additional packages to add to the default graphics driver lookup path. This can be used to add OpenCL drivers, VA-API/VDPAU drivers, etc.
+    # amdvlk
+    # rocmPackages.clr.icd # opencl
+    # rocmPackages.clr
+    # mesa.opencl
+    # ];
+    # extraPackages32 = with pkgs; [
+    # driversi686Linux.amdvlk # TODO test if need
+    # ];
   };
   hardware.amdgpu = {
     #initrd.enable = true; #  # early userspace, fix low res in boot scrn

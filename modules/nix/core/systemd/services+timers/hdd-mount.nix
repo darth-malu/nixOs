@@ -4,6 +4,7 @@
     services = {
       "hdd-mount" = {
         # enable = if config.networking.hostName == "tangier" then true else false;
+        enable = false;
         description = "This unit is made to solve my HDD mounting issues 😃";
         script = ''
           mount_units=(

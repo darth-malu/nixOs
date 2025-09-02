@@ -10,7 +10,7 @@
       settings = {
         #LogLevel = "DEBUG";
         PasswordAuthentication = true; # def: false=require public key auth?
-        PermitRootLogin = false; # By default, root logins using a password are disallowed. They can be disabled entirely by setting services.openssh.settings.PermitRootLogin to "no".
+        PermitRootLogin = "no"; # By default, root logins using a password are disallowed. They can be disabled entirely by setting services.openssh.settings.PermitRootLogin to "no".
         UseDns = true; # false::
         AllowUsers = [
           "malu"

@@ -297,8 +297,11 @@ bindel =
     # "$mod, F11, execr, volume_dunst speaker"
     # "$mod, F10, execr, volume_dunst bluetooth"
 
-    ", XF86AudioRaiseVolume, execr, volume_dunst 2%+"
-    ", XF86AudioLowerVolume, execr, volume_dunst 2%-"
+    # ", XF86AudioRaiseVolume, execr, volume_dunst 2%+"
+    # ", XF86AudioLowerVolume, execr, volume_dunst 2%-"
+
+    ", XF86AudioRaiseVolume, execr, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%+ >/dev/null 2>&1 "
+    ", XF86AudioLowerVolume, execr, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%- >/dev/null 2>&1 "
 
     #-----------------------NEXT/PREV------------------#
     ", XF86AudioNext, execr, playerctl next "

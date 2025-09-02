@@ -3,6 +3,8 @@
   programs.vim = {
     enable = true;
     defaultEditor = true;
+    packageConfigurable = pkgs.vim; # The vim-full package to use 😀
+    # package = pkgs.vim;
     plugins = with pkgs.vimPlugins; [
       # dracula-vim
       # embark-vim
@@ -18,18 +20,26 @@
       vim-commentary
       vim-fugitive
     ];
+    settings = {
+      expandtab = true; # spaces instead of tabs
+      history = 1000; # commands to save in history. 20::
+      background = "dark";
+      smartcase = true;
+      ignorecase = true; # ignore caps in search
+      shiftwidth = 2;
+      tabstop = 2;
+      modeline = true;
+      mousefocus = true;
+      mousemodel = "popup_setpos";
+      # mouse : one of "n", "v", "i", "c", "h", "a", "r"
+    };
     extraConfig = # .vimrc
       ''
         colorscheme onedark
-        " set relativenumber
-        " set number
-        " set cursorline
-        set shiftwidth=2
-        set tabstop=2
         syntax on
 
         " Differnt cursor for different mode"
-        set guicursor=n-v-c:block,i:ver25,r:hor20
+        " set guicursor=n-v-c:block,i:ver25,r:hor20
 
         " Disable compatibility with vi which can cause unexpected issues.
         set nocompatible
@@ -42,9 +52,6 @@
 
         " Load an indent file for the detected file type.
         filetype indent on
-
-        " spaces instead of tabs
-        set expandtab
 
         " Do not save backup files.
         set nobackup
@@ -88,13 +95,6 @@
         " While searching though a file incrementally highlight matching characters as you type.
         set incsearch
 
-        " Ignore capital letters during search.
-        set ignorecase
-
-        " Override the ignorecase option if searching for capital letters.
-        " This will allow you to search specifically for capital letters.
-        set smartcase
-
         " Show partial command you type in the last line of the screen.
         set showcmd
 
@@ -106,9 +106,6 @@
 
         " Use highlighting when doing a search.
         set hlsearch
-
-        " Set the commands to save in history default number is 20.
-        set history=1000
 
         " Enable auto completion menu after pressing TAB.
         set wildmenu

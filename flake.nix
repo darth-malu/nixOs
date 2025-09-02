@@ -130,6 +130,7 @@ nixosConfigurations = {
 modules = [
   ./hosts/carthage
   # {environment.systemPackages = [neovimConf.neovim];}
+  {environment.systemPackages = [pkgs.nixos-rebuild-ng];} #  alternatively to replace old rebuild: system.rebuild.enableNg
 
   home.nixosModules.home-manager {
   # home-unstable.nixosModules.home-manager {

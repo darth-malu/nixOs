@@ -89,9 +89,9 @@ pkgs.writeShellScriptBin "volume_dunst" ''
 
     set_volume() {
         case "$1" in
-        "toggle_mute") dunst_func mute ;;
-        speaker|earphones|easy|bluetooth) sink_switcher "$1" ;;
-        *) wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ "$1" >/dev/null 2>&1 && dunst_func add_sub ;;
+          "toggle_mute") dunst_func mute ;;
+          speaker|earphones|easy|bluetooth) sink_switcher "$1" ;;
+          *) wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ "$1" >/dev/null 2>&1 && dunst_func add_sub ;;
         esac
     }
 

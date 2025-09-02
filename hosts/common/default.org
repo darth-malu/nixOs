@@ -33,7 +33,7 @@
         "nvidia-x11-570.153.02-6.12.30"
       ];
     permittedInsecurePackages = [
-      "broadcom-sta-6.30.223.271-57-6.12.41"
+      "broadcom-sta-6.30.223.271-57-6.12.44"
       "libxml2-2.13.8" # for cisco?
     ];
   };
@@ -127,20 +127,31 @@ https://search.nixos.org/options?channel=25.05&show=boot.loader.systemd-boot.sor
 * networking stuffs
 ** start
 #+begin_src nix :tangle default.nix
+  programs.nm-applet.enable = true; # started automatically with the graphical session
+
   networking = {
 #+end_src
 
-** wireless
+** wireless | wpa_supplicant
 #+begin_src nix :tangle no
-  wireless = {
-    enable = false; # wpa_supplicant enable
-    userControlled.enable = true; # wpa_supplicant_gui
-  };
+    wireless = {
+      enable = true;
+      userControlled.enable = true; # wpa_supplicant_gui
+      networks = {
+        Measles = {
+          psk = "vaccinate";
+        };
+        "4g+" = {
+          psk = "abdc1234!@";
+        };
+        # free.wifi = { }; # Public wireless network
+      };
+    };
 #+end_src
 
 ** networkmanager
-
 #+begin_src nix :tangle default.nix
+
   networkmanager = {
     enable = true; # add user to group
     dns = "none"; # dnsmasq, default::, systemd-resolved
@@ -149,6 +160,11 @@ https://search.nixos.org/options?channel=25.05&show=boot.loader.systemd-boot.sor
       # backend = "wpa_supplicant"; # wpa_supplicant::, iwd
     };
     logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
+    unmanaged = [
+      # "*"
+      # "except:type:wwan"
+      # "except:type:gsm"
+    ];
   };
 #+end_src
 
@@ -166,7 +182,6 @@ example:
 [{ id = "03f0:4e1d"; path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/03f0:4e1d"; }]
 #+end_src
 
-** supplicant
 ** time servers
 #+begin_src nix :tangle default.nix
   timeServers = [

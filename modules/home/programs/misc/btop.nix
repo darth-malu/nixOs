@@ -2,14 +2,14 @@
   enable = true;
   settings = {
     # https://github.com/aristocratos/btop?tab=readme-ov-file#configurability
-    color_theme = "Nord"; # Default::
+    color_theme = "onedark"; # Default::
     theme_background = false;
     #* Define presets for the layout of the boxes. Preset 0 is always all boxes shown with default settings. Max 9 presets.
     #* Format: "box_name:P:G,box_name:P:G" P=(0 or 1) for alternate positions, G=graph symbol to use for box.
     #* Use whitespace " " as separator between different presets.
     #* Example: "cpu:0:default,mem:0:tty,proc:1:default cpu:0:braille,proc:0:tty"
     presets = "cpu:1:default,proc:0:default cpu:0:default,mem:0:default,net:0:default cpu:0:block,net:0:tty";
-    vim_keys = false; # Conflicting keys for h:"help" and k:"kill" is accessible while holding shift.
+    vim_keys = true; # Conflicting keys for h:"help" and k:"kill" is accessible while holding shift.
     shown_boxes = "proc"; # proc cpu mem net";
     proc_sorting = "cpu lazy";
     proc_tree = false;

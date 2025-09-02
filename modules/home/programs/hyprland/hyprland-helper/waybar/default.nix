@@ -13,8 +13,8 @@
 
   config = lib.mkIf config.waybar.enable {
     programs.waybar = {
+      enable = false;
       package = pkgs-unstable.waybar;
-      enable = true;
       systemd = {
         enable = true;
         # target = "graphical-session.target"; # config.wayland.systemd.target::
@@ -32,6 +32,7 @@
         mainBar = {
           # height = 20; #so funny
           margin = "0 6 0 4";
+          start_hidden = true;
           output =
             if osConfig.networking.hostName == "carthage" then
               [
@@ -707,11 +708,11 @@
           };
 
           "network" = {
-            format-wifi = "  {essid} --{signalStrength}-- {bandwidthDownBytes}"; # 
+            format-wifi = "  {essid} -{signalStrength}- {bandwidthDownBytes}"; # 
             # format-icons = [ ];
             format-wifi-alt = "  {bandwidthDownBytes}      {bandwidthUpBytes}";
             format-ethernet = "󰈀  {bandwidthDownBytes}       {bandwidthUpBytes}";
-            format-linked = "{ifname} (No IP) 󰈁";
+            format-linked = "󰈁 {ifname} {bandwidthDownBytes}       {bandwidthUpBytes}";
             format-disconnected = "No net ⚠️";
             interval = 2;
             # format-disconnected = "No net ⚠";

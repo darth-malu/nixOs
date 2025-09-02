@@ -11,6 +11,8 @@
   home.packages = with pkgs; [
     pinentry
     pinentry-all
+    pinentry-rofi
+    gcr # fix for pinentry on non-gnome systems
   ];
 
   services.gpg-agent = {
@@ -20,6 +22,9 @@
       allow-loopback-pinentry
     ''; # TODO Find out neeed
     verbose = true;
-    pinentry.program = "pinentry-wayprompt";
+    pinentry = {
+      program = "pinentry-wayprompt";
+      # package =
+    };
   };
 }

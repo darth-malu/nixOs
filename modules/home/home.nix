@@ -10,7 +10,7 @@
 
   home = {
     username = "malu";
-    #groupname = "darth";
+    # groupname = "darth";
     homeDirectory = "/home/malu";
     preferXdgDirectories = true;
     stateVersion = "24.11";

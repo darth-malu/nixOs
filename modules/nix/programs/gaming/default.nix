@@ -22,6 +22,7 @@
     ]
     ++ (with pkgs-unstable; [
       lutris
+      antimicrox
       # heroic-unwrapped # FHS
       heroic # without fhs
       # protonplus

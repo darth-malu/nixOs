@@ -103,7 +103,7 @@
 
   hardware.usbStorage.manageShutdown = true;
 
-  programs.nm-applet.enable = true; # started automatically with the graphical session
+  programs.nm-applet.enable = false; # started automatically with the graphical session
 
   networking = {
 

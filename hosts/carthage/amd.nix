@@ -53,8 +53,8 @@
     # AMD_VULKAN_ICD = "RADV"; # AMDVLK ::, RADV
     # VDPAU_DRIVER = "radeonsi"; # NOTE try as fix for openCl issues
   };
-  # services.lact.enable = true; # NOTE in unstable only
-  environment.systemPackages = [ pkgs-unstable.lact ];
-  systemd.packages = [ pkgs-unstable.lact ];
-  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+  services.lact.enable = true; # NOTE in unstable only
+  # environment.systemPackages = [ pkgs-unstable.lact ];
+  # systemd.packages = [ pkgs-unstable.lact ];
+  # systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 }

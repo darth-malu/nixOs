@@ -127,7 +127,7 @@ https://search.nixos.org/options?channel=25.05&show=boot.loader.systemd-boot.sor
 * networking stuffs
 ** start
 #+begin_src nix :tangle default.nix
-  programs.nm-applet.enable = true; # started automatically with the graphical session
+  programs.nm-applet.enable = false; # started automatically with the graphical session
 
   networking = {
 #+end_src

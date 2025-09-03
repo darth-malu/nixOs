@@ -39,7 +39,6 @@
 bindr = [
 
   "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
-  "$mod, E, exec, [workspace emptym] uwsm app -s a -- dolphin"
   "$mod , Y, exec, [workspace emptym] $yazi_kitty"
   "$mod $sl, Y, exec, [workspace special:magic;float; size 80% 80%] $yazi_kitty"
 

@@ -163,10 +163,10 @@
         ]
         ++ (with pkgs.gst_all_1; [
           # nautilus gst
-          gst-plugins-good
-          gst-plugins-bad
-          gst-plugins-ugly
-          gst-libav
+          # gst-plugins-good
+          # gst-plugins-bad
+          # gst-plugins-ugly
+          # gst-libav
         ])
       else
         [ ffmpeg ]

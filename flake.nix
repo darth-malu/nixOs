@@ -111,9 +111,12 @@
       inherit  system;
       inherit config;
     };
+
     home = inputs.home-manager;
     home-unstable = inputs.home-manager-unstable;
-    pkgs = import nixpkgs {
+
+    # pkgs = import nixpkgs {
+    pkgs = import nixpkgs-unstable {
       inherit  system;
       inherit config;
     };
@@ -122,8 +125,8 @@
     # packages.${system}.my-neovim = neovimConf.neovim; # NVF
 
 nixosConfigurations = {
-  # carthage = nixpkgs-unstable.lib.nixosSystem {
-  carthage = nixpkgs.lib.nixosSystem {
+  carthage = nixpkgs-unstable.lib.nixosSystem {
+  # carthage = nixpkgs.lib.nixosSystem {
     inherit system;
     specialArgs = { inherit pkgs-unstable inputs system; };
 
@@ -132,8 +135,8 @@ modules = [
   # {environment.systemPackages = [neovimConf.neovim];}
   {environment.systemPackages = [pkgs.nixos-rebuild-ng];} #  alternatively to replace old rebuild: system.rebuild.enableNg
 
-  home.nixosModules.home-manager {
-  # home-unstable.nixosModules.home-manager {
+  # home.nixosModules.home-manager {
+  home-unstable.nixosModules.home-manager {
     home-manager = {
       verbose = true;
       backupFileExtension = "home_bak";

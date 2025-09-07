@@ -69,6 +69,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = inputs@{nixpkgs, nixpkgs-unstable, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
@@ -133,7 +138,13 @@ nixosConfigurations = {
 modules = [
   ./hosts/carthage
   # {environment.systemPackages = [neovimConf.neovim];}
-  {environment.systemPackages = [pkgs.nixos-rebuild-ng];} #  alternatively to replace old rebuild: system.rebuild.enableNg
+
+{environment.systemPackages = [
+   pkgs.nixos-rebuild-ng #  alternatively to replace old rebuild: system.rebuild.enableNg
+   inputs.winapps.packages."${system}".winapps
+   inputs.winapps.packages."${system}".winapps-launcher # optional
+ ];
+}
 
   # home.nixosModules.home-manager {
   home-unstable.nixosModules.home-manager {
@@ -150,14 +161,14 @@ modules = [
 ];  # modules
  };  # carthage
 
-tangier = nixpkgs.lib.nixosSystem {
+tangier = nixpkgs-unstable.lib.nixosSystem {
   inherit system;
   specialArgs = { inherit pkgs-unstable inputs system; };
   modules = [
     ./hosts/tangier
     # inputs.quickshell.packages.${system}.default
     # {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
-    home.nixosModules.home-manager {
+    home-unstable.nixosModules.home-manager {
       home-manager = {
         verbose = true;
         backupFileExtension = "home_backup";

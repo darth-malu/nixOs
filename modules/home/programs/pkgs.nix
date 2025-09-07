@@ -145,13 +145,12 @@
           # steam-run
           # wine
           # blender-hip # Hardware accelerated rendering NOTE later after pos
-          # darktable
+          darktable
           # davinci-resolve # NOTE crash on stable
           handbrake # FIXME lag on open
           vlc
           helvum
-          coppwr
-          # davinci-resolve
+          #coppwr
           ffmpeg-full # full vs vanilla?
           gimp
           inkscape-with-extensions

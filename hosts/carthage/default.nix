@@ -20,7 +20,7 @@ networking = {
 };
 
   networking.firewall = rec {
-    allowedTCPPorts = [ 3216 ];
+    allowedTCPPorts = [ 3216 3389 8806];
     allowedTCPPortRanges = [
       {
         from = 1714;

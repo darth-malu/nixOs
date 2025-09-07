@@ -31,7 +31,7 @@
 
   boot = {
     plymouth = {
-      enable = true;
+      enable = false;
     };
     extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
     loader = {
@@ -86,10 +86,11 @@
           "kvm-amd"
           "wl" # broadcomm closed source
         ];
-    # kernelParams = [# parameterrs for kernel command line
+    kernelParams = [# parameterrs for kernel command line
     #   "video=HDMI-A-1:1920x1080@240"
     #   "video=DP-3:1920x1080@60"
-    # ];
+      "nohibernate" # because zfs
+    ];
     # supportedFilesystems = { ntfs-3g = true; ext4 = true; }; # can also be list # supportedFilesystems = [ "ntfs" ];
   };
 
@@ -97,7 +98,8 @@
     libinput.enable = if config.networking.hostName == "tangier" then true else false; # touchpad, should be on by default
     zfs = {
       autoSnapshot.enable = true; # TODO: see sanoid in man configuration.nix
-      trim.enable = true; # true::
+      autoScrub.enable = true;
+      trim.enable = true; # true:: - zpool trim, different from autorim pool property
     };
   };
 

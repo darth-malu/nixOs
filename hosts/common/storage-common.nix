@@ -29,16 +29,6 @@
           ];
         };
 
-        "/media/linuxHdd" = {
-          device = "/dev/disk/by-uuid/48b59b13-573c-4e39-b2ce-abb2a3c0206e";
-          # noCheck = true; # won't mount on boot
-          fsType = "ext4";
-          options = [
-            "users"
-            "nofail"
-          ]; # defaults if options list missing
-        };
-
         "/media/kibweziC" = {
           # /dev/sda3 - c drive
           device = "/dev/disk/by-uuid/68025AB7025A89C8";
@@ -56,34 +46,22 @@
           options = [
             "users"
             "nofail"
+            #     # "windows_names"
           ];
         };
 
-        "/media/extraHdd" = {
-          device = "/dev/disk/by-uuid/01DA684DD5DAAEA0";
-          fsType = "ntfs-3g";
-          # noCheck = true;
-          options = [
-            # "rw"
-            # "uid=1000"
-            "users"
-            "nofail"
-          ];
-        };
-
-        "/media/hyogo" = {
-          device = "/dev/disk/by-uuid/01DB2D43AC9E5D00";
-          fsType = "ntfs-3g";
+        "/media/Hyogo" = {
+          device = "/dev/disk/by-uuid/48b59b13-573c-4e39-b2ce-abb2a3c0206e";
+          fsType = "ext4";
           options = [
             "users"
             "nofail"
-            # "windows_names"
           ];
         };
 
-        "/media/mutsu" = {
-          device = "/dev/disk/by-uuid/920E2E2D0E2E0B35";
-          fsType = "ntfs-3g";
+        "/media/Mutsu" = {
+          device = "/dev/disk/by-uuid/cc6dc415-697b-4024-945d-6641cf32f5ff";
+          fsType = "ext4";
           options = [
             "users"
             "nofail"

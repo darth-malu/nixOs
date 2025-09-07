@@ -124,6 +124,15 @@ https://nixos.wiki/wiki/Nix_channels
       inputs.nixpkgs.follows = "nixpkgs";
     };
 #+end_src
+** winapps
+
+#+begin_src nix :tangle flake.nix
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+#+end_src
+
 ** end inputs
 #+begin_src nix :tangle flake.nix
   };
@@ -206,13 +215,22 @@ nixosConfigurations = {
 modules = [
   ./hosts/carthage
   # {environment.systemPackages = [neovimConf.neovim];}
-  {environment.systemPackages = [pkgs.nixos-rebuild-ng];} #  alternatively to replace old rebuild: system.rebuild.enableNg
 #+end_src
+
+***** Some systemPackage modules
+#+begin_src nix :tangle flake.nix
+{environment.systemPackages = [
+   pkgs.nixos-rebuild-ng #  alternatively to replace old rebuild: system.rebuild.enableNg
+   inputs.winapps.packages."${system}".winapps
+   inputs.winapps.packages."${system}".winapps-launcher # optional
+ ];
+}
+#+end_src
+
 ***** plasma-manger
 #+begin_src nix :tangle no
   inputs.plasma-manager.homeManagerModules.plasma-manager
 #+end_src
-
 ***** Home-manager
 ****** As Module 🐐
 #+begin_src nix :tangle flake.nix
@@ -291,14 +309,14 @@ Home manager imports all modules from the /modules/program /modules/services:
 
 *** tangier
 #+begin_src nix :tangle flake.nix
-tangier = nixpkgs.lib.nixosSystem {
+tangier = nixpkgs-unstable.lib.nixosSystem {
   inherit system;
   specialArgs = { inherit pkgs-unstable inputs system; };
   modules = [
     ./hosts/tangier
     # inputs.quickshell.packages.${system}.default
     # {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
-    home.nixosModules.home-manager {
+    home-unstable.nixosModules.home-manager {
       home-manager = {
         verbose = true;
         backupFileExtension = "home_backup";

@@ -1,6 +1,7 @@
 { pkgs }:
 
 pkgs.writeShellScriptBin "pause_play" ''
+
   query_playerctl() {
       playerctl -l
   }
@@ -16,38 +17,27 @@ pkgs.writeShellScriptBin "pause_play" ''
       done
   }
 
-  check_running() {
-      preg -xc "$@" >/dev/null || pgrep -fc "$@" >/dev/null
-  }
+  # check_running() {
+  #     preg -xc "$@" >/dev/null || pgrep -fc "$@" >/dev/null
+  # }
 
   player_active() {
-      # eg output: mpd, spotify
+      # output: mpd, spotify
       playerctl metadata --format '{{ playerName }}' | sed '/^$/d'
   }
 
   pause_player() {
-      local active_player
 
-      #local current_player=$(playerctl metadata --format '{{ playerName }}')
-      #local players=$(query_playerctl)
-      #local any_playing=$(general_playing_status)
-
-      active_player=$(player_active)
+      local active_player=$(player_active)
 
       case $active_player in
       "spotify")
-          playerctl -p "$(active_player)" play-pause
-          ;;
-      "Lollypop")
-          playerctl -p Lollypop play-pause
+          playerctl -p $active_player play-pause
           ;;
       "mpd")
           mpc toggle
           ;;
-      firefox* | *brave* | chromium*) #NOTE: this is a simple shell glob not bash glob
-          #while spotify or lollypop in background pause those first
-          #if [[ ( $(check_running "spotify") || $(check_running "python3 /sbin/lollypop") || $(check_running "ncmpcpp") ) && $(music_playing_state) == "Playing" ]]; then
-
+      firefox* | *brave* | chromium*)
           case $(music_playing_state) in
           "Playing")
               playerctl -ps spotify play-pause || mpc toggle
@@ -60,11 +50,7 @@ pkgs.writeShellScriptBin "pause_play" ''
           esac
           ;;
       *)
-          if check_running "spotify" || check_running "python3 /sbin/lollypop"; then
-              playerctl -ps spotify play-pause || playerctl -sp Lollypop play-pause
-          else
-              playerctl -ps "$(active_player)" play-pause
-          fi
+          playerctl -ps "$(active_player)" play-pause
           ;;
       esac
   }

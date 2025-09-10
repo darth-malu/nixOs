@@ -185,13 +185,14 @@ bind =
 #+end_src
 *** obs
 #+begin_src nix :tangle yes
-    # "$cl $sl, R, pass, ^(com.obsproject.Studio)$"
-    # "$cl $sl, S, pass, ^(com.obsproject.Studio)$"
-    # "$cl $sl, [, pass, ^(com.obsproject.Studio)$"
-    # "$cl $sl, ], pass, ^(com.obsproject.Studio)$"
-    # "$cl $sl, \, pass, ^(com.obsproject.Studio)$"
-    # "$cl $sl, -, pass, ^(com.obsproject.Studio)$"
-    "SUPER $sl, F10, sendshortcut, $cl $sl, R, class:^(com\.obsproject\.Studio)$"
+    "$cl $sl, R, pass, ^(com.obsproject.Studio)$"
+    "$cl $sl, S, pass, ^(com.obsproject.Studio)$"
+    "$cl $sl, [, pass, ^(com.obsproject.Studio)$"
+    "$cl $sl, ], pass, ^(com.obsproject.Studio)$"
+    "$cl $sl, \, pass, ^(com.obsproject.Studio)$"
+    "$cl $sl, -, pass, ^(com.obsproject.Studio)$"
+    #"$mod , comma , sendshortcut, $cl $sl, r, class:^(com\.obsproject\.Studio)$"
+    #"$cl $sl, R, pass, class:^(com\.obsproject\.Studio)$"
 #+end_src
 *** focus favorite apps
 #NOTE for KP need to bind with numlock off identifier
@@ -420,7 +421,7 @@ bindm = [
 ];
 
 bindc = [
-  "ALT, mouse:272, togglefloating"
+  # "ALT, mouse:272, togglefloating"
 ];
 #+end_src
 

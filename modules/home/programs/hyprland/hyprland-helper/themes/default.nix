@@ -3,7 +3,6 @@
 # let
 #   gruvboxplus = import ../home/gruvbox-plus.nix { inherit pkgs;};
 # in
-# lib.mkIf osConfig.services.desktopManager.plasma6.enable {
 lib.mkIf osConfig.programs.hyprland.enable {
 
 home.pointerCursor = {
@@ -89,7 +88,7 @@ gtk4 = {
 
 qt = {
   enable = true;
-  platformTheme.name = "kde6";   # kde6(stable)
+  platformTheme.name = "kde";   # kde6(stable)
   style.name = "breeze"; #"adwaita-dark";
 };
 

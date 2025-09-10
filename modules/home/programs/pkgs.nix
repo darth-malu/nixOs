@@ -3,7 +3,6 @@
   inputs,
   osConfig,
   pkgs,
-  pkgs-unstable,
   ...
 }:
 
@@ -47,11 +46,6 @@
       p7zip # New p7zip fork with additional codecs and improvements (forked from https://sourceforge.net/projec…
     ])
     ++ (with pkgs; [
-      # jetbrains.pycharm-community-bin
-      # tokei
-      # vscodium
-      # vscodium-fhs
-      # dotnet-sdk
       ed
       firebase-tools
       # libgcc
@@ -88,7 +82,7 @@
       usbutils # lsusb, usb-devices, usb-view(optional gui)
       util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
     ])
-    ++ (with pkgs-unstable; [
+    ++ (with pkgs; [
       chromium
       telegram-desktop
       discord
@@ -120,11 +114,11 @@
       # pipeline # flatpak better?
       # qqmusic
     ])
-    ++ (with pkgs-unstable; [
+    ++ (with pkgs; [
       # kdePackages.audiotube
       # fooyin
     ])
-    ++ (with pkgs-unstable; [
+    ++ (with pkgs; [
       # komikku # broken
       mangal
       ani-cli
@@ -134,7 +128,7 @@
     ])
     ++ (
       if osConfig.networking.hostName == "carthage" then
-        with pkgs-unstable;
+        with pkgs;
         [
           # mastodon
           spotube # FIXME issues tu
@@ -146,13 +140,16 @@
           # wine
           # blender-hip # Hardware accelerated rendering NOTE later after pos
           darktable
-          # davinci-resolve # NOTE crash on stable
+          davinci-resolve # NOTE crash on stable
           handbrake # FIXME lag on open
           vlc
           helvum
           #coppwr
           ffmpeg-full # full vs vanilla?
           gimp
+          unigine-heaven
+          # unigine-superposition
+          glmark2
           inkscape-with-extensions
           obs-cli
           obs-studio

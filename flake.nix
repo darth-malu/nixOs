@@ -89,6 +89,8 @@
     config = {
       allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
         "discord"
+        "unigine-heaven"
+        "unigine-superposition"
         "google-chrome"
         "bluemail"
         "ventoy"
@@ -106,7 +108,7 @@
         "android-studio-stable"
       ];
       permittedInsecurePackages = [
-        "ventoy-1.1.05"
+        "ventoy-1.1.07"
         "libsoup-2.74.3"
         "libxml2-2.13.8" # for cisco?
       ];

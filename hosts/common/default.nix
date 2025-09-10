@@ -24,20 +24,20 @@
         "nvidia-x11-570.153.02-6.12.30"
       ];
     permittedInsecurePackages = [
-      "broadcom-sta-6.30.223.271-57-6.12.44"
+      "broadcom-sta-6.30.223.271-57-6.12.45"
       "libxml2-2.13.8" # for cisco?
     ];
   };
 
   boot = {
     plymouth = {
-      enable = false;
+      enable = true;
     };
     extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
     loader = {
       systemd-boot = {
         enable = true;
-        editor = false; # true:: allow editing kernel commandline before boot
+        # editor = false; # true:: allow editing kernel commandline before boot
         # windows
         # sortKey = "nixos"; #https://uapi-group.org/specifications/specs/boot_loader_specification/#sorting
       };

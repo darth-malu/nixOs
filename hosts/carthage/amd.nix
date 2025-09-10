@@ -1,5 +1,3 @@
-{ pkgs, pkgs-unstable, ... }:
-
 {
   # previously hardware.opengl
   hardware.graphics = {
@@ -19,11 +17,12 @@
   hardware.amdgpu = {
     #initrd.enable = true; #  # early userspace, fix low res in boot scrn
     overdrive.enable = true; # for lact
-    opencl.enable = true; # Whether to enable OpenCL support using ROCM runtime library.
+    opencl.enable = true; # OpenCL support using ROCM runtime library.(rocmPackages.clr + rocmPackages.clr.icd)
     amdvlk = {
       enable = true; # amd vulkan driver
+      # support32bit = true;
       # package = pkgs.amdvlk;
-      supportExperimental.enable = true; # false::
+      # supportExperimental.enable = true; # false::
     };
   };
 

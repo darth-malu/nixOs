@@ -22,16 +22,14 @@
         #   udisks_version = 2;
         #   tray = true;
         # };
-        icon_names.media = [
-          "media-optical"
-          "drive-removable-media"
-        ];
+        # icon_names.media = [
+        #   "media-optical"
+        #   "drive-removable-media"
+        # ];
         # file-manager = "kitty -e 'yazi'";
         file-manager = "xdg-open";
         menu = "flat"; # nested::
         terminal = "${pkgs.kitty}/bin/kitty -e yazi";
-        # file-manager = "/home/malu/.nix-profile/bin/yazi";
-        # file-manager = "xdg-open";
       };
     };
   };

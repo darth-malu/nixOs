@@ -23,6 +23,7 @@
     };
 
     programs.gamemode = {
+      # daemon and library combo that allows games to request a set of optimisations be temporarily applied to the host OS. This can improve game performance
       # Feral Game mode
       # https://www.mankier.com/8/gamemoded
       enable = true;
@@ -46,6 +47,7 @@
     };
 
     programs.gamescope = {
+      # is a microcompositor from Valve that is used on the Steam Deck. Its goal is to provide an isolated compositor that is tailored towards gaming and supports many gaming-centric features.
       enable = true;
       capSysNice = true; # Add cap_sys_nice capability to the GameScope binary so that it may renice itself.
     };

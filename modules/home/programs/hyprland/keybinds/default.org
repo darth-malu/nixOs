@@ -435,15 +435,16 @@ bindel =
 #+end_src
 
 ** bindl
+
+Play/Pause
+
 #+begin_src nix :tangle default.nix
 bindel =
   [
-    #-----------------------PLAY/PAUSE------------------#
     ", XF86AudioPlay, execr, pause_play"
     # mute
     ", XF86AudioMute, execr, volume_dunst toggle_mute"
 
-    ##---------------Sink-Switch--------------#
     # "$mod, F12, execr, volume_dunst earphones"
     # "$mod, F11, execr, volume_dunst speaker"
     # "$mod, F10, execr, volume_dunst bluetooth"
@@ -454,15 +455,14 @@ bindel =
     ", XF86AudioRaiseVolume, execr, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%+ >/dev/null 2>&1 "
     ", XF86AudioLowerVolume, execr, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%- >/dev/null 2>&1 "
 
-    #-----------------------NEXT/PREV------------------#
-    ", XF86AudioNext, execr, playerctl next "
-    ", XF86AudioPrev, execr, playerctl previous"
+    ", XF86AudioNext, execr, playerctl -p spotify next || playerctl next "
+    ", XF86AudioPrev, execr, playerctl -p spotify previous || playerctl previous "
    ]++
     (
       if osConfig.networking.hostName == "carthage" then
     [
-    ", F8, execr, playerctl next "
-    ", F6, execr, playerctl previous"
+    ", F8, execr, playerctl -p spotify next || playerctl next "
+    ", F6, execr, playerctl -p spotify previous || playerctl previous "
     ", F7, execr, pause_play"
     ] else []);
 #+end_src

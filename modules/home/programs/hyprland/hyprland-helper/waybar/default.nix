@@ -13,7 +13,7 @@
 
   config = lib.mkIf config.waybar.enable {
     programs.waybar = {
-      enable = false;
+      enable = true;
       package = pkgs-unstable.waybar;
       systemd = {
         enable = true;

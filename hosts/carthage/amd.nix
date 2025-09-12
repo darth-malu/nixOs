@@ -12,7 +12,7 @@
       enable = true; # amd vulkan driver
       support32Bit.enable = true;
       # package = pkgs.amdvlk;
-      supportExperimental.enable = true; # false::
+      # supportExperimental.enable = true; # false::
     };
   };
 

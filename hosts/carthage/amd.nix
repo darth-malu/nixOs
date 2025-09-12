@@ -2,8 +2,9 @@
   # previously hardware.opengl
   hardware.graphics = {
     enable = true; # vulkan #/run/opengl-driver
-    enable32Bit = true; # wine needs , vulkan 32 bit, vulkan on by default with radv
+    enable32Bit = true; # NOTE wine needs , vulkan 32 bit, vulkan on by default with radv
   };
+
   hardware.amdgpu = {
     #initrd.enable = true; #  # early userspace, fix low res in boot scrn
     overdrive.enable = true; # for lact
@@ -23,5 +24,6 @@
     # AMD_VULKAN_ICD = "RADV"; # AMDVLK ::, RADV
     # VDPAU_DRIVER = "radeonsi"; # NOTE try as fix for openCl issues
   };
+
   services.lact.enable = true;
 }

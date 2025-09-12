@@ -137,7 +137,7 @@ folders = {
 **** playlists ncmpcpp
 #+begin_src nix :tangle default.nix
 "ncmpcpp_playlists" = {
-  path = "/home/malu/Music/ncmpcppStuff/playlists";
+  path = "/home/malu/Music/ncmpcpp/playlists";
   devices = ["tangier" "carthage"];
   type = "sendreceive";
 };

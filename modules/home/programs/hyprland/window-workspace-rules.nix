@@ -49,6 +49,9 @@
       # "workspace emptym, class:obsidian"
       # "workspace emptym, class:spotube"
 
+      "workspace emptym silent, class:steam, title:Sign in to Steam"
+      "workspace nointialfocus, class:steam, title:Sign in to Steam"
+
       # PYTHON
       "workspace emptym, class:getting-started.py"
       "center, class:main.py"

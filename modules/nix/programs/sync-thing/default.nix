@@ -55,7 +55,7 @@ devices = {
 };
 
 "ncmpcpp_playlists" = {
-  path = "/home/malu/Music/ncmpcppStuff/playlists";
+  path = "/home/malu/Music/ncmpcpp/playlists";
   devices = ["tangier" "carthage"];
   type = "sendreceive";
 };

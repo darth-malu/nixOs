@@ -2,9 +2,8 @@
  # systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
 
  services.syncthing = {
-   # http://127.0.0.1:8384/
    # allProxy = "socks5://address.com:1234";
-   enable = true;
+   enable = false;
    # guiAddress = "127.0.0.1:8384";
    configDir = "/home/malu/.config/syncthing"; # will run as root if you dont do this by default? (path where the settings and keys will exist)
    dataDir = "/home/malu/syncFolder";
@@ -63,7 +62,7 @@ folders = {
 };
 
 "ncmpcpp_playlists" = {
-  path = "/home/malu/Music/ncmpcppStuff/playlists";
+  path = "/home/malu/Music/ncmpcpp/playlists";
   devices = ["tangier" "carthage"];
   type = "sendreceive";
 };

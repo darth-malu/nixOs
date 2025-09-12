@@ -31,7 +31,7 @@
 
   boot = {
     plymouth = {
-      enable = true;
+      enable = false;
     };
     extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
     loader = {

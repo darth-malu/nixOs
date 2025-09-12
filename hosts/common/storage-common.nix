@@ -69,6 +69,14 @@
             "nofail"
           ];
         };
+
+        # swapDevices = [
+        #   {
+        #     device = "/dev/disk/by-uuid/910e4778-e884-4cc0-b771-2d9b4868f331";
+        #     options = [ "discard" ]; # equivalent to swapon --discard
+        #     randomEncryption.enable = true;
+        #   }
+        # ];
       }
     else
       {
@@ -93,9 +101,12 @@
 
   zramSwap = {
     # TODO: study more on this
+    # enable = if config.networking.hostName == "tangier" then true else false;
     enable = true;
     # memoryPercent = 50;
   };
+
+  # services.swapspace.enable = true;
 }
 
 #NOTE: default options: rw, suid, dev, exec, auto, nouser, and async.

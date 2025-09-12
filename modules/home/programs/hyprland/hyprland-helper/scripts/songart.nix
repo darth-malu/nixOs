@@ -9,7 +9,7 @@ pkgs.writeShellScriptBin "songart" ''
     current_file="$(mpc --format /home/malu/Music/%file% current)"
     album="$(mpc --format %album% current)"
     album_base64="$(printf '%s' $album | base64).png"
-    previewDir="/home/malu/Music/ncmpcppStuff/previews"
+    previewDir="/home/malu/Music/ncmpcpp/previews"
     preview_path="$previewDir/$album_base64"
 
     [ -f "$preview_path" ] || ffmpeg -y -i "$current_file" -an -vf scale=128:128 "$preview_path" 2> /dev/null

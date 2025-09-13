@@ -63,6 +63,11 @@
 
       "workspace emptym, class:mpv"
       "monitor HDMI-A-1, class:mpv"
+
+    ]
+    ++ [
+      # Gamer centric
+      "immediate, class:^(cs2)$" # Allow Tearing
     ];
 
     windowrulev2 = [

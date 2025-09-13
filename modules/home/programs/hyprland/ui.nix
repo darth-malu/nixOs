@@ -10,9 +10,9 @@
       #gaps_out = 12;
       border_size = 1;
       resize_on_border = true;
-      hover_icon_on_border = false;
+      hover_icon_on_border = true;
       layout = "dwindle";
-      allow_tearing = false;
+      allow_tearing = true;
       no_border_on_floating = true;
       no_focus_fallback = true; # false, will not fall back to the next available window when moving focus in a direction where no window was found
       snap = {
@@ -32,7 +32,7 @@
         #color_inactive = unset;
         range = 4;
         offset = "1 2";
-        render_power = 3;
+        render_power = if osConfig.networking.hostName == "tangier" then 1 else 3;
         scale = 0.97;
       };
       blur = {

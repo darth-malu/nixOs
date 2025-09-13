@@ -1,7 +1,8 @@
+{ config }:
 {
   # previously hardware.opengl
   hardware.graphics = {
-    enable = true; # vulkan #/run/opengl-driver
+    enable = true; # true:: Mesa + vulkan ->> /run/opengl-driver (for supported hardware)
     enable32Bit = true; # NOTE wine needs , vulkan 32 bit, vulkan on by default with radv
   };
 
@@ -20,9 +21,9 @@
   environment.variables = {
     ROC_ENABLE_PRE_VEGA = "1"; # enable opencl polaris;
     # When a program is installed in your environment, these libraries should be found automatically. However, this is not the case in a `nix-shell`. use LD_L*
-    # LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+    # LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib"; #NOTE usefull inside shell.nix environment
     # AMD_VULKAN_ICD = "RADV"; # AMDVLK ::, RADV
-    # VDPAU_DRIVER = "radeonsi"; # NOTE try as fix for openCl issues
+    VDPAU_DRIVER = if config.networking.hostName == "tangier" then "nvidia" else "radeonsi"; # NOTE try as fix for openCl issues # will fallback to nvidia if not set using this ENV_VAR
   };
 
   services.lact.enable = true;

@@ -30,27 +30,23 @@ options.rofi = {
 #+begin_src nix :tangle default.nix
 config = lib.mkIf config.rofi.enable {
   programs.rofi = {
-    enable = pkgs.lib.mkDefault true;
+    enable = true;
 #+end_src
 
 #+begin_src nix :tangle default.nix
-cycle = true;
-location = "center";
-font = "SpaceMono Nerd Font 12";
-# plugins = with pkgs; [ rofi-emoji rofi-calc ];
-terminal = "${pkgs.kitty}/bin/kitty";
+    cycle = true;
+    location = "center";
+    font = "SpaceMono Nerd Font 12";
+    # plugins = with pkgs; [ rofi-emoji rofi-calc ];
+    terminal = "${pkgs.kitty}/bin/kitty";
 #+end_src
 
+** Plugins
 #+begin_src nix :tangle default.nix
-# terminal = "uwsm app -s a kitty";
-# package = pkgs.rofi-wayland-unwrapped;
-# package = pkgs.rofi-wayland.override {
-#   plugins = with pkgs; [
-#     rofi-emoji
-#     rofi-calc
-#   ];
-# };
-#yoffset = 3;
+  plugins = with pkgs; [
+    rofi-emoji
+    rofi-calc
+  ];
 #+end_src
 
 ** extraConfig
@@ -98,6 +94,7 @@ t: title of window
 n: name
 r: role
 c: class
+
 *** click-to-exit
 #+begin_src nix :tangle default.nix
 click-to-exit = true;

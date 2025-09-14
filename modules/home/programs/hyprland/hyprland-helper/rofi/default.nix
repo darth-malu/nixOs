@@ -14,23 +14,18 @@ options.rofi = {
 
 config = lib.mkIf config.rofi.enable {
   programs.rofi = {
-    enable = pkgs.lib.mkDefault true;
+    enable = true;
 
-cycle = true;
-location = "center";
-font = "SpaceMono Nerd Font 12";
-# plugins = with pkgs; [ rofi-emoji rofi-calc ];
-terminal = "${pkgs.kitty}/bin/kitty";
+    cycle = true;
+    location = "center";
+    font = "SpaceMono Nerd Font 12";
+    # plugins = with pkgs; [ rofi-emoji rofi-calc ];
+    terminal = "${pkgs.kitty}/bin/kitty";
 
-# terminal = "uwsm app -s a kitty";
-# package = pkgs.rofi-wayland-unwrapped;
-# package = pkgs.rofi-wayland.override {
-#   plugins = with pkgs; [
-#     rofi-emoji
-#     rofi-calc
-#   ];
-# };
-#yoffset = 3;
+  plugins = with pkgs; [
+    rofi-emoji
+    rofi-calc
+  ];
 
 extraConfig = {
 

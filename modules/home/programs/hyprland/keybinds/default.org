@@ -71,6 +71,10 @@ bindr = [
 "$mod $al, C, exec, hyprpicker -an"
 "$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""
 #+end_src
+*** Hyprland-easymotion
+#+begin_src nix :tangle default.nix
+"$mod, z, easymotion, action:hyprctl dispatch focuswindow address:{}"
+#+end_src
 *** ghostty
 #+begin_src nix :tangle default.nix
   # "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
@@ -110,7 +114,7 @@ bind =
 #+end_src
 *** MaluwareYt
 #+begin_src nix :tangle default.nix
- "$mod $sl, T, execr, python '/home/malu/.code/PyQt6/youtubr/main.py'"
+ "$mod $sl, T, execr, python '/home/malu/.code/PySide6/youtubr/main.py'"
 #+end_src
 *** kitty
 #+begin_src nix :tangle default.nix
@@ -230,10 +234,10 @@ see hyprswitch:
 "$mod $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 # "$mod , left, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 #+end_src
-**** chrome
+**** chromium
 #+begin_src nix :tangle default.nix
 # "$mod $cl, C, focuswindow, class:^(google-chrome)$"
-"$mod $cl, C, focuswindow, class:^(chromium-browser)$"
+"$mod $cl, c, focuswindow, class:^(chromium-browser)$"
 #+end_src
 **** kitty
 #+begin_src nix :tangle default.nix

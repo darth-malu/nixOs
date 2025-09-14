@@ -45,6 +45,8 @@ bindr = [
 "$mod $al, C, exec, hyprpicker -an"
 "$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""
 
+"$mod, z, easymotion, action:hyprctl dispatch focuswindow address:{}"
+
   # "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
 
   ", Print, exec, grimblast --cursor --notify copy output"
@@ -67,7 +69,7 @@ bind =
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
 
- "$mod $sl, T, execr, python '/home/malu/.code/PyQt6/youtubr/main.py'"
+ "$mod $sl, T, execr, python '/home/malu/.code/PySide6/youtubr/main.py'"
 
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
@@ -146,7 +148,7 @@ bind =
 # "$mod , left, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 
 # "$mod $cl, C, focuswindow, class:^(google-chrome)$"
-"$mod $cl, C, focuswindow, class:^(chromium-browser)$"
+"$mod $cl, c, focuswindow, class:^(chromium-browser)$"
 
 "$mod $cl, Return, focuswindow, class:^(kitty)$"
 

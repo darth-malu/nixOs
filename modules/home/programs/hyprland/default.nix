@@ -12,6 +12,7 @@
     ./window-workspace-rules.nix
     ./autoStart.nix
     ./hyprland-helper
+    ./plugins.nix
   ];
 
   options.homeHyprland = {
@@ -19,8 +20,9 @@
   };
 
   config = lib.mkIf config.homeHyprland.enable {
+
+    waybar.enable = false;
     dunst.enable = true;
-    waybar.enable = true;
     rofi.enable = true;
     hyprpaper.enable = true;
     hypridle.enable = true;

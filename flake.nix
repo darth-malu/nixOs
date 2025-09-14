@@ -22,7 +22,11 @@
     };
 
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+
+    # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref={version}";
+
     hyprland.url = "github:hyprwm/Hyprland"; # with cachix
+
     # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     # hyprland-plugins.inputs.hyprland.follows = "hyprland";
 
@@ -64,6 +68,18 @@
         inputs.hyprland.follows = "hyprland";
     };
 
+    hyprland-easymotion = {
+      url = "github:zakk4223/hyprland-easymotion";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    Hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+
+      # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
+      inputs.hyprland.follows = "hyprland";
+    };
+
     nyaa = {
       url = "github:Beastwick18/nyaa";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -90,7 +106,6 @@
       allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
         "discord"
         "unigine-heaven"
-        "unigine-superposition"
         "google-chrome"
         "bluemail"
         "ventoy"

@@ -296,6 +296,10 @@ nix.settings = {
     #"cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     # "konradmalik.cachix.org-1:9REXmCYRwPNL0kAB0IMeTxnMB1Gl9VY5I8w7UVBTtSI="
   ];
+  trusted-users = [
+    "remotebuild"
+    "malu"
+  ];
 };
 
 i18n = {

@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+# { pkgs, ... }:
 {
-  systemd.services.sshd.wantedBy = pkgs.lib.mkForce [ ];
+  # systemd.services.sshd.wantedBy = pkgs.lib.mkForce [ ];
   services = {
     openssh = {
       enable = true;

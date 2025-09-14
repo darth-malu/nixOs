@@ -255,8 +255,8 @@ bind =
 
 ++ (if osConfig.networking.hostName == "tangier" then
   [
-  "$mod, Delete, exec, pkill rofi || rofi_power"
-    "$mod $cl, E, focuswindow, class:^(Emacs)$"
+    "$mod, Delete, exec, pkill rofi || rofi_power"
+    "$mod $cl, E, focuswindow, class:^(Emacs)$" # TODO combine regex into one
   ]
   else [
     # "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3

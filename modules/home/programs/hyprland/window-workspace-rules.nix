@@ -59,7 +59,7 @@
       "center, title:Darth-Yt"
       # "center, class:youtubr"
       "center, class:youtubr"
-      "float, class:main.py"
+      "float, class:youtubr"
 
       "workspace emptym, class:mpv"
       "monitor HDMI-A-1, class:mpv"

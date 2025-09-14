@@ -35,32 +35,37 @@ in
     ];
 
   home.packages = with pkgs; [
-    mu
+    # General lsp stuff
+    emacs-lsp-booster
     # prettier
-    prettierd # prettier as a daemon, for improved speed
-    # gnumake # for compiling vterm
+    prettierd # prettier as a daemon, for improved speed # TODO test workings
+
+    # EMAIL
+    mu
+
     xclip
     tex
     libtool
     shellcheck
-    libclang # java
+    # libclang # java #TODO see need
 
-    csharpier # c# formatter
-    csharprepl # coolest repl
+    # C#
+    # csharpier # c# formatter
+    # csharprepl # coolest repl
 
     (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [
-        # jupyter-core
-        jupyter-console
-        # jupyterlab-server
+        jupyter-console # jupyter-core jupyterlab-server
         pyside6
         # pytube
         pytubefix
         pandas
         # numpy
-        seaborn
-        matplotlib
-        tkinter
+        # seaborn
+        # matplotlib
+        # tkinter
+
+        # Installers
         nuitka
         pyinstaller
 
@@ -78,68 +83,72 @@ in
         grip
 
         # C
-        clang-tools
+        # clang-tools #TODO see need
       ]
     ))
-    cmake # vterm
-    ## Module dependencies
-    # Because emacs expects the dictionaries to be on the same directory as aspell, they won't be picked up. To fix it install the aspellWithDicts package, specifying the dictionaries you want to use:
+
+    # cmake # vterm#FIXME make still not found
+    # gnumake # for compiling vterm
+
+    ## Dictionary
     (aspellWithDicts (
+      # Because emacs expects the dictionaries to be on the same directory as aspell, they won't be picked up. To fix it install the aspellWithDicts package, specifying the dictionaries you want to use:
       ds: with ds; [
         en
         en-computers
         en-science
       ]
     ))
-    hunspell
+    # hunspell
     wordnet # +dictionary
     sqlite # org-roam
-    editorconfig-core-c # per-project style config
+    # editorconfig-core-c # per-project style config# TODO use
+
     # :lang nix
+    nil
+    nixd # for zed as well
+    nixfmt-rfc-style # official - needed to use formatting with :lang nix
+
     age
     zstd # undo-fu-session/undo-tree compression
     binutils # native-comp needs 'as', provided by this
 
-    nil
-    nixd # for zed as well
-    pyright
+    #bash
     bash-language-server # I never really have bash files to edit lol
-    omnisharp-roslyn # c#
-    jdt-language-server
-    # lua-language-server
-    basedpyright
-    black
-    nixfmt-rfc-style # official - needed to use formatting with :lang nix
 
-    emacs-lsp-booster
+    # omnisharp-roslyn # c#
+    # jdt-language-server
+
+    # lua-language-server
+
+    # WEB
+    nodePackages.js-beautify # js/css/html format
+    stylelint # css linter
+    # web
+    html-tidy
 
     # org stuff
     scrot # org-screenshot-take
-
     # export dep
     wkhtmltopdf
     groff # ms-pdf export
     ghostscript
-
-    nodePackages.js-beautify # js/css/html format
-    stylelint # css linter
-
     graphviz # org-roam visualization
 
+    # MISC
     imagemagick # image-dired, has convert:
     unzip # tldr
 
     # python
     pipenv
+    basedpyright
+    pyright
     black
     shfmt
     libxml2
     pyenv
 
-    # web
-    html-tidy
-
     # lsp
-    nodejs_24 # consider npm for auto install of servers in lsp-mode
+    # nodejs_24 # consider npm for auto install of servers in lsp-mode
   ];
 }

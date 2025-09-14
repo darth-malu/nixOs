@@ -72,6 +72,7 @@ modes = [
 #+end_src
 
 *** display-{mode} /string/
+
 #+begin_src nix :tangle default.nix
 display-drun = "";
 display-run = "";

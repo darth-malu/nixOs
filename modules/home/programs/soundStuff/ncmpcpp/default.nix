@@ -5,48 +5,48 @@
 
     mpdMusicDir = "~/Music";
 
-bindings = [
-# scroll
-{ key = "j";command = "scroll_down";}
+  bindings = [
+  # scroll
+  { key = "j";command = "scroll_down";}
 
-{ key = "k"; command = "scroll_up"; }
+  { key = "k"; command = "scroll_up"; }
 
-{key = "l"; command = "next_column";}
+  {key = "l"; command = "next_column";}
 
-# {key = "L";command = "next_screen";}
-{key = "H";command = "master_screen";}
+  # {key = "L";command = "next_screen";}
+  {key = "H";command = "master_screen";}
 
-# { key = "H"; command = "previous_screen"; }
-{ key = "L"; command = "slave_screen"; }
+  # { key = "H"; command = "previous_screen"; }
+  { key = "L"; command = "slave_screen"; }
 
-{ key = "h"; command = "previous_column"; }
+  { key = "h"; command = "previous_column"; }
 
-{ key = "shift-tab"; command = "previous"; }
+  { key = "shift-tab"; command = "previous"; }
 
-{ key = "tab"; command = "next"; }
+  { key = "tab"; command = "next"; }
 
-##lyrics
-{ key = "'";  command = "show_lyrics"; }
+  ##lyrics
+  { key = "'";  command = "show_lyrics"; }
 
-{ key = "^"; command = "toggle_lyrics_fetcher"; }
+  { key = "^"; command = "toggle_lyrics_fetcher"; }
 
-# playlists manipulation
-{ key = "J"; command = [ "select_item" "scroll_down" ]; }
+  # playlists manipulation
+  { key = "J"; command = [ "select_item" "scroll_down" ]; }
 
-#{ key = "ctrl-v"; command = "select_range"; }
+  #{ key = "ctrl-v"; command = "select_range"; }
 
-# WARN: DANGEROUS
-{ key = "d"; command = "delete_browser_items"; }
+  # WARN: DANGEROUS
+  { key = "d"; command = "delete_browser_items"; }
 
-{
-  key = "K";
-  command = [
-    "select_item"
-    "scroll_up"
+  {
+    key = "K";
+    command = [
+      "select_item"
+      "scroll_up"
+    ];
+  }
+
   ];
-}
-
-];
 
 settings = {
 
@@ -95,7 +95,7 @@ media_library_hide_album_dates = true;
 
 default_find_mode = "wrapped"; #wrapped - go to match as you type, normal <key>w
 
-lyrics_directory = "~/Music/lyrics";
+lyrics_directory = "~/Music/ncmpcpp/lyrics";
 store_lyrics_in_song_dir = false;
 fetch_lyrics_for_current_song_in_background = false;
 

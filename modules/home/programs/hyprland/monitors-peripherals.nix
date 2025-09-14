@@ -91,9 +91,9 @@ let
             };
           };
 
-          gesture = [
-            "3, right, workspace, emptym"
-          ];
+          # gesture = [
+          #   "3, right, workspace, emptym"
+          # ];
 
           gestures = {
             # workspace_swipe = true;

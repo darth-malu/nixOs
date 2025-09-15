@@ -9,8 +9,8 @@
       startWhenNeeded = true; # socket activated
       settings = {
         #LogLevel = "DEBUG";
-        PasswordAuthentication = true; # def: false=require public key auth?
-        PermitRootLogin = "no"; # By default, root logins using a password are disallowed. They can be disabled entirely by setting services.openssh.settings.PermitRootLogin to "no".
+        PasswordAuthentication = false; # true:: def: if false require public key authentication
+        #PermitRootLogin = "no"; # By default, root logins using a password are disallowed. They can be disabled entirely by setting services.openssh.settings.PermitRootLogin to "no".
         UseDns = true; # false::
         AllowUsers = [
           "malu"

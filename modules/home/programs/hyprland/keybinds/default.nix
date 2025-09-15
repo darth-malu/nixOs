@@ -268,9 +268,9 @@ bind =
     # "$mod $cl,bracketright, movewindow, mon:1 silent"
 
     # "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
-    "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}'); dispatch focusmonitor +1;\""
+    # "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}'); dispatch focusmonitor +1;\""
     # "$mod $sl space, bracketleft, exec, hyprctl dispatch swapactiveworkspaces HDMI-A-1 `hyprctl monitors | awk '/^Monitor DP/ {print $2}'`"
-    # "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 `hyprctl monitors | grep DP | cut -d ' ' -f2`"
+    "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}')"
     # "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 DP-3"
 
     "$mod $cl, E, focuswindow, class:^(emacs)$"

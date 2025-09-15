@@ -5,6 +5,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/nix
     ./users/malu.nix
+    ./users/remote-builder.nix
     ./storage-common.nix
     ./specialisations
   ];
@@ -14,9 +15,9 @@
       pkg:
       builtins.elem (lib.getName pkg) [
         "broadcom-sta"
-        "ciscoPacketTracer8"
+        # "ciscoPacketTracer8"
         "n8n"
-        "android-studio-stable"
+        # "android-studio-stable"
         "steam-unwrapped"
         "nvidia-x11"
         "xow_dongle-firmware"

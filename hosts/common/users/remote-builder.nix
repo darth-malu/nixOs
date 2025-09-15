@@ -2,13 +2,12 @@
   users.users.remotebuild = {
     isNormalUser = true;
     createHome = false;
-    group = "remotasks";
+    group = "remotebuild";
 
-    openssh.authorizedKeys.keyFiles = [ ./remotebuild ]; # ssh key of the machine that will use the builder
+    openssh.authorizedKeys.keyFiles = [ ./remotebuild.pub ]; # remote machine ssh key
   };
 
-  # users.groups."remotebuild" = { };
-  users.groups."remotasks" = { }; # TODO see if this "" is the ideal
+  users.groups.remotebuild = { };
 
   nix.settings.trusted-users = [
     "remotebuild"

@@ -5,7 +5,6 @@
 imports = [
   ./amd.nix
   ../common
-  ../common/users/remote-builder.nix # removed from common only for carthage now
 ];
 
 hardware = {
@@ -19,15 +18,15 @@ networking = {
   hostId = "7435d550";
 };
 
-  networking.firewall = rec {
+  networking.firewall = {
     allowedTCPPorts = [ 3216 3389 8806];
-    allowedTCPPortRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      }
-    ];
-    allowedUDPPortRanges = allowedTCPPortRanges;
+    # allowedTCPPortRanges = [
+    #   {
+    #     from = 1714;
+    #     to = 1764;
+    #   }
+    # ];
+    # allowedUDPPortRanges = allowedTCPPortRanges;
   };
 
 }

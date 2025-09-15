@@ -11,7 +11,7 @@
     opencl.enable = true; # OpenCL support using ROCM runtime library.(rocmPackages.clr + rocmPackages.clr.icd)
     amdvlk = {
       enable = true; # amd vulkan driver
-      support32Bit.enable = true;
+      # support32Bit.enable = true;
       # package = pkgs.amdvlk;
       # supportExperimental.enable = true; # false::
     };

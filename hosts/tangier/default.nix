@@ -6,34 +6,6 @@ imports = [
   ./nvidia.nix
 ];
 
-nix = {
-  distributedBuilds = true;
-  buildMachines = [ { # makes it so i dont have to use --builders "ssh://myuser@builder <other builder specification>"
-    sshUser = "remotebuild"; # NOTE special user that cant be sudo'd into
-    # sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJXqFrWf3rqkudQ6+aBFXkWpZcAm9HW9oHZclRwtGI8G justinmalu@gmail.com"; # carthage
-    sshKey = "~/.ssh/id_ed25519.pub"
-    hostName = "carthage";
-    # protocol = "ssh-ng"; #ssh:: ssh-ng ( ssh next generation)
-    # maxJobs = 4;
-    # speedFactor = 2; # The relative speed of this builder. This is an arbitrary integer that indicates the speed of this builder, relative to other builders. Higher is faster.
-    system = pkgs.stdenv.hostPlatform.system;
-    # system = "x86_64-linux";
-    supportedFeatures = [
-      "nixos-test"
-      # "benchmark"
-      "big-parallel"
-      "kvm"
-    ];
-    mandatoryFeatures = [ ];
-  }] ;
-  extraOptions = ''
-      builders-use-substitutes = true
-    '';
-};
-
-powerManagement.cpuFreqGovernor = lib.mkDefault "powersave"; # TODO: test effects of this, and add to waybar
-hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
 networking = {
   hostName = "tangier"; # Define your hostname.
   hostId =  "92d08a60";
@@ -43,5 +15,8 @@ networking = {
 # still possible to use this option, but it's recommended to use it in conjunction
 # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
 # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
+
+powerManagement.cpuFreqGovernor = lib.mkDefault "powersave"; # TODO: test effects of this, and add to waybar
+hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
 }

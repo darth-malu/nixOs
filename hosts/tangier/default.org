@@ -15,20 +15,20 @@ imports = [
 ];
 #+end_src
 
-* nix
-#+begin_src nix :tangle no
+* Remote Builds
+#+begin_src nix :tangle default.nix
 nix = {
-  distributedBuilds = false;
+  distributedBuilds = true;
   buildMachines = [ { # makes it so i dont have to use --builders "ssh://myuser@builder <other builder specification>"
     sshUser = "remotebuild"; # NOTE special user that cant be sudo'd into
-    # sshKey = "$HOME/.ssh/id_ed25519"; # must be a local path not pointing to the nix store
-    # sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKubRXSOrk4IrM4Ai3FcvWFVV1wxRUNPF+0VZo9xSph1 darth-malu@github.com";
-    sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJXqFrWf3rqkudQ6+aBFXkWpZcAm9HW9oHZclRwtGI8G justinmalu@gmail.com"; # carthage
+    # sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJXqFrWf3rqkudQ6+aBFXkWpZcAm9HW9oHZclRwtGI8G justinmalu@gmail.com"; # carthage
+    sshKey = "~/.ssh/id_ed25519.pub"
     hostName = "carthage";
-    system = "x86_64-linux";
-    protocol = "ssh-ng"; #ssh:: ssh-ng ( ssh next generation)
-    maxJobs = 4;
-    speedFactor = 2; # The relative speed of this builder. This is an arbitrary integer that indicates the speed of this builder, relative to other builders. Higher is faster.
+    # protocol = "ssh-ng"; #ssh:: ssh-ng ( ssh next generation)
+    # maxJobs = 4;
+    # speedFactor = 2; # The relative speed of this builder. This is an arbitrary integer that indicates the speed of this builder, relative to other builders. Higher is faster.
+    system = pkgs.stdenv.hostPlatform.system;
+    # system = "x86_64-linux";
     supportedFeatures = [
       "nixos-test"
       # "benchmark"
@@ -42,6 +42,9 @@ nix = {
     '';
 };
 #+end_src
+
+The builders-use-substitutes instructs all remote builders to obtain dependencies from its own binary caches instead of from the local machine.
+  This assumes that the remote builders’ internet connection is at least as fast as the local machine’s internet connection.
 
 * power, cpu
 #+begin_src nix :tangle default.nix

@@ -274,32 +274,35 @@ nix.gc = {
 };
 
 nix.settings = {
-  allowed-users = [
+  # warn-dirty = false;
+  allowed-users = [             # Allowed to connect with the nix daemon. All users with *:: Trusted users always allowed to connect
     "@wheel"
     "malu"
+    "@darth"
     "sumbi"
   ];
+  trusted-users = [ # have additional rights when connecting to nix daemon. specify additional binary caches, or to import unsigned NARs
+    "remotebuild"
+    "remotebuild"
+    "@remotebuild"
+    "malu"
+  ];
   experimental-features = [ "nix-command" "flakes" ];
-  # warn-dirty = false;
   substituters = [
     "https://cache.nixos.org?priority=10"
     "https://hyprland.cachix.org"
     "https://nix-community.cachix.org"
-    # "https://helix.cachix.org"
     "https://yazi.cachix.org"
-  ]; #"https://cache.nixos.org" #used automatically by nix pkg mgr "https://konradmalik.cachix.org"
+    # "https://konradmalik.cachix.org"
+    #"https://cache.nixos.org" #used automatically by nix pkg mgr
+  ];
   trusted-public-keys = [
     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-    # "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
     #"cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     # "konradmalik.cachix.org-1:9REXmCYRwPNL0kAB0IMeTxnMB1Gl9VY5I8w7UVBTtSI="
-  ];
-  trusted-users = [
-    "remotebuild"
-    "malu"
   ];
 };
 

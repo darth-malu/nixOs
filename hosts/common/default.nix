@@ -161,7 +161,7 @@ hardware = {
         # ControllerMode = "bredr";
       };
     };
-    # package = pkgs-unstable.bluez;
+    # package = pkgs.bluez;
     # network = {
     #     General = {
     #       DisableSecurity = false; # Disable link encryption: default=false

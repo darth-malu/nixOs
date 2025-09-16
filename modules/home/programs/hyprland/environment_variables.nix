@@ -13,8 +13,9 @@
 
       "QT_AUTO_SCREEN_SCALE_FACTOR,1" # enable auto scaling based on the monitors pixel density # TODO test changes if needed
       # "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-      "QT_QPA_PLATFORM,wayland"
-      "QT_QPA_PLATFORMTHEME,qt6ct"
+
+      # "QT_QPA_PLATFORM,wayland"
+      # "QT_QPA_PLATFORMTHEME,qt6ct"
 
       # "CLUTTER_BACKEND,wayland"
       # "GTK_THEME,Nightfox-Dark"

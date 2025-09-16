@@ -13,8 +13,8 @@
           ]
         else
           [
-            libvdpau
-            libvdpau-va-gl
+            # libvdpau
+            # libvdpau-va-gl
           ]
       );
   };

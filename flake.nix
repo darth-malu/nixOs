@@ -2,8 +2,9 @@
   description = "Kenyan Tinkerer makes a flake -- 🫥";
   inputs = {
 
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     quickshell = {
       # add ?ref=<tag> to track a tag
@@ -11,14 +12,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # home-manager = {
+    #   url = "github:nix-community/home-manager/release-25.05";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
-    home-manager-unstable = {
+    home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -92,7 +93,7 @@
 
   };
 
-  outputs = inputs@{nixpkgs, nixpkgs-unstable, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
+  outputs = inputs@{nixpkgs, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 
   let
     system = "x86_64-linux"; # system = builtins.currentSystem;??
@@ -128,17 +129,12 @@
         "libxml2-2.13.8" # for cisco?
       ];
     };
-    # pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
-    pkgs-unstable = import nixpkgs-unstable {
-      inherit  system;
-      inherit config;
-    };
+
 
     home = inputs.home-manager;
-    home-unstable = inputs.home-manager-unstable;
 
-    # pkgs = import nixpkgs {
-    pkgs = import nixpkgs-unstable {
+    # pkgs = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
+    pkgs = import nixpkgs {
       inherit  system;
       inherit config;
     };
@@ -147,10 +143,9 @@
     # packages.${system}.my-neovim = neovimConf.neovim; # NVF
 
 nixosConfigurations = {
-  carthage = nixpkgs-unstable.lib.nixosSystem {
-  # carthage = nixpkgs.lib.nixosSystem {
+  carthage = nixpkgs.lib.nixosSystem {
     inherit system;
-    specialArgs = { inherit pkgs-unstable inputs system; };
+    specialArgs = { inherit inputs system; };
 
 modules = [
   ./hosts/carthage
@@ -163,14 +158,13 @@ modules = [
  ];
 }
 
-  # home.nixosModules.home-manager {
-  home-unstable.nixosModules.home-manager {
+  home.nixosModules.home-manager {
     home-manager = {
       verbose = true;
       backupFileExtension = "home_bak";
       useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
       useUserPackages = false; # if false ... uses nix-profile for home apps
-      extraSpecialArgs = { inherit pkgs pkgs-unstable inputs system; };
+      extraSpecialArgs = { inherit inputs pkgs system; };
       users.malu = import ./modules/home/home.nix;
     };
   }
@@ -178,21 +172,21 @@ modules = [
 ];  # modules
  };  # carthage
 
-tangier = nixpkgs-unstable.lib.nixosSystem {
+tangier = nixpkgs.lib.nixosSystem {
   inherit system;
-  specialArgs = { inherit pkgs-unstable inputs system; };
+  specialArgs = { inherit inputs system; };
   modules = [
     ./hosts/tangier
     # inputs.quickshell.packages.${system}.default
     # {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
-    home-unstable.nixosModules.home-manager {
+    home.nixosModules.home-manager {
       home-manager = {
         verbose = true;
         backupFileExtension = "home_backup";
         users.malu = import ./modules/home/home.nix;
         useGlobalPkgs = true; # dont use private instance of pkgs which is the default
         useUserPackages = false; # if false:: ... uses nix-profile for home apps
-        extraSpecialArgs = { inherit pkgs pkgs-unstable inputs system; };
+        extraSpecialArgs = { inherit pkgs inputs system; };
       };
     }
   ];

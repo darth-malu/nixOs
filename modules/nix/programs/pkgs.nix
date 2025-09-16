@@ -97,8 +97,9 @@
             # libcanberra-gtk3
             # libcanberra
             # libsecret # secrets lul
-            # lib.mkIf (config.networking.hostName == "tangier") with pkgs; [brightnessctl]
-            #kdePackages.qt6ct kdePackages.qtwayland -- see if needed
+            kdePackages.qt6ct
+            kdePackages.qtwayland
+            # -- see if needed
           ]
           ++ (
             if config.networking.hostName == "tangier" then

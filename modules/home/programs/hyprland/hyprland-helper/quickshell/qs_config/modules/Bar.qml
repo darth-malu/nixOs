@@ -85,8 +85,8 @@ Scope {
                 color: modelData.active ? '#5c0099' : Qt.rgba(171/255,141/255,237/255,0.82) //#d896ff/255 //D5E68D, #C8EAD3, 42BFDD, #B6DC76, 98B06F, 442B48(orange), 7C90A0(grey/silver), 7C90A0, 5D5179
                 font.pixelSize: 14
                 font.bold: true
-                font.family: "quicksand"
-                //font.family: "Mononoki Nerd Font"
+                //font.family: "quicksand"
+                font.family: "Mononoki Nerd Font"
               }
             }
           }
@@ -109,8 +109,8 @@ Scope {
             verticalCenter: parent.verticalCenter
           }
           //font.family: "VictorMono Nerd Font"
-          //font.family: "Mononoki Nerd Font"
-          font.family: "quicksand"
+          font.family: "Mononoki Nerd Font"
+          //font.family: "quicksand"
           font.pixelSize: 13
           font.bold: true
         }

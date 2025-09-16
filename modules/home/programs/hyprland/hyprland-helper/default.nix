@@ -7,6 +7,7 @@
     ./scripts
     ./hypr-ecos
     ./themes
+    ./quickshell
     # inputs.hyprshell.homeModules.hyprshell
   ];
 

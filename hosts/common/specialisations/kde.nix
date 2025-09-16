@@ -26,7 +26,7 @@
       plasma6.excludePackages =
         with pkgs.kdePackages;
         [
-          plasma-browser-integration # enable for kdeconnect
+          # plasma-browser-integration # enable for kdeconnect
           # elisa
           # konsole
           ksystemlog

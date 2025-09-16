@@ -12,7 +12,7 @@
 
   config = lib.mkIf config.waybar.enable {
     programs.waybar = {
-      enable = true;
+      enable = false;
       systemd = {
         enable = true;
         # target = "graphical-session.target"; # config.wayland.systemd.target::

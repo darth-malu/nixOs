@@ -92,8 +92,8 @@
       dotool
     ])
     ++ (with pkgs; [
-      # cantata # old af
-      # digikam
+      cantata # old af
+      digikam
       # lollypop # cantata better
       # smplayer
       # ymuse # rudimentary
@@ -149,13 +149,14 @@
           gimp
           unigine-heaven
           # unigine-superposition
-          glmark2
+          # glmark2
           inkscape-with-extensions
           obs-cli
           obs-studio
           # kdePackages.kdenlive # FIXME see if flatpak better
           # kdePackages.mlt
           # mediainfo
+          # inputs.quickshell.packages.${system}.default
         ]
         ++ (with pkgs.gst_all_1; [
           # nautilus gst
@@ -175,7 +176,7 @@
           cliphist
           # file-roller
           grimblast
-          inputs.quickshell.packages.${system}.default
+          # inputs.quickshell.packages.${system}.default
           slurp
           sushi
           viewnior

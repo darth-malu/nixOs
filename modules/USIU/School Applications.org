@@ -4,13 +4,13 @@
 
 * start
 #+begin_src nix :tangle default.nix
-{pkgs, pkgs-unstable, lib, config, ...}:
+{pkgs, lib, config, ...}:
 {
 #+end_src
 * Android
 ** cisco packet tracer
 #+begin_src nix :tangle no
-  environment.systemPackages = with pkgs-unstable; [
+  environment.systemPackages = with pkgs; [
     # ciscoPacketTracer8
     ciscoPacketTracer7
   ];
@@ -37,7 +37,7 @@ programs.adb = {
 
 ** Android Studio
 #+begin_src nix :tangle no
-environment.systemPackages = [pkgs-unstable.android-studio ];
+environment.systemPackages = [pkgs.android-studio ];
 # if config.networking.hostName == "carthage" then
 #   [
 #     pkgs.android-studio-full

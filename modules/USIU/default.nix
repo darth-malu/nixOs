@@ -1,4 +1,4 @@
-{pkgs, pkgs-unstable, lib, config, ...}:
+{pkgs, lib, config, ...}:
 {
 
   users.users.malu.extraGroups = ["kvm" "adbusers"];

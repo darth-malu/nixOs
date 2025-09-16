@@ -1,6 +1,5 @@
 {
   enable = true;
-  # package = pkgs-unstable.fastfetch;
   settings = {
     # $XDG_CONFIG_HOME/fastfetch/config.jsonc
     logo = {

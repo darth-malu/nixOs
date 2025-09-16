@@ -1,10 +1,10 @@
 {
   programs.wezterm = {
     enable = true;
-    # package = pkgs-unstable.wezterm;
     enableBashIntegration = true;
     extraConfig = import ./extra.nix;
-    colorSchemes = { #$XDG_CONFIG_HOME/wezterm/colors
+    colorSchemes = {
+      # $XDG_CONFIG_HOME/wezterm/colors
       # myCoolTheme = {
       #   ansi = [
       #     "#222222" "#D14949" "#48874F" "#AFA75A"

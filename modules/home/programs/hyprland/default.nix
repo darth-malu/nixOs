@@ -21,7 +21,7 @@
 
   config = lib.mkIf config.homeHyprland.enable {
 
-    waybar.enable = false;
+    waybar.enable = true;
     dunst.enable = true;
     rofi.enable = true;
     hyprpaper.enable = true;

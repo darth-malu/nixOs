@@ -2,7 +2,6 @@
   osConfig,
   lib,
   config,
-  pkgs-unstable,
   ...
 }:
 
@@ -14,7 +13,6 @@
   config = lib.mkIf config.waybar.enable {
     programs.waybar = {
       enable = true;
-      package = pkgs-unstable.waybar;
       systemd = {
         enable = true;
         # target = "graphical-session.target"; # config.wayland.systemd.target::

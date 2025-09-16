@@ -1,0 +1,19 @@
+#+title: checklist quickshell
+
+DO this [0/8]
++ [ ] Mpris
+  + [ ] players
+  + [ ] volume
++ [ ] Battery/Upower
++ [ ] Hyprland
+  + [ ] Windows + icon?
+    + [ ] per workspace window?
++ [ ] internet speed
++ [ ] System monitor indicators
+  + [ ] CPU
+  + [ ] GPU
+  + [ ] HDD/SDD
+  + [ ] Memory
++ [ ] Brightness indicator
++ [ ] Idle inhib
++ [ ] power profiles

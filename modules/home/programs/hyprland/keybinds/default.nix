@@ -21,7 +21,8 @@
 
       "$gaps" = "gaps toggle_gaps_out";
       "$emacs" = "uwsm app -s a -- emacsclient -c";
-      # "$DP_MON"="`hyprctl monitors | awk '/^Monitor DP/ {print $2; exit}'`";
+      "$swap+focus"="$(hyprctl monitors | awk '/^Monitor DP/ {print $2}'; dispatch focusmonitor)";
+      "$swap-focus"="$(hyprctl monitors | awk '/^Monitor DP/ {print $2}')";
 
   # "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; width : 1000px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
   # "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; fullscreen: false; width : 1000px;}' -theme-str 'entry {placeholder: \"🔎 search files ...\";}' -theme-str 'element-icon {size: 2.5em;horizontal-align: 0.5;vertical-align: 0.5;}'";
@@ -45,7 +46,10 @@ bindr = [
 "$mod $al, C, exec, hyprpicker -an"
 "$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""
 
-"$mod, z, easymotion, action:hyprctl dispatch focuswindow address:{}"
+# default
+# "$mod, z, easymotion, action:hyprctl dispatch focuswindow address:{}"
+
+"$mod, z, easymotion, textsize:28, action:hyprctl dispatch focuswindow address:{}"
 
   # "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
 
@@ -259,21 +263,19 @@ bind =
     "$mod $cl, E, focuswindow, class:^(Emacs)$" # TODO combine regex into one
   ]
   else [
+    "$mod $cl, E, focuswindow, class:^(emacs)$"
+
     # "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
     # "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
+
     "$mod ,bracketleft, movewindow, mon:0"
     "$mod ,bracketright, movewindow, mon:1"
 
-    # "$mod $cl,bracketleft, movewindow, mon:0 silent"
-    # "$mod $cl,bracketright, movewindow, mon:1 silent"
+    "$mod $cl,bracketleft, movewindow, mon:0 silent"
+    "$mod $cl,bracketright, movewindow, mon:1 silent"
 
-    # "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ); dispatch focusmonitor +1;\""
-    # "$mod $sl, bracketleft, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}'); dispatch focusmonitor +1;\""
-    # "$mod $sl space, bracketleft, exec, hyprctl dispatch swapactiveworkspaces HDMI-A-1 `hyprctl monitors | awk '/^Monitor DP/ {print $2}'`"
-    "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 DP-3"
-    # "$mod $sl, bracketleft, swapactiveworkspaces,  HDMI-A-1 DP-3"
-
-    "$mod $cl, E, focuswindow, class:^(emacs)$"
+    "$mod $sl, bracketleft, execr, hyprctl dispatch -- swapactiveworkspaces HDMI-A-1 $swap-focus"
+    "$mod $cl $sl, bracketleft, execr, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}'); dispatch focusmonitor +1;\""
   ]);
 
 #mouse binds have one less arg
@@ -303,7 +305,7 @@ bindel =
     ", XF86AudioRaiseVolume, execr, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%+ >/dev/null 2>&1 "
     ", XF86AudioLowerVolume, execr, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%- >/dev/null 2>&1 "
 
-    ", XF86AudioNext, execr, playerctl -p spotify next || playerctl next "
+    ", XF86AudioNext, execr, playerctl -p spotify next || playerctl next " # TODO test for spotify running
     ", XF86AudioPrev, execr, playerctl -p spotify previous || playerctl previous "
    ]++
     (

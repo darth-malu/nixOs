@@ -13,7 +13,8 @@
     ./gaming
   ];
 
-  qemuNix.enable = if config.networking.hostName == "carthage" then true else false;
+  qemuNix.enable = if config.networking.hostName == "carthage" then false else false;
+
   steamy.enable = if config.networking.hostName == "carthage" then true else false;
 
   services = {
@@ -43,12 +44,6 @@
     # dbus = {
     #   implementation = lib.mkDefault "broker"; #"broker" , "dbus"
     # };
-  };
-
-  programs = {
-    vim = {
-      enable = true;
-    };
   };
 
   environment = {
@@ -97,9 +92,8 @@
             # libcanberra-gtk3
             # libcanberra
             # libsecret # secrets lul
-            kdePackages.qt6ct
-            kdePackages.qtwayland
-            # -- see if needed
+            # kdePackages.qt6ct
+            # kdePackages.qtwayland
           ]
           ++ (
             if config.networking.hostName == "tangier" then

@@ -19,21 +19,15 @@
       );
   };
 
+  services.lact.enable = true;
+
   hardware.amdgpu = {
     #initrd.enable = true; #  # early userspace, fix low res in boot scrn
-    overdrive.enable = true; # for lact
-    opencl.enable = true; # OpenCL support using ROCM runtime library.(rocmPackages.clr + rocmPackages.clr.icd)
-    amdvlk = {
-      enable = false; # amd vulkan driver
-      # support32Bit.enable = true;
-      # package = pkgs.amdvlk;
-      # supportExperimental.enable = true; # false::
-    };
+    overdrive.enable = true; # required -> lact
+    opencl.enable = true; # OpenCL ROCM runtime library.(rocmPackages.clr + rocmPackages.clr.icd)
   };
 
   environment.variables = {
     ROC_ENABLE_PRE_VEGA = "1"; # enable opencl polaris;
   };
-
-  services.lact.enable = true;
 }

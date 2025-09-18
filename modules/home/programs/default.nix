@@ -35,9 +35,7 @@
     #   enable = true;
     # };
 
-    # gpu-screen-recorder.enable = true; #NOTE only in unstable
-
-    bashmount.enable = false;
+    bashmount.enable = true;
 
     btop = import ./misc/btop.nix;
 

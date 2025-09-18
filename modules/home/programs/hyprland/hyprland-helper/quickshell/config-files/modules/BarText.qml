@@ -22,6 +22,7 @@ Text {
     family: mainFont
     pointSize: pointSize
   }
+  
 
   Text {
     visible: false

@@ -17,6 +17,13 @@
 
   steamy.enable = if config.networking.hostName == "carthage" then true else false;
 
+  programs = {
+    gpu-screen-recorder = {
+      enable = true;
+      # package = pkgs.gpu-screen-recorder-gtk;
+    };
+  };
+
   services = {
     locate.enable = true;
     gvfs.enable = true; # sets GIO_EXTRA_MODULES, used for accessing trash/network filesystems

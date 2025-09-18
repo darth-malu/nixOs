@@ -106,8 +106,8 @@
       # spotify-cli-linux
       sway-audio-idle-inhibit
       # clapper
-      wf-recorder
-      gpu-screen-recorder
+      # wf-recorder
+      # gpu-screen-recorder
       audacity
       # tenacity
       # kando

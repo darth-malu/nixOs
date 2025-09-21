@@ -21,8 +21,6 @@
 
       "$gaps" = "gaps toggle_gaps_out";
       "$emacs" = "uwsm app -s a -- emacsclient -c";
-      "$swap+focus"="$(hyprctl monitors | awk '/^Monitor DP/ {print $2}'; dispatch focusmonitor)";
-      "$swap_no_focus"="$(hyprctl monitors | awk '/^Monitor DP/ {print $2}')";
 
   # "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; width : 1000px;}' -theme-str 'element-icon {size: calc(((100% - 8em) / 7 ));horizontal-align: 0.5;vertical-align: 0.5;}'";
   # "$file_browser_rofi" = "rofi -show filebrowser -theme-str 'window {height: 820px; fullscreen: false; width : 1000px;}' -theme-str 'entry {placeholder: \"🔎 search files ...\";}' -theme-str 'element-icon {size: 2.5em;horizontal-align: 0.5;vertical-align: 0.5;}'";
@@ -45,11 +43,6 @@ bindr = [
 
 "$mod $al, C, exec, hyprpicker -an"
 "$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""
-
-# default
-# "$mod, z, easymotion, action:hyprctl dispatch focuswindow address:{}"
-
-"$mod, z, easymotion, textsize:28, action:hyprctl dispatch focuswindow address:{}"
 
   # "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
 
@@ -110,11 +103,10 @@ bind =
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] discord"
 
-"$mod ,Escape, killactive"
-"$mod $cl,Escape, plugin:xtd:closeunfocused"
+  "$mod ,Escape, killactive"
 
-"$al ,F4, killactive"
-"$mod, mouse:275, killactive,"
+  "$al ,F4, killactive"
+  "$mod, mouse:275, killactive,"
 
   # Workspaces
   "$mod $al, Return , workspace, emptym"
@@ -182,7 +174,6 @@ bind =
 # move to empty
   "$mod , o, movetoworkspace, emptym"
   "$mod $al, o, movetoworkspacesilent, emptym"
-  "$mod $sl, o, plugin:xtd:throwunfocused, emptym"
 
   "$mod $cl, h, movefocus, l"
   "$mod $cl, l, movefocus, r"
@@ -276,7 +267,7 @@ bind =
     "$mod $al,bracketleft, movewindow, mon:0 silent"
     "$mod $al,bracketright, movewindow, mon:1 silent"
 
-    "$mod $sl, bracketright, execr, hyprctl dispatch -- swapactiveworkspaces HDMI-A-1 $swap_no_focus"
+    "$mod $sl, bracketright, execr, hyprctl dispatch -- swapactiveworkspaces HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}')"
     "$mod $sl, bracketleft, execr, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}'); dispatch focusmonitor +1;\""
   ]);
 

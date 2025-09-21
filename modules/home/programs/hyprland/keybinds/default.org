@@ -28,9 +28,6 @@
 
       "$gaps" = "gaps toggle_gaps_out";
       "$emacs" = "uwsm app -s a -- emacsclient -c";
-      "$swap+focus"="$(hyprctl monitors | awk '/^Monitor DP/ {print $2}'; dispatch focusmonitor)";
-      "$swap_no_focus"="$(hyprctl monitors | awk '/^Monitor DP/ {print $2}')";
-
 #+end_src
 
 =rofi=
@@ -75,7 +72,7 @@ bindr = [
 #+end_src
 *** Hyprland-easymotion
 
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
 # default
 # "$mod, z, easymotion, action:hyprctl dispatch focuswindow address:{}"
 
@@ -177,11 +174,16 @@ bind =
 
 *** activekill
 #+begin_src nix :tangle default.nix
-"$mod ,Escape, killactive"
-"$mod $cl,Escape, plugin:xtd:closeunfocused"
+  "$mod ,Escape, killactive"
 
-"$al ,F4, killactive"
-"$mod, mouse:275, killactive,"
+  "$al ,F4, killactive"
+  "$mod, mouse:275, killactive,"
+#+end_src
+
+*** Xtra-dispatchers
+#+begin_src nix :tangle no
+  "$mod $cl,Escape, plugin:xtd:closeunfocused"
+  "$mod $sl, o, plugin:xtd:throwunfocused, emptym"
 #+end_src
 
 *** empty workspace, toggle floating
@@ -288,7 +290,6 @@ see hyprswitch:
 # move to empty
   "$mod , o, movetoworkspace, emptym"
   "$mod $al, o, movetoworkspacesilent, emptym"
-  "$mod $sl, o, plugin:xtd:throwunfocused, emptym"
 #+end_src
 
 *** move focus | same workspace
@@ -411,7 +412,7 @@ movetoworkspacesilent exists
     "$mod $al,bracketleft, movewindow, mon:0 silent"
     "$mod $al,bracketright, movewindow, mon:1 silent"
 
-    "$mod $sl, bracketright, execr, hyprctl dispatch -- swapactiveworkspaces HDMI-A-1 $swap_no_focus"
+    "$mod $sl, bracketright, execr, hyprctl dispatch -- swapactiveworkspaces HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}')"
     "$mod $sl, bracketleft, execr, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}'); dispatch focusmonitor +1;\""
   ]);
 #+end_src

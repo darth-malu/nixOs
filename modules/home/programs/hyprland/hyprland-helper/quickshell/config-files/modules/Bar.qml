@@ -8,43 +8,43 @@ import QtQuick.Controls
 import Quickshell.Widgets
 
 import "./time"
+import "./Hyprland"
+
 //import "./blocks" as Blocks
 
-Scope {
+ShellRoot { //scope vs shellroot
   Variants {
     model: Quickshell.screens;  //Returns all connected screens
-
     PanelWindow {
-      id: invincibleMainPanel
-      property var modelData
+      id: mainPanel
+      required property var modelData
       screen: modelData
       color: "transparent"
-      implicitHeight: 22
-      //color: '#35a29fff'; //move this to rectangle
-      margins {//TODO make this adapt to my Gap size
-        //top: 6
+      implicitHeight: 20
+      margins {
         left: 12
         right: 12
-        //TODO make gaps zero im gaps zero
       }
       anchors {
         top: true
-        bottom: false
         left: true
         right: true
       }
-
-      //main bar
+      //main bar -> Houses Everything
       Rectangle {
         id: mainBar
         anchors.fill: parent
         //color: '#1a1a1a'
         //color: '#35a29fff'; //move this to rectangle
-        color: Qt.rgba(8/255, 41/255, 41/255, 0.58)
+        //color: Qt.rgba(8/255, 41/255, 41/255, 0.58)
+        color: 'transparent'
         radius: 16
         border.width: 0
-        border.color: "#333333"
-        MouseArea {
+        //border.color: "#333333"
+
+        //Windows {}
+
+        MouseArea { // scroll on whole bar
           anchors.fill: parent
           onWheel: (wheel) => {
               if (wheel.angleDelta.y > 0) {
@@ -55,9 +55,9 @@ Scope {
           }
         }
 
-        Row {
-          id: hyprlandWorkspacesRow
-          spacing: 0.1
+        RowLayout {
+          id: workspaces
+          spacing: 0.4
           anchors {
             left : parent.left
             //leftMargin: 1
@@ -66,15 +66,19 @@ Scope {
           Repeater {
             anchors.verticalCenter: parent.verticalCenter
             model: Hyprland.workspaces.values.filter(w => !w.name.startsWith("special"))
+            //model: Hyprland.toplevels.title
+
             Rectangle {
               implicitWidth: 20
               implicitHeight: 20
               radius: 16
               color: modelData.active ? "#b298dc" : "transparent" // Green -062726, 062726, 6247AA
+
               MouseArea {
                 anchors.fill: parent
                 onClicked: Hyprland.dispatch("workspace " + modelData.id)
               }
+
               Text {
                 text: modelData.id
                 anchors {
@@ -103,18 +107,6 @@ Scope {
           }
         }
 
-        ClockWidget {//TODO make this pop up calendar, alarm, weather, netSpeed, pomodoro
-          anchors {
-            centerIn: parent
-            verticalCenter: parent.verticalCenter
-          }
-          //font.family: "VictorMono Nerd Font"
-          font.family: "Mononoki Nerd Font"
-          //font.family: "quicksand"
-          font.pixelSize: 13
-          font.bold: true
-        }
-
         //RHS
         RowLayout {
           id: rhsBlocks
@@ -130,14 +122,13 @@ Scope {
           /*   anchors.verticalCenter: parent.VerticalCenter */
           /* } */
           //Blocks.Battery {}
-          Pipewire {}
           //Mpriss {}
-          Memory {}
-          Volume {}
-          SystemTrayy {}
           //Notifications {}
+          Pipewire {}
+          Memory {}
+          ClockWidget {}
+          SystemTrayy {}
         }
-        //SystemTray {}
       }
     }
   }

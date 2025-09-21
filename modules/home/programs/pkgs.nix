@@ -7,6 +7,15 @@
 }:
 
 {
+  programs = {
+    gcc = {
+      enable = true;
+      colors = {
+        error = "01;31";
+      };
+    };
+  };
+
   home.packages =
     with pkgs;
     [
@@ -15,6 +24,8 @@
       qt6.qt5compat # shader fx
       qt6.qtmultimedia # flicko shell
       qt6.qtdeclarative # qtdecl types in path
+      grim
+      imagemagick # screenshot
       # (inputs.quickshell.packages.${system}.default.override (prevqs: {
       #   debug = true;
       #   qt6 = prevqs.qt6.overrideScope (
@@ -26,8 +37,6 @@
       #     }
       #   );
       # }))
-      grim
-      imagemagick # screenshot
     ]
     ++ [
       # pastel # color generator
@@ -47,7 +56,11 @@
     ])
     ++ (with pkgs; [
       ed
-      firebase-tools
+      # firebase-tools
+      patchelf
+      # clang
+      gnumake
+      zlib
       # libgcc
       # nasm
     ])

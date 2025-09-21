@@ -20,10 +20,10 @@ BarBlock {
     //onClicked: Hyprland.dispatch("workspace 1")
     onWheel: (event) => {
       if (!Pipewire.defaultAudioSink?.audio) return;
-      const step = 2;
+      const step = 5;
       let volume = Pipewire.defaultAudioSource.audio.volume * 100;
       volume += event.angleDelta.y > 0 ? step : -step;
-      volume = Math.max(0, Math.min(volume, 125)); // Clamp 0% - 125%
+      volume = Math.max(0, Math.min(volume, 100)); // Clamp 0% - 100%
       Pipewire.defaultAudioSink.audio.volume = volume / 100;
     }
     //acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad

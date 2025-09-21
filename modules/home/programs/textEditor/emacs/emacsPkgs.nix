@@ -49,6 +49,9 @@ in
     shellcheck
     # libclang # java #TODO see need
 
+    # Javascript
+    deno
+
     # C#
     # csharpier # c# formatter
     # csharprepl # coolest repl
@@ -60,6 +63,7 @@ in
         # pytube
         pytubefix
         pandas
+        moviepy
         # numpy
         # seaborn
         # matplotlib

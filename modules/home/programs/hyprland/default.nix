@@ -12,7 +12,7 @@
     ./window-workspace-rules.nix
     ./autoStart.nix
     ./hyprland-helper
-    ./plugins.nix
+    # ./plugins.nix
   ];
 
   options.homeHyprland = {

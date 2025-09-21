@@ -7,7 +7,7 @@
 # $XDG_CONFIG_HOME/yt-dlp/config
 extraConfig =
 ''
-    -P "~/Videos/YtDlp"
+    -P "~/Videos/Youtube"
     #-P "temp:tmp"
     -P "subtitle:subs"
     #-P "thumbnail:thumbnail"

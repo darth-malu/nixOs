@@ -50,20 +50,22 @@ RowLayout {
             /*   return Quickshell.iconPath(DesktopEntries.byId(appId).icon); */
             /* } */
 
-    /*       source: { */
-    /*           let appId = item.title; */
+          /* source: { */
+          /*     /\* let appId = item.title; *\/ */
+          /*     let appId = modelData.wayland?.appId; */
 
-    /*           if (appId === "Spotify") */
-    /*               appId = "spotify"; */
-    /* else if (/Discord/i.test(appId)) */
-    /*               appId = "discord"; */
-    /*           else if (appId === "blueman") */
-    /*               appId = "Blueman"; */
-    /*           else if (appId === "Steam") */
-    /*               appId = "steam"; */
+          /*     if (appId === "Spotify") */
+          /*         appId = "spotify-launcher"; */
+          /*     else if (/Discord/i.test(appId)) */
+          /*         appId = "discord"; */
+          /*     else if (appId === "blueman") */
+          /*         appId = "Blueman"; */
+          /*     else if (appId === "Steam") */
+          /*         appId = "steam"; */
 
-    /*           return Quickshell.iconPath(DesktopEntries.byId(appId).icon); */
-    /*       } */
+          /*     return Quickshell.iconPath(DesktopEntries.byId(appId).icon); */
+          /* } */
+
             implicitSize: 12
             asynchronous: true
           }

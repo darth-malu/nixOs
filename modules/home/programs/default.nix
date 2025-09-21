@@ -10,6 +10,7 @@
 {
 
   imports = [
+    ./Gaming
     ./yt-dlp
     ./qutebrowser
     ./soundStuff

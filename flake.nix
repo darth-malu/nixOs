@@ -95,52 +95,53 @@
 
   outputs = inputs@{nixpkgs, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 
-  let
-    system = "x86_64-linux"; # system = builtins.currentSystem;??
+let
+  system = "x86_64-linux"; # system = builtins.currentSystem;??
 
-    # neovimConf = inputs.nvf.lib.neovimConfiguration {
-    #     inherit (nixpkgs.legacyPackages.${system}) pkgs;
-    #     modules = [ ./modules/nvf];
-    # };
+  # neovimConf = inputs.nvf.lib.neovimConfiguration {
+  #     inherit (nixpkgs.legacyPackages.${system}) pkgs;
+  #     modules = [ ./modules/nvf];
+  # };
+config = {
 
-    config = {
-      allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-        "discord"
-        "unigine-heaven"
-        "google-chrome"
-        "bluemail"
-        "ventoy"
-        "spotify"
-        "steam"
-        "steam-unwrapped"
-        "wpsoffice"
-        "xow_dongle-firmware"
-        "warp-terminal"
-        "windows10-icons"
-        "aspell-dict-en-science"
-        "davinci-resolve"
-        "youtube-upnext"
-        "evafast"
-        "android-studio-stable"
-      ];
-      permittedInsecurePackages = [
-        "ventoy-1.1.07"
-        "libsoup-2.74.3"
-        "libxml2-2.13.8" # for cisco?
-      ];
-    };
+  allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+    "discord"
+    "unigine-heaven"
+    "google-chrome"
+    "bluemail"
+    "ventoy"
+    "spotify"
+    "steam"
+    "steam-unwrapped"
+    "wpsoffice"
+    "xow_dongle-firmware"
+    "warp-terminal"
+    "windows10-icons"
+    "aspell-dict-en-science"
+    "davinci-resolve"
+    "youtube-upnext"
+    "evafast"
+    "android-studio-stable"
+    "davinci-resolve-studio"
+  ];
 
+permittedInsecurePackages = [
+  "ventoy-1.1.07"
+  "libsoup-2.74.3"
+  "libxml2-2.13.8" # for cisco?
+];
 
-    home = inputs.home-manager;
+};
+home = inputs.home-manager;
 
-    # pkgs = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
-    pkgs = import nixpkgs {
-      inherit  system;
-      inherit config;
-    };
-  in
-  {
-    # packages.${system}.my-neovim = neovimConf.neovim; # NVF
+# pkgs = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
+pkgs = import nixpkgs {
+  inherit  system;
+  inherit config;
+};
+in
+{
+  # packages.${system}.my-neovim = neovimConf.neovim; # NVF
 
 nixosConfigurations = {
   carthage = nixpkgs.lib.nixosSystem {

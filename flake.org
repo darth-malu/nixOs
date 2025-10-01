@@ -162,53 +162,62 @@ https://nixos.wiki/wiki/Nix_channels
   outputs = inputs@{nixpkgs, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 #+end_src
 ** let..in
+*** misc
 #+begin_src nix :tangle flake.nix
-  let
-    system = "x86_64-linux"; # system = builtins.currentSystem;??
+let
+  system = "x86_64-linux"; # system = builtins.currentSystem;??
 
-    # neovimConf = inputs.nvf.lib.neovimConfiguration {
-    #     inherit (nixpkgs.legacyPackages.${system}) pkgs;
-    #     modules = [ ./modules/nvf];
-    # };
+  # neovimConf = inputs.nvf.lib.neovimConfiguration {
+  #     inherit (nixpkgs.legacyPackages.${system}) pkgs;
+  #     modules = [ ./modules/nvf];
+  # };
+config = {
+#+end_src
 
-    config = {
-      allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-        "discord"
-        "unigine-heaven"
-        "google-chrome"
-        "bluemail"
-        "ventoy"
-        "spotify"
-        "steam"
-        "steam-unwrapped"
-        "wpsoffice"
-        "xow_dongle-firmware"
-        "warp-terminal"
-        "windows10-icons"
-        "aspell-dict-en-science"
-        "davinci-resolve"
-        "youtube-upnext"
-        "evafast"
-        "android-studio-stable"
-      ];
-      permittedInsecurePackages = [
-        "ventoy-1.1.07"
-        "libsoup-2.74.3"
-        "libxml2-2.13.8" # for cisco?
-      ];
-    };
+*** Allow Unfree
+#+begin_src nix :tangle flake.nix
+  allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+    "discord"
+    "unigine-heaven"
+    "google-chrome"
+    "bluemail"
+    "ventoy"
+    "spotify"
+    "steam"
+    "steam-unwrapped"
+    "wpsoffice"
+    "xow_dongle-firmware"
+    "warp-terminal"
+    "windows10-icons"
+    "aspell-dict-en-science"
+    "youtube-upnext"
+    "evafast"
+    "android-studio-stable"
+  ];
+#+end_src
 
+*** Permit Insecure
+#+begin_src nix :tangle flake.nix
+permittedInsecurePackages = [
+  "ventoy-1.1.07"
+  "libsoup-2.74.3"
+  "libxml2-2.13.8" # for cisco?
+];
+#+end_src
 
-    home = inputs.home-manager;
+*** misc
+#+begin_src nix :tangle flake.nix
+};
+home = inputs.home-manager;
 
-    # pkgs = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
-    pkgs = import nixpkgs {
-      inherit  system;
-      inherit config;
-    };
-  in
-  {
-    # packages.${system}.my-neovim = neovimConf.neovim; # NVF
+# pkgs = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
+pkgs = import nixpkgs {
+  inherit  system;
+  inherit config;
+};
+in
+{
+  # packages.${system}.my-neovim = neovimConf.neovim; # NVF
 #+end_src
 
 ** Nix configurations

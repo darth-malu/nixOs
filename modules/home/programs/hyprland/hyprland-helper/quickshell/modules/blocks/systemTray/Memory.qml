@@ -3,6 +3,9 @@ import QtQuick.Controls
 import Quickshell
 import Quickshell.Io
 
+import qs.config-files
+import "../blocks/styledObjects"
+
 BarBlock {
   id: text
   content: BarText {

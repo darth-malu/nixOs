@@ -153,6 +153,6 @@ in
     pyenv
 
     # lsp
-    # nodejs_24 # consider npm for auto install of servers in lsp-mode
+    nodejs_24 # consider npm for auto install of servers in lsp-mode
   ];
 }

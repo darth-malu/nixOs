@@ -65,8 +65,23 @@ android_sdk.accept_license = true;
 #+end_src
 
 ** hardware acceleration
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
   users.users.malu.extraGroups = ["kvm" "adbusers"];
+#+end_src
+* Database - Petrollinah Mureithi
+** SQL
+#+begin_src nix :tangle default.nix
+services.mysql = {
+  enable = true;
+  package = pkgs.mariadb;
+};
+#+end_src
+
+*** Backups
+#+begin_src nix :tangle no
+services.mysqlBackup = {
+  enable = false;
+};
 #+end_src
 
 * End

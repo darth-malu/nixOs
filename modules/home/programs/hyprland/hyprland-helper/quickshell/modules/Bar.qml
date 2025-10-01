@@ -8,9 +8,11 @@ import QtQuick.Controls
 import Quickshell.Widgets
 
 import "./time"
-import "./Hyprland"
 
 //import "./blocks" as Blocks
+
+import "./blocks/systemTray"
+//import "./blocks/styledObjects"
 
 ShellRoot { //scope vs shellroot
   Variants {
@@ -55,30 +57,25 @@ ShellRoot { //scope vs shellroot
           }
         }
 
-        RowLayout {
+        RowLayout {//workspaces
           id: workspaces
           spacing: 0.4
           anchors {
             left : parent.left
             //leftMargin: 1
           }
-
           Repeater {
             anchors.verticalCenter: parent.verticalCenter
             model: Hyprland.workspaces.values.filter(w => !w.name.startsWith("special"))
-            //model: Hyprland.toplevels.title
-
             Rectangle {
               implicitWidth: 20
               implicitHeight: 20
               radius: 16
               color: modelData.active ? "#b298dc" : "transparent" // Green -062726, 062726, 6247AA
-
               MouseArea {
                 anchors.fill: parent
                 onClicked: Hyprland.dispatch("workspace " + modelData.id)
               }
-
               Text {
                 text: modelData.id
                 anchors {
@@ -94,10 +91,6 @@ ShellRoot { //scope vs shellroot
               }
             }
           }
-
-
-        //readonly property var toplevels: Hyprland.toplevels
-
           //fallback if no workspace
           Text {
             visible: Hyprland.workspaces.length === 0
@@ -114,17 +107,9 @@ ShellRoot { //scope vs shellroot
           anchors {
             right : parent.right
             verticalCenter: parent.verticalCenter
-            leftMargin: 1
+            //leftMargin: 1
           }
-          /* Text{ */
-          /*   text: UPower.displayDevice.isLaptopBattery ? qsTr("Remaining: %1%").arg(Math.round(UPower.displayDevice.percentage * 100)) : qsTr("No battery detected") */
-          /*   anchors.right: parent.right */
-          /*   anchors.verticalCenter: parent.VerticalCenter */
-          /* } */
-          //Blocks.Battery {}
-          //Mpriss {}
-          //Notifications {}
-          Pipewire {}
+          //Pipewire {}
           Memory {}
           ClockWidget {}
           SystemTrayy {}

@@ -6,6 +6,7 @@ import QtQuick.Controls
 import Quickshell.Services.SystemTray
 import Quickshell.Widgets
 
+
 RowLayout {
     id: trayList
     Repeater {

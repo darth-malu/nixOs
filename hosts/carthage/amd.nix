@@ -15,6 +15,7 @@
           [
             # libvdpau
             # libvdpau-va-gl
+            # rocmPackages.clr.icd
           ]
       );
   };

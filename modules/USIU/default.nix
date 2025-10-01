@@ -1,6 +1,9 @@
 {pkgs, lib, config, ...}:
 {
 
-  users.users.malu.extraGroups = ["kvm" "adbusers"];
+services.mysql = {
+  enable = true;
+  package = pkgs.mariadb;
+};
 
 }

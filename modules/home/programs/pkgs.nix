@@ -154,13 +154,14 @@
           # blender-hip # Hardware accelerated rendering NOTE later after pos
           darktable
           # davinci-resolve # NOTE RX580 not being detected
+          # davinci-resolve-studio # NOTE RX580 not being detected
           handbrake # FIXME lag on open
           vlc
           helvum
           #coppwr
           ffmpeg-full # full vs vanilla?
           gimp
-          unigine-heaven
+          # unigine-heaven
           # unigine-superposition
           # glmark2
           inkscape-with-extensions

@@ -6,6 +6,8 @@ import Quickshell.Services.Pipewire
 import Quickshell.Hyprland
 //import "../"
 
+import "../blocks/styledObjects"
+
 BarBlock {
   id: text
   visible: Pipewire.ready

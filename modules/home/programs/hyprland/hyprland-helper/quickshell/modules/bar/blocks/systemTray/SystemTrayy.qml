@@ -33,18 +33,13 @@ RowLayout {
             }
           }
 
-          /* onWheel: event => { */
-          /*   event.accepted = true; */
-          /*   const points = event.angleDelta.y / 120 */
-          /*   item.scroll(points, false); */
-          /* } */
-
           IconImage {
             id: icon
             anchors {
                 verticalCenter: parent.verticalCenter
             }
             source: modelData.icon
+
             /* source: { */
             /*   let appId = modelData.wayland?.appId; */
             /*   if(appId=="Spotify") appId="spotify-launcher"; */
@@ -86,13 +81,13 @@ RowLayout {
             }
           }
 
-          Tooltip {
-            relativeItem: delegate.containsMouse ? delegate : null
+          /* Tooltip { */
+          /*   relativeItem: delegate.containsMouse ? delegate : null */
 
-            Label {
-              text: delegate.item.tooltipTitle || delegate.item.id
-            }
-          }
+          /*   Label { */
+          /*     text: delegate.item.tooltipTitle || delegate.item.id */
+          /*   } */
+          /* } */
         }
     }
 }

@@ -4,9 +4,8 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.Pipewire
 import Quickshell.Hyprland
-//import "../"
 
-import "../blocks/styledObjects"
+import "../styledObjects"
 
 BarBlock {
   id: text

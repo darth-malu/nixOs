@@ -3,8 +3,10 @@ import QtQuick.Controls
 import Quickshell
 import Quickshell.Io
 
-import qs.config-files
-import "../blocks/styledObjects"
+//import qs.config-files
+//import "../blocks/styledObjects/"
+import "../styledObjects"
+//import "../" //BETTER DO THIS
 
 BarBlock {
   id: text

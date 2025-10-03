@@ -33,8 +33,8 @@ BarBlock {
   content: BarText {
     symbolText: `🔈 ${volume}`
     //font.family: "quicksand"
-    font.family: "Mononoki Nerd Font"
-    font.pixelSize: 12
+    font.pixelSize: 11
+    font.family: "inter"
     font.bold: true
     color: '#ccccccff'
   //font.family: "VictorMono Nerd Font"

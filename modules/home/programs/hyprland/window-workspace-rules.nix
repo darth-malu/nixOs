@@ -86,6 +86,9 @@
 
       "noinitialfocus, initialClass:^(jetbrains-studio)$, floating:1"
 
+      "workspace 10, initialClass:^(spotube)$, initialTitle:^(spotube)$"
+      "workspace 10, initialClass:^(spotify)$"
+
       "size 80% 80%, initialClass:^(viewnior)$"
       "center , initialClass:^(viewnior)$"
       "float , initialClass:^(viewnior)$"

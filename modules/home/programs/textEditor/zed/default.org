@@ -3,6 +3,7 @@
 
 * start/enabler
 #+begin_src nix :tangle default.nix
+{pkgs, ... }:
 {
   # home.packages = [pkgs.nixd pkgs.nil];
   programs.zed-editor = {
@@ -11,14 +12,22 @@
 
 Whether to enable Zed, the high performance, multiplayer code editor from the creators of Atom and Tree-sitter.
 
-* misc
+* extraPackages
+Extra packages available to Zed.
+
 #+begin_src nix :tangle default.nix
-    extensions = [ "qml" "nix" "python" "make"];
-    # package = pkgs.zed-editor;
-    extraPackages = [
-      # pkgs.nixd
-      # pkgs.nil
-    ];
+# package = pkgs.zed-editor;
+extraPackages = [
+  pkgs.nixd
+  # pkgs.nil
+];
+#+end_src
+
+* Extensions
+A list of the extensions Zed should install on startup. Use the name of a repository in the extension list.
+
+#+begin_src nix :tangle default.nix
+extensions = [ "qml" "nix" "python" "make"];
 #+end_src
 
 * userSettings

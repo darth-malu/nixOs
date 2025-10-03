@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   osConfig,
   pkgs,
   ...
@@ -57,7 +56,7 @@
     ++ (with pkgs; [
       ed
       # firebase-tools
-      patchelf
+      patchelf # TODO see useful nexx
       # clang
       gnumake
       zlib
@@ -107,25 +106,26 @@
     ++ (with pkgs; [
       cantata # old af
       digikam
+      # clapper
+      # gpu-screen-recorder
+      # kando
       # lollypop # cantata better
+      # pipeline # flatpak better?
+      # qqmusic
       # smplayer
+      # spotify-cli-linux
+      # tenacity
+      # wf-recorder
       # ymuse # rudimentary
       # youtube-tui # https://siriusmart.github.io/youtube-tui/
+      audacity
       easyeffects
       mpc-cli
       nautilus
       qbittorrent
       spotify
-      # spotify-cli-linux
+      spotube # FIXME issues tu
       sway-audio-idle-inhibit
-      # clapper
-      # wf-recorder
-      # gpu-screen-recorder
-      audacity
-      # tenacity
-      # kando
-      # pipeline # flatpak better?
-      # qqmusic
     ])
     ++ (with pkgs; [
       # kdePackages.audiotube
@@ -144,7 +144,6 @@
         with pkgs;
         [
           # mastodon
-          spotube # FIXME issues tu
           libreoffice-still
           # melt  #collison with mlt
           # protonup-qt # GUI for installing custom Proton versions like GE_Proton
@@ -159,7 +158,8 @@
           vlc
           helvum
           #coppwr
-          ffmpeg-full # full vs vanilla?
+          # ffmpeg-full # full vs vanilla?
+          ffmpeg
           gimp
           # unigine-heaven
           # unigine-superposition
@@ -190,7 +190,6 @@
           cliphist
           # file-roller
           grimblast
-          # inputs.quickshell.packages.${system}.default
           slurp
           sushi
           viewnior

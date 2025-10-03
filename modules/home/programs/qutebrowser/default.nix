@@ -7,10 +7,10 @@
 
   keyBindings = {
     normal = {
-      "<ctrl-v>" = "spawn mpv {url}";
+      "<ctrl-m>" = "spawn mpv {url}";
       "x" = "tab-close";
       "X" = "undo";
-      "<ctrl-m>" = "hint links spawn mpv {hint-url}";
+      "<ctrl-l>" = "hint links spawn mpv {hint-url}";
       "<^>" = "tab-focus last";
       # ",p" = "spawn --userscript qute-pass";
       # ",l" = ''config-cycle spellcheck.languages ["en-GB"] ["en-US"]'';

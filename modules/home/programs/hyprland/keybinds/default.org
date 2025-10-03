@@ -21,10 +21,7 @@
       "$date_short" = "`date +'%I:%M %p'`"; # add -u (utc)
       "$date_long" = "`date +'%a,%d %b%t%I:%M %p'`";
       "$kitty" = "uwsm app -s a -- kitty -1 --instance-group kitty";
-      "$ghostty" = "uwsm app -s a -- ghostty";
-      "$wezterm" = "uwsm app -s a -- wezterm";
       "$yazi_kitty" = "uwsm app -s a -- kitty -1 --instance-group yazi -e yazi";
-      "$yazi_ghostty" = "uwsm app -s a -- ghostty -e yazi";
 
       "$gaps" = "gaps toggle_gaps_out";
       "$emacs" = "uwsm app -s a -- emacsclient -c";

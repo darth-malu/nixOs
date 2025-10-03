@@ -16,7 +16,7 @@ BarBlock {
     /* } */
     //font.family: "VictorMono Nerd Font"
     //font.family: "Mononoki Nerd Font"
-    font.family: "quicksand"
+    font.family: "inter"
     font.pixelSize: 12
     font.bold: true
     //color: Qt.rgba( 7/255 , 177/255 , 169/255, 0.91)

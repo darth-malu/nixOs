@@ -1,14 +1,16 @@
+{pkgs, ... }:
 {
   # home.packages = [pkgs.nixd pkgs.nil];
   programs.zed-editor = {
     enable = true;
 
-    extensions = [ "qml" "nix" "python" "make"];
-    # package = pkgs.zed-editor;
-    extraPackages = [
-      # pkgs.nixd
-      # pkgs.nil
-    ];
+# package = pkgs.zed-editor;
+extraPackages = [
+  pkgs.nixd
+  # pkgs.nil
+];
+
+extensions = [ "qml" "nix" "python" "make"];
 
 userSettings = {
 

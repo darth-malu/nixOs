@@ -4,8 +4,16 @@
     # $XDG_CONFIG_HOME/fastfetch/config.jsonc
     logo = {
       source = "nixos_small"; # nixos_small #nixos_old
+      width = 60;
+      height = 40;
       padding = {
         right = 1;
+        left = 1;
+      };
+      color = {
+        # Override logo colors
+        "1" = "blue";
+        "2" = "green";
       };
     };
     display = {
@@ -13,8 +21,7 @@
         binaryPrefix = "si";
       };
       # color = "blue";
-      # separator = "  ";
-      separator = " ";
+      separator = " "; # 
       color = {
         keys = "blue"; # Key color
         title = "red"; # Title color

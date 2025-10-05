@@ -1,8 +1,7 @@
 import QtQuick
 import Quickshell
 
-//import "../"
-import "../blocks/styledObjects"
+import qs.customItems
 
 BarBlock {
   id: masaa

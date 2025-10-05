@@ -4,28 +4,30 @@ import Quickshell
 
 Rectangle {
   id: root
-  Layout.preferredWidth: contentContainer.implicitWidth + 10
+  Layout.preferredWidth: contentContainer.implicitWidth +8
   Layout.preferredHeight: 30
 
   property Item content
-  //property Item mouseArea: mouseArea
+  property Item mouseArea: mouseArea
 
-  // property string text
-  // property bool dim: false
-  // property bool underline
-  // property var onClicked: function() {}
-  // property int leftPadding
-  // property int rightPadding
+  property string text
+  property bool dim: false
+  property bool underline
+  property var onClicked: function() {}
+
+  /* property int leftPadding */
+  /* property int rightPadding */
 
   //property string hoveredBgColor: "#666666"
 
   // Background color
-  color: {
-    /* if (mouseArea.containsMouse) */
-    /*   return hoveredBgColor; */
-    /* return "transparent"; */
-    'transparent'
-  }
+  /* color: { */
+  /*   if (mouseArea.containsMouse) */
+  /*     return 'red'; */
+  /*   return "transparent"; */
+  /* } */
+
+  color: 'transparent'
 
   /* states: [ */
   /*   State { */
@@ -51,15 +53,15 @@ Rectangle {
     children: content
   }
 
-  /* MouseArea { */
-  /*   id: mouseArea */
-  /*   anchors.fill: root */
-  /*   hoverEnabled: true */
-  /*   acceptedButtons: Qt.LeftButton */
-  /*   onClicked: root.onClicked() */
-  /* } */
+  MouseArea {
+    id: mouseArea
+    anchors.fill: root
+    hoverEnabled: true
+    acceptedButtons: Qt.LeftButton
+    onClicked: root.onClicked()
+  }
 
-  // While line underneath workspace
+  //While line underneath workspace
   /* Rectangle { */
   /*   id: wsLine */
   /*   width: parent.width */

@@ -2,26 +2,28 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Io
 import Quickshell.Hyprland
-import "./blocks/styledObjects"
+import qs.customItems
 
 BarText {
+  property int chopLength:100
+  property string activeWindowTitle
+
   /* chopLength: { */
   /*   var space = Math.floor(bar.width - (rightBlocks.implicitWidth + leftBlocks.implicitWidth)) */
   /*   return space * 0.08; */
   /* } */
 
-  font.pixelSize: 13
-  font.bold: false
-  //font.family: "quicksand"
-  //font.family: "Mononoki Nerd Font"
-  font.family: "inter"
+  baseColor: "#FF6EC7"
+
+  font {
+      pixelSize: 13
+      bold: false
+      family: 'inter'
+  }
   text: {
     var str = activeWindowTitle
     return str.length > chopLength ? str.slice(0, chopLength) + '...' : str;
   }
-
-  property int chopLength:100
-  property string activeWindowTitle
 
   Process {
     id: titleProc
@@ -35,6 +37,9 @@ BarText {
 
   Component.onCompleted: {
     Hyprland.rawEvent.connect(hyprEvent)
+      /*
+        rawEvent - socket2
+       * */
   }
 
   function hyprEvent(e) {

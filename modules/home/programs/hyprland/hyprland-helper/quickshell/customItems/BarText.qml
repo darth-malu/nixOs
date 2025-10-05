@@ -7,22 +7,22 @@ import QtQuick.Effects
 import Qt5Compat.GraphicalEffects
 
 Text {
-  property string mainFont: "quicksand"
-  property string symbolFont: "Symbols Nerd Font Mono"
+  property string mainFont: "inter"
+  property string symbolFont: "Symbols Nerd Font"
   property int pointSize: 12
   property int symbolSize: pointSize * 1.37
   property string symbolText
   property bool dim
-
+  property color baseColor: "#D295BF"
+  // IMPORTANT: reference baseColor, don't rebind color itself elsewhere
+  color: dim ? "#CCCCCC" : baseColor
   text: wrapSymbols(symbolText)
   anchors.centerIn: parent
-  color: dim ? "#CCCCCC" : "white"
   textFormat: Text.RichText
   font {
     family: mainFont
     pointSize: pointSize
   }
-  
 
   Text {
     visible: false

@@ -3,10 +3,7 @@ import QtQuick.Controls
 import Quickshell
 import Quickshell.Io
 
-//import qs.config-files
-//import "../blocks/styledObjects/"
-import "../styledObjects"
-//import "../" //BETTER DO THIS
+import qs.customItems
 
 BarBlock {
   id: text
@@ -15,8 +12,8 @@ BarBlock {
     //font.family: "Mononoki Nerd Font"
     font.pixelSize: 11
     font.family: "inter"
-    font.bold: true
-    symbolText: `🧠 ${Math.floor(percentFree)}` //
+    font.bold: false
+    symbolText: `🧠 ${Math.floor(percentFree)}` //
     color: '#ccccccff'
     //color: Qt.rgba( 7/255 , 177/255 , 169/255, 0.88)
   }

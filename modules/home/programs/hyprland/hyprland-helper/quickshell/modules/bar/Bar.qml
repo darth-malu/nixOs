@@ -1,28 +1,18 @@
 import Quickshell // PanelWindow
 import QtQuick // Text
 import Quickshell.Hyprland
-import Quickshell.Io
-import Quickshell.Services.SystemTray
 import QtQuick.Layouts
-import QtQuick.Controls
-import Quickshell.Widgets
-
 import "./time"
-
-//import "./blocks" as Blocks
-import "./blocks/styledObjects"
-
-import "./blocks/systemTray"
-
-//import "./blocks/styledObjects"
+import Quickshell.Wayland
+import "./systemTray"
 
 ShellRoot {
     //scope vs shellroot
-
     Variants {
         model: Quickshell.screens  //Returns all connected screens
         PanelWindow {
             id: mainPanel
+            WlrLayershell.namespace: "tilde"
             required property var modelData
             screen: modelData   // ALl currently connected screens, updates as connected screens change. Reusing a window on every screen This creates an instance of your window once on every screen. As screens are added or removed your window will be created or destroyed on those screens.
             aboveWindows: false // true::
@@ -48,9 +38,7 @@ ShellRoot {
                 radius: 16
                 border.width: 0
                 //border.color: "#333333"
-
                 //Windows {}
-
                 MouseArea {
                     // scroll on whole bar
                     anchors.fill: parent
@@ -71,7 +59,7 @@ ShellRoot {
                         //leftMargin: 1
                     }
                     Repeater {
-                        anchors.verticalCenter: parent.verticalCenter
+                        //anchors.verticalCenter: parent.verticalCenter
                         model: Hyprland.workspaces.values.filter(w => !w.name.startsWith("special"))
                         Rectangle {
                             implicitWidth: 20
@@ -105,7 +93,7 @@ ShellRoot {
                         font.pixelSize: 12
                     }
 
-                    ActiveWorkspace {
+                    ActiveWindow {
                         id: activeWorkspace
                         Layout.leftMargin: 10
                         anchors.centerIn: undefined //interesting behaviour
@@ -117,23 +105,40 @@ ShellRoot {
                 }
 
                 RowLayout {
-                    id: centerBlock
+                  id: centerBlock
+                  anchors {
+                      centerIn: parent
+                  }
+                    Rectangle {
+                        anchors {
+                            centerIn: parent
+                            verticalCenter: parent.verticalCenter
+                        }
+                        Mpris {}
+                    }
+                  //Mpris {}
                 }
 
+                // Without this filler item, the active window block will be centered
+                // despite setting left alignment
+                /* Item { */
+                /*   Layout.fillWidth: true */
+                /* } */
                 //RHS
                 RowLayout {
-                    id: rightBlock
-                    spacing: 2
-                    anchors {
-                        right: parent.right
-                        verticalCenter: parent.verticalCenter
-                        //leftMargin: 1
-                    }
-                    Pipewire {}
-                    Memory {}
-                    ClockWidget {}
-                    SystemTrayy {}
-                }
+                  id: rightBlock
+                  spacing: 2
+                  anchors {
+                      right: parent.right
+                      verticalCenter: parent.verticalCenter
+                      //leftMargin: 1
+                  }
+                  Pipewire {}
+                  Memory {}
+                  Cpu {}
+                  ClockWidget {}
+                  SystemTrayy {}
+              }
             }
         }
     }

@@ -5,26 +5,28 @@ import Quickshell
 import Quickshell.Services.Pipewire
 import Quickshell.Hyprland
 
-import "../styledObjects"
+import qs.customItems
 
 BarBlock {
   id: text
   visible: Pipewire.ready
 
-  property PwNode sink: Pipewire.defaultAudioSink
-  property string volume: Pipewire.ready ? `${Math.floor(sink.audio.volume * 100)}` : ""
+  // properties
+  property PwNode outputSink: Pipewire.defaultAudioSink
+  property PwNode inputSink: Pipewire.defaultAudioSource
+  property string volume: Pipewire.ready ? `${Math.floor(outputSink.audio.volume * 100)}` : ""
 
-  PwObjectTracker { objects: [ sink ] }
+  PwObjectTracker { objects: [ outputSink,inputSink ] }
 
   MouseArea {
     anchors.fill: parent
     //onClicked: Hyprland.dispatch("workspace 1")
     onWheel: (event) => {
-      if (!Pipewire.defaultAudioSink?.audio) return;
-      const step = 5;
-      let volume = Pipewire.defaultAudioSource.audio.volume * 100;
+      if (!outputSink?.audio) return;
+      const step = 4;
+      let volume = outputSink.audio.volume * 100;
       volume += event.angleDelta.y > 0 ? step : -step;
-      volume = Math.max(0, Math.min(volume, 100)); // Clamp 0% - 100%
+      volume = Math.max(0, Math.min(volume, 100)); // Clamp 0% - 100% even with continued scrolling
       Pipewire.defaultAudioSink.audio.volume = volume / 100;
     }
     //acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
@@ -35,7 +37,7 @@ BarBlock {
     //font.family: "quicksand"
     font.pixelSize: 11
     font.family: "inter"
-    font.bold: true
+    font.bold: false
     color: '#ccccccff'
   //font.family: "VictorMono Nerd Font"
 

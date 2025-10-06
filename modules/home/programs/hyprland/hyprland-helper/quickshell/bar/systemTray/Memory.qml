@@ -10,8 +10,8 @@ BarBlock {
   content: BarText {
     //font.family: "quicksand"
     //font.family: "Mononoki Nerd Font"
-    font.pixelSize: 11
-    font.family: "inter"
+    font.pixelSize: 12
+    font.family: "IBM plex mono"
     font.bold: false
     symbolText: `🧠 ${Math.floor(percentFree)}` //
     color: '#ccccccff'

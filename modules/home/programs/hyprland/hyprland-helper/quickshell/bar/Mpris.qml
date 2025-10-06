@@ -1,7 +1,9 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Widgets
-import "../services"
+import Quickshell.Services.Mpris
+import qs.services
+import qs.customItems
 
 WrapperMouseArea {
     id: root
@@ -21,10 +23,12 @@ WrapperMouseArea {
 
     RowLayout {
         visible: MprisState.player
+
         Layout.fillHeight: true
 
         ClippingWrapperRectangle {
-            radius: height / 2
+            //radius: height / 2
+            radius: 6
             implicitWidth: 24
             implicitHeight: 24
             Image {
@@ -36,10 +40,29 @@ WrapperMouseArea {
             }
         }
 
-        Text {
+        BarText {
             id: title
             text: MprisState.player?.trackTitle || ""
-            color: 'white'
+            baseColor: '#3798B9'
+            font {
+                pixelSize: 14
+                //family: 'lekton nerd font'
+                family: 'nunito'
+                bold: false
+            }
+
+            MouseArea {
+              onClicked: mouse => {
+                  if (mouse.button == Qt.LeftButton && MprisState.player.isPlaying) {
+                      MprisPlayer.next()
+                  } else if (mouse.button == Qt.RightButton) {
+                      MprisPlayer.next()
+                  } else if (mouse.button == Qt.MiddleButton) {
+                      MprisPlayer.next()
+                  }
+              }
+            }
         }
+
     }
 }

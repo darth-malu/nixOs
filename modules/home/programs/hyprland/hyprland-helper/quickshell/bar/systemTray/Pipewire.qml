@@ -35,9 +35,11 @@ BarBlock {
   content: BarText {
     symbolText: `🔈 ${volume}`
     //font.family: "quicksand"
-    font.pixelSize: 11
-    font.family: "inter"
-    font.bold: false
+    font {
+        pixelSize: 12
+        bold: false
+        family: "IBM plex mono"
+    }
     color: '#ccccccff'
   //font.family: "VictorMono Nerd Font"
 

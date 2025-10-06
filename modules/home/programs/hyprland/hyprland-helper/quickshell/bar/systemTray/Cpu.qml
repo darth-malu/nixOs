@@ -32,9 +32,9 @@ Item {
   BarText {
     id: text
     font {
-        pixelSize: 11
+        pixelSize: 12
         bold: false
-        //family: "inter"
+        family: "IBM plex mono"
     }
     color: '#ccccccff'
     //symbolText: ` ${Math.floor(percentUsed)}` //

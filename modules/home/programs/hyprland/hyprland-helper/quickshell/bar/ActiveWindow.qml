@@ -8,19 +8,18 @@ BarText {
   property int chopLength:100
   property string activeWindowTitle
 
-  /* chopLength: { */
-  /*   var space = Math.floor(bar.width - (rightBlocks.implicitWidth + leftBlocks.implicitWidth)) */
-  /*   return space * 0.08; */
-  /* } */
-
-  baseColor: "#FF6EC7"
+  baseColor: {
+    return Hyprland.focusedMonitor == Hyprland.monitorFor(screen)
+      ? "#FF6EC7" : "#CCCCCC"
+  }
 
   font {
       pixelSize: 13
       bold: false
       family: 'inter'
   }
-  text: {
+
+  symbolText: {
     var str = activeWindowTitle
     return str.length > chopLength ? str.slice(0, chopLength) + '...' : str;
   }
@@ -36,10 +35,7 @@ BarText {
   }
 
   Component.onCompleted: {
-    Hyprland.rawEvent.connect(hyprEvent)
-      /*
-        rawEvent - socket2
-       * */
+    Hyprland.rawEvent.connect(hyprEvent) // socket 2 hyprland
   }
 
   function hyprEvent(e) {

@@ -10,15 +10,28 @@ WrapperMouseArea {
 
     Layout.fillHeight: true
 
-    anchors {
-        centerIn: parent
+    anchors.centerIn: parent
+
+    //acceptedButtons: Qt.RightButton | Qt.LeftButton
+
+    onClicked: mouse => {
+        //mouse.accepted = true;
+        //if (mouse.button == Qt.LeftButton && MprisState.player.isPlaying) {
+        if (mouse.button == Qt.LeftButton) {
+            MprisState.player.togglePlaying()
+        } else if (mouse.button == Qt.RightButton) {
+            MprisState.player.next()
+        } else if (mouse.button == Qt.MiddleButton) {
+            MprisState.player.stop()
+        }
     }
 
-    acceptedButtons: Qt.RightButton | Qt.LeftButton
-
-    onClicked: event => {
-        event.accepted = true;
-        MprisState.player.togglePlaying();
+    onWheel: wheel => {
+        if (wheel.angledelta.y > 0) {
+            MprisState.player.volume = 0.1;
+        } else if (wheel.angledelta.y < 0) {
+            MprisState.player.volume = 0.1;
+        }
     }
 
     RowLayout {
@@ -27,8 +40,7 @@ WrapperMouseArea {
         Layout.fillHeight: true
 
         ClippingWrapperRectangle {
-            //radius: height / 2
-            radius: 6
+            radius: height / 2 // 6
             implicitWidth: 24
             implicitHeight: 24
             Image {
@@ -42,25 +54,14 @@ WrapperMouseArea {
 
         BarText {
             id: title
-            text: MprisState.player?.trackTitle || ""
-            baseColor: '#3798B9'
+            //text: MprisState.player?.trackTitle + " - " + MprisState.player?.trackArtist || ""
+            text: MprisState.player?.trackTitle
+            baseColor: Qt.rgba(171 / 255, 141 / 255, 237 / 255, 0.80)
+            //color: '#ccccccff'
             font {
-                pixelSize: 14
-                //family: 'lekton nerd font'
-                family: 'nunito'
+                pixelSize: 13
+                family: 'inter'
                 bold: false
-            }
-
-            MouseArea {
-              onClicked: mouse => {
-                  if (mouse.button == Qt.LeftButton && MprisState.player.isPlaying) {
-                      MprisPlayer.next()
-                  } else if (mouse.button == Qt.RightButton) {
-                      MprisPlayer.next()
-                  } else if (mouse.button == Qt.MiddleButton) {
-                      MprisPlayer.next()
-                  }
-              }
             }
         }
 

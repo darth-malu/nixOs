@@ -5,6 +5,7 @@ import QtQuick.Layouts
 import "./time"
 import Quickshell.Wayland
 import "./systemTray"
+import qs.services
 
 ShellRoot {
     Variants {
@@ -64,10 +65,6 @@ ShellRoot {
                         id: activeWorkspace
                         Layout.leftMargin: 10
                         //anchors.centerIn: undefined //interesting behaviour
-                        color: {
-                          return Hyprland.focusedMonitor == Hyprland.monitorFor(screen)
-                            ? "#FFFFFF" : "#CCCCCC"
-                        }
                     }
                 }
 

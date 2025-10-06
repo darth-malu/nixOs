@@ -11,8 +11,9 @@ BarBlock {
     font.pixelSize: 13
     //anchors.verticalCenter: parent.verticalCenter 
     font.bold: true
-    //color: Qt.rgba( 7/255 , 177/255 , 169/255, 0.91)
-    color: '#ccccccff'
+    //color: Qt.rgba( 7/255 , 177/255 , 169/255, 0.89)
+    //color: '#ccccccff'
+    //baseColor: Qt.rgba(171 / 255, 141 / 255, 237 / 255, 0.70)
     rightPadding: 5
   }
 }

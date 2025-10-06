@@ -10,8 +10,10 @@ BarText {
 
   baseColor: {
     return Hyprland.focusedMonitor == Hyprland.monitorFor(screen)
-      ? "#FF6EC7" : "#CCCCCC"
+      ? Qt.rgba(171/255, 141/255, 237/255, 0.86) : "#CCCCCC" //"#FF6EC7"
   }
+
+  color: '#ccccccff'
 
   font {
       pixelSize: 13

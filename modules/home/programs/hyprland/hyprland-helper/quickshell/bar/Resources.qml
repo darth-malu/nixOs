@@ -24,6 +24,20 @@ Rectangle {
         spacing: 10
 
         RowLayout {
+            BarText {
+                font.pointSize: root.textSize
+                symbolText: "🧠"
+                Layout.alignment: Qt.AlignCenter
+            }
+            BarText {
+                color: '#ccccccff'
+                font.pointSize: root.valueSize
+                text: ResourcesState.mem_percent
+                Layout.alignment: Qt.AlignCenter
+            }
+        }
+
+        RowLayout {
             id: cpuColumn
             BarText {
                 //color: 'white'
@@ -41,18 +55,5 @@ Rectangle {
             }
         }
 
-        RowLayout {
-            BarText {
-                font.pointSize: root.textSize
-                symbolText: "🧠"
-                Layout.alignment: Qt.AlignCenter
-            }
-            BarText {
-                color: '#ccccccff'
-                font.pointSize: root.valueSize
-                text: ResourcesState.mem_percent
-                Layout.alignment: Qt.AlignCenter
-            }
-        }
     }
 }

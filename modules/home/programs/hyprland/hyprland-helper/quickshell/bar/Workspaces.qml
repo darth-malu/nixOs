@@ -20,7 +20,9 @@ Repeater {
                 verticalCenter: parent.verticalCenter
                 //horizontalCenter: parent.horizontalCenter
             }
-            color: modelData.active ? '#5c0099' : Qt.rgba(171 / 255, 141 / 255, 237 / 255, 0.82) //#d896ff/255 //D5E68D, #C8EAD3, 42BFDD, #B6DC76, 98B06F, 442B48(orange), 7C90A0(grey/silver), 7C90A0, 5D5179
+            color: modelData.active ? '#5c0099' : Qt.rgba(171 / 255, 141 / 255, 237 / 255, 0.88) //#d896ff/255 //D5E68D, #C8EAD3, 42BFDD, #B6DC76, 98B06F, 442B48(orange), 7C90A0(grey/silver), 7C90A0, 5D5179
+            //color: modelData.active ? '#5c0099' :  '#ccccccff' //#d896ff/255 //D5E68D, #C8EAD3, 42BFDD, #B6DC76, 98B06F, 442B48(orange), 7C90A0(grey/silver), 7C90A0, 5D5179
+            //color: '#ccccccff'
             font.pixelSize: 14
             font.bold: true
             //font.family: "quicksand"

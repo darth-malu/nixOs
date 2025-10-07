@@ -1,5 +1,6 @@
 {
   filetype.rules = [
+    # https://yazi-rs.github.io/docs/configuration/theme/#filetype
     {
       fg = "#7AD9E5";
       mime = "image/*";
@@ -24,16 +25,40 @@
       fg = "white";
     }
 
+    # Orphan symbolic links
+    {
+      name = "*";
+      is = "orphan";
+      fg = "red";
+    }
+
     # Fallback
     # { fg = "#CD9EFC"; name = "*/"; }
-    # { name = "*"; fg = "white" }
-    # { name = "*/"; fg = "blue"; }
+    {
+      name = "*"; # all files
+      fg = "white";
+    }
+    {
+      name = "*/"; # all directories
+      fg = "blue";
+    }
   ];
 
   # flavor = "dracula"; #FIXME: see more on this
 
   # status = {
   # };
+
+  tabs = {
+    active = {
+      fg = "black";
+      bg = "lightblue";
+    };
+    inactive = {
+      fg = "white";
+      bg = "darkgray";
+    };
+  };
 
   mgr = {
     tab_active = {
@@ -91,6 +116,20 @@
         fg_dark = "#563d7c";
         fg_light = "#563d7c";
       }
+    ];
+    prepend_conds = [
+      {
+        "if" = "hidden & dir";
+        text = "👻";
+      } # Hidden directories
+      {
+        "if" = "dir";
+        text = "📁";
+      } # Directories
+      {
+        "if" = "!(dir | link)";
+        text = "📄";
+      } # Normal files (not directories or symlinks)
     ];
     append_exts = [
       {

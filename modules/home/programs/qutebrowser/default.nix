@@ -2,15 +2,15 @@
 {
   programs.qutebrowser = {
   enable = true;
-  loadAutoconfig = true; # false:: load config from GUI
+  loadAutoconfig = false; # false:: load config from GUI
   enableDefaultBindings = true; # true::
 
   keyBindings = {
     normal = {
       "<ctrl-m>" = "spawn mpv {url}";
+      "<ctrl-l>" = "hint links spawn mpv {hint-url}";
       "x" = "tab-close";
       "X" = "undo";
-      "<ctrl-l>" = "hint links spawn mpv {hint-url}";
       "<^>" = "tab-focus last";
       # ",p" = "spawn --userscript qute-pass";
       # ",l" = ''config-cycle spellcheck.languages ["en-GB"] ["en-US"]'';
@@ -87,8 +87,8 @@ statusbar = {
 tabs = {
   close_mouse_button = "right"; # right, middle::
   select_on_remove = "last-used"; # Which tab to select when the focused tab is removed.
-  show = "switching"; # always::, never, switching, multiple
-  width = "15%"; # in px or % - if vertical mode
+  show = "never"; # always::, never, switching, multiple
+  width = "20%"; # in px or % - if vertical mode
   title.elide = "none";  # position of ellipsis (...)
   undo_stack_size = 50;  # 100::
   favicons = {

@@ -52,6 +52,9 @@
       # "workspace emptym silent, class:steam, title:Sign in to Steam"
       # "workspace nointialfocus, class:steam, title:Sign in to Steam"
 
+      # don't render hyprbars on tiling windows
+      # "plugin:hyprbars:nobar, floating:0"
+
       # PYTHON
       "workspace emptym, class:getting-started.py"
       "center, class:main.py"
@@ -68,6 +71,9 @@
     ++ [
       # Gamer centric
       "immediate, class:^(cs2)$" # Allow Tearing
+
+      # allow tearing in games
+      # "immediate, class:^(osu\!|cs2)$"
     ];
 
     windowrulev2 = [

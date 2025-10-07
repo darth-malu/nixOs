@@ -25,7 +25,6 @@ in
       vterm
       djvu
       mu4e
-
       # jupyter
       # prettier
       # org-tidy
@@ -49,6 +48,8 @@ in
     shellcheck
     # libclang # java #TODO see need
 
+    clang # cc lsp & java? (maybe since derived)
+
     # Javascript
     deno
 
@@ -63,7 +64,7 @@ in
         # pytube
         pytubefix
         pandas
-        moviepy
+        # moviepy
         # numpy
         # seaborn
         # matplotlib
@@ -77,8 +78,6 @@ in
         ttkbootstrap # MOVED to Qt😄
         # pandasql
 
-        pyinstaller
-
         #emacs
         weasyprint
         pytest
@@ -91,8 +90,8 @@ in
       ]
     ))
 
-    # cmake # vterm#FIXME make still not found
-    # gnumake # for compiling vterm
+    cmake # vterm #FIXME make still not found
+    gnumake # for compiling vterm
 
     ## Dictionary
     (aspellWithDicts (
@@ -115,10 +114,10 @@ in
 
     age
     zstd # undo-fu-session/undo-tree compression
-    binutils # native-comp needs 'as', provided by this
+    binutils # native-comp needs 'as'
 
     #bash
-    bash-language-server # I never really have bash files to edit lol
+    bash-language-server
 
     # omnisharp-roslyn # c#
     # jdt-language-server
@@ -128,7 +127,6 @@ in
     # WEB
     nodePackages.js-beautify # js/css/html format
     stylelint # css linter
-    # web
     html-tidy
 
     # org stuff

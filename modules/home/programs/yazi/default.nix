@@ -1,9 +1,15 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 {
   programs.yazi = {
     enable = true;
-    # package = inputs.yazi.packages.${pkgs.system}.default;
-    enableBashIntegration = true;
+    package = inputs.yazi.packages.${pkgs.system}.default;
+    enableBashIntegration = config.programs.bash.enable;
+    enableZshIntegration = config.programs.zsh.enable;
     keymap = import ./keymap.nix;
     theme = import ./theme.nix;
     # initLua = ./init.lua;
@@ -27,6 +33,7 @@
         scrolloff = 10;
       };
       preview = {
+        cache_dir = config.xdg.cacheHome;
         word_wrap = "yes"; # code preview word wrap
         image_filter = "lanczos3";
         image_quality = 90;

@@ -6,15 +6,16 @@
 }:
 
 {
+  systemd.user.services.udiskie.Unit.After = lib.mkForce "graphical-session.target";
   services = {
     # kdeconnect.enable = true;
     blueman-applet.enable = lib.mkIf osConfig.programs.hyprland.enable true;
     blanket.enable = true;
     udiskie = {
-      enable = lib.mkIf osConfig.programs.hyprland.enable false;
-      tray = "auto"; # works
+      enable = lib.mkIf osConfig.programs.hyprland.enable true;
+      tray = "auto";
       notify = true;
-      automount = true; # better?
+      automount = true;
       settings = {
         # config written to .config/udiskie/config.yml
         # https://github.com/coldfix/udiskie/blob/master/doc/udiskie.8.txt#configuration
@@ -27,9 +28,9 @@
         #   "drive-removable-media"
         # ];
         # file-manager = "kitty -e 'yazi'";
-        file-manager = "xdg-open";
+        # file-manager = "xdg-open";
         menu = "flat"; # nested::
-        terminal = "${pkgs.kitty}/bin/kitty -e yazi";
+        # terminal = "${pkgs.kitty}/bin/kitty -e yazi";
       };
     };
   };

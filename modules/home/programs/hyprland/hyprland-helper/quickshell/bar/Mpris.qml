@@ -25,20 +25,29 @@ WrapperMouseArea {
         }
     }
 
-    /* onWheel: wheel => { */
-    /*     if (wheel.angledelta.y > 0) { */
-    /*         const step = 4; */
-    /*         let volume = MprisState.player.volume; */
-    /*         volume += event.angleDelta.y > 0 ? step : -step; */
-    /*         volume = Math.max(0, Math.min(volume, 100)); // Clamp 0% - 100% even with continued scrolling */
-    /*         MprisState.player.volume = volume; */
-    /*     } else if (wheel.angledelta.y < 0) { */
-    /*         MprisState.player.volume = 0.0; */
-    /*     } */
-    /* } */
+    onWheel: (event) => {
+        /* if (!MprisState.player) */
+        /*     return */
+
+        // Convert current volume (0.0–1.0) to percent
+        let vol = MprisState.player.volume * 100
+
+        // Scroll up increases, down decreases
+        vol += event.angleDelta.y > 0 ? 5 : -5
+
+        // Clamp between 0% and 100%
+        vol = Math.max(0, Math.min(vol, 100))
+
+        // Apply back to player
+        MprisState.player.volume = vol / 100
+    }
 
     RowLayout {
-        visible: MprisState.player && MprisState.player.isPlaying
+        visible: MprisState.player &&
+            MprisState.player.isPlaying &&
+            MprisState.player.indentity !== "default" &&
+            !MprisState.player.trackTitle.includes("default")
+            /* !MprisState.player.trackArtUrl.includes("default") */
         //visible: MprisState.player && MprisState.player.canControl
 
         Layout.fillHeight: true
@@ -58,13 +67,11 @@ WrapperMouseArea {
 
         BarText {
             id: title
-            //text: MprisState.player?.trackTitle + " - " + MprisState.player?.trackArtist || ""
             text: MprisState.player?.trackTitle
-            baseColor: Qt.rgba(171 / 255, 141 / 255, 237 / 255, 0.68)
-            //color: '#ccccccff'
+            baseColor: Qt.rgba(171 / 255, 141 / 255, 237 / 255, 0.78)
             font {
                 pixelSize: 13
-                family: 'inter'
+                family: 'nunito'
                 bold: false
             }
         }

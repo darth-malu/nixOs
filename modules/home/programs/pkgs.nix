@@ -57,8 +57,6 @@
       ed
       # firebase-tools
       patchelf # TODO see useful nexx
-      # clang
-      gnumake
       zlib
       # libgcc
       # nasm
@@ -84,11 +82,11 @@
       file # need for yazi mimedetectionetc.
       iftop # TODO seems powerful investigate more
       inxi
-      ncdu
       iotop-c # laggy?
       lm_sensors
       lsof # list open files/ports**
       mission-center
+      ncdu
       nethogs
       pciutils # lspci
       usbutils # lsusb, usb-devices, usb-view(optional gui)
@@ -144,34 +142,35 @@
       if osConfig.networking.hostName == "carthage" then
         with pkgs;
         [
+          # blender-hip # Hardware accelerated rendering NOTE later after pos
+          # coppwr
+          # davinci-resolve # NOTE RX580 not being detected
+          # davinci-resolve-studio # NOTE RX580 not being detected
+          # ffmpeg-full # full vs vanilla?
+          # gimp
+          # glmark2
+          # helvum
+          # inkscape-with-extensions
+          # inputs.quickshell.packages.${system}.default
+          # kdePackages.kdenlive # FIXME see if flatpak better
+          # kdePackages.mlt
           # mastodon
-          libreoffice-still
+          # mediainfo
           # melt  #collison with mlt
           # protonup-qt # GUI for installing custom Proton versions like GE_Proton
           # protonup-rs
           # steam-run
-          # wine
-          # blender-hip # Hardware accelerated rendering NOTE later after pos
-          darktable
-          # davinci-resolve # NOTE RX580 not being detected
-          # davinci-resolve-studio # NOTE RX580 not being detected
-          handbrake # FIXME lag on open
-          vlc
-          helvum
-          #coppwr
-          # ffmpeg-full # full vs vanilla?
-          ffmpeg
-          gimp
           # unigine-heaven
           # unigine-superposition
-          # glmark2
-          inkscape-with-extensions
+          # wine
+          darktable
+          exiftool
+          ffmpeg
+          handbrake # FIXME lag on open
+          libreoffice-still
           obs-cli
           obs-studio
-          # kdePackages.kdenlive # FIXME see if flatpak better
-          # kdePackages.mlt
-          # mediainfo
-          # inputs.quickshell.packages.${system}.default
+          vlc
         ]
         ++ (with pkgs.gst_all_1; [
           # nautilus gst
@@ -187,14 +186,14 @@
       if config.homeHyprland.enable then
         with pkgs;
         [
-          # inputs.hyprswitch.packages.x86_64-linux.default
-          cliphist
           # file-roller
+          # inputs.hyprswitch.packages.x86_64-linux.default
+          # yelp
+          cliphist
           grimblast
           slurp
           sushi
           viewnior
-          # yelp
         ]
       else
         [ ]

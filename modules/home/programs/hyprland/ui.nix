@@ -41,6 +41,7 @@
         passes = 3; # 2,,
         xray = true; # if enabled, floating windows will ignore tiled windows in their blur. Only available if new_optimizations is true. Will reduce overhead on floating blur significantly.
         # vibrancy = 0.1696; #0.1696::, [0.0-1.0] saturation of blurred colours
+        noise = 0.01;
       };
 
       rounding = 4; # 5, 0::

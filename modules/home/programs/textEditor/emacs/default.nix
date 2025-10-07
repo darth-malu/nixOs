@@ -7,7 +7,7 @@
   ];
 
   config = {
-    emacs-mail.enable = true;
+    emacs-mail.enable = false;
 
     programs.emacs = {
       enable = true;

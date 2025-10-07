@@ -91,9 +91,13 @@ let
             };
           };
 
-          # gesture = [
-          #   "3, right, workspace, emptym"
-          # ];
+          gesture = [
+            # "3, right, workspace, emptym"
+            "3, horizontal, workspace"
+            # "4, left, dispatcher, movewindow, mon:-1"
+            # "4, right, dispatcher, movewindow, mon:+1"
+            "4, pinch, fullscreen"
+          ];
 
           gestures = {
             # workspace_swipe = true;

@@ -6,6 +6,8 @@
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    yazi.url = "github:sxyazi/yazi";
+
     quickshell = {
       # add ?ref=<tag> to track a tag
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -118,11 +120,9 @@ config = {
     "warp-terminal"
     "windows10-icons"
     "aspell-dict-en-science"
-    "davinci-resolve"
     "youtube-upnext"
     "evafast"
     "android-studio-stable"
-    "davinci-resolve-studio"
   ];
 
 permittedInsecurePackages = [

@@ -74,13 +74,17 @@ devices = {
 - recently added addresses
 
 ** folders
-*** shibuya
+*** start
 #+begin_src nix :tangle no
 folders = {
-  "Shibuya" = {         # Name of folder in Syncthing, also the folder ID
-    path = "/home/malu/Shibuya";    # Which folder to add to Syncthing
-    devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
-  };
+#+end_src
+
+*** shibuya
+#+begin_src nix :tangle no
+"Shibuya" = {         # Name of folder in Syncthing, also the folder ID
+  path = "/home/malu/Shibuya";    # Which folder to add to Syncthing
+  devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
+};
 #+end_src
 
 *** yt videos
@@ -150,6 +154,13 @@ folders = {
     devices = ["tangier" "carthage"];
   };
 #+end_src
+*** studious
+#+begin_src nix :tangle no
+  "studious" = {
+    path = "/home/malu/studious";
+    devices = ["tangier" "carthage"];
+  };
+#+end_src
 *** org, org-roam
 #+begin_src nix :tangle no
 "org" = {
@@ -161,15 +172,11 @@ folders = {
   path = "/home/malu/org-roam";
   devices = ["tangier" "carthage"];
 };
-}; # end of folders
 #+end_src
-*** emacs config
-#+begin_src nix :tangle no
-"doom-emacs" = {
-  path = "/home/malu/.doom.d";
-  devices = ["tangier" "carthage"];
-};
 
+*** End
+#+begin_src nix :tangle no
+}; # end of folders
 #+end_src
 ** password theme user gui
 *** TODO set password as hash instead

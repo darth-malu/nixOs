@@ -1,37 +1,42 @@
 import QtQuick
 import QtQuick.Layouts
-import "../services"
 import qs.customItems
-//import "../utils/."
-//import "../components"
+import qs.services
 
 Rectangle {
     id: root
 
-    Layout.fillHeight: true
+    //Layout.fillHeight: true
     color: "transparent"
     implicitWidth: rowLayout.width
 
     property int valueSize: 8
-    property int textSize: 10
+
+    property int textSize: 8
+
+    property int symbolSize: 10
 
     property color valueColor: 'white'
+    property color cpuColor: '#ccccccff'
+    property color memoryColor: '#ccccccff'
     property string textColor: "lightgray"
 
     RowLayout {
         id: rowLayout
         anchors.centerIn: parent
         spacing: 10
+        uniformCellSizes: true
 
         RowLayout {
+            spacing: 6
             BarText {
-                font.pointSize: root.textSize
+                font.pointSize: root.symbolSize
                 symbolText: "🧠"
                 Layout.alignment: Qt.AlignCenter
             }
             BarText {
-                color: '#ccccccff'
-                font.pointSize: root.valueSize
+                color: memoryColor
+                font.pointSize: root.textSize
                 text: ResourcesState.mem_percent
                 Layout.alignment: Qt.AlignCenter
             }
@@ -39,19 +44,20 @@ Rectangle {
 
         RowLayout {
             id: cpuColumn
+            spacing: 6
             BarText {
                 //color: 'white'
-                font.pointSize: root.textSize
+                font.pointSize: root.symbolSize
                 symbolText: "🤖"
                 Layout.alignment: Qt.AlignCenter
             }
             BarText {
                 //color: 'white'
-                font.pointSize: root.valueSize
+                font.pointSize: root.textSize
                 //text: ResourcesState.cpu_percent + "%"
                 text: ResourcesState.cpu_percent
                 Layout.alignment: Qt.AlignCenter
-                color: '#ccccccff'
+                color: root.cpuColor
             }
         }
 

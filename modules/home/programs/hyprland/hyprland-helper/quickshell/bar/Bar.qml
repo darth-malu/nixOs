@@ -6,6 +6,7 @@ import "./time"
 import Quickshell.Wayland
 import "./systemTray"
 import qs.services
+import qs.customItems
 
 ShellRoot {
     Variants {
@@ -90,7 +91,12 @@ ShellRoot {
                       verticalCenter: parent.verticalCenter
                       //leftMargin: 1
                   }
-                  Pipewire {}
+                  Pipewire {
+                    /* Separator { */
+                    /*     color: parent.volumeColor */
+                    /* } */
+                  }
+                  //Separator {}
                   Resources {
                         Layout.leftMargin: 5
                         Layout.rightMargin:5

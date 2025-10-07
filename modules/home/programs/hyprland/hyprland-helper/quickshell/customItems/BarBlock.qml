@@ -56,22 +56,23 @@ Rectangle {
   MouseArea {
     id: mouseArea
     anchors.fill: root
-    hoverEnabled: true
+    //hoverEnabled: true
     acceptedButtons: Qt.LeftButton
-    onClicked: root.onClicked()
+    //acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
+    //onClicked: root.onClicked()
   }
 
   //While line underneath workspace
-  /* Rectangle { */
-  /*   id: wsLine */
-  /*   width: parent.width */
-  /*   height: 2 */
+  Rectangle {
+    id: wsLine
+    width: parent.width
+    height: 2
 
-  /*   color: { */
-  /*     if (parent.underline) */
-  /*       return "white"; */
-  /*     return "transparent"; */
-  /*   } */
-  /*   anchors.bottom: parent.bottom */
-  /* } */
+    color: {
+      if (parent.underline)
+        return "white";
+      return "transparent";
+    }
+    anchors.bottom: parent.bottom
+  }
 }

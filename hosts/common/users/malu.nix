@@ -12,6 +12,7 @@
     shell = pkgs.bash;
     #useDefaultShell = true;
     extraGroups = [
+      # user implicity in users group
       "input"
       "darth"
       "wheel"

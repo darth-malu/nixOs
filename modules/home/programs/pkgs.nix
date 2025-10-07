@@ -95,7 +95,8 @@
       util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
     ])
     ++ (with pkgs; [
-      chromium
+      # chromium
+      ungoogled-chromium
       telegram-desktop
       discord
       whatsapp-for-linux

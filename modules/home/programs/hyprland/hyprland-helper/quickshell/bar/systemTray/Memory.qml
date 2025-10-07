@@ -36,4 +36,5 @@ BarBlock {
     repeat: true
     onTriggered: memProc.running = true
   }
+
 }

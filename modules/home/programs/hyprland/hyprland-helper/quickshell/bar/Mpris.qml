@@ -7,15 +7,14 @@ import qs.customItems
 
 WrapperMouseArea {
     id: root
-
     Layout.fillHeight: true
 
     anchors.centerIn: parent
 
-    //acceptedButtons: Qt.RightButton | Qt.LeftButton
+    acceptedButtons: Qt.RightButton | Qt.LeftButton | Qt.MiddleButton
 
     onClicked: mouse => {
-        //mouse.accepted = true;
+        mouse.accepted = true // Prevent background click
         //if (mouse.button == Qt.LeftButton && MprisState.player.isPlaying) {
         if (mouse.button == Qt.LeftButton) {
             MprisState.player.togglePlaying()
@@ -26,16 +25,21 @@ WrapperMouseArea {
         }
     }
 
-    onWheel: wheel => {
-        if (wheel.angledelta.y > 0) {
-            MprisState.player.volume = 0.1;
-        } else if (wheel.angledelta.y < 0) {
-            MprisState.player.volume = 0.1;
-        }
-    }
+    /* onWheel: wheel => { */
+    /*     if (wheel.angledelta.y > 0) { */
+    /*         const step = 4; */
+    /*         let volume = MprisState.player.volume; */
+    /*         volume += event.angleDelta.y > 0 ? step : -step; */
+    /*         volume = Math.max(0, Math.min(volume, 100)); // Clamp 0% - 100% even with continued scrolling */
+    /*         MprisState.player.volume = volume; */
+    /*     } else if (wheel.angledelta.y < 0) { */
+    /*         MprisState.player.volume = 0.0; */
+    /*     } */
+    /* } */
 
     RowLayout {
-        visible: MprisState.player
+        visible: MprisState.player && MprisState.player.isPlaying
+        //visible: MprisState.player && MprisState.player.canControl
 
         Layout.fillHeight: true
 
@@ -56,7 +60,7 @@ WrapperMouseArea {
             id: title
             //text: MprisState.player?.trackTitle + " - " + MprisState.player?.trackArtist || ""
             text: MprisState.player?.trackTitle
-            baseColor: Qt.rgba(171 / 255, 141 / 255, 237 / 255, 0.80)
+            baseColor: Qt.rgba(171 / 255, 141 / 255, 237 / 255, 0.68)
             //color: '#ccccccff'
             font {
                 pixelSize: 13

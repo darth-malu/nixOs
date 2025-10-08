@@ -14,6 +14,10 @@ BarBlock {
   property string volume: Pipewire.ready ? `${Math.floor(outputSink.audio.volume * 100)}` : ""
   property color volumeColor: "#ccccccff"
 
+  property int textSize: 8
+  property string textFont: 'inter'
+  property bool textBold: true
+
   PwObjectTracker { objects: [ outputSink,inputSink ] }
 
   MouseArea {

@@ -12,6 +12,7 @@ let
   pause_play = import ./pause_play.nix { inherit pkgs; };
   rofi_power = import ./rofi_power.nix { inherit pkgs; };
   gaps = import ./gaps.nix { inherit pkgs; };
+  batteryQS = import ./battery.nix { inherit pkgs; };
   temp =
     if osConfig.networking.hostName == "tangier" then
       import ./temp/tangier_temp.nix { inherit pkgs; }
@@ -40,5 +41,6 @@ in
       gaps
       temp
       clr_backup
+      batteryQS
     ];
 }

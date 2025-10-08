@@ -18,7 +18,7 @@
     verbose = true;
     # pinentry is a collection of simple PIN or passphrase dialogs used for
     # password entry
-    pinentryPackage = pkgs.pinentry-gnome3;
+    pinentry.package = pkgs.pinentry-gnome3;
     pinentry = {
       program = "pinentry-wayprompt";
       # package =
@@ -27,7 +27,7 @@
 
   programs = {
     # Gui for OpenPGP
-    seahorse.enable = true;
+    # seahorse.enable = true;
     gpg = {
       ## Enable GnuPG
       enable = true;

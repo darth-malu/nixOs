@@ -1,0 +1,22 @@
+{ pkgs }:
+pkgs.writeShellScriptBin "batteryQS" ''
+  battery=/sys/class/power_supply/BAT0
+  capacity=$(cat $battery/capacity)
+  bstatus=$(cat $battery/status)
+
+  if   [ "$bstatus" = "Charging" ]; then
+      symbol=󰂄
+  elif [ $capacity -gt 80 ]; then
+      symbol=
+  elif [ $capacity -gt 60 ]; then
+      symbol=
+  elif [ $capacity -gt 40 ]; then
+      symbol=
+  elif [ $capacity -gt 20 ]; then
+      symbol=
+  else
+      symbol=
+  fi
+
+  echo "$symbol $capacity%"
+''

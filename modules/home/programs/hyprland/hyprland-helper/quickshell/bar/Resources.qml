@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import qs.customItems
 import qs.services
+import qs.themes
 
 Rectangle {
     id: root
@@ -13,6 +14,8 @@ Rectangle {
     property int valueSize: 8
 
     property int textSize: 8
+    property string textFont: 'inter'
+    property bool textBold: true
 
     property int symbolSize: 10
 
@@ -37,6 +40,8 @@ Rectangle {
             BarText {
                 color: memoryColor
                 font.pointSize: root.textSize
+                font.family: root.textFont
+                font.bold: root.textBold
                 text: ResourcesState.mem_percent
                 Layout.alignment: Qt.AlignCenter
             }
@@ -54,6 +59,8 @@ Rectangle {
             BarText {
                 //color: 'white'
                 font.pointSize: root.textSize
+                font.family: root.textFont
+                font.bold: root.textBold
                 //text: ResourcesState.cpu_percent + "%"
                 text: ResourcesState.cpu_percent
                 Layout.alignment: Qt.AlignCenter

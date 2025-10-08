@@ -1,17 +1,18 @@
 import QtQuick
 import Quickshell.Io
-import "../"
+import qs.customItems
 import Quickshell.Services.UPower
 
 BarBlock {
   property string battery
   content: BarText {
     symbolText: battery
+    color: 'red'
   }
 
   Process {
     id: batteryProc
-    command: ["block_battery"]
+    command: ["batteryQS"]
     running: true
 
     stdout: SplitParser {

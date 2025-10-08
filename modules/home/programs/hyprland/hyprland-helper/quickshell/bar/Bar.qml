@@ -102,6 +102,7 @@ ShellRoot {
                         Layout.rightMargin:5
                   }
                   ClockWidget {}
+                  Battery {}
                   SystemTrayy {}
               }
             }

@@ -1,13 +1,13 @@
 import QtQuick
 import QtQuick.Layouts
 import qs.customItems
-import qs.services
-import qs.themes
 
 Rectangle {
     id: root
 
-    //Layout.fillHeight: true
+    Layout.fillHeight: true
+    Layout.leftMargin: 5
+    Layout.rightMargin: 5
     color: "transparent"
     implicitWidth: rowLayout.width
 

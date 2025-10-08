@@ -1,10 +1,8 @@
 pragma ComponentBehavior: Bound
 
-import "../../cael/components"
-import "../../cael/config"
-import "../../cael/services"
 import Quickshell.Services.UPower
 import QtQuick
+import qs.customItems
 
 Column {
     id: root
@@ -12,11 +10,11 @@ Column {
     spacing: Appearance.spacing.normal
     width: Config.bar.sizes.batteryWidth
 
-    StyledText {
+    BarText {
         text: UPower.displayDevice.isLaptopBattery ? qsTr("Remaining: %1%").arg(Math.round(UPower.displayDevice.percentage * 100)) : qsTr("No battery detected")
     }
 
-    StyledText {
+    BarText {
         function formatSeconds(s: int, fallback: string): string {
             const day = Math.floor(s / 86400);
             const hr = Math.floor(s / 3600) % 60;
@@ -223,9 +221,9 @@ Column {
             color: profiles.current === text ? Colours.palette.m3onPrimary : Colours.palette.m3onSurface
             fill: profiles.current === text ? 1 : 0
 
-            Behavior on fill {
-                Anim {}
-            }
+            /* Behavior on fill { */
+            /*     Anim {} */
+            /* } */
         }
     }
 }

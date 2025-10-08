@@ -20,33 +20,20 @@ ShellRoot {
             aboveWindows: false // true::
             color: "transparent"
             implicitHeight: 20
+            margins. left: 12
+            margins.right: 12
+            anchors.top: true
+            anchors.left: true
+            anchors.right: true
 
-            margins {
-                left: 12
-                right: 12
-            }
-
-            anchors {
-                top: true
-                left: true
-                right: true
-            }
-
-            //main bar -> Houses Everything
-            Rectangle {
+            Rectangle { //main bar -> Houses Everything
                 id: mainBar
                 anchors.fill: parent
                 color: 'transparent'
                 radius: 16
-
-                border {
-                    width: 0
-                    //color: "#333333"
-                    //color: Qt.rgba(8/255, 41/255, 41/255, 0.58)
-                }
+                border. width: 0
 
                 MouseArea {
-                    // scroll on whole bar
                     anchors.fill: parent
                     onWheel: wheel => {
                         if (wheel.angleDelta.y > 0) {
@@ -61,11 +48,12 @@ ShellRoot {
                     id: leftBlock
                     spacing: 0.4
                     anchors.left:parent.left
+
                     Workspaces {}
+
                     ActiveWindow {
                         id: activeWorkspace
                         Layout.leftMargin: 10
-                        //anchors.centerIn: undefined //interesting behaviour
                     }
                 }
 
@@ -75,35 +63,25 @@ ShellRoot {
                       centerIn: parent
                   }
                     Rectangle {
-                        anchors {
-                            centerIn: parent
-                            verticalCenter: parent.verticalCenter
-                        }
+                        anchors.centerIn: parent
+                        anchors.verticalCenter: parent.verticalCenter
                         Mpris {}
                     }
                 }
 
                 RowLayout {
                   id: rightBlock
-                  spacing: 2
-                  anchors {
-                      right: parent.right
-                      verticalCenter: parent.verticalCenter
-                      //leftMargin: 1
-                  }
-                  Pipewire {
-                    /* Separator { */
-                    /*     color: parent.volumeColor */
-                    /* } */
-                  }
-                  //Separator {}
-                  Resources {
-                        Layout.leftMargin: 5
-                        Layout.rightMargin:5
-                  }
+                  spacing: 4
+                  anchors.right: parent.right
+                  anchors.verticalCenter: parent.verticalCenter
+
+                  //modules
+                  Pipewire {}
+                  Resources {}
                   ClockWidget {}
-                  Battery {}
+                  //Battery {}
                   SystemTrayy {}
+                  //Battery {}
               }
             }
         }

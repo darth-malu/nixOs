@@ -16,7 +16,11 @@ networking = {
 # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
 # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
 
-powerManagement.cpuFreqGovernor = lib.mkDefault "powersave"; # TODO: test effects of this, and add to waybar
+powerManagement = {
+  enable = true;
+  cpuFreqGovernor = lib.mkDefault "ondemand"; # 'ondemand', 'perfomance', 'powersave'
+};
+
 hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
 }

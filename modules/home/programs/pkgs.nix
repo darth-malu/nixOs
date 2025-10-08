@@ -64,6 +64,7 @@
     ++ (with pkgs; [
       # wpsoffice
       # libreoffice-qt-still
+      libreoffice-still
       ripgrep-all
     ])
     ++ (with pkgs; [
@@ -155,7 +156,6 @@
           # kdePackages.kdenlive # FIXME see if flatpak better
           # kdePackages.mlt
           # mastodon
-          # mediainfo
           # melt  #collison with mlt
           # protonup-qt # GUI for installing custom Proton versions like GE_Proton
           # protonup-rs

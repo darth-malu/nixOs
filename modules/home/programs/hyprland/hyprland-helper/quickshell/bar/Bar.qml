@@ -43,39 +43,49 @@ ShellRoot {
                 }
             }
 
-            Rectangle {
-                id: mainBar
-                anchors.fill: parent
-                //spacing: 0
-                radius: 16
-                color: 'transparent'
+          RowLayout {
+              id: mainBar
+              anchors.fill: parent
+              spacing: 0
+              Layout.fillWidth: true
+              Layout.fillHeight: true
 
                 RowLayout {
                     id: leftBlock
                     spacing: 0.4
-                    anchors.left:parent.left
+                    //anchors.left:parent.left
+                    Layout.alignment: Qt.AlignLeft
 
                     Workspaces {}
                     ActiveWindow {}
                 }
 
+                // Center (expanding filler on each side keeps it centered)
+                Item {
+                    Layout.fillWidth: true
+                }
 
                 RowLayout {
                   id: centerBlock
-                  anchors.centerIn: parent
+                  //anchors.centerIn: parent
+                  Layout.alignment: Qt.AlignHCenter
                   Rectangle {
                       //anchors.centerIn: parent
-                      anchors.verticalCenter: parent.verticalCenter
+                      //anchors.verticalCenter: parent.verticalCenter
                       Mpris {}
                   }
                 }
 
+                Item {
+                    Layout.fillWidth: true
+                }
 
                 RowLayout {
                   id: rightBlock
                   spacing: 4
-                  anchors.right: parent.right
-                  anchors.verticalCenter: parent.verticalCenter
+                  /* anchors.right: parent.right */
+                  /* anchors.verticalCenter: parent.verticalCenter */
+                  Layout.alignment: Qt.AlignRight
 
                   //modules
                   Pipewire {}

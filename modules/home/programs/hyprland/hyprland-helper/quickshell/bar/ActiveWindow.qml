@@ -5,6 +5,8 @@ import Quickshell.Hyprland
 import qs.customItems
 
 BarText {
+                        id: activeWorkspace
+                        Layout.leftMargin: 10
   property int chopLength:100
   property string activeWindowTitle
 

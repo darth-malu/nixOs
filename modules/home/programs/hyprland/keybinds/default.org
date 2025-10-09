@@ -354,9 +354,13 @@ movetoworkspacesilent exists
 #+end_src
 
 *** waybar
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
   "$mod ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
   # "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
+#+end_src
+*** Quickshell
+#+begin_src nix :tangle default.nix
+  "$mod ,Home,execr, qs ipc call bar toggle_bar"
 #+end_src
 
 *** swap position in workspace clockwise
@@ -457,14 +461,15 @@ bindel =
     ", XF86AudioRaiseVolume, execr, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%+ >/dev/null 2>&1 "
     ", XF86AudioLowerVolume, execr, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%- >/dev/null 2>&1 "
 
-    ", XF86AudioNext, execr, playerctl -p spotify next || playerctl next " # TODO test for spotify running
-    ", XF86AudioPrev, execr, playerctl -p spotify previous || playerctl previous "
+    # ", XF86AudioNext, execr, playerctl -p spotify next || playerctl next " # TODO test for spotify running
+    ", XF86AudioNext, execr, qs ipc call mpris next" # TODO test for spotify running
+    ", XF86AudioPrev, execr, qs ipc call mpris previous"
    ]++
     (
       if osConfig.networking.hostName == "carthage" then
     [
-    ", F8, execr, playerctl -p spotify next || playerctl next "
-    ", F6, execr, playerctl -p spotify previous || playerctl previous "
+    ", F8, execr, qs ipc call mpris next"
+    ", F6, execr, qs ipc call mpris previous"
     ", F7, execr, pause_play"
     ] else []);
 #+end_src

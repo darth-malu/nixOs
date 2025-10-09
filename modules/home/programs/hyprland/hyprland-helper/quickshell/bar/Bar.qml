@@ -7,26 +7,33 @@ import Quickshell.Wayland
 import "./systemTray"
 import qs.services
 import qs.customItems
+import Quickshell.Io
 
 ShellRoot {
     Variants {
         model: Quickshell.screens  //Returns all connected screens
-
         PanelWindow {
-            id: mainPanel
+            id: bar
             WlrLayershell.namespace: "tildeBar"
             required property var modelData
             screen: modelData   // ALl currently connected screens, updates as connected screens change. Reusing a window on every screen This creates an instance of your window once on every screen. As screens are added or removed your window will be created or destroyed on those screens.
             aboveWindows: false // true::
             color: "transparent"
             implicitHeight: 20
-            margins. left: 12
+            margins.left: 12
             margins.right: 12
             anchors.top: true
             anchors.left: true
             anchors.right: true
 
-            Rectangle { //main bar -> Houses Everything
+            IpcHandler {
+                target: "bar"
+                function toggle_bar(): void {
+                    bar.visible = !bar.visible;
+                }
+            }
+
+            Rectangle {
                 id: mainBar
                 anchors.fill: parent
                 color: 'transparent'
@@ -50,11 +57,7 @@ ShellRoot {
                     anchors.left:parent.left
 
                     Workspaces {}
-
-                    ActiveWindow {
-                        id: activeWorkspace
-                        Layout.leftMargin: 10
-                    }
+                    ActiveWindow {}
                 }
 
                 RowLayout {
@@ -79,7 +82,6 @@ ShellRoot {
                   Pipewire {}
                   Resources {}
                   ClockWidget {}
-                  //Battery {}
                   SystemTrayy {}
                   //Battery {}
               }

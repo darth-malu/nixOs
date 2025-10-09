@@ -58,6 +58,7 @@
       # firebase-tools
       patchelf # TODO see useful nexx
       zlib
+      manim
       # libgcc
       # nasm
     ])
@@ -104,7 +105,7 @@
       dotool
     ])
     ++ (with pkgs; [
-      cantata # old af
+      # cantata # old af
       digikam
       # clapper
       # gpu-screen-recorder

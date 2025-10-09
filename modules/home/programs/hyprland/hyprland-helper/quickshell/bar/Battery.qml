@@ -4,7 +4,9 @@ import qs.customItems
 import Quickshell.Services.UPower
 
 BarBlock {
+
   property string battery
+
   content: BarText {
     symbolText: battery
     color: 'red'

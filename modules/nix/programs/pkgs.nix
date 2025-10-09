@@ -8,7 +8,6 @@
 {
   imports = [
     ./sync-thing
-    # ./qemu
     ./virtualisation
     ./gaming
   ];
@@ -23,7 +22,7 @@
       # package = pkgs.gpu-screen-recorder-gtk;
     };
     ccache = {
-      enable = true;
+      enable = false;
       # packageNames = [
       #   "wxGTK32"
       #   "ffmpeg"

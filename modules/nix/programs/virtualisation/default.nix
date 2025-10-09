@@ -1,7 +1,7 @@
 {
   imports = [
     ./qemu
-    # ./n8n.nix
+    ./n8n.nix
     ./docker.nix
   ];
 }

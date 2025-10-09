@@ -28,7 +28,7 @@ WrapperMouseArea {
         onTriggered: root.showVolume = false
     }
 
-    onExited: mouse => {
+    onExited: () => {
         hideVolumeTimer.restart()
     }
 
@@ -85,7 +85,7 @@ WrapperMouseArea {
 
         BarText {
             id: title
-            text: MprisState.player?.trackTitle
+            text: MprisState.player?.trackTitle // FIXME undefined 
             baseColor: Qt.rgba(171 / 255, 141 / 255, 237 / 255, 0.78)
             font {
                 pixelSize: 13

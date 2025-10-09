@@ -1,4 +1,5 @@
 { pkgs }:
+# andy grifee
 pkgs.writeShellScriptBin "batteryQS" ''
   battery=/sys/class/power_supply/BAT0
   capacity=$(cat $battery/capacity)

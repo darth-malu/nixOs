@@ -222,6 +222,7 @@ bind =
   "$mod ,L, workspace,m+1"
 
   "$mod ,Home,execr, qs ipc call bar toggle_bar"
+  "$mod ,End,execr, systemctl --user restart quickshell"
 
   "$mod $sl, semicolon, swapnext"
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""

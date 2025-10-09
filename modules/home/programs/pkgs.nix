@@ -18,9 +18,10 @@
   home.packages =
     with pkgs;
     [
-      # Quickshell stuffs
-      qt6.qtimageformats
+      # Quickshell stuffs https://quickshell.org/docs/v0.2.0/guide/install-setup/
+      qt6.qtimageformats # webp & less common format support
       qt6.qt5compat # shader fx
+      # qt6.qtsvg # load SVG image
       qt6.qtmultimedia # flicko shell
       qt6.qtdeclarative # qtdecl types in path
       grim

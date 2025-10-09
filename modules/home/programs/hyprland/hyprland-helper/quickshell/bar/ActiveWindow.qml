@@ -8,17 +8,13 @@ BarText {
     property int chopLength: {
               var space = Math.floor(bar.width - (rightBlock.implicitWidth + leftBlock.implicitWidth))
               return space * 0.08;
-            }
-    property string activeWindowTitle
+    }
+
+    visible: true
 
     Layout.leftMargin: 15
 
-    baseColor: {
-      return Hyprland.focusedMonitor == Hyprland.monitorFor(screen)
-        ? Qt.rgba(171/255, 141/255, 237/255, 0.86) : "#CCCCCC" //"#FF6EC7"
-    }
-
-    color: '#ccccccff'
+    baseColor: '#ccccccff'
 
     font {
         pixelSize: 13
@@ -31,6 +27,7 @@ BarText {
       return str.length > chopLength ? str.slice(0, chopLength) + '...' : str;
     }
 
+    property string activeWindowTitle
     Process {
       id: titleProc
       command: ["sh", "-c", "hyprctl activewindow | grep title: | sed 's/^[^:]*: //'"]

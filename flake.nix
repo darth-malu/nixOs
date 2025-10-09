@@ -2,12 +2,12 @@
   description = "Kenyan Tinkerer makes a flake -- 🫥";
   inputs = {
 
-    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     yazi.url = "github:sxyazi/yazi";
 
+    # add ?ref=<tag> to track a tag
     quickshell = {
       # add ?ref=<tag> to track a tag
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -100,48 +100,44 @@
 let
   system = "x86_64-linux"; # system = builtins.currentSystem;??
 
-  # neovimConf = inputs.nvf.lib.neovimConfiguration {
-  #     inherit (nixpkgs.legacyPackages.${system}) pkgs;
-  #     modules = [ ./modules/nvf];
-  # };
-config = {
+  config = {
 
-  allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-    "discord"
-    "unigine-heaven"
-    "google-chrome"
-    "bluemail"
-    "ventoy"
-    "spotify"
-    "steam"
-    "steam-unwrapped"
-    "wpsoffice"
-    "xow_dongle-firmware"
-    "warp-terminal"
-    "windows10-icons"
-    "aspell-dict-en-science"
-    "youtube-upnext"
-    "evafast"
-    "android-studio-stable"
-  ];
+    allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+      "discord"
+      "unigine-heaven"
+      "google-chrome"
+      "bluemail"
+      "ventoy"
+      "spotify"
+      "steam"
+      "steam-unwrapped"
+      "wpsoffice"
+      "xow_dongle-firmware"
+      "warp-terminal"
+      "windows10-icons"
+      "aspell-dict-en-science"
+      "youtube-upnext"
+      "evafast"
+      "android-studio-stable"
+    ];
 
-permittedInsecurePackages = [
-  "ventoy-1.1.07"
-  "libsoup-2.74.3"
-  "libxml2-2.13.8" # for cisco?
-];
+    permittedInsecurePackages = [
+      "ventoy-1.1.07"
+      "libsoup-2.74.3"
+      "libxml2-2.13.8" # for cisco?
+    ];
 
-};
-home = inputs.home-manager;
+  };
+  home = inputs.home-manager;
 
-# pkgs = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
-pkgs = import nixpkgs {
-  inherit  system;
-  inherit config;
-};
-in
-{
-  # packages.${system}.my-neovim = neovimConf.neovim; # NVF
+  # pkgs = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
+  pkgs = import nixpkgs {
+    inherit  system;
+    inherit config;
+  };
+  in
+  {
+    # packages.${system}.my-neovim = neovimConf.neovim; # NVF
 
 nixosConfigurations = {
   carthage = nixpkgs.lib.nixosSystem {
@@ -195,37 +191,37 @@ tangier = nixpkgs.lib.nixosSystem {
 
 }; #End of NixConfigurations
 
-  devShells.${system}.default = pkgs.mkShell {
-    buildInputs = with pkgs; [
+devShells.${system}.default = pkgs.mkShell {
+  buildInputs = with pkgs; [
+    # numpy
+    (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
+      # pip
       # numpy
-        (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
-          # pip
-          # numpy
-          adblock
-        ]))
-    ];
+      adblock
+    ]))
+  ];
 
-    shellHook = ''
+  shellHook = ''
       echo "$USER:: welcome to your dev env lul 🧊"
     '';
 
-    # packages = [
-        #inputs.python-nixpkgs.legacyPackages.${system}.python313
-    #     (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
-    #     pip
-    #     ]))
-    # ];
-    # env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
-    #   pkgs.stdenv.cc.cc.lib
-    #   pkgs.libz
-    # ];
-    # shellHook = ''
-    #     if [ ! -d .venv ]; then
-    #         python -m venv .venv
-    #     fi
-    #     source .venv/bin/activate
-    # '';
-  };
+  # packages = [
+  #inputs.python-nixpkgs.legacyPackages.${system}.python313
+  #     (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
+  #     pip
+  #     ]))
+  # ];
+  # env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+  #   pkgs.stdenv.cc.cc.lib
+  #   pkgs.libz
+  # ];
+  # shellHook = ''
+  #     if [ ! -d .venv ]; then
+  #         python -m venv .venv
+  #     fi
+  #     source .venv/bin/activate
+  # '';
+};
 
   };   # end of outputs
 }    # EOF

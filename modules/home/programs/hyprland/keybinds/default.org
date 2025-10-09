@@ -358,9 +358,11 @@ movetoworkspacesilent exists
   "$mod ,Home,execr, killall -SIGUSR1 .waybar-wrapped" # toggle waybar
   # "$mod ,End,execr, killall .waybar-wrapped || uwsm app waybar"
 #+end_src
+
 *** Quickshell
 #+begin_src nix :tangle default.nix
   "$mod ,Home,execr, qs ipc call bar toggle_bar"
+  "$mod ,End,execr, systemctl --user restart quickshell"
 #+end_src
 
 *** swap position in workspace clockwise

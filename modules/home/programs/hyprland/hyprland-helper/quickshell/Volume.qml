@@ -71,9 +71,7 @@ Scope {
           }
 
           Rectangle {//outer
-            // Stretches to fill all left-over space
-            Layout.fillWidth: true
-            anchors.verticalCenter: parent.verticalCenter
+            Layout.fillWidth: true // Stretches to fill all left-over space
             implicitHeight: 4
             radius: 20
             color: "#80000000"

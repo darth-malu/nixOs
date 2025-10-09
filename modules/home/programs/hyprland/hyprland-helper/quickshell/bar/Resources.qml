@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import qs.customItems
+import qs.services
 
 Rectangle {
     id: root

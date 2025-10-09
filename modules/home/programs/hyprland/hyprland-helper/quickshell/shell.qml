@@ -1,11 +1,7 @@
 //@ pragma UseQApplication
 import Quickshell
 import QtQuick
-
-import "./modules/" // volume
-import "./modules/bar" //for bar etc in modules dir
 import qs.bar
-import "./customItems"
 
 //Scope {
   ShellRoot {

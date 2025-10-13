@@ -473,6 +473,7 @@ bindel =
     ", F8, execr, qs ipc call mpris next"
     ", F6, execr, qs ipc call mpris previous"
     ", F7, execr, pause_play"
+    "$mod, F7, execr, qs ipc call mpris toggleMpris"
     ] else []);
 #+end_src
 

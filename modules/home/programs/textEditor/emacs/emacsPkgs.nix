@@ -48,10 +48,10 @@ in
     shellcheck
     # libclang # java #TODO see need
 
-    clang # cc lsp & java? (maybe since derived)
+    # clang # cc lsp & java? (maybe since derived) # FIXME...clash with other clang
 
     # Javascript
-    deno
+    # deno
 
     # C#
     # csharpier # c# formatter
@@ -90,7 +90,7 @@ in
       ]
     ))
 
-    # cmake # vterm #FIXME make still not found
+    cmake # vterm #FIXME make still not found
     # gnumake # for compiling vterm
 
     ## Dictionary

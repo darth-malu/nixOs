@@ -60,6 +60,7 @@
       patchelf # TODO see useful nexx
       zlib
       manim
+      socat
       # libgcc
       # nasm
     ])
@@ -107,9 +108,8 @@
     ])
     ++ (with pkgs; [
       # cantata # old af
-      digikam
+      # digikam
       # clapper
-      # gpu-screen-recorder
       # kando
       # lollypop # cantata better
       # pipeline # flatpak better?
@@ -167,8 +167,8 @@
           # wine
           darktable
           exiftool
-          ffmpeg
-          handbrake # FIXME lag on open
+          ffmpeg-full
+          # handbrake # FIXME lag on open
           libreoffice-still
           obs-cli
           obs-studio

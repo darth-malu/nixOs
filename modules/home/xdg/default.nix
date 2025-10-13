@@ -14,7 +14,7 @@
       enable = true;
     };
     mimeApps = import ./src/mime.nix;
-    # desktopEntries = import ./src/desktopEntries.nix;
+    desktopEntries = import ./src/desktopEntries.nix;
     userDirs = {
       enable = true;
       createDirectories = false; # false::, Whether to enable automatic creation of the XDG user directories.

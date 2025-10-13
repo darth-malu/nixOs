@@ -7,13 +7,12 @@ let
         wayland.windowManager.hyprland.settings = {
           monitor = [
             # head /sys/class/drm/*/status with monitors connected
-            # monitor = name, resolution, position, scale:: to disable use -> monitor = name, disable
+            # name, resolution, position, scale::
+            # To disable use -> monitor = name, disable
             # position -> special values(auto, auto-right/left/up/down) in pixels.calculated from the top-left corner
-            # resolution -> highrr, highres, preferred
-            "HDMI-A-1,1920x1080@240,1920x0,1"
-            "DP-3,1920x1080@60,0x0,1"
-            # "DP-1,highres,0x0,1"
-            # ",highres,0x0,1"
+            # resolution -> highrr, highres, preferred, maxwidth
+            "HDMI-A-1,1920x1080@240,0x0,1, vrr, 3"
+            "DP-3, highres, -1920x0,1, vrr, 0" # ",highres,0x0,1"
           ];
           binds = {
             allow_workspace_cycles = true; # workpsaces dontn forget their previous workspaces
@@ -65,7 +64,8 @@ let
         # Default or pc settings here
         wayland.windowManager.hyprland.settings = {
           monitor = [
-            "eDP-1,highres,auto,1.25" # 1.333333
+            "eDP-1, highres, auto, 1.25" # 1.333333
+            ", preferred, auto,1, mirror, eDP-1" # for presentations
           ];
           xwayland = {
             force_zero_scaling = true;

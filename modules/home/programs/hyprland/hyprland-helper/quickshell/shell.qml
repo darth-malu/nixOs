@@ -2,11 +2,13 @@
 import Quickshell
 import QtQuick
 import qs.bar
+import qs.notBar
 
 //Scope {
   ShellRoot {
       //TODO: scope vs shellroot
-      Bar {}   //Any qml file that starts with an uppercase can be referenced this way
+      //FollowBar {}   //Any qml file that starts with an uppercase can be referenced this way
+      Bar {}
       Volume {}
   }
 //}

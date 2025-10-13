@@ -36,12 +36,11 @@ BarBlock {
   content: BarText {
       id: volumeOut
       symbolText: `🔈 ${text.volume}`
-      //color: '#ccccccff'
       color: text.volumeColor
       font {
           pixelSize: 12
           bold: false
-          family: "IBM plex mono"
+          family: "quicksand medium"
       }
   }
 }

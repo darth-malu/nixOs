@@ -1,13 +1,47 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Widgets
-import Quickshell.Services.Mpris
+import Quickshell.Io
+//import Quickshell.Services.Mpris
 import qs.services
 import qs.customItems
 
 WrapperMouseArea {
     id: root
 		visible: MprisState.player != null
+
+    IpcHandler {
+        target: 'mpris'
+
+        function toggleMpris(): void {
+            root.visible = !root.visible;
+        }
+
+        function pauseAll() {
+            for (const player of Mpris.players.values) {
+                if (player.canPause)
+                    player.pause();
+            }
+        }
+
+        function togglePlaying() {
+            const player = MprisState.player;
+            if (player && player.canTogglePlaying)
+                player.togglePlaying();
+        }
+
+        function previous() {
+            const player = MprisState.player;
+            if (player && player.canGoPrevious)
+                player.previous();
+        }
+
+        function next() {
+            const player = MprisState.player;
+            if (player && player.canGoNext)
+                player.next();
+        }
+    }
     //Layout.fillHeight: true
     hoverEnabled: true
 
@@ -85,22 +119,23 @@ WrapperMouseArea {
 
         BarText {
             id: title
-            text: MprisState.player?.trackTitle // FIXME undefined 
-            baseColor: Qt.rgba(171 / 255, 141 / 255, 237 / 255, 0.78)
+            text: MprisState.player?.trackTitle
+            //baseColor: Qt.rgba(171 / 255, 141 / 255, 237 / 255, 0.78) //baseColor: '#ccccccff' , '#D1D2F9' (nice brightness)
+            baseColor: '#bd93f9'
             font {
                 pixelSize: 13
-                family: 'inter'
+                family: 'quicksand medium'
                 bold: false
             }
         }
 
         BarText {
-            id: volume
+            id: volumePlayer
             visible: root.showVolume
             text: Math.round(MprisState.player?.volume * 100)
             font {
-                pixelSize: 12
-                family: 'inter'
+                pixelSize: 13
+                family: 'lato'
                 bold: true
             }
             opacity: root.showVolume ? 1 : 0

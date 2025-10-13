@@ -10,17 +10,40 @@ import qs.customItems
 import Quickshell.Io
 
 ShellRoot {
-    Variants {
-        model: Quickshell.screens
+    //Variants {
+        //model: Quickshell.screens
+        Socket {
+            // Create and connect a Socket to the hyprland event socket.
+            // https://wiki.hyprland.org/IPC/
+            path: `${Quickshell.env("XDG_RUNTIME_DIR")}/hypr/${Quickshell.env("HYPRLAND_INSTANCE_SIGNATURE")}/.socket2.sock`
+            connected: true
+
+            parser: SplitParser {
+              // Regex that will return the newly focused monitor when it changes.
+              property var regex: new RegExp("focusedmon>>(.+),.*");
+
+              // Sent for every line read from the socket
+              onRead: msg => {
+                const match = regex.exec(msg);
+
+                if (match != null) {
+                  // Filter out the right screen from the list and update the panel.
+                  // match[1] will always be the monitor name captured by the regex.
+                  panel.screen = Quickshell.screens.filter(screen => screen.name == match[1])[0];
+                }
+              }
+            }
+          }
 
         PanelWindow {
-            id: bar
+            id: panel
             WlrLayershell.namespace: "tildeBar"
 
             // the screen from the screens list will be injected into this property
+            // ALl currently connected screens, updates as connected screens change. Reusing a window on every screen This creates an instance of your window once on every screen. As screens are added or removed your window will be created or destroyed on those screens. modelData
             required property var modelData
 
-            screen: modelData   // ALl currently connected screens, updates as connected screens change. Reusing a window on every screen This creates an instance of your window once on every screen. As screens are added or removed your window will be created or destroyed on those screens.
+            //screen: modelData   
             aboveWindows: false // true::
             color: "transparent"
             implicitHeight: 20
@@ -46,9 +69,8 @@ ShellRoot {
             }
 
             Rectangle {
-                id: panel
+                id: mainBar
                 anchors.fill: parent
-                //spacing: 0
                 radius: 16
                 color: 'transparent'
 
@@ -73,7 +95,7 @@ ShellRoot {
                   spacing: 4
                   anchors.right: parent.right
                   anchors.verticalCenter: parent.verticalCenter
-
+                  //modules
                   Pipewire {}
                   Resources {}
                   ClockWidget {}
@@ -81,5 +103,5 @@ ShellRoot {
               }
           }
         }
-    }
+    //}
 }

@@ -12,6 +12,7 @@
 
 ** nixpkgs
 #+begin_src nix :tangle flake.nix
+    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 #+end_src
@@ -27,7 +28,6 @@ https://nixos.wiki/wiki/Nix_channels
 
 ** quickshell 🖥
 #+begin_src nix :tangle flake.nix
-    # add ?ref=<tag> to track a tag
     quickshell = {
       # add ?ref=<tag> to track a tag
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";

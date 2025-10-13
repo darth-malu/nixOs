@@ -6,13 +6,12 @@
       "col.active_border" = "rgba(00FFF5aa)";
       gaps_in = 6; # NOTE: space essential for gaps script
       gaps_out = 12;
-      #gaps_in = 6;
-      #gaps_out = 12;
       border_size = 1;
       resize_on_border = true;
+      resize_corner = 3; # 0:: 1-4 clockwise
       hover_icon_on_border = true;
       layout = "dwindle";
-      allow_tearing = true;
+      allow_tearing = true; # false:: - alternatively use immediate rule
       no_border_on_floating = true;
       no_focus_fallback = true; # false, will not fall back to the next available window when moving focus in a direction where no window was found
       snap = {
@@ -38,7 +37,7 @@
       blur = {
         enabled = true;
         size = 2; # 2,,
-        passes = 3; # 2,,
+        passes = 3; # 1:: - more strain on gpu-help with higher blur sizes looking wrong
         xray = true; # if enabled, floating windows will ignore tiled windows in their blur. Only available if new_optimizations is true. Will reduce overhead on floating blur significantly.
         # vibrancy = 0.1696; #0.1696::, [0.0-1.0] saturation of blurred colours
         noise = 0.01;
@@ -73,28 +72,29 @@
     };
     misc = {
       # "col.splash" = "rgba(195,232,141,1.0)";
-      # animate_manual_resizes = true;
+      # animate_manual_resizes = true; # false::
       # disable_xdg_env_checks = false; #false::
       # font_family = "quicksand";
       # force_default_wallpaper = if osConfig.networking.hostName == "carthage" then "0" else "1"; #anime mascot wallpapers
       # middle_click_paste = if osConfig.networking.hostName == "carthage" then false else true;
-      # middle_click_paste = true;
-      # mouse_move_focuses_monitor = true; #true::
+      mouse_move_focuses_monitor = true; # true::NOTE important for quickshell focus to work proper
+      allow_session_lock_restore = true; # NOTE new
       # splash_font_family = "VictorMono Nerd Font"; # FIXME not working lol ofcourse
-      #background_colur = 0x111111;
       #disable_splash_rendering = true
       #initial_workspace_tracking = 1; #0, 1::(single-shot), 2 -persistent/children
-      #mouse_move_enables_dpms = true
       close_special_on_empty = true;
       disable_hyprland_logo = true; # wallpaper + logo lol
+      #background_colur = 0x111111; # with logo disabled
       focus_on_activate = true; # solves rofi issue lol # focus apps that request to be focused(activate request)
+      initial_workspace_tracking = true; # NOTE new
       font_family = "JetBrainsMono Nerd Font";
       force_default_wallpaper = 2; # -1 random, 2 (anime), 0/1 - disable anime
       key_press_enables_dpms = true; # false:: #wakes monitor if key pressed
+      # mouse_move_enables_dpms = true;
       layers_hog_keyboard_focus = true; # keyboard interactive layers keep focus on mouse move, fix bittorrent etc pop ups
       new_window_takes_over_fullscreen = 2; # 2 - unfullscreen, 1 -takes over, -nothing/staybehind -0
-      vfr = if osConfig.networking.hostName == "carthage" then true else false; # true:: recommend leave on# lower the amount of sent frames when nothing is happening on-screen. battery
-      vrr = if osConfig.networking.hostName == "carthage" then 1 else 0; # 1 -on,2 -fullscreen # adaptive sync
+      vrr = if osConfig.networking.hostName == "carthage" then 3 else 0; # 1 -on,2 -fullscreen # adaptive sync
+      # vfr = true;::
     };
     cursor = {
       # warp_back_after_non_mouse_input = true; # Warp the cursor back to where it was after using a non-mouse input to move it, and then returning back to mouse.
@@ -103,13 +103,23 @@
       #warp_on_change_workspace = true; # cursor to last focused window
       enable_hyprcursor = true;
       hide_on_key_press = true;
-      no_warps = true;
-      sync_gsettings_theme = true; # true::
+      no_warps = true; # false:: focusing, keybinds etc - dont warp cursor
+      # warp_back_after_non_mouse_input = true; # false:: NOTE new
+      # sync_gsettings_theme = true; # true::
+      default_monitor = "HDMI-A-1"; # NOTE new
+    };
+
+    ecosystem = {
+      no_donation_nag = true;
+      # enforce_permissions = true; # false::
     };
 
     binds = {
       workspace_center_on = 1; # Whether switching workspaces should center the cursor on the workspace (0) or on the last active window for that workspace (1)
-      workspace_back_and_forth = true;
+      workspace_back_and_forth = true; # false::
+      hide_special_on_workspace_change = true; # false::
+      allow_workspace_cycles = true; # false::           # NOTE new
+      # disable_keybind_grabbing             # eg vm prevent shortcircuit keybinds global
     };
 
     animations = {
@@ -125,7 +135,7 @@
         "easeInOutQuad,0.65, 0, 0.35, 1"
       ];
       # first_launch_animation = false;
-      workspace_wraparound = true;
+      workspace_wraparound = true; # false::
       animation = [
         "windows, 1, 2, easeInOutQuad, popin"
         "workspaces, 1, 3, easeInOutQuad, slide"

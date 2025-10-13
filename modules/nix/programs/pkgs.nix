@@ -22,12 +22,13 @@
       # package = pkgs.gpu-screen-recorder-gtk;
     };
     ccache = {
-      enable = false;
-      # packageNames = [
-      #   "wxGTK32"
-      #   "ffmpeg"
-      #   "libav_all"
-      # ];
+      enable = true;
+      packageNames = [
+        # "wxGTK32"
+        # "ffmpeg"
+        # "nuitka"
+        # "libav_all"
+      ];
       owner = "root";
     };
   };

@@ -19,6 +19,7 @@
   };
   home.sessionPath = [
     "$HOME/.emacs.d/bin"
+    "$HOME/.code/PySide6/youtubr/dist"
   ];
 
   # UWSM environment

@@ -2,12 +2,12 @@
   description = "Kenyan Tinkerer makes a flake -- 🫥";
   inputs = {
 
+    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     yazi.url = "github:sxyazi/yazi";
 
-    # add ?ref=<tag> to track a tag
     quickshell = {
       # add ?ref=<tag> to track a tag
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";

@@ -8,10 +8,8 @@ Scope {
   id: root
   property bool shouldShowOsd: false
 
-  // Bind the pipewire node so its volume will be tracked
-  PwObjectTracker {
-    objects: [ Pipewire.defaultAudioSink ]
-  }
+  // Bind the pipewire node so its properties eg.volume will be tracked
+  PwObjectTracker {objects: [ Pipewire.defaultAudioSink ]}
 
   Connections {
     target: Pipewire.defaultAudioSink?.audio
@@ -64,10 +62,8 @@ Scope {
 
           IconImage {
             implicitSize: 17
-            /* source: Quickshell.iconPath("audio-volume-high-symbolic") */
             source: "root:assets/speaker/icons8-speaker-30-4.png"
             asynchronous: true
-            //anchors.verticalCenter: parent.verticalCenter
           }
 
           Rectangle {//outer
@@ -75,16 +71,12 @@ Scope {
             implicitHeight: 4
             radius: 20
             color: "#80000000"
-              Rectangle {//inner - white  (current volume)
-                anchors {
-                  left: parent.left
-                  top: parent.top
-                  bottom: parent.bottom
-                  /* verticalCenter: parent.verticalCenter */
-                }
-                implicitWidth: parent.width * (Pipewire.defaultAudioSink?.audio.volume ?? 0)
-                radius: parent.radius
-                color: Qt.rgba(171 / 255, 141 / 255, 237 / 255, 0.98)
+            Rectangle {//inner - white  (current volume)
+              anchors {left: parent.left;top: parent.top; bottom: parent.bottom}
+              implicitWidth: parent.width * (Pipewire.defaultAudioSink?.audio.volume ?? 0)
+              radius: parent.radius
+              //color: Qt.rgba(171 / 255, 141 / 255, 237 / 255, 0.98)
+                color: '#bd93f9'
             }
           }
         }

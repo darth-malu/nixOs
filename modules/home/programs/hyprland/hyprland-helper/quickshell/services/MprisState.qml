@@ -65,33 +65,4 @@ Singleton {
             }
         }
     }
-
-    IpcHandler {
-        target: "mpris"
-
-        function pauseAll() {
-            for (const player of Mpris.players.values) {
-                if (player.canPause)
-                    player.pause();
-            }
-        }
-
-        function togglePlaying() {
-            const player = root.player;
-            if (player && player.canTogglePlaying)
-                player.togglePlaying();
-        }
-
-        function previous() {
-            const player = root.player;
-            if (player && player.canGoPrevious)
-                player.previous();
-        }
-
-        function next() {
-            const player = root.player;
-            if (player && player.canGoNext)
-                player.next();
-        }
-    }
 }

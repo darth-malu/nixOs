@@ -12,12 +12,12 @@ Scope {
   PwObjectTracker {objects: [ Pipewire.defaultAudioSink ]}
 
   Connections {
-    target: Pipewire.defaultAudioSink?.audio
+      target: Pipewire.defaultAudioSink?.audio ?? null // NOTE: patch work
 
-    function onVolumeChanged() {
-      root.shouldShowOsd = true;
-      hideTimer.restart();
-    }
+      function onVolumeChanged() {
+          root.shouldShowOsd = true;
+        hideTimer.restart();
+      }
   }
 
   Timer {
@@ -26,15 +26,12 @@ Scope {
     onTriggered: root.shouldShowOsd = false
   }
 
-  // The OSD window will be created and destroyed based on shouldShowOsd.
-  // PanelWindow.visible could be set instead of using a loader, but using
-  // a loader will reduce the memory overhead when the window isn't open.
+  // PanelWindow.visible could be set instead of using a loader, but using a loader will reduce the memory overhead when the window isn't open.
   LazyLoader {
     active: root.shouldShowOsd
 
     PanelWindow {
-      // Since the panel's screen is unset, it will be picked by the compositor
-      // when the window is created. Most compositors pick the current active monitor.
+      // Since the panel's screen is unset, it will be picked by the compositor when the window is created. Most compositors pick the current active monitor.
 
       anchors.bottom: true
       margins.bottom: screen.height / 5

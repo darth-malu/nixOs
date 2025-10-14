@@ -7,7 +7,7 @@
   ];
 
   config = {
-    emacs-mail.enable = false;
+    emacs-mail.enable = true;
 
     programs.emacs = {
       enable = true;
@@ -20,10 +20,8 @@
 
     services.emacs = {
       enable = true; # emacs daemon
-      # whether to launch Emacs service with the systemd user session. "graphical" -> graphical-session.target ( if true -> default.target::)
-      # startWithUserSession = if osConfig.networking.hostName == "tangier" then false else true;
-      startWithUserSession = if osConfig.networking.hostName == "tangier" then false else true;
-      # defaultEditor = false; # $EDITOR
+      startWithUserSession = true; # launch with systemd user session. "graphical" -> graphical-session.target ( if true -> default.target::)
+      # defaultEditor = false;
       socketActivation.enable = true;
       client = {
         # Whether to enable systemd socket activation for the Emacs service. # TODO see if conflicting with startWithUSerSession

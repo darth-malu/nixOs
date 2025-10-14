@@ -69,14 +69,14 @@ https://nixos.wiki/wiki/Nix_channels
 #+end_src
 
 ** nvf - neovim
-#+begin_src nix :tangle no
+#+begin_src nix :tangle flake.nix
     # obsidian-nvim.url = "github:epwalsh/obsidian.nvim";
     # Required, nvf works best and only directly supports flakes
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs"; # This is safe to do as nvf does not depend on a binary cache
       # Optionally, you can also override individual plugins
-      # inputs.obsidian-nvim.follows = "obsidian-nvim"; # <- this will use the obsidian-nvim from your inputs
+      inputs.obsidian-nvim.follows = "obsidian-nvim"; # <- this will use the obsidian-nvim from your inputs
     };
 #+end_src
 
@@ -170,7 +170,7 @@ https://nixos.wiki/wiki/Nix_channels
   outputs = inputs@{nixpkgs, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 #+end_src
 ** let..in
-*** misc
+*** start
 #+begin_src nix :tangle flake.nix
 let
   system = "x86_64-linux"; # system = builtins.currentSystem;??
@@ -211,17 +211,40 @@ let
 
 *** misc
 #+begin_src nix :tangle flake.nix
-  };
-  home = inputs.home-manager;
+};
+ home = inputs.home-manager;
 
-  # pkgs = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
-  pkgs = import nixpkgs {
-    inherit  system;
-    inherit config;
+ # pkgs = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
+ pkgs = import nixpkgs {
+   inherit  system;
+   inherit config;
+ };
+#+end_src
+
+*** nvf stuff
+#+begin_src nix :tangle no
+configModule = {
+  # Add any custom options (and do feel free to upstream them!)
+  # options = { ... };
+
+  config.vim = {
+    theme.enable = true;
+    # and more options as you see fit...
   };
-  in
-  {
-    # packages.${system}.my-neovim = neovimConf.neovim; # NVF
+};
+
+customNeovim = nvf.lib.neovimConfiguration {
+  inherit pkgs;
+  modules = [configModule];
+};
+#+end_src
+
+*** end of in
+#+begin_src nix :tangle flake.nix
+in
+{
+  # This will make the package available as a flake output under 'packages'
+  # packages.${system}.my-neovim = customNeovim.neovim;
 #+end_src
 
 ** Nix configurations
@@ -251,6 +274,11 @@ modules = [
    inputs.winapps.packages."${system}".winapps-launcher # optional
  ];
 }
+#+end_src
+
+***** NVF - nixos module
+#+begin_src nix :tangle flake.nix
+inputs.nvf.nixosModules.default # <- this imports the NixOS module that provides the options
 #+end_src
 
 ***** plasma-manger

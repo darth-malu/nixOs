@@ -19,7 +19,7 @@ Singleton {
         let backup = (lastPlayer && lastPlayer.identity !== "mpv" && lastPlayer.desktopEntry !== "mpv")
             ? lastPlayer : null;
         for (let player of Mpris.players.values) {
-            // Skip mpv players
+
             if (player.identity === "mpv" || player.desktopEntry === "mpv") continue;
 
             if (player.isPlaying) {

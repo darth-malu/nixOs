@@ -4,7 +4,8 @@
     "f9" = "launch_tab --title yazi-spawn yazi";
     "f10" = "launch_tab nyaa";
     "f12" = "launch_tab ncmpcpp";
-    # "SUPER + f12" = "launch_tab taskwarrior-tui";
+    # "f1" = "launch_tab btop";
+    "SUPER + f1" = "launch_tab btop";
     "f11" = "launch_window --location vsplit ncmpcpp";
     # "f5" = "new_window_with_cwd";
   };

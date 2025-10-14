@@ -12,7 +12,7 @@
     ./gaming
   ];
 
-  qemuNix.enable = if config.networking.hostName == "carthage" then false else false;
+  qemuNix.enable = true;
 
   steamy.enable = if config.networking.hostName == "carthage" then true else false;
 

@@ -24,6 +24,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # obsidian-nvim.url = "github:epwalsh/obsidian.nvim";
+    # Required, nvf works best and only directly supports flakes
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs"; # This is safe to do as nvf does not depend on a binary cache
+      # Optionally, you can also override individual plugins
+      inputs.obsidian-nvim.follows = "obsidian-nvim"; # <- this will use the obsidian-nvim from your inputs
+    };
+
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref={version}";
@@ -127,17 +136,19 @@ let
       "libxml2-2.13.8" # for cisco?
     ];
 
-  };
-  home = inputs.home-manager;
+};
+ home = inputs.home-manager;
 
-  # pkgs = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
-  pkgs = import nixpkgs {
-    inherit  system;
-    inherit config;
-  };
-  in
-  {
-    # packages.${system}.my-neovim = neovimConf.neovim; # NVF
+ # pkgs = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
+ pkgs = import nixpkgs {
+   inherit  system;
+   inherit config;
+ };
+
+in
+{
+  # This will make the package available as a flake output under 'packages'
+  # packages.${system}.my-neovim = customNeovim.neovim;
 
 nixosConfigurations = {
   carthage = nixpkgs.lib.nixosSystem {
@@ -154,6 +165,8 @@ modules = [
    inputs.winapps.packages."${system}".winapps-launcher # optional
  ];
 }
+
+inputs.nvf.nixosModules.default # <- this imports the NixOS module that provides the options
 
   home.nixosModules.home-manager {
     home-manager = {

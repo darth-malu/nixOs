@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Widgets
 import Quickshell.Io
-//import Quickshell.Services.Mpris
 import qs.services
 import qs.customItems
 
@@ -10,38 +9,6 @@ WrapperMouseArea {
     id: root
 		visible: MprisState.player != null
 
-    IpcHandler {
-        target: 'mpris'
-
-        function toggleMpris(): void {
-            root.visible = !root.visible;
-        }
-
-        function pauseAll() {
-            for (const player of Mpris.players.values) {
-                if (player.canPause)
-                    player.pause();
-            }
-        }
-
-        function togglePlaying() {
-            const player = MprisState.player;
-            if (player && player.canTogglePlaying)
-                player.togglePlaying();
-        }
-
-        function previous() {
-            const player = MprisState.player;
-            if (player && player.canGoPrevious)
-                player.previous();
-        }
-
-        function next() {
-            const player = MprisState.player;
-            if (player && player.canGoNext)
-                player.next();
-        }
-    }
     //Layout.fillHeight: true
     hoverEnabled: true
 
@@ -50,10 +17,13 @@ WrapperMouseArea {
     acceptedButtons: Qt.RightButton | Qt.LeftButton | Qt.MiddleButton | Qt.ForwardButton | Qt.BackButton
 
     property bool showVolume: false
-    property bool showPlayer: MprisState.player && 
-                              MprisState.player.isPlaying &&
-                              MprisState.player.identity !== "default" &&
-                              !(MprisState.player.trackTitle || "").includes("default")
+
+    property bool showPlayer: !!(
+        MprisState.player?.isPlaying &&
+        MprisState.player?.trackTitle !== "default" &&
+        !(MprisState.player?.trackTitle || "").includes("default")
+    )
+
     Timer {
         id: hideVolumeTimer
         interval: 1000
@@ -69,15 +39,15 @@ WrapperMouseArea {
     onClicked: mouse => {
         mouse.accepted = true // Prevent background click
         if (mouse.button == Qt.LeftButton) {
-            MprisState.player.togglePlaying()
+            MprisState.player?.togglePlaying()
         } else if (mouse.button == Qt.RightButton) {
-            MprisState.player.next()
+            MprisState.player?.next()
         } else if (mouse.button == Qt.MiddleButton) {
-            MprisState.player.raise()
+            MprisState.player?.raise()
         } else if (mouse.button == Qt.ForwardButton) {
-            MprisState.player.next() 
+            MprisState.player?.next() 
         } else if (mouse.button == Qt.BackButton) {
-            MprisState.player.previous() 
+            MprisState.player?.previous() 
         }
     }
 
@@ -102,7 +72,7 @@ WrapperMouseArea {
     RowLayout {
         visible: showPlayer
 
-        Layout.fillHeight: true
+        /* Layout.fillHeight: true */
 
         ClippingWrapperRectangle {
             radius: height / 2 // 6
@@ -119,26 +89,19 @@ WrapperMouseArea {
 
         BarText {
             id: title
-            text: MprisState.player?.trackTitle
+            text: MprisState.player?.trackTitle || ""
             //baseColor: Qt.rgba(171 / 255, 141 / 255, 237 / 255, 0.78) //baseColor: '#ccccccff' , '#D1D2F9' (nice brightness)
             baseColor: '#bd93f9'
-            font {
-                pixelSize: 13
-                family: 'quicksand medium'
-                bold: false
-            }
+            font {pixelSize: 13;family: 'quicksand medium';bold: false}
         }
 
         BarText {
             id: volumePlayer
             visible: root.showVolume
-            text: Math.round(MprisState.player?.volume * 100)
-            font {
-                pixelSize: 13
-                family: 'lato'
-                bold: true
-            }
+            text: Math.round(MprisState.player?.volume * 100) ?? ""
+            font {pixelSize: 13;family: 'lato';bold: false}
             opacity: root.showVolume ? 1 : 0
+            color: '#ff79c6'
             Behavior on opacity { NumberAnimation { duration: 220 } }
         }
 

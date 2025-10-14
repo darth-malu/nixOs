@@ -3,7 +3,7 @@
   programs.vim = {
     enable = true;
     defaultEditor = true;
-    packageConfigurable = pkgs.vim; # The vim-full package to use 😀
+    packageConfigurable = pkgs.vim-full; # The vim-full package to use 😀
     # package = pkgs.vim;
     plugins = with pkgs.vimPlugins; [
       # dracula-vim

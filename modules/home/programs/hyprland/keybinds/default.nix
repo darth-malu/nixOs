@@ -63,7 +63,7 @@ bind =
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
 
- "$mod $sl, T, execr, python '/home/malu/.code/PySide6/youtubr/main.py'"
+ "$mod $sl, T, exec, youtubr"
 
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
@@ -306,6 +306,7 @@ bindel =
     ", F6, execr, qs ipc call mpris previous"
     ", F7, execr, pause_play"
     "$mod, F7, execr, qs ipc call mpris toggleMpris"
+    "$mod $sl, F7, execr, qs ipc call mpris raise"
     ] else []);
 
 binde =

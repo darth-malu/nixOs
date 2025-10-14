@@ -91,7 +91,7 @@ in
     ))
 
     cmake # vterm #FIXME make still not found
-    # gnumake # for compiling vterm
+    gnumake # for compiling vterm
 
     ## Dictionary
     (aspellWithDicts (

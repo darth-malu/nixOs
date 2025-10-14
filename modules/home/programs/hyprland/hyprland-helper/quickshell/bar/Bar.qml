@@ -38,13 +38,6 @@ ShellRoot {
                 }
             }
 
-            IpcHandler {
-                target: "bar"
-                function toggle_bar(): void {
-                    bar.visible = !bar.visible;
-                }
-            }
-
             Rectangle {
                 id: panel
                 anchors.fill: parent
@@ -60,12 +53,10 @@ ShellRoot {
                     WindowTitle {}
                 }
 
-                RowLayout {
-                  id: centerBlock
-                  anchors.centerIn: parent
-                  Rectangle {
-                      Mpris {}
-                  }
+                Rectangle {
+                    id: mpris
+                    anchors.centerIn: parent
+                    Mpris {}
                 }
 
                 RowLayout {

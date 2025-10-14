@@ -68,6 +68,7 @@ ShellRoot {
                   Pipewire {}
                   Resources {}
                   ClockWidget {}
+                  Battery {}
                   SystemTrayy {}
               }
           }

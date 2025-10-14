@@ -1,31 +1,16 @@
-import QtQuick
-import Quickshell.Io
-import qs.customItems
 import Quickshell.Services.UPower
+import qs.customItems
 
 BarBlock {
+    id: batBlock
+    visible: Upower.devices.values.ready && Upower.devices.values.isPresent
 
-  property string battery
+    readonly property bool isBatteryPresent: Upower.onBattery
+    property real batLevel: Upower.devices.values.percentage // charge level as %
 
-  content: BarText {
-    symbolText: battery
-    color: 'red'
-  }
-
-  Process {
-    id: batteryProc
-    command: ["batteryQS"]
-    running: true
-
-    stdout: SplitParser {
-      onRead: data => battery = data
+    content: BarText {
+        id: batText
+        color: 'pink'
+        symbolText: batLevel 
     }
-  }
-
-  Timer {
-    interval: 1000
-    running: true
-    repeat: true
-    onTriggered: batteryProc.running = true
-  }
 }

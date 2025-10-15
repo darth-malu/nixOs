@@ -143,6 +143,9 @@ bind =
 
 # "$mod $cl, C, focuswindow, class:^(google-chrome)$"
 "$mod $cl, c, focuswindow, class:^(chromium-browser)$"
+"$mod , g, exec, chromium chatgpt.com"
+
+"$mod $cl, f, focuswindow, class:^(firefox)$"
 
 "$mod $cl, Return, focuswindow, class:^(kitty)$"
 

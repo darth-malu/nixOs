@@ -247,6 +247,11 @@ see hyprswitch:
 #+begin_src nix :tangle default.nix
 # "$mod $cl, C, focuswindow, class:^(google-chrome)$"
 "$mod $cl, c, focuswindow, class:^(chromium-browser)$"
+"$mod , g, exec, chromium chatgpt.com"
+#+end_src
+**** firefox
+#+begin_src nix :tangle default.nix
+"$mod $cl, f, focuswindow, class:^(firefox)$"
 #+end_src
 **** kitty
 #+begin_src nix :tangle default.nix

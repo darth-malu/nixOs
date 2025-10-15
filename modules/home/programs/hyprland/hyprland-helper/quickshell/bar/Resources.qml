@@ -21,9 +21,9 @@ Rectangle {
     property int symbolSize: 10
 
     property color valueColor: 'white'
-    property color cpuColor: cpuText.text > 80 ? "#F88DAD" : cpuText.text > 50 ? "#7CE577" : '#ccccccff'
+    property color cpuColor: cpuText.text > 80 ? "#EEFC57" : cpuText.text > 50 ? "#7CE577" : '#C6CAED'
 
-    property color memoryColor: '#ccccccff'
+    property color memoryColor: memoryText.text >  90 ?  "#7CE577" : '#ccccccff'
     property string textColor: "lightgray"
 
     RowLayout {
@@ -61,9 +61,7 @@ Rectangle {
             }
             BarText {
                 id: cpuText
-                //color: 'white'
                 font { pointSize: root.textSize; family: root.textFont; bold: root.textBold}
-                //text: ResourcesState.cpu_percent + "%"
                 text: ResourcesState.cpu_percent
                 Layout.alignment: Qt.AlignCenter
                 color: root.cpuColor

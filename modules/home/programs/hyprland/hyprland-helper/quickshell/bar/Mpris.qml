@@ -54,17 +54,14 @@ WrapperMouseArea {
     onWheel: (event) => {
         if (!MprisState.player?.isPlaying)
             return
-        // Convert current volume (0.0–1.0) to percent
-        let vol = MprisState.player.volume * 100
 
-        // Scroll up increases, down decreases
-        vol += event.angleDelta.y > 0 ? 4 : -4
+        let vol = MprisState.player.volume * 100 // Convert current volume (0.0–1.0) to percent
 
-        // Clamp between 0% and 100%
-        vol = Math.max(0, Math.min(vol, 100))
+        vol += event.angleDelta.y > 0 ? 4 : -4 // Scroll up increases, down decreases
 
-        // Apply back to player
-        MprisState.player.volume = vol / 100
+        vol = Math.max(0, Math.min(vol, 100)) // Clamp between 0% and 100%
+
+        MprisState.player.volume = vol / 100 // Apply back to player
 
         root.showVolume = true
     }

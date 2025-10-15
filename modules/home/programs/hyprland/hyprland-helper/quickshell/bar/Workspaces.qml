@@ -20,7 +20,11 @@ Repeater {
 
         implicitHeight: 20
 
-        radius: 10
+        radius: height / 2
+        /* topLeftRadius: 6 */
+        /* bottomRightRadius: 6 */
+        /* topRightRadius: 2 */
+        /* bottomLeftRadius: 2 */
 
         color: (modelData.active && isFocusedMonitor) ? "#b298dc" : "transparent" // Green -062726, 062726, 6247AA
         //color: modelData.active ? "#b298dc" :  'transparent'
@@ -31,7 +35,7 @@ Repeater {
             id: numbers
             text: modelData.id
             anchors.centerIn: parent
-            anchors.verticalCenter: parent.verticalCenter
+            //anchors.verticalCenter: parent.verticalCenter
             color: isFocusedMonitor ?  (modelData.active ? '#5c0099' : Qt.rgba(171 / 255, 141 / 255, 237 / 255, 1)) : '#5E5768'// Green -062726, 062726, 6247AA
             //color: modelData.active ? '#5c0099' : Qt.rgba(171 / 255, 141 / 255, 237 / 255, 1) 
             font.pixelSize: 13

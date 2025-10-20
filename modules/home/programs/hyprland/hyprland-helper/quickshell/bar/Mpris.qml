@@ -6,7 +6,7 @@ import qs.services
 import qs.customItems
 
 WrapperMouseArea {
-    id: root
+    id: mprisRoot
 		visible: MprisState.player != null
 
     //Layout.fillHeight: true
@@ -29,11 +29,14 @@ WrapperMouseArea {
         interval: 1000
         repeat: false
         running: false
-        onTriggered: root.showVolume = false
+        onTriggered: mprisRoot.showVolume = false
     }
 
-    onExited: () => {
-        hideVolumeTimer.restart()
+    onContainsMouseChanged: {
+        if (!containsMouse)
+            hideVolumeTimer.restart()
+        else
+            hideVolumeTimer.stop()
     }
 
     onClicked: mouse => {
@@ -63,13 +66,11 @@ WrapperMouseArea {
 
         MprisState.player.volume = vol / 100 // Apply back to player
 
-        root.showVolume = true
+        mprisRoot.showVolume = true
     }
 
     RowLayout {
         visible: showPlayer
-
-        /* Layout.fillHeight: true */
 
         ClippingWrapperRectangle {
             radius: height / 2 // 6
@@ -94,12 +95,13 @@ WrapperMouseArea {
 
         BarText {
             id: volumePlayer
-            visible: root.showVolume
+            visible: mprisRoot.showVolume
             text: Math.round(MprisState.player?.volume * 100) ?? ""
             font {pixelSize: 13;family: 'lato';bold: false}
-            opacity: root.showVolume ? 1 : 0
+            //opacity: mprisRoot.showVolume ? 1 : 0
+            //opacity: mprisRoot.containsMouse ? 1 : 0
             color: '#ff79c6'
-            Behavior on opacity { NumberAnimation { duration: 220 } }
+            //Behavior on opacity { NumberAnimation { duration: 460 } }
         }
 
     }

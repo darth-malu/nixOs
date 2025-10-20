@@ -61,10 +61,9 @@ in
       python-pkgs: with python-pkgs; [
         jupyter-console # jupyter-core jupyterlab-server
         pyside6
-        # pytube
         pytubefix
         pandas
-        # moviepy
+        moviepy
         # numpy
         # seaborn
         # matplotlib
@@ -91,7 +90,7 @@ in
     ))
 
     cmake # vterm #FIXME make still not found
-    gnumake # for compiling vterm
+    # gnumake # for compiling vterm
 
     ## Dictionary
     (aspellWithDicts (

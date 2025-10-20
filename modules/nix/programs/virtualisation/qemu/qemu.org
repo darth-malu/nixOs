@@ -11,8 +11,10 @@
   };
 
   config = lib.mkIf config.qemuNix.enable {
-    environment.systemPackages = [
-      pkgs.qemu
+    environment.systemPackages = with pkgs; [
+      qemu
+      virtiofsd
+      virtio-win
     ];
 
     # virt manager

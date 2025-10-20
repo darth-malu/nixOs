@@ -121,6 +121,7 @@
       # ymuse # rudimentary
       # youtube-tui # https://siriusmart.github.io/youtube-tui/
       audacity
+      blanket
       easyeffects
       mpc-cli
       nautilus

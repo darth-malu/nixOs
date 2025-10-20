@@ -1,5 +1,5 @@
 import Quickshell // PanelWindow
-import QtQuick // Text
+import QtQuick // Text, Rectangle
 import Quickshell.Hyprland
 import QtQuick.Layouts
 import "./time"
@@ -27,6 +27,14 @@ ShellRoot {
             margins { left: 12; right: 12 }
             anchors { top: true; left: true; right: true }
 
+            IpcHandler {
+                target: 'bar'
+
+                function toggleBar(): void {
+                    bar.visible = !bar.visible;
+                }
+            }
+
             MouseArea {
                 anchors.fill: parent
                 onWheel: wheel => {
@@ -50,7 +58,8 @@ ShellRoot {
                     spacing: 0.4
                     anchors.left:parent.left
                     Workspaces {}
-                    WindowTitle {}
+                    Window {}
+                    //WindowTitle {}
                 }
 
                 Rectangle {
@@ -65,6 +74,7 @@ ShellRoot {
                   anchors.right: parent.right
                   anchors.verticalCenter: parent.verticalCenter
 
+                  //Netspeed {}
                   Pipewire {}
                   Resources {}
                   ClockWidget {}

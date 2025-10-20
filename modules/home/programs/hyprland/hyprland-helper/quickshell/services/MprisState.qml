@@ -20,11 +20,16 @@ Singleton {
             ? lastPlayer : null;
         for (let player of Mpris.players.values) {
 
-            if (player.identity === "mpv" || player.desktopEntry === "mpv") continue;
+            //if (player.identity === "mpv" || player.desktopEntry === "mpv") continue;
+
+            const ignored = ["mpv"];
+
+            if (ignored.includes(player?.identity) || ignored.includes(player?.desktopEntry))
+                continue;
 
             if (player.isPlaying) {
                 backup = player;
-                if (player.trackArtist !== "")
+                if (player?.trackArtist && player.trackArtist !== "")
                     leader = player;
             }
         }
@@ -33,8 +38,7 @@ Singleton {
     }
 
     function handlePlayerChanged(player: MprisPlayer) {
-        if (!player.isPlaying)
-            return;
+        if (!player.isPlaying) return;
 
         players.delete(player);
         players.add(player);

@@ -50,32 +50,29 @@
   # };
 
   tabs = {
-    active = {
-      fg = "black";
-      bg = "lightblue";
-    };
     inactive = {
-      fg = "white";
-      bg = "darkgray";
+      fg = "#e4e4e4";
+      bg = "#21433E";
+      # bold = true;
     };
+    active = {
+      fg = "#e4e4e4";
+      bg = "#563d7c";
+    };
+    # sep_inner = {
+    #   open = "";
+    #   close = "";
+    # };
+    # sep_outer = {
+    #   open = "";
+    #   close = "";
+    # };
   };
 
   mgr = {
-    tab_active = {
-      fg = "#e4e4e4";
-      bg = "#166F63";
-    };
-    tab_inactive = {
-      fg = "#e4e4e4";
-      bg = "red"; # FIXME not working
-    };
-    count_copied = {
-      fg = "#e4e4e4";
-      bg = "red"; # FIXME not working
-    };
-    count_selected = {
-      fg = "#e4e4e4";
-      bg = "red"; # FIXME not working
+    cwd = {
+      fg = "#563d7c";
+      bg = "reset";
     };
   };
 
@@ -84,7 +81,6 @@
       fg = "#e4e4e4";
       bg = "#21433E";
       bold = true;
-      #21433E
     };
     normal_alt = {
       fg = "#e4e4e4";

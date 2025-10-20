@@ -35,7 +35,7 @@ in
         mountOnMedia = true;
       };
       power-profiles-daemon.enable = true;
-      upower.enable = lib.mkIf (config.networking.hostName == "tangier") true;
+      upower.enable = true;
       blueman.enable = true; # TODO test if works
     };
 

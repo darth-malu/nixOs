@@ -1,5 +1,5 @@
-import QtQuick
-import QtMultimedia
+//import QtQuick
+// import QtMultimedia
 import Quickshell.Services.UPower
 import qs.customItems
 
@@ -13,10 +13,10 @@ BarBlock {
 
     property real batLevel: Math.floor(UPower.displayDevice.percentage * 100) // charge level as %
 
-    SoundEffect {
-        id: beep
-        source: Qt.resolvedUrl("beep.wav")
-    }
+    /* SoundEffect { */
+    /*     id: beep */
+    /*     source: Qt.resolvedUrl("beep.wav") */
+    /* } */
 
     content: BarText {
         id: batText

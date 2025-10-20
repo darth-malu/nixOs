@@ -28,8 +28,8 @@
       };
       bar = {
         width = 10; # Width of percentage bars
-        charElapsed = "■"; # Character for elapsed portion
-        charTotal = "-"; # Character for total portion
+        char.elapsed = "■"; # Character for elapsed portion
+        char.total = "-"; # Character for total portion
       };
       percent = {
         type = 9; # 1=number, 2=bar, 3=both, 9=colored number

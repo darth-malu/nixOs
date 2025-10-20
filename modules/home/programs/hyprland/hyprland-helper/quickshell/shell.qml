@@ -10,6 +10,6 @@ import qs.notBar
       //FollowBar {}   //Any qml file that starts with an uppercase can be referenced this way
       Bar {}
       Volume {}
-      IpcHandler {}
+      //IpcHandler {}
   }
 //}

@@ -54,7 +54,6 @@ Rectangle {
             spacing: 6
             BarText {
                 id: cpuIcon
-                //color: 'white'
                 font.pointSize: root.symbolSize
                 symbolText: "🤖"
                 Layout.alignment: Qt.AlignCenter
@@ -65,6 +64,7 @@ Rectangle {
                 text: ResourcesState.cpu_percent
                 Layout.alignment: Qt.AlignCenter
                 color: root.cpuColor
+                Behavior on color { ColorAnimation { duration: 200 } } 
             }
         }
 

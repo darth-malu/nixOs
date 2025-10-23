@@ -14,7 +14,7 @@ ShellRoot {
         model: Quickshell.screens
 
         PanelWindow {
-            id: bar
+            id: barr
             WlrLayershell.namespace: "tildeBar"
 
             // the screen from the screens list will be injected into this property
@@ -28,10 +28,10 @@ ShellRoot {
             anchors { top: true; left: true; right: true }
 
             IpcHandler {
-                target: 'bar'
+                target: "bar"
 
                 function toggleBar(): void {
-                    bar.visible = !bar.visible;
+                    barr.visible = !barr.visible;
                 }
             }
 
@@ -50,7 +50,7 @@ ShellRoot {
                 id: panel
                 anchors.fill: parent
                 //spacing: 0
-                radius: 16
+                //radius: 16
                 color: 'transparent'
 
                 RowLayout {
@@ -62,17 +62,13 @@ ShellRoot {
                     //WindowTitle {}
                 }
 
-                Rectangle {
-                    id: mpris
-                    anchors.centerIn: parent
-                    Mpris {}
-                }
+                Mpris {}
 
                 RowLayout {
                   id: rightBlock
                   spacing: 4
                   anchors.right: parent.right
-                  anchors.verticalCenter: parent.verticalCenter
+                  //anchors.verticalCenter: parent.verticalCenter
 
                   //Netspeed {}
                   Pipewire {}

@@ -59,20 +59,24 @@
       fg = "#e4e4e4";
       bg = "#563d7c";
     };
-    # sep_inner = {
-    #   open = "";
-    #   close = "";
-    # };
-    # sep_outer = {
-    #   open = "";
-    #   close = "";
-    # };
+    sep_inner = {
+      open = "";
+      close = "";
+    };
+    sep_outer = {
+      open = "";
+      close = "";
+    };
   };
 
   mgr = {
+    border = {
+      border_style = "reset";   # hidden?
+      border_symbol = " "; # "│"::
+    };
     cwd = {
       fg = "#563d7c";
-      bg = "reset";
+      # bg = "reset";
     };
   };
 

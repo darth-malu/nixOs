@@ -5,6 +5,11 @@
   ...
 }:
 {
+  home.packages = with pkgs; [
+    xdg-desktop-portal-termfilechooser
+    glow
+  ];
+
   programs.yazi = {
     enable = true;
     package = inputs.yazi.packages.${pkgs.system}.default;
@@ -13,8 +18,17 @@
     keymap = import ./keymap.nix;
     theme = import ./theme.nix;
     # initLua = ./init.lua;
-    shellWrapperName = "y"; # yy::
-    plugins = import ./plugins;
+    # shellWrapperName = "y"; # yy::
+    plugins = {
+      # Linked to: $XDG_CONFIG_HOME/yazi/plugins/<name>.yazi
+      "smart-tab" = ./plugins/smart-tab.yazi;
+      arrow = ./plugins/arrow.yazi;
+      inherit (pkgs.yaziPlugins) smart-paste;
+      inherit (pkgs.yaziPlugins) smart-enter;
+      inherit (pkgs.yaziPlugins) piper;
+      inherit (pkgs.yaziPlugins) wl-clipboard;
+      # inherit (pkgs.yaziPlugins) rsync;
+    };
     settings = {
       mgr = {
         layout = [
@@ -31,6 +45,19 @@
         show_hidden = false;
         show_symlink = true;
         scrolloff = 10;
+      };
+      plugin = {
+        prepend_previewers = [
+          {
+            name = "*.md";
+            run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
+          }
+          # {
+          #   name = "*/";
+          #   run = "piper -- lsd";
+          # }
+        ];
+
       };
       preview = {
         cache_dir = config.xdg.cacheHome;

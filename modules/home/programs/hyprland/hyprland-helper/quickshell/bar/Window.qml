@@ -1,21 +1,19 @@
 pragma Singleton
 import QtQuick
+import qs.customItems
 import Quickshell
 import Quickshell.Hyprland
 
 
 Singleton {
     Rectangle {
-      Text {
-          id: myText
-          property var acWindow: Hyprland.Toplevel
-          text: acWindow.title
-      }
-      implicitHeight: myText.height
-      implicitWidth: myText.weight
-    }
+      implicitWidth: 40
+      property var acWindow: Hyprland.Toplevel
 
-    Component.onCompleted: {
-      console.log("acWindow working?", acWindow?.title)
+      BarText {
+          id: myText
+          text: acWindow.title
+          color: 'white'
+      }
     }
 }

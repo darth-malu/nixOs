@@ -59,7 +59,7 @@
       # firebase-tools
       patchelf # TODO see useful nexx
       zlib
-      manim
+      # manim #FIXME failed
       socat
       # libgcc
       # nasm
@@ -100,7 +100,7 @@
       # chromium
       ungoogled-chromium
       telegram-desktop
-      discord
+      discord-ptb
       whatsapp-for-linux
       modem-manager-gui
       modemmanager # saves the day with no internet

@@ -224,7 +224,7 @@ bind =
   "$mod ,H, workspace,m-1"
   "$mod ,L, workspace,m+1"
 
-  "$mod ,Home,execr, qs ipc call bar toggle_bar"
+  "$mod ,Home,execr, qs ipc call bar toggleBar"
   "$mod ,End,execr, systemctl --user restart quickshell"
 
   "$mod $sl, semicolon, swapnext"
@@ -308,7 +308,7 @@ bindel =
     ", F8, execr, qs ipc call mpris next"
     ", F6, execr, qs ipc call mpris previous"
     ", F7, execr, pause_play"
-    "$mod, F7, execr, qs ipc call mpris toggleMpris"
+    "$mod, F7, execr, qs ipc call mprisTog toggleMpris"
     "$mod $sl, F7, execr, qs ipc call mpris raise"
     ] else []);
 

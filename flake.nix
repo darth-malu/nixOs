@@ -30,7 +30,7 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs"; # This is safe to do as nvf does not depend on a binary cache
       # Optionally, you can also override individual plugins
-      inputs.obsidian-nvim.follows = "obsidian-nvim"; # <- this will use the obsidian-nvim from your inputs
+      # inputs.obsidian-nvim.follows = "obsidian-nvim"; # <- this will use the obsidian-nvim from your inputs
     };
 
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -64,7 +64,7 @@
     #   };
     # };
 
-    hyprpaper = { # TODO: test if needed
+    hyprpaper = {
       url = "github:hyprwm/hyprpaper";
       inputs = {
         hyprgraphics.follows = "hyprland/hyprgraphics";
@@ -80,17 +80,17 @@
         inputs.hyprland.follows = "hyprland";
     };
 
-    hyprland-easymotion = {
-      url = "github:zakk4223/hyprland-easymotion";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # hyprland-easymotion = {
+    #   url = "github:zakk4223/hyprland-easymotion";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
 
-    Hyprspace = {
-      url = "github:KZDKM/Hyprspace";
+    # Hyprspace = {
+    #   url = "github:KZDKM/Hyprspace";
 
-      # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
-      inputs.hyprland.follows = "hyprland";
-    };
+    #   # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
+    #   inputs.hyprland.follows = "hyprland";
+    # };
 
     nyaa = {
       url = "github:Beastwick18/nyaa";
@@ -113,6 +113,7 @@ let
 
     allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
       "discord"
+      "discord-ptb"
       "unigine-heaven"
       "google-chrome"
       "bluemail"

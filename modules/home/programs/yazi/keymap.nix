@@ -23,7 +23,7 @@ mgr.keymap = [
   { on = [ "k" ]; run = "arrow -1"; desc = "Move cursor up"; }
   { on = [ "j" ]; run = "arrow 1";  desc = "Move cursor down"; }
   { on = [ "h" ]; run = "leave";    desc = "parent dir. go"; }
-  { on = [ "l" ]; run = "enter"; desc = "@darth Enter child dir."; }
+  { on = [ "l" ]; run = "enter";    desc = "@darth Enter child dir."; }
 
   { on = [ "<Left>" ];  run = "leave";    desc = "Go back to the parent directory"; }
   { on = [ "<Right>" ]; run = "enter";    desc = "Enter the child directory"; }
@@ -161,8 +161,9 @@ spot.keymap = [
 
 mgr.prepend_keymap = [
   {on = [ "!" ]; run = "shell \"$SHELL\" --block"; desc = "open $SHELL here";}
-  {on = [ "<C-l>" ]; run = "shell -- dragon -x -i -T \"$1\""; desc = "drag and drop via dragon";}
+  # {on = [ "<C-l>" ]; run = "shell -- dragon -x -i -T \"$1\""; desc = "drag and drop via dragon";}
   # {on = [ "y" ]; run = "shell -- for path in \"$@\"; do echo \"file://$path\"; done | wl-copy -t text/uri-list, \"yank\""; desc = "copy selected files to clipboard when copying";}
+  {on = ["y"]; run = "plugin wl-clipboard"; desc = "send copied to system clip";}
   {on = [ "l" ]; run = "plugin smart-enter"; desc = "Enter child dir or open file";}
   {on = [ "p" ]; run = "plugin smart-paste"; desc = "Paste into the hovered directory or CWD";}
   {on = [ "t" ]; run = "plugin smart-tab"; desc = "Create a tab and enter the hovered directory";}

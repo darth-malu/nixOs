@@ -100,7 +100,8 @@
       # chromium
       ungoogled-chromium
       telegram-desktop
-      discord-ptb
+      # discord-ptb
+      discord
       whatsapp-for-linux
       modem-manager-gui
       modemmanager # saves the day with no internet

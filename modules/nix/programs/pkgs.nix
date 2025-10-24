@@ -99,14 +99,9 @@
         if config.programs.hyprland.enable then
           with pkgs;
           [
-            # hyprcursor
             hyprpicker
-            hyprpolkitagent
-            # libappindicator # TODO test if needed
-            libappindicator-gtk3
-            # polkit_gnome
-            # libcanberra-gtk3
-            # libcanberra
+            # hyprpolkitagent
+            libappindicator-gtk3 # needed for discord icon
             # libsecret # secrets lul
             # kdePackages.qt6ct
             # kdePackages.qtwayland

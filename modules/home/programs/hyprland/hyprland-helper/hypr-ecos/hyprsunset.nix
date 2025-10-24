@@ -2,27 +2,22 @@
 {
   services.hyprsunset = {
     enable = true;
-    extraArgs = [ "--identity" ];
-    # transitions = {
-    #   sunrise = {
-    #     calendar = "*-*-* 06:00:00"; # TODO systemd time?
-    #     requests = [
-    #       [
-    #         "temperature"
-    #         "6500"
-    #       ]
-    #       # [ "gamma 100" ]       # like full brightness
-    #     ];
-    #   };
-    #   sunset = {
-    #     calendar = "*-*-* 19:00:00";
-    #     requests = [
-    #       [
-    #         "temperature"
-    #         "3500"
-    #       ]
-    #     ];
-    #   };
-    # };
+    extraArgs = [ "--verbose" ]; # ---identity
+    systemdTarget = "hyprland-session.target";
+    settings = {
+      max-gamma = 150;
+
+      profile = [
+        {
+          time = "7:30";
+          identity = true;
+        }
+        {
+          time = "21:00";
+          temperature = 5000;
+          gamma = 0.8;
+        }
+      ];
+    };
   };
 }

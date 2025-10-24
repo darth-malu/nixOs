@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+# { pkgs, ... }:
 {
   wayland.windowManager.hyprland.settings.exec-once = [
-    "uwsm app -s b ${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent"
+    # "uwsm app -s b ${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent"
     # "uwsm app -s b quickshell"
     # "systemctl --user enable --now hyprsunset.service" #TODO write a script to auto do this
     "uwsm app -s b sway-audio-idle-inhibit"

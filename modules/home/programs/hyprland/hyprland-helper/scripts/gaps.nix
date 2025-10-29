@@ -93,12 +93,13 @@ pkgs.writeShellScriptBin "gaps" ''
       ;;
     "toggle_gaps_out")
       if [ "$current_gap_out" -gt 0 ]; then
-        local icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-adjust-40.png"
+        local off_icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-adjust-40.png"
+        local on_icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-switch-on-30.png"
 
         hyprctl keyword general:gaps_out 0
 
         dunstify -t 1000 -a "changegaps" -u low \
-          -i "$icon" \
+          -i "$off_icon" \
           -h string:x-dunst-stack-tag:$msgTag "Gaps turned OFF"
       else
         local icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-switch-on-30.png"
@@ -106,7 +107,7 @@ pkgs.writeShellScriptBin "gaps" ''
         hyprctl keyword general:gaps_out $(config_gaps_reader 'gaps_out')
 
         dunstify -t 1000 -a "changegaps" -u low \
-          -i "$icon" \
+          -i "$on_icon" \
           -h string:x-dunst-stack-tag:$msgTag "Gaps turned ON"
 
       fi

@@ -67,7 +67,6 @@ in
         # numpy
         # seaborn
         # matplotlib
-        # tkinter
 
         # Installers
         nuitka
@@ -113,7 +112,7 @@ in
 
     age
     zstd # undo-fu-session/undo-tree compression
-    binutils # native-comp needs 'as'
+    binutils # native-comp needs 'as'...NOTE also has ld needed for clang?
 
     #bash
     bash-language-server

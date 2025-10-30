@@ -61,6 +61,7 @@
       zlib
       # manim #FIXME failed
       socat
+      cling
       # libgcc
       # nasm
     ])
@@ -102,7 +103,7 @@
       telegram-desktop
       # discord-ptb
       discord
-      whatsapp-for-linux
+      wasistlos # whatsapp-for-linux
       modem-manager-gui
       modemmanager # saves the day with no internet
       dotool
@@ -124,7 +125,7 @@
       audacity
       blanket
       easyeffects
-      mpc-cli
+      mpc # mpc-cli
       nautilus
       qbittorrent
       spotify

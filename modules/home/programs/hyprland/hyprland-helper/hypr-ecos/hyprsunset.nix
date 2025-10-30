@@ -5,17 +5,17 @@
     extraArgs = [ "--verbose" ]; # ---identity
     systemdTarget = "hyprland-session.target";
     settings = {
-      max-gamma = 150;
+      max-gamma = 150; # 100::
 
       profile = [
         {
-          time = "7:30";
+          time = "7:00";
           identity = true;
         }
         {
-          time = "21:00";
-          temperature = 5000;
-          gamma = 0.8;
+          time = "22:00";
+          temperature = 5500; # 6000::
+          # gamma = 0.8; # 1.0::
         }
       ];
     };

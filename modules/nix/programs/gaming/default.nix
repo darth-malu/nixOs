@@ -10,7 +10,7 @@
     antimicrox
     bottles
     heroic # without fhs
-    protonup
+    protonup-ng
     wineWowPackages.full # support both 32-bit and 64-bit applications - stable, full, waylandFull
     winetricks
   ];

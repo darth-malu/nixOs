@@ -8,20 +8,12 @@
 extraConfig =
 ''
     -P "~/Videos/Youtube"
-    #-P "temp:tmp"
     -P "subtitle:subs"
-    #-P "thumbnail:thumbnail"
-    # -P "thumbnail:%(title)s\%(title)s.%(ext)s" # will put thumbnail in folder with same name as video
 
     # Save all videos under YouTube directory in your home directory
     -o "%(channel)s-%(title)s.%(ext)s"
 
-    # Download and merge the best video-only format and the best audio-only format,
-    # or download the best combined format if video-only format is not available
-    # -f "bv+ba/b"
-
     # Download the best video available but no better than 1080p,
-    # -f "bv*[height<=1080]+ba/b[height<=1080]"
     -f "bv[height<=1080]+ba/b[height<=1080]"
 
     # -S "fps,codec:mp4:mp3"

@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    pinentry
+    # pinentry
     pinentry-all
     pinentry-rofi
     gcr # fix for pinentry on non-gnome systems

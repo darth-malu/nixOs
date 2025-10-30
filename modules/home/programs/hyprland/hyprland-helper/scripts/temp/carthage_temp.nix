@@ -33,27 +33,27 @@ pkgs.writeShellScriptBin "temp" ''
 
   device_picker() {
       case $1 in
-      "gpu_temp")
-          gpu_temp
-          ;;
-      "cpu_freq")
-          proc_cpu
-          ;;
-      "gpu_busy")
-          gpu_busy
-          ;;
-      "gpu_freq")
-          gpu_frequency
-          ;;
-      "gpu_fans")
-          gpu_fan
-          ;;
-      "nvme_temp")
-          nvme_temp
-          ;;
-      "ssd_temp")
-          ssd_temp
-          ;;
+        "gpu_temp")
+            gpu_temp
+            ;;
+        "cpu_freq")
+            proc_cpu
+            ;;
+        "gpu_busy")
+            gpu_busy
+            ;;
+        "gpu_freq")
+            gpu_frequency
+            ;;
+        "gpu_fans")
+            gpu_fan
+            ;;
+        "nvme_temp")
+            nvme_temp
+            ;;
+        "ssd_temp")
+            ssd_temp
+            ;;
       esac
   }
   device_picker "$1"

@@ -45,7 +45,7 @@
       #aria2#NOTE: learn
       libsecret # TODO use
       ventoy-full # usb imager #woeusb
-      wev
+      # wev # NOTE use ./ascii
     ]
     ++ (with pkgs; [
       # testing for yazi #
@@ -62,6 +62,7 @@
       # manim #FIXME failed
       socat
       cling
+      cmake # vterm
       # libgcc
       # nasm
     ])

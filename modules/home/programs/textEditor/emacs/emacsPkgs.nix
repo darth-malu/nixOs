@@ -34,7 +34,6 @@ in
     ];
 
   home.packages = with pkgs; [
-    # General lsp stuff
     emacs-lsp-booster
     # prettier
     prettierd # prettier as a daemon, for improved speed # TODO test workings
@@ -42,13 +41,13 @@ in
     # EMAIL
     mu
 
-    xclip
+    # xclip #TODO see if need with wl-clip
     tex
     libtool
     shellcheck
     # libclang # java #TODO see need
 
-    # clang # cc lsp & java? (maybe since derived) # FIXME...clash with other clang
+    clang # cc lsp & java? (maybe since derived) # FIXME...clash with binutils
 
     # Javascript
     # deno
@@ -88,8 +87,7 @@ in
       ]
     ))
 
-    cmake # vterm #FIXME make still not found
-    # gnumake # for compiling vterm
+    gnumake # for compiling vterm
 
     ## Dictionary
     (aspellWithDicts (
@@ -112,7 +110,7 @@ in
 
     age
     zstd # undo-fu-session/undo-tree compression
-    binutils # native-comp needs 'as'...NOTE also has ld needed for clang?
+    # binutils # native-comp needs 'as'...NOTE also has ld needed for clang?
 
     #bash
     bash-language-server

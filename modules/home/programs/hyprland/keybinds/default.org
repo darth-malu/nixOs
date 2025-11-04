@@ -197,7 +197,7 @@ bind =
   "$mod, KP_Multiply, pseudo"
 #+end_src
 *** obs
-#+begin_src nix :tangle yes
+#+begin_src nix :tangle no
     "$cl $sl, R, pass, ^(com.obsproject.Studio)$"
     "$cl $sl, S, pass, ^(com.obsproject.Studio)$"
     "$cl $sl, [, pass, ^(com.obsproject.Studio)$"

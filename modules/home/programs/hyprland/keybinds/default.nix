@@ -113,15 +113,6 @@ bind =
   "$mod, KP_Divide, togglesplit" # dwindle
   "$mod, KP_Multiply, pseudo"
 
-    "$cl $sl, R, pass, ^(com.obsproject.Studio)$"
-    "$cl $sl, S, pass, ^(com.obsproject.Studio)$"
-    "$cl $sl, [, pass, ^(com.obsproject.Studio)$"
-    "$cl $sl, ], pass, ^(com.obsproject.Studio)$"
-    "$cl $sl, \, pass, ^(com.obsproject.Studio)$"
-    "$cl $sl, -, pass, ^(com.obsproject.Studio)$"
-    #"$mod , comma , sendshortcut, $cl $sl, r, class:^(com\.obsproject\.Studio)$"
-    #"$cl $sl, R, pass, class:^(com\.obsproject\.Studio)$"
-
 # "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
 # "$mod $cl, D, focuswindow, class:^(emacs)$"
 # "$mod $cl, D, focuswindow, initialTitle:(.*)(Doom Emacs)$"

@@ -24,8 +24,6 @@ extraConfig =
 
     # Download the best video available but no better than 1080p,
     -f "bv[height<=1080]+ba/b[height<=1080]"
-
-    # -S "fps,codec:mp4:mp3"
 '';
 #+end_src
 
@@ -38,6 +36,7 @@ extraConfig =
     # -f "bv+ba/b"
     #-P "thumbnail:thumbnail"
     # -P "thumbnail:%(title)s\%(title)s.%(ext)s" # will put thumbnail in folder with same name as video
+    # -S "fps,codec:mp4:mp3"
 #+end_src
     # -f "bv*[height<=1080]+ba/b[height<=1080]"
 

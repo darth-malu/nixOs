@@ -15,8 +15,6 @@ extraConfig =
 
     # Download the best video available but no better than 1080p,
     -f "bv[height<=1080]+ba/b[height<=1080]"
-
-    # -S "fps,codec:mp4:mp3"
 '';
 
 settings = {

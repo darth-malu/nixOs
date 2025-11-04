@@ -34,7 +34,7 @@
         "nvidia-x11-570.153.02-6.12.30"
       ];
     permittedInsecurePackages = [
-      "broadcom-sta-6.30.223.271-57-6.12.55"
+      "broadcom-sta-6.30.223.271-57-6.12.56"
       "libxml2-2.13.8" # for cisco?
     ];
   };

@@ -47,7 +47,7 @@ in
     shellcheck
     # libclang # java #TODO see need
 
-    clang # cc lsp & java? (maybe since derived) # FIXME...clash with binutils
+    # clang # cc lsp & java? (maybe since derived) # FIXME...clash with binutils and gcc
 
     # Javascript
     # deno

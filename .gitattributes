@@ -1,0 +1,5 @@
+*.qml linguist-language=QML
+*.ui linguist-language=QML
+*.qrc linguist-language=XML
+*.html linguist-detectable=false
+dist/* linguist-vendored

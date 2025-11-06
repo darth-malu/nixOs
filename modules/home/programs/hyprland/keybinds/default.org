@@ -115,9 +115,14 @@ bind =
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
 #+end_src
-*** MaluwareYt
+*** SKUNKWORKS ☢️
+**** MaluwareYt
 #+begin_src nix :tangle default.nix
  "$mod $sl, T, exec, youtubr"
+#+end_src
+**** Ascii
+#+begin_src nix :tangle default.nix
+ "$mod , A, exec, youtubr"
 #+end_src
 *** kitty
 #+begin_src nix :tangle default.nix
@@ -410,7 +415,7 @@ movetoworkspacesilent exists
   ]
   else [
     "$mod $cl, E, focuswindow, class:^(emacs)$"
-    "$mod $al, E, execr, systemctl --user restart emacs && notify-send 'restarted emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png'"
+    "$mod $al, E, execr, notify-send 'restarting emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png' ; systemctl --user restart emacs && notify-send 'restarted emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png'"
 
     # "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
     # "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1

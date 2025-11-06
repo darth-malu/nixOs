@@ -1,4 +1,14 @@
 {
+  ascii = {
+    name = "ascii";
+    genericName = "ascii";
+    terminal = true;
+    type = "Application";
+    categories = [ "Development" ]; # TODO change later
+    exec = "/home/malu/.code/c/ascii";
+    icon = "/home/malu/.code/c/blue-hair-girl.jpg";
+  };
+
   YouTubr = {
     name = "youtubr";
     genericName = "YouTubr";

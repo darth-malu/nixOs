@@ -37,6 +37,8 @@
       #     }
       #   );
       # }))
+      sound-theme-freedesktop # free sounds
+      pulseaudioFull # paplay
     ]
     ++ [
       # pastel # color generator
@@ -101,6 +103,7 @@
     ++ (with pkgs; [
       # chromium
       ungoogled-chromium
+      zoom-us
       telegram-desktop
       # discord-ptb
       discord
@@ -132,10 +135,6 @@
       spotify
       spotube # FIXME issues tu
       sway-audio-idle-inhibit
-    ])
-    ++ (with pkgs; [
-      # kdePackages.audiotube
-      # fooyin
     ])
     ++ (with pkgs; [
       # komikku # broken

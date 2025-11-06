@@ -129,6 +129,7 @@ let
       "youtube-upnext"
       "evafast"
       "android-studio-stable"
+      "zoom"
     ];
 
     permittedInsecurePackages = [

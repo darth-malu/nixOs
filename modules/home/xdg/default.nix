@@ -2,6 +2,7 @@
   pkgs,
   lib,
   osConfig,
+  config,
   ...
 }:
 
@@ -21,7 +22,7 @@
       # documents = "${config.home.homeDirectory}/Documents";
       # download = "${config.home.homeDirectory}/Downloads";
       extraConfig = {
-        XDG_SCREENSHOTS_DIR = "$HOME/Pictures/grimblast";
+        XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/grimblast";
       };
     };
     autostart = {

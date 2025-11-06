@@ -198,6 +198,7 @@ let
       "youtube-upnext"
       "evafast"
       "android-studio-stable"
+      "zoom"
     ];
 #+end_src
 

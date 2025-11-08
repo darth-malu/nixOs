@@ -246,6 +246,8 @@ bind =
 ++ (if osConfig.networking.hostName == "tangier" then
   [
     "$mod, Delete, exec, pkill rofi || rofi_power"
+    "$mod $cl, Delete, exec, qs -p qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
+
     "$mod $cl, E, focuswindow, class:^(Emacs)$" # TODO combine regex into one
   ]
   else [

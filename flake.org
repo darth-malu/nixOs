@@ -151,7 +151,7 @@ https://nixos.wiki/wiki/Nix_channels
 #+end_src
 ** winapps
 
-#+begin_src nix :tangle flake.nix
+#+begin_src nix :tangle no
     winapps = {
       url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -269,7 +269,7 @@ modules = [
 #+end_src
 
 ***** Some systemPackage modules
-#+begin_src nix :tangle flake.nix
+#+begin_src nix :tangle no
 {environment.systemPackages = [
    pkgs.nixos-rebuild-ng #  alternatively to replace old rebuild: system.rebuild.enableNg
    inputs.winapps.packages."${system}".winapps

@@ -97,11 +97,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    winapps = {
-      url = "github:winapps-org/winapps";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 
   outputs = inputs@{nixpkgs, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
@@ -160,13 +155,6 @@ nixosConfigurations = {
 modules = [
   ./hosts/carthage
   # {environment.systemPackages = [neovimConf.neovim];}
-
-{environment.systemPackages = [
-   pkgs.nixos-rebuild-ng #  alternatively to replace old rebuild: system.rebuild.enableNg
-   inputs.winapps.packages."${system}".winapps
-   inputs.winapps.packages."${system}".winapps-launcher # optional
- ];
-}
 
 inputs.nvf.nixosModules.default # <- this imports the NixOS module that provides the options
 

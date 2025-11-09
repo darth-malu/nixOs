@@ -38,7 +38,7 @@ pkgs.writeShellScriptBin "gaps" ''
 
         hyprctl keyword general:gaps_in "$new_gap"
 
-        dunstify -t 1000 -a "changegaps" -u low \
+        notify-send -t 1000 -a "changegaps" -u low \
           -i "$icon" \
           -h string:x-dunst-stack-tag:$msgTag "Gaps in: $new_gap"
       fi
@@ -50,7 +50,7 @@ pkgs.writeShellScriptBin "gaps" ''
 
         hyprctl keyword general:gaps_in "$new_gap"
 
-        dunstify -t 1000 -a "changegaps" \
+        notify-send -t 1000 -a "changegaps" \
           -u low \
           -i "$icon" \
           -h string:x-dunst-stack-tag:$msgTag "Gaps in: $new_gap"
@@ -63,7 +63,7 @@ pkgs.writeShellScriptBin "gaps" ''
 
       hyprctl keyword general:gaps_in "$config_gaps_in"
 
-      dunstify -t 1000 -a "changegaps" -u low \
+      notify-send -t 1000 -a "changegaps" -u low \
         -i "$icon" \
         -h string:x-dunst-stack-tag:$msgTag "Gaps-in RESET ($config_gaps_in)"
       ;;
@@ -74,7 +74,7 @@ pkgs.writeShellScriptBin "gaps" ''
 
         hyprctl keyword general:gaps_out "$new_gap"
 
-        dunstify -t 1000 -a "changegaps" -u low \
+        notify-send -t 1000 -a "changegaps" -u low \
           -i "$icon" \
           -h string:x-dunst-stack-tag:$msgTag "Gaps out ($new_gap)"
       fi
@@ -86,7 +86,7 @@ pkgs.writeShellScriptBin "gaps" ''
 
         hyprctl keyword general:gaps_out "$new_gap"
 
-        dunstify -t 1000 -a "changegaps" -u low \
+        notify-send -t 1000 -a "changegaps" -u low \
           -i "$icon" \
           -h string:x-dunst-stack-tag:$msgTag "Gaps out ($new_gap)"
       fi
@@ -98,7 +98,7 @@ pkgs.writeShellScriptBin "gaps" ''
 
         hyprctl keyword general:gaps_out 0
 
-        dunstify -t 1000 -a "changegaps" -u low \
+        notify-send -t 1000 -a "changegaps" -u low \
           -i "$off_icon" \
           -h string:x-dunst-stack-tag:$msgTag "Gaps turned OFF"
       else
@@ -106,7 +106,7 @@ pkgs.writeShellScriptBin "gaps" ''
 
         hyprctl keyword general:gaps_out $(config_gaps_reader 'gaps_out')
 
-        dunstify -t 1000 -a "changegaps" -u low \
+        notify-send -t 1000 -a "changegaps" -u low \
           -i "$on_icon" \
           -h string:x-dunst-stack-tag:$msgTag "Gaps turned ON"
 
@@ -118,7 +118,7 @@ pkgs.writeShellScriptBin "gaps" ''
 
       hyprctl keyword general:gaps_out "$gaps_out"
 
-      dunstify -t 1000 -a "changegaps" \
+      notify-send -t 1000 -a "changegaps" \
         -u low \
         -i $icon \
         -h string:x-dunst-stack-tag:$msgTag "Gaps reset to: ($gaps_out)"
@@ -128,7 +128,7 @@ pkgs.writeShellScriptBin "gaps" ''
 
       hyprctl keyword general:gaps_out 0
 
-      dunstify -t 1000 -a "changegaps" \
+      notify-send -t 1000 -a "changegaps" \
         -u low \
         -i $icon \
         -h string:x-dunst-stack-tag:$msgTag "Gaps out reset to ZERO"
@@ -137,7 +137,7 @@ pkgs.writeShellScriptBin "gaps" ''
   }
 
   if [ $# -eq 0 ]; then # Ensure the script is called with an argument
-    dunstify "Usage: $0 {increment_gap|decrease_gap|toggle_gaps_out|custom}"
+    notify-send "Usage: $0 {increment_gap|decrease_gap|toggle_gaps_out|custom}"
     exit 1
   fi
 

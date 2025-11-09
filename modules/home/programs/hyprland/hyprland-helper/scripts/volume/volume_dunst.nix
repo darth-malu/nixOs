@@ -51,7 +51,7 @@ pkgs.writeShellScriptBin "volume_dunst" ''
       local sink_id
       sink_id=$(sink_getter "$1")
       [[ -n $sink_id ]] && wpctl set-default "$sink_id"
-      dunstify -t 1000 -a "changeVolume" -u low -i "$(pic_ejecter "$1")" -h string:x-dunst-stack-tag:$msgTag "Switched to ''${1^}"
+      notify-send -t 1000 -a "changeVolume" -u low -i "$(pic_ejecter "$1")" -h string:x-dunst-stack-tag:$msgTag "Switched to ''${1^}"
     }
 
     dunst_func() {
@@ -70,7 +70,7 @@ pkgs.writeShellScriptBin "volume_dunst" ''
           icon=$(pic_ejecter speaker)
           message="$int_volume"
         fi
-        dunstify -t 1000 -a "changeVolume" -u low -i "$icon" -h string:x-dunst-stack-tag:$msgTag -h int:value:"$int_volume" "$message"
+        notify-send -t 1000 -a "changeVolume" -u low -i "$icon" -h string:x-dunst-stack-tag:$msgTag -h int:value:"$int_volume" "$message"
         ;;
       mute)
         if mute_status; then
@@ -82,7 +82,7 @@ pkgs.writeShellScriptBin "volume_dunst" ''
           icon=$(pic_ejecter mute)
           message="MUTED"
         fi
-        dunstify -t 1000 -a "changeVolume" -u low -i "$icon" -h string:x-dunst-stack-tag:$msgTag "$message"
+        notify-send -t 1000 -a "changeVolume" -u low -i "$icon" -h string:x-dunst-stack-tag:$msgTag "$message"
         ;;
     esac
     }

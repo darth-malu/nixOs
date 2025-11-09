@@ -6,8 +6,8 @@
       "hello-world" = {
         script = ''
           set -eu
-          ${pkgs.coreutils}/bin/echo "Hello Word darth"
-          # ${pkgs.dunst}/bin/dunstify -i /home/malu/Shibuya/assets/icons8-pause-48.png "Its working lol"
+          # ${pkgs.coreutils}/bin/echo "Hello Word darth"
+          ${pkgs.libnotify}/bin/notify-send -i /home/malu/Shibuya/assets/icons8-pause-48.png "Its working lol"
         '';
         # ${pkgs.libnotify}/bin/notify-send "Hello Word darth"
         serviceConfig = {

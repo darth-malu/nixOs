@@ -372,7 +372,9 @@ movetoworkspacesilent exists
 *** Quickshell
 #+begin_src nix :tangle default.nix
   "$mod ,Home,execr, qs ipc call bar toggleBar"
+  "$mod $cl,i,execr, qs ipc call notifications dismissAll"
   "$mod ,End,execr, systemctl --user restart quickshell"
+  "$mod , Delete, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
 #+end_src
 
 *** swap position in workspace clockwise
@@ -410,8 +412,7 @@ movetoworkspacesilent exists
 #+begin_src nix :tangle yes
 ++ (if osConfig.networking.hostName == "tangier" then
   [
-    "$mod, Delete, exec, pkill rofi || rofi_power"
-    "$mod $cl, Delete, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
+    # "$mod, Delete, exec, pkill rofi || rofi_power"
 
     "$mod $cl, E, focuswindow, class:^(Emacs)$" # TODO combine regex into one
   ]

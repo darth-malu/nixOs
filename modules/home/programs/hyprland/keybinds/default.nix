@@ -218,7 +218,9 @@ bind =
   "$mod ,L, workspace,m+1"
 
   "$mod ,Home,execr, qs ipc call bar toggleBar"
+  "$mod $cl,i,execr, qs ipc call notifications dismissAll"
   "$mod ,End,execr, systemctl --user restart quickshell"
+  "$mod , Delete, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
 
   "$mod $sl, semicolon, swapnext"
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
@@ -245,8 +247,7 @@ bind =
 
 ++ (if osConfig.networking.hostName == "tangier" then
   [
-    "$mod, Delete, exec, pkill rofi || rofi_power"
-    "$mod $cl, Delete, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
+    # "$mod, Delete, exec, pkill rofi || rofi_power"
 
     "$mod $cl, E, focuswindow, class:^(Emacs)$" # TODO combine regex into one
   ]

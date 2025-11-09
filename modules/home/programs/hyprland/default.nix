@@ -20,9 +20,6 @@
   };
 
   config = lib.mkIf config.homeHyprland.enable {
-
-    waybar.enable = true;
-    dunst.enable = true;
     rofi.enable = true;
     hyprpaper.enable = true;
     hypridle.enable = true;

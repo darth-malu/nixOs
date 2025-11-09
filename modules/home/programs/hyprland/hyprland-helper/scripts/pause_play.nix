@@ -41,11 +41,11 @@ pkgs.writeShellScriptBin "pause_play" ''
           case $(music_playing_state) in
           "Playing")
               playerctl -ps spotify play-pause || mpc toggle
-              dunstify -i /home/malu/Shibuya/assets/icons/icons8-pause-50.png "Music paused "
+              notify-send -i /home/malu/Shibuya/assets/icons/icons8-pause-50.png "Music paused "
               ;;
           *)
               playerctl -ps firefox play-pause
-              # dunstify "Nothing is playing right now"
+              # notify-send "Nothing is playing right now"
               ;;
           esac
           ;;

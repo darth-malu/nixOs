@@ -292,15 +292,17 @@ profiles = {
         # "vaapi"
       else
         # "vdpau"
-        "nvdec" ;
+        "gpu"
+        # "nvdec"
+    ;
   }; # video output backend to use
   high-quality = {
     vo =
       if osConfig.networking.hostName == "carthage" then
         "gpu-next" # change to gpu if issues
       else
-        # "vdpau"
-        "nvdec" ;
+        # "vdpau" "nvdec"
+        "gpu-next";
   };
 };
 #+end_src
@@ -927,7 +929,8 @@ Users of uosc can also start typing right from the standard history menu to star
 =memo-log=
 Writes an entry for the current file. Intended for manual bookmarking with enabled=no.
 
-* video sync
+
+* video sync notes
 - audio: Time video frames to audio. This is the most robust mode, because the player doesn't have to assume anything about how the display behaves. The disadvantage is that it can lead to occasional frame drops or repeats. If audio is disabled, this uses the system clock. This is the default mode.
 - display-resample:
    Resample audio to match the video. This mode will also try to adjust audio speed to compensate for other drift. (This means it will play the audio at a different speed every once in a while to reduce the A/V difference.)

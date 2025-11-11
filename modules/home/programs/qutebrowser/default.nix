@@ -1,9 +1,9 @@
-{ lib, ... }:
+{ lib, osConfig, ... }:
 {
   programs.qutebrowser = {
-  enable = true;
-  loadAutoconfig = false; # false:: load config from GUI
-  enableDefaultBindings = true; # true::
+    enable = if osConfig.networking.hostName == "tangier" then false else true;
+    loadAutoconfig = false; # false:: load config from GUI
+    enableDefaultBindings = true; # true::
 
   keyBindings = {
     normal = {

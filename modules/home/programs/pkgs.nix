@@ -70,12 +70,6 @@
       # nasm
     ])
     ++ (with pkgs; [
-      # wpsoffice
-      # libreoffice-qt-still
-      libreoffice-still
-      ripgrep-all
-    ])
-    ++ (with pkgs; [
       # gsmartcontrol
       # iotop #basic
       # perfomance monitoring
@@ -103,10 +97,11 @@
     ])
     ++ (with pkgs; [
       # chromium
-      ungoogled-chromium
       zoom-us
-      telegram-desktop
-      # discord-ptb
+      # wpsoffice
+      # libreoffice-qt-still
+      libreoffice-still
+      ripgrep-all
       discord
       wasistlos # whatsapp-for-linux
       modem-manager-gui
@@ -128,6 +123,7 @@
       # ymuse # rudimentary
       # youtube-tui # https://siriusmart.github.io/youtube-tui/
       audacity
+      # xclip
       blanket
       easyeffects
       mpc # mpc-cli
@@ -177,6 +173,8 @@
           obs-cli
           obs-studio
           vlc
+          telegram-desktop
+          ungoogled-chromium
         ]
         ++ (with pkgs.gst_all_1; [
           # nautilus gst

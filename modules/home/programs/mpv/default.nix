@@ -104,15 +104,17 @@ profiles = {
         # "vaapi"
       else
         # "vdpau"
-        "nvdec" ;
+        "gpu"
+        # "nvdec"
+    ;
   }; # video output backend to use
   high-quality = {
     vo =
       if osConfig.networking.hostName == "carthage" then
         "gpu-next" # change to gpu if issues
       else
-        # "vdpau"
-        "nvdec" ;
+        # "vdpau" "nvdec"
+        "gpu-next";
   };
 };
 

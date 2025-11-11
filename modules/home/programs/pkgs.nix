@@ -37,9 +37,9 @@
       #     }
       #   );
       # }))
-      # sound-theme-freedesktop # free sounds
-      # pulseaudioFull # paplay
-      libcanberra-gtk3
+      sound-theme-freedesktop # free sounds
+      pulseaudioFull # paplay
+      libcanberra-gtk3 # FIXME: no sound
     ]
     ++ [
       # pastel # color generator

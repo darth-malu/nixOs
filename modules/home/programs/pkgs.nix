@@ -148,23 +148,18 @@
           # blender-hip # Hardware accelerated rendering NOTE later after pos
           # coppwr
           # davinci-resolve # NOTE RX580 not being detected
-          # davinci-resolve-studio # NOTE RX580 not being detected
           # ffmpeg-full # full vs vanilla?
-          # gimp
+          gimp
           # glmark2
           # helvum
           # inkscape-with-extensions
           # inputs.quickshell.packages.${system}.default
-          # kdePackages.kdenlive # FIXME see if flatpak better
           # kdePackages.mlt
           # mastodon
           # melt  #collison with mlt
-          # protonup-qt # GUI for installing custom Proton versions like GE_Proton
-          # protonup-rs
-          # steam-run
           # unigine-heaven
           # unigine-superposition
-          # wine
+          kdePackages.kdenlive
           darktable
           exiftool
           ffmpeg-full

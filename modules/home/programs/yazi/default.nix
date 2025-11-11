@@ -8,6 +8,7 @@
   home.packages = with pkgs; [
     xdg-desktop-portal-termfilechooser
     glow
+    ueberzugpp
   ];
 
   programs.yazi = {
@@ -128,7 +129,7 @@
             name = "*.html";
             use = [
               "open"
-              "edit"
+              # "edit"
             ];
           }
         ];

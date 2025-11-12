@@ -67,60 +67,26 @@ pkgs.writeShellScriptBin "songart" ''
     mpc --format "[[󰎍    %title% \n] [     %audioformat%]  $position\n    %artist%  \n    %album%  ]] | [%file%]" current
   }
 
-  dunstify_preview() {
+  songAlbumArt_preview() {
     status_playerctl="$(playerctl -p mpd status 2> /dev/null)"
     status_spotify="$(playerctl -p spotify status 2> /dev/null)"
+
     # check if mpd/ncmpcpp
     if [[ "$status_playerctl" == "Playing" ]]; then
       local mpd_album_art="$(generate_preview)"
       local mpd_format="$(mpd_metadata_formatted)"
-
-      ${pkgs.libnotify}/bin/notify-send -h string:x-dunst-stack-tag:$msgTag \
-        -t 1600 "$mpd_format" \
+      ${pkgs.libnotify}/bin/notify-send \
+        -t 2 "$mpd_format" \
         -i "$mpd_album_art"
     # check spotify
     elif [[ "$status_spotify" == "Playing" ]]; then
         local spotify_format=$(spotify 'title')
         local spotify_art=$(spotify 'art')
-
-        ${pkgs.libnotify}/bin/notify-send -h string:x-dunst-stack-tag:$msgTag \
-          -t 1600 "$spotify_format" \
+        ${pkgs.libnotify}/bin/notify-send \
+          -t 2 "$spotify_format" \
           -i "$spotify_art"
     fi
   }
 
-  mode() {
-    local volume album_art title_artist art title
-
-      case $1 in
-          "ncmpcpp_volume")
-            album_art="$(generate_preview)"
-            volume="$(mpc volume | tr -cd '[:digit:]')"
-            title_artist="$(mpc --format "%title%\t󰎍\t$volume\t" current)"
-            ${pkgs.libnotify}/bin/notify-send \
-              -t 1000 -a "changeVolume" \
-              -u low \
-              -i "$album_art" \
-              -h string:x-dunst-stack-tag:$msgTag \
-              "$title_artist" \
-              -h int:value:"$volume"
-              ;;
-          "spotify_volume")
-            art="$(spotify 'art')"
-            title=$(spotify 'title')
-            ${pkgs.libnotify}/bin/notify-send \
-              -t 1000 -a "changeVolume" \
-              -u low \
-              -i "$art" \
-              -h string:x-dunst-stack-tag:$msgTag \
-              "$title" \
-              -h int:value:"$(get_volume)"
-              ;;
-          *)
-              dunstify_preview 2> /dev/null # no players found err bleed into ncmpcpp
-              ;;
-      esac
-  }
-
-  mode "$1"
+  songAlbumArt_preview 2> /dev/null
 ''

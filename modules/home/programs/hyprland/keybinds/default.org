@@ -122,7 +122,7 @@ bind =
 #+end_src
 **** Ascii
 #+begin_src nix :tangle default.nix
- "$mod , A, exec, youtubr"
+ "$mod , A, exec, ascii"
 #+end_src
 *** kitty
 #+begin_src nix :tangle default.nix
@@ -414,7 +414,7 @@ movetoworkspacesilent exists
   [
     # "$mod, Delete, exec, pkill rofi || rofi_power"
 
-    "$mod $cl, E, focuswindow, class:^(Emacs)$" # TODO combine regex into one
+    # "$mod $cl, E, focuswindow, class:^(Emacs)$" # TODO combine regex into one
   ]
   else [
     "$mod $cl, E, focuswindow, class:^(emacs)$"

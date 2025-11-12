@@ -65,7 +65,7 @@ bind =
 
  "$mod $sl, T, exec, youtubr"
 
- "$mod , A, exec, youtubr"
+ "$mod , A, exec, ascii"
 
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
@@ -249,7 +249,7 @@ bind =
   [
     # "$mod, Delete, exec, pkill rofi || rofi_power"
 
-    "$mod $cl, E, focuswindow, class:^(Emacs)$" # TODO combine regex into one
+    # "$mod $cl, E, focuswindow, class:^(Emacs)$" # TODO combine regex into one
   ]
   else [
     "$mod $cl, E, focuswindow, class:^(emacs)$"

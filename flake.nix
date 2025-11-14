@@ -124,7 +124,6 @@ let
       "youtube-upnext"
       "evafast"
       "android-studio-stable"
-      "zoom"
     ];
 
     permittedInsecurePackages = [
@@ -146,6 +145,11 @@ in
 {
   # This will make the package available as a flake output under 'packages'
   # packages.${system}.my-neovim = customNeovim.neovim;
+
+packages = {
+  tree-sitter-qmljs = nixpkgs.callPackage ./tree-sitter-qmljs.nix {};
+  qml-ts-mode = nixpkgs.emacsPackages.callPackage ./qml-ts-mode.nix {};
+};
 
 nixosConfigurations = {
   carthage = nixpkgs.lib.nixosSystem {

@@ -13,12 +13,10 @@
   home.sessionVariables = {
     #MANWIDTH=999;
     SUDO_PROMPT = "$(tput sgr0)$(tput setaf 199) $(tput sgr0) ";
-    XDG_DATA_DIRS = "$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share";
-    LSP_USE_PLISTS = "true";
     EDITOR = "vim";
+    # XDG_DATA_DIRS = "$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share";
   };
   home.sessionPath = [
-    "$HOME/.emacs.d/bin"
     "$HOME/.code/PySide6/youtubr/dist"
   ];
 

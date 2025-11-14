@@ -83,6 +83,13 @@ services.mysqlBackup = {
   enable = false;
 };
 #+end_src
+* Project Management
+#+begin_src nix :tangle default.nix
+environment.systemPackages = with pkgs; [
+  zulip
+  zulip-term
+];
+#+end_src
 
 * End
 #+begin_src nix :tangle default.nix

@@ -6,23 +6,14 @@
 }:
 
 {
-  programs = {
-    gcc = {
-      enable = true;
-      colors = {
-        error = "01;31";
-      };
-    };
-  };
-
   home.packages =
     with pkgs;
     [
       # Quickshell stuffs https://quickshell.org/docs/v0.2.0/guide/install-setup/
       qt6.qtimageformats # webp & less common format support
-      qt6.qt5compat # shader fx
-      # qt6.qtsvg # load SVG image
-      qt6.qtmultimedia # flicko shell
+      qt6.qt5compat # extra visual effects, notably gaussian blur. MultiEffect is usually preferable
+      # qt6.qtsvg # support for SVG image loading (bundled with most packages)
+      qt6.qtmultimedia # support for playing videos, audio, etc
       qt6.qtdeclarative # qtdecl types in path
       grim
       imagemagick # screenshot
@@ -37,9 +28,9 @@
       #     }
       #   );
       # }))
-      sound-theme-freedesktop # free sounds
-      pulseaudioFull # paplay
-      libcanberra-gtk3 # FIXME: no sound
+      # sound-theme-freedesktop # free sounds
+      # pulseaudioFull # paplay
+      libcanberra-gtk3
     ]
     ++ [
       # pastel # color generator
@@ -97,15 +88,14 @@
     ])
     ++ (with pkgs; [
       # chromium
-      zoom-us
       # wpsoffice
       # libreoffice-qt-still
       libreoffice-still
       ripgrep-all
       discord
       wasistlos # whatsapp-for-linux
-      modem-manager-gui
-      modemmanager # saves the day with no internet
+      # modem-manager-gui
+      # modemmanager # saves the day with no internet
       dotool
     ])
     ++ (with pkgs; [

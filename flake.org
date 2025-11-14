@@ -198,7 +198,6 @@ let
       "youtube-upnext"
       "evafast"
       "android-studio-stable"
-      "zoom"
     ];
 #+end_src
 
@@ -254,6 +253,11 @@ in
 **** init | specialArgs
 
 #+begin_src nix :tangle flake.nix
+packages = {
+  tree-sitter-qmljs = nixpkgs.callPackage ./tree-sitter-qmljs.nix {};
+  qml-ts-mode = nixpkgs.emacsPackages.callPackage ./qml-ts-mode.nix {};
+};
+
 nixosConfigurations = {
   carthage = nixpkgs.lib.nixosSystem {
     inherit system;

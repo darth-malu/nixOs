@@ -6,4 +6,9 @@ services.mysql = {
   package = pkgs.mariadb;
 };
 
+environment.systemPackages = with pkgs; [
+  zulip
+  zulip-term
+];
+
 }

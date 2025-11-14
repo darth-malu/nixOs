@@ -35,5 +35,14 @@
         "-r"
       ];
     };
+
+    home = {
+      sessionPath = [
+        "$HOME/.emacs.d/bin"
+      ];
+      sessionVariables = {
+        LSP_USE_PLISTS = "true";
+      };
+    };
   };
 }

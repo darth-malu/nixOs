@@ -55,7 +55,6 @@
     environment.systemPackages = with pkgs; [
       # Trying gamescope recording
       # gst_all_1.gstreamer
-      # pulseaudioFull
     ];
 
     hardware.xone.enable = true; # support for the xbox controller USB dongle

@@ -19,6 +19,15 @@ let
   );
 in
 {
+  programs = {
+    gcc = {
+      enable = true;
+      colors = {
+        error = "01;31";
+      };
+    };
+  };
+
   programs.emacs.extraPackages =
     epkgs: with epkgs; [
       treesit-grammars.with-all-grammars # for bash-ts-mode
@@ -34,27 +43,31 @@ in
     ];
 
   home.packages = with pkgs; [
+    # debug init launcher
+    # (mkLauncherEntry "Emacs (Debug Mode)" {
+    #   description = "Start Emacs in debug mode";
+    #   icon = "emacs";
+    #   exec = "${emacs}/bin/emacs --debug-init";
+    # })
+
+    direnv
     emacs-lsp-booster
     # prettier
     prettierd # prettier as a daemon, for improved speed # TODO test workings
 
-    # EMAIL
-    mu
-
     # xclip #TODO see if need with wl-clip
-    tex
     libtool
     shellcheck
-    # libclang # java #TODO see need
 
-    # clang # cc lsp & java? (maybe since derived) # FIXME...clash with binutils and gcc
-
+    #:lang latex, org (latex previews)
+    tex
     # Javascript
     # deno
 
-    # C#
-    # csharpier # c# formatter
-    # csharprepl # coolest repl
+    # :emacs dired +dirvish
+    ffmpegthumbnailer
+    mediainfo
+    vips
 
     (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [
@@ -82,12 +95,23 @@ in
         isort
         grip
 
-        # C
-        # clang-tools #TODO see need
       ]
     ))
 
+    # C
+    # clang # cc lsp & java? (maybe since derived) # FIXME...clash with binutils and gcc
+    # clang-tools # collection of helper programs ontop of clang eg. clangd
+    # libclang # java #clang-format (clangd)
+    ccls
+
+    # Doom Dependencies
     gnumake # for compiling vterm
+    gnutls # to TLS connectivity
+    binutils # native-comp needs 'as'...NOTE also has ld needed for clang?
+
+    # C#
+    # csharpier # c# formatter
+    # csharprepl # coolest repl
 
     ## Dictionary
     (aspellWithDicts (
@@ -110,7 +134,6 @@ in
 
     age
     zstd # undo-fu-session/undo-tree compression
-    # binutils # native-comp needs 'as'...NOTE also has ld needed for clang?
 
     #bash
     bash-language-server

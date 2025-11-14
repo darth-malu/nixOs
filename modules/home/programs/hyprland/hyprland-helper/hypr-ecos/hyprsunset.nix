@@ -1,4 +1,3 @@
-# { inputs, pkgs, ... }:
 {
   services.hyprsunset = {
     enable = true;
@@ -6,7 +5,6 @@
     systemdTarget = "hyprland-session.target";
     settings = {
       max-gamma = 150; # 100::
-
       profile = [
         {
           time = "7:00";
@@ -15,7 +13,7 @@
         {
           time = "22:00";
           temperature = 5500; # 6000::
-          # gamma = 0.8; # 1.0::
+          gamma = 0.8; # 1.0::
         }
       ];
     };

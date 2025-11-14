@@ -2,7 +2,7 @@
 {
   imports = [
     ./xdg
-    ./sessionVariables.nix
+    ./session_Variables+Path.nix
     # ./pkgs
     ./programs
     ./services

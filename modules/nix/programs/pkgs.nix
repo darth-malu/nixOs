@@ -12,7 +12,7 @@
     ./gaming
   ];
 
-  qemuNix.enable = if config.networking.hostName == "carthage" then true else false;
+  qemuNix.enable = if config.networking.hostName == "carthage" then false else false;
 
   steamy.enable = if config.networking.hostName == "carthage" then true else false;
 
@@ -94,6 +94,8 @@
         # tldr # emacs better
         dotool # test if working
         # micro
+        # (pkgs.callPackage ./tree-sitter-qmljs.nix { })
+        # (pkgs.emacsPackages.callPackage ./qml-ts-mode.nix { })
       ])
       ++ (
         if config.programs.hyprland.enable then

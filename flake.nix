@@ -14,6 +14,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-qml = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/nix-qml-support";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # home-manager = {
     #   url = "github:nix-community/home-manager/release-25.05";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -145,11 +150,6 @@ in
 {
   # This will make the package available as a flake output under 'packages'
   # packages.${system}.my-neovim = customNeovim.neovim;
-
-packages = {
-  tree-sitter-qmljs = nixpkgs.callPackage ./tree-sitter-qmljs.nix {};
-  qml-ts-mode = nixpkgs.emacsPackages.callPackage ./qml-ts-mode.nix {};
-};
 
 nixosConfigurations = {
   carthage = nixpkgs.lib.nixosSystem {

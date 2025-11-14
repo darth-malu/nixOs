@@ -1,6 +1,8 @@
 {
   pkgs,
   # lib,
+  inputs,
+  system,
   config,
   ...
 }:
@@ -96,6 +98,10 @@
         # micro
         # (pkgs.callPackage ./tree-sitter-qmljs.nix { })
         # (pkgs.emacsPackages.callPackage ./qml-ts-mode.nix { })
+        # inputs.self.packages."x86_64-linux".tree-sitter-qmljs
+        # inputs.self.packages."x86_64-linux".qml-ts-mode
+        inputs.nix-qml.packages.${system}.tree-sitter-qmljs
+        inputs.nix-qml.packages.${system}.qml-ts-mode
       ])
       ++ (
         if config.programs.hyprland.enable then

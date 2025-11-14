@@ -35,9 +35,9 @@ https://nixos.wiki/wiki/Nix_channels
     };
 #+end_src
 ** nix-qml-support
-#+begin_src nix :tangle no
+#+begin_src nix :tangle flake.nix
     nix-qml = {
-      url = "https://git.outfoxxed.me/outfoxxed/nix-qml-support";
+      url = "git+https://git.outfoxxed.me/outfoxxed/nix-qml-support";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 #+end_src
@@ -253,11 +253,6 @@ in
 **** init | specialArgs
 
 #+begin_src nix :tangle flake.nix
-packages = {
-  tree-sitter-qmljs = nixpkgs.callPackage ./tree-sitter-qmljs.nix {};
-  qml-ts-mode = nixpkgs.emacsPackages.callPackage ./qml-ts-mode.nix {};
-};
-
 nixosConfigurations = {
   carthage = nixpkgs.lib.nixosSystem {
     inherit system;

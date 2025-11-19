@@ -63,6 +63,7 @@
       "match:class youtubr, float true"
 
       "match:float true, border_size 0"
+      "match:float true, center true"
 
       # Are you sure dialog popups
       "match:modal true, float true"
@@ -73,7 +74,7 @@
     ]
     ++ [
       # Gamer centric
-      "match:class ^(cs2)$, immediate true" # Allow Tearing
+      "match:class ^(cs2|dota)$, immediate true" # Allow Tearing
 
       # allow tearing in games
       # "immediate, match:class ^(osu\!|cs2)$"
@@ -106,6 +107,8 @@
       "workspace emptym, match:initial_class Emacs, match:initial_title ^(.*)(Doom Emacs)$"
       "workspace emptym, match:initial_class Emacs, match:initial_title ^(.*)(GNU Emacs at tangier)$"
 
+      # "border_size 0, match:workspace w[tv1]" # NOTE not need?
+
       # "size 70% 70%,match:title ^(Select)(.*)"
       # "workspace emptym, match:initial_class ^(zen-alpha)$, match:initial_title ^(Zen Browser)$"
 
@@ -114,13 +117,13 @@
 
     workspace = [
       # GENERAL: f fullscreen, w window count, m monitor, n name workspaace n[bool], n[s:string], n[e:string], s[bool] special or not eg. special:scratchpad,
-      "w[tv1],border:false" # no gaps when only = 1 # w[(flags)A-B], w[(flags)X], t tiled, v visible windows,f float
+      "w[tv1],border:false" # no gaps when only = 1 # w[(flags)A-B], w[(flags)X], t tiled, v visible windows,f float | A-B inclusive range, X specific number
       "f[1], gapsout:0, gapsin:0"
 
-      "special:magic, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:magic;float true;size 89% 85%] kitty'\"" # might need center(1)
+      "special:magic, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:magic;float true;size (monitor_w*0.9) (monitor_h*0.8);center true] kitty'\""
 
       # ncmpcpp
-      "special:nc, on-created-empty:sh -c \"hyprctl dispatch exec '[workspace special:nc; ] kitty -e ncmpcpp'\", monitor:HDMI-A-1"
+      "special:nc, on-created-empty:sh -c \"hyprctl dispatch -- exec 'kitty -e ncmpcpp'\", monitor:HDMI-A-1"
 
       "special:easy, easyeffects"
 

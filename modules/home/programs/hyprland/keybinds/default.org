@@ -53,7 +53,7 @@ bindr = [
 #+begin_src nix :tangle default.nix
   "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
   "$mod , Y, exec, [workspace emptym] $yazi_kitty"
-  "$mod $sl, Y, exec, [workspace special:magic;float; size 80% 80%] $yazi_kitty"
+  # "$mod $sl, Y, exec, [workspace special:magic;float true; size 80% 80%] $yazi_kitty"
 #+end_src
 
 *** hyprpicker

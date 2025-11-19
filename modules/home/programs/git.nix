@@ -20,13 +20,16 @@
     ];
   };
 
+  programs.git-credential-oauth = {
+    enable = false;
+    extraFlags = [ "-device" ];
+  };
+
   programs.git = {
     enable = true;
     settings = {
       init.defaultBranch = "main";
-      push = {
-        autoSetupRemote = true;
-      }; # does --set-upstream origin to current branch
+      push.autoSetupRemote = true; # does --set-upstream origin to current branch
       user = {
         name = "darth-malu";
         email = "darth-malu@github.com";
@@ -37,6 +40,7 @@
     ignores = [
       "*.swp"
       ".stfolder.*"
+      ".stfolder*"
       "*org-roam.db"
       "brain/"
     ];

@@ -50,15 +50,7 @@
 
     fzf = import ./misc/fzf.nix;
 
-    git-credential-oauth = {
-      enable = false;
-      extraFlags = [ "-device" ];
-    };
-
-    java = {
-      enable = true;
-      # package = pkgs.jdk23;
-    };
+    java.enable = true;
 
     lazygit = import ./misc/lazygit.nix;
 

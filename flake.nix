@@ -172,7 +172,7 @@ tangier = nixpkgs.lib.nixosSystem {
     ./hosts/tangier
     # inputs.quickshell.packages.${system}.default
     # {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
-    inputs.nvf.nixosModules.default 
+    # inputs.nvf.nixosModules.default 
     home.nixosModules.home-manager {
       home-manager = {
         verbose = true;

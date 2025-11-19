@@ -412,7 +412,7 @@ movetoworkspacesilent exists
   ]
   else [
     "$mod $cl, E, focuswindow, class:^(emacs)$"
-    "$mod $al, E, execr, notify-send 'restarting emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png' ; systemctl --user restart emacs && notify-send 'restarted emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png'"
+    "$mod $al, E, execr, notify-send 'restarting emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png' ; systemctl --user restart emacs ; sleep 2 && notify-send 'restarted emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png'  && $emacs"
 
     # "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
     # "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1

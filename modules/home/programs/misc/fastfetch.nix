@@ -3,18 +3,21 @@
   settings = {
     # $XDG_CONFIG_HOME/fastfetch/config.jsonc
     logo = {
-      source = "nixos_small"; # nixos_small #nixos_old
-      width = 60;
-      height = 40;
+      # source = "nixos_small"; # nixos_small #nixos_old
+      source = "/home/malu/Pictures/wallpaperS/anime/blue-hair-girl.jpg";
+      # width = 60;
+      height = 15;
+      position = "left";
       padding = {
         right = 1;
+        top = 5;
         left = 1;
       };
-      color = {
-        # Override logo colors
-        "1" = "blue";
-        "2" = "green";
-      };
+      # color = {
+      #   # Override logo colors
+      #   "1" = "blue";
+      #   "2" = "green";
+      # };
     };
     display = {
       size = {
@@ -41,20 +44,132 @@
       };
     };
     modules = [
+      "break"
       {
-        type = "os";
-        key = "OS";
-        keyColor = "cyan";
-        format = "{name} {version}";
+        type = "custom";
+        format = "┌────────────────Hardware────────────────┐";
+        outputColor = "cyan";
+      }
+      # {
+      #   type = "host";
+      #   key = " PC";
+      #   keyColor = "red";
+      # }
+      {
+        type = "cpu";
+        key = " ";
+        format = "│ ├ {name} ({cores-physical}C/{cores-logical}T) @ {freq-max}";
+      }
+      # "gpu"
+      {
+        type = "memory";
+        key = "└ └󰍛 ";
+        keyColor = "red";
       }
       {
-        "type" = "cpu";
-        "format" = "{name} ({cores-physical}C/{cores-logical}T) @ {freq-max}";
+        type = "disk";
+        key = "│ ├ ";
+        folders = "/";
+        format = "{size-used} / {size-total} ({size-percentage})";
+        keyColor = "red";
       }
-      "gpu"
-      "disk"
-      "de"
-      "wm"
+      {
+        type = "display";
+        # "key" = "MONITOR ({name})";
+        key = " ";
+        keyColor = "blue";
+        # "format" = "{width}x{height} @ {refresh-rate} Hz - {physical-width}x{physical-height} mm ({inch} inches, {ppi} ppi)";
+        format = "{width}x{height} @ {refresh-rate} Hz";
+      }
+      {
+        type = "custom";
+        format = "└──────────────────────────────────────┘";
+        outputColor = "cyan";
+      }
+
+      ## SOFTWARE
+      {
+        "type" = "custom";
+        "format" = "┌───────────────Software───────────────┐";
+        "outputColor" = "cyan";
+      }
+      {
+        "type" = "os";
+        "key" = "􀣺 OS ";
+        "keyColor" = "green";
+      }
+      {
+        "type" = "kernel";
+        "key" = "│ ├ ";
+        "keyColor" = "green";
+      }
+      {
+        "type" = "packages";
+        "key" = "│ ├󰏖 ";
+        "keyColor" = "green";
+      }
+      {
+        "type" = "localip";
+        "key" = "│ ├IP";
+        "keyColor" = "green";
+      }
+      {
+        "type" = "shell";
+        "key" = "└ └ ";
+        "keyColor" = "green";
+      }
+      {
+        "type" = "de";
+        "key" = " DE ";
+        "keyColor" = "blue";
+      }
+      # {
+      #   "type" = "lm";
+      #   "key" = "│ ├ ";
+      #   "keyColor" = "blue";
+      # }
+      {
+        "type" = "wm";
+        "key" = "│ ├ ";
+        "keyColor" = "blue";
+      }
+      {
+        "type" = "terminal";
+        "key" = "│ ├ ";
+        "keyColor" = "blue";
+      }
+      {
+        "type" = "terminalfont";
+        "key" = "└ └ ";
+        "keyColor" = "blue";
+      }
+      {
+        "type" = "custom";
+        "format" = "└──────────────────────────────────────┘";
+        "outputColor" = "cyan";
+      }
+
+      # UPTIME
+      {
+        "type" = "custom";
+        "format" = "┌────────────────Uptime────────────────┐";
+        "outputColor" = "cyan";
+      }
+      {
+        "type" = "uptime";
+        # "key" = "  Uptime";
+        "keyColor" = "magenta";
+      }
+      {
+        "type" = "custom";
+        "format" = "└──────────────────────────────────────┘";
+        "outputColor" = "cyan";
+      }
+      {
+        "type" = "custom";
+        "format" = "┌────────────────Media────────────────┐";
+        "outputColor" = "cyan";
+      }
       # "break"
       "player"
       # "media"
@@ -66,14 +181,10 @@
       }
       # "break"
       {
-        "type" = "display";
-        "key" = "MONITOR ({name})";
-        "keyColor" = "blue";
-        # "format" = "{width}x{height} @ {refresh-rate} Hz - {physical-width}x{physical-height} mm ({inch} inches, {ppi} ppi)";
-        "format" = "{width}x{height} @ {refresh-rate} Hz";
+        "type" = "custom";
+        "format" = "└──────────────────────────────────────┘";
+        "outputColor" = "cyan";
       }
-      "uptime"
-      # "packages"
     ];
   };
 }

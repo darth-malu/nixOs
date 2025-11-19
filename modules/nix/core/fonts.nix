@@ -44,7 +44,7 @@
         monofur
         mononoki
         fantasque-sans-mono
-        ubuntu-mono
+        # ubuntu-mono
         symbols-only
         # shure-tech-mono
         # agave

@@ -19,19 +19,21 @@
   steamy.enable = if config.networking.hostName == "carthage" then true else false;
 
   programs = {
-    gpu-screen-recorder = {
-      enable = true;
-      # package = pkgs.gpu-screen-recorder-gtk;
-    };
+
+    gpu-screen-recorder.enable = true;
+
     ccache = {
       enable = true;
       packageNames = [
+        # Nix top-level packages to be compiled using CCache.
         # "wxGTK32"
         # "ffmpeg"
         # "nuitka"
         # "libav_all"
       ];
-      owner = "root";
+      # owner = "root";
+      # group = "nixblkd";
+      # cacheDir = "/var/cache/ccache";
     };
   };
 
@@ -95,11 +97,6 @@
         wl-clipboard # rust wl-clipboard better?
         # tldr # emacs better
         dotool # test if working
-        # micro
-        # (pkgs.callPackage ./tree-sitter-qmljs.nix { })
-        # (pkgs.emacsPackages.callPackage ./qml-ts-mode.nix { })
-        # inputs.self.packages."x86_64-linux".tree-sitter-qmljs
-        # inputs.self.packages."x86_64-linux".qml-ts-mode
         inputs.nix-qml.packages.${system}.tree-sitter-qmljs
         inputs.nix-qml.packages.${system}.qml-ts-mode
       ])

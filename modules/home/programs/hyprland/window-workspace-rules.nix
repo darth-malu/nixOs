@@ -2,135 +2,133 @@
   wayland.windowManager.hyprland.settings = {
     windowrule = [
       # case sensitive, plain regex(class) | title
-      "float, title:file_progress"
-      # "float, title:confirm"
-      # "float, title:dialog"
-      # "float, title:download"
-      # "float, title:notification"
-      # "float, title:error"
-      # "float, title:splash"
-      # "float, title:confirmreset"
-      # "float, title:Open File"
-      # "float, title:branchdialog"
-      "float, class:org.gnome.FileRoller"
-      "float, title:^(Media viewer)$"
-      "float, title:^(Volume Control)$"
-      "float, title:^(Picture-in-Picture)$"
-      # "size 75% 80%, floating:1" # exact screen size... can use only window size also x% y% :FIXME: cause issues with all popup menus lol
-      # "size 75% 80%, title:^(Sign in)(.*)$"
+      "float true, match:title file_progress"
+      # "match: float true, match:title confirm"
+      # "match: float true, match:title dialog"
+      # "match: float true, match:title download"
+      # "match: float true, match:title notification"
+      # "match: float true, match:title error"
+      # "match: float true, match:title splash"
+      # "match: float true, match:title confirmreset"
+      # "match: float true, match:title Open File"
+      # "match: float true, match:title branchdialog"
+      "float true, match:class org.gnome.FileRoller"
+      "float true, match:title ^(Media viewer)$"
+      "float true, match:title ^(Volume Control)$"
+      "float true, match:title ^(Picture-in-Picture)$"
+      # "size 75% 80%, float:1" # exact screen size... can use only window size also x% y% :FIXME: cause issues with all popup menus lol
+      # "size 75% 80%, match:title ^(Sign in)(.*)$"
 
-      #"size 1160 960, title:^(Volume Control)$"
-      #"move 5 315, title:^(Volume Control)$"
+      #"size 1160 960, match:title ^(Volume Control)$"
+      #"move 5 315, match:title ^(Volume Control)$"
 
-      #"float, Rofi"
+      #"match: float true, Rofi"
 
-      # "float, pwvucontrol"
-      "float, class:com.saivert.pwvucontrol"
-      "float, class:Maluware-yt"
-      #"center(1), com.saivert.pwvucontrol"
+      # "match: float true, pwvucontrol"
+      "float true, match:class com.saivert.pwvucontrol"
+      "float true, match:class Maluware-yt"
+      #"center true(1), com.saivert.pwvucontrol"
+      "float true, match:workspace n[s:window] f[1], border_size 0, rounding 0"
 
       # Select files dialog
-      "center, title:^(Save)(.*)"
-      "center, title:^(Select)(.*)"
-      "center, title:(.*)(save to)(.*)"
+      "center true, match:title ^(Save)(.*)"
+      "center true, match:title ^(Select)(.*)"
+      "center true, match:title (.*)(save to)(.*)"
 
       #"idleinhibit focus, vlc"
-      # "idleinhibit fullscreen, title:firefox"
+      # "idleinhibit fullscreen, match:title firefox"
 
-      # "idleinhibit focus, class:ncmpcpp"
+      # "idleinhibit focus, match:class ncmpcpp"
 
-      # "workspace special:scratch silent, class:^(org.qbittorrent.qBittorrent)$" # TODO get popups only
+      # "workspace special:scratch silent, match:class ^(org.qbittorrent.qBittorrent)$" # TODO get popups only
 
-      # "float, class:Viewnior"
+      # "match: float true, match:class Viewnior"
       #"size 80% 80%, Viewnior"
-      # "center(1), class:Viewnior" # center([opt]); opt =1 -> respect monitor reserved area
+      # "center true(1), match:class Viewnior" # match:center([opt]); opt =1 -> respect monitor reserved area
 
-      "nofocus, title:(Discord Updater)"
-      # "workspace emptym, class:obsidian"
-      # "workspace emptym, class:spotube"
+      "no_focus true, match:title (Discord Updater)"
+      # "workspace emptym, match:class obsidian"
+      # "workspace emptym, match:class spotube"
 
-      # "workspace emptym silent, class:steam, title:Sign in to Steam"
-      # "workspace nointialfocus, class:steam, title:Sign in to Steam"
+      # "workspace emptym silent, match:class steam, match:title Sign in to Steam"
+      # "workspace nointialfocus, match:class steam, match:title Sign in to Steam"
 
       # don't render hyprbars on tiling windows
-      # "plugin:hyprbars:nobar, floating:0"
+      # "plugin:hyprbars:nobar, float:0"
 
       # PYTHON
-      "workspace emptym, class:getting-started.py"
-      "center, class:main.py"
-      "center, class:Maluware-yt"
-      "center, title:Darth-Yt"
-      # "center, class:youtubr"
-      "center, class:youtubr"
-      "float, class:youtubr"
+      # "workspace emptym, match:class getting-started.py"
+      "match:class main.py, center true"
+      "match:class youtubr, center true"
+      "match:class youtubr, float true"
 
-      "workspace emptym, class:mpv"
-      "monitor HDMI-A-1, class:mpv"
+      "match:float true, border_size 0"
+
+      # Are you sure dialog popups
+      "match:modal true, float true"
+
+      "match:class mpv, workspace emptym"
+      "match:class mpv, monitor HDMI-A-1"
 
     ]
     ++ [
       # Gamer centric
-      "immediate, class:^(cs2)$" # Allow Tearing
+      "match:class ^(cs2)$, immediate true" # Allow Tearing
 
       # allow tearing in games
-      # "immediate, class:^(osu\!|cs2)$"
-    ];
+      # "immediate, match:class ^(osu\!|cs2)$"
+    ]
+    ++ [
+      "match:class .*, suppress_event maximize"
 
-    windowrulev2 = [
+      "match:class ^()$,match:title ^()$, no_blur true" # for chrome weird menus clear border
 
-      "suppressevent maximize, class:.*"
+      "match:class ^(Xdg-desktop-portal-gtk)$,match:title ^(All Files)$, no_blur true"
 
-      "noblur,class:^()$,title:^()$" # for chrome weird menus clear border
+      "border_size 0,match:class ^(Xdg-desktop-portal-gtk)$, match:title ^(All Files)$"
 
-      "noblur,class:^(Xdg-desktop-portal-gtk)$,title:^(All Files)$" # for chrome weird menus clear border
-      "noborder,class:^(Xdg-desktop-portal-gtk)$,title:^(All Files)$" # for chrome weird menus clear border
+      "workspace emptym, match:initial_class ^(discord)$, match:initial_title ^(.*)(Discord)$"
+      "workspace emptym silent, match:class ^(discord)$, match:title (Discord Updater)"
 
-      "workspace emptym, initialClass:^(discord)$, initialTitle:^(.*)(Discord)$"
-      "workspace emptym silent, class:^(discord)$, title:(Discord Updater)"
+      "workspace emptym, match:initial_class ^(org.qbittorrent.qBittorrent)$, match:initial_title ^(.*)(qBittorrent v5.1.0)$"
 
-      "workspace emptym, initialClass:^(org.qbittorrent.qBittorrent)$, initialTitle:^(.*)(qBittorrent v5.1.0)$"
+      "workspace 10, match:initial_class ^(spotube)$, match:initial_title ^(spotube)$"
+      "workspace 10, match:initial_class ^(spotify)$"
 
-      "noinitialfocus, initialClass:^(jetbrains-studio)$, floating:1"
+      "match:initial_class ^(viewnior)$, size 80% 80%"
+      "match:initial_class ^(viewnior)$, center true"
+      "match:initial_class ^(viewnior)$, float true"
 
-      "workspace 10, initialClass:^(spotube)$, initialTitle:^(spotube)$"
-      "workspace 10, initialClass:^(spotify)$"
+      "float true , match:initial_class ^(org.telegram.desktop)$, match:initial_title ^(Telegram)(.*)$"
+      "size 80% 60%, match:initial_class ^(org.telegram.desktop)$, match:initial_title ^(Telegram)(.*)$"
 
-      "size 80% 80%, initialClass:^(viewnior)$"
-      "center , initialClass:^(viewnior)$"
-      "float , initialClass:^(viewnior)$"
+      "workspace emptym, match:initial_class emacs, match:initial_title ^(.*)(Doom Emacs)$"
+      "workspace emptym, match:initial_class Emacs, match:initial_title ^(.*)(Doom Emacs)$"
+      "workspace emptym, match:initial_class Emacs, match:initial_title ^(.*)(GNU Emacs at tangier)$"
 
-      "float , initialClass:^(org.telegram.desktop)$, initialTitle:^(Telegram)(.*)$"
-      "size 80% 60%, initialClass:^(org.telegram.desktop)$, initialTitle:^(Telegram)(.*)$"
+      # "size 70% 70%,match:title ^(Select)(.*)"
+      # "workspace emptym, match:initial_class ^(zen-alpha)$, match:initial_title ^(Zen Browser)$"
 
-      "workspace emptym, initialClass:emacs, initialTitle:^(.*)(Doom Emacs)$"
-      "workspace emptym, initialClass:Emacs, initialTitle:^(.*)(Doom Emacs)$"
-      "workspace emptym, initialClass:Emacs, initialTitle:^(.*)(GNU Emacs at tangier)$"
-
-      # "size 70% 70%,title:^(Select)(.*)"
-      # "workspace emptym, initialClass:^(zen-alpha)$, initialTitle:^(Zen Browser)$"
-
-      # "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0" # fix some dragging issues with xwayland, FIXME: see if causing xwayland issues
-    ]; # class:[regex],initialClass,initialTitle,floating, focus etc
+      # "nofocus,match:class ^$,match:title ^$,xwayland:1,float:1,fullscreen:0,pinned:0" # fix some dragging issues with xwayland, FIXME: see if causing xwayland issues
+    ]; # match:class [regex],initial_class,initial_title,float, focus etc
 
     workspace = [
-      # comma seperate extra rules
-
       # GENERAL: f fullscreen, w window count, m monitor, n name workspaace n[bool], n[s:string], n[e:string], s[bool] special or not eg. special:scratchpad,
-      "w[tv1],border:false" # no gaps when only = 1 # w[(flags)A-B], w[(flags)X], t tiled, v visible windows,f floating
-      #"w[tv1],border:false,gapsout:2, gapsin:0"
+      "w[tv1],border:false" # no gaps when only = 1 # w[(flags)A-B], w[(flags)X], t tiled, v visible windows,f float
       "f[1], gapsout:0, gapsin:0"
 
-      "special:magic, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:magic;float;size 89% 85%] kitty'\"" # might need center(1)
+      "special:magic, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:magic;float true;size 89% 85%] kitty'\"" # might need center(1)
 
       # ncmpcpp
       "special:nc, on-created-empty:sh -c \"hyprctl dispatch exec '[workspace special:nc; ] kitty -e ncmpcpp'\", monitor:HDMI-A-1"
 
       "special:easy, easyeffects"
+
       # rules
       # persistent:[b], decorate:[b], rounding[b],
     ];
     layerrule = [
-      "dimaround, rofi"
+      "dim_around true, match:namespace ^rofi"
       # "blur, hyprpaper" #don't think it works lol
       # "blur, waybar"
     ];

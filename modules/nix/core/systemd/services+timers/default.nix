@@ -1,6 +1,6 @@
 {
   imports = [
-    ./hello-world.nix
+    # ./hello-world.nix
     ./hdd-mount.nix
   ];
 }

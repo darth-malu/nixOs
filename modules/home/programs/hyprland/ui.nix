@@ -12,7 +12,7 @@
       hover_icon_on_border = true;
       layout = "dwindle";
       allow_tearing = true; # false:: - alternatively use immediate rule
-      no_border_on_floating = true;
+      # no_border_on_floating = true;
       no_focus_fallback = true; # false, will not fall back to the next available window when moving focus in a direction where no window was found
       snap = {
         enabled = true;
@@ -60,7 +60,7 @@
     group = {
       group_on_movetoworkspace = true; # false::whether using movetoworkspace[silent] will merge the window into the workspace’s solitary unlocked group
       groupbar = {
-        font_family = "nunito"; # misc:font_family if not specified
+        font_family = "quicksand medium"; # misc:font_family if not specified
         font_size = 14; # 8::
         # stacked = true; # render the groupbar as a vertical stack
         "col.active" = "0x8600FFF5"; # 0x66ffff00
@@ -77,9 +77,10 @@
       # font_family = "quicksand";
       # force_default_wallpaper = if osConfig.networking.hostName == "carthage" then "0" else "1"; #anime mascot wallpapers
       # middle_click_paste = if osConfig.networking.hostName == "carthage" then false else true;
-      mouse_move_focuses_monitor = true; # true::NOTE important for quickshell focus to work proper
-      allow_session_lock_restore = true; # NOTE new
-      # splash_font_family = "VictorMono Nerd Font"; # FIXME not working lol ofcourse
+      mouse_move_focuses_monitor = true;
+      allow_session_lock_restore = true;
+      font_family = "JetBrainsMono Nerd Font";
+      splash_font_family = "VictorMono Nerd Font";
       #disable_splash_rendering = true
       #initial_workspace_tracking = 1; #0, 1::(single-shot), 2 -persistent/children
       close_special_on_empty = true;
@@ -87,7 +88,6 @@
       #background_colur = 0x111111; # with logo disabled
       focus_on_activate = true; # solves rofi issue lol # focus apps that request to be focused(activate request)
       initial_workspace_tracking = true; # NOTE new
-      font_family = "JetBrainsMono Nerd Font";
       force_default_wallpaper = 2; # -1 random, 2 (anime), 0/1 - disable anime
       key_press_enables_dpms = true; # false:: #wakes monitor if key pressed
       # mouse_move_enables_dpms = true;

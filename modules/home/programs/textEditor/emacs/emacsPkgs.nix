@@ -69,44 +69,43 @@ in
     mediainfo
     vips
 
-    (pkgs.python3.withPackages (
+    # python3 or or specific number
+    (pkgs.python312.withPackages (
       python-pkgs: with python-pkgs; [
         jupyter-console # jupyter-core jupyterlab-server
         pyside6
-        pytubefix
         pandas
-        moviepy
+
         # numpy
         # seaborn
         # matplotlib
 
         # Installers
+        pytubefix
         nuitka
         pyinstaller
 
         requests
-        ttkbootstrap # MOVED to Qt😄
+        beautifulsoup4
         # pandasql
 
         #emacs
         weasyprint
         pytest
         pyflakes
-        isort
+        isort # sort imports
         grip
-
       ]
     ))
 
     # C
     # clang # cc lsp & java? (maybe since derived) # FIXME...clash with binutils and gcc
-    # clang-tools # collection of helper programs ontop of clang eg. clangd
-    # libclang # java #clang-format (clangd)
+    clang-tools # collection of helper programs ontop of clang eg. clangd - fixes issue with clang-format
     ccls
 
     # Doom Dependencies
     gnumake # for compiling vterm
-    gnutls # to TLS connectivity
+    # gnutls # to TLS connectivity
     binutils # native-comp needs 'as'...NOTE also has ld needed for clang?
 
     # C#
@@ -129,7 +128,7 @@ in
 
     # :lang nix
     nil
-    nixd # for zed as well
+    # nixd # for zed as well
     nixfmt-rfc-style # official - needed to use formatting with :lang nix
 
     age
@@ -161,13 +160,13 @@ in
     unzip # tldr
 
     # python
-    pipenv
+    # pipenv pipenv support
     basedpyright
-    pyright
+    # pyright
     black
     shfmt
     libxml2
-    pyenv
+    # pyenv
 
     # lsp
     nodejs_24 # consider npm for auto install of servers in lsp-mode

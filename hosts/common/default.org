@@ -35,7 +35,7 @@
       ];
     permittedInsecurePackages = [
       # "broadcom-sta-6.30.223.271-57-6.12.57"
-      "broadcom-sta-6.30.223.271-59-6.12.57"
+      "broadcom-sta-6.30.223.271-59-6.12.58"
       "libxml2-2.13.8" # for cisco?
     ];
   };
@@ -131,7 +131,8 @@ https://search.nixos.org/options?channel=25.05&show=boot.loader.systemd-boot.sor
 * networking stuffs
 ** start
 #+begin_src nix :tangle default.nix
-  programs.nm-applet.enable = false; # started automatically with the graphical session
+  programs.nm-applet.enable = true; # started automatically with the graphical session
+  programs.nm-applet.indicator = true;
 
   networking = {
 #+end_src

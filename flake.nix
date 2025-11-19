@@ -29,15 +29,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # obsidian-nvim.url = "github:epwalsh/obsidian.nvim";
-    # Required, nvf works best and only directly supports flakes
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs"; # This is safe to do as nvf does not depend on a binary cache
-      # Optionally, you can also override individual plugins
-      # inputs.obsidian-nvim.follows = "obsidian-nvim"; # <- this will use the obsidian-nvim from your inputs
-    };
-
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref={version}";
@@ -159,8 +150,6 @@ nixosConfigurations = {
 modules = [
   ./hosts/carthage
   # {environment.systemPackages = [neovimConf.neovim];}
-
-inputs.nvf.nixosModules.default # <- this imports the NixOS module that provides the options
 
   home.nixosModules.home-manager {
     home-manager = {

@@ -1,7 +1,6 @@
 { pkgs }:
 
 pkgs.writeShellScriptBin "gaps" ''
-  msgTag="hypr_gaps"
 
   current_gaps_out_size() {
     #outputs clean number eg. 10
@@ -38,9 +37,7 @@ pkgs.writeShellScriptBin "gaps" ''
 
         hyprctl keyword general:gaps_in "$new_gap"
 
-        notify-send -t 1000 -a "changegaps" -u low \
-          -i "$icon" \
-          -h string:x-dunst-stack-tag:$msgTag "Gaps in: $new_gap"
+        notify-send -t 2 -a "changegaps" -u low -i "$icon"  "Gaps in: $new_gap"
       fi
       ;;
     "gaps_in_sub")
@@ -50,10 +47,10 @@ pkgs.writeShellScriptBin "gaps" ''
 
         hyprctl keyword general:gaps_in "$new_gap"
 
-        notify-send -t 1000 -a "changegaps" \
+        notify-send -t 2 -a "changegaps" \
           -u low \
           -i "$icon" \
-          -h string:x-dunst-stack-tag:$msgTag "Gaps in: $new_gap"
+          "Gaps in: $new_gap"
       fi
       ;;
     "gaps_in_reset")
@@ -63,9 +60,9 @@ pkgs.writeShellScriptBin "gaps" ''
 
       hyprctl keyword general:gaps_in "$config_gaps_in"
 
-      notify-send -t 1000 -a "changegaps" -u low \
+      notify-send -t 1 -a "changegaps" -u low \
         -i "$icon" \
-        -h string:x-dunst-stack-tag:$msgTag "Gaps-in RESET ($config_gaps_in)"
+        "Gaps-in RESET ($config_gaps_in)"
       ;;
     "increment_gap")
       if [ "$current_gap_out" -le 50 ]; then
@@ -74,9 +71,7 @@ pkgs.writeShellScriptBin "gaps" ''
 
         hyprctl keyword general:gaps_out "$new_gap"
 
-        notify-send -t 1000 -a "changegaps" -u low \
-          -i "$icon" \
-          -h string:x-dunst-stack-tag:$msgTag "Gaps out ($new_gap)"
+        notify-send -t 1 -a "changegaps" -u low -i "$icon" "Gaps out ($new_gap)"
       fi
       ;;
     "decrease_gap")
@@ -86,9 +81,7 @@ pkgs.writeShellScriptBin "gaps" ''
 
         hyprctl keyword general:gaps_out "$new_gap"
 
-        notify-send -t 1000 -a "changegaps" -u low \
-          -i "$icon" \
-          -h string:x-dunst-stack-tag:$msgTag "Gaps out ($new_gap)"
+        notify-send -t 1 -a "changegaps" -u low -i "$icon" "Gaps out ($new_gap)"
       fi
       ;;
     "toggle_gaps_out")
@@ -98,17 +91,13 @@ pkgs.writeShellScriptBin "gaps" ''
 
         hyprctl keyword general:gaps_out 0
 
-        notify-send -t 1000 -a "changegaps" -u low \
-          -i "$off_icon" \
-          -h string:x-dunst-stack-tag:$msgTag "Gaps turned OFF"
+        notify-send -t 1 -a "changegaps" -u low -i "$off_icon" "Gaps turned OFF"
       else
         local icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-switch-on-30.png"
 
         hyprctl keyword general:gaps_out $(config_gaps_reader 'gaps_out')
 
-        notify-send -t 1000 -a "changegaps" -u low \
-          -i "$on_icon" \
-          -h string:x-dunst-stack-tag:$msgTag "Gaps turned ON"
+        notify-send -t 1 -a "changegaps" -u low -i "$on_icon"  "Gaps turned ON"
 
       fi
       ;;
@@ -118,20 +107,14 @@ pkgs.writeShellScriptBin "gaps" ''
 
       hyprctl keyword general:gaps_out "$gaps_out"
 
-      notify-send -t 1000 -a "changegaps" \
-        -u low \
-        -i $icon \
-        -h string:x-dunst-stack-tag:$msgTag "Gaps reset to: ($gaps_out)"
+      notify-send -t 1 -a "changegaps" -u low -i $icon "Gaps reset to: ($gaps_out)"
       ;;
     "reset_zero")
       local icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-u-turn-to-left-30.png"
 
       hyprctl keyword general:gaps_out 0
 
-      notify-send -t 1000 -a "changegaps" \
-        -u low \
-        -i $icon \
-        -h string:x-dunst-stack-tag:$msgTag "Gaps out reset to ZERO"
+      notify-send -t 1 -a "changegaps" -u low -i $icon "Gaps out reset to ZERO"
       ;;
     esac
   }

@@ -50,19 +50,16 @@ in
     #   exec = "${emacs}/bin/emacs --debug-init";
     # })
 
-    direnv
+    # direnv
     emacs-lsp-booster
     # prettier
     prettierd # prettier as a daemon, for improved speed # TODO test workings
 
-    # xclip #TODO see if need with wl-clip
     libtool
     shellcheck
 
     #:lang latex, org (latex previews)
     tex
-    # Javascript
-    # deno
 
     # :emacs dired +dirvish
     ffmpegthumbnailer
@@ -70,11 +67,13 @@ in
     vips
 
     # python3 or or specific number
-    (pkgs.python312.withPackages (
+    (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [
         jupyter-console # jupyter-core jupyterlab-server
+        # gnureadline     # NOTE python-shell-interpreter not supporting readline warning fix
         pyside6
         pandas
+        ffmpeg-python
 
         # numpy
         # seaborn
@@ -122,6 +121,7 @@ in
       ]
     ))
     # hunspell
+    languagetool # lang:grammar
     wordnet # +dictionary
     sqlite # org-roam
     # editorconfig-core-c # per-project style config# TODO use
@@ -168,7 +168,9 @@ in
     libxml2
     # pyenv
 
-    # lsp
+    # NODE / Javascript
     nodejs_24 # consider npm for auto install of servers in lsp-mode
+    # deno
+
   ];
 }

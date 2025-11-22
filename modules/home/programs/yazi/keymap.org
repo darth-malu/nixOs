@@ -1,5 +1,6 @@
 #+title: yazi keymaps
 #+auto_tangle: t
+#+startup: content indent
 
 * start
 #+begin_src nix :tangle keymap.nix
@@ -7,9 +8,11 @@
 #+end_src
 * keymaps
 ** manager
-*** keys annotation
+*** links / sources
 
 https://yazi-rs.github.io/docs/configuration/keymap#notation
+
+[[https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/keymap-default.toml][Default keys]]
 
 *** starter
 When you don't need any default and want to fully customize your keybindings, use keymap
@@ -105,10 +108,10 @@ mgr.keymap = [
 *** operations
 **** open
 #+begin_src nix :tangle keymap.nix
-  { on = [ "o" ];         run = [ "escape --visual" "open" ];                       desc = "Open the selected files"; }
-  { on = [ "O" ];         run = [ "escape --visual" "open --interactive" ];         desc = "Open the selected files interactively"; }
-  { on = [ "<Enter>" ];   run = [ "escape --visual" "open --hovered" ];             desc = "Always open the hovered file regardless of the selection state."; }
-  { on = [ "<C-Enter>" ]; run = [ "escape --visual" "open --interactive" ];         desc = "Open the selected files interactively"; }
+  { on = [ "o" ];         run = "open";                       desc = "Open the selected files"; }
+  { on = [ "O" ];         run = "open --interactive";         desc = "Open the selected files interactively"; }
+  { on = [ "<Enter>" ];   run = "open --hovered";             desc = "Always open the hovered file regardless of the selection state."; }
+  { on = [ "<C-Enter>" ]; run = "open --interactive";         desc = "Open the selected files interactively"; }
 #+end_src
 
 **** yank, cut, paste
@@ -245,7 +248,7 @@ File information spotter
 
 #+begin_src nix :tangle no
 spot.keymap = [
-  { on =  "Tab"; run = "help"; desc = "Display file information with the preset or user-customized spotter."; } # FIXME: not work
+  { on =  "<Tab>"; run = "help"; desc = "Display file information with the preset or user-customized spotter."; } # FIXME: not work
 ];
 #+end_src
 

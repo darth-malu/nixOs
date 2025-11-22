@@ -14,13 +14,13 @@
     ./gaming
   ];
 
-  qemuNix.enable = if config.networking.hostName == "carthage" then false else false;
+  # qemuNix.enable = if config.networking.hostName == "carthage" then false else false;
 
   steamy.enable = if config.networking.hostName == "carthage" then true else false;
 
   programs = {
 
-    gpu-screen-recorder.enable = true;
+    # gpu-screen-recorder.enable = true;  # FIXME: does not work lol
 
     ccache = {
       enable = true;
@@ -47,10 +47,7 @@
     pipewire = {
       enable = true;
       pulse.enable = true;
-      alsa = {
-        enable = true;
-        # support32Bit = false; # check if needed
-      };
+      alsa.enable = true;
       wireplumber.enable = true;
       #extraConfig.pipewire."92-low-latency" = {#FIXME: crackling
       #"context.properties" = {

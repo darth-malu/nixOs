@@ -103,7 +103,7 @@ folders = {
 };
 #+end_src
 **** tangier, carthage
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
 "ytVid-tangier" = {
   path = "/home/malu/Videos/YtDlp";
   devices = [ "tangier" ]; # send to device listed here
@@ -129,8 +129,8 @@ folders = {
 #+end_src
 
 *** music
-**** TODO make sharepoint better
-#+begin_src nix :tangle yes
+
+#+begin_src nix :tangle no
 "music" = {
   path = "/home/malu/Music/homeMusic";
   devices = [ "carthage" ];
@@ -138,7 +138,6 @@ folders = {
 };
 #+end_src
 
-**** playlists ncmpcpp
 #+begin_src nix :tangle default.nix
 "ncmpcpp_playlists" = {
   path = "/home/malu/Music/ncmpcpp/playlists";

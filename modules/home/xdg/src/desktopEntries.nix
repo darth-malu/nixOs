@@ -15,7 +15,7 @@
     terminal = false;
     type = "Application";
     categories = [ "Development" ]; # TODO change later
-    exec = "/home/malu/.code/PySide6/youtubr/dist/youtubr";
+    exec = "/home/malu/.code/PySide6/youtubr/youtubr";
     icon = "/home/malu/.code/PySide6/youtubr/youtube.png";
   };
   # Emacs = {

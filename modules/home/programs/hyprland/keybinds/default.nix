@@ -57,9 +57,11 @@ bind =
   "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
 
- "$mod $sl, T, exec, youtubr"
+ # "$mod $sl, T, exec, youtubr"
+ "$mod $sl, T, exec, /home/malu/.code/PySide6/youtubr/youtubr"
 
- "$mod , A, exec, ascii"
+ # "$mod , A, exec, ascii"
+ "$mod , A, exec, /home/malu/.code/c/ascii"
 
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"

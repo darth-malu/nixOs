@@ -112,11 +112,13 @@ bind =
 *** SKUNKWORKS ☢️
 **** MaluwareYt
 #+begin_src nix :tangle default.nix
- "$mod $sl, T, exec, youtubr"
+ # "$mod $sl, T, exec, youtubr"
+ "$mod $sl, T, exec, /home/malu/.code/PySide6/youtubr/youtubr"
 #+end_src
 **** Ascii
 #+begin_src nix :tangle default.nix
- "$mod , A, exec, ascii"
+ # "$mod , A, exec, ascii"
+ "$mod , A, exec, /home/malu/.code/c/ascii"
 #+end_src
 *** kitty
 #+begin_src nix :tangle default.nix

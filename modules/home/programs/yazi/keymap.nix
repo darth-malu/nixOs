@@ -66,10 +66,10 @@ mgr.keymap = [
   { on = [ "<C-a>" ];   run = "toggle_all --state=on";            desc = "Select all files"; }
   { on = [ "<C-r>" ];   run = "toggle_all --state=off";            desc = "Inverse selection of all files"; }
 
-  { on = [ "o" ];         run = [ "escape --visual" "open" ];                       desc = "Open the selected files"; }
-  { on = [ "O" ];         run = [ "escape --visual" "open --interactive" ];         desc = "Open the selected files interactively"; }
-  { on = [ "<Enter>" ];   run = [ "escape --visual" "open --hovered" ];             desc = "Always open the hovered file regardless of the selection state."; }
-  { on = [ "<C-Enter>" ]; run = [ "escape --visual" "open --interactive" ];         desc = "Open the selected files interactively"; }
+  { on = [ "o" ];         run = "open";                       desc = "Open the selected files"; }
+  { on = [ "O" ];         run = "open --interactive";         desc = "Open the selected files interactively"; }
+  { on = [ "<Enter>" ];   run = "open --hovered";             desc = "Always open the hovered file regardless of the selection state."; }
+  { on = [ "<C-Enter>" ]; run = "open --interactive";         desc = "Open the selected files interactively"; }
 
   { on = [ "y" ];         run = [ "escape --visual" "yank" ];                       desc = "Copy the selected files"; }
   { on = [ "Y" ];         run = "unyank";                                            desc = "Cancel the yank status of files"; }

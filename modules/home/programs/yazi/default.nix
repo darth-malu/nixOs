@@ -66,9 +66,9 @@
         image_filter = "lanczos3";
         image_quality = 90;
         tab_size = 2; # in spaces
-        max_width = 600; # after changing do yazi --clear-cache
+        max_width = 600;
         max_height = 900;
-        # cache_dir = ""; # specifiy absolut path for persistence
+        # cache_dir = ""; # specifiy absolut path for persistence # after changing do yazi --clear-cache
         ueberzug_scale = 1;
         ueberzug_offset = [
           0
@@ -80,22 +80,22 @@
       opener = {
         play = [
           {
-            run = "mpv $@";
+            run = "mpv \"$@\"";
             orphan = true;
             for = "unix";
           }
         ];
         edit = [
           {
-            run = "$EDITOR $@";
+            run = "$EDITOR \"$@\"";
             block = true;
             for = "unix";
           }
         ];
         open = [
           {
-            run = "xdg-open $@";
-            desc = "Open files with xdg-open";
+            run = "xdg-open \"$@\"";
+            desc = "Open files with xdg-open"; # FIXME: does not work
           }
         ];
       };
@@ -119,7 +119,10 @@
             mime = "video/*";
             use = "play";
           }
-          # { mime = "application/json", use = "edit" },
+          {
+            mime = "image/*";
+            use = "play";
+          }
           {
             name = "*.json";
             use = "edit";
@@ -129,7 +132,7 @@
             name = "*.html";
             use = [
               "open"
-              # "edit"
+              "edit"
             ];
           }
         ];

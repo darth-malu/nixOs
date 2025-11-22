@@ -12,6 +12,7 @@ let
   pause_play = import ./pause_play.nix { inherit pkgs; };
   # rofi_power = import ./rofi_power.nix { inherit pkgs; };
   gaps = import ./gaps.nix { inherit pkgs; };
+  netspeed = import ./netspeed.nix { inherit pkgs; };
   # batteryQS = import ./battery.nix { inherit pkgs; };
   temp =
     if osConfig.networking.hostName == "tangier" then
@@ -32,7 +33,7 @@ in
         [ ]
     )
     ++ [
-      # sample_script
+      netspeed
       songart
       pause_play
       mpris_vol

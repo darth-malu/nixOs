@@ -12,7 +12,7 @@
       # Quickshell stuffs https://quickshell.org/docs/v0.2.0/guide/install-setup/
       qt6.qtimageformats # webp & less common format support
       qt6.qt5compat # extra visual effects, notably gaussian blur. MultiEffect is usually preferable
-      # qt6.qtsvg # support for SVG image loading (bundled with most packages)
+      # qt6.qtsvg # support for SVG image loading (bundled with most packages) # NOTE its still fetched?
       qt6.qtmultimedia # support for playing videos, audio, etc
       qt6.qtdeclarative # qtdecl types in path
       grim
@@ -119,8 +119,9 @@
       mpc # mpc-cli
       nautilus
       qbittorrent
+      gpu-screen-recorder-gtk
       spotify
-      spotube # FIXME issues tu
+      spotube
       sway-audio-idle-inhibit
     ])
     ++ (with pkgs; [
@@ -153,7 +154,7 @@
           darktable
           exiftool
           ffmpeg-full
-          # handbrake # FIXME lag on open
+          handbrake # FIXME lag on open
           libreoffice-still
           obs-cli
           obs-studio

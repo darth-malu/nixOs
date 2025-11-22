@@ -21,7 +21,7 @@
       enable = true; # emacs daemon
       startWithUserSession = true; # launch with systemd user session. "graphical" -> graphical-session.target ( if true -> default.target::)
       # defaultEditor = false;
-      socketActivation.enable = true;
+      socketActivation.enable = false;
       client = {
         # Whether to enable systemd socket activation for the Emacs service. # TODO see if conflicting with startWithUSerSession
         enable = true; # false::, generation of Emacs client desktop file.

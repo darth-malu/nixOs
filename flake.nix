@@ -115,14 +115,6 @@ let
       "ventoy"
       "xow_dongle-firmware"
       "youtube-upnext"
-      # "android-studio-stable"
-      # "bluemail"
-      # "stremio-server"
-      # "stremio-shell"
-      # "unigine-heaven"
-      # "warp-terminal"
-      # "windows10-icons"
-      # "wpsoffice"
     ];
 
     permittedInsecurePackages = [

@@ -12,7 +12,5 @@
   BOLD="\[$(tput bold)\]"
   RESET="\[$(tput sgr0)\]"
 
-  # PROMPT_COMMAND=""             # Try as fix for emacs shell issue
-
   PS1="\n$EXIT_COLOR$BOLD \w $RESET"
 ''

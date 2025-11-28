@@ -44,7 +44,11 @@ pkgs.writeShellScriptBin "netspeed" ''
           return
       fi
 
+<<<<<<< HEAD
       printf "%s\t\t%s" "$received ↘" "$sent ↗"
+=======
+      printf "%s\t\t%s" "$received ↘" "$sent↗"
+>>>>>>> d60a2b5 (Trying yazi, PS1, size fixes)
       # received=$(( (rx2 - rx1) * 8 / 1000000 ))
       # sent=$(( (tx2 - tx1) * 8 / 1000000 ))
 

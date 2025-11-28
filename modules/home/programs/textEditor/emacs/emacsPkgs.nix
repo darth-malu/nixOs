@@ -76,6 +76,12 @@ in
         # ffmpeg-python
         pytest-mock # yyoutubr pytest
         pytest-mockservers
+        # ELPy
+        # autopep8
+        # jedi
+        # yapf
+        # flake8
+
         # numpy
         # seaborn
         # matplotlib

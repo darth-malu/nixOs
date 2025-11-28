@@ -119,7 +119,7 @@
           }
           {
             mime = "image/*";
-            use = "open";
+            use = "open"; # play - mpv
           }
           {
             name = "*.json";

@@ -58,10 +58,9 @@ bind =
   "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
 
  # "$mod $sl, T, exec, youtubr"
- "$mod $sl, T, exec, /home/malu/.code/PySide6/youtubr/youtubr"
+ "$mod $sl, T, exec, /home/malu/.code/SkunkWorks/PySide6/youtubr/youtubr"
 
- # "$mod , A, exec, ascii"
- "$mod , A, exec, /home/malu/.code/c/ascii"
+ "$mod , A, exec, ascii"
 
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
@@ -114,6 +113,8 @@ bind =
 # "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"
 # "$mod $cl, D, focuswindow, class:^(emacs)$"
 # "$mod $cl, D, focuswindow, initialTitle:(.*)(Doom Emacs)$"
+  "$mod $cl, E, focuswindow, class:^(emacs)$"
+  "$mod $al, E, execr, notify-send 'restarting emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png' ; systemctl --user restart emacs ; sleep 2 && notify-send 'restarted emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png'  && $emacs"
 
 "$mod $cl, D, focuswindow, class:^(discord)$"
 
@@ -241,16 +242,8 @@ bind =
   )
 )
 
-++ (if osConfig.networking.hostName == "tangier" then
+++ (if osConfig.networking.hostName == "carthage" then
   [
-    # "$mod, Delete, exec, pkill rofi || rofi_power"
-
-    # "$mod $cl, E, focuswindow, class:^(Emacs)$" # TODO combine regex into one
-  ]
-  else [
-    "$mod $cl, E, focuswindow, class:^(emacs)$"
-    "$mod $al, E, execr, notify-send 'restarting emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png' ; systemctl --user restart emacs ; sleep 2 && notify-send 'restarted emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png'  && $emacs"
-
     # "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
     # "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
 
@@ -262,6 +255,10 @@ bind =
 
     "$mod $sl, bracketright, execr, hyprctl dispatch -- swapactiveworkspaces HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}')"
     "$mod $sl, bracketleft, execr, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}'); dispatch focusmonitor +1;\""
+  ] else [
+    # "$mod, Delete, exec, pkill rofi || rofi_power"
+
+    # "$mod $cl, E, focuswindow, class:^(Emacs)$" # TODO combine regex into one
   ]);
 
 #mouse binds have one less arg

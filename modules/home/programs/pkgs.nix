@@ -176,7 +176,6 @@
         ])
       else
         [
-          gimp
           ffmpeg
         ]
     )

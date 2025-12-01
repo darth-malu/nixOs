@@ -76,12 +76,15 @@ in
         # ffmpeg-python
         pytest-mock # yyoutubr pytest
         pytest-mockservers
+<<<<<<< HEAD
         # ELPy
         # autopep8
         # jedi
         # yapf
         # flake8
 
+=======
+>>>>>>> d3da8bf (backuper...fix ..remove mount logic(use external))
         # numpy
         # seaborn
         # matplotlib

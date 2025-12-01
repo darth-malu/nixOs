@@ -176,6 +176,10 @@
         ])
       else
         [
+<<<<<<< HEAD
+=======
+          gimp
+>>>>>>> d3da8bf (backuper...fix ..remove mount logic(use external))
           ffmpeg
         ]
     )

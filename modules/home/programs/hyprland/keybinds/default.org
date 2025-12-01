@@ -482,7 +482,8 @@ bindel =
     [
     ", F8, execr, qs ipc call mpris next"
     ", F6, execr, qs ipc call mpris previous"
-    ", F7, execr, pause_play"
+    # ", F7, execr, pause_play"
+    ", F7, execr, qs ipc call mprisTog togglePlaying"
     "$mod, F7, execr, qs ipc call mprisTog toggleMpris"
     "$mod $cl, F7, execr, qs ipc call mprisTog toggleMprisIcon"
     "$mod $sl, F7, execr, qs ipc call mpris raise"

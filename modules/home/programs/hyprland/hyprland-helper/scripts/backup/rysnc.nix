@@ -1,6 +1,6 @@
 { pkgs }:
 
-pkgs.writeShellScriptBin "rysnc" ''
+pkgs.writeShellScriptBin "backupRsync" ''
     # rsync -avz --delete /path/to/source/ /media/$USER/your_flash_drive_name/backup/
 
   SOURCE="/path/to/source/"

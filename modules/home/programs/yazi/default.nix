@@ -111,9 +111,7 @@
           }
           {
             mime = "application/pdf";
-            use = [
-              "open"
-            ];
+            use = "open";
           }
           {
             mime = "video/*";
@@ -121,7 +119,7 @@
           }
           {
             mime = "image/*";
-            use = "play";
+            use = "open"; # play - mpv
           }
           {
             name = "*.json";

@@ -73,8 +73,9 @@ in
         # gnureadline     # NOTE python-shell-interpreter not supporting readline warning fix
         pyside6
         pandas
-        ffmpeg-python
-
+        # ffmpeg-python
+        pytest-mock # yyoutubr pytest
+        pytest-mockservers
         # numpy
         # seaborn
         # matplotlib
@@ -167,6 +168,7 @@ in
     shfmt
     libxml2
     # pyenv
+    # ELPY
 
     # NODE / Javascript
     nodejs_24 # consider npm for auto install of servers in lsp-mode

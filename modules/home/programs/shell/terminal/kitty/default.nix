@@ -1,4 +1,4 @@
-{ osConfig, ... }:
+{ osConfig, lib, ... }:
 {
   imports = [
     ./keymaps.nix
@@ -7,8 +7,10 @@
 
   programs.kitty = {
     enable = true;
-    shellIntegration.enableBashIntegration = true;
-    shellIntegration.mode = "no-cursor"; # vi mode conflict fix
+    shellIntegration = {
+      enableBashIntegration = true;
+      mode = "no-cursor"; # vi mode conflict fix
+    };
     font = {
       name = "JetBrainsMono Nerd Font";
       size = if osConfig.networking.hostName == "tangier" then 10.2 else 11.2;
@@ -24,7 +26,7 @@
     settings = {
       # term =  "xterm-256color";
       scrollback_lines = 4000; # 2000:: uses more RAM
-      enable_audio_bell = false;
+      enable_audio_bell = true;
       # update_check_interval = 0;
       # undercurl_style = "thin-sparse"; # thin-sparse | thin | thick| sparse | dense
       cursor = "#FAA6FF"; # #573280 "#3FA8C6""#9381ff""#0CA4A5";
@@ -71,14 +73,14 @@
       color3 = "#FFFB46";
       color11 = "#fff000";
 
-      sync_to_monitor = false; # not recommended for high mouse/keyboard RR (input latency - set to no), yes:: - prevents tearing when scrolling
+      sync_to_monitor = if osConfig.networking.hostName == "carthage" then true else false; # not recommended for high mouse/keyboard RR (input latency - set to no), yes:: - prevents tearing when scrolling TODO test with 240hz
       allow_remote_control = false; # used for arch update
 
       # input_delay = 0; # 3:: # can cause flicker if terminal application does full screen redraw with every loop. **maybe my issue with ncmpcpp
       # repaint_delay = 2; # 10(100fps):: # delay between screen updates in milliseconds. decreasing increases FPS at the cost of CPU. ssync_to_monitor = no advised unless highrr
       wayland_enable_ime = false; # yes:: This is typically used for inputting text in East Asian languages. Buggy turn off if not needed
 
-      bell_on_tab = "💎"; # bell_on_tab = " ";
+      bell_on_tab = "💎";
       # tab_bar_background = none; # defaults to terminal background
       # tab_bar_margin_color = "";
       tab_bar_style = "fade";

@@ -92,7 +92,7 @@
       key_press_enables_dpms = true; # false:: #wakes monitor if key pressed
       # mouse_move_enables_dpms = true;
       layers_hog_keyboard_focus = true; # keyboard interactive layers keep focus on mouse move, fix bittorrent etc pop ups
-      new_window_takes_over_fullscreen = 2; # 2 - unfullscreen, 1 -takes over, -nothing/staybehind -0
+      # new_window_takes_over_fullscreen = 2; # 2 - unfullscreen, 1 -takes over, -nothing/staybehind -0
       vrr = if osConfig.networking.hostName == "carthage" then 3 else 0; # 1 -on,2 -fullscreen # adaptive sync
       # vfr = true;::
     };

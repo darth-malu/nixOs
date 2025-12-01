@@ -88,7 +88,7 @@
         usbutils # lsusb, usb-devices, usb-view(optional gui)
         jmtpfs # mtp drivers
         pciutils # lspci
-        util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
+        util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock, more**
         kitty
         bc
         wl-clipboard # rust wl-clipboard better?

@@ -41,6 +41,7 @@ pkgs.writeShellScriptBin "pause_play" ''
           case $(music_playing_state) in
           "Playing")
               playerctl -ps spotify play-pause || mpc toggle
+              # playerctl -a play-pause
               notify-send -i /home/malu/Shibuya/assets/icons/icons8-pause-50.png "Music paused "
               ;;
           *)

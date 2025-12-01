@@ -143,6 +143,7 @@ mgr.keymap = [
 
 *** SHELL
 #+begin_src nix :tangle keymap.nix
+  { on = [ "b" ];         run = [ "escape --visual"  "shell -- 'wl-copy \"$@\"'" "shell 'notify-send This \"$@\"'" ];                      desc = "Run a shell --interactive command"; }
   { on = [ ";" ];         run = [ "escape --visual"  "shell --interactive" ];                      desc = "Run a shell --interactive command"; }
   { on = [ ":" ];         run = [ "escape --visual"  "shell --block --interactive" ];              desc = "Run a shell command (block the UI until the command finishes)"; }
   #{ on = [ ":" ];         run = [ "escape --visual"; "shell --block" ];              desc = "Run a shell command (block the UI until the command finishes);" }

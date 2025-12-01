@@ -38,7 +38,6 @@
       "exit"
     ];
     profileExtra =
-      # if (osConfig.kde.enable == false) then # INFO: only launch when hyrpland option is enabled
       if (osConfig.kde.enable == false) then
         #loginshell
         ''

@@ -26,6 +26,7 @@
 
       # "match: float true, pwvucontrol"
       "float true, match:class com.saivert.pwvucontrol"
+      "size (monitor_w*0.8) (monitor_h*0.7), match:class com.saivert.pwvucontrol"
       "float true, match:class Maluware-yt"
       #"center true(1), com.saivert.pwvucontrol"
       "float true, match:workspace n[s:window] f[1], border_size 0, rounding 0"
@@ -100,12 +101,12 @@
       "workspace 10, match:initial_class ^(spotube)$, match:initial_title ^(spotube)$"
       "workspace 10, match:initial_class ^(spotify)$"
 
-      "match:initial_class ^(viewnior)$, size 80% 80%"
+      "match:initial_class ^(viewnior)$, size (monitor_w*0.8) (monitor_h*0.8)"
       "match:initial_class ^(viewnior)$, center true"
       "match:initial_class ^(viewnior)$, float true"
 
       "float true , match:initial_class ^(org.telegram.desktop)$, match:initial_title ^(Telegram)(.*)$"
-      "size 80% 60%, match:initial_class ^(org.telegram.desktop)$, match:initial_title ^(Telegram)(.*)$"
+      "size (monitor_w*0.8) (monitor_h*0.6), match:initial_class ^(org.telegram.desktop)$, match:initial_title ^(Telegram)(.*)$"
 
       "workspace emptym, match:initial_class emacs, match:initial_title ^(.*)(Doom Emacs)$"
       "workspace emptym, match:initial_class Emacs, match:initial_title ^(.*)(Doom Emacs)$"

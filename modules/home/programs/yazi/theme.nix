@@ -71,8 +71,10 @@
 
   mgr = {
     border = {
-      border_style = "reset";   # hidden?
-      border_symbol = " "; # "│"::
+      border_style = {
+        hidden = true; # hidden?
+      };
+      # border_symbol = " "; # "│"::
     };
     cwd = {
       fg = "#563d7c";

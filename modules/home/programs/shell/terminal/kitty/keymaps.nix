@@ -79,5 +79,9 @@
 
     "ctrl+page_up" = "scroll_page_up";
     "ctrl+page_down" = "scroll_page_down";
+
+    # Scrollback
+    "kitty_mod+period" = "show_scrollback";
+    "kitty_mod+comma" = "show_last_command_output";
   };
 }

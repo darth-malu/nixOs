@@ -44,9 +44,11 @@
     ++ (with pkgs; [
       # testing for yazi #
       zip # Compressor/archiver for creating and modifying zipfiles.
-      xz # General-purpose data compression software, successor of LZMA
       unzip # Extraction utility for archives compressed in .zip format
+      xz # General-purpose data compression software, successor of LZMA
       p7zip # New p7zip fork with additional codecs and improvements (forked from https://sourceforge.net/projec…
+      # unrar
+      rar
     ])
     ++ (with pkgs; [
       ed
@@ -72,7 +74,9 @@
       # warp-terminal # insane bloat
       # win-disk-writer
       #testdisk # also installs photorec
+      # duc
       duf
+      dust
       file # need for yazi mimedetectionetc.
       iftop # TODO seems powerful investigate more
       inxi
@@ -116,12 +120,12 @@
       # xclip
       blanket
       easyeffects
-      mpc # mpc-cli
+      mpc
       nautilus
       qbittorrent
       gpu-screen-recorder-gtk
       spotify
-      spotube
+      # spotube
       sway-audio-idle-inhibit
     ])
     ++ (with pkgs; [
@@ -159,6 +163,7 @@
           obs-cli
           obs-studio
           vlc
+          # stremio
           telegram-desktop
           ungoogled-chromium
         ]
@@ -170,7 +175,10 @@
           # gst-libav
         ])
       else
-        [ ffmpeg ]
+        [
+          gimp
+          ffmpeg
+        ]
     )
     ++ (
       if config.homeHyprland.enable then

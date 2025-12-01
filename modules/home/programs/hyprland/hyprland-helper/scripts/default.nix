@@ -20,6 +20,7 @@ let
     else
       import ./temp/carthage_temp.nix { inherit pkgs; };
   clr_backup = import ./clr_backup.nix { inherit pkgs; };
+  backupSumbi = import ./backup/backuper.nix { inherit pkgs; };
   mount_hdd = import ./mount_hdd.nix { inherit pkgs; };
 in
 {
@@ -42,6 +43,7 @@ in
       gaps
       temp
       clr_backup
+      backupSumbi
       # batteryQS
     ];
 }

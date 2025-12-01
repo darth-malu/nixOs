@@ -103,29 +103,33 @@ let
   config = {
 
     allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+      "aspell-dict-en-science"
       "discord"
-      "discord-ptb"
-      "unigine-heaven"
+      "evafast"
       "google-chrome"
-      "bluemail"
-      "ventoy"
+      "rar"
       "spotify"
       "steam"
       "steam-unwrapped"
-      "wpsoffice"
+      "unrar"
+      "ventoy"
       "xow_dongle-firmware"
-      "warp-terminal"
-      "windows10-icons"
-      "aspell-dict-en-science"
       "youtube-upnext"
-      "evafast"
-      "android-studio-stable"
+      # "android-studio-stable"
+      # "bluemail"
+      # "stremio-server"
+      # "stremio-shell"
+      # "unigine-heaven"
+      # "warp-terminal"
+      # "windows10-icons"
+      # "wpsoffice"
     ];
 
     permittedInsecurePackages = [
       "ventoy-1.1.07"
       "libsoup-2.74.3"
       "libxml2-2.13.8" # for cisco?
+      "qtwebengine-5.15.19"     # TODO check dependency
     ];
 
 };

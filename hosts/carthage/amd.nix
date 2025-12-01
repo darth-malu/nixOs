@@ -20,7 +20,7 @@
       );
   };
 
-  # services.lact.enable = true;
+  services.lact.enable = true;
 
   hardware.amdgpu = {
     #initrd.enable = true; #  # early userspace, fix low res in boot scrn

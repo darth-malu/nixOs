@@ -86,6 +86,7 @@ mgr.keymap = [
   { on = [ "a" ];         run = "create";                                            desc = "Create a file or directory (ends with / for directories)"; }
   { on = [ "r" ];         run = [ "escape --visual"  "rename --cursor=before_ext" ]; desc = "Rename a file or directory"; }
 
+  { on = [ "b" ];         run = [ "escape --visual"  "shell -- 'wl-copy \"$@\"'" "shell 'notify-send This \"$@\"'" ];                      desc = "Run a shell --interactive command"; }
   { on = [ ";" ];         run = [ "escape --visual"  "shell --interactive" ];                      desc = "Run a shell --interactive command"; }
   { on = [ ":" ];         run = [ "escape --visual"  "shell --block --interactive" ];              desc = "Run a shell command (block the UI until the command finishes)"; }
   #{ on = [ ":" ];         run = [ "escape --visual"; "shell --block" ];              desc = "Run a shell command (block the UI until the command finishes);" }

@@ -170,9 +170,9 @@ ytdl-format = "bv[height<=1080]+ba/b[height<=1080]"; # ytdl,"best"  worst, mp4, 
 cache = true; # yes, no , auto
 cache-pause = true; # buffering insteaad of stutter :)
 cache-pause-initial = true;
-demuxer-max-bytes = "512MiB";
+demuxer-max-bytes = "1000MiB";   # 512MiB
 demuxer-max-back-bytes = "100M";
-demuxer-readahead-secs = 20;
+demuxer-readahead-secs = 40;    # 20::
 # Store cache payload on the hard disk instead of in RAM. (This may negatively
 # impact performance unless used for slow input such as network.)
 #cache-dir=~/.cache/

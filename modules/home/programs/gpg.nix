@@ -3,9 +3,13 @@
   home.packages = with pkgs; [
     # pinentry
     pinentry-all
-    pinentry-rofi
+    # pinentry-rofi
+    # pinentry-qt
+    # pinentry-tty
+    # pinentry-emacs
+    # pinentry-curses
     gcr # fix for pinentry on non-gnome systems
-    gnupg
+    # gnupg
   ];
 
   services.gpg-agent = {
@@ -29,7 +33,6 @@
     # Gui for OpenPGP
     # seahorse.enable = true;
     gpg = {
-      ## Enable GnuPG
       enable = true;
 
       # homedir = "/home/userName/.config/gnupg";
@@ -44,40 +47,40 @@
         # https://www.gnupg.org/documentation/manuals/gnupg/GPG-Esoteric-Options.html
         # Some Best Practices, stronger algos etc
         # Use AES256, 192, or 128 as cipher
-        personal-cipher-preferences = "AES256 AES192 AES";
+        # personal-cipher-preferences = "AES256 AES192 AES";
         # Use SHA512, 384, or 256 as digest
-        personal-digest-preferences = "SHA512 SHA384 SHA256";
+        # personal-digest-preferences = "SHA512 SHA384 SHA256";
         # Use ZLIB, BZIP2, ZIP, or no compression
-        personal-compress-preferences = "ZLIB BZIP2 ZIP Uncompressed";
+        # personal-compress-preferences = "ZLIB BZIP2 ZIP Uncompressed";
         # Default preferences for new keys
-        default-preference-list = "SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed";
+        # default-preference-list = "SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed";
         # SHA512 as digest to sign keys
-        cert-digest-algo = "SHA512";
+        # cert-digest-algo = "SHA512";
         # SHA512 as digest for symmetric ops
-        s2k-digest-algo = "SHA512";
+        # s2k-digest-algo = "SHA512";
         # AES256 as cipher for symmetric ops
-        s2k-cipher-algo = "AES256";
+        # s2k-cipher-algo = "AES256";
         # UTF-8 support for compatibility
-        charset = "utf-8";
+        # charset = "utf-8";
         # Show Unix timestamps
-        fixed-list-mode = "";
+        # fixed-list-mode = "";
         # No comments in signature
-        no-comments = ""; # FALSE?
+        # no-comments = ""; # FALSE?
         # No version in signature
-        no-emit-version = "";
+        # no-emit-version = "";
         # Disable banner
-        no-greeting = "";
+        # no-greeting = "";
         # Long hexidecimal key format
-        keyid-format = "0xlong";
+        # keyid-format = "0xlong";
         # Display UID validity
-        list-options = "show-uid-validity";
-        verify-options = "show-uid-validity";
+        # list-options = "show-uid-validity";
+        # verify-options = "show-uid-validity";
         # Display all keys and their fingerprints
-        with-fingerprint = "";
+        # with-fingerprint = "";
         # Cross-certify subkeys are present and valid
-        require-cross-certification = "";
+        # require-cross-certification = "";
         # Disable caching of passphrase for symmetrical ops
-        no-symkey-cache = "";
+        # no-symkey-cache = "";
         # Enable smartcard
         # use-agent = "";
       };

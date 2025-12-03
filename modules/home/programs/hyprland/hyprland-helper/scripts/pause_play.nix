@@ -23,35 +23,46 @@ pkgs.writeShellScriptBin "pause_play" ''
 
   player_active() {
       # output: mpd, spotify
-      playerctl metadata --format '{{ playerName }}' | sed '/^$/d'
+      # local currentPlayer=$(playerctl metadata --format '{{ playerName }}' | sed '/^$/d')
+      local currentPlayer=$(playerctl metadata --format '{{ playerName }}')
+      printf '%s' "$currentPlayer"
+      # if [[ $currentPlayer == 'com*' ]];then
+      #     return 0;
+      # else echo "$currentPlayer"
+      # fi
   }
 
   pause_player() {
 
       local active_player=$(player_active)
 
-      case $active_player in
-      "spotify")
-          playerctl -p $active_player play-pause
+      case "$active_player" in
+      "spotify" | "mpd")
+          # playerctl -p $active_player play-pause
+          playerctl -ps spotify play-pause || playerctl -ps mpd play-pause
           ;;
-      "mpd")
-          mpc toggle
+      # "mpd")
+      #     mpc toggle
+      #     ;;
+      "com*")
+          playerctl -ps spotify play-pause || playerctl -ps mpd play-pause
           ;;
-      firefox* | *brave* | chromium*)
+      firefox* | chromium*)
           case $(music_playing_state) in
-          "Playing")
-              playerctl -ps spotify play-pause || mpc toggle
+          "[Pp]laying")
+              # playerctl -ps spotify play-pause || mpc toggle
+              playerctl -ps spotify play-pause || playerctl -ps mpd play-pause
               # playerctl -a play-pause
               notify-send -i /home/malu/Shibuya/assets/icons/icons8-pause-50.png "Music paused "
               ;;
           *)
-              playerctl -ps firefox play-pause
+              playerctl -ps firefox play-pause || playerctl -ps chromium play-pause
               # notify-send "Nothing is playing right now"
               ;;
           esac
           ;;
       *)
-          playerctl -ps "$(active_player)" play-pause
+          playerctl -ps "$active_player" play-pause
           ;;
       esac
   }

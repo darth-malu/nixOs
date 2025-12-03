@@ -31,16 +31,26 @@ devices = {
   };
 };
 
-"ncmpcpp_playlists" = {
-  path = "/home/malu/Music/ncmpcpp/playlists";
-  devices = ["tangier" "carthage"];
-  type = "sendreceive";
+"Shibuya" = {         # Name of folder in Syncthing, also the folder ID
+  path = "/home/malu/Shibuya";    # Which folder to add to Syncthing
+  devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
 };
 
   "sharepoint" = {
     path = "/home/malu/sharepoint";
     devices = ["tangier" "carthage"];
   };
+
+  "studious" = {
+    path = "/home/malu/studious";
+    devices = ["tangier" "carthage"];
+  };
+
+"ncmpcpp_playlists" = {
+  path = "/home/malu/Music/ncmpcpp/playlists";
+  devices = ["tangier" "carthage"];
+  type = "sendreceive";
+};
 
 gui = {
   theme = "black";

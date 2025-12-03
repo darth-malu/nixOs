@@ -47,8 +47,7 @@
       unzip # Extraction utility for archives compressed in .zip format
       xz # General-purpose data compression software, successor of LZMA
       p7zip # New p7zip fork with additional codecs and improvements (forked from https://sourceforge.net/projec…
-      # unrar
-      rar
+      rar # also has unrar
     ])
     ++ (with pkgs; [
       ed
@@ -59,7 +58,6 @@
       socat
       cling
       cmake # vterm
-      # libgcc
       # nasm
     ])
     ++ (with pkgs; [
@@ -76,7 +74,8 @@
       #testdisk # also installs photorec
       # duc
       duf
-      dust
+      # dust
+      ncdu
       file # need for yazi mimedetectionetc.
       iftop # TODO seems powerful investigate more
       inxi
@@ -84,23 +83,22 @@
       lm_sensors
       lsof # list open files/ports**
       mission-center
-      ncdu
       nethogs
       pciutils # lspci
       usbutils # lsusb, usb-devices, usb-view(optional gui)
       util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
+      ripgrep-all
+      dotool
     ])
     ++ (with pkgs; [
       # chromium
       # wpsoffice
       # libreoffice-qt-still
       libreoffice-still
-      ripgrep-all
       discord
       wasistlos # whatsapp-for-linux
       # modem-manager-gui
       # modemmanager # saves the day with no internet
-      dotool
     ])
     ++ (with pkgs; [
       # cantata # old af
@@ -124,6 +122,7 @@
       nautilus
       qbittorrent
       gpu-screen-recorder-gtk
+      alarm-clock-applet
       spotify
       # spotube
       sway-audio-idle-inhibit

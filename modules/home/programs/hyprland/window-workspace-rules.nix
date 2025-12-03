@@ -26,6 +26,7 @@
 
       # "match: float true, pwvucontrol"
       "float true, match:class com.saivert.pwvucontrol"
+      "center true, match:class com.saivert.pwvucontrol"
       "size (monitor_w*0.8) (monitor_h*0.7), match:class com.saivert.pwvucontrol"
 
       "float true, match:class alarm-clock-applet"
@@ -33,7 +34,6 @@
       "size (monitor_w*0.6) (monitor_h*0.6), match:class alarm-clock-applet"
 
       "float true, match:class Maluware-yt"
-      #"center true(1), com.saivert.pwvucontrol"
       "float true, match:workspace n[s:window] f[1], border_size 0, rounding 0"
 
       # Select files dialog

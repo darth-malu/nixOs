@@ -53,7 +53,7 @@ in
     # direnv
     emacs-lsp-booster
     # prettier
-    prettierd # prettier as a daemon, for improved speed # TODO test workings
+    # prettierd # prettier as a daemon, for improved speed # TODO test workings
 
     libtool
     shellcheck
@@ -67,6 +67,7 @@ in
     vips
 
     # python3 or or specific number
+    qtcreator
     (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [
         jupyter-console # jupyter-core jupyterlab-server

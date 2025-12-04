@@ -94,6 +94,7 @@ bind =
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, E, exec, [workspace emptym] $emacs"
+  "$mod $al, E, execr, notify-send 'restarting emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png' ; systemctl --user restart emacs ; sleep 2 && notify-send 'restarted emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png'  && $emacs"
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] discord"
@@ -125,8 +126,6 @@ bind =
 "$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
   # "$mod , up, focuswindow, class:^(Emacs)$"
 
-"$mod $cl, N, focuswindow, class:org.kde.dolphin"
-
 # "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 # "$mod $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 "$mod $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
@@ -134,9 +133,11 @@ bind =
 
 # "$mod $cl, C, focuswindow, class:^(google-chrome)$"
 "$mod $cl, c, focuswindow, class:^(chromium-browser)$"
-"$mod , g, exec, chromium chatgpt.com"
+"$mod , g, exec, chromium gemini.google.com"
+"$mod g, g, exec, chromium gemini.google.com"
 
 "$mod $cl, f, focuswindow, class:^(firefox)$"
+"$mod g, f, exec, firefox gemini.google.com"
 
 "$mod $cl, Return, focuswindow, class:^(kitty)$"
 
@@ -254,6 +255,12 @@ bind =
 
 ++ (if osConfig.networking.hostName == "carthage" then
   [
+    # "$mod, Delete, exec, pkill rofi || rofi_power"
+
+    # "$mod $cl, E, focuswindow, class:^(Emacs)$" # TODO combine regex into one
+  ]
+  else [
+
     # "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
     # "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
 

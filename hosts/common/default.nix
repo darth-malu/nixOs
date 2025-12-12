@@ -4,8 +4,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/nix
-    ./users/malu.nix
-    ./users/remote-builder.nix
+    ./users
     ./storage-common.nix
     ./specialisations
   ];

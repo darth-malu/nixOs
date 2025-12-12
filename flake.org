@@ -173,7 +173,7 @@ https://nixos.wiki/wiki/Nix_channels
 *** start
 #+begin_src nix :tangle flake.nix
 let
-  system = "x86_64-linux"; # system = builtins.currentSystem;??
+  system = "x86_64-linux"; # TODO system = builtins.currentSystem;?? find reason it doesn't work
 
   config = {
 #+end_src
@@ -206,7 +206,7 @@ let
     ];
 #+end_src
 
-*** misc
+*** pkgs | home
 #+begin_src nix :tangle flake.nix
 };
  home = inputs.home-manager;

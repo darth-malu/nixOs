@@ -6,7 +6,7 @@
   #https://github.com/Beastwick18/nyaa/wiki/General-Configuration
   programs.nyaa = {
     enable = true;
-    # theme = "Dracula"; # Dracula, Gruvbox, Catppuccin Macchiato, Default - also user themes
+    theme = "Gruvbox"; # Dracula, Gruvbox, Catppuccin Macchiato, Default - also user themes
     # default_source = "Nyaa"; # Nyaa:: , TorrentGalaxy, Sukebei
     download_client = "qBittorrent";
     # timeout = 30; # request timeout for sources and clients (measured in seconds)

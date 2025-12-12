@@ -98,7 +98,7 @@
   outputs = inputs@{nixpkgs, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 
 let
-  system = "x86_64-linux"; # system = builtins.currentSystem;??
+  system = "x86_64-linux"; # TODO system = builtins.currentSystem;?? find reason it doesn't work
 
   config = {
 

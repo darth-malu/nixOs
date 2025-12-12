@@ -44,8 +44,6 @@
     }
   ];
 
-  # flavor = "dracula"; #FIXME: see more on this
-
   # status = {
   # };
 
@@ -76,6 +74,8 @@
       };
       # border_symbol = " "; # "│"::
     };
+    border_symbol = " "; # "│"::
+    syntect_theme = "~/Downloads/gruvbox (Dark) (Soft).tmTheme"; # Syntax highlight in preview
     cwd = {
       fg = "#563d7c";
       # bg = "reset";
@@ -121,17 +121,20 @@
     ];
     prepend_conds = [
       {
+        # Hidden directories
         "if" = "hidden & dir";
         text = "👻";
-      } # Hidden directories
+      }
       {
+        # Directories
         "if" = "dir";
         text = "📁";
-      } # Directories
+      }
       {
+        # Normal files (not directories or symlinks)
         "if" = "!(dir | link)";
         text = "📄";
-      } # Normal files (not directories or symlinks)
+      }
     ];
     append_exts = [
       {
@@ -141,11 +144,5 @@
         fg_light = "#0075aa";
       }
     ];
-    # prepend_conds = [
-    #   { if = "hidden & dir";  text = "👻"; }  # Hidden directories
-    #   { if = "dir";           text = "📁"; }  # Directories
-    #   { if = "!(dir | link)"; text = "📄"; }  # Normal files (not directories or symlinks)
-    # ];
   };
-  # };
 }

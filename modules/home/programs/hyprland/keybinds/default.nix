@@ -32,8 +32,8 @@ bindr = [
   "$mod , Y, exec, [workspace emptym] $yazi_kitty"
   # "$mod $sl, Y, exec, [workspace special:magic;float true; size 80% 80%] $yazi_kitty"
 
-"$mod $al, C, exec, hyprpicker -an"
-"$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""
+"$mod $al, H, exec, hyprpicker -an"
+# "$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""
 
   # "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
 
@@ -68,7 +68,7 @@ bind =
   ", XF86Tools, exec, pkill pwvucontrol ||  pwvucontrol"
 
 # Menu
-  "$mod $cl, mouse:272, exec, pkill rofi || $menu_rofi"
+  "$mod , mouse:272, exec, pkill rofi || $menu_rofi"
   "$mod , P, exec, pkill rofi || $menu_rofi"
 
   # File browser
@@ -78,9 +78,8 @@ bind =
   "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
 
   # open windows
-  "$mod, TAB, exec, pkill rofi || $rofi_open_windows"
   "$mod, space, exec, pkill rofi || $rofi_open_windows"
-  "$mod $cl, mouse:273, exec, pkill rofi || $rofi_open_windows"
+  "$mod , mouse:273, exec, pkill rofi || $rofi_open_windows"
 
   # power menu
   "$mod, Delete, exec, pkill rofi || rofi_power"
@@ -214,10 +213,19 @@ bind =
   "$mod ,H, workspace,m-1"
   "$mod ,L, workspace,m+1"
 
-  "$mod ,Home,execr, qs ipc call bar toggleBar"
-  "$mod $cl,i,execr, qs ipc call notifications dismissAll"
-  "$mod ,End,execr, systemctl --user restart quickshell"
+  "$mod $al,Home,execr, qs ipc call bar toggleBar"
+
+  "$mod $al,i,execr, qs ipc call notifications dismissAll"
+
+  "$mod $al,End,execr, systemctl --user restart quickshell"
+
   "$mod , Delete, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
+
+  "$mod $cl, KP_Left, execr, qs ipc call netspeed toggleNet"
+  "$mod $cl, KP_End, execr, qs ipc call resources toggleResources"
+
+  "$mod $al, N, execr, qs ipc call netspeed toggleNet"
+  "$mod $al, R, execr, qs ipc call resources toggleResources"
 
   "$mod $sl, semicolon, swapnext"
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""

@@ -30,7 +30,6 @@
         };
 
         "/media/kibweziC" = {
-          # /dev/sda3 - c drive
           device = "/dev/disk/by-uuid/68025AB7025A89C8";
           fsType = "ntfs-3g";
           noCheck = true;
@@ -41,7 +40,6 @@
         };
 
         "/media/kibweziExtraHdd" = {
-          # /dev/sda5 - extraHdd
           device = "/dev/disk/by-uuid/CC74322874321624";
           fsType = "ntfs-3g";
           noCheck = true;

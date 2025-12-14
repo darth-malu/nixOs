@@ -32,7 +32,7 @@
         "/media/kibweziC" = {
           device = "/dev/disk/by-uuid/68025AB7025A89C8";
           fsType = "ntfs-3g";
-          noCheck = true;
+          # noCheck = true;
           options = [
             "users"
             "nofail"
@@ -42,7 +42,7 @@
         "/media/kibweziExtraHdd" = {
           device = "/dev/disk/by-uuid/CC74322874321624";
           fsType = "ntfs-3g";
-          noCheck = true;
+          # noCheck = true;
           options = [
             "users"
             "nofail"

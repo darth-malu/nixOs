@@ -85,7 +85,14 @@
             for = "unix";
           }
         ];
-        edit = [
+        emacsEdit = [
+          {
+            run = "emacsclient -c \"$@\"";
+            block = true;
+            for = "unix";
+          }
+        ];
+        vimEdit = [
           {
             run = "$EDITOR \"$@\"";
             block = true;
@@ -103,13 +110,6 @@
         # needs [openers]
         rules = [
           {
-            mime = "text/*";
-            use = [
-              "edit"
-              "open"
-            ];
-          }
-          {
             mime = "application/pdf";
             use = "open";
           }
@@ -119,41 +119,55 @@
           }
           {
             mime = "image/*";
-            use = "open"; # play - mpv
+            use = "open";
           }
           {
             name = "*.json";
-            use = "edit";
+            use = "vimEdit";
           }
-          # Multiple openers for a single rule
           {
             name = "*.html";
             use = [
+              # Multiple openers for a single rule
               "open"
-              "edit"
+              "emacsEdit"
             ];
           }
         ];
         prepend_rules = [
           {
+            name = "*.org";
+            use = [
+              "emacsEdit"
+              "open"
+            ];
+          }
+          {
             name = "*.json";
-            use = "edit";
+            use = "vimEdit";
           }
           # Multiple openers for a single rule
           {
             name = "*.html";
             use = [
               "open"
-              "edit"
+              "vimEdit"
             ];
           }
         ];
-        # append_rules = [
-        #   {
-        #     name = "*";
-        #     use = "my-fallback";
-        #   }
-        # ];
+        append_rules = [
+          {
+            mime = "text/*";
+            use = [
+              "vimEdit"
+              "open"
+            ];
+          }
+          {
+            name = "*"; # my fallback
+            use = "open";
+          }
+        ];
       };
       tasks = {
         micro_workers = 5;

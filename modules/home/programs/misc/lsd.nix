@@ -3,6 +3,7 @@
   enableBashIntegration = true;
   colors = {
     # $XDG_CONFIG_HOME/lsd/colors.yaml
+    # https://github.com/lsd-rs/lsd/tree/v1.0.0#color-theme-file-content -> For supported colors
     icons = {
       extension = {
         go = "";
@@ -27,6 +28,8 @@
       date = "relative";
       ignore-globs = [
         ".git"
+        ".stdfolder"
+        ".stdignore"
         ".hg"
       ];
     };

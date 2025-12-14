@@ -6,7 +6,7 @@ pkgs.writeShellScriptBin "backupToSumbiHDD" ''
 SOURCES=("$HOME/sharepoint" "$HOME/Shibuya" "$XDG_CONFIG_HOME/quickshell" )
 
 # EXTERNAL_DRIVE_FLASH="/dev/sdb1"
-SUMBI_HDD="/media/SumbiHDD"
+SUMBI_HDD="/media/SumbiHDD/malu"
 SAN_DISK_FLASH="/media/Ventoy"
 
 MOUNT_POINT_FLASH="$SAN_DISK_FLASH/BackupS"
@@ -19,21 +19,48 @@ log_message() {
   echo "[$TIMESTAMP] $1" >> "$LOG_FILE"
 }
 
+# mount_drive() {
+#     local DEVICE="$1"
+#     local MOUNT_POINT="$2"
+
+#         if ! mountpoint -q "$MOUNT_POINT"; then
+#         log_message "Mounting $DEVICE to $MOUNT_POINT..."
+#             sudo mount "$DEVICE" "$MOUNT_POINT"
+#             if [ $? -ne 0 ]; then
+#             log_message "Error mounting $DEVICE to $MOUNT_POINT. Exiting."
+#                 exit 1
+#                 fi
+#             else
+#             log_message "$DEVICE is already mounted at $MOUNT_POINT."
+#                 fi
+# }
+
+# unmount_drive() {
+#     local MOUNT_POINT="$1"
+
+#     if mountpoint -q "$MOUNT_POINT"; then
+#         log_message "Unmounting $MOUNT_POINT..."
+#         sudo umount "$MOUNT_POINT"
+#         if [ $? -ne 0 ]; then
+#             log_message "Error unmounting $MOUNT_POINT."
+#             fi
+#         else
+#             log_message "$MOUNT_POINT is not mounted."
+#             fi
+# }
+
 backup_folders() {
     local DESTINATION="$1"
     local OVERALL_STATUS=0
-    local git_ignore=(".git")
 
     log_message "Starting backup_folders: to $DESTINATION..."
     sleep 1
-    for dir in "''${SOURCES[@]}"; do
-        for i in ''${git_ignore[@]};do
-          rsync -aPvz "$dir" "$DESTINATION" --exclude="$i" --delete --log-file="$LOG_FILE" # --delete extraneous (files not in source)
-          if [ $? -ne 0 ]; then
-              log_message "ERROR: rsync failed for source $dir. Status: $?."
-              OVERALL_STATUS=1
-          fi
-        done
+    for dir in ''${SOURCES[@]}; do
+        rsync --exclude='.git' -ahPvz "$dir" "$DESTINATION" --delete --log-file="$LOG_FILE" # --delete extraneous (files not in source)
+        if [ $? -ne 0 ]; then
+            log_message "ERROR: rsync failed for source $dir. Status: $?."
+            OVERALL_STATUS=1
+        fi
         sleep 1
     done
 
@@ -45,6 +72,10 @@ backup_folders() {
 }
 
 log_message "--- Starting Backup to HDD/FLASH ---"
+
+# Mount the external drives
+# mount_drive "$EXTERNAL_DRIVE_FLASH" "$MOUNT_POINT_FLASH"
+# mount_drive "$EXTERNAL_DRIVE_HDD" "$MOUNT_POINT_HDD"
 
 # Perform the backups
 if [ -d "$MOUNT_POINT_FLASH" ]; then

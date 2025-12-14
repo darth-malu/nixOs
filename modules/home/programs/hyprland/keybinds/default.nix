@@ -37,13 +37,20 @@ bindr = [
 
   # "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
 
+<<<<<<< HEAD
   ", Print, exec, grimblast --cursor --notify copy output"
   "$sl, Print, exec, grimblast --cursor --notify copysave screen"
+=======
+  # copy save
+  "$sl, Print, exec, grimblast --cursor --notify -e 2 copy output"
+  ", Print, exec, grimblast --cursor --notify -e 2 copysave screen"
+  # ", Scroll_Lock, exec, grimblast --cursor --notify copysave screen"
+>>>>>>> a11f713 (yazi, lsd, storage changes)
 
   # copy
-  "SUPER, Print, exec, grimblast --cursor --notify copysave output"
-  "$al, Print, exec, grimblast --notify copy area"
-  "$cl, Print, exec, grimblast --cursor --notify copy active"
+  "SUPER, Print, exec, grimblast --cursor --notify -e 2  copysave output"
+  "$al, Print, exec, grimblast --notify -e 2 copy area"
+  "$cl, Print, exec, grimblast --cursor --notify -e 2 copy active"
 
 ];
 

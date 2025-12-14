@@ -128,6 +128,7 @@
       alarm-clock-applet
       spotify
       castero
+      gimp
       # spotube
       sway-audio-idle-inhibit
     ])
@@ -147,7 +148,6 @@
           # coppwr
           # davinci-resolve # NOTE RX580 not being detected
           # ffmpeg-full # full vs vanilla?
-          gimp
           # glmark2
           # helvum
           # inkscape-with-extensions
@@ -179,10 +179,6 @@
         ])
       else
         [
-<<<<<<< HEAD
-=======
-          gimp
->>>>>>> d3da8bf (backuper...fix ..remove mount logic(use external))
           ffmpeg
         ]
     )

@@ -230,6 +230,15 @@ bind =
   "$mod $al, N, execr, qs ipc call netspeed toggleNet"
   "$mod $al, R, execr, qs ipc call resources toggleResources"
 
+    # Playing | Mpris
+  "$mod, F7, execr, qs ipc call mprisTog toggleMpris"
+  "$mod $al, F7, execr, qs ipc call mprisTog toggleMprisIcon"
+  "$mod $sl, F7, execr, qs ipc call mpris raise"
+
+  ", F8, execr, qs ipc call mpris next"
+  ", F6, execr, qs ipc call mpris previous"
+  ", F7, execr, qs ipc call mprisTog togglePlaying"
+
   "$mod $sl, semicolon, swapnext"
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
 
@@ -253,12 +262,7 @@ bind =
   )
 )
 
-++ (if osConfig.networking.hostName == "carthage" then
-  [
-    # "$mod, Delete, exec, pkill rofi || rofi_power"
-
-    # "$mod $cl, E, focuswindow, class:^(Emacs)$" # TODO combine regex into one
-  ]
+++ (if osConfig.networking.hostName == "tangier" then []
   else [
 
     # "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
@@ -267,15 +271,11 @@ bind =
     "$mod ,bracketleft, movewindow, mon:0"
     "$mod ,bracketright, movewindow, mon:1"
 
-    "$mod $al,bracketleft, movewindow, mon:0 silent"
-    "$mod $al,bracketright, movewindow, mon:1 silent"
+    "$mod $cl,bracketleft, movewindow, mon:0 silent"
+    "$mod $cl,bracketright, movewindow, mon:1 silent"
 
     "$mod $sl, bracketright, execr, hyprctl dispatch -- swapactiveworkspaces HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}')"
     "$mod $sl, bracketleft, execr, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}'); dispatch focusmonitor +1;\""
-  ] else [
-    # "$mod, Delete, exec, pkill rofi || rofi_power"
-
-    # "$mod $cl, E, focuswindow, class:^(Emacs)$" # TODO combine regex into one
   ]);
 
 #mouse binds have one less arg
@@ -309,18 +309,8 @@ bindel =
     # ", XF86AudioNext, execr, playerctl -p spotify next || playerctl next " # TODO test for spotify running
     ", XF86AudioNext, execr, qs ipc call mpris next" # TODO test for spotify running
     ", XF86AudioPrev, execr, qs ipc call mpris previous"
-   ]++
-    (
-      if osConfig.networking.hostName == "carthage" then
-    [
-    ", F8, execr, qs ipc call mpris next"
-    ", F6, execr, qs ipc call mpris previous"
-    # ", F7, execr, pause_play"
-    ", F7, execr, qs ipc call mprisTog togglePlaying"
-    "$mod, F7, execr, qs ipc call mprisTog toggleMpris"
-    "$mod $cl, F7, execr, qs ipc call mprisTog toggleMprisIcon"
-    "$mod $sl, F7, execr, qs ipc call mpris raise"
-    ] else []);
+    ", XF86AudioPlay, execr, qs ipc call mprisTog togglePlaying"
+   ];
 
 binde =
   [# Date

@@ -276,39 +276,6 @@
         "type": "github"
       }
     },
-<<<<<<< HEAD
-    "hyprland-plugins": {
-      "inputs": {
-        "hyprland": [
-          "hyprland"
-        ],
-        "nixpkgs": [
-          "hyprland-plugins",
-          "hyprland",
-          "nixpkgs"
-        ],
-        "systems": [
-          "hyprland-plugins",
-          "hyprland",
-          "systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1765207366,
-        "narHash": "sha256-s0jO2kEj5cLLTgTblKnAKjqt3MjYFnmyrQT3SxiUugM=",
-        "owner": "hyprwm",
-        "repo": "hyprland-plugins",
-        "rev": "e058ea23b80775cf20c675d064678416df2d9d04",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hyprwm",
-        "repo": "hyprland-plugins",
-        "type": "github"
-      }
-    },
-=======
->>>>>>> 702148a (tangier prerebase)
     "hyprland-protocols": {
       "inputs": {
         "nixpkgs": [
@@ -865,10 +832,6 @@
       "inputs": {
         "home-manager": "home-manager",
         "hyprland": "hyprland",
-<<<<<<< HEAD
-        "hyprland-plugins": "hyprland-plugins",
-=======
->>>>>>> 702148a (tangier prerebase)
         "hyprlock": "hyprlock",
         "hyprpaper": "hyprpaper",
         "nix-qml": "nix-qml",

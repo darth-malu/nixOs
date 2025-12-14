@@ -1,11 +1,6 @@
 { pkgs }:
 
 pkgs.writeShellScriptBin "netspeed" ''
-  # Algorithm
-  # 1. get difference of rx1-rx2 every second
-  # 2. get difference of tx1-tx2 every second
-  # 3. TODO Display different icon for each interface
-  # 4. Display Download | Upload
 
   function  getCurrentInterface() {
       for interface in /sys/class/net/*; do
@@ -35,30 +30,24 @@ pkgs.writeShellScriptBin "netspeed" ''
       received=$(awk "BEGIN {printf \"%.1f\", ($rx2 - $rx1)*8/1000000}")
       sent=$(awk "BEGIN {printf \"%.1f\", ($tx2 - $tx1)*8/1000000}")
 
-      # Set to empty string if the speed is 0.0 (i.e., less than 0.05 Mbps)
-      [ "$received" = "0.0" ] && received="" ; [ "$sent" = "0.0" ] && sent=""
-
       # If both are empty, show nothing at all
       if [ -z "$received" ] && [ -z "$sent" ]; then
           printf ""
           return
       fi
+      case "$1" in
+          'upload')
+              printf '%s\n' "$sent"
+              ;;
+          'download')
+              printf '%s\n' "$received"
+              ;;
+          *)
+              printf "%s\t\t%s\n" "$received ↘" "$sent ↗"
+              ;;
+      esac
 
-<<<<<<< HEAD
-      printf "%s\t\t%s" "$received ↘" "$sent ↗"
-=======
-      printf "%s\t\t%s" "$received ↘" "$sent↗"
->>>>>>> d60a2b5 (Trying yazi, PS1, size fixes)
-      # received=$(( (rx2 - rx1) * 8 / 1000000 ))
-      # sent=$(( (tx2 - tx1) * 8 / 1000000 ))
-
-
-      # if [[ $current_interface =~ ^e ]]; then
-      #   printf '%s | %s' "󰈁 $received ↘" "$sent ↗"
-      # elif [[ $current_interface =~ ^w ]];then
-      #   printf '%s | %s' " $received ↘" "$sent ↗"
-      # fi
   }
 
-  calculate_speed
+  calculate_speed "$1"
 ''

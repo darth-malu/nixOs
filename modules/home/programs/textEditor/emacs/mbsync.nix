@@ -36,7 +36,7 @@
 
   services.mbsync = {
     enable = true;
-    preExec = "mkdir -p ~/Documents/Maildir"; # TODO see if it works for tangier
+    preExec = "mkdir -p ~/Documents/Mail"; # TODO see if it works for tangier
     postExec = "${pkgs.mu}/bin/mu index";
   };
 }

@@ -27,7 +27,7 @@
       inherit (pkgs.yaziPlugins) smart-paste;
       inherit (pkgs.yaziPlugins) smart-enter;
       inherit (pkgs.yaziPlugins) piper;
-      inherit (pkgs.yaziPlugins) wl-clipboard;
+      # inherit (pkgs.yaziPlugins) wl-clipboard;
       # inherit (pkgs.yaziPlugins) rsync;
     };
     settings = {
@@ -110,6 +110,13 @@
         # needs [openers]
         rules = [
           {
+            mime = "text/*";
+            use = [
+              "vimEdit"
+              "open"
+            ];
+          }
+          {
             mime = "application/pdf";
             use = "open";
           }
@@ -119,7 +126,7 @@
           }
           {
             mime = "image/*";
-            use = "open"; # play - mpv
+            use = "open";
           }
           {
             name = "*.json";

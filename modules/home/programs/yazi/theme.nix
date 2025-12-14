@@ -47,32 +47,29 @@
   # status = {
   # };
 
-  tabs = {
-    inactive = {
-      fg = "#e4e4e4";
-      bg = "#21433E";
-      # bold = true;
-    };
-    active = {
-      fg = "#e4e4e4";
-      bg = "#563d7c";
-    };
-    sep_inner = {
-      open = "";
-      close = "";
-    };
-    sep_outer = {
-      open = "";
-      close = "";
-    };
-  };
+  # tabs = {
+  #   inactive = {
+  #     fg = "#e4e4e4";
+  #     bg = "#21433E";
+  #     # bold = true;
+  #   };
+  #   active = {
+  #     fg = "#e4e4e4";
+  #     bg = "#563d7c";
+  #   };
+  #   sep_inner = {
+  #     open = "";
+  #     close = "";
+  #   };
+  #   sep_outer = {
+  #     open = "";
+  #     close = "";
+  #   };
+  # };
 
   mgr = {
-    border = {
-      border_style = {
-        hidden = true; # hidden?
-      };
-      # border_symbol = " "; # "│"::
+    border_style = {
+      hidden = true;
     };
     border_symbol = " "; # "│"::
     syntect_theme = "~/Downloads/gruvbox (Dark) (Soft).tmTheme"; # Syntax highlight in preview

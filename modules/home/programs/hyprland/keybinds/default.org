@@ -76,7 +76,7 @@ https://github.com/zakk4223/hyprland-easymotion
 #+begin_src nix :tangle default.nix
   # "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
 #+end_src
-*** screenshots
+*** screenshots | grimblast
 using grimblast from hypr team 🤪
 
 #+begin_src nix :tangle default.nix
@@ -458,8 +458,9 @@ RMB -> 273
 #+begin_src nix :tangle default.nix
 #mouse binds have one less arg
 bindm = [
-  "$mod , mouse:272, movewindow"
-  "$mod , mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
+  "$mod $cl, mouse:272, movewindow"
+  # "$mod , mouse:272, pass, class:^(dota2)$"
+  "$mod $cl, mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
   # "ALT, mouse:272, movewindow"
 ];
 

@@ -1,11 +1,8 @@
 { pkgs }:
 
 pkgs.writeShellScriptBin "mount_hdd" ''
-      # Get a list of mount units defined in systemd
-      # mapfile -t mount_units < <(systemctl list-units --type=mount --all --no-legend | awk '{print $1}')
-
-    # Chech where drives are mounted
-    # for unit in "''${mount_units[@]}"; do
+  # Get a list of mount units defined in systemd
+  # mapfile -t mount_units < <(systemctl list-units --type=mount --all --no-legend | awk '{print $1}')
 
   mount_units=(
     media-kibweziExtraHdd.mount

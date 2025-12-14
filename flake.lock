@@ -276,6 +276,7 @@
         "type": "github"
       }
     },
+<<<<<<< HEAD
     "hyprland-plugins": {
       "inputs": {
         "hyprland": [
@@ -306,6 +307,8 @@
         "type": "github"
       }
     },
+=======
+>>>>>>> 702148a (tangier prerebase)
     "hyprland-protocols": {
       "inputs": {
         "nixpkgs": [
@@ -862,7 +865,10 @@
       "inputs": {
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+<<<<<<< HEAD
         "hyprland-plugins": "hyprland-plugins",
+=======
+>>>>>>> 702148a (tangier prerebase)
         "hyprlock": "hyprlock",
         "hyprpaper": "hyprpaper",
         "nix-qml": "nix-qml",

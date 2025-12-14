@@ -9,6 +9,7 @@ services.mysql = {
 environment.systemPackages = with pkgs; [
   zulip
   zulip-term
+  beekeeper-studio
 ];
 
 }

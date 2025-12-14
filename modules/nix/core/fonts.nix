@@ -2,8 +2,8 @@
 
 {
   fonts = {
-    enableDefaultPackages = true;
-    # enableGhostscriptFonts = true; # TODO see if needed
+    enableDefaultPackages = true; # install basic fonts for unicode coverage
+    enableGhostscriptFonts = true; # TODO see if needed
     packages =
       with pkgs;
       [

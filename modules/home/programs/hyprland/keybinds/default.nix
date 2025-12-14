@@ -280,8 +280,9 @@ bind =
 
 #mouse binds have one less arg
 bindm = [
-  "$mod , mouse:272, movewindow"
-  "$mod , mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
+  "$mod $cl, mouse:272, movewindow"
+  # "$mod , mouse:272, pass, class:^(dota2)$"
+  "$mod $cl, mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
   # "ALT, mouse:272, movewindow"
 ];
 

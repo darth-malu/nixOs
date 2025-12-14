@@ -34,8 +34,15 @@
           fsType = "ntfs-3g";
           # noCheck = true;
           options = [
-            "users"
             "nofail"
+            "defaults"
+            "x-systemd.mount-timeout=30" # 90::
+            "x-systemd.automount" # only mount upon access
+            "x-systemd.idle-timeout=1min"
+            # "fmask=133"
+            # "dmask=022"
+            # "uid=1000"
+            # "gid=1000"
           ];
         };
 
@@ -44,8 +51,14 @@
           fsType = "ntfs-3g";
           # noCheck = true;
           options = [
-            "users"
             "nofail"
+            "defaults"
+            # "fmask=133"
+            # "dmask=022"
+            # "uid=1000"
+            # "gid=1000"
+            "x-systemd.mount-timeout=30"
+            "x-systemd.automount" # only mount upon access
             # "windows_names"
           ];
         };
@@ -56,6 +69,8 @@
           options = [
             "users"
             "nofail"
+            "defaults"
+            "x-systemd.mount-timeout=30"
           ];
         };
 
@@ -64,7 +79,9 @@
           fsType = "ext4";
           options = [
             "users"
+            "defaults"
             "nofail"
+            "x-systemd.mount-timeout=30"
           ];
         };
 

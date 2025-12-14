@@ -3,7 +3,7 @@
   programs.vim = {
     enable = true;
     defaultEditor = true;
-    packageConfigurable = pkgs.vim-full; # The vim-full package to use 😀
+    # packageConfigurable = pkgs.vim-full; # The vim-full package to use 😀
     # package = pkgs.vim;
     plugins = with pkgs.vimPlugins; [
       # dracula-vim
@@ -16,7 +16,7 @@
       ale
       gruvbox-material
       nerdtree
-      onedark-vim
+      # onedark-vim
       vim-commentary
       vim-fugitive
     ];
@@ -35,7 +35,7 @@
     };
     extraConfig = # .vimrc
       ''
-        colorscheme onedark
+        colorscheme gruvbox-material
         syntax on
 
         " Differnt cursor for different mode"

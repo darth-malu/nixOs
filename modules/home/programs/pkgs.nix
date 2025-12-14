@@ -89,6 +89,7 @@
       util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
       ripgrep-all
       dotool
+      httrack
     ])
     ++ (with pkgs; [
       # chromium
@@ -120,10 +121,13 @@
       easyeffects
       mpc
       nautilus
+      # kdePackages.dolphin
+      # kdePackages.konsole
       qbittorrent
       gpu-screen-recorder-gtk
       alarm-clock-applet
       spotify
+      castero
       # spotube
       sway-audio-idle-inhibit
     ])

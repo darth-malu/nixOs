@@ -21,19 +21,13 @@
 
   devices = {
     "tangier" = {
-      id = "DABGRG2-6ZXSZYX-5P4JOKR-Q3R7ZRC-X7G4S53-FZ44QKA-AAGLFZU-K2GR2QI";
+      id = "RIYCPC3-U3UCO5N-WLM7WNB-5372SAE-RSGUD4Y-BFIWCUC-WPOII3S-N2EGNAB";
       addresses = ["tcp://192.168.100.8"];
     };
 
     "carthage" = {
       addresses = ["tcp://192.168.100.5"];
       id = "DEOOZ33-AWZH56X-4QBF224-QG7LXVY-YXWCGBL-VCWZ3G4-ZWID3ZN-QHBPKQU";
-    };
-
-    "SM-J200F" = {
-      addresses = ["tcp://192.168.100.4"];
-        id = "IFCUJMK-HWRR3M5-4MTLSX3-ICLQ344-NEVLLBS-BLFK34N-7VSF3MU-JIQLHA7";
-
     };
   };
 
@@ -44,25 +38,9 @@
     devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
   };
 
-  "Quickshell" = {         # Name of folder in Syncthing, also the folder ID
-    path = "/home/malu/.config/quickshell";    # Which folder to add to Syncthing
-    devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
-  };
-
-  "org" = {
-    path = "/home/malu/org";
-    devices = ["tangier" "carthage"];
-  };
-
   "sharepoint" = {
     path = "/home/malu/sharepoint";
     devices = ["tangier" "carthage"];
-    minHomeDiskFree = {
-      # % (percent of the disk / volume size), kB, MB, GB and TB.
-      unit = "%";
-      value = 5;
-    };
-    order = "newestfirst";
   };
 
   "ncmpcpp_playlists" = {

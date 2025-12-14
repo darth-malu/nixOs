@@ -1,8 +1,5 @@
-flake.lock
+#flake.lock
 machozi_uwsm.txt
 .stfolder*
 nul.*
 *sync-conflict*
-noctalia*
-inspiration
-inspiration/

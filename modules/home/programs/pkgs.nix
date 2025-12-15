@@ -50,6 +50,7 @@
       rar # also has unrar
     ])
     ++ (with pkgs; [
+      # DEVELOPER 🛠️
       ed
       # firebase-tools
       patchelf # TODO see useful nexx
@@ -58,7 +59,8 @@
       socat
       cling
       cmake # vterm
-      qtcreator
+      # qtcreator
+      beekeeper-studio
       # nasm
     ])
     ++ (with pkgs; [

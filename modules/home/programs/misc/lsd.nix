@@ -16,6 +16,7 @@
       name = {
         ".cargo" = "";
         ".trash" = "";
+        "Music-Videos" = "📺";
         ".Trash-1000" = "🗑";
       };
     };

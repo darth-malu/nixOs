@@ -49,7 +49,6 @@
     "video/x-matroska" = [ "mpv.desktop" ];
 
     "inode/directory" = [
-      "org.kde.Dolphin.desktop"
       "yazi.desktop"
       "org.gnome.Nautilus.desktop"
     ];

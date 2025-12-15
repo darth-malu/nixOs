@@ -2,7 +2,7 @@
   imports = [
     ./inputrc.nix
     ./enVars.nix
-    ../USIU
+    # ../USIU
     ./programs
     ./services
     ./core

@@ -2,30 +2,27 @@
 {
   home.packages = with pkgs; [
     # pinentry
-    pinentry-all
+    # pinentry-all
     # pinentry-rofi
     # pinentry-qt
     # pinentry-tty
     # pinentry-emacs
-    # pinentry-curses
+    pinentry-curses
     gcr # fix for pinentry on non-gnome systems
-    # gnupg
   ];
 
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
+    enableBashIntegration = true;
     extraConfig = ''
       allow-emacs-pinentry
       allow-loopback-pinentry
-    ''; # TODO Find out neeed
+    '';
     verbose = true;
-    # pinentry is a collection of simple PIN or passphrase dialogs used for
-    # password entry
-    pinentry.package = pkgs.pinentry-gnome3;
     pinentry = {
-      program = "pinentry-wayprompt";
-      # package =
+      program = "pinentry-curses";
+      package = pkgs.pinentry-gnome3;
     };
   };
 

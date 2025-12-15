@@ -129,7 +129,7 @@ mgr.keymap = [
   { on = [ ","  "s" ]; run = "sort size --dir-first";                   desc = "Sort by size"; }
   { on = [ ","  "S" ]; run = "sort size --reverse=yes --dir-first";         desc = "Sort by size (reverse)"; }
 
-  { on = [ "t" ]; run = "tab_create --current"; desc = "Create a new tab using the $CWD"; }
+  # { on = [ "t" ]; run = "tab_create --current"; desc = "Create a new tab using the $CWD"; }
   { on = [ "T" ]; run = "tab_create /home/malu"; desc = "Create a new tab"; } # If neither [path] nor --current is specified, will use the startup directory to create the tab.
   { on = [ "1" ]; run = "tab_switch 0"; desc = "Switch to the first tab"; }
   { on = [ "2" ]; run = "tab_switch 1"; desc = "Switch to the second tab"; }
@@ -149,22 +149,18 @@ mgr.keymap = [
 
 ];
 
-tasks.keymap = [
-  { on = [ "w" ]; run = "tasks show"; desc = "Show the tasks manager"; } #TODO for test
-  # { on = [ "w" "t" ]; run = "tasks show"; desc = "Show the tasks manager"; }
-  { on = [ "w" "i" ]; run = "tasks inspect"; desc = "tasks inspector"; }
-  { on = [ "w" "c" ]; run = "tasks close"; desc = "Show the tasks manager"; }
-];
-
-spot.keymap = [
-  { on =  "<Tab>"; run = "help"; desc = "Display file information with the preset or user-customized spotter."; } # FIXME: not work
+tasks.prepend_keymap = [
+  { on = [ "w" ]; run = "show"; desc = "Show the tasks manager"; }
+  { on = [ "w" "t" ]; run = "show"; desc = "Show the tasks manager"; }
+  { on = [ "w" "i" ]; run = "inspect"; desc = "tasks inspector"; }
+  { on = [ "w" "c" ]; run = "close"; desc = "Show the tasks manager"; }
 ];
 
 mgr.prepend_keymap = [
   {on = [ "!" ]; run = "shell \"$SHELL\" --block"; desc = "open $SHELL here";}
   # {on = [ "<C-l>" ]; run = "shell -- dragon -x -i -T \"$1\""; desc = "drag and drop via dragon";}
   # {on = [ "y" ]; run = "shell -- for path in \"$@\"; do echo \"file://$path\"; done | wl-copy -t text/uri-list, \"yank\""; desc = "copy selected files to clipboard when copying";}
-  # {on = ["<C-y>"]; run = "plugin wl-clipboard"; desc = "send copied to system clip";}
+  {on = ["<C-y>"]; run = "plugin wl-clipboard"; desc = "send copied to system clip";}
   {on = [ "l" ]; run = "plugin smart-enter"; desc = "Enter child dir or open file";}
   {on = [ "p" ]; run = "plugin smart-paste"; desc = "Paste into the hovered directory or CWD";}
   {on = [ "t" ]; run = "plugin smart-tab"; desc = "Create a tab and enter the hovered directory";}

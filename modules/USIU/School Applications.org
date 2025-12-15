@@ -71,25 +71,24 @@ android_sdk.accept_license = true;
 * Database - Petrollinah Mureithi
 ** SQL
 #+begin_src nix :tangle default.nix
-services.mysql = {
-  enable = true;
-  package = pkgs.mariadb;
-};
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
+  };
 #+end_src
 
 *** Backups
 #+begin_src nix :tangle no
-services.mysqlBackup = {
-  enable = false;
-};
+  services.mysqlBackup = {
+    enable = false;
+  };
 #+end_src
 * Project Management
 #+begin_src nix :tangle default.nix
-environment.systemPackages = with pkgs; [
-  zulip
-  zulip-term
-  beekeeper-studio
-];
+  environment.systemPackages = with pkgs; [
+    # zulip
+    # zulip-term
+  ];
 #+end_src
 
 * End

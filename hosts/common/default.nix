@@ -26,7 +26,6 @@
     permittedInsecurePackages = [
       "broadcom-sta-6.30.223.271-59-6.12.61"
       "libxml2-2.13.8" # for cisco?
-      "beekeeper-studio-5.3.4"
     ];
   };
 

@@ -22,13 +22,13 @@
     # shellWrapperName = "y"; # yy::
     plugins = {
       # Linked to: $XDG_CONFIG_HOME/yazi/plugins/<name>.yazi
-      "smart-tab" = ./plugins/smart-tab.yazi;
       arrow = ./plugins/arrow.yazi;
       inherit (pkgs.yaziPlugins) smart-paste;
       inherit (pkgs.yaziPlugins) smart-enter;
       inherit (pkgs.yaziPlugins) piper;
-      # inherit (pkgs.yaziPlugins) wl-clipboard;
-      # inherit (pkgs.yaziPlugins) rsync;
+
+      # smart-tab: ya pkg add wekauwau/smart-tab
+      # wl-clipboard: ya pkg add grappas/wl-clipboard
     };
     settings = {
       mgr = {

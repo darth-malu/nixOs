@@ -94,19 +94,22 @@ let
           gesture = [
             # "3, right, workspace, emptym"
             "3, horizontal, workspace"
+            "4, down, close"
+            # "4, down, mod: ALT, close"
             # "4, left, dispatcher, movewindow, mon:-1"
             # "4, right, dispatcher, movewindow, mon:+1"
-            "4, pinch, fullscreen"
+            "4, pinchout, scale: 1.5, fullscreen" # NOTE scales animation (takes float)
           ];
 
           gestures = {
             # workspace_swipe = true;
             # workspace_swipe_fingers = 2;
             workspace_swipe_distance = 260; # def: 300
-            workspace_swipe_create_new = true; # new empty after last workspace
+            workspace_swipe_create_new = false; # new empty after last workspace
             # workspace_swipe_use_r = true; # r instead of m
-            workspace_swipe_forever = true;
+            workspace_swipe_forever = false;
           };
+
           device = [
             {
               name = "at-translated-set-2-keyboard";

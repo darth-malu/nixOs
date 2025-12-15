@@ -39,7 +39,7 @@
       #aria2#NOTE: learn
       libsecret # TODO use
       ventoy-full # usb imager #woeusb
-      # wev # NOTE use ./ascii
+      wev # NOTE use ./ascii
     ]
     ++ (with pkgs; [
       # testing for yazi #
@@ -57,7 +57,7 @@
       zlib
       # manim #FIXME failed
       socat
-      cling
+      # cling
       cmake # vterm
       # qtcreator
       beekeeper-studio
@@ -76,8 +76,8 @@
       # win-disk-writer
       #testdisk # also installs photorec
       # duc
-      duf
       # dust
+      duf
       ncdu
       file # need for yazi mimedetectionetc.
       iftop # TODO seems powerful investigate more
@@ -90,57 +90,52 @@
       pciutils # lspci
       usbutils # lsusb, usb-devices, usb-view(optional gui)
       util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
+      psmisc
       ripgrep-all
       dotool
       httrack
+      # modem-manager-gui
+      # modemmanager # saves the day with no internet
     ])
     ++ (with pkgs; [
       # chromium
       # wpsoffice
-      # libreoffice-qt-still
-      libreoffice-still
+      libreoffice-qt-still
+      # libreoffice-still
       discord
       wasistlos # whatsapp-for-linux
-      # modem-manager-gui
-      # modemmanager # saves the day with no internet
+      # telegram-desktop
     ])
-    ++ (
-      with pkgs;
-      [
-        # cantata # old af
-        # digikam
-        # clapper
-        # kando
-        # lollypop # cantata better
-        # pipeline # flatpak better?
-        # qqmusic
-        # smplayer
-        # spotify-cli-linux
-        # tenacity
-        # wf-recorder
-        # ymuse # rudimentary
-        # youtube-tui # https://siriusmart.github.io/youtube-tui/
-        audacity
-        # xclip
-        blanket
-        easyeffects
-        mpc
-        nautilus
-        # kdePackages.dolphin
-        # kdePackages.konsole
-        qbittorrent
-        gpu-screen-recorder-gtk
-        alarm-clock-applet
-        spotify
-        castero
-        # spotube
-        sway-audio-idle-inhibit
-      ]
-      ++ [
-
-        gimp
-      ]
-    )
+    ++ (with pkgs; [
+      # cantata # old af
+      # digikam
+      # clapper
+      # kando
+      # lollypop # cantata better
+      # pipeline # flatpak better?
+      # qqmusic
+      # smplayer
+      # spotify-cli-linux
+      # tenacity
+      # wf-recorder
+      # ymuse # rudimentary
+      # youtube-tui # https://siriusmart.github.io/youtube-tui/
+      audacity
+      # xclip
+      blanket
+      easyeffects
+      mpc
+      nautilus
+      # kdePackages.dolphin
+      # kdePackages.konsole
+      qbittorrent
+      gpu-screen-recorder-gtk
+      alarm-clock-applet
+      spotify
+      castero
+      # spotube
+      sway-audio-idle-inhibit
+    ])
     ++ (with pkgs; [
       # komikku # broken
       mangal
@@ -153,7 +148,6 @@
       if osConfig.networking.hostName == "carthage" then
         with pkgs;
         [
-          # blender-hip # Hardware accelerated rendering NOTE later after pos
           # coppwr
           # davinci-resolve # NOTE RX580 not being detected
           # ffmpeg-full # full vs vanilla?
@@ -167,16 +161,13 @@
           # unigine-heaven
           # unigine-superposition
           kdePackages.kdenlive
-          darktable
           exiftool
           ffmpeg-full
           handbrake # FIXME lag on open
-          libreoffice-still
-          obs-cli
+          # obs-cli
           obs-studio
-          vlc
+          # vlc
           # stremio
-          telegram-desktop
           ungoogled-chromium
         ]
         ++ (with pkgs.gst_all_1; [
@@ -191,6 +182,12 @@
           ffmpeg
         ]
     )
+    ++ [
+      # CreativeSPACE 📽
+      blender-hip # Hardware accelerated rendering NOTE later after pos
+      gimp
+      darktable
+    ]
     ++ (
       if config.homeHyprland.enable then
         with pkgs;

@@ -101,7 +101,6 @@
       # chromium
       # wpsoffice
       libreoffice-qt-still
-      # libreoffice-still
       discord
       wasistlos # whatsapp-for-linux
       # telegram-desktop

@@ -17,6 +17,8 @@
         ".cargo" = "";
         ".trash" = "";
         "Music-Videos" = "📺";
+        "Computers" = "🧑🏽‍💻";
+        "Programming" = "⌨️";
         ".Trash-1000" = "🗑";
       };
     };

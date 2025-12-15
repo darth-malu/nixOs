@@ -47,6 +47,7 @@
     yt  =  "https://www.youtube.com/results?search_query={}";
     gh  =  "https://github.com/search?o=desc&q={}&s=stars";
     t   =  "https://www.thesaurus.com/browse/{}";
+    r   =  "https://www.reddit.com/search/?q={}";
   };
 
 settings = {

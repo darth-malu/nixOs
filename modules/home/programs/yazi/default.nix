@@ -18,7 +18,7 @@
     enableZshIntegration = config.programs.zsh.enable;
     keymap = import ./keymap.nix;
     theme = import ./theme.nix;
-    # initLua = ./init.lua;
+    initLua = ./init.lua;
     # shellWrapperName = "y"; # yy::
     plugins = {
       # Linked to: $XDG_CONFIG_HOME/yazi/plugins/<name>.yazi

@@ -58,6 +58,7 @@
       socat
       cling
       cmake # vterm
+      qtcreator
       # nasm
     ])
     ++ (with pkgs; [
@@ -101,37 +102,43 @@
       # modem-manager-gui
       # modemmanager # saves the day with no internet
     ])
-    ++ (with pkgs; [
-      # cantata # old af
-      # digikam
-      # clapper
-      # kando
-      # lollypop # cantata better
-      # pipeline # flatpak better?
-      # qqmusic
-      # smplayer
-      # spotify-cli-linux
-      # tenacity
-      # wf-recorder
-      # ymuse # rudimentary
-      # youtube-tui # https://siriusmart.github.io/youtube-tui/
-      audacity
-      # xclip
-      blanket
-      easyeffects
-      mpc
-      nautilus
-      # kdePackages.dolphin
-      # kdePackages.konsole
-      qbittorrent
-      gpu-screen-recorder-gtk
-      alarm-clock-applet
-      spotify
-      castero
-      gimp
-      # spotube
-      sway-audio-idle-inhibit
-    ])
+    ++ (
+      with pkgs;
+      [
+        # cantata # old af
+        # digikam
+        # clapper
+        # kando
+        # lollypop # cantata better
+        # pipeline # flatpak better?
+        # qqmusic
+        # smplayer
+        # spotify-cli-linux
+        # tenacity
+        # wf-recorder
+        # ymuse # rudimentary
+        # youtube-tui # https://siriusmart.github.io/youtube-tui/
+        audacity
+        # xclip
+        blanket
+        easyeffects
+        mpc
+        nautilus
+        # kdePackages.dolphin
+        # kdePackages.konsole
+        qbittorrent
+        gpu-screen-recorder-gtk
+        alarm-clock-applet
+        spotify
+        castero
+        # spotube
+        sway-audio-idle-inhibit
+      ]
+      ++ [
+
+        gimp
+      ]
+    )
     ++ (with pkgs; [
       # komikku # broken
       mangal

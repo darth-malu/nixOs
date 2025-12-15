@@ -67,7 +67,6 @@ in
     vips
 
     # python3 or or specific number
-    qtcreator
     (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [
         jupyter-console # jupyter-core jupyterlab-server

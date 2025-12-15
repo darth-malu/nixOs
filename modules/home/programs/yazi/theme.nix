@@ -22,7 +22,7 @@
     # Empty files
     {
       mime = "inode/x-empty";
-      fg = "white";
+      fg = "green";
     }
 
     # Orphan symbolic links
@@ -33,39 +33,42 @@
     }
 
     # Fallback
-    # { fg = "#CD9EFC"; name = "*/"; }
+    {
+      fg = "#CD9EFC";
+      name = "*/"; # dirs
+    }
+    {
+      name = "Music-Videos"; # all files
+      fg = "cyan";
+    }
     {
       name = "*"; # all files
       fg = "white";
-    }
-    {
-      name = "*/"; # all directories
-      fg = "blue";
     }
   ];
 
   # status = {
   # };
 
-  # tabs = {
-  #   inactive = {
-  #     fg = "#e4e4e4";
-  #     bg = "#21433E";
-  #     # bold = true;
-  #   };
-  #   active = {
-  #     fg = "#e4e4e4";
-  #     bg = "#563d7c";
-  #   };
-  #   sep_inner = {
-  #     open = "";
-  #     close = "";
-  #   };
-  #   sep_outer = {
-  #     open = "";
-  #     close = "";
-  #   };
-  # };
+  tabs = {
+    inactive = {
+      fg = "#e4e4e4";
+      bg = "#21433E";
+      # bold = true;
+    };
+    active = {
+      fg = "#e4e4e4";
+      bg = "#563d7c";
+    };
+    sep_inner = {
+      open = "";
+      close = "";
+    };
+    sep_outer = {
+      open = "";
+      close = "";
+    };
+  };
 
   mgr = {
     border_style = {
@@ -109,6 +112,12 @@
 
   icon = {
     prepend_dirs = [
+      {
+        name = "Music-Videos";
+        text = "📺";
+        fg_dark = "#563d7c";
+        fg_light = "#563d7c";
+      }
       {
         name = "desktop";
         text = "";

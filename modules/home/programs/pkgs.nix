@@ -166,8 +166,6 @@
           handbrake # FIXME lag on open
           # obs-cli
           obs-studio
-          # vlc
-          # stremio
           ungoogled-chromium
         ]
         ++ (with pkgs.gst_all_1; [
@@ -180,6 +178,7 @@
       else
         [
           ffmpeg
+          blender-hip # Hardware accelerated rendering NOTE later after pos
         ]
     )
     ++ [

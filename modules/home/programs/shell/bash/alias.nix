@@ -2,7 +2,8 @@
   ".." = "cd ..";
   "_" = "cd -";
   yt = "yt-dlp";
-  # ls = "ls -1"; NOTE: conflict with lsd aliases maybe bash integration
+  # l = "lsd -1"; # NOTE: conflict with lsd aliases maybe bash integration #
+  # ls = "lsd";
   # yta = "yt-dlp --extract-audio --audio-format mp3";
   # ".g" = "$(which git) --git-dir=$HOME/.darth/nixOs.git --work-tree=$HOME/Shibuya";
   tColor = "for C in {0..255}; do tput setab \$C; echo -n \"$C \"; done; tput sgr0;echo";

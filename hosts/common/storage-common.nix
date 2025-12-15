@@ -38,7 +38,7 @@
             "defaults"
             "x-systemd.mount-timeout=30" # 90::
             "x-systemd.automount" # only mount upon access
-            "x-systemd.idle-timeout=1min"
+            "x-systemd.idle-timeout=5min"
             # "fmask=133"
             # "dmask=022"
             # "uid=1000"
@@ -59,6 +59,7 @@
             # "gid=1000"
             "x-systemd.mount-timeout=30"
             "x-systemd.automount" # only mount upon access
+            "x-systemd.idle-timeout=5min"
             # "windows_names"
           ];
         };

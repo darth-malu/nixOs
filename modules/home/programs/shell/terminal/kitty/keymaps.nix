@@ -6,10 +6,10 @@
     # "ctrl+tab" = "no_op";
     "ctrl+shift+tab" = "no_op";
 
-    #"ctrl+c" = "copy_or_interrupt";
-    "alt+c" = "copy_to_clipboard";
-    "alt+v" = "paste_from_clipboard";
-    "kitty_mod+s" = "paste_from_buffer a1";
+    "ctrl+c" = "copy_or_interrupt";
+    # "alt+c" = "copy_to_clipboard";
+    "ctrl+v" = "paste_from_clipboard";
+    "kitty_mod+a" = "paste_from_buffer a1";
 
     # Launch New Windows
     "kitty_mod+enter" = "new_window_with_cwd";
@@ -56,7 +56,6 @@
     "kitty_mod+y" = "layout_action mirror toggle";
 
     "ctrl+tab" = "next_layout";
-
     "kitty_mod+tab" = "layout_action bias 10 20 30 40 50 60";
 
     # "ctrl+tab" = "send_text all \x1b[27;5;9~"; #FIXME: iron out this

@@ -70,7 +70,7 @@ bind =
   ", XF86Tools, exec, pkill pwvucontrol ||  pwvucontrol"
 
 # Menu
-  "$mod , mouse:272, exec, pkill rofi || $menu_rofi"
+  "$mod $cl, mouse:272, exec, pkill rofi || $menu_rofi"
   "$mod , P, exec, pkill rofi || $menu_rofi"
 
   # File browser
@@ -81,7 +81,7 @@ bind =
 
   # open windows
   "$mod, space, exec, pkill rofi || $rofi_open_windows"
-  "$mod , mouse:273, exec, pkill rofi || $rofi_open_windows"
+  "$mod $cl, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
   # power menu
   "$mod, Delete, exec, pkill rofi || rofi_power"
@@ -280,9 +280,9 @@ bind =
 
 #mouse binds have one less arg
 bindm = [
-  "$mod $cl, mouse:272, movewindow"
+  "$mod , mouse:272, movewindow"
   # "$mod , mouse:272, pass, class:^(dota2)$"
-  "$mod $cl, mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
+  "$mod , mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
   # "ALT, mouse:272, movewindow"
 ];
 

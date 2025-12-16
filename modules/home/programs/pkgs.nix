@@ -63,7 +63,6 @@
       beekeeper-studio
       cryptsetup
       # nasm
-      cryptsetup
     ])
     ++ (with pkgs; [
       # gsmartcontrol

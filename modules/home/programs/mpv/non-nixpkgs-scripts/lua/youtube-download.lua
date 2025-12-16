@@ -21,7 +21,7 @@ local opts = {
     download_subtitle_binding = "", --C-s
     download_video_embed_subtitle_binding = "", --C-i
     select_range_binding = "ctrl+r",
-    download_mpv_playlist = "ctlr+s",
+    download_mpv_playlist = "ctrl+s",
 
     -- Specify audio format: "best", "aac","flac", "mp3", "m4a", "opus", "vorbis", or "wav"
     audio_format = "mp3",

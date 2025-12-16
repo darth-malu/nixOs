@@ -62,6 +62,7 @@
       # qtcreator
       beekeeper-studio
       # nasm
+      cryptsetup
     ])
     ++ (with pkgs; [
       # gsmartcontrol

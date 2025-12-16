@@ -14,10 +14,7 @@
     genericName = "YouTubr";
     terminal = false;
     type = "Application";
-    categories = [
-      "SkunkWorks"
-      "Video"
-    ]; # TODO change later
+    categories = [ "Development" ];
     exec = "/home/malu/.code/PySide6/youtubr";
     icon = "/home/malu/.code/PySide6/youtube.png";
   };

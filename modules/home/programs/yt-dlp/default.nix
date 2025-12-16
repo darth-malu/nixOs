@@ -8,7 +8,7 @@
 extraConfig =
 ''
     -P "~/Videos/Youtube"
-    -P "subtitle:subs"
+    # -P "subtitle:subs"
 
     # Save all videos under YouTube directory in your home directory
     -o "%(channel)s-%(title)s.%(ext)s"

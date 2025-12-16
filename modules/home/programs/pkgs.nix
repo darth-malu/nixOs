@@ -61,6 +61,7 @@
       cmake # vterm
       # qtcreator
       beekeeper-studio
+      cryptsetup
       # nasm
       cryptsetup
     ])

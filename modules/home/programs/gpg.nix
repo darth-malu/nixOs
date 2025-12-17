@@ -6,8 +6,8 @@
     # pinentry-rofi
     # pinentry-qt
     # pinentry-tty
-    # pinentry-emacs
-    pinentry-curses
+    pinentry-emacs
+    # pinentry-curses
     gcr # fix for pinentry on non-gnome systems
   ];
 
@@ -21,8 +21,9 @@
     '';
     verbose = true;
     pinentry = {
-      program = "pinentry-curses";
-      package = pkgs.pinentry-gnome3;
+      # program = "pinentry-curses";
+      program = "pinentry-emacs";
+      # package = pkgs.pinentry-gnome3;
     };
   };
 

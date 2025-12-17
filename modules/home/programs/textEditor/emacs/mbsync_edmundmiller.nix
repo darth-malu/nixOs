@@ -42,7 +42,8 @@ in
             patterns = [
               # patterns of mailboxes to synchronize
               "*"
-              # "[Gmail]*"
+              "[Gmail]*"
+              "![Gmail]/Spam"
             ]; # "[Gmail]/Sent Mail" ];
           };
           realName = "${name}";

@@ -3,3 +3,4 @@ machozi_uwsm.txt
 .stfolder*
 nul.*
 *sync-conflict*
+flake.lock

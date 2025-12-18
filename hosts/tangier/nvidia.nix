@@ -38,12 +38,12 @@
     nvidia.prime = {
       # sudo lshw -c display
       sync.enable = false; # gpu on always when true
-      offload = {
-        # offload - on-demand
-        enable = true;
-        enableOffloadCmd = true;
-        offloadCmdMainProgram = "offload";
-      };
+      # offload = {
+      #   # offload - on-demand
+      #   enable = true;
+      #   enableOffloadCmd = true;
+      #   offloadCmdMainProgram = "offload";
+      # };
 
       # Make sure to use the correct Bus ID values for your system!
       intelBusId = "PCI:0:2:0";

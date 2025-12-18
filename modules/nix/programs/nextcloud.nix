@@ -14,7 +14,7 @@
     environment.etc."nextcloud-admin-pass".text = "abcd1234"; # writes out to /etc/nextcloud-admin-pass
     services.nextcloud = {
       enable = true;
-      autoUpdateApps = true;
+      autoUpdateApps.enable = true;
       package = pkgs.nextcloud32; # Instead of using pkgs.nextcloud28Packages.apps,
       # we'll reference the package version specified above
       extraApps = {

@@ -91,7 +91,7 @@ let
             };
           };
 
-          gesture = import ./gesture.nix;
+          gesture = import ./laptop-gestures.nix;
 
           gestures = {
             # workspace_swipe = true;

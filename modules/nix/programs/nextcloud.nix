@@ -11,10 +11,11 @@
   };
 
   config = lib.mkIf config.nextcloud.enable {
+    environment.etc."nextcloud-admin-pass".text = "abcd1234"; # writes out to /etc/nextcloud-admin-pass
     services.nextcloud = {
       enable = true;
-      package = pkgs.nextcloud31;
-      # Instead of using pkgs.nextcloud28Packages.apps,
+      autoUpdateApps = true;
+      package = pkgs.nextcloud32; # Instead of using pkgs.nextcloud28Packages.apps,
       # we'll reference the package version specified above
       extraApps = {
         inherit (config.services.nextcloud.package.packages.apps)
@@ -25,6 +26,7 @@
           ;
       };
       extraAppsEnable = true;
+      configureRedis = true;
       hostName = "localhost";
       config = {
         adminpassFile = "/etc/nextcloud-admin-pass";

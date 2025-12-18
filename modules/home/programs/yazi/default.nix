@@ -99,6 +99,13 @@
             for = "unix";
           }
         ];
+        libreoffice = [
+          {
+            run = "libreoffice \"$@\"";
+            block = true;
+            for = "unix";
+          }
+        ];
         open = [
           {
             run = "xdg-open \"$@\"";
@@ -114,6 +121,12 @@
             use = [
               "vimEdit"
               "open"
+            ];
+          }
+          {
+            mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            use = [
+              "libreoffice"
             ];
           }
           {

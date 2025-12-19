@@ -120,13 +120,10 @@
       # ymuse # rudimentary
       # youtube-tui # https://siriusmart.github.io/youtube-tui/
       audacity
-      # xclip
       blanket
       easyeffects
       mpc
       nautilus
-      # kdePackages.dolphin
-      # kdePackages.konsole
       qbittorrent
       gpu-screen-recorder-gtk
       alarm-clock-applet
@@ -186,6 +183,7 @@
       blender-hip # Hardware accelerated rendering NOTE later after pos
       gimp
       krita
+      inkscape
       darktable
     ]
     ++ (

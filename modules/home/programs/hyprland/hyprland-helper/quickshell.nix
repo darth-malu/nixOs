@@ -1,4 +1,9 @@
-{ inputs, system, ... }:
+{
+  inputs,
+  pkgs,
+  system,
+  ...
+}:
 {
   programs.quickshell = {
     enable = true;
@@ -9,4 +14,10 @@
       target = "hyprland-session.target"; # config.wayland.systemd.target:: # HACK:
     };
   };
+
+  home.packages = with pkgs.kdePackages; [
+    kirigami
+    kirigami-addons
+    kirigami-gallery
+  ];
 }

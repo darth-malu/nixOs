@@ -9,6 +9,7 @@
     pinentry-emacs
     # pinentry-curses
     # gcr # fix for pinentry on non-gnome systems
+    # gcr # fix for pinentry on non-gnome systems
   ];
 
   services.gpg-agent = {

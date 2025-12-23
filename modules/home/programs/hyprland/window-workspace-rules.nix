@@ -41,6 +41,10 @@
       "center true, match:title ^(Select)(.*)"
       "center true, match:title (.*)(save to)(.*)"
 
+      # LUKS / udiskie
+      "center true, match:class udiskie, match:title udiskie"
+      "float true, match:class udiskie, match:title udiskie"
+
       #"idleinhibit focus, vlc"
       # "idleinhibit fullscreen, match:title firefox"
 

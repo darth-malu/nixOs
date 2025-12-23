@@ -22,7 +22,7 @@
           news
           contacts
           calendar
-          tasks
+          # tasks
           ;
       };
       extraAppsEnable = true;
@@ -31,6 +31,11 @@
       config = {
         adminpassFile = "/etc/nextcloud-admin-pass";
         dbtype = "sqlite";
+      };
+      settings = {
+        trusted_domains = [
+          "192.168.100.56"
+        ];
       };
     };
   };

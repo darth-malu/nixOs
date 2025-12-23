@@ -8,20 +8,20 @@
     # pinentry-tty
     pinentry-emacs
     # pinentry-curses
-    gcr # fix for pinentry on non-gnome systems
+    # gcr # fix for pinentry on non-gnome systems
   ];
 
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
     enableBashIntegration = true;
+    enableExtraSocket = true;
     extraConfig = ''
       allow-emacs-pinentry
       allow-loopback-pinentry
     '';
-    verbose = true;
+    # verbose = true;
     pinentry = {
-      # program = "pinentry-curses";
       program = "pinentry-emacs";
       # package = pkgs.pinentry-gnome3;
     };

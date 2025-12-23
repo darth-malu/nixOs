@@ -41,12 +41,6 @@ https://nixos.wiki/wiki/Nix_channels
       inputs.nixpkgs.follows = "nixpkgs";
     };
 #+end_src
-** hyprswitch
-#+begin_src nix :tangle no
-    hyprshell.url = "github:H3rmt/hyprswitch?ref=hyprshell";
-    hyprshell.inputs.nixpkgs.follows = "nixpkgs";
-#+end_src
-
 ** home-manager
 #+begin_src nix :tangle flake.nix
     # home-manager = {
@@ -65,18 +59,6 @@ https://nixos.wiki/wiki/Nix_channels
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
-    };
-#+end_src
-
-** nvf - neovim
-#+begin_src nix :tangle no
-    # obsidian-nvim.url = "github:epwalsh/obsidian.nvim";
-    # Required, nvf works best and only directly supports flakes
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs"; # This is safe to do as nvf does not depend on a binary cache
-      # Optionally, you can also override individual plugins
-      # inputs.obsidian-nvim.follows = "obsidian-nvim"; # <- this will use the obsidian-nvim from your inputs
     };
 #+end_src
 
@@ -149,15 +131,6 @@ https://nixos.wiki/wiki/Nix_channels
       inputs.nixpkgs.follows = "nixpkgs";
     };
 #+end_src
-** winapps
-
-#+begin_src nix :tangle no
-    winapps = {
-      url = "github:winapps-org/winapps";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-#+end_src
-
 ** end inputs
 #+begin_src nix :tangle flake.nix
   };
@@ -219,24 +192,6 @@ let
  };
 #+end_src
 
-*** nvf stuff
-#+begin_src nix :tangle no
-configModule = {
-  # Add any custom options (and do feel free to upstream them!)
-  # options = { ... };
-
-  config.vim = {
-    theme.enable = true;
-    # and more options as you see fit...
-  };
-};
-
-customNeovim = nvf.lib.neovimConfiguration {
-  inherit pkgs;
-  modules = [configModule];
-};
-#+end_src
-
 *** end of in
 #+begin_src nix :tangle flake.nix
 in
@@ -260,10 +215,9 @@ nixosConfigurations = {
 #+begin_src nix :tangle flake.nix
 modules = [
   ./hosts/carthage
-  # {environment.systemPackages = [neovimConf.neovim];}
 #+end_src
 
-***** Some systemPackage modules
+***** Some systemPackage modules | winapps | rebuild-ng
 #+begin_src nix :tangle no
 {environment.systemPackages = [
    pkgs.nixos-rebuild-ng #  alternatively to replace old rebuild: system.rebuild.enableNg
@@ -271,11 +225,6 @@ modules = [
    inputs.winapps.packages."${system}".winapps-launcher # optional
  ];
 }
-#+end_src
-
-***** NVF - nixos module
-#+begin_src nix :tangle no
-inputs.nvf.nixosModules.default # <- this imports the NixOS module that provides the options
 #+end_src
 
 ***** plasma-manger
@@ -364,9 +313,6 @@ tangier = nixpkgs.lib.nixosSystem {
   specialArgs = { inherit inputs system; };
   modules = [
     ./hosts/tangier
-    # inputs.quickshell.packages.${system}.default
-    # {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
-    # inputs.nvf.nixosModules.default 
     home.nixosModules.home-manager {
       home-manager = {
         verbose = true;

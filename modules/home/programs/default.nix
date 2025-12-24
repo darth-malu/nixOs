@@ -36,7 +36,7 @@
     #   enable = true;
     # };
 
-    bashmount.enable = true;
+    # bashmount.enable = true;
 
     btop = import ./misc/btop.nix;
 
@@ -50,9 +50,9 @@
 
     fzf = import ./misc/fzf.nix;
 
-    java.enable = true;
+    # java.enable = true;
 
-    lazygit = import ./misc/lazygit.nix;
+    # lazygit = import ./misc/lazygit.nix;
 
     lsd = import ./misc/lsd.nix;
 
@@ -70,7 +70,7 @@
       ];
     };
 
-    spotify-player = import ./misc/spotify-player.nix;
+    # spotify-player = import ./misc/spotify-player.nix;
 
     zathura = import ./misc/zathura.nix;
 

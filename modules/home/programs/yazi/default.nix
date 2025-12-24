@@ -116,13 +116,13 @@
       open = {
         # needs [openers]
         rules = [
-          {
-            mime = "text/*";
-            use = [
-              "vimEdit"
-              "open"
-            ];
-          }
+          # {
+          #   mime = "text/*";
+          #   use = [
+          #     "vimEdit"
+          #     "open"
+          #   ];
+          # }
           {
             mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
             use = [

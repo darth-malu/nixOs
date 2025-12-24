@@ -1,16 +1,14 @@
-{pkgs, ... }:
+{ pkgs, osConfig, ... }:
 {
   programs.zed-editor = {
-    enable = true;
+    enable = if osConfig.networking.hostName == "carthage" then true else false;
 
-    # package = pkgs.zed-editor;
     extraPackages = [
       pkgs.nixd
       # pkgs.nil
     ];
 
     userSettings = {
-
     };
 
   }; # end of programs.zed

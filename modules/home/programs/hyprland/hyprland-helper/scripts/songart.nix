@@ -77,14 +77,17 @@ pkgs.writeShellScriptBin "songart" ''
       local mpd_format="$(mpd_metadata_formatted)"
       ${pkgs.libnotify}/bin/notify-send \
         -t 2 "$mpd_format" \
-        -i "$mpd_album_art"
+        -i "$mpd_album_art" \
+        -a "ncmpcpp"
+
     # check spotify
     elif [[ "$status_spotify" == "Playing" ]]; then
         local spotify_format=$(spotify 'title')
         local spotify_art=$(spotify 'art')
         ${pkgs.libnotify}/bin/notify-send \
           -t 2 "$spotify_format" \
-          -i "$spotify_art"
+          -i "$spotify_art" \
+          -a "spotifY"
     fi
   }
 

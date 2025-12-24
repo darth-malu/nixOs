@@ -36,7 +36,7 @@
       # pastel # color generator
       # qalculate-qt # #FIXME:for rofi?
       # yaru-theme
-      #aria2#NOTE: learn
+      # aria2#NOTE: learn
       libsecret # TODO use
       ventoy-full # usb imager #woeusb
       wev # NOTE use ./ascii
@@ -75,7 +75,7 @@
       # utilities
       # warp-terminal # insane bloat
       # win-disk-writer
-      #testdisk # also installs photorec
+      # testdisk # also installs photorec
       # duc
       # dust
       duf
@@ -91,7 +91,7 @@
       pciutils # lspci
       usbutils # lsusb, usb-devices, usb-view(optional gui)
       util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
-      psmisc
+      # psmisc # TODO need?
       ripgrep-all
       dotool
       httrack
@@ -108,7 +108,6 @@
     ])
     ++ (with pkgs; [
       # cantata # old af
-      # digikam
       # clapper
       # kando
       # lollypop # cantata better
@@ -135,6 +134,7 @@
       castero
       # spotube
       sway-audio-idle-inhibit
+      # digikam #TODO diff with darktable
     ])
     ++ (with pkgs; [
       # komikku # broken

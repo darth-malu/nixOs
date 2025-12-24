@@ -29,7 +29,7 @@
 
     # Enable the Nvidia settings menu,
     # accessible via `nvidia-settings`.
-    nvidia.nvidiaSettings = false;
+    nvidia.nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -38,12 +38,12 @@
     nvidia.prime = {
       # sudo lshw -c display
       sync.enable = false; # gpu on always when true
-      # offload = {
-      #   # offload - on-demand
-      #   enable = true;
-      #   enableOffloadCmd = true;
-      #   offloadCmdMainProgram = "offload";
-      # };
+      offload = {
+        # on-demand
+        enable = true;
+        enableOffloadCmd = true;
+        offloadCmdMainProgram = "offload";
+      };
 
       # Make sure to use the correct Bus ID values for your system!
       intelBusId = "PCI:0:2:0";

@@ -531,7 +531,7 @@ binde =
  };
 }
 #+end_src
-** notes
+** notes | DOCS :docs:
 *** multiple binds to one key
 # to switch between windows in a floating workspace
 bind = SUPER, Tab, cyclenext,           # change focus to another window

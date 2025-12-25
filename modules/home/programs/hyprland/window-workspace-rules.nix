@@ -1,7 +1,6 @@
 {
   wayland.windowManager.hyprland.settings = {
     windowrule = [
-      # case sensitive, plain regex(class) | title
       "float true, match:title file_progress"
       # "match: float true, match:title confirm"
       # "match: float true, match:title dialog"
@@ -19,12 +18,6 @@
       # "size 75% 80%, float:1" # exact screen size... can use only window size also x% y% :FIXME: cause issues with all popup menus lol
       # "size 75% 80%, match:title ^(Sign in)(.*)$"
 
-      #"size 1160 960, match:title ^(Volume Control)$"
-      #"move 5 315, match:title ^(Volume Control)$"
-
-      #"match: float true, Rofi"
-
-      # "match: float true, pwvucontrol"
       "float true, match:class com.saivert.pwvucontrol"
       "center true, match:class com.saivert.pwvucontrol"
       "size (monitor_w*0.8) (monitor_h*0.7), match:class com.saivert.pwvucontrol"
@@ -38,31 +31,24 @@
 
       # Select files dialog
       "center true, match:title ^(Save)(.*)"
+      "size (monitor_w*0.6) (monitor_h*0.6), match:title ^(Save)(.*)"
+
       "center true, match:title ^(Select)(.*)"
+      "size (monitor_w*0.6) (monitor_h*0.6), match:title ^(Select)(.*)"
+
       "center true, match:title (.*)(save to)(.*)"
+      "size (monitor_w*0.6) (monitor_h*0.6), match:title (.*)(save to)(.*)"
 
       # LUKS / udiskie
       "center true, match:class udiskie, match:title udiskie"
       "float true, match:class udiskie, match:title udiskie"
       "size (monitor_w*0.3) (monitor_h*0.4), match:class udiskie, match:title udiskie"
 
-      #"idleinhibit focus, vlc"
-      # "idleinhibit fullscreen, match:title firefox"
-
       # "idleinhibit focus, match:class ncmpcpp"
 
       # "workspace special:scratch silent, match:class ^(org.qbittorrent.qBittorrent)$" # TODO get popups only
 
-      # "match: float true, match:class Viewnior"
-      #"size 80% 80%, Viewnior"
-      # "center true(1), match:class Viewnior" # match:center([opt]); opt =1 -> respect monitor reserved area
-
       "no_focus true, match:title (Discord Updater)"
-      # "workspace emptym, match:class obsidian"
-      # "workspace emptym, match:class spotube"
-
-      # "workspace emptym silent, match:class steam, match:title Sign in to Steam"
-      # "workspace nointialfocus, match:class steam, match:title Sign in to Steam"
 
       # don't render hyprbars on tiling windows
       # "plugin:hyprbars:nobar, float:0"

@@ -185,6 +185,7 @@
       # CreativeSPACE 📽
       blender-hip # Hardware accelerated rendering NOTE later after pos
       gimp
+      krita
       darktable
     ]
     ++ (

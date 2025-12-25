@@ -42,9 +42,7 @@
 * boot
 #+begin_src nix :tangle default.nix
   boot = {
-    plymouth = {
-      enable = false;
-    };
+    plymouth.enable = false;
     extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
     loader = {
       systemd-boot = {
@@ -154,12 +152,11 @@ https://search.nixos.org/options?channel=25.05&show=boot.loader.systemd-boot.sor
 
 ** networkmanager
 #+begin_src nix :tangle default.nix
-
   networkmanager = {
     enable = true; # add user to group
     dns = "none"; # dnsmasq, default::, systemd-resolved
     wifi = {
-      powersave = true; # TODO see if has issues?
+      powersave = true; # TODO what it does
       # backend = "wpa_supplicant"; # wpa_supplicant::, iwd
     };
     logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
@@ -213,15 +210,17 @@ nameservers = [ "1.1.1.1" "1.0.0.1"  "8.8.8.8" "8.8.4.4" ];
 
 use ~ip link~ to see all available interfaces
 
-# Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-# (the default) this is the recommended approach. When using systemd-networkd it's
+# Enables DHCP on each ethernet and wireless interface. In case of scripted networking  (the default) this is the recommended approach.
+# When using systemd-networkd it's
 # still possible to use this option, but it's recommended to use it in conjunction
 # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
 ** end
 #+begin_src nix :tangle default.nix
 };
 #+end_src
-** TODO investigate issue with school wpa
+** DONE investigate issue with school wpa
+CLOSED: [2025-12-25 Thu 07:48]
+Forget everything...relog in from step 1
 * hardware
 #+begin_src nix :tangle default.nix
 hardware = {
@@ -229,9 +228,8 @@ hardware = {
   # enableAllHardware = true; # Enable support for most hardware
   enableRedistributableFirmware = true; # enable firmware with a license allowing redistribution
   bluetooth = {
-    # enable = lib.mkIf config.networking.hostName == "tangier" true; # works lol..maajabu
-    # hsphfpd = true; #Whether to enable support for hsphfpd[-prototype] implementation.
-    enable =  true; # works lol..maajabu
+    # hsphfpd = true; # TODO Whether to enable support for hsphfpd[-prototype] implementation.
+    enable =  true;
     powerOnBoot = true; #power on default controller on boot
     settings = {#Set configuration for system-wide bluetooth (/etc/bluetooth/main.conf). See https://github.com/bluez/bluez/blob/master/src/main.conf for full list of options.
       General = {
@@ -245,14 +243,14 @@ hardware = {
     #       DisableSecurity = false; # Disable link encryption: default=false
     #     };
     # };
-    # input = {#Set configuration for the input service (/etc/bluetooth/input.conf). See https://github.com/bluez/bluez/blob/master/profiles/input/input.conf for full list of options.
-    # General = {
-    # ClassicBondedOnly = false; #true:: # # Limit HID connections to bonded devices
-    # IdleTimeout = 30;# 0 (disabled)::
-    #UserspaceHID=true; #true:: # # Enable HID protocol handling in userspace input profile - true,false, persist
-    #LEAutoSecurity=true; # true::
-    # };
-    # };
+    input = {#Set configuration for the input service (/etc/bluetooth/input.conf). See https://github.com/bluez/bluez/blob/master/profiles/input/input.conf for full list of options.
+      # General = {
+      # ClassicBondedOnly = false; #true:: # # Limit HID connections to bonded devices
+      IdleTimeout = 30;# 0 (disabled)::
+      #UserspaceHID=true; #true:: # # Enable HID protocol handling in userspace input profile - true,false, persist
+      #LEAutoSecurity=true; # true::
+      };
+    };
   };
 };
 
@@ -468,7 +466,7 @@ time.timeZone = "Africa/Nairobi";
 nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs set
 #+end_src
 
-* system.stateVersion -- dont delete/change
+* system.stateVersion -- NOTE dont delete/change
 #+begin_src nix :tangle default.nix
 system.stateVersion = "24.11";
 }

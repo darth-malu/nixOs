@@ -22,7 +22,7 @@
           news
           contacts
           calendar
-          # tasks
+          tasks
           ;
       };
       extraAppsEnable = true;

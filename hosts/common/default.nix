@@ -30,9 +30,7 @@
   };
 
   boot = {
-    plymouth = {
-      enable = false;
-    };
+    plymouth.enable = false;
     extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
     loader = {
       systemd-boot = {
@@ -114,7 +112,7 @@
     enable = true; # add user to group
     dns = "none"; # dnsmasq, default::, systemd-resolved
     wifi = {
-      powersave = true; # TODO see if has issues?
+      powersave = true; # TODO what it does
       # backend = "wpa_supplicant"; # wpa_supplicant::, iwd
     };
     logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
@@ -151,9 +149,8 @@ hardware = {
   # enableAllHardware = true; # Enable support for most hardware
   enableRedistributableFirmware = true; # enable firmware with a license allowing redistribution
   bluetooth = {
-    # enable = lib.mkIf config.networking.hostName == "tangier" true; # works lol..maajabu
-    # hsphfpd = true; #Whether to enable support for hsphfpd[-prototype] implementation.
-    enable =  true; # works lol..maajabu
+    # hsphfpd = true; # TODO Whether to enable support for hsphfpd[-prototype] implementation.
+    enable =  true;
     powerOnBoot = true; #power on default controller on boot
     settings = {#Set configuration for system-wide bluetooth (/etc/bluetooth/main.conf). See https://github.com/bluez/bluez/blob/master/src/main.conf for full list of options.
       General = {
@@ -167,14 +164,14 @@ hardware = {
     #       DisableSecurity = false; # Disable link encryption: default=false
     #     };
     # };
-    # input = {#Set configuration for the input service (/etc/bluetooth/input.conf). See https://github.com/bluez/bluez/blob/master/profiles/input/input.conf for full list of options.
-    # General = {
-    # ClassicBondedOnly = false; #true:: # # Limit HID connections to bonded devices
-    # IdleTimeout = 30;# 0 (disabled)::
-    #UserspaceHID=true; #true:: # # Enable HID protocol handling in userspace input profile - true,false, persist
-    #LEAutoSecurity=true; # true::
-    # };
-    # };
+    input = {#Set configuration for the input service (/etc/bluetooth/input.conf). See https://github.com/bluez/bluez/blob/master/profiles/input/input.conf for full list of options.
+      # General = {
+      # ClassicBondedOnly = false; #true:: # # Limit HID connections to bonded devices
+      IdleTimeout = 30;# 0 (disabled)::
+      #UserspaceHID=true; #true:: # # Enable HID protocol handling in userspace input profile - true,false, persist
+      #LEAutoSecurity=true; # true::
+      };
+    };
   };
 };
 

@@ -406,7 +406,7 @@ movetoworkspacesilent exists
 *** focus previously focused window, cycle next, previous_per_monitor
 #+begin_src nix :tangle default.nix
 # "$mod,K, Workspace, previous_per_monitor"
-  "$mod,K, focuscurrentorlast"
+  "$mod,K, focuscurrentorlast"  # FIXME broken
   "$mod $sl, k, focusmonitor, +1"
   "$mod, mouse:276, Workspace, previous_per_monitor"
   "$mod, semicolon, cyclenext"

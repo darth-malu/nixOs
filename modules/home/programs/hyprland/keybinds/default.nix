@@ -211,7 +211,7 @@ bind =
   "$mod $sl, KP_Insert, movetoworkspace, 10"
 
 # next/prev workspace
-"$mod, mouse_up, workspace, m+1"
+  "$mod, mouse_up, workspace, m+1"
   "$mod, mouse_down, workspace, m-1"
 
   "$mod ,H, workspace,m-1"
@@ -244,7 +244,7 @@ bind =
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
 
 # "$mod,K, Workspace, previous_per_monitor"
-  "$mod,K, focuscurrentorlast"
+  "$mod,K, focuscurrentorlast"  # FIXME broken
   "$mod $sl, k, focusmonitor, +1"
   "$mod, mouse:276, Workspace, previous_per_monitor"
   "$mod, semicolon, cyclenext"

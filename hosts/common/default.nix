@@ -22,6 +22,7 @@
         "xow_dongle-firmware"
         "steam"
         "nvidia-x11-570.153.02-6.12.30"
+        "nvidia-settings"
       ];
     permittedInsecurePackages = [
       "broadcom-sta-6.30.223.271-59-6.12.63"
@@ -145,11 +146,11 @@ nameservers = [ "1.1.1.1" "1.0.0.1"  "8.8.8.8" "8.8.4.4" ];
 };
 
 hardware = {
-  # enableAllFirmware = true; # enable all firmware regardless of license #for bt to work in HSP/HFP mode # for bt to work in HSP/HFP mode, test further
+  # enableAllFirmware = true; # enable all firmware regardless of license 
   # enableAllHardware = true; # Enable support for most hardware
   enableRedistributableFirmware = true; # enable firmware with a license allowing redistribution
   bluetooth = {
-    # hsphfpd = true; # TODO Whether to enable support for hsphfpd[-prototype] implementation.
+    # hsphfpd.enable = true; # support for hsphfpd[-prototype] implementation.
     enable =  true;
     powerOnBoot = true; #power on default controller on boot
     settings = {#Set configuration for system-wide bluetooth (/etc/bluetooth/main.conf). See https://github.com/bluez/bluez/blob/master/src/main.conf for full list of options.
@@ -165,7 +166,7 @@ hardware = {
     #     };
     # };
     input = {#Set configuration for the input service (/etc/bluetooth/input.conf). See https://github.com/bluez/bluez/blob/master/profiles/input/input.conf for full list of options.
-      # General = {
+      General = {
       # ClassicBondedOnly = false; #true:: # # Limit HID connections to bonded devices
       IdleTimeout = 30;# 0 (disabled)::
       #UserspaceHID=true; #true:: # # Enable HID protocol handling in userspace input profile - true,false, persist

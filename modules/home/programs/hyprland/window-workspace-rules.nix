@@ -44,7 +44,7 @@
       # LUKS / udiskie
       "center true, match:class udiskie, match:title udiskie"
       "float true, match:class udiskie, match:title udiskie"
-      "size (monitor_w*0.6) (monitor_h*0.6), match:class udiskie, match:title udiskie"
+      "size (monitor_w*0.3) (monitor_h*0.4), match:class udiskie, match:title udiskie"
 
       #"idleinhibit focus, vlc"
       # "idleinhibit fullscreen, match:title firefox"

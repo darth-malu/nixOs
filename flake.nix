@@ -146,7 +146,6 @@ nixosConfigurations = {
 
 modules = [
   ./hosts/carthage
-  # {environment.systemPackages = [neovimConf.neovim];}
 
   home.nixosModules.home-manager {
     home-manager = {
@@ -167,9 +166,6 @@ tangier = nixpkgs.lib.nixosSystem {
   specialArgs = { inherit inputs system; };
   modules = [
     ./hosts/tangier
-    # inputs.quickshell.packages.${system}.default
-    # {environment.systemPackages = [neovimConf.neovim];} # standalone nvf
-    # inputs.nvf.nixosModules.default 
     home.nixosModules.home-manager {
       home-manager = {
         verbose = true;

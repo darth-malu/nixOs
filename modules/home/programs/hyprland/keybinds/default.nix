@@ -219,7 +219,7 @@ bind =
 
   "$mod $al,Home,execr, qs ipc call bar toggleBar"
 
-  "$mod $al,i,execr, qs ipc call notifications dismissAll"
+  "$mod , x,execr, qs ipc call notifications dismissAll"
 
   "$mod $al,End,execr, systemctl --user restart quickshell"
 
@@ -232,13 +232,13 @@ bind =
   "$mod $al, R, execr, qs ipc call resources toggleResources"
 
     # Playing | Mpris
-  "$mod, F7, execr, qs ipc call mprisTog toggleMpris"
-  "$mod $al, F7, execr, qs ipc call mprisTog toggleMprisIcon"
-  "$mod $sl, F7, execr, qs ipc call mpris raise"
+  "$mod, F7, execr, qs ipc call mpris toggleMpris"
+  "$mod $sl, F7, execr, qs ipc call mpris toggleMprisIcon"
+  "$mod $cl, i, execr, qs ipc call mpris raise"
 
   ", F8, execr, qs ipc call mpris next"
   ", F6, execr, qs ipc call mpris previous"
-  ", F7, execr, qs ipc call mprisTog togglePlaying"
+  ", F7, execr, qs ipc call mpris togglePlaying"
 
   "$mod $sl, semicolon, swapnext"
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""

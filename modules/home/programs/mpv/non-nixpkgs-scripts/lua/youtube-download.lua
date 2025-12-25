@@ -21,7 +21,7 @@ local opts = {
     download_subtitle_binding = "", --C-s
     download_video_embed_subtitle_binding = "", --C-i
     select_range_binding = "ctrl+r",
-    download_mpv_playlist = "ctrl+s",
+    download_mpv_playlist = "ctrl+p",
 
     -- Specify audio format: "best", "aac","flac", "mp3", "m4a", "opus", "vorbis", or "wav"
     audio_format = "mp3",
@@ -31,7 +31,7 @@ local opts = {
     audio_quality = "0",
 
     -- Embed the thumbnail on audio files
-    embed_thumbnail = true,
+    embed_thumbnail = false,
 
     -- Add metadata to audio files
     audio_add_metadata = true,
@@ -55,7 +55,6 @@ local opts = {
     -- Restrict filenames to only ASCII characters, and avoid "&" and spaces in filenames
     restrict_filenames = true,
 
-    -- Download the whole Youtube playlist (false) or only one video (true)
     -- Same as youtube-dl --no-playlist
     no_playlist = true,
 
@@ -135,8 +134,9 @@ local opts = {
     -- Use "$cwd" as a placeholder for the working directory
     -- Use "$cmd" as a placeholder for the download command
     -- See .conf file for Windows and xfce examples.
+    -- TODO: experiment with this
     open_new_terminal_command = [[
-        ["wt", "-w", "ytdlp", "new-tab", "-d", "$cwd", "cmd", "/K", "$cmd"]
+        ["kitty", "-e", "yt-dlp", "new-tab", "-d", "$cwd", "cmd", "/K", "$cmd"]
     ]],
 
     -- Used to localize uosc-submenu content

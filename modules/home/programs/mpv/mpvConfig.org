@@ -42,7 +42,6 @@
           # ffmpeg = pkgs.ffmpeg-full;
           # ffmpeg_5 = pkgs.ffmpeg_5-full;
         });
-
 #+end_src
 
 ** scripts, scriptOpts
@@ -183,7 +182,7 @@ bindings = {
 "mbtn_right" = "script-binding uosc/menu";
 # "mbtn_right" = "cycle pause; show-text \"\${filename}\n\${time-pos} / \${duration} (\${percent-pos}%)\"; osd-bar show-progress";
 "mbtn_left" = "cycle pause; show-progress";
-# "ctrl+s" = "async screenshot"; # ! Utils > Screenshot
+"ctrl+s" = "async screenshot"; # ! Utils > Screenshot
 "esc" = "quit"; # ! Quit
 # p = "script-binding webtorrent/toggle-info";
 #+end_src
@@ -267,7 +266,7 @@ esc         quit #! Quit
 };
 #+end_src
 
-*** extra input
+** extra input --- extra bindings append to mpv/input.conf
 appended to mpv/input.conf
 #+begin_src nix :tangle no
 extraInput = ''
@@ -299,7 +298,7 @@ profiles = {
   high-quality = {
     vo =
       if osConfig.networking.hostName == "carthage" then
-        "gpu-next" # change to gpu if issues
+        "gpu" # change to gpu if issues
       else
         # "vdpau" "nvdec"
         "gpu-next";

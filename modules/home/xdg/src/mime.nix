@@ -9,6 +9,10 @@
       # as if the .desktop file was not listing this mimetype in the first place
       "video/mp4" = "fr.handbrake.ghb.desktop";
       "video/x-matroska" = "fr.handbrake.ghb.desktop";
+      "audio/mp3" = [
+        "mpv.desktop"
+        "umpv.desktop"
+      ];
     };
   };
 
@@ -17,14 +21,15 @@
 
     "text/html" = [
       "google-chrome.desktop"
-      "zen.desktop"
       "chromium-browser.desktop"
+      "firefox.desktop"
+      "zen.desktop"
     ];
 
     "text/plain" = [
       "emacsclient.desktop"
       "dev.zed.Zed.desktop"
-      # "nvim.desktop"
+      "vim.desktop"
     ];
 
     "text/pdf" = [

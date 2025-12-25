@@ -13,6 +13,7 @@
     # Enable portal.xdgOpenUsePortal when needed https://github.com/NixOS/nixpkgs/issues/160923
     mime = {
       enable = true;
+      # TODO investigate if format changed
     };
     mimeApps = import ./src/mime.nix;
     desktopEntries = import ./src/desktopEntries.nix;

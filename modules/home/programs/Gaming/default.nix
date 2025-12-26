@@ -1,4 +1,4 @@
-{ osConfig, lib }:
+{ osConfig, lib, ... }:
 
 {
   imports = [
@@ -6,6 +6,6 @@
     ./mangohud.nix
   ];
 
-  lutris-malu.enable = lib.mkIf (osConfig.hostName == "carthage") true;
-  mangohud.enable = lib.mkIf (osConfig.hostName == "carthage") true;
+  lutris-malu.enable = lib.mkIf (osConfig.networking.hostName == "carthage") true;
+  mangohud.enable = lib.mkIf (osConfig.networking.hostName == "carthage") true;
 }

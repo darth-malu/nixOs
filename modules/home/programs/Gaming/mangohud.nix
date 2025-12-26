@@ -1,4 +1,4 @@
-{ lib, config }:
+{ lib, config, ... }:
 {
   options.mangohud = {
     enable = lib.mkEnableOption "Custom Mango";

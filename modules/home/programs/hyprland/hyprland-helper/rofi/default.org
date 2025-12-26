@@ -49,6 +49,13 @@ config = lib.mkIf config.rofi.enable {
   ];
 #+end_src
 
+** Pass
+#+begin_src nix :tangle default.nix
+pass = {
+  enable = true;
+};
+#+end_src
+
 ** extraConfig
 *** start
 #+begin_src nix :tangle default.nix

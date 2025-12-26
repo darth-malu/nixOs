@@ -51,18 +51,19 @@
     ])
     ++ (with pkgs; [
       # DEVELOPER 🛠️
-      ed
-      # firebase-tools
-      patchelf # TODO see useful nexx
-      zlib
-      # manim #FIXME failed
-      socat
       # cling
-      cmake # vterm
+      # firebase-tools
+      # manim #FIXME failed
+      # nasm
       # qtcreator
       beekeeper-studio
+      cmake # vterm
       cryptsetup
-      # nasm
+      ed
+      pass-wayland
+      patchelf # TODO see useful nexx
+      socat
+      zlib
     ])
     ++ (with pkgs; [
       # gsmartcontrol

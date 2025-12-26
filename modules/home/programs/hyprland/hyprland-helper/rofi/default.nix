@@ -27,6 +27,10 @@ config = lib.mkIf config.rofi.enable {
     rofi-calc
   ];
 
+pass = {
+  enable = true;
+};
+
 extraConfig = {
 
 run-command = "hyprctl dispatch -- exec [workspace emptym] uwsm app -s a -- {cmd}";

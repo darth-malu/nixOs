@@ -5,7 +5,6 @@
     ./gnupg.nix
     ./less.nix
     ./nextcloud.nix
-    # ./nvf.nix
   ];
 
   nextcloud.enable = true;

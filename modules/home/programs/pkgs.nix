@@ -15,6 +15,8 @@
       # qt6.qtsvg # support for SVG image loading (bundled with most packages) # NOTE its still fetched?
       qt6.qtmultimedia # support for playing videos, audio, etc
       qt6.qtdeclarative # qtdecl types in path
+      grim
+      imagemagick # screenshot
       # (inputs.quickshell.packages.${system}.default.override (prevqs: {
       #   debug = true;
       #   qt6 = prevqs.qt6.overrideScope (
@@ -26,6 +28,9 @@
       #     }
       #   );
       # }))
+      # sound-theme-freedesktop # free sounds
+      # pulseaudioFull # paplay
+      libcanberra-gtk3
     ]
     ++ [
       # pastel # color generator
@@ -35,20 +40,6 @@
       libsecret # TODO use
       ventoy-full # usb imager #woeusb
       wev # NOTE use ./ascii
-    ]
-    ++ [
-      # Andy Giraffe
-      # expect -> unbuffer
-      bluetuith
-      # devour
-      jq
-      # man-pages
-      # man-pages-posix
-      # grc # -> generic command output colorizer
-
-      nix-index # vimjouer
-      # nvd       # diff between builds
-      # nix-output-monitor        # track dependency graphs during builds
     ]
     ++ (with pkgs; [
       # testing for yazi #
@@ -60,28 +51,23 @@
     ])
     ++ (with pkgs; [
       # DEVELOPER 🛠️
-      # cling
-      # firebase-tools
-      # manim #FIXME failed
-      # nasm
-      # patchelf # TODO see useful nexx
-      # qtcreator
-      # zlib
-      beekeeper-studio
-      cmake # vterm
-      cryptsetup
       ed
+      # firebase-tools
+      patchelf # TODO see useful nexx
+      zlib
+      # manim #FIXME failed
       socat
+      # cling
+      cmake # vterm
+      # qtcreator
+      beekeeper-studio
+      cryptsetup
+      # nasm
     ])
     ++ (with pkgs; [
-      # duc
-      # dust
       # gsmartcontrol
       # iotop #basic
-      # modem-manager-gui
-      # modemmanager # saves the day with no internet
       # perfomance monitoring
-      # psmisc # killall?
       # qdiskinfo
       # squirreldisk #kinda nice
       # superfile # kinda cool but dont need
@@ -93,18 +79,16 @@
       # duc
       # dust
       duf
+      ncdu
       file # need for yazi mimedetectionetc.
-      httrack
       iftop # TODO seems powerful investigate more
       inxi
       iotop-c # laggy?
       lm_sensors
       lsof # list open files/ports**
       mission-center
-      ncdu
       nethogs
       pciutils # lspci
-      ripgrep-all
       usbutils # lsusb, usb-devices, usb-view(optional gui)
       util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
       # psmisc # TODO need?
@@ -115,41 +99,41 @@
       # modemmanager # saves the day with no internet
     ])
     ++ (with pkgs; [
+      # chromium
+      # wpsoffice
+      libreoffice-qt-still
       discord
       wasistlos # whatsapp-for-linux
       # telegram-desktop
-      # wpsoffice
-      libreoffice-qt-still
     ])
     ++ (with pkgs; [
       # SOUND
       # cantata # old af
       # clapper
-      # digikam
       # kando
       # lollypop # cantata better
       # pipeline # flatpak better?
-      # pulseaudioFull # paplay
       # qqmusic
       # smplayer
-      # sound-theme-freedesktop # free sounds
       # spotify-cli-linux
       # tenacity
       # wf-recorder
       # ymuse # rudimentary
       # youtube-tui # https://siriusmart.github.io/youtube-tui/
-      alarm-clock-applet
       audacity
+      # xclip
       blanket
-      castero
       easyeffects
-      gpu-screen-recorder-gtk
-      imagemagick # screenshot
-      libcanberra-gtk3
       mpc
       nautilus
+      # kdePackages.dolphin
+      # kdePackages.konsole
       qbittorrent
+      gpu-screen-recorder-gtk
+      alarm-clock-applet
       spotify
+      castero
+      # spotube
       sway-audio-idle-inhibit
       # digikam #TODO diff with darktable
     ])
@@ -178,8 +162,6 @@
           # unigine-heaven
           # unigine-superposition
           kdePackages.kdenlive
-          cantata
-          spotube
           exiftool
           ffmpeg-full
           handbrake # FIXME lag on open
@@ -197,7 +179,7 @@
       else
         [
           ffmpeg
-          # blender-hip # Hardware accelerated rendering NOTE later after pos
+          blender-hip # Hardware accelerated rendering NOTE later after pos
         ]
     )
     ++ [
@@ -220,7 +202,6 @@
           slurp
           sushi
           viewnior
-          grim
         ]
       else
         [ ]

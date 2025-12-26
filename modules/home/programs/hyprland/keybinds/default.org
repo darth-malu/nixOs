@@ -375,7 +375,7 @@ movetoworkspacesilent exists
 #+begin_src nix :tangle default.nix
   "$mod $al,Home,execr, qs ipc call bar toggleBar"
 
-  "$mod , x,execr, qs ipc call notifications dismissAll"
+  "$mod $al,i,execr, qs ipc call notifications dismissAll"
 
   "$mod $al,End,execr, systemctl --user restart quickshell"
 
@@ -388,13 +388,13 @@ movetoworkspacesilent exists
   "$mod $al, R, execr, qs ipc call resources toggleResources"
 
     # Playing | Mpris
-  "$mod, F7, execr, qs ipc call mpris toggleMpris"
-  "$mod $sl, F7, execr, qs ipc call mpris toggleMprisIcon"
-  "$mod $cl, i, execr, qs ipc call mpris raise"
+  "$mod, F7, execr, qs ipc call mprisTog toggleMpris"
+  "$mod $al, F7, execr, qs ipc call mprisTog toggleMprisIcon"
+  "$mod $sl, F7, execr, qs ipc call mpris raise"
 
   ", F8, execr, qs ipc call mpris next"
   ", F6, execr, qs ipc call mpris previous"
-  ", F7, execr, qs ipc call mpris togglePlaying"
+  ", F7, execr, qs ipc call mprisTog togglePlaying"
 #+end_src
 
 *** swap position in workspace clockwise

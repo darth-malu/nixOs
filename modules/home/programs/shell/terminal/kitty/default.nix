@@ -26,7 +26,7 @@
     settings = {
       # term =  "xterm-256color";
       scrollback_lines = 4000; # 2000:: uses more RAM
-      enable_audio_bell = true;
+      enable_audio_bell = false;
       # update_check_interval = 0;
       # undercurl_style = "thin-sparse"; # thin-sparse | thin | thick| sparse | dense
       cursor = "#FAA6FF"; # #573280 "#3FA8C6""#9381ff""#0CA4A5";

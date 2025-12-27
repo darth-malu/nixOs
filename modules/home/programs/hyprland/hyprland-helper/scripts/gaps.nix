@@ -87,7 +87,6 @@ pkgs.writeShellScriptBin "gaps" ''
     "toggle_gaps_out")
       if [ "$current_gap_out" -gt 0 ]; then
         local off_icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-adjust-40.png"
-        local on_icon="$HOME/Shibuya/assets/icons/gaps.sh/icons8-switch-on-30.png"
 
         hyprctl keyword general:gaps_out 0
 
@@ -97,7 +96,7 @@ pkgs.writeShellScriptBin "gaps" ''
 
         hyprctl keyword general:gaps_out $(config_gaps_reader 'gaps_out')
 
-        notify-send -t 1 -a "changegaps" -u low -i "$on_icon"  "Gaps turned ON"
+        notify-send -t 1 -a "changegaps" -u low -i "$icon"  "Gaps turned ON"
 
       fi
       ;;

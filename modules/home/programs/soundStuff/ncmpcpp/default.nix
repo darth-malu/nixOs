@@ -14,7 +14,7 @@
   {key = "l"; command = "next_column";}
 
   # {key = "L";command = "next_screen";}
-  {key = "H";command = "master_screen";}
+  # {key = "H";command = "master_screen";}
 
   # { key = "H"; command = "previous_screen"; }
   { key = "L"; command = "slave_screen"; }
@@ -31,19 +31,32 @@
   { key = "^"; command = "toggle_lyrics_fetcher"; }
 
   # playlists manipulation
-  { key = "J"; command = [ "select_item" "scroll_down" ]; }
+  { key = "ctrl-j"; command = [ "select_item" "scroll_down" ]; }
 
-  #{ key = "ctrl-v"; command = "select_range"; }
+  { key = "ctrl-v"; command = "select_range"; }
 
   # WARN: DANGEROUS
   { key = "d"; command = "delete_browser_items"; }
 
   {
-    key = "K";
+    key = "ctrl-k";
     command = [
       "select_item"
       "scroll_up"
     ];
+  }
+
+  {
+    key = "G";
+    command = [
+      # require = ""
+      "move_end"
+    ];
+  }
+
+  {
+    key = "0";
+    command = "run_external_command  songart";
   }
 
   ];
@@ -198,7 +211,7 @@ mpd_host = "localhost";
 mpd_port = 6600;
 
 # execute_on_song_change = "~/.darth/scripts/player/songinfo.sh";
-execute_on_song_change = "songart";
+# execute_on_song_change = "songart";
 execute_on_player_state_change = "songart";
 
 ## Selected tracks ##

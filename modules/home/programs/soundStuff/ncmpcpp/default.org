@@ -26,7 +26,7 @@
   {key = "l"; command = "next_column";}
 
   # {key = "L";command = "next_screen";}
-  {key = "H";command = "master_screen";}
+  # {key = "H";command = "master_screen";}
 
   # { key = "H"; command = "previous_screen"; }
   { key = "L"; command = "slave_screen"; }
@@ -43,100 +43,39 @@
   { key = "^"; command = "toggle_lyrics_fetcher"; }
 
   # playlists manipulation
-  { key = "J"; command = [ "select_item" "scroll_down" ]; }
+  { key = "ctrl-j"; command = [ "select_item" "scroll_down" ]; }
 
-  #{ key = "ctrl-v"; command = "select_range"; }
+  { key = "ctrl-v"; command = "select_range"; }
 
   # WARN: DANGEROUS
   { key = "d"; command = "delete_browser_items"; }
 
   {
-    key = "K";
+    key = "ctrl-k";
     command = [
       "select_item"
       "scroll_up"
     ];
   }
 
+  {
+    key = "G";
+    command = [
+      # require = ""
+      "move_end"
+    ];
+  }
+
+  {
+    key = "0";
+    command = "run_external_command  songart";
+  }
+
   ];
 #+end_src
 
-** docs
-*** to bind
-Because each action has runtime checks whether it's ok to run it, a few actions can be bound to one key.
-
-Actions will be bound in order given in configuration file. When a key is pressed, first action in order will test itself whether it's possible to run it.
-
-If test succeeds, action is executed and other actions bound to this key are ignored.
-
-If it doesn't, next action in order tests itself etc.
-
-*** unbind default bindings
-When ncmpcpp starts, bindings configuration file is parsed and then ncmpcpp provides "missing pieces" of default keybindings.
-
-If you want to disable some bindings, there is a special action called 'dummy' for that purpose.
-
-Eg. if you want to disable ability to crop playlists, you need to put the following into configuration file:
-#+begin_src
-def_key "C"
-  dummy
-#+end_src
-
-After that ncmpcpp will not bind any default action
-to this key.
-*** macros
-
-=push_character= "character" - pushes given special character into input queue, so it will be immediately picked by ncmpcpp upon next call to readKey function.
-  + This action simulates pressing a specific key.
-  + The "character" argument is a string representing the key you want to simulate.
-  + When this action is executed within a macro, the specified key press is added to ncmpcpp's input queue. The next time ncmpcpp expects user input (through its readKey function), it will see this pushed character as if the user actually typed it.
-  + The list of Accepted values shows the special keys that can be simulated. These include basic navigation keys (up, down, left, right), editing keys (delete, insert, backspace), control keys (ctrl-a to ctrl-_), function keys (f1 to f12), and even "mouse" events.
-  + The note about alt-/ctrl-/shift- prefixes means you can simulate key combinations like alt-left, ctrl-f9, or shift-tab.
-
- =push_characters= "string" - pushes given string into input queue.
- + Similar to push_character, but this action allows you to push an entire string of characters into the input queue.
- + This is useful for automating sequences of typing, like entering a specific filter or command.
-
-=require_runnable= "action" - checks whether given action is runnable and fails if it isn't.
-+ This action adds a condition to your macro.
-+ It checks if the specified "action" (another ncmpcpp command) can be executed in the current context.
-+ If the "action" cannot be run (e.g., trying to apply a filter when there's no playlist), the entire macro execution is stopped, preventing the subsequent actions from running.
-+ The example illustrates the importance of require_runnable. Without it, if apply_filter couldn't run, the characters "custom_filter" would be left in the input queue, potentially triggering unintended ncmpcpp actions ('c' clearing the playlist, 'u' updating the database, etc.). By using require_runnable "apply_filter" first, the macro ensures that "custom_filter" is only pushed if apply_filter can actually be executed.
-
-=require_screen= "screen" - checks whether given screen is currently active.
-+ This action checks if ncmpcpp is currently displaying a specific screen.
-+ The "screen" argument must be one of the accepted values, which are the names of different ncmpcpp interfaces (e.g., browser for the file browser, playlist for the current playlist, tag_editor for editing song tags).
-+ If the specified screen is not active, the macro execution is aborted. This allows you to create macros that only work within a specific context.
-
-=run_external_command= "command" - runs given command using =system()= function.
-+ This action executes a shell command outside of ncmpcpp using the standard C library function system().
-+ The "command" argument is the string representing the shell command you want to run.
-+ Be cautious when using this, as it can have security implications if the command or its arguments are not carefully controlled.
-
-=run_external_console_command= "command" - runs given console command using system() function.
-+ This action seems to be very similar to run_external_command. It also executes a shell command using system().
-+ The distinction between "command" and "console command" might relate to how ncmpcpp handles the output or context of the executed command, but the documentation here doesn't explicitly detail the difference.
-
-In addition to binding to a key, you can also bind actions or chains of actions to a command.
-
-This section explains that you can also define custom commands in ncmpcpp, similar to how you define keybindings.
-
-def_command "quit" [deferred]
-  *stop*
-  *quit*
-
-+ This defines a new command named "quit".
-+ The actions stop (stop playback) and quit (exit ncmpcpp) are associated with this command.
-+ The [deferred] keyword in square brackets specifies how the command is executed. deferred means that after you type the command "quit" and press enter, ncmpcpp will wait for another confirmation (pressing enter again) before actually executing the stop and quit actions.
-
-NOTE: while command chains are executed, internal environment update (which includes current window refresh and mpd status update) is not performed for performance reasons.
-
-During the execution of a sequence of actions within a custom command, ncmpcpp generally doesn't update its display or the status from MPD in between each action to improve performance.
-However, it may be desirable to do so in some situtation. Therefore it's possible to invoke by hand by performing 'update enviroment' action.
-If you need ncmpcpp to refresh its display or update its MPD status within a command chain, you can explicitly include the 'update enviroment' action in your command definition.
-
 *** default bindings file
-[[file:bindings]]
+[[file:bindings.org][Ncmpcpp bindings]]
 * settings
 #+begin_src nix :tangle default.nix
 settings = {
@@ -493,7 +432,7 @@ mpd_port = 6600;
 ** on song change
 #+begin_src nix :tangle default.nix
 # execute_on_song_change = "~/.darth/scripts/player/songinfo.sh";
-execute_on_song_change = "songart";
+# execute_on_song_change = "songart";
 execute_on_player_state_change = "songart";
 #+end_src
 

@@ -6,9 +6,9 @@
     # "ctrl+tab" = "no_op";
     "ctrl+shift+tab" = "no_op";
 
-    "ctrl+c" = "copy_or_interrupt";
+    "alt+c" = "copy_or_interrupt";
     # "alt+c" = "copy_to_clipboard";
-    "ctrl+v" = "paste_from_clipboard";
+    "alt+v" = "paste_from_clipboard";
     "kitty_mod+a" = "paste_from_buffer a1";
 
     # Launch New Windows

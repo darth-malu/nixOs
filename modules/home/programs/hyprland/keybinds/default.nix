@@ -217,28 +217,32 @@ bind =
   "$mod ,H, workspace,m-1"
   "$mod ,L, workspace,m+1"
 
-  "$mod $al,Home,execr, qs ipc call bar toggleBar"
-
+  # 🇳​​​​​🇴​​​​​🇹​​​​​🇮​​​​​🇫​​​​​🇮​​​​​🇨​​​​​🇦​​​​​🇹​​​​​🇮​​​​​🇴​​​​​🇳​​​​​🇸​​​​​
   "$mod $al,i,execr, qs ipc call notifications dismissAll"
 
-  "$mod $al,End,execr, systemctl --user restart quickshell"
 
-  "$mod , Delete, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
-
+  # 🇷​​​​​🇪​​​​​🇸​​​​​🇴​​​​​🇺​​​​​🇷​​​​​🇨​​​​​🇪​​​​​🇸​​​​​
   "$mod $cl, KP_Left, execr, qs ipc call netspeed toggleNet"
   "$mod $cl, KP_End, execr, qs ipc call resources toggleResources"
 
   "$mod $al, N, execr, qs ipc call netspeed toggleNet"
   "$mod $al, R, execr, qs ipc call resources toggleResources"
 
-    # Playing | Mpris
-  "$mod, F7, execr, qs ipc call mprisTog toggleMpris"
-  "$mod $al, F7, execr, qs ipc call mprisTog toggleMprisIcon"
+  # 🇲​​​​​🇵​​​​​🇷​​​​​🇮​​​​​🇸​​​​​
+  "$mod, F7, execr, qs ipc call mpris toggleMpris"
+  "$mod $al, F7, execr, qs ipc call mpris toggleMprisIcon"
   "$mod $sl, F7, execr, qs ipc call mpris raise"
 
   ", F8, execr, qs ipc call mpris next"
   ", F6, execr, qs ipc call mpris previous"
-  ", F7, execr, qs ipc call mprisTog togglePlaying"
+  ", F7, execr, qs ipc call mpris togglePlaying"
+
+  # 🇲​​​​​🇮​​​​​🇸​​​​​🇨​​​​​
+  "$mod , Delete, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
+
+  "$mod $al,End,execr, systemctl --user restart quickshell"
+
+  "$mod $al,Home,execr, qs ipc call bar toggleBar"
 
   "$mod $sl, semicolon, swapnext"
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
@@ -310,7 +314,7 @@ bindel =
     # ", XF86AudioNext, execr, playerctl -p spotify next || playerctl next " # TODO test for spotify running
     ", XF86AudioNext, execr, qs ipc call mpris next" # TODO test for spotify running
     ", XF86AudioPrev, execr, qs ipc call mpris previous"
-    ", XF86AudioPlay, execr, qs ipc call mprisTog togglePlaying"
+    ", XF86AudioPlay, execr, qs ipc call mpris togglePlaying"
    ];
 
 binde =

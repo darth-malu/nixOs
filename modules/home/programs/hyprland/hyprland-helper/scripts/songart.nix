@@ -64,7 +64,7 @@ pkgs.writeShellScriptBin "songart" ''
 
   mpd_metadata_formatted() {
     local position=$(mpc | awk '/#/ {print $2}')
-    mpc --format "[[󰎍    %title% \n] [     %audioformat%]  $position\n    %artist%  \n    %album%  ]] | [%file%]" current
+    mpc --format "[[󰎍    %title% \n] [     %audioformat%]  $position\n    %artist%  \n    %album%]] | [%file%]" current
   }
 
   songAlbumArt_preview() {

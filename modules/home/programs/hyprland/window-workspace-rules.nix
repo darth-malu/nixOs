@@ -42,7 +42,7 @@
       # LUKS / udiskie
       "center true, match:class udiskie, match:title udiskie"
       "float true, match:class udiskie, match:title udiskie"
-      "size (monitor_w*0.3) (monitor_h*0.4), match:class udiskie, match:title udiskie"
+      "size (monitor_w*0.2) (monitor_h*0.1), match:class udiskie, match:title udiskie"
 
       # "idleinhibit focus, match:class ncmpcpp"
 

@@ -14,6 +14,11 @@
     ./gaming
   ];
 
+  documentation = {
+    nixos = {
+      includeAllModules = true; # false::
+    };
+  };
   # qemuNix.enable = if config.networking.hostName == "carthage" then false else false;
 
   steamy.enable = if config.networking.hostName == "carthage" then true else false;

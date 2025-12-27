@@ -438,10 +438,11 @@ nix.settings = {
 extraOptions = ''
 #+end_src
 
-*** offline builds
+*** FIXME offline builds
+NOTE OBSOLETE
 #+begin_src nix :tangle no
-keep-outputs = true
-keep-derivations = true# keep build-time dependencies around/be able to rebuild while being offline
+keep-outputs = true;
+keep-derivations = true; # keep build-time dependencies around/be able to rebuild while being offline
 #+end_src
 *** end
 #+begin_src nix :tangle no

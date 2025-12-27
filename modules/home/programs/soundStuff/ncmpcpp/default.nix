@@ -199,7 +199,7 @@ mpd_port = 6600;
 
 # execute_on_song_change = "~/.darth/scripts/player/songinfo.sh";
 execute_on_song_change = "songart";
-#execute_on_player_state_change = "";
+execute_on_player_state_change = "songart";
 
 ## Selected tracks ##
 # selected_item_prefix = "->>";

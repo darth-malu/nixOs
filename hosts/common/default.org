@@ -111,7 +111,7 @@ https://search.nixos.org/options?channel=25.05&show=boot.loader.systemd-boot.sor
 * services - libinput , zfs
 #+begin_src nix :tangle default.nix
   services = {
-    libinput.enable = if config.networking.hostName == "tangier" then true else false; # touchpad, should be on by default
+    libinput.enable = lib.mkIf (config.networking.hostName == "tangier") true; # touchpad, should be on by default
     zfs = {
       autoSnapshot.enable = true; # TODO: see sanoid in man configuration.nix
       autoScrub.enable = true;

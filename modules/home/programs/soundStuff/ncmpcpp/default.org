@@ -29,13 +29,13 @@
   # {key = "H";command = "master_screen";}
 
   # { key = "H"; command = "previous_screen"; }
-  { key = "L"; command = "slave_screen"; }
+  # { key = "L"; command = "slave_screen"; }
 
   { key = "h"; command = "previous_column"; }
 
-  { key = "shift-tab"; command = "previous"; }
+  # { key = "shift-tab"; command = "previous"; }
 
-  { key = "tab"; command = "next"; }
+  # { key = "tab"; command = "next"; }
 
   ##lyrics
   { key = "'";  command = "show_lyrics"; }
@@ -45,7 +45,7 @@
   # playlists manipulation
   { key = "ctrl-j"; command = [ "select_item" "scroll_down" ]; }
 
-  { key = "ctrl-v"; command = "select_range"; }
+  # { key = "ctrl-v"; command = "select_range"; }
 
   # WARN: DANGEROUS
   { key = "d"; command = "delete_browser_items"; }
@@ -59,16 +59,22 @@
   }
 
   {
-    key = "G";
+    key = "J";
     command = [
-      # require = ""
       "move_end"
     ];
   }
 
   {
+    key = "K";
+    command = [
+      "move_home"
+    ];
+  }
+
+  {
     key = "0";
-    command = "run_external_command  songart";
+    command = "run_external_command  \"songart\"";
   }
 
   ];
@@ -316,14 +322,15 @@ main_window_color = 69;
 #+end_src
 
 *** player state - play/pause
+31 - greenish
 #+begin_src nix :tangle default.nix
-player_state_color = 31; # playing/paused status
+player_state_color = 87; # playing/paused status
 #+end_src
 
 *** status bar
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle default.nix :comments yes
 statusbar_time_color = 87;
-statusbar_color = 227; # song name on status bar
+statusbar_color = 69; # 227 song name on status bar
 
 statusbar_visibility = true;
 #+end_src

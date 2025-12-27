@@ -94,7 +94,7 @@
   };
 
   services = {
-    libinput.enable = if config.networking.hostName == "tangier" then true else false; # touchpad, should be on by default
+    libinput.enable = lib.mkIf (config.networking.hostName == "tangier") true; # touchpad, should be on by default
     zfs = {
       autoSnapshot.enable = true; # TODO: see sanoid in man configuration.nix
       autoScrub.enable = true;

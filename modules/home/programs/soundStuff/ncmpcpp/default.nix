@@ -17,13 +17,13 @@
   # {key = "H";command = "master_screen";}
 
   # { key = "H"; command = "previous_screen"; }
-  { key = "L"; command = "slave_screen"; }
+  # { key = "L"; command = "slave_screen"; }
 
   { key = "h"; command = "previous_column"; }
 
-  { key = "shift-tab"; command = "previous"; }
+  # { key = "shift-tab"; command = "previous"; }
 
-  { key = "tab"; command = "next"; }
+  # { key = "tab"; command = "next"; }
 
   ##lyrics
   { key = "'";  command = "show_lyrics"; }
@@ -33,7 +33,7 @@
   # playlists manipulation
   { key = "ctrl-j"; command = [ "select_item" "scroll_down" ]; }
 
-  { key = "ctrl-v"; command = "select_range"; }
+  # { key = "ctrl-v"; command = "select_range"; }
 
   # WARN: DANGEROUS
   { key = "d"; command = "delete_browser_items"; }
@@ -47,16 +47,22 @@
   }
 
   {
-    key = "G";
+    key = "J";
     command = [
-      # require = ""
       "move_end"
     ];
   }
 
   {
+    key = "K";
+    command = [
+      "move_home"
+    ];
+  }
+
+  {
     key = "0";
-    command = "run_external_command  songart";
+    command = "run_external_command  \"songart\"";
   }
 
   ];
@@ -152,12 +158,14 @@ state_flags_color = 4; # mpc status flags eg rzxu
 
 main_window_color = 69;
 
-player_state_color = 31; # playing/paused status
+player_state_color = 87; # playing/paused status
 
+# [[file:default.org::*status bar][status bar:1]]
 statusbar_time_color = 87;
-statusbar_color = 227; # song name on status bar
+statusbar_color = 69; # 227 song name on status bar
 
 statusbar_visibility = true;
+# status bar:1 ends here
 
 display_remaining_time = false; #instead of elapsed in status bar
 

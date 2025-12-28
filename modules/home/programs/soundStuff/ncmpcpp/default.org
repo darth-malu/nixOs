@@ -442,8 +442,8 @@ mpd_port = 6600;
 ** on song change
 #+begin_src nix :tangle default.nix
 # execute_on_song_change = "~/.darth/scripts/player/songinfo.sh";
-# execute_on_song_change = "songart";
-execute_on_player_state_change = "songart";
+execute_on_song_change = "songart";
+# execute_on_player_state_change = "songart";
 #+end_src
 
 ** selected prefix tracks

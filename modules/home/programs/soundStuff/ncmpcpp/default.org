@@ -333,7 +333,7 @@ player_state_color = 136; # playing/paused status
 *** status bar
 #+begin_src nix :tangle default.nix :comments yes
 statusbar_time_color = 87;
-statusbar_color = 69; # 227 song name on status bar
+statusbar_color = 202; # 227 song name on status bar
 
 statusbar_visibility = true;
 #+end_src

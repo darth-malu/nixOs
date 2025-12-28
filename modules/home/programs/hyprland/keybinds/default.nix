@@ -314,7 +314,7 @@ bindel =
     # ", XF86AudioNext, execr, playerctl -p spotify next || playerctl next " # TODO test for spotify running
     ", XF86AudioNext, execr, qs ipc call mpris next" # TODO test for spotify running
     ", XF86AudioPrev, execr, qs ipc call mpris previous"
-    ", XF86AudioPlay, execr, qs ipc call mpris togglePlaying"
+    # ", XF86AudioPlay, execr, qs ipc call mpris togglePlaying"
    ];
 
 binde =

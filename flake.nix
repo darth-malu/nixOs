@@ -95,130 +95,123 @@
 
   };
 
-  outputs =
-    inputs@{ nixpkgs, ... }: # Note the use of `self` which allows reusing flake's outputs in itself.
+  outputs = inputs@{nixpkgs, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 
-    let
-      system = "x86_64-linux"; # TODO system = builtins.currentSystem;?? find reason it doesn't work
+let
+  system = "x86_64-linux"; # TODO system = builtins.currentSystem;?? find reason it doesn't work
 
-      config = {
+  config = {
 
-        allowUnfreePredicate =
-          pkg:
-          builtins.elem (nixpkgs.lib.getName pkg) [
-            "aspell-dict-en-science"
-            "discord"
-            "evafast"
-            "google-chrome"
-            "rar"
-            "spotify"
-            "steam"
-            "steam-unwrapped"
-            "unrar"
-            "ventoy"
-            "xow_dongle-firmware"
-            "youtube-upnext"
-          ];
+    allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+      "aspell-dict-en-science"
+      "discord"
+      "evafast"
+      "google-chrome"
+      "rar"
+      "spotify"
+      "steam"
+      "steam-unwrapped"
+      "unrar"
+      "ventoy"
+      "xow_dongle-firmware"
+      "youtube-upnext"
+    ];
 
-        permittedInsecurePackages = [
-          "ventoy-1.1.07"
-          "libsoup-2.74.3"
-          "libxml2-2.13.8" # for cisco?
-          "qtwebengine-5.15.19" # TODO check dependency
-          "beekeeper-studio-5.3.4"
-        ];
+    permittedInsecurePackages = [
+      "ventoy-1.1.07"
+      "libsoup-2.74.3"
+      "libxml2-2.13.8" # for cisco?
+      "qtwebengine-5.15.19"     # TODO check dependency
+      "beekeeper-studio-5.3.4"
+    ];
 
+};
+ home = inputs.home-manager;
+
+ # pkgs = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
+ pkgs = import nixpkgs {
+   inherit  system;
+   inherit config;
+ };
+
+in
+{
+  # This will make the package available as a flake output under 'packages'
+  # packages.${system}.my-neovim = customNeovim.neovim;
+
+nixosConfigurations = {
+  carthage = nixpkgs.lib.nixosSystem {
+    inherit system;
+    specialArgs = { inherit inputs system; };
+
+modules = [
+  ./hosts/carthage
+
+  home.nixosModules.home-manager {
+    home-manager = {
+      verbose = true;
+      backupFileExtension = "home_bak";
+      useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
+      useUserPackages = false; # if false ... uses nix-profile for home apps
+      extraSpecialArgs = { inherit inputs pkgs system; };
+      users.malu = import ./modules/home/home.nix;
+    };
+  }
+
+];  # modules
+ };  # carthage
+
+tangier = nixpkgs.lib.nixosSystem {
+  inherit system;
+  specialArgs = { inherit inputs system; };
+  modules = [
+    ./hosts/tangier
+    home.nixosModules.home-manager {
+      home-manager = {
+        verbose = true;
+        backupFileExtension = "home_backup";
+        users.malu = import ./modules/home/home.nix;
+        useGlobalPkgs = true; # dont use private instance of pkgs which is the default
+        useUserPackages = false; # if false:: ... uses nix-profile for home apps
+        extraSpecialArgs = { inherit pkgs inputs system; };
       };
-      home = inputs.home-manager;
+    }
+  ];
+};
 
-      # pkgs = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
-      pkgs = import nixpkgs {
-        inherit system;
-        inherit config;
-      };
+}; #End of NixConfigurations
 
-    in
-    {
-      # This will make the package available as a flake output under 'packages'
-      # packages.${system}.my-neovim = customNeovim.neovim;
+devShells.${system}.default = pkgs.mkShell {
+  buildInputs = with pkgs; [
+    # numpy
+    (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
+      # pip
+      # numpy
+      adblock
+    ]))
+  ];
 
-      nixosConfigurations = {
-        carthage = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs system; };
+  shellHook = ''
+      echo "$USER:: welcome to your dev env lul 🧊"
+    '';
 
-          modules = [
-            ./hosts/carthage
+  # packages = [
+  #inputs.python-nixpkgs.legacyPackages.${system}.python313
+  #     (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
+  #     pip
+  #     ]))
+  # ];
+  # env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+  #   pkgs.stdenv.cc.cc.lib
+  #   pkgs.libz
+  # ];
+  # shellHook = ''
+  #     if [ ! -d .venv ]; then
+  #         python -m venv .venv
+  #     fi
+  #     source .venv/bin/activate
+  # '';
+};
 
-            home.nixosModules.home-manager
-            {
-              home-manager = {
-                verbose = true;
-                backupFileExtension = "home_bak";
-                useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
-                useUserPackages = false; # if false ... uses nix-profile for home apps
-                extraSpecialArgs = { inherit inputs pkgs system; };
-                users.malu = import ./modules/home/home.nix;
-              };
-            }
-
-          ]; # modules
-        }; # carthage
-
-        tangier = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs system; };
-          modules = [
-            ./hosts/tangier
-            home.nixosModules.home-manager
-            {
-              home-manager = {
-                verbose = true;
-                backupFileExtension = "home_backup";
-                users.malu = import ./modules/home/home.nix;
-                useGlobalPkgs = true; # dont use private instance of pkgs which is the default
-                useUserPackages = false; # if false:: ... uses nix-profile for home apps
-                extraSpecialArgs = { inherit pkgs inputs system; };
-              };
-            }
-          ];
-        };
-
-      }; # End of NixConfigurations
-
-      devShells.${system}.default = pkgs.mkShell {
-        buildInputs = with pkgs; [
-          # numpy
-          (pkgs.python3.withPackages (
-            python-pkgs: with python-pkgs; [
-              # pip
-              # numpy
-              adblock
-            ]
-          ))
-        ];
-
-        shellHook = ''
-          echo "$USER:: welcome to your dev env lul 🧊"
-        '';
-
-        # packages = [
-        #inputs.python-nixpkgs.legacyPackages.${system}.python313
-        #     (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
-        #     pip
-        #     ]))
-        # ];
-        # env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
-        #   pkgs.stdenv.cc.cc.lib
-        #   pkgs.libz
-        # ];
-        # shellHook = ''
-        #     if [ ! -d .venv ]; then
-        #         python -m venv .venv
-        #     fi
-        #     source .venv/bin/activate
-        # '';
-      };
-
-    }; # end of outputs
-} # EOF
+  };   # end of outputs
+}    # EOF

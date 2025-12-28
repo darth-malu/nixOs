@@ -151,7 +151,6 @@
         with pkgs;
         [
           # coppwr
-          # davinci-resolve # NOTE RX580 not being detected
           # ffmpeg-full # full vs vanilla?
           # glmark2
           # helvum

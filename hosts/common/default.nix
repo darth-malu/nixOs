@@ -113,7 +113,7 @@
     enable = true; # add user to group
     dns = "none"; # dnsmasq, default::, systemd-resolved
     wifi = {
-      powersave = true; # TODO what it does
+      powersave = false; # TODO what it does
       # backend = "wpa_supplicant"; # wpa_supplicant::, iwd
     };
     logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"

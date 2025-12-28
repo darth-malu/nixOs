@@ -228,7 +228,10 @@ color2 = 136;
 **** column list
 #+begin_src nix :tangle default.nix
 # song_columns_list_format = "(40)[39]{t} | (30)[39]{a} | (30)[39]{f} (25)[39]{b} (5)[39]{l}"; # clean
-song_columns_list_format = "(40)[39]{t} (30)[39]{a} (25)[39]{b} (5)[39]{l}"; # alternatives dont work in column list
+
+# song_columns_list_format = "(40)[39]{t} (30)[39]{a} (25)[39]{b} (5)[39]{l}"; # alternatives dont work in column list
+
+song_columns_list_format = "(40)[99]{t} (30)[99]{a} (25)[99]{b} (5)[99]{l}"; # alternatives dont work in column list
 #nice : 38
 #+end_src
 
@@ -318,13 +321,13 @@ state_flags_color = 4; # mpc status flags eg rzxu
 
 *** main window
 #+begin_src nix :tangle default.nix
-main_window_color = 69;
+main_window_color = 69;         # add-meu
 #+end_src
 
 *** player state - play/pause
 31 - greenish
 #+begin_src nix :tangle default.nix
-player_state_color = 87; # playing/paused status
+player_state_color = 136; # playing/paused status
 #+end_src
 
 *** status bar

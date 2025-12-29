@@ -301,7 +301,7 @@ profiles = {
         "gpu-next" # change to gpu if issues
       else
         # "vdpau" "nvdec"
-        "gpu-next";
+        "gpu";
   };
 };
 #+end_src
@@ -337,7 +337,7 @@ config = {
 #+begin_src nix :tangle default.nix
 osd-on-seek = false;
 osd-font = "quicksand"; #VictorMono Nerd Font
-osd-font-size = 38; # 55::
+osd-font-size = 30; # 55::
 osd-bar = false; # nice with uosc
 osc = false; # for modernx
 #+end_src
@@ -378,13 +378,7 @@ gpu-context = "wayland";
 *** video sync
 
 #+begin_src nix :tangle default.nix
-video-sync =
-  if osConfig.networking.hostName == "carthage" then
-    "display-resample"
-  else if osConfig.networking.hostName == "tangier" then
-    "audio"
-  else
-    "audio";
+video-sync = "display-resample";
 #+end_src
 
 **** notes
@@ -404,8 +398,9 @@ desync:        Sync video according to system clock, and let audio play on its o
 
 *** video output drivers + hardware decoding
 
+auto hwdec tries vaapi
 #+begin_src nix :tangle default.nix
-hwdec = "auto"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
+hwdec = "vulkan"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
 vo =
   if osConfig.networking.hostName == "carthage" then
     "gpu-next"
@@ -493,7 +488,7 @@ resume-playback = true; # resume-playback-check-mtime - use incase of similar na
 
 *** volume
 #+begin_src nix :tangle default.nix
-volume = 70; # startup volume
+# volume = 70; # startup volume
 volume-max = 100;
 gapless-audio = true; # no, yes, weak:: #Try to play consecutive audio files with no silence or disruption at the point of file change
 #+end_src
@@ -561,7 +556,7 @@ timeline_step=5;
 
 **** controls
 #+begin_src nix :tangle scriptOpts/uosc.nix
-controls = "menu,gap,subtitles,<has_many_audio>audio,<has_many_video>video,<has_many_edition>editions,<stream>stream-quality, gap, space, space, shuffle, loop-playlist, loop-file, gap, prev, items, next, gap, fullscreen";
+controls = "menu,gap,subtitles,<has_many_audio>audio,<has_many_video>video,<has_many_edition>editions,<stream>stream-quality,gap,space,space,shuffle,loop-playlist,loop-file,gap,prev,items,next,gap,fullscreen";
 #+end_src
 
 A comma delimited list of controls above the timeline. Set to =`never`= to disable.
@@ -928,21 +923,6 @@ Users of uosc can also start typing right from the standard history menu to star
 
 =memo-log=
 Writes an entry for the current file. Intended for manual bookmarking with enabled=no.
-
-
-* video sync notes
-- audio: Time video frames to audio. This is the most robust mode, because the player doesn't have to assume anything about how the display behaves. The disadvantage is that it can lead to occasional frame drops or repeats. If audio is disabled, this uses the system clock. This is the default mode.
-- display-resample:
-   Resample audio to match the video. This mode will also try to adjust audio speed to compensate for other drift. (This means it will play the audio at a different speed every once in a while to reduce the A/V difference.)
-- display-resample-vdrop:
-   Resample audio to match the video. Drop video frames to compensate for drift.
-- display-resample-desync:
-   Like the previous mode, but no A/V compensation.
-- display-tempo:  Same as display-resample, but apply audio speed changes to audio filters instead of resampling to avoid the change in pitch. Beware that some audio filters don't do well with a speed close to 1. It is recommend to use a conditional profile to automatically switch to display-resample when speed gets too close to 1 for your filter setup. Use (speed * video_speed_correction) to get the actual playback speed in the condition. See Conditional auto profiles for details.
-- display-vdrop:  Drop or repeat video frames to compensate desyncing video. (Although it should have the same effects as audio, the implementation is very different.)
-- display-adrop:  Drop or repeat audio data to compensate desyncing video. This mode will cause severe audio artifacts if the real monitor refresh rate is too different from the reported or forced rate. Since mpv 0.33.0, this acts on entire audio frames, instead of single samples.
-- display-desync:  Sync video to display, and let audio play on its own.
-- desync:  Sync video according to system clock, and let audio play on its own.+end_src
 
 * extra notes
 ** play playlists

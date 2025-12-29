@@ -23,7 +23,7 @@ timeline_border=1;
 # Default uses fast seeking. Add `!` suffix to enable exact seeks. Example: `5!`
 timeline_step=5;
 
-controls = "menu,gap,subtitles,<has_many_audio>audio,<has_many_video>video,<has_many_edition>editions,<stream>stream-quality, gap, space, space, shuffle, loop-playlist, loop-file, gap, prev, items, next, gap, fullscreen";
+controls = "menu,gap,subtitles,<has_many_audio>audio,<has_many_video>video,<has_many_edition>editions,<stream>stream-quality,gap,space,space,shuffle,loop-playlist,loop-file,gap,prev,items,next,gap,fullscreen";
 
 # Where to display volume controls: none, left, right
 volume = "none";

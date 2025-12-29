@@ -114,7 +114,7 @@ profiles = {
         "gpu-next" # change to gpu if issues
       else
         # "vdpau" "nvdec"
-        "gpu-next";
+        "gpu";
   };
 };
 
@@ -122,7 +122,7 @@ config = {
 
 osd-on-seek = false;
 osd-font = "quicksand"; #VictorMono Nerd Font
-osd-font-size = 38; # 55::
+osd-font-size = 30; # 55::
 osd-bar = false; # nice with uosc
 osc = false; # for modernx
 
@@ -147,15 +147,9 @@ profile =
 
 gpu-context = "wayland";
 
-video-sync =
-  if osConfig.networking.hostName == "carthage" then
-    "display-resample"
-  else if osConfig.networking.hostName == "tangier" then
-    "audio"
-  else
-    "audio";
+video-sync = "display-resample";
 
-hwdec = "auto"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
+hwdec = "vulkan"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
 vo =
   if osConfig.networking.hostName == "carthage" then
     "gpu-next"
@@ -201,7 +195,7 @@ watch-later-dir = "~/Videos/mpv-watch-later";
 resume-playback = true; # resume-playback-check-mtime - use incase of similar name to match mtime with statefile
 # thumbnails = "best"; # all, best , none:: #FIXME failed
 
-volume = 70; # startup volume
+# volume = 70; # startup volume
 volume-max = 100;
 gapless-audio = true; # no, yes, weak:: #Try to play consecutive audio files with no silence or disruption at the point of file change
 

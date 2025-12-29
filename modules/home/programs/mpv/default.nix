@@ -165,7 +165,8 @@ vo =
     "gpu";
 
 # ytdl-format = "bestvideo+bestaudio"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
-ytdl-format = "bv[height<=1080]+ba/b[height<=1080]"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
+# ytdl-format = "bv[height<=1080]+ba/b[height<=1080]"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
+ytdl-format = "(bv*[height<=1080]*[vcodec~='^((he|a)vc|h26[45])']+ba) / (bv[height<=1080]+ba/b[height<=1080])";
 
 cache = true; # yes, no , auto
 cache-pause = true; # buffering insteaad of stutter :)

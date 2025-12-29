@@ -31,7 +31,8 @@ extraConfig =
 
     # Download the best video available but no better than 1080p,
     # -f "bv[height<=1080]+ba/b[height<=1080]"
-    -f "bv[height<=1080][vcodec^=avc1]+ba/b[height<=1080][vcodec^=avc1]"
+    # -f "bv[height<=1080][vcodec^=h264]+ba/b[height<=1080]"
+    -f "(bv*[height<=1080]*[vcodec~='^((he|a)vc|h26[45])']+ba) / (bv[height<=1080]+ba/b[height<=1080])"
 '';
 
   };

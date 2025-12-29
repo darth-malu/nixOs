@@ -162,7 +162,7 @@ ignore_leading_the = true;
 ** tags
 #+begin_src nix :tangle default.nix
 tag_editor_extended_numeration = true;
-empty_tag_marker = "*empty*";
+empty_tag_marker = "❌";
 #empty_tag_color = "";
 #+end_src
 
@@ -170,7 +170,7 @@ empty_tag_marker = "*empty*";
 media_library_left_column = "a";#a/y/g/c/p - not work
  
 #+begin_src nix :tangle default.nix
-media_library_primary_tag = "album_artist"; #album_artist, artist, date, genre, composer, performer
+media_library_primary_tag = "genre"; #album_artist, artist, date, genre, composer, performer
 media_library_albums_split_by_date = true;
 media_library_hide_album_dates = true;
 # media_library_disable_two_column_mode = false; # false::
@@ -179,7 +179,6 @@ media_library_hide_album_dates = true;
 ** find
 #+begin_src nix :tangle default.nix
 default_find_mode = "wrapped"; #wrapped - go to match as you type, normal <key>w
-
 #+end_src
 
 ** lyrics
@@ -188,11 +187,9 @@ lyrics_directory = "~/Music/ncmpcpp/lyrics";
 store_lyrics_in_song_dir = false;
 fetch_lyrics_for_current_song_in_background = false;
 
-# lyrics_fetchers = "genius , azlyrics";
-lyrics_fetchers = "genius";
-# lyrics
+lyrics_fetchers = "genius , azlyrics";
+# lyrics_fetchers = "genius";
 follow_now_playing_lyrics = true;
-# lyrics_directory = "~/.local/share/darth_ncmpcpp";
 #+end_src
 
 ** seeking
@@ -212,7 +209,6 @@ titles_visibility = false;
 #+begin_src nix :tangle default.nix
 header_text_scrolling = true;
 header_visibility = true; # If enabled, header window will be displayed, otherwise hidden.
-header_window_color = 136; # page title #holy purplee
 #+end_src
 
 ** colors | list format
@@ -232,13 +228,12 @@ color2 = 136;                   # Current Screen , playlist length
 
 **** list/column format
 ***** column list
+NOTE alternatives dont work in column list
+
 #+begin_src nix :tangle default.nix
 # song_columns_list_format = "(40)[39]{t} | (30)[39]{a} | (30)[39]{f} (25)[39]{b} (5)[39]{l}"; # clean
 
-# song_columns_list_format = "(40)[39]{t} (30)[39]{a} (25)[39]{b} (5)[39]{l}"; # alternatives dont work in column list
-
-song_columns_list_format = "(40)[99]{t} (30)[99]{a} (25)[99]{b} (5)[99]{l}"; # alternatives dont work in column list
-#nice : 38
+song_columns_list_format = "(40)[7]{t} (30)[7]{a} (25)[7]{b} (5)[7]{l}"; # 39,38
 #+end_src
 
 ***** song list
@@ -292,6 +287,10 @@ visualizer_look = "+|";
 volume_color = 124;
 display_volume_level = true;
 volume_change_step = 2;
+#+end_src
+**** header
+#+begin_src nix :tangle default.nix
+header_window_color = 136; # page title #holy purplee
 #+end_src
 
 **** alternative header

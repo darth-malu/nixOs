@@ -104,10 +104,10 @@ ignore_diacritics = true; # local language ^ pronounciation marker eg. shadda, u
 ignore_leading_the = true;
 
 tag_editor_extended_numeration = true;
-empty_tag_marker = "*empty*";
+empty_tag_marker = "❌";
 #empty_tag_color = "";
 
-media_library_primary_tag = "album_artist"; #album_artist, artist, date, genre, composer, performer
+media_library_primary_tag = "genre"; #album_artist, artist, date, genre, composer, performer
 media_library_albums_split_by_date = true;
 media_library_hide_album_dates = true;
 # media_library_disable_two_column_mode = false; # false::
@@ -118,11 +118,9 @@ lyrics_directory = "~/Music/ncmpcpp/lyrics";
 store_lyrics_in_song_dir = false;
 fetch_lyrics_for_current_song_in_background = false;
 
-# lyrics_fetchers = "genius , azlyrics";
-lyrics_fetchers = "genius";
-# lyrics
+lyrics_fetchers = "genius , azlyrics";
+# lyrics_fetchers = "genius";
 follow_now_playing_lyrics = true;
-# lyrics_directory = "~/.local/share/darth_ncmpcpp";
 
 incremental_seeking = "yes";
 seek_time = "1";
@@ -131,7 +129,6 @@ titles_visibility = false;
 
 header_text_scrolling = true;
 header_visibility = true; # If enabled, header window will be displayed, otherwise hidden.
-header_window_color = 136; # page title #holy purplee
 
 colors_enabled = true;
 
@@ -140,10 +137,7 @@ color2 = 136;                   # Current Screen , playlist length
 
 # song_columns_list_format = "(40)[39]{t} | (30)[39]{a} | (30)[39]{f} (25)[39]{b} (5)[39]{l}"; # clean
 
-# song_columns_list_format = "(40)[39]{t} (30)[39]{a} (25)[39]{b} (5)[39]{l}"; # alternatives dont work in column list
-
-song_columns_list_format = "(40)[99]{t} (30)[99]{a} (25)[99]{b} (5)[99]{l}"; # alternatives dont work in column list
-#nice : 38
+song_columns_list_format = "(40)[7]{t} (30)[7]{a} (25)[7]{b} (5)[7]{l}"; # 39,38
 
 song_list_format = "{$5%t} | {$6%f$9} $r %p %b      {$4%a$1$9}$9";
 
@@ -169,6 +163,8 @@ visualizer_look = "+|";
 volume_color = 124;
 display_volume_level = true;
 volume_change_step = 2;
+
+header_window_color = 136; # page title #holy purplee
 
 alternative_header_first_line_format = "$0$aqqu$/a$9  {$6%a$9     }{$5%t$9}|{$3%f$9}  $0$atqq$/a$9";
 alternative_header_second_line_format = "{{$7%b$9}}|{$4%d$9}";

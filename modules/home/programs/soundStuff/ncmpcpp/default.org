@@ -216,16 +216,22 @@ header_window_color = 136; # page title #holy purplee
 #+end_src
 
 ** colors | list format
-*** color1, color2
-One of colors used in Song info, Tiny tag editor and Search engine.
-
+*** Non-localized area
+**** enable colors
 #+begin_src nix :tangle default.nix
-color1 = 112;
-color2 = 136;
+colors_enabled = true;
 #+end_src
 
-*** list/column format
-**** column list
+**** color1, color2
+color1 -> One of colors used in Song info, Tiny tag editor and Search engine.
+
+#+begin_src nix :tangle default.nix
+color1 = 112;                   
+color2 = 136;                   # Current Screen , playlist length
+#+end_src
+
+**** list/column format
+***** column list
 #+begin_src nix :tangle default.nix
 # song_columns_list_format = "(40)[39]{t} | (30)[39]{a} | (30)[39]{f} (25)[39]{b} (5)[39]{l}"; # clean
 
@@ -235,19 +241,98 @@ song_columns_list_format = "(40)[99]{t} (30)[99]{a} (25)[99]{b} (5)[99]{l}"; # a
 #nice : 38
 #+end_src
 
-**** song list
+***** song list
 #+begin_src nix :tangle default.nix
 song_list_format = "{$5%t} | {$6%f$9} $r %p %b      {$4%a$1$9}$9";
 #+end_src
 
-**** current item
+***** current item
 #+begin_src nix :tangle default.nix
 current_item_prefix = "$(142)$r"; # highlight current
 #+end_src
 
-**** current item-inactive
+***** current item-inactive
 #+begin_src nix :tangle default.nix
 current_item_inactive_column_prefix = "$(24)$r"; #nice purp
+#+end_src
+
+**** window border color, active window border
+#+begin_src nix :tangle default.nix
+window_border_color = 212; #pop up windows
+active_window_border = 21;
+#+end_src
+
+**** main window
+Used in playlists/media/add-to-playylist views
+
+#+begin_src nix :tangle default.nix
+main_window_color = 69;          # add-menu , 69, 44
+#+end_src
+
+**** visualizer
+#+begin_src nix :tangle default.nix
+visualizer_output_name = "Visualizer feed";
+visualizer_type = "wave_filled"; # wave, wave_filled, spectrum, ellipse
+visualizer_in_stereo = "yes"; # yes if fifo set to 44100:16:2
+visualizer_autoscale = true;
+visualizer_spectrum_smooth_look = true;
+# visualizer_color = "25, 38, 10";
+visualizer_color = "25, 38, 104";
+visualizer_look = "+|";
+# visualizer_look = "●▮";
+#+end_src
+
++ visualizer_fifo_path = PATH
+        Path to mpd fifo output. This is needed to make music visualizer work (note that output sound format of this fifo has to be either 44100:16:1 or 44100:16:2, depending on whether you want mono or stereo visualization)
++ visualizer_in_stereo = yes/no
+        Should be set to 'yes', if fifo output's format was set to 44100:16:2.
+*** Top Area
+**** volume
+#+begin_src nix :tangle default.nix
+volume_color = 124;
+display_volume_level = true;
+volume_change_step = 2;
+#+end_src
+
+**** alternative header
+#+begin_src nix :tangle default.nix
+alternative_header_first_line_format = "$0$aqqu$/a$9  {$6%a$9     }{$5%t$9}|{$3%f$9}  $0$atqq$/a$9";
+alternative_header_second_line_format = "{{$7%b$9}}|{$4%d$9}";
+alternative_ui_separator_color = 1;
+#+end_src
+**** state line
+state flags color mpc status flags eg [rzxu]
+
+#+begin_src nix :tangle default.nix
+state_line_color = 1;
+state_flags_color = 4; # mpc status flags eg rzxu
+#+end_src
+
+*** Bottom Area
+**** player state - play/pause
+31 - greenish
+#+begin_src nix :tangle default.nix
+player_state_color = 136; # playing/paused status
+#+end_src
+
+**** status bar || curent playing song, time
+#+begin_src nix :tangle default.nix
+statusbar_time_color = 87;
+statusbar_color = 221; # 227 song name on status bar
+statusbar_visibility = true;
+#+end_src
+**** remaining time
+#+begin_src nix :tangle default.nix
+display_remaining_time = false; #instead of elapsed in status bar
+#+end_src
+**** progress bar
+#+begin_src nix :tangle default.nix
+progressbar_color = 24;
+# progressbar_look = "─⊙┄";
+progressbar_look = "─⊙ ";
+#progressbar_look = "─░─";
+progressbar_elapsed_color = 74;
+#progressbar_elapsed_color = 24; # muted
 #+end_src
 
 *** docs
@@ -298,73 +383,6 @@ Note: colors can be nested, so if you write $2some$5text$9, it'll disable only u
 
 source:[[https://www.mankier.com/1/ncmpcpp#Bindings]]
 
-*** alternative header
-#+begin_src nix :tangle default.nix
-alternative_header_first_line_format = "$0$aqqu$/a$9  {$6%a$9     }{$5%t$9}|{$3%f$9}  $0$atqq$/a$9";
-alternative_header_second_line_format = "{{$7%b$9}}|{$4%d$9}";
-alternative_ui_separator_color = 1;
-#+end_src
-
-*** window border color, activw window border
-#+begin_src nix :tangle default.nix
-window_border_color = 212; #pop up windows
-active_window_border = 21;
-#+end_src
-
-*** state line
-state flags color mpc status flags eg [rzxu]
-
-#+begin_src nix :tangle default.nix
-state_line_color = 1;
-state_flags_color = 4; # mpc status flags eg rzxu
-#+end_src
-
-*** main window
-#+begin_src nix :tangle default.nix
-main_window_color = 69;         # add-meu
-#+end_src
-
-*** player state - play/pause
-31 - greenish
-#+begin_src nix :tangle default.nix
-player_state_color = 136; # playing/paused status
-#+end_src
-
-*** status bar
-#+begin_src nix :tangle default.nix :comments yes
-statusbar_time_color = 87;
-statusbar_color = 202; # 227 song name on status bar
-
-statusbar_visibility = true;
-#+end_src
-
-*** remaining time
-#+begin_src nix :tangle default.nix
-display_remaining_time = false; #instead of elapsed in status bar
-#+end_src
-
-*** volume
-#+begin_src nix :tangle default.nix
-volume_color = 124;
-display_volume_level = true;
-volume_change_step = 2;
-#+end_src
-
-*** progress bar
-#+begin_src nix :tangle default.nix
-progressbar_color = 24;
-# progressbar_look = "─⊙┄";
-progressbar_look = "─⊙ ";
-#progressbar_look = "─░─";
-progressbar_elapsed_color = 74;
-#progressbar_elapsed_color = 24; # muted
-#+end_src
-
-*** enable colors
-#+begin_src nix :tangle default.nix
-colors_enabled = true;
-#+end_src
-
 ** playlists
 ncmpc_like_songs_adding = true; # If enabled, pressing space on item, which is already in playlist will remove it, otherwise add it again.
 #+begin_src nix :tangle default.nix
@@ -394,23 +412,6 @@ playlist_editor_display_mode = "columns";
 lines_scrolled = 8;
 mouse_list_scroll_whole_page = true;
 mouse_support = true;
-#+end_src
-
-** visualizer
-+ visualizer_fifo_path = PATH
-        Path to mpd fifo output. This is needed to make music visualizer work (note that output sound format of this fifo has to be either 44100:16:1 or 44100:16:2, depending on whether you want mono or stereo visualization)
-+ visualizer_in_stereo = yes/no
-        Should be set to 'yes', if fifo output's format was set to 44100:16:2.
-#+begin_src nix :tangle default.nix
-visualizer_output_name = "Visualizer feed";
-visualizer_type = "wave_filled"; # wave, wave_filled, spectrum, ellipse
-visualizer_in_stereo = "yes"; # yes if fifo set to 44100:16:2
-visualizer_autoscale = true;
-visualizer_spectrum_smooth_look = true;
-# visualizer_color = "25, 38, 10";
-visualizer_color = "25, 38, 104";
-visualizer_look = "+|";
-# visualizer_look = "●▮";
 #+end_src
 
 ** ncmpcpp directory
@@ -448,9 +449,6 @@ execute_on_song_change = "songart";
 
 ** selected prefix tracks
 #+begin_src nix :tangle default.nix
-## Selected tracks ##
-# selected_item_prefix = "->>";
-# selected_item_prefix = "|>";
 selected_item_prefix = "+  ";
 discard_colors_if_item_is_selected = true;
 #+end_src
@@ -467,7 +465,11 @@ generate_win32_compatible_filenames = true; # generated file names eg. with tag 
 
 #+begin_src nix :tangle default.nix
 allow_for_physical_item_deletion = true;
-show_hidden_files_in_local_browser = false;
+show_hidden_files_in_local_browser = true;
+#+end_src
+
+** Start up screen
+#+begin_src nix :tangle default.nix
 #startup_slave_screen = "browser";
 #+end_src
 

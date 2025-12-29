@@ -18,6 +18,9 @@
 
       "$gaps" = "gaps toggle_gaps_out";
       "$emacs" = "uwsm app -s a -- emacsclient -c";
+      "$emacs_restart_ico" = "/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png";
+      "$notify_send_emacs_restarting" =  "notify-send 'restarting emacs' -i $emacs_restart_ico";
+      "$notify_send_emacs_restarted" =  "notify-send 'restarted emacs' -i $emacs_restart_ico";
 
   "$file_browser_rofi" = "rofi -show filebrowser -filebrowser-command 'xdg-open' -filebrowser-directory '/home/malu' -theme '/home/malu/Shibuya/modules/home/programs/hyprland/keybinds/rofi-themes/fileBrowser.rasi'";
   "$rofi_open_windows" =  "rofi -show window -theme-str 'window {width : 920px;}' -theme-str 'listview {lines:15; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'" ;
@@ -95,7 +98,7 @@ bind =
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, E, exec, [workspace emptym] $emacs"
   "$mod $sl, E, execr, systemctl --user stop emacs"
-  "$mod $al, E, execr, notify-send 'restarting emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png' ; systemctl --user restart emacs ; sleep 2 && notify-send 'restarted emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png'  && $emacs"
+  "$mod $al, E, execr, $notify_send_emacs_restarting ; systemctl --user restart emacs ; sleep 2 && $notify_send_emacs_restarted && $emacs"
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] discord"

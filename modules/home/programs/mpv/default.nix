@@ -111,7 +111,7 @@ profiles = {
   high-quality = {
     vo =
       if osConfig.networking.hostName == "carthage" then
-        "gpu" # change to gpu if issues
+        "gpu-next" # change to gpu if issues
       else
         # "vdpau" "nvdec"
         "gpu-next";

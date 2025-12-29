@@ -43,7 +43,8 @@ extraConfig =
     -o "%(channel)s-%(title)s.%(ext)s"
 
     # Download the best video available but no better than 1080p,
-    -f "bv[height<=1080]+ba/b[height<=1080]"
+    # -f "bv[height<=1080]+ba/b[height<=1080]"
+    -f "bv[height<=1080][vcodec^=avc1]+ba/b[height<=1080][vcodec^=avc1]"
 '';
 #+end_src
 

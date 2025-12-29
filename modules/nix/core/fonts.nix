@@ -21,6 +21,7 @@
         # fira-code
         # fira-math
         office-code-pro # try
+        proggyfonts
       ]
       ++ [
         # emacs fonts
@@ -29,6 +30,7 @@
         noto-fonts
       ]
       ++ (with pkgs.nerd-fonts; [
+        proggy-clean-tt
         envy-code-r
         space-mono
         meslo-lg # try
@@ -44,12 +46,12 @@
         monofur
         mononoki
         fantasque-sans-mono
-        # ubuntu-mono
+        ubuntu-mono
         symbols-only
         # shure-tech-mono
         # agave
-        # caskaydia-cove
-        # lilex # kinda nice actually
+        caskaydia-cove
+        lilex # kinda nice actually
         # hasklug # kinda looks like sauce code pro
         # tinos # similar to times new roman
       ]);

@@ -162,6 +162,7 @@
           # unigine-heaven
           # unigine-superposition
           kdePackages.kdenlive
+          davinci-resolve
           exiftool
           ffmpeg-full
           handbrake # FIXME lag on open

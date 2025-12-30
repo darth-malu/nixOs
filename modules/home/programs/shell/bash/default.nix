@@ -1,4 +1,4 @@
-{ osConfig, ... }:
+{ osConfig, lib, ... }:
 
 {
   imports = [
@@ -38,16 +38,14 @@
       "exit"
     ];
     profileExtra =
-      if (osConfig.kde.enable == false) then
+      lib.mkIf (osConfig.kde.enable == false)
         #loginshell
         ''
            if uwsm check may-start; then
              # exec uwsm start -S hyprland-uwsm.desktop
              exec uwsm start hyprland-uwsm.desktop
           fi
-        ''
-      else
-        '''';
+        '';
     # extra commands interactive shell/ also in non interactive
     # bashrcExtra = '''';
     initExtra =

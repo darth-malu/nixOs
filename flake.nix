@@ -115,6 +115,7 @@ let
       "ventoy"
       "xow_dongle-firmware"
       "youtube-upnext"
+      "davinci-resolve"
     ];
 
     permittedInsecurePackages = [

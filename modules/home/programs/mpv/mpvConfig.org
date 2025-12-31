@@ -158,9 +158,7 @@ It can also be toggled manually with =p= (default).
 Multi-file torrents are opened as a playlist.
 
 **** eisa01.smartskip
-
 https://github.com/Eisa01/mpv-scripts?tab=readme-ov-file#default-keybinds
-
 **** end
 #+begin_src nix :tangle default.nix
 };

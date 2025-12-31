@@ -7,8 +7,6 @@
   programs.bash = {
     enable = true;
     sessionVariables = {
-      # ignore duplicate commands, ignore commands starting with a space
-      #HISTCONTROL="ignoreboth:erasedups"; #ignoreboth=space+ingoredups , : - delimeter
     };
     shellOptions = [
       # prefix with ~ to unset
@@ -24,7 +22,7 @@
     shellAliases = import ./alias.nix;
     historySize = 10000;
     historyControl = [
-      "ignoreboth"
+      "ignoreboth" # ignore duplicate commands, ignore commands starting with a space
       "erasedups"
     ];
     historyIgnore = [
@@ -36,14 +34,17 @@
       "lxx"
       "cd"
       "exit"
+      "l"
+      "which"
+      "yy"
+      "fd"
     ];
     profileExtra =
       lib.mkIf (osConfig.kde.enable == false)
         #loginshell
         ''
            if uwsm check may-start; then
-             # exec uwsm start -S hyprland-uwsm.desktop
-             exec uwsm start hyprland-uwsm.desktop
+             start-hyprland
           fi
         '';
     # extra commands interactive shell/ also in non interactive

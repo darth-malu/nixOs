@@ -19,35 +19,35 @@
 
   programs.mpv = {
     enable = true;
-      package = (pkgs.mpv-unwrapped.wrapper {
-          scripts = with pkgs.mpvScripts; [
-            mpris
-            # sponsorblock # TODO not need?
-            # quality-menu
-            youtube-upnext # C-u (configurable) , space to append. 'up next'/recommended youtube videos
-            # mpv-cheatsheet # use ?
-            mpv-playlistmanager # S-Enter to add to playlist
-            uosc
-            memo # recent files menu
-            # modernx-zydezu
-            thumbfast
-            # evafast # provides evafast/toggle script-binding for speeding up independently of the hybrid key. TODO need?
-            # eisa01.smartskip
-            # visualizer
-            # webtorrent-mpv-hook
-          ];
-          mpv = pkgs.mpv-unwrapped.override {
-            waylandSupport = true;
-          };
-          # ffmpeg = pkgs.ffmpeg-full;
-          # ffmpeg_5 = pkgs.ffmpeg_5-full;
-        });
+      # package = (pkgs.mpv-unwrapped.override {
+      #     scripts = with pkgs.mpvScripts; [
+      #       mpris
+      #       # sponsorblock # TODO not need?
+      #       # quality-menu
+      #       youtube-upnext # C-u (configurable) , space to append. 'up next'/recommended youtube videos
+      #       # mpv-cheatsheet # use ?
+      #       mpv-playlistmanager # S-Enter to add to playlist
+      #       uosc
+      #       memo # recent files menu
+      #       # modernx-zydezu
+      #       thumbfast
+      #       # evafast # provides evafast/toggle script-binding for speeding up independently of the hybrid key. TODO need?
+      #       # eisa01.smartskip
+      #       # visualizer
+      #       # webtorrent-mpv-hook
+      #     ];
+      #     mpv = pkgs.mpv-unwrapped.override {
+      #       waylandSupport = true;
+      #     };
+      #     # ffmpeg = pkgs.ffmpeg-full;
+      #     # ffmpeg_5 = pkgs.ffmpeg_5-full;
+      #   });
 #+end_src
 
 ** scripts, scriptOpts
 *** scripts
 
-#+begin_src nix :tangle no
+#+begin_src nix :tangle default.nix
 scripts = with pkgs.mpvScripts; [
   mpris
   # sponsorblock # TODO not need?
@@ -398,7 +398,7 @@ desync:        Sync video according to system clock, and let audio play on its o
 
 auto hwdec tries vaapi
 #+begin_src nix :tangle default.nix
-hwdec = "vulkan"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
+hwdec = if osConfig.networking.hostName == "carthage" then "vulkan" else "nvdec"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
 vo =
   if osConfig.networking.hostName == "carthage" then
     "gpu-next"
@@ -408,35 +408,14 @@ vo =
     "gpu";
 #+end_src
 
-**** notes
-***** hwdec
-hardware decoding api
- - whether decoding is done is based on the video codec, if not possible fallback to software
- - disabled by default
-
-no:  always use software decoding (default)
-auto:  enable any whitelisted hw decoder (see below)
-auto-unsafe:  forcibly enable any hw decoder found (see below)
-yes:  exactly the same as auto
-auto-safe:  exactly the same as auto
-
-***** video output drivers
-vo - video output backend to use. [[https://mpv.io/manual/stable/#video-output-drivers]]
-+ gpu
-  * General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more.
-  * provides predefined profils (fast + high-quality) select with --profile=<name>
-+ gpu-next
-  + experimental video renderer based on libplacebo
-  + supports almost the same set of features as --vo=gpu
-  + generally be faster/higher quality but experimental still
-
 *** ytdl, quality of the video
 #+begin_src nix :tangle default.nix
 # ytdl-format = "bestvideo+bestaudio"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
 # ytdl-format = "bv[height<=1080]+ba/b[height<=1080]"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
-ytdl-format = "(bv*[height<=1080]*[vcodec~='^((he|a)vc|h26[45])']+ba) / (bv[height<=1080]+ba/b[height<=1080])";
+ytdl-format = "(bv[height<=1080]*[vcodec~='^(hevc|h26[45])']+ba) / (bv[height<=1080]+ba/b[height<=1080])";
 #+end_src
 
+bv* -> may include audio track
 *** cache  + demux
 #+begin_src nix :tangle default.nix
 cache = true; # yes, no , auto
@@ -498,7 +477,7 @@ embeddedfonts = true;
 screenshot-format = "png"; # jpeg, png, webp, avif, jxl
 
 # idle = true;
-# force-window = true;
+force-window = true;            # FIXME see if it works on hyprland
 
 # dither = true; #   Can help reduce banding artifacts, especially in 8-bit content.
 #+end_src

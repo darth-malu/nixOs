@@ -50,21 +50,17 @@
           # set vi-cmd-mode-string \1\e[1 q\e]12;purple\a\2
 
           $if mode=vi
-            "\e[D":  backward-char
-            "\M-[C": forward-char
-            "\eh":   backward-char 
-            "\M-l":  forward-char 
+            # "\e[D":  backward-char
+            # "\M-[C": forward-char
+            # "\eh":   backward-char # Make this useful..word instead
+            # "\M-l":  forward-char 
             "\e[5~": history-search-backward 
             "\e[6~": history-search-forward 
 
             "\C-x\"": "\"\"\C-b" 
-            # C-j - RET - enter for next line instead enter lol best shortcut fr like # alot of conflict eg tmux
+            # C-j - RET - enter for next line instead enter lol best shortcut fr like # alot of conflict eg tmux -- just use C-m
             # "\C-l":"clear\n"
           $endif
-
-            # C-j - RET - enter for next line instead enter lol best shortcut fr like # alot of conflict eg tmux
-            # "\C-l":"clear\n"
-            # "\eh":   backward-char # M-h go to normal mode then move one char
 
           $if Bash
             # Insert the next character literally, ignoring its special meaning.
@@ -75,16 +71,16 @@
             # prepare to type a quoted word --
             # insert open and close double quotes
             # and move to just after the open quote
-            "\C-x\"": "\"\"\C-b"
+            "\C-x\"": "\"\"\C-b" # TODO FIXME works but weird...investigate
 
             # Quote the current or previous word
-            "\C-xq": "\eb\"\ef\""
+            "\C-xq": "\eb\"\ef\"" # FIXME
 
             # Add a binding to refresh the line, which is unbound
-            "\C-xr": redraw-current-line
+            "\C-xr": redraw-current-line # FIXEM
 
             # Edit variable on current line.
-            "\M-\C-v": "\C-a\C-k$\C-y\M-\C-e\C-a\C-y="
+            "\M-\C-v": "\C-a\C-k$\C-y\M-\C-e\C-a\C-y=" # FIXME
           $endif
 
           # Arrows

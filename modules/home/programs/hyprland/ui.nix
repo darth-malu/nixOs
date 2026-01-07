@@ -106,7 +106,7 @@
       no_warps = true; # false:: focusing, keybinds etc - dont warp cursor
       # warp_back_after_non_mouse_input = true; # false:: NOTE new
       # sync_gsettings_theme = true; # true::
-      default_monitor = "HDMI-A-1"; # NOTE new
+      default_monitor = if osConfig.networking.hostName == "carthage" then "HDMI-A-1" else "eDP-1";
     };
 
     ecosystem = {

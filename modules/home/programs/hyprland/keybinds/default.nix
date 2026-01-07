@@ -72,28 +72,23 @@ bind =
 
   ", XF86Tools, exec, pkill pwvucontrol ||  pwvucontrol"
 
-# Menu
   "$mod $cl, mouse:272, exec, pkill rofi || $menu_rofi"
   "$mod , P, exec, pkill rofi || $menu_rofi"
 
-  # File browser
   "$mod , R, exec, pkill rofi || $file_browser_rofi"
 
-    # Clipboard hist
   "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
 
-  # open windows
-  "$mod, space, exec, pkill rofi || $rofi_open_windows"
+  "$mod, period, exec, pkill rofi || $rofi_open_windows"
   "$mod $cl, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
-  # power menu
   "$mod, Delete, exec, pkill rofi || rofi_power"
 
-  # calculator
   ", XF86Calculator, exec, pkill rofi || $calc_rofi"
 
-  # emoji
-  "$mod, period, exec, pkill rofi || $emoji_rofi"
+  "$mod, slash, exec, pkill rofi || $calc_rofi"
+
+  "$mod, comma, exec, pkill rofi || $emoji_rofi"
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, E, exec, [workspace emptym] $emacs"
@@ -266,7 +261,7 @@ bind =
           "$mod, code:1${toString i}, workspace, ${toString ws}"
           "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}" # this is genius 1-10, amazing
         ]
-    ) 9
+    ) 9                         # do upto 10? -- see what it does
   )
 )
 

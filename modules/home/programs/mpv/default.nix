@@ -11,29 +11,47 @@
 
   programs.mpv = {
     enable = true;
-      package = (pkgs.mpv-unwrapped.wrapper {
-          scripts = with pkgs.mpvScripts; [
-            mpris
-            # sponsorblock # TODO not need?
-            # quality-menu
-            youtube-upnext # C-u (configurable) , space to append. 'up next'/recommended youtube videos
-            # mpv-cheatsheet # use ?
-            mpv-playlistmanager # S-Enter to add to playlist
-            uosc
-            memo # recent files menu
-            # modernx-zydezu
-            thumbfast
-            # evafast # provides evafast/toggle script-binding for speeding up independently of the hybrid key. TODO need?
-            # eisa01.smartskip
-            # visualizer
-            # webtorrent-mpv-hook
-          ];
-          mpv = pkgs.mpv-unwrapped.override {
-            waylandSupport = true;
-          };
-          # ffmpeg = pkgs.ffmpeg-full;
-          # ffmpeg_5 = pkgs.ffmpeg_5-full;
-        });
+      # package = (pkgs.mpv-unwrapped.override {
+      #     scripts = with pkgs.mpvScripts; [
+      #       mpris
+      #       # sponsorblock # TODO not need?
+      #       # quality-menu
+      #       youtube-upnext # C-u (configurable) , space to append. 'up next'/recommended youtube videos
+      #       # mpv-cheatsheet # use ?
+      #       mpv-playlistmanager # S-Enter to add to playlist
+      #       uosc
+      #       memo # recent files menu
+      #       # modernx-zydezu
+      #       thumbfast
+      #       # evafast # provides evafast/toggle script-binding for speeding up independently of the hybrid key. TODO need?
+      #       # eisa01.smartskip
+      #       # visualizer
+      #       # webtorrent-mpv-hook
+      #     ];
+      #     mpv = pkgs.mpv-unwrapped.override {
+      #       waylandSupport = true;
+      #     };
+      #     # ffmpeg = pkgs.ffmpeg-full;
+      #     # ffmpeg_5 = pkgs.ffmpeg_5-full;
+      #   });
+
+scripts = with pkgs.mpvScripts; [
+  mpris
+  # sponsorblock # TODO not need?
+  # quality-menu # have uosc
+  youtube-upnext # [C-u] (configurable) , space to append. 'up next'/recommended youtube videos
+  # mpv-cheatsheet # use ?
+  mpv-playlistmanager # [S-Enter] to add to playlist
+  uosc
+  memo # recent files menu [h]
+  # modernx-zydezu
+  thumbfast
+  # evafast # provides evafast/toggle script-binding for speeding up independently of the hybrid key. TODO need?
+  # eisa01.smartskip
+  # visualizer
+  # webtorrent-mpv-hook # use anicli
+  # mpv-discord
+];
 
 scriptOpts = {
 
@@ -149,7 +167,7 @@ gpu-context = "wayland";
 
 video-sync = "display-resample";
 
-hwdec = "vulkan"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
+hwdec = if osConfig.networking.hostName == "carthage" then "vulkan" else "nvdec"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
 vo =
   if osConfig.networking.hostName == "carthage" then
     "gpu-next"
@@ -160,7 +178,7 @@ vo =
 
 # ytdl-format = "bestvideo+bestaudio"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
 # ytdl-format = "bv[height<=1080]+ba/b[height<=1080]"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
-ytdl-format = "(bv*[height<=1080]*[vcodec~='^((he|a)vc|h26[45])']+ba) / (bv[height<=1080]+ba/b[height<=1080])";
+ytdl-format = "(bv[height<=1080]*[vcodec~='^(hevc|h26[45])']+ba) / (bv[height<=1080]+ba/b[height<=1080])";
 
 cache = true; # yes, no , auto
 cache-pause = true; # buffering insteaad of stutter :)
@@ -204,7 +222,7 @@ embeddedfonts = true;
 screenshot-format = "png"; # jpeg, png, webp, avif, jxl
 
 # idle = true;
-# force-window = true;
+force-window = true;            # FIXME see if it works on hyprland
 
 # dither = true; #   Can help reduce banding artifacts, especially in 8-bit content.
 

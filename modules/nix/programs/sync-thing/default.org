@@ -7,6 +7,9 @@ http://127.0.0.1:8384/ - synthing gui
 * files to ignore
 #+begin_src text :tangle ~/Shibuya/.stdignore
 .git
+,*.git
+pycache
+ccache
 #+end_src
 * start
 

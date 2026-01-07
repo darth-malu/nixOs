@@ -99,7 +99,7 @@ let
             workspace_swipe_distance = 260; # def: 300
             workspace_swipe_create_new = false; # new empty after last workspace
             # workspace_swipe_use_r = true; # r instead of m
-            workspace_swipe_forever = false;
+            workspace_swipe_forever = true; # NOTE....false sucks
           };
 
           device = [
@@ -110,8 +110,6 @@ let
             }
           ];
           binde = [
-            # ", XF86MonBrightnessUp, exec, ~/.darth/scripts/brightness_dunst.sh +"
-            # "bind = , XF86MonBrightnessDown, exec, ~/.darth/scripts/brightness_dunst.sh -"
             ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
             ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
           ];

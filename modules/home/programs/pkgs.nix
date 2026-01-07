@@ -17,17 +17,6 @@
       qt6.qtdeclarative # qtdecl types in path
       grim
       imagemagick # screenshot
-      # (inputs.quickshell.packages.${system}.default.override (prevqs: {
-      #   debug = true;
-      #   qt6 = prevqs.qt6.overrideScope (
-      #     _: prevqt: {
-      #       qtdeclarative = prevqt.qtdeclarative.overrideAttrs (prev: {
-      #         cmakeBuildType = "Debug";
-      #         dontStrip = true;
-      #       });
-      #     }
-      #   );
-      # }))
       # sound-theme-freedesktop # free sounds
       # pulseaudioFull # paplay
       libcanberra-gtk3
@@ -61,6 +50,7 @@
       cryptsetup
       ed
       pass-wayland
+      hyprland-autoname-workspaces
       patchelf # TODO see useful nexx
       socat
       zlib
@@ -180,7 +170,6 @@
       else
         [
           ffmpeg
-          blender-hip # Hardware accelerated rendering NOTE later after pos
         ]
     )
     ++ [

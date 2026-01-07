@@ -1,9 +1,7 @@
 {
   pkgs,
-  # lib,
-  inputs,
-  system,
   config,
+  lib,
   ...
 }:
 
@@ -15,18 +13,17 @@
   ];
 
   documentation = {
+    dev.enable = true;
+    info.enable = true;
+    doc.enable = true; # distributed in pkgs /share/doc
     nixos = {
       includeAllModules = true; # false::
     };
   };
-  # qemuNix.enable = if config.networking.hostName == "carthage" then false else false;
 
-  steamy.enable = if config.networking.hostName == "carthage" then true else false;
+  steamy.enable = lib.mkIf (config.networking.hostName == "carthage") true;
 
   programs = {
-
-    # gpu-screen-recorder.enable = true;  # FIXME: does not work lol
-
     ccache = {
       enable = true;
       packageNames = [
@@ -71,7 +68,8 @@
   environment = {
     # List of packages installed in system profile. To search, run: $ nix search wget
     systemPackages =
-      (with pkgs; [
+      with pkgs;
+      ([
         libnotify # notify-send
         wget
         #cpufrequtils
@@ -80,8 +78,6 @@
         curl
         # dash
         procs
-        #glib
-        #gsettings-qt
         killall
         nix-prefetch-git # nix-prefetch-scripts #includes git prefetch
         pipewire
@@ -97,14 +93,10 @@
         kitty
         bc
         wl-clipboard # rust wl-clipboard better?
-        # tldr # emacs better
         dotool # test if working
-        inputs.nix-qml.packages.${system}.tree-sitter-qmljs
-        inputs.nix-qml.packages.${system}.qml-ts-mode
       ])
       ++ (
         if config.programs.hyprland.enable then
-          with pkgs;
           [
             hyprpicker
             # hyprpolkitagent
@@ -122,20 +114,7 @@
               [ ]
           )
         else
-          (
-            if config.services.desktopManager.plasma6.enable then
-              # with pkgs.kdePackages;
-              [
-                # hello
-                # filelight
-                # ghostwriter
-                # plan # watch
-                # calindori
-                # pkgs.labplot
-              ]
-            else
-              [ ]
-          )
+          [ ]
       );
   };
 }

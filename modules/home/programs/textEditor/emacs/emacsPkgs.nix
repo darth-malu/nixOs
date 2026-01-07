@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   tex = (
     pkgs.texlive.combine {
@@ -52,6 +52,8 @@ in
 
     # direnv
     emacs-lsp-booster
+    inputs.nix-qml.packages.${system}.tree-sitter-qmljs
+    inputs.nix-qml.packages.${system}.qml-ts-mode
     # prettier
     # prettierd # prettier as a daemon, for improved speed # TODO test workings
 

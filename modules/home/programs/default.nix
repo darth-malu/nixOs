@@ -112,5 +112,17 @@
         };
       };
     };
+
+    gemini-cli = {
+      enable = true;
+      defaultModel = "gemini-2.5-flash";
+      # context
+      settings = {
+        theme = "Default";
+        vimMode = true;
+        preferredEditor = "nvim";
+        autoAccept = true;
+      };
+    };
   };
 }

@@ -119,10 +119,10 @@ let
     ];
 
     permittedInsecurePackages = [
-      "ventoy-1.1.07"
+      "ventoy-1.1.10"
       "libsoup-2.74.3"
       "libxml2-2.13.8" # for cisco?
-      "qtwebengine-5.15.19"     # TODO check dependency
+      "qtwebengine-5.15.19" 
       "beekeeper-studio-5.3.4"
     ];
 

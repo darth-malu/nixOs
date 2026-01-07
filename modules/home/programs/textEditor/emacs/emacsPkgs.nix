@@ -98,7 +98,7 @@ in
         # pandasql
 
         #emacs
-        weasyprint
+        # weasyprint
         pytest
         pyflakes
         isort # sort imports

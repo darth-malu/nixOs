@@ -4,7 +4,6 @@
   fileSystems =
     if config.networking.hostName == "carthage" then
       {
-
         "/" = {
           device = "darth-pool/root";
           fsType = "zfs";

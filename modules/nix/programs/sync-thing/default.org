@@ -86,30 +86,6 @@ nix-shell -p syncthing --run "syncthing generate --config myconfig/"
   folders = {
 #+end_src
 
-*** shibuya
-#+begin_src nix :tangle default.nix
-  "Shibuya" = {         # Name of folder in Syncthing, also the folder ID
-    path = "/home/malu/Shibuya";    # Which folder to add to Syncthing
-    devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
-  };
-#+end_src
-
-*** Quickshell
-#+begin_src nix :tangle default.nix
-  "Quickshell" = {         # Name of folder in Syncthing, also the folder ID
-    path = "/home/malu/.config/quickshell";    # Which folder to add to Syncthing
-    devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
-  };
-#+end_src
-
-*** org
-#+begin_src nix :tangle default.nix
-  "org" = {
-    path = "/home/malu/org";
-    devices = ["tangier" "carthage"];
-  };
-#+end_src
-
 *** sharepoint
 #+begin_src nix :tangle default.nix
   "sharepoint" = {
@@ -124,24 +100,40 @@ nix-shell -p syncthing --run "syncthing generate --config myconfig/"
   };
 #+end_src
 
-*** ncmpcpp playlists
-#+begin_src nix :tangle default.nix
-  "ncmpcpp_playlists" = {
-    path = "/home/malu/Music/ncmpcpp/playlists";
-    devices = ["tangier" "carthage"];
-    type = "sendreceive";
+*** deprecated
+**** shibuya
+#+begin_src nix :tangle no
+  "Shibuya" = {         # Name of folder in Syncthing, also the folder ID
+    path = "/home/malu/Shibuya";    # Which folder to add to Syncthing
+    devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
   };
 #+end_src
 
-*** studious
-#+begin_src nix :tangle yes
+**** Quickshell
+#+begin_src nix :tangle no
+  "Quickshell" = {         # Name of folder in Syncthing, also the folder ID
+    path = "/home/malu/.config/quickshell";    # Which folder to add to Syncthing
+    devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
+  };
+#+end_src
+
+**** org
+#+begin_src nix :tangle no
+  "org" = {
+    path = "/home/malu/org";
+    devices = ["tangier" "carthage"];
+  };
+#+end_src
+
+**** studious
+#+begin_src nix :tangle no
   "studious" = {
     path = "/home/malu/studious";
     devices = ["tangier" "carthage"];
   };
 #+end_src
-*** No longer
-**** org, org-roam
+**** No longer
+***** org, org-roam
 #+begin_src nix :tangle no
 "org" = {
   path = "/home/malu/org";
@@ -153,7 +145,7 @@ nix-shell -p syncthing --run "syncthing generate --config myconfig/"
   devices = ["tangier" "carthage"];
 };
 #+end_src
-**** music
+***** music
 
 #+begin_src nix :tangle no
 "music" = {
@@ -163,8 +155,8 @@ nix-shell -p syncthing --run "syncthing generate --config myconfig/"
 };
 #+end_src
 
-**** yt videos
-***** common
+***** yt videos
+****** common
 #+begin_src nix :tangle no
 "ytVid" = {
   id = "Yt";
@@ -178,7 +170,7 @@ nix-shell -p syncthing --run "syncthing generate --config myconfig/"
   # scanProgressIntervalS = 0; # The interval in seconds with which scan progress information is sent to the GUI. Setting to 0 will cause Syncthing to use the default value of two.
 };
 #+end_src
-***** tangier, carthage
+****** tangier, carthage
 #+begin_src nix :tangle no
 "ytVid-tangier" = {
   path = "/home/malu/Videos/YtDlp";
@@ -204,6 +196,14 @@ nix-shell -p syncthing --run "syncthing generate --config myconfig/"
 };
 #+end_src
 
+**** ncmpcpp playlists
+#+begin_src nix :tangle no
+  "ncmpcpp_playlists" = {
+    path = "/home/malu/Music/ncmpcpp/playlists";
+    devices = ["tangier" "carthage"];
+    type = "sendreceive";
+  };
+#+end_src
 *** End
 #+begin_src nix :tangle default.nix
   }; # end of folders

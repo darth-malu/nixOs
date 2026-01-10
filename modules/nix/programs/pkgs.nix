@@ -7,7 +7,7 @@
 
 {
   imports = [
-    ./sync-thing
+    # ./sync-thing
     ./virtualisation
     ./gaming
   ];

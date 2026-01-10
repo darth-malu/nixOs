@@ -39,21 +39,6 @@
 
   folders = {
 
-  "Shibuya" = {         # Name of folder in Syncthing, also the folder ID
-    path = "/home/malu/Shibuya";    # Which folder to add to Syncthing
-    devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
-  };
-
-  "Quickshell" = {         # Name of folder in Syncthing, also the folder ID
-    path = "/home/malu/.config/quickshell";    # Which folder to add to Syncthing
-    devices = [ "tangier" "carthage" ];      # Which devices to share the folder with
-  };
-
-  "org" = {
-    path = "/home/malu/org";
-    devices = ["tangier" "carthage"];
-  };
-
   "sharepoint" = {
     path = "/home/malu/sharepoint";
     devices = ["tangier" "carthage"];
@@ -63,17 +48,6 @@
       value = 5;
     };
     order = "newestfirst";
-  };
-
-  "ncmpcpp_playlists" = {
-    path = "/home/malu/Music/ncmpcpp/playlists";
-    devices = ["tangier" "carthage"];
-    type = "sendreceive";
-  };
-
-  "studious" = {
-    path = "/home/malu/studious";
-    devices = ["tangier" "carthage"];
   };
 
   }; # end of folders

@@ -60,7 +60,7 @@
               mountpoint = "legacy";
               "com.sun:auto-snapshot" = "false";
             };
-            postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^zroot/local/root@blank$' || zfs snapshot zroot/local/root@blank";
+            # postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^zroot/local/root@blank$' || zfs snapshot zroot/local/root@blank";
           };
           "core/nix" = {
             type = "zfs_fs";

@@ -44,8 +44,8 @@
           compression = "zstd";
           mountpoint = "none";
           xattr = "sa";
-          encryption = "on";
-          keyFormat = "passphrase";
+          # encryption = "on";
+          # keyFormat = "passphrase";  #TODO: next time
         };
         options.ashift = "12";
 

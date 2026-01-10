@@ -47,31 +47,47 @@
         options.ashift = "12";
 
         datasets = {
-          "core" = {
-            type = "zfs_fs";
-            options.mountpoint = "none";
-          };
-          "core/root" = {
+          # "core" = {
+          #   type = "zfs_fs";
+          #   options.mountpoint = "none";
+          # };
+          "root" = {
             type = "zfs_fs";
             mountpoint = "/";
             options."com.sun:auto-snapshot" = "false";
             # postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^zroot/local/root@blank$' || zfs snapshot zroot/local/root@blank";
           };
-          "core/home" = {
+          "root/home" = {
             type = "zfs_fs";
             mountpoint = "/home";
             # Used by services.zfs.autoSnapshot options.
             options."com.sun:auto-snapshot" = "false";
           };
-          "core/nix" = {
+          "root/nix" = {
             type = "zfs_fs";
             mountpoint = "/nix";
             options."com.sun:auto-snapshot" = "false";
           };
-          "core/games" = {
+          "root/games" = {
             type = "zfs_fs";
-            mountpoint = "/nix";
+            mountpoint = "/home/games";
             options."com.sun:auto-snapshot" = "false";
+          };
+          "root/swap" = {
+            type = "zfs_volume";
+            size = "2G";
+            content = {
+              type = "swap";
+            };
+            options = {
+              volblocksize = "4096";
+              compression = "zle";
+              logbias = "throughput";
+              sync = "always";
+              primarycache = "metadata";
+              secondarycache = "none";
+              "com.sun:auto-snapshot" = "false";
+            };
           };
         };
       };

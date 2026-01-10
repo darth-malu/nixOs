@@ -24,7 +24,6 @@
     ./pkgs.nix
     ./gpg.nix
     ./nyaa.nix
-    ./vim.nix
     # ./kde
   ];
 
@@ -120,7 +119,7 @@
       settings = {
         theme = "Default";
         vimMode = true;
-        preferredEditor = "nvim";
+        preferredEditor = "vim";
         autoAccept = true;
       };
     };

@@ -81,7 +81,7 @@ ask_for_locked_screen_width_part = true; # disable to use default
 
 jump_to_now_playing_song_at_start = true;
 #now_playing_prefix = " "; # 󱉺  
-now_playing_prefix = "  ";#TODO:check how to filter out songs from playlist
+now_playing_prefix = " ";#TODO:check how to filter out songs from playlist
 now_playing_suffix = "  ";
 
 external_editor = "/home/malu/.nix-profile/bin/emacsclient -nc";

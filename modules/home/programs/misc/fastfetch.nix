@@ -62,11 +62,6 @@
       }
       # "gpu"
       {
-        type = "memory";
-        key = "└ └󰍛 ";
-        keyColor = "red";
-      }
-      {
         type = "disk";
         key = "│ ├ ";
         folders = "/";
@@ -74,23 +69,28 @@
         keyColor = "red";
       }
       {
+        type = "memory";
+        key = "└ └󰍛 ";
+        keyColor = "red";
+      }
+      {
         type = "display";
-        # "key" = "MONITOR ({name})";
-        key = " ";
+        key = "MONITOR ({name})";
+        # key = " ";
         keyColor = "blue";
         # "format" = "{width}x{height} @ {refresh-rate} Hz - {physical-width}x{physical-height} mm ({inch} inches, {ppi} ppi)";
         format = "{width}x{height} @ {refresh-rate} Hz";
       }
       {
         type = "custom";
-        format = "└──────────────────────────────────────┘";
+        format = "└────────────────────────────────────────┘";
         outputColor = "cyan";
       }
 
       ## SOFTWARE
       {
         "type" = "custom";
-        "format" = "┌───────────────Software───────────────┐";
+        "format" = "┌────────────────Software────────────────┐";
         "outputColor" = "cyan";
       }
       {
@@ -145,14 +145,14 @@
       }
       {
         "type" = "custom";
-        "format" = "└──────────────────────────────────────┘";
+        "format" = "└────────────────────────────────────────┘";
         "outputColor" = "cyan";
       }
 
       # UPTIME
       {
         "type" = "custom";
-        "format" = "┌────────────────Uptime────────────────┐";
+        "format" = "┌────────────────────────────────────────┐";
         "outputColor" = "cyan";
       }
       {
@@ -162,12 +162,12 @@
       }
       {
         "type" = "custom";
-        "format" = "└──────────────────────────────────────┘";
+        "format" = "└────────────────────────────────────────┘";
         "outputColor" = "cyan";
       }
       {
         "type" = "custom";
-        "format" = "┌────────────────Media────────────────┐";
+        "format" = "┌──────────────────Media─────────────────┐";
         "outputColor" = "cyan";
       }
       # "break"
@@ -182,7 +182,7 @@
       # "break"
       {
         "type" = "custom";
-        "format" = "└──────────────────────────────────────┘";
+        "format" = "└────────────────────────────────────────┘";
         "outputColor" = "cyan";
       }
     ];

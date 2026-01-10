@@ -1,7 +1,7 @@
 {
   imports = [
     ./pkgs.nix
-    ./sync-thing
+    # ./sync-thing
     ./gnupg.nix
     ./less.nix
     ./nextcloud.nix

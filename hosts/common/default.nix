@@ -25,7 +25,7 @@
         "nvidia-settings"
       ];
     permittedInsecurePackages = [
-      "broadcom-sta-6.30.223.271-59-6.12.63"
+      "broadcom-sta-6.30.223.271-59-6.12.64"
       "libxml2-2.13.8" # for cisco?
     ];
   };
@@ -104,8 +104,8 @@
 
   hardware.usbStorage.manageShutdown = true;
 
-  programs.nm-applet.enable = true; # started automatically with the graphical session
-  programs.nm-applet.indicator = true;
+  programs.nm-applet.enable = lib.mkIf config.hyprland.enable true; # started automatically with the graphical session
+  programs.nm-applet.indicator = lib.mkIf config.hyprland.enable true;
 
   networking = {
 

@@ -34,9 +34,9 @@ in
         enable = true;
         mountOnMedia = true;
       };
-      power-profiles-daemon.enable = true;
+      power-profiles-daemon.enable = lib.mkIf (config.networking.hostName == "tangier") true;
       upower.enable = lib.mkIf (config.networking.hostName == "tangier") true;
-      blueman.enable = true; # TODO test if works
+      blueman.enable = lib.mkIf config.kde.enable true; # TODO test if works
     };
 
     security.polkit = {

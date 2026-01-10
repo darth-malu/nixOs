@@ -6,6 +6,9 @@
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+  disko.url = "github:nix-community/disko/latest";
+  disko.inputs.nixpkgs.follows = "nixpkgs";
+
     yazi.url = "github:sxyazi/yazi";
 
     quickshell = {
@@ -95,7 +98,7 @@
 
   };
 
-  outputs = inputs@{nixpkgs, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
+  outputs = inputs@{nixpkgs, disko, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 
 let
   system = "x86_64-linux"; # TODO system = builtins.currentSystem;?? find reason it doesn't work
@@ -147,6 +150,9 @@ nixosConfigurations = {
 
 modules = [
   ./hosts/carthage
+
+disko.nixosModules.disko
+./hosts/common/disko.nix
 
   home.nixosModules.home-manager {
     home-manager = {

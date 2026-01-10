@@ -138,12 +138,11 @@ in
     # :lang nix
     nil
     # nixd # for zed as well
-    nixfmt-rfc-style # official - needed to use formatting with :lang nix
+    nixfmt # nixfmt-rfc-style # official - needed to use formatting with :lang nix
 
     age
     zstd # undo-fu-session/undo-tree compression
 
-    #bash
     bash-language-server
 
     # omnisharp-roslyn # c#

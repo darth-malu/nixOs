@@ -4,29 +4,29 @@
   fileSystems =
     if config.networking.hostName == "carthage" then
       {
-        "/" = {
-          device = "darth-pool/root";
-          fsType = "zfs";
-        };
+        # "/" = {
+        #   device = "darth-pool/root";
+        #   fsType = "zfs";
+        # };
 
-        "/home" = {
-          device = "darth-pool/home";
-          fsType = "zfs";
-        };
+        # "/home" = {
+        #   device = "darth-pool/home";
+        #   fsType = "zfs";
+        # };
 
-        "/nix" = {
-          device = "darth-pool/nix";
-          fsType = "zfs";
-        };
+        # "/nix" = {
+        #   device = "darth-pool/nix";
+        #   fsType = "zfs";
+        # };
 
-        "/boot" = {
-          device = "/dev/disk/by-uuid/9218-D73E";
-          fsType = "vfat";
-          options = [
-            "fmask=0022"
-            "dmask=0022"
-          ];
-        };
+        # "/boot" = {
+        #   device = "/dev/disk/by-uuid/9218-D73E";
+        #   fsType = "vfat";
+        #   options = [
+        #     "fmask=0022"
+        #     "dmask=0022"
+        #   ];
+        # };
 
         "/media/kibweziC" = {
           device = "/dev/disk/by-uuid/68025AB7025A89C8";
@@ -115,8 +115,6 @@
       };
 
   zramSwap = {
-    # TODO: study more on this
-    # enable = if config.networking.hostName == "tangier" then true else false;
     enable = true;
     # memoryPercent = 50;
   };

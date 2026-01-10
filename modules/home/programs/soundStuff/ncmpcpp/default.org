@@ -120,7 +120,7 @@ ask_for_locked_screen_width_part = true; # disable to use default
 #+begin_src nix :tangle default.nix
 jump_to_now_playing_song_at_start = true;
 #now_playing_prefix = " "; # 󱉺  
-now_playing_prefix = "  ";#TODO:check how to filter out songs from playlist
+now_playing_prefix = " ";#TODO:check how to filter out songs from playlist
 now_playing_suffix = "  ";
 #+end_src
 

@@ -20,19 +20,17 @@
           if osConfig.networking.hostName == "carthage" then
             [
               "$HOME/Pictures/wallpaperS/games/riot games/jinx.png"
-              # "$HOME/Pictures/wallpaperS/games/riot games/thresh_purp.png"
-              "$HOME/Pictures/wallpaperS/games/riot games/singed-4096x2305.jpg"
-              # "$HOME/Pictures/wallpaperS/games/riot games/zaun_boy.png"
+              "$HOME/Pictures/wallpaperS/games/riot games/singed-HQ.jpg"
             ]
           else
             [
-              "$HOME/Pictures/wallpaperS/games/riot games/singed.png"
+              "$HOME/Pictures/wallpaperS/games/riot games/singed-HQ.jpg"
             ];
         wallpaper =
           if osConfig.networking.hostName == "carthage" then
             [
               "DP-3,$HOME/Pictures/wallpaperS/games/riot games/jinx.png"
-              "HDMI-A-1,$HOME/Pictures/wallpaperS/games/riot games/singed-4096x2305.jpg"
+              "HDMI-A-1,$HOME/Pictures/wallpaperS/games/riot games/singed-HQ.jpg"
             ]
           else if osConfig.networking.hostName == "tangier" then
             [ "eDP-1,$HOME/Pictures/wallpaperS/games/riot games/singed.png" ]

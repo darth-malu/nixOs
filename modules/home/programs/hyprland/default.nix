@@ -20,6 +20,7 @@
   };
 
   config = lib.mkIf config.homeHyprland.enable {
+
     rofi.enable = true;
     hyprpaper.enable = true;
     hypridle.enable = true;

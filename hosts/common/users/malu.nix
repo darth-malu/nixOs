@@ -21,6 +21,7 @@
       "render" # mesa stuff
       #"audio"
       "gamemode"
+      # "docker"
 
       # android
       "adbusers" # grant user access to Android Debug Bridge

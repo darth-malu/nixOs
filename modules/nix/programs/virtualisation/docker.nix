@@ -5,10 +5,11 @@
   };
 
   config = lib.mkIf config.docker.enable {
+    # users.extraGroups.docker.members = [ "malu" ];
+
     virtualisation.docker = {
       enable = true;
       storageDriver = "zfs";
-      # users.extraGroups.docker.members = [ "malu" ]; # instead of users.<>.extraGroups
       rootless = {
         enable = true;
         setSocketVariable = true; # DOCKER_HOST

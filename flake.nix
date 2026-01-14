@@ -132,7 +132,7 @@ let
 };
  home = inputs.home-manager;
 
- # pkgs = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
+ # pkgs = nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};#FIXME better way to do this...+ inherit config
  pkgs = import nixpkgs {
    inherit  system;
    inherit config;
@@ -141,7 +141,7 @@ let
 in
 {
   # This will make the package available as a flake output under 'packages'
-  # packages.${system}.my-neovim = customNeovim.neovim;
+  # packages.${pkgs.stdenv.hostPlatform.system}.my-neovim = customNeovim.neovim;
 
 nixosConfigurations = {
   carthage = nixpkgs.lib.nixosSystem {
@@ -188,7 +188,7 @@ tangier = nixpkgs.lib.nixosSystem {
 
 }; #End of NixConfigurations
 
-devShells.${system}.default = pkgs.mkShell {
+devShells.${pkgs.stdenv.hostPlatform.system}.default = pkgs.mkShell {
   buildInputs = with pkgs; [
     # numpy
     (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
@@ -203,7 +203,7 @@ devShells.${system}.default = pkgs.mkShell {
     '';
 
   # packages = [
-  #inputs.python-nixpkgs.legacyPackages.${system}.python313
+  #inputs.python-nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.python313
   #     (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
   #     pip
   #     ]))

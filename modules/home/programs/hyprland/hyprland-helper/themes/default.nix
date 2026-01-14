@@ -17,9 +17,7 @@ home.pointerCursor = {
     enable = true;
     # defaultCursor = "X_cursor"; # letf_ptr::
   };
-  # name = "Bibata-Modern-Ice"; package = pkgs.bibata-cursors;
-  # name = "bibata-cursors"; package = pkgs.bibata-cursors;
-  name = "GoogleDot-Black";  package = pkgs.google-cursor; # android-studio
+  name = "GoogleDot-Black";  package = pkgs.google-cursor;
   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
 };
 
@@ -31,7 +29,8 @@ gtk = {
   #};
 
 cursorTheme = {
-  name = "Bibata-Modern-Ice"; package = pkgs.bibata-cursors;
+  # name = "Bibata-Modern-Ice"; package = pkgs.bibata-cursors;
+  name = "GoogleDot-Black";  package = pkgs.google-cursor;
   # name = "google-cursor"; package = pkgs.google-cursor;
   size = if osConfig.networking.hostName == "carthage" then 24 else if osConfig.networking.hostName == "tangier" then 20 else 18;
 };
@@ -44,9 +43,8 @@ theme = {
 };
 
 iconTheme = {
-  name = "Colloid-Catppuccin"; package = pkgs.colloid-icon-theme.override {schemeVariants = ["catppuccin"];};
+  name = "Colloid-Dracula"; package = pkgs.colloid-icon-theme.override {schemeVariants = ["dracula"];};
   # name = "kora"; package = pkgs.kora-icon-theme;
-  # name = "WhiteSur"; package = pkgs.whitesur-icon-theme;
   # name = "candy-icons"; package = pkgs.candy-icons;
   # name = "Papirus-Dark"; package = pkgs.papirus-icon-theme;
 

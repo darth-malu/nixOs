@@ -91,22 +91,22 @@
                   mountpoint = "/tmp";
                 };
               };
-              "core/swap" = {
-                type = "zfs_volume";
-                size = "4G";
-                content = {
-                  type = "swap";
-                };
-                options = {
-                  volblocksize = "4096";
-                  compression = "zle";
-                  logbias = "throughput";
-                  sync = "always";
-                  primarycache = "metadata";
-                  secondarycache = "none";
-                  "com.sun:auto-snapshot" = "false";
-                };
-              };
+              # "core/swap" = {
+              #   type = "zfs_volume";
+              #   size = "4G";
+              #   content = {
+              #     type = "swap";
+              #   };
+              #   options = {
+              #     volblocksize = "4096";
+              #     compression = "zle";
+              #     logbias = "throughput";
+              #     sync = "always";
+              #     primarycache = "metadata";
+              #     secondarycache = "none";
+              #     "com.sun:auto-snapshot" = "false";
+              #   };
+              # };
               "extra" = {
                 type = "zfs_fs";
                 options.mountpoint = "none";
@@ -189,22 +189,22 @@
                             "com.sun:auto-snapshot" = "false";
                           };
                         };
-                        "core/swap" = {
-                          type = "zfs_volume";
-                          size = "4G";
-                          content = {
-                            type = "swap";
-                          };
-                          options = {
-                            volblocksize = "4096";
-                            compression = "zle";
-                            logbias = "throughput";
-                            sync = "always";
-                            primarycache = "metadata";
-                            secondarycache = "none";
-                            "com.sun:auto-snapshot" = "false";
-                          };
-                        };
+                        # "core/swap" = {
+                        #   type = "zfs_volume";
+                        #   size = "4G";
+                        #   content = {
+                        #     type = "swap";
+                        #   };
+                        #   options = {
+                        #     volblocksize = "4096";
+                        #     compression = "zle";
+                        #     logbias = "throughput";
+                        #     sync = "always";
+                        #     primarycache = "metadata";
+                        #     secondarycache = "none";
+                        #     "com.sun:auto-snapshot" = "false";
+                        #   };
+                        # };
                       };
                     };
                   };

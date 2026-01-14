@@ -145,7 +145,7 @@
           # glmark2
           # helvum
           # inkscape-with-extensions
-          # inputs.quickshell.packages.${system}.default
+          # inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
           # kdePackages.mlt
           # mastodon
           # melt  #collison with mlt
@@ -179,6 +179,7 @@
       krita
       inkscape
       darktable
+      digikam
     ]
     ++ (
       if config.homeHyprland.enable then

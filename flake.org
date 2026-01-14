@@ -26,7 +26,6 @@ https://nixos.wiki/wiki/Nix_channels
   disko.inputs.nixpkgs.follows = "nixpkgs";
 #+end_src
 
-
 ** yazi
 #+begin_src nix :tangle flake.nix
     yazi.url = "github:sxyazi/yazi";
@@ -65,6 +64,13 @@ https://nixos.wiki/wiki/Nix_channels
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
+    };
+#+end_src
+** winapps
+#+begin_src nix :tangle no
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 #+end_src
 
@@ -192,7 +198,7 @@ let
 };
  home = inputs.home-manager;
 
- # pkgs = nixpkgs-unstable.legacyPackages.${system};#FIXME better way to do this...+ inherit config
+ # pkgs = nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};#FIXME better way to do this...+ inherit config
  pkgs = import nixpkgs {
    inherit  system;
    inherit config;
@@ -204,7 +210,7 @@ let
 in
 {
   # This will make the package available as a flake output under 'packages'
-  # packages.${system}.my-neovim = customNeovim.neovim;
+  # packages.${pkgs.stdenv.hostPlatform.system}.my-neovim = customNeovim.neovim;
 #+end_src
 
 ** Nix configurations
@@ -227,9 +233,9 @@ modules = [
 ***** Some systemPackage modules | winapps | rebuild-ng
 #+begin_src nix :tangle no
 {environment.systemPackages = [
-   pkgs.nixos-rebuild-ng #  alternatively to replace old rebuild: system.rebuild.enableNg
-   inputs.winapps.packages."${system}".winapps
-   inputs.winapps.packages."${system}".winapps-launcher # optional
+   # pkgs.nixos-rebuild-ng #  alternatively to replace old rebuild: system.rebuild.enableNg
+   inputs.winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps
+   inputs.winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps-launcher # optional
  ];
 }
 #+end_src
@@ -348,7 +354,7 @@ tangier = nixpkgs.lib.nixosSystem {
 ** devshell - nix develop
 *** teal environment / python
 #+begin_src nix :tangle flake.nix
-devShells.${system}.default = pkgs.mkShell {
+devShells.${pkgs.stdenv.hostPlatform.system}.default = pkgs.mkShell {
   buildInputs = with pkgs; [
     # numpy
     (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
@@ -363,7 +369,7 @@ devShells.${system}.default = pkgs.mkShell {
     '';
 
   # packages = [
-  #inputs.python-nixpkgs.legacyPackages.${system}.python313
+  #inputs.python-nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.python313
   #     (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
   #     pip
   #     ]))
@@ -416,7 +422,7 @@ Then use nix-shell
 pypkgs / p
 *** guy
 #+begin_src nix :tangle no
-    devShells.${system} = {
+    devShells.${pkgs.stdenv.hostPlatform.system} = {
       simple = pkgs.mkShell {
         packages = [ pkgs.hello ];
         shellHook = ''

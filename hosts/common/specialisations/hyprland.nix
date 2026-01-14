@@ -36,7 +36,7 @@ in
       };
       power-profiles-daemon.enable = lib.mkIf (config.networking.hostName == "tangier") true;
       upower.enable = lib.mkIf (config.networking.hostName == "tangier") true;
-      blueman.enable = lib.mkIf config.kde.enable true; # TODO test if works
+      blueman.enable = lib.mkIf (!config.kde.enable) true;
     };
 
     security.polkit = {

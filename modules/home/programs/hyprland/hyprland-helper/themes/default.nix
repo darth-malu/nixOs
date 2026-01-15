@@ -86,7 +86,7 @@ gtk4 = {
 
 qt = {
   enable = true;
-  platformTheme.name = "kde";   # kde6(stable)
+  platformTheme.name = "kde";
   style.name = "breeze"; #"adwaita-dark";
 };
 

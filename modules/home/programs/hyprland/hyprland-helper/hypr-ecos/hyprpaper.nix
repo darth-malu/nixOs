@@ -2,6 +2,8 @@
   osConfig,
   lib,
   config,
+  inputs,
+  pkgs,
   ...
 }:
 
@@ -13,9 +15,11 @@
   config = lib.mkIf config.hyprpaper.enable {
     services.hyprpaper = {
       enable = true;
+      package = inputs.hyprpaper.packages.${pkgs.system}.hyprpaper;
       settings = {
-        ipc = false;
+        # ipc = false;
         splash = true;
+        # splash_offset = 2.0;
         preload =
           if osConfig.networking.hostName == "carthage" then
             [
@@ -32,10 +36,8 @@
               "DP-3,$HOME/Pictures/wallpaperS/games/riot games/jinx.png"
               "HDMI-A-1,$HOME/Pictures/wallpaperS/games/riot games/singed-HQ.jpg"
             ]
-          else if osConfig.networking.hostName == "tangier" then
-            [ "eDP-1,$HOME/Pictures/wallpaperS/games/riot games/singed.png" ]
           else
-            [ ];
+            [ "eDP-1,$HOME/Pictures/wallpaperS/games/riot games/singed.png" ];
       };
     };
   };

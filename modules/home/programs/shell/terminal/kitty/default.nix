@@ -24,9 +24,10 @@
         enabled_layouts tall:bias=60;full_size=1;mirrored=false,fat:bias 80
       '';
     settings = {
+      kitty_mod = "ctrl+shift";
       # term =  "xterm-256color";
       scrollback_lines = 4000; # 2000:: uses more RAM
-      enable_audio_bell = false;
+      enable_audio_bell = true; # FIXME need fix for hyprland
       # update_check_interval = 0;
       # undercurl_style = "thin-sparse"; # thin-sparse | thin | thick| sparse | dense
       cursor = "#FAA6FF"; # #573280 "#3FA8C6""#9381ff""#0CA4A5";
@@ -38,14 +39,11 @@
       # cursor_stop_blinking_after = "12.0"; #15.0::
       cursor_blink_interval = "-1"; # 0 -disable, -ve sys default, min interval(repaint_delay)
 
-      #mouse_hide_wait = "-1.0";
+      #mouse_hide_wait = "-1.0"; # 0
       focus_follows_mouse = true;
-      #mouse_hide_wait = "0";
       default_pointer_shape = "beam";
       open_url_with = "default";
       clear_all_shortcuts = true;
-      kitty_mod = "ctrl+shift";
-      #enabled_layouts  = [ "fat:bias 70" "tall:bias=50;full_size=1;mirrored=false" "splits" ];
       draw_minimal_borders = true;
       paste_actions = "quote-urls-at-prompt,confirm,replace-dangerous-control-codes,confirm-if-large"; # no-op, filter(check doc)
       strip_trailing_spaces = "smart";
@@ -74,7 +72,7 @@
       color11 = "#fff000";
 
       sync_to_monitor = if osConfig.networking.hostName == "carthage" then true else false; # not recommended for high mouse/keyboard RR (input latency - set to no), yes:: - prevents tearing when scrolling TODO test with 240hz
-      allow_remote_control = false; # used for arch update
+      allow_remote_control = false;
 
       # input_delay = 0; # 3:: # can cause flicker if terminal application does full screen redraw with every loop. **maybe my issue with ncmpcpp
       # repaint_delay = 2; # 10(100fps):: # delay between screen updates in milliseconds. decreasing increases FPS at the cost of CPU. ssync_to_monitor = no advised unless highrr
@@ -97,8 +95,8 @@
 
       #clipboard_control write-clipboard write-primary read-clipboard-ask read-primary-ask
       #clipboard_max_size 512
-      # notify_on_cmd_finish = "invisible"; # unfocused, always, never
-      notify_on_cmd_finish = "invisible 10.0 command notify-send \"job finished with status: %s\" %c";
+
+      notify_on_cmd_finish = "invisible 10.0 notify-bell next"; # focus next::, focus, next (optional args)
 
       # active_tab_foreground = "#000";
       # active_tab_background = "#eee";
@@ -115,8 +113,6 @@
       background_opacity = if osConfig.services.desktopManager.plasma6.enable then 1 else 0.80; # 0.66
     };
     themeFile = "tokyo_night_storm"; # moon, day, storm, night
-    # themeFile = "Catppuccin-Mocha"; # moon, day, storm, night
-    #Also available: Catppuccin-Frappe Catppuccin-Latte Catppuccin-Macchiato Catppuccin-Mocha
     # See all available kitty themes at: https://github.com/kovidgoyal/kitty-themes/blob/46d9dfe230f315a6a0c62f4687f6b3da20fd05e4/themes.json
   };
 }

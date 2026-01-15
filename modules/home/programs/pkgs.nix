@@ -20,6 +20,7 @@
       # sound-theme-freedesktop # free sounds
       # pulseaudioFull # paplay
       libcanberra-gtk3
+      kdePackages.qt6ct
     ]
     ++ [
       # pastel # color generator

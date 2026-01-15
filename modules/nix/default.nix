@@ -8,5 +8,6 @@
     ./core
     # ./app-image.nix
     ./overlays.nix
+    # ./themes-nix.nix
   ];
 }

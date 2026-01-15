@@ -124,7 +124,7 @@ kde6 -> kde
 #+begin_src nix :tangle default.nix
 qt = {
   enable = true;
-  platformTheme.name = "kde";   # kde6(stable)
+  platformTheme.name = "kde";
   style.name = "breeze"; #"adwaita-dark";
 };
 #+end_src

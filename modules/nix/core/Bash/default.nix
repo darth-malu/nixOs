@@ -5,7 +5,7 @@
     enableLsColors = true;
     #blesh.enable = true;
     undistractMe = {
-      enable = true;
+      enable = false;
       timeout = 30; # seconds
       playSound = true;
     };

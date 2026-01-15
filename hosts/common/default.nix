@@ -25,7 +25,7 @@
         "nvidia-settings"
       ];
     permittedInsecurePackages = [
-      "broadcom-sta-6.30.223.271-59-6.12.64"
+      "broadcom-sta-6.30.223.271-59-6.12.65"
       "libxml2-2.13.8" # for cisco?
     ];
   };
@@ -324,6 +324,6 @@ time.timeZone = "Africa/Nairobi";
 
 nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs set
 
-system.stateVersion = if osConfig.networking.hostName == "tangier" then "24.11" else "26.05";
+system.stateVersion = if config.networking.hostName == "tangier" then "24.11" else "25.11";
 
 }

@@ -1,6 +1,6 @@
 {config, modulesPath, lib, pkgs, ...}:
-
 {
+
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/nix
@@ -324,5 +324,6 @@ time.timeZone = "Africa/Nairobi";
 
 nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs set
 
-system.stateVersion = "24.11";
+system.stateVersion = if osConfig.networking.hostName == "tangier" then "24.11" else "26.05";
+
 }

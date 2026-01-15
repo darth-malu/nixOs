@@ -4,10 +4,10 @@
 * header
 #+begin_src nix :tangle default.nix
 {config, modulesPath, lib, pkgs, ...}:
+{
 #+end_src
 * imports
 #+begin_src nix :tangle default.nix
-{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/nix
@@ -229,7 +229,7 @@ Forget everything...relog in from step 1
 
 better mic zoom,discord with hsphfpd
 
-NOTE: for bt to work in HSP/HFP mode  for bt to work in HSP/HFP mode, test further
+NOTE: for bt to work in HSP/HFP mode, test further
 
 #+begin_src nix :tangle default.nix
 hardware = {
@@ -478,6 +478,10 @@ nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs
 
 * system.stateVersion -- NOTE dont delete/change
 #+begin_src nix :tangle default.nix
-system.stateVersion = "24.11";
+system.stateVersion = if osConfig.networking.hostName == "tangier" then "24.11" else "26.05";
+#+end_src
+
+* Ender
+#+begin_src nix :tangle default.nix
 }
 #+end_src

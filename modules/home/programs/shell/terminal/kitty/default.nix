@@ -97,6 +97,8 @@
 
       #clipboard_control write-clipboard write-primary read-clipboard-ask read-primary-ask
       #clipboard_max_size 512
+      # notify_on_cmd_finish = "invisible"; # unfocused, always, never
+      notify_on_cmd_finish = "invisible 10.0 command notify-send \"job finished with status: %s\" %c";
 
       # active_tab_foreground = "#000";
       # active_tab_background = "#eee";

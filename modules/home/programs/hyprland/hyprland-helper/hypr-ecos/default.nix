@@ -1,7 +1,7 @@
 {
   imports = [
     ./hypridle.nix
-    ./hyprpaper2.nix
+    ./hyprpaper.nix
     ./hyprlock.nix
     ./hyprsunset.nix
   ];

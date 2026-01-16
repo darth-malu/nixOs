@@ -74,20 +74,19 @@
       # "col.splash" = "rgba(195,232,141,1.0)";
       # animate_manual_resizes = true; # false::
       # disable_xdg_env_checks = false; #false::
-      # font_family = "quicksand";
       # force_default_wallpaper = if osConfig.networking.hostName == "carthage" then "0" else "1"; #anime mascot wallpapers
       # middle_click_paste = if osConfig.networking.hostName == "carthage" then false else true;
       mouse_move_focuses_monitor = true;
       allow_session_lock_restore = true;
       font_family = "JetBrainsMono Nerd Font";
-      splash_font_family = "VictorMono Nerd Font";
+      splash_font_family = "JetBrainsMono Nerd Font";
       #disable_splash_rendering = true
       #initial_workspace_tracking = 1; #0, 1::(single-shot), 2 -persistent/children
       close_special_on_empty = true;
-      disable_hyprland_logo = true; # wallpaper + logo lol
-      #background_colur = 0x111111; # with logo disabled
       focus_on_activate = true; # solves rofi issue lol # focus apps that request to be focused(activate request)
       initial_workspace_tracking = true; # NOTE new
+      #background_colur = 0x111111; # with logo disabled
+      disable_hyprland_logo = true; # wallpaper + logo lol
       force_default_wallpaper = 2; # -1 random, 2 (anime), 0/1 - disable anime
       key_press_enables_dpms = true; # false:: #wakes monitor if key pressed
       # mouse_move_enables_dpms = true;

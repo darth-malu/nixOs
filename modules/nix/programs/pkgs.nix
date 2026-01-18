@@ -87,7 +87,7 @@
         # ntfs3g
         lsof # list open files/ports**
         usbutils # lsusb, usb-devices, usb-view(optional gui)
-        jmtpfs # mtp drivers
+        jmtpfs # mtp drivers - # TODO check if mtp-probe error is from this and how to mitigate
         pciutils # lspci
         util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock, more**
         kitty

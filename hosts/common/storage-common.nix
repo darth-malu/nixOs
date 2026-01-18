@@ -4,62 +4,29 @@
   fileSystems =
     if config.networking.hostName == "carthage" then
       {
-        # "/" = {
-        #   device = "darth-pool/root";
-        #   fsType = "zfs";
-        # };
 
-        # "/home" = {
-        #   device = "darth-pool/home";
-        #   fsType = "zfs";
-        # };
-
-        # "/nix" = {
-        #   device = "darth-pool/nix";
-        #   fsType = "zfs";
-        # };
-
-        # "/boot" = {
-        #   device = "/dev/disk/by-uuid/9218-D73E";
-        #   fsType = "vfat";
-        #   options = [
-        #     "fmask=0022"
-        #     "dmask=0022"
-        #   ];
-        # };
-
-        "/media/kibweziC" = {
-          device = "/dev/disk/by-uuid/68025AB7025A89C8";
-          fsType = "ntfs-3g";
-          # noCheck = true;
+        "/media/Alpha" = {
+          device = "/dev/disk/by-uuid/008a7ac5-f0a4-48aa-bda2-8da279fbd11a";
+          fsType = "ext4";
           options = [
+            "users"
             "nofail"
             "defaults"
-            "x-systemd.mount-timeout=30" # 90::
-            "x-systemd.automount" # only mount upon access
-            "x-systemd.idle-timeout=5min"
-            # "fmask=133"
-            # "dmask=022"
-            # "uid=1000"
-            # "gid=1000"
+            "x-systemd.mount-timeout=30"
+            "x-systemd.idle-timeout=20min"
           ];
         };
 
-        "/media/kibweziExtraHdd" = {
-          device = "/dev/disk/by-uuid/CC74322874321624";
-          fsType = "ntfs-3g";
+        "/media/Omega" = {
+          device = "/dev/disk/by-uuid/96d58a24-f197-4f96-8409-595aba9431ad";
+          fsType = "ext4";
           # noCheck = true;
           options = [
+            "users"
             "nofail"
             "defaults"
-            # "fmask=133"
-            # "dmask=022"
-            # "uid=1000"
-            # "gid=1000"
             "x-systemd.mount-timeout=30"
-            "x-systemd.automount" # only mount upon access
-            "x-systemd.idle-timeout=5min"
-            # "windows_names"
+            "x-systemd.idle-timeout=20min"
           ];
         };
 
@@ -71,6 +38,7 @@
             "nofail"
             "defaults"
             "x-systemd.mount-timeout=30"
+            "x-systemd.idle-timeout=20min"
           ];
         };
 
@@ -82,6 +50,7 @@
             "defaults"
             "nofail"
             "x-systemd.mount-timeout=30"
+            "x-systemd.idle-timeout=20min"
           ];
         };
 
@@ -94,25 +63,7 @@
         # ];
       }
     else
-      {
-        # "/" = {
-        #   device = "darthPool/core/root";
-        #   fsType = "zfs";
-        # };
-        # "/home" = {
-        #   device = "darthPool/extra/home";
-        #   fsType = "zfs";
-        # };
-
-        # "/boot" = {
-        #   device = "/dev/disk/by-uuid/D397-96F1";
-        #   fsType = "vfat";
-        #   options = [
-        #     "fmask=0022"
-        #     "dmask=0022"
-        #   ];
-        # };
-      };
+      { };
 
   zramSwap = {
     enable = true;
@@ -122,5 +73,4 @@
   # services.swapspace.enable = true;
 }
 
-#NOTE: default options: rw, suid, dev, exec, auto, nouser, and async.
-# https://manpages.ubuntu.com/manpages/noble/en/man8/mount.8.html#filesystem-independent%20mount%20options
+#NOTE: default options: rw, suid, dev, exec, auto, nouser, and async. -> https://manpages.ubuntu.com/manpages/noble/en/man8/mount.8.html#filesystem-independent%20mount%20options

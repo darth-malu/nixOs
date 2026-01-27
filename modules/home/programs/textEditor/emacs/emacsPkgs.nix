@@ -13,7 +13,7 @@ let
         hyperref
         capt-of
         ;
-      #(setq org-latex-compiler "lualatex")
+      #(setex-compiler "lualatex")
       #(setq org-preview-latex-default-process 'dvisvgm)
     }
   );
@@ -74,19 +74,24 @@ in
         jupyter-console # jupyter-core jupyterlab-server
         # gnureadline     # NOTE python-shell-interpreter not supporting readline warning fix
         pyside6
-        pandas
         # ffmpeg-python
-        pytest-mock # yyoutubr pytest
-        pytest-mockservers
+        # pytest-mock # yyoutubr pytest
+        # pytest-mockservers
+
+        # Machine Learning
+        scikit-learn
+        nbformat
+        numpy
+        seaborn
+        matplotlib
+        # pandasql
+        pandas
+
         # ELPy
         # autopep8
         # jedi
         # yapf
         # flake8
-
-        # numpy
-        # seaborn
-        # matplotlib
 
         # Installers
         pytubefix
@@ -94,8 +99,9 @@ in
         pyinstaller
 
         requests
+
+        # Web Scraping
         beautifulsoup4
-        # pandasql
 
         #emacs
         # weasyprint

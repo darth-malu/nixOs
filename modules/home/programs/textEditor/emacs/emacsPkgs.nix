@@ -104,7 +104,7 @@ in
         beautifulsoup4
 
         #emacs
-        # weasyprint
+        weasyprint # needed for some exports to work
         pytest
         pyflakes
         isort # sort imports

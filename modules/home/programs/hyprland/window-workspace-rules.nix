@@ -108,6 +108,8 @@
       "workspace emptym, match:initial_class Emacs, match:initial_title ^(.*)(Doom Emacs)$"
       "workspace emptym, match:initial_class Emacs, match:initial_title ^(.*)(GNU Emacs at tangier)$"
 
+      "workspace emptym, match:initial_class steam_app_default, match:initial_title ^(.*)(Battle.net)$"
+
       # "border_size 0, match:workspace w[tv1]" # NOTE not need?
 
       # "size 70% 70%,match:title ^(Select)(.*)"

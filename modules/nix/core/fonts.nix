@@ -20,8 +20,8 @@
         # cascadia-code
         # fira-code
         # fira-math
-        office-code-pro # try
-        proggyfonts
+        # office-code-pro # try
+        # proggyfonts
       ]
       ++ [
         # emacs fonts

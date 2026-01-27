@@ -91,7 +91,7 @@
         pciutils # lspci
         util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock, more**
         kitty
-        bc
+        # bc
         wl-clipboard # rust wl-clipboard better?
         dotool # test if working
       ])

@@ -52,17 +52,23 @@
       capSysNice = true; # Add cap_sys_nice capability to the GameScope binary so that it may renice itself.
     };
 
-    environment.systemPackages = with pkgs; [
-      # Trying gamescope recording
-      # gst_all_1.gstreamer
-      amdgpu_top
-      antimicrox
-      # bottles
-      heroic # without fhs
-      protonup-ng
-      wineWowPackages.full # support both 32-bit and 64-bit applications - stable, full, waylandFull
-      # winetricks
-    ];
+    environment.systemPackages =
+      with pkgs;
+      if config.networking.hostName == "carthage" then
+        [
+          amdgpu_top
+        ]
+      else
+        [
+          # Trying gamescope recording
+          # gst_all_1.gstreamer
+          antimicrox
+          # bottles
+          heroic # without fhs
+          protonup-ng
+          wineWowPackages.full # support both 32-bit and 64-bit applications - stable, full, waylandFull
+          # winetricks
+        ];
 
     hardware.xone.enable = true; # support for the xbox controller USB dongle
 

@@ -12,5 +12,5 @@
   BOLD="\[$(tput bold)\]"
   RESET="\[$(tput sgr0)\]"
 
-  PS1="\n$EXIT_COLOR$BOLD \w $RESET"
+  PS1="\n$EXIT_COLOR$BOLD\w\n• $RESET"
 ''

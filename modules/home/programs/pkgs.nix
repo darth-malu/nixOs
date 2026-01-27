@@ -46,12 +46,11 @@
       # manim #FIXME failed
       # nasm
       # qtcreator
-      beekeeper-studio
+      # beekeeper-studio
       cmake # vterm
       cryptsetup
       ed
       pass-wayland
-      hyprland-autoname-workspaces
       patchelf # TODO see useful nexx
       socat
       zlib
@@ -152,31 +151,23 @@
           # melt  #collison with mlt
           # unigine-heaven
           # unigine-superposition
-          kdePackages.kdenlive
+          # kdePackages.kdenlive
           # davinci-resolve
           exiftool
-          ffmpeg-full
-          handbrake # FIXME lag on open
+          # ffmpeg-full
+          # handbrake # FIXME lag on open
           # obs-cli
           obs-studio
           ungoogled-chromium
         ]
-        ++ (with pkgs.gst_all_1; [
-          # nautilus gst
-          # gst-plugins-good
-          # gst-plugins-bad
-          # gst-plugins-ugly
-          # gst-libav
-        ])
       else
-        [
-          ffmpeg
-        ]
+        [ ]
     )
     ++ [
       # CreativeSPACE 📽
       # blender-hip # Hardware accelerated rendering NOTE later after pos
       gimp
+      ffmpeg
       krita
       inkscape
       darktable
@@ -194,6 +185,8 @@
           slurp
           sushi
           viewnior
+          hyprpwcenter
+          hyprland-autoname-workspaces
         ]
       else
         [ ]

@@ -72,7 +72,7 @@ bind =
 
   ", XF86Tools, exec, pkill pwvucontrol ||  pwvucontrol"
 
-  "$mod $cl, mouse:272, exec, pkill rofi || $menu_rofi"
+  "$mod $al, mouse:272, exec, pkill rofi || $menu_rofi"
   "$mod , P, exec, pkill rofi || $menu_rofi"
 
   "$mod , R, exec, pkill rofi || $file_browser_rofi"
@@ -80,7 +80,7 @@ bind =
   "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
 
   "$mod, period, exec, pkill rofi || $rofi_open_windows"
-  "$mod $cl, mouse:273, exec, pkill rofi || $rofi_open_windows"
+  "$mod $al, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
   "$mod, Delete, exec, pkill rofi || rofi_power"
 
@@ -92,8 +92,8 @@ bind =
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, E, exec, [workspace emptym] $emacs"
-  "$mod $sl, E, execr, systemctl --user stop emacs"
-  "$mod $al, E, execr, $notify_send_emacs_restarting ; systemctl --user restart emacs ; sleep 2 && $notify_send_emacs_restarted && $emacs"
+  # "$mod $sl, E, execr, systemctl --user stop emacs"
+  "$mod $al, E, execr, $notify_send_emacs_restarting ; systemctl --user restart emacs ; sleep 2 && $notify_send_emacs_restarted"
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] discord"
@@ -283,9 +283,9 @@ bind =
 
 #mouse binds have one less arg
 bindm = [
-  "$mod , mouse:272, movewindow"
+  "$mod $cl, mouse:272, movewindow"
   # "$mod , mouse:272, pass, class:^(dota2)$"
-  "$mod , mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
+  "$mod $cl, mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
   # "ALT, mouse:272, movewindow"
 ];
 

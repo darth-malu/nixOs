@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  osConfig,
   inputs,
   pkgs,
   ...
@@ -21,7 +22,7 @@
         # splash_offset = 2.0; #20::
         splach_opacity = 0.7; # 0.8::
         wallpaper =
-          if config.networking.hostName == "carthage" then
+          if osConfig.networking.hostName == "carthage" then
             [
               {
                 monitor = "HDMI-A-1";

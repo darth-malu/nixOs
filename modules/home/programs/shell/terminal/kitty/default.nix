@@ -1,4 +1,8 @@
-{ osConfig, lib, ... }:
+{
+  osConfig,
+  pkgs,
+  ...
+}:
 {
   imports = [
     ./keymaps.nix
@@ -96,7 +100,11 @@
       #clipboard_control write-clipboard write-primary read-clipboard-ask read-primary-ask
       #clipboard_max_size 512
 
+      # notify_on_cmd_finish = "invisible 10.0 notify-bell next"; # focus next::, focus, next (optional args)
       notify_on_cmd_finish = "invisible 10.0 notify-bell next"; # focus next::, focus, next (optional args)
+      command_on_bell = "canberra-gtk-play -i bell";
+      # "notify_on_cmd_finish" =
+      #   "invisible 10.0 command sh -c '${pkgs.libnotify}/bin/notify-send \'\"job finished with status: %s\" %c\'; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i bell'";
 
       # active_tab_foreground = "#000";
       # active_tab_background = "#eee";

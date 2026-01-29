@@ -142,8 +142,8 @@ in
     binutils # native-comp needs 'as'...NOTE also has ld needed for clang?
 
     # C#
-    # csharpier # c# formatter
-    # csharprepl # coolest repl
+    csharpier # c# formatter
+    csharprepl # coolest repl
 
     ## Dictionary
     (aspellWithDicts (

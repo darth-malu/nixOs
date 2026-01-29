@@ -19,6 +19,7 @@
         "Music-Videos" = "📺";
         "Computers" = "🧑🏽‍💻";
         "Programming" = "⌨️";
+        "scratch" = "🐾";
         ".Trash-1000" = "🗑";
       };
     };

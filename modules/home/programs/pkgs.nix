@@ -21,6 +21,9 @@
       # pulseaudioFull # paplay
       libcanberra-gtk3
       kdePackages.qt6ct
+      kdePackages.kservice
+      kdePackages.dolphin
+      xdg-utils
     ]
     ++ [
       # pastel # color generator
@@ -70,7 +73,7 @@
       # dust
       duf
       ncdu
-      file # need for yazi mimedetectionetc.
+      file # need for yazi mimedetection etc.
       iftop # TODO seems powerful investigate more
       inxi
       iotop-c # laggy?
@@ -91,7 +94,8 @@
     ++ (with pkgs; [
       # chromium
       # wpsoffice
-      libreoffice-qt-still
+      # libreoffice-qt-still
+      libreoffice-still
       discord
       wasistlos # whatsapp-for-linux
       # telegram-desktop
@@ -116,8 +120,6 @@
       easyeffects
       mpc
       nautilus
-      # kdePackages.dolphin
-      # kdePackages.konsole
       qbittorrent
       gpu-screen-recorder-gtk
       alarm-clock-applet

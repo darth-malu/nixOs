@@ -2,7 +2,7 @@
 
 mgr.keymap = [
 
-{ on = [ "g" "h" ];       run = "cd ~";             desc = "Go to the home directory"; }
+  { on = [ "g" "h" ];       run = "cd ~";             desc = "Go to the home directory"; }
   { on = [ "g" "c" ];       run = "cd ~/.config";     desc = ".config";}
   { on = [ "g" "d" ];       run = "cd ~/Documents";   desc = "Documents"; }
   { on = [ "g" "p" ];       run = "cd ~/Pictures";   desc = "Go to the pictures directory"; }
@@ -149,11 +149,15 @@ mgr.keymap = [
 
 ];
 
-tasks.prepend_keymap = [
+tasks.keymap = [
   { on = [ "w" ]; run = "show"; desc = "Show the tasks manager"; }
-  { on = [ "w" "t" ]; run = "show"; desc = "Show the tasks manager"; }
-  { on = [ "w" "i" ]; run = "inspect"; desc = "tasks inspector"; }
-  { on = [ "w" "c" ]; run = "close"; desc = "Show the tasks manager"; }
+  # { on = [ "w" "t" ]; run = "show"; desc = "Show the tasks manager"; }
+  # { on = [ "w" "i" ]; run = "inspect"; desc = "tasks inspector"; }
+  # { on = [ "w" "c" ]; run = "close"; desc = "Show the tasks manager"; }
+];
+
+spot.keymap = [
+  { on =  "<Tab>"; run = "help"; desc = "Display file information with the preset or user-customized spotter."; } # FIXME: not work
 ];
 
 mgr.prepend_keymap = [

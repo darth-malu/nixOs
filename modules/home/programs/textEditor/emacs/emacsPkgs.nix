@@ -1,6 +1,6 @@
 { pkgs, inputs, ... }:
 let
-  tex = (
+  texx = (
     pkgs.texlive.combine {
       inherit (pkgs.texlive)
         scheme-basic
@@ -34,22 +34,9 @@ in
       vterm
       djvu
       mu4e
-      # jupyter
-      # prettier
-      # org-tidy
-      # ebuku
-      # lsp-pyright
-      # emacs-all-the-icons-fonts
     ];
 
   home.packages = with pkgs; [
-    # debug init launcher
-    # (mkLauncherEntry "Emacs (Debug Mode)" {
-    #   description = "Start Emacs in debug mode";
-    #   icon = "emacs";
-    #   exec = "${emacs}/bin/emacs --debug-init";
-    # })
-
     # direnv
     devenv
     emacs-lsp-booster
@@ -62,9 +49,9 @@ in
     shellcheck
 
     # Latex
-    tex # :lang latex, org (latex previews)
     auctex
     texlab
+    texx # :lang latex, org (latex previews)
 
     # :emacs dired +dirvish
     ffmpegthumbnailer
@@ -74,16 +61,18 @@ in
     # python3 or or specific number
     (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [
-        jupyter-console # jupyter-core jupyterlab-server
         # gnureadline     # NOTE python-shell-interpreter not supporting readline warning fix
         pyside6
         # ffmpeg-python
-        # pytest-mock # yyoutubr pytest
-        # pytest-mockservers
 
         # Machine Learning
         scikit-learn
+        jupyterlab
+        jupyter-console # jupyter-core jupyterlab-server
         nbformat
+        jupyterlab-lsp
+        # jupyterlab-widgets
+        nbconvert
         numpy
         seaborn
         matplotlib
@@ -113,6 +102,11 @@ in
         pyflakes
         isort # sort imports block
         grip
+
+        # Testing
+        # pytest-mock # yyoutubr pytest
+        # pytest-mockservers
+
       ]
     ))
 
@@ -127,7 +121,7 @@ in
     # ELPY
 
     # NODE / Javascript
-    nodejs_24 # consider npm for auto install of servers in lsp-mode
+    nodejs_25 # consider npm for auto install of servers in lsp-mode
     # deno
 
     # C

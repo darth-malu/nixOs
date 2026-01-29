@@ -20,6 +20,7 @@
         gamescope
         gamemode
         umu-launcher
+        protobuf # for battle.net
       ];
       protonPackages = [ pkgs.proton-ge-bin ];
       steamPackage = osConfig.programs.steam.package;

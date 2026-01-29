@@ -3,12 +3,14 @@
 
 services.jupyter = {
   enable = true;
+  command = "jupyter-darth";
   extraPackages = with pkgs.python3.pkgs; [
     nbconvert
     nbformat
   ];
   group = "users";
-  ip = "localhost";
+  user = "malu";                # jupyter::
+  # ip = "localhost";             # localhost::
   kernels = {
     python3 = let
       env = (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
@@ -33,15 +35,10 @@ services.jupyter = {
       };
     };
   };
-  notebookDir = "~/Development/school/2026/Machine Learning/Jupyter";
+  notebookDir = "/home/malu/USIU/Development/2026/Machine Learning/Jupyter";
   password = "testtest";
   # port = 8888;
 };
-
-  services.mysql = {
-    enable = true;
-    package = pkgs.mariadb;
-  };
 
   environment.systemPackages = with pkgs; [
     # zulip

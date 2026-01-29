@@ -12,14 +12,13 @@
       "GDK_BACKEND,wayland,x11,*" # * - other GDK backend
 
       "QT_AUTO_SCREEN_SCALE_FACTOR,1" # enable auto scaling based on the monitors pixel density # TODO test changes if needed
-      # "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-
-      # "QT_QPA_PLATFORM,wayland"
-      # "QT_QPA_PLATFORMTHEME,qt6ct"
+      "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+      "QT_QPA_PLATFORM,wayland;xcb"
+      # "QT_QPA_PLATFORMTHEME,qt6ct" # TODO...see if helps with dolphin
 
       # "CLUTTER_BACKEND,wayland"
       # "GTK_THEME,Nightfox-Dark"
-      # "SDL_VIDEODRIVER,wayland" # set to x11 incase of game issues
+      "SDL_VIDEODRIVER,wayland" # set to x11 incase of game issues
       # "AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0" #attempted fix
     ]
     ++ (

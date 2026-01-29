@@ -119,6 +119,12 @@
         fg_light = "#563d7c";
       }
       {
+        name = "scratch";
+        text = "😺";
+        fg_dark = "red";
+        fg_light = "#563d7c";
+      }
+      {
         name = "desktop";
         text = "";
         fg_dark = "#563d7c";

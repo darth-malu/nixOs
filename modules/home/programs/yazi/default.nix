@@ -37,7 +37,7 @@
           4
           3
         ];
-        sort_by = "natural";
+        sort_by = "btime"; # natural
         sort_sensitive = true; # case
         sort_reverse = true;
         sort_dir_first = true;
@@ -46,6 +46,7 @@
         show_hidden = false;
         show_symlink = true;
         scrolloff = 10;
+        title_format = ""; # {cwd}
       };
       plugin = {
         prepend_previewers = [

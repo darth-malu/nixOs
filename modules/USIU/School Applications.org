@@ -7,8 +7,50 @@
 {pkgs, lib, config, ...}:
 {
 #+end_src
-* Android
-** cisco packet tracer
+* Jan 2026
+** Machine Learning [ Leah mutanu ]
+#+begin_src nix :tangle default.nix
+services.jupyter = {
+  enable = true;
+  extraPackages = with pkgs.python3.pkgs; [
+    nbconvert
+    nbformat
+  ];
+  group = "users";
+  ip = "localhost";
+  kernels = {
+    python3 = let
+      env = (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
+              ipykernel
+              pandas
+              scikit-learn
+            ]));
+    in {
+      displayName = "Python 3 for machine learning";
+      argv = [
+        "${env.interpreter}"
+        "-m"
+        "ipykernel_launcher"
+        "-f"
+        "{connection_file}"
+      ];
+      language = "python";
+      # logo32 = "${env.sitePackages}/ipykernel/resources/logo-32x32.png";
+      # logo64 = "${env.sitePackages}/ipykernel/resources/logo-64x64.png";
+      extraPaths = {
+        "cool.txt" = pkgs.writeText "cool" "cool content";
+      };
+    };
+  };
+  notebookDir = "~/Development/school/2026/Machine Learning/Jupyter";
+  password = "testtest";
+  # port = 8888;
+};
+#+end_src
+
+* Past
+** Android
+*** cisco packet tracer
 #+begin_src nix :tangle no
   environment.systemPackages = with pkgs; [
     # ciscoPacketTracer8
@@ -16,7 +58,7 @@
   ];
 #+end_src
 
-** adb
+*** adb
 This will add additional udev rules for unprivileged access as well as add adb to your $PATH.
 
 Alternatively, if you don't want to install adb globally but do want to configure the udev rules, you can:
@@ -35,7 +77,7 @@ programs.adb = {
 };
 #+end_src
 
-** Android Studio
+*** Android Studio
 #+begin_src nix :tangle no
 environment.systemPackages = [pkgs.android-studio ];
 # if config.networking.hostName == "carthage" then
@@ -59,17 +101,17 @@ Currently the following tools are supported:
 + mkbootimg, unpack_bootimg, repack_bootimg, avbtool
 + mkdtboimg
 
-** accept licenses
+*** accept licenses
 #+begin_src nix :tangle no
 android_sdk.accept_license = true;
 #+end_src
 
-** hardware acceleration
+*** hardware acceleration
 #+begin_src nix :tangle no
   users.users.malu.extraGroups = ["kvm" "adbusers"];
 #+end_src
-* Database - Petrollinah Mureithi
-** SQL
+** Database - Petrollinah Mureithi
+*** SQL
 #+begin_src nix :tangle default.nix
   services.mysql = {
     enable = true;
@@ -77,20 +119,19 @@ android_sdk.accept_license = true;
   };
 #+end_src
 
-*** Backups
+**** Backups
 #+begin_src nix :tangle no
   services.mysqlBackup = {
     enable = false;
   };
 #+end_src
-* Project Management
+** Project Management
 #+begin_src nix :tangle default.nix
   environment.systemPackages = with pkgs; [
     # zulip
     # zulip-term
   ];
 #+end_src
-
 * End
 #+begin_src nix :tangle default.nix
 }

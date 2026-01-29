@@ -60,8 +60,7 @@ in
     libtool
     shellcheck
 
-    #:lang latex, org (latex previews)
-    tex
+    tex #:lang latex, org (latex previews)
 
     # :emacs dired +dirvish
     ffmpegthumbnailer
@@ -107,10 +106,24 @@ in
         weasyprint # needed for some exports to work
         pytest
         pyflakes
-        isort # sort imports
+        isort # sort imports block
         grip
       ]
     ))
+
+    # python
+    # pipenv pipenv support
+    basedpyright
+    # pyright
+    black
+    shfmt
+    libxml2
+    # pyenv
+    # ELPY
+
+    # NODE / Javascript
+    nodejs_24 # consider npm for auto install of servers in lsp-mode
+    # deno
 
     # C
     # clang # cc lsp & java? (maybe since derived) # FIXME...clash with binutils and gcc
@@ -119,6 +132,7 @@ in
 
     # Doom Dependencies
     gnumake # for compiling vterm
+    cmake # vterm
     # gnutls # to TLS connectivity
     binutils # native-comp needs 'as'...NOTE also has ld needed for clang?
 
@@ -172,20 +186,6 @@ in
     # MISC
     imagemagick # image-dired, has convert:
     unzip # tldr
-
-    # python
-    # pipenv pipenv support
-    basedpyright
-    # pyright
-    black
-    shfmt
-    libxml2
-    # pyenv
-    # ELPY
-
-    # NODE / Javascript
-    nodejs_24 # consider npm for auto install of servers in lsp-mode
-    # deno
 
   ];
 }

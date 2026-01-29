@@ -47,7 +47,6 @@
       # nasm
       # qtcreator
       # beekeeper-studio
-      cmake # vterm
       cryptsetup
       ed
       pass-wayland

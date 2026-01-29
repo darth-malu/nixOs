@@ -16,10 +16,7 @@
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
       gamescopeSession.enable = true; # Integrates with programs.steam
-      protontricks = {
-        enable = true;
-        # package =
-      };
+        protontricks.enable = true;
     };
 
     programs.gamemode = {
@@ -54,11 +51,6 @@
 
     environment.systemPackages =
       with pkgs;
-      if config.networking.hostName == "carthage" then
-        [
-          amdgpu_top
-        ]
-      else
         [
           # Trying gamescope recording
           # gst_all_1.gstreamer
@@ -68,7 +60,11 @@
           protonup-ng
           wineWowPackages.full # support both 32-bit and 64-bit applications - stable, full, waylandFull
           # winetricks
-        ];
+        ] ++ (if config.networking.hostName == "carthage" then
+        [
+          amdgpu_top
+        ]
+      else []);
 
     hardware.xone.enable = true; # support for the xbox controller USB dongle
 

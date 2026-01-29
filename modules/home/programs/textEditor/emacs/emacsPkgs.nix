@@ -51,6 +51,7 @@ in
     # })
 
     # direnv
+    devenv
     emacs-lsp-booster
     inputs.nix-qml.packages.${pkgs.stdenv.hostPlatform.system}.tree-sitter-qmljs
     inputs.nix-qml.packages.${pkgs.stdenv.hostPlatform.system}.qml-ts-mode
@@ -60,7 +61,10 @@ in
     libtool
     shellcheck
 
-    tex #:lang latex, org (latex previews)
+    # Latex
+    tex # :lang latex, org (latex previews)
+    auctex
+    texlab
 
     # :emacs dired +dirvish
     ffmpegthumbnailer
@@ -84,6 +88,7 @@ in
         seaborn
         matplotlib
         # pandasql
+        pycryptodome
         pandas
 
         # ELPy

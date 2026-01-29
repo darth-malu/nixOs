@@ -93,7 +93,7 @@ bind =
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, E, exec, [workspace emptym] $emacs"
   # "$mod $sl, E, execr, systemctl --user stop emacs"
-  "$mod $al, E, execr, $notify_send_emacs_restarting ; systemctl --user restart emacs ; sleep 2 && $notify_send_emacs_restarted"
+  "$mod $al, E, execr, $notify_send_emacs_restarting ; systemctl --user restart emacs ; sleep 2 && $notify_send_emacs_restarted && $emacs"
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] discord"
@@ -115,7 +115,7 @@ bind =
 # "$mod $cl, D, focuswindow, class:^(emacs)$"
 # "$mod $cl, D, focuswindow, initialTitle:(.*)(Doom Emacs)$"
   "$mod $cl, E, focuswindow, class:^(emacs)$"
-  "$mod $al, E, execr, notify-send 'restarting emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png' ; systemctl --user restart emacs ; sleep 2 && notify-send 'restarted emacs' -i '/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png'  && $emacs"
+  "$mod $al, E, execr, $notify_send_emacs_restarting ; systemctl --user restart emacs ; sleep 2 && $notify_send_emacs_restarted && $emacs"
 
 "$mod $cl, D, focuswindow, class:^(discord)$"
 

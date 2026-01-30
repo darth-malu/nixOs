@@ -119,6 +119,7 @@ let
       "xow_dongle-firmware"
       "youtube-upnext"
       "davinci-resolve"
+      "wpsoffice"
     ];
 
     permittedInsecurePackages = [

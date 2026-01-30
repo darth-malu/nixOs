@@ -100,9 +100,9 @@
     ])
     ++ (with pkgs; [
       # chromium
-      # wpsoffice
+      wpsoffice
       # libreoffice-qt-still
-      libreoffice-still
+      # libreoffice-still
       discord
       wasistlos # whatsapp-for-linux
       # telegram-desktop

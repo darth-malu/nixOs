@@ -179,6 +179,7 @@ let
       "xow_dongle-firmware"
       "youtube-upnext"
       "davinci-resolve"
+      "wpsoffice"
     ];
 #+end_src
 

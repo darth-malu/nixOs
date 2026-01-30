@@ -128,6 +128,7 @@
             mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
             use = [
               "libreoffice"
+              "open"
             ];
           }
           {

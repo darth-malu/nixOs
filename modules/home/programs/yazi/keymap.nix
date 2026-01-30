@@ -9,6 +9,7 @@ mgr.keymap = [
   { on = [ "g" "G" ];       run = "cd ~/Pictures/grimblast";   desc = "grimblast"; }
   { on = [ "g" "x" ];       run = "cd ~/Downloads";   desc = "Go to the downloads directory"; }
   { on = [ "g" "s" ];       run = "cd ~/Shibuya";   desc = "~/Shibuya"; }
+  { on = [ "g" "u" ];       run = "cd ~/USIU";   desc = "USIU 📚"; }
   { on = [ "g" "v" ];       run = "cd ~/Videos";   desc = "VIDEOS dir"; }
   { on = [ "g" "m" ];       run = "cd ~/Music";   desc = "MUSIC"; }
   { on = [ "g" "M" ];       run = "cd /media/";          desc = "media directory"; }

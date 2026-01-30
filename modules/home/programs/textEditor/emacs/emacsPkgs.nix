@@ -64,19 +64,9 @@ in
         # ffmpeg-python
 
         # Machine Learning
-        scikit-learn
-        jupyterlab
-        jupyter-console # jupyter-core jupyterlab-server
-        nbformat
-        jupyterlab-lsp
         # jupyterlab-widgets
-        nbconvert
-        numpy
         seaborn
-        matplotlib
         # pandasql
-        pycryptodome
-        pandas
 
         # ELPy
         # autopep8
@@ -104,7 +94,6 @@ in
         # Testing
         # pytest-mock # yyoutubr pytest
         # pytest-mockservers
-
       ]
     ))
 

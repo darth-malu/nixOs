@@ -115,7 +115,6 @@ bind =
 # "$mod $cl, D, focuswindow, class:^(emacs)$"
 # "$mod $cl, D, focuswindow, initialTitle:(.*)(Doom Emacs)$"
   "$mod $cl, E, focuswindow, class:^(emacs)$"
-  "$mod $al, E, execr, $notify_send_emacs_restarting ; systemctl --user restart emacs ; sleep 2 && $notify_send_emacs_restarted && $emacs"
 
 "$mod $cl, D, focuswindow, class:^(discord)$"
 

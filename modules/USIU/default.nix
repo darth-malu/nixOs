@@ -5,8 +5,8 @@ services.jupyter = {
   enable = true;
   # command = "jupyter lab"; # "jupyter notebook"::
   extraPackages = with pkgs.python3.pkgs; [
-    nbconvert
-    nbformat
+    # nbconvert
+    # nbformat
   ];
   group = "users";
   user = "malu";                # jupyter::
@@ -15,8 +15,6 @@ services.jupyter = {
     python3 = let
       env = (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
               ipykernel
-              pandas
-              scikit-learn
             ]));
     in {
       displayName = "Python 3 for machine learning";

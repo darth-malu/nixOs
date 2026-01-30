@@ -236,8 +236,9 @@ see hyprswitch:
   # "$mod , up, focuswindow, class:^(Emacs)$"
 #+end_src
 **** dolphin
-#+begin_src nix :tangle no
-"$mod $cl, N, focuswindow, class:org.kde.dolphin"
+#+begin_src nix :tangle default.nix
+"$mod $cl $sl, N, focuswindow, class:org.kde.dolphin"
+"$mod $sl, N, exec, [workspace emptym] dolphin"
 #+end_src
 **** qutebrowser
 #+begin_src nix :tangle default.nix

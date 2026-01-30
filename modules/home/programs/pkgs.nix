@@ -23,6 +23,13 @@
       kdePackages.qt6ct
       kdePackages.kservice
       kdePackages.dolphin
+      kdePackages.konsole
+      # KIO is a library that provides file manipulation and copying, remote file access, thumbnail previews, the Trash, the Places panel, and various other common file-related user interface components.
+      kdePackages.kio-fuse # FUSE Interface for KIO
+      kdePackages.kio-extras # Additional components to increase the functionality of KIO
+      kdePackages.kio-admin # Manage files as administrator using the admin:// KIO protocol
+      # kdePackages.kio-gdrive
+      kdePackages.qtwayland # allows Qt-based applications to run on the Wayland display protocol
       xdg-utils
     ]
     ++ [

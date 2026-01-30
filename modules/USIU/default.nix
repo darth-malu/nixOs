@@ -3,7 +3,7 @@
 
 services.jupyter = {
   enable = true;
-  command = "jupyter-darth";
+  # command = "jupyter lab"; # "jupyter notebook"::
   extraPackages = with pkgs.python3.pkgs; [
     nbconvert
     nbformat

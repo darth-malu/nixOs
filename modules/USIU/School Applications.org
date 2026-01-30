@@ -12,7 +12,7 @@
 #+begin_src nix :tangle default.nix
 services.jupyter = {
   enable = true;
-  command = "jupyter-darth";
+  # command = "jupyter lab"; # "jupyter notebook"::
   extraPackages = with pkgs.python3.pkgs; [
     nbconvert
     nbformat

@@ -125,6 +125,9 @@ bind =
 "$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
   # "$mod , up, focuswindow, class:^(Emacs)$"
 
+"$mod $cl $sl, N, focuswindow, class:org.kde.dolphin"
+"$mod $sl, N, exec, [workspace emptym] dolphin"
+
 # "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 # "$mod $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 "$mod $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"

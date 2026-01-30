@@ -21,6 +21,7 @@
     ./textEditor
     # ./kdeconnect.nix
     ./pkgs.nix
+    ./direnv.nix
     ./gpg.nix
     ./nyaa.nix
     # ./kde
@@ -30,9 +31,6 @@
 
   programs = {
     home-manager.enable = true; # Let Home Manager install and manage itself.
-    # eza = {
-    #   enable = true;
-    # };
 
     # bashmount.enable = true;
 
@@ -55,6 +53,7 @@
     lsd = import ./misc/lsd.nix;
 
     # nix-index.enable = false;
+
     # nh.enable = true;
 
     pandoc.enable = true;

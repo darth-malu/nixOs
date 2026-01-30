@@ -103,7 +103,6 @@
             libappindicator-gtk3 # needed for discord icon
             # libsecret # secrets lul
             # kdePackages.qt6ct
-            # kdePackages.qtwayland
           ]
           ++ (
             if config.networking.hostName == "tangier" then

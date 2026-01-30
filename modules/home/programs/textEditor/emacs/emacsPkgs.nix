@@ -37,8 +37,6 @@ in
     ];
 
   home.packages = with pkgs; [
-    # direnv
-    devenv
     emacs-lsp-booster
     inputs.nix-qml.packages.${pkgs.stdenv.hostPlatform.system}.tree-sitter-qmljs
     inputs.nix-qml.packages.${pkgs.stdenv.hostPlatform.system}.qml-ts-mode

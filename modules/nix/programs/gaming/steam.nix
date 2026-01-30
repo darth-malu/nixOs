@@ -16,7 +16,7 @@
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
       gamescopeSession.enable = true; # Integrates with programs.steam
-        protontricks.enable = true;
+      protontricks.enable = true;
     };
 
     programs.gamemode = {
@@ -26,15 +26,16 @@
       enable = true;
       # enableRenice  = true;     # true::
       settings = {
-        # general = {
-        #   renice = 10; # 0::-20 - user must be in gamemode group
-        # };
+        # https://github.com/FeralInteractive/gamemode/blob/master/example/gamemode.ini
+        general = {
+          renice = 10; # 0(no change)::0-20 - user must be in gamemode group
+        };
         # Warning: GPU optimisations have the potential to damage hardware
-        # gpu = {
-        #   apply_gpu_optimisations = "accept-responsibility"; # 0::
-        #   gpu_device = 0; # /sys/class/drm/card0/
-        #   amd_performance_level = "high";
-        # };
+        gpu = {
+          apply_gpu_optimisations = "accept-responsibility"; # 0::
+          # gpu_device = 0; # /sys/class/drm/card0/
+          amd_performance_level = "high";
+        };
         custom = {
           start = "${pkgs.libnotify}/bin/notify-send -i /home/malu/Shibuya/assets/icons8-ps-controller-48.png 'GameMode started'";
           end = "${pkgs.libnotify}/bin/notify-send -i /home/malu/Shibuya/assets/icons8-ps-controller-48.png 'GameMode ended'";
@@ -51,20 +52,24 @@
 
     environment.systemPackages =
       with pkgs;
-        [
-          # Trying gamescope recording
-          # gst_all_1.gstreamer
-          antimicrox
-          # bottles
-          heroic # without fhs
-          protonup-ng
-          wineWowPackages.full # support both 32-bit and 64-bit applications - stable, full, waylandFull
-          # winetricks
-        ] ++ (if config.networking.hostName == "carthage" then
-        [
-          amdgpu_top
-        ]
-      else []);
+      [
+        # Trying gamescope recording
+        # gst_all_1.gstreamer
+        antimicrox
+        # bottles
+        heroic # without fhs
+        protonup-ng
+        wineWowPackages.full # support both 32-bit and 64-bit applications - stable, full, waylandFull
+        # winetricks
+      ]
+      ++ (
+        if config.networking.hostName == "carthage" then
+          [
+            amdgpu_top
+          ]
+        else
+          [ ]
+      );
 
     hardware.xone.enable = true; # support for the xbox controller USB dongle
 

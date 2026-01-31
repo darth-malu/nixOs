@@ -118,7 +118,7 @@ bind =
 
 "$mod $cl, D, focuswindow, class:^(discord)$"
 
-"$mod $cl, Y, focuswindow, title:^(Yazi)(.*)$"
+"$mod $cl, Y, focuswindow, title:^([Yy]azi)(.*)$"
   # "$mod , up, focuswindow, class:^(Emacs)$"
 
 "$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
@@ -248,7 +248,7 @@ bind =
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
 
 # "$mod,K, Workspace, previous_per_monitor"
-  "$mod,K, focuscurrentorlast"  # FIXME broken
+  "$mod,K, focuscurrentorlast"
   "$mod $sl, k, focusmonitor, +1"
   "$mod, mouse:276, Workspace, previous_per_monitor"
   "$mod, semicolon, cyclenext"

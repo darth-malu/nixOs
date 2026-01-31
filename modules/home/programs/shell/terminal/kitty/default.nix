@@ -82,7 +82,7 @@
       # repaint_delay = 2; # 10(100fps):: # delay between screen updates in milliseconds. decreasing increases FPS at the cost of CPU. ssync_to_monitor = no advised unless highrr
       wayland_enable_ime = false; # yes:: This is typically used for inputting text in East Asian languages. Buggy turn off if not needed
 
-      bell_on_tab = "💎";
+      # bell_on_tab = "💎";
       # tab_bar_background = none; # defaults to terminal background
       # tab_bar_margin_color = "";
       tab_bar_style = "fade";
@@ -101,7 +101,7 @@
       #clipboard_max_size 512
 
       # notify_on_cmd_finish = "invisible 10.0 notify-bell next"; # focus next::, focus, next (optional args)
-      notify_on_cmd_finish = "invisible 10.0 notify-bell next"; # focus next::, focus, next (optional args)
+      notify_on_cmd_finish = "invisible 10.0 notify"; # focus next::, focus, next (optional args)
       command_on_bell = "canberra-gtk-play -i bell";
       # "notify_on_cmd_finish" =
       #   "invisible 10.0 command sh -c '${pkgs.libnotify}/bin/notify-send \'\"job finished with status: %s\" %c\'; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i bell'";

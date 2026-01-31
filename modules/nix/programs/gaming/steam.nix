@@ -7,6 +7,8 @@
 {
   options.steamy = {
     enable = lib.mkEnableOption "steam";
+    # Steam Launcher options
+    # gamemoderun %command% -novid -sdlaudiodriver pipewire -vulkan -nomousegrab -high -map dota -vulkan_disable_steam_shader_cache
   };
 
   config = lib.mkIf config.steamy.enable {

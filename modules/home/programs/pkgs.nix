@@ -105,7 +105,7 @@
       # libreoffice-still
       discord
       wasistlos # whatsapp-for-linux
-      # telegram-desktop
+      telegram-desktop
     ])
     ++ (with pkgs; [
       # SOUND

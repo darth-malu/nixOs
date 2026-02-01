@@ -10,7 +10,7 @@
     # activeConfig = "/home/malu/Shibuya/modules/home/programs/hyprland/hyprland-helper/quickshell"; # if null use $XDG_CONFIG_HOME/quickshell::
     systemd = {
       enable = true;
-      target = "hyprland-session.target"; # config.wayland.systemd.target:: # HACK:
+      target = "hyprland-session.target"; # config.wayland.systemd.target:: (graphical-session-target) # HACK:
     };
   };
 

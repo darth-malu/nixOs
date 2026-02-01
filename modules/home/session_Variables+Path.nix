@@ -21,8 +21,11 @@
   ];
 
   # UWSM environment
-  xdg.configFile."uwsm/env".text =
-    "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+  xdg.configFile = {
+    "uwsm/env".text = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    "mimeapps.list".force = true;
+  };
+
   # EDITOR = "emacsclient -nw";
   # VISUAL = "emacs -r";
 

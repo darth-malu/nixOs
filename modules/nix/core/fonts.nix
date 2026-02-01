@@ -17,6 +17,7 @@
         ibm-plex
         inconsolata
         lato # unneeded?
+        atkinson-hyperlegible-mono
         # cascadia-code
         # fira-code
         # fira-math

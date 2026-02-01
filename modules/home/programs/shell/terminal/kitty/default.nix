@@ -1,8 +1,4 @@
-{
-  osConfig,
-  pkgs,
-  ...
-}:
+{ osConfig, ... }:
 {
   imports = [
     ./keymaps.nix
@@ -11,6 +7,8 @@
 
   programs.kitty = {
     enable = true;
+    # enableGitIntegration = true;
+    # environment
     shellIntegration = {
       enableBashIntegration = true;
       mode = "no-cursor"; # vi mode conflict fix

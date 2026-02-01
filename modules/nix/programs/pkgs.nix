@@ -13,11 +13,11 @@
   ];
 
   documentation = {
-    dev.enable = true;
+    dev.enable = true; # TODO see instance of this
     info.enable = true;
     doc.enable = true; # distributed in pkgs /share/doc
     nixos = {
-      includeAllModules = true; # false::
+      includeAllModules = false; # false::
     };
   };
 
@@ -72,10 +72,12 @@
       ([
         libnotify # notify-send
         wget
+        app2unit
         #cpufrequtils
         lshw
         efibootmgr
         curl
+        man-pages
         # dash
         procs
         killall
@@ -84,7 +86,6 @@
         pwvucontrol
         playerctl
         wireplumber
-        # ntfs3g
         lsof # list open files/ports**
         usbutils # lsusb, usb-devices, usb-view(optional gui)
         jmtpfs # mtp drivers - # TODO check if mtp-probe error is from this and how to mitigate

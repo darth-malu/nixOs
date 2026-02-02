@@ -3,7 +3,7 @@
 {
   fonts = {
     enableDefaultPackages = true; # install basic fonts for unicode coverage
-    enableGhostscriptFonts = true; # TODO see if needed
+    # enableGhostscriptFonts = true; #  URW fonts and the “Base-14” Postscript fonts) to the list of system fonts, making them available to X11 applications.
     packages =
       with pkgs;
       [

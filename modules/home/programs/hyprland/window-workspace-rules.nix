@@ -1,7 +1,7 @@
 {
   wayland.windowManager.hyprland.settings = {
     windowrule = [
-      "float true, match:title file_progress"
+      # "float true, match:title file_progress"
       # "match: float true, match:title confirm"
       # "match: float true, match:title dialog"
       # "match: float true, match:title download"
@@ -11,10 +11,10 @@
       # "match: float true, match:title confirmreset"
       # "match: float true, match:title Open File"
       # "match: float true, match:title branchdialog"
-      "float true, match:class org.gnome.FileRoller"
-      "float true, match:title ^(Media viewer)$"
-      "float true, match:title ^(Volume Control)$"
-      "float true, match:title ^(Picture-in-Picture)$"
+      # "float true, match:class org.gnome.FileRoller"
+      # "float true, match:title ^(Media viewer)$"
+      # "float true, match:title ^(Volume Control)$"
+      # "float true, match:title ^(Picture-in-Picture)$"
       # "size 75% 80%, float:1" # exact screen size... can use only window size also x% y% :FIXME: cause issues with all popup menus lol
       # "size 75% 80%, match:title ^(Sign in)(.*)$"
 

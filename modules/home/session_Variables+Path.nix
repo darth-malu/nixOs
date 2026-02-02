@@ -18,11 +18,13 @@
   };
   home.sessionPath = [
     # "$HOME/.code/PySide6/youtubr/dist"
+    "${config.xdg.configHome}/emacs/bin"
+    "${config.home.homeDirectory}/Development/bash/Scripts"
   ];
 
   # UWSM environment
   xdg.configFile = {
-    "uwsm/env".text = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    "uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
     "mimeapps.list".force = true;
   };
 

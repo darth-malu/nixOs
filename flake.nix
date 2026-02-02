@@ -116,7 +116,6 @@ let
       "steam-unwrapped"
       "unrar"
       "ventoy"
-      "xow_dongle-firmware"
       "youtube-upnext"
       "davinci-resolve"
       "wpsoffice"

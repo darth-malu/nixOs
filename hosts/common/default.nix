@@ -19,14 +19,14 @@
         # "android-studio-stable"
         "steam-unwrapped"
         "nvidia-x11"
-        "xow_dongle-firmware"
+        "xone-dongle-firmware"
         "steam"
         "nvidia-x11-570.153.02-6.12.30"
         "nvidia-settings"
       ];
     permittedInsecurePackages = [
       "broadcom-sta-6.30.223.271-59-6.12.68"
-      "libxml2-2.13.8" # for cisco?
+      # "libxml2-2.13.8" # for cisco?
     ];
   };
 

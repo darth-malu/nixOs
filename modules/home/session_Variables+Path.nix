@@ -17,6 +17,7 @@
     # XDG_DATA_DIRS = "$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share";
   };
   home.sessionPath = [
+    # Prepend to $PATH in a double-quoted context
     # "$HOME/.code/PySide6/youtubr/dist"
     "${config.xdg.configHome}/emacs/bin"
     "${config.home.homeDirectory}/Development/bash/Scripts"

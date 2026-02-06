@@ -85,9 +85,9 @@
 
       "match:class ^()$,match:title ^()$, no_blur true" # for chrome weird menus clear border
 
-      "match:class ^(Xdg-desktop-portal-gtk)$,match:title ^(All Files)$, no_blur true"
+      # "match:class ^(Xdg-desktop-portal-gtk)$,match:title ^(All Files)$, no_blur true"
 
-      "border_size 0,match:class ^(Xdg-desktop-portal-gtk)$, match:title ^(All Files)$"
+      # "border_size 0,match:class ^(Xdg-desktop-portal-gtk)$, match:title ^(All Files)$"
 
       "workspace emptym, match:initial_class ^(discord)$, match:initial_title ^(.*)(Discord)$"
       "workspace emptym silent, match:class ^(discord)$, match:title (Discord Updater)"

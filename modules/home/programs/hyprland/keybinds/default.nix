@@ -79,7 +79,7 @@ bind =
 
   "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
 
-  "$mod, period, exec, pkill rofi || $rofi_open_windows"
+  "$mod, comma, exec, pkill rofi || $rofi_open_windows"
   "$mod $al, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
   "$mod, Delete, exec, pkill rofi || rofi_power"
@@ -88,12 +88,12 @@ bind =
 
   "$mod, slash, exec, pkill rofi || $calc_rofi"
 
-  "$mod, comma, exec, pkill rofi || $emoji_rofi"
+  "$mod, period, exec, pkill rofi || $emoji_rofi"
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, E, exec, [workspace emptym] $emacs"
-  # "$mod $sl, E, execr, systemctl --user stop emacs"
-  "$mod $al, E, execr, $notify_send_emacs_restarting ; systemctl --user restart emacs ; sleep 2 && $notify_send_emacs_restarted && $emacs"
+  # "$mod, space , sendshortcut, space, space, class:^(emacs)$" # TODO make script for better switching
+  "$mod $al, E, execr, $notify_send_emacs_restarting ; systemctl --user restart emacs && $notify_send_emacs_restarted ; $emacs"
 
 # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
   "$mod, D, exec, [workspace emptym] discord"
@@ -174,14 +174,14 @@ bind =
   "$mod $cl, j, movefocus, d"
   #bind="$mod SHIFT,Left,layoutmsg,swapnext"
 
-"$mod ,up, togglegroup"
+  "$mod ,up, togglegroup"
   "$mod ,down, lockactivegroup, toggle"
 
   "$mod ,right,changegroupactive,f"
   "$mod ,left,changegroupactive,b"
 
-  "$mod ,apostrophe,changegroupactive,f"
-  "$mod ,quotedbl,changegroupactive,b"
+  # "$mod ,apostrophe,changegroupactive,f"
+  # "$mod ,quotedbl,changegroupactive,b"
 
   "$mod $sl , right, movewindoworgroup, r"
   "$mod $sl , left, movewindoworgroup, l"
@@ -251,7 +251,8 @@ bind =
   "$mod,K, focuscurrentorlast"
   "$mod $sl, k, focusmonitor, +1"
   "$mod, mouse:276, Workspace, previous_per_monitor"
-  "$mod, semicolon, cyclenext"
+  # "$mod, semicolon, cyclenext"
+  "$mod , space, cyclenext"
 ]
 
 ++ (

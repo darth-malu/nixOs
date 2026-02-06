@@ -33,7 +33,7 @@ services.jupyter = {
       };
     };
   };
-  notebookDir = "/home/malu/USIU/Development/2026/Machine Learning/Jupyter";
+    notebookDir = "/home/malu/USIU/2026/[ APT3025B ]  Machine Learning - LeahMutanu-1320-T-T/Jupyter";
   password = "testtest";
   # port = 8888;
 };

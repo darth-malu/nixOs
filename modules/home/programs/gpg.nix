@@ -1,29 +1,25 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   home.packages = with pkgs; [
-    # pinentry
-    # pinentry-all
-    # pinentry-rofi
-    # pinentry-qt
-    # pinentry-tty
     pinentry-emacs
-    # pinentry-curses
     # gcr # fix for pinentry on non-gnome systems
   ];
 
+  xdg.configFile."pam-gnupg".text = "6646834A498CEF5DB77007410B743EC2A7FA56CF";
+
   services.gpg-agent = {
     enable = true;
-    enableSshSupport = true;
-    enableBashIntegration = true;
-    enableExtraSocket = true;
+    # enableSshSupport = true;
+    enableBashIntegration = pkgs.lib.mkIf config.programs.bash.enable true;
+    # enableExtraSocket = true;
     extraConfig = ''
       allow-emacs-pinentry
       allow-loopback-pinentry
+      allow-preset-passphrase
     '';
     # verbose = true;
     pinentry = {
       program = "pinentry-emacs";
-      # package = pkgs.pinentry-gnome3;
     };
   };
 

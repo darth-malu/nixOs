@@ -76,6 +76,7 @@
     ++ [
       # Gamer centric
       "match:class ^(cs2|dota)$, immediate true" # Allow Tearing
+      "match:class ^(cs2|dota)$, content game" # Allow Tearing
 
       # allow tearing in games
       # "immediate, match:class ^(osu\!|cs2)$"
@@ -92,7 +93,10 @@
       "workspace emptym, match:initial_class ^(discord)$, match:initial_title ^(.*)(Discord)$"
       "workspace emptym silent, match:class ^(discord)$, match:title (Discord Updater)"
 
-      "workspace emptym, match:initial_class ^(org.qbittorrent.qBittorrent)$, match:initial_title ^(.*)(qBittorrent v5.1.0)$"
+      "workspace emptym, match:initial_class ^(org.qbittorrent.qBittorrent)$, match:initial_title ^(.*)(qBittorrent v.*)$"
+
+      "persistent_size true, match:class ^(org.quickshell)"
+      "center true, match:class ^(org.quickshell)"
 
       "workspace 10, match:initial_class ^(spotube)$, match:initial_title ^(spotube)$"
       "workspace 10, match:initial_class ^(spotify)$"

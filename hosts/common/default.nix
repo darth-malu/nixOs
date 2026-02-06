@@ -31,7 +31,7 @@
   };
 
   boot = {
-    plymouth.enable = false;
+    plymouth.enable = true;
     extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
     loader = {
       systemd-boot = {

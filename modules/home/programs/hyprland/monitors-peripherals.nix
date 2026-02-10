@@ -29,7 +29,7 @@ if osConfig.networking.hostName == "carthage" then
         #TODO: see about using use_cpu_buffer for tangier nvidia
       };
       input = {
-        mouse_refocus = false; # default = if true mouse must cross boundary for focus change
+        mouse_refocus = false; # if true mouse must cross boundary for focus change
         kb_layout = "us";
         numlock_by_default = true;
         kb_options = "caps:swapescape";

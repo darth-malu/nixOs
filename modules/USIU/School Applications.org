@@ -9,7 +9,7 @@
 #+end_src
 * Jan 2026
 ** Machine Learning [ Leah mutanu ]
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
 services.jupyter = {
   enable = true;
   # command = "jupyter lab"; # "jupyter notebook"::

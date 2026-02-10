@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   imports = [
     ./qemu
@@ -5,7 +6,7 @@
     ./docker.nix
   ];
 
-  docker.enable = true;
-  qemu.enable = false;
-  n8n.enable = false;
+  docker.enable = if config.networking.hostName == "tangier" then false else true;
+  qemu.enable = if config.networking.hostName == "tangier" then false else false;
+  n8n.enable = if config.networking.hostName == "tangier" then false else false;
 }

@@ -97,6 +97,7 @@
 
       "persistent_size true, match:class ^(org.quickshell)"
       "center true, match:class ^(org.quickshell)"
+      "float true, match:class ^(org.quickshell)"
 
       "workspace 10, match:initial_class ^(spotube)$, match:initial_title ^(spotube)$"
       "workspace 10, match:initial_class ^(spotify)$"

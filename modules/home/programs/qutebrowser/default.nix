@@ -41,8 +41,8 @@
     mn  =  "https://mynixos.com/search?q={}";
     nps =  "https://search.nixos.org/packages?channel=24.11&from=0&size=50&sort=relevance&type=packages&query={}";
     npu =  "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
-    # g =  "https://www.google.com/search?hl=en&amp;q={}";
-    g   =  "https://www.google.com/search?hl=en&q={}";
+    g   =  "https://www.google.com/search?hl=en&q={}"; # hl=en&amp;
+    pd   =  "https://www.protondb.com/search?q={}";
     b   =  "https://search.brave.com/search?q={}";
     yt  =  "https://www.youtube.com/results?search_query={}";
     gh  =  "https://github.com/search?o=desc&q={}&s=stars";

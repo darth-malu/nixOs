@@ -16,6 +16,7 @@
         "broadcom-sta"
         # "ciscoPacketTracer8"
         "n8n"
+        "symbola"
         # "android-studio-stable"
         "steam-unwrapped"
         "nvidia-x11"

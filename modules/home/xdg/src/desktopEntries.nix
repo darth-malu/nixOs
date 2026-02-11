@@ -4,9 +4,9 @@
     genericName = "ascii";
     terminal = true;
     type = "Application";
-    categories = [ "Development" ]; # TODO change later
-    exec = "/home/malu/.code/c/ascii";
-    icon = "/home/malu/.code/c/blue-hair-girl.jpg";
+    categories = [ "Development" ];
+    exec = "/home/malu/Development/SkunkWorks/c/ascii";
+    icon = "/home/malu/Development/SkunkWorks/c/gorl.jpg";
   };
 
   YouTubr = {
@@ -15,7 +15,7 @@
     terminal = false;
     type = "Application";
     categories = [ "Development" ];
-    exec = "/home/malu/.code/PySide6/youtubr";
-    icon = "/home/malu/.code/PySide6/youtube.png";
+    exec = "/home/malu/Development/SkunkWorks/PySide6/youtubr/youtubr";
+    icon = "/home/malu/Development/SkunkWorks/PySide6/youtubr/youtube.png";
   };
 }

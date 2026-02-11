@@ -23,6 +23,7 @@
         # fira-math
         # office-code-pro # try
         # proggyfonts
+        symbola # emacs fallback
       ]
       ++ [
         # emacs fonts

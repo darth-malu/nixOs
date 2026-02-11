@@ -58,6 +58,9 @@ in
     texlab
     texx # :lang latex, org (latex previews)
 
+    # Docker
+    dockfmt
+
     # :emacs dired +dirvish
     ffmpegthumbnailer
     mediainfo

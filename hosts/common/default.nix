@@ -7,6 +7,7 @@
     ./users
     ./storage-common.nix
     ./specialisations
+    ./bluetooth.nix
   ];
 
   nixpkgs.config = {
@@ -96,14 +97,7 @@
 
   services = {
     libinput.enable = lib.mkIf (config.networking.hostName == "tangier") true; # touchpad, should be on by default
-    zfs = {
-      autoSnapshot.enable = true; # TODO: see sanoid in man configuration.nix
-      autoScrub.enable = true;
-      trim.enable = true; # true:: - zpool trim, different from autorim pool property
-    };
   };
-
-  hardware.usbStorage.manageShutdown = true;
 
   programs.nm-applet.enable = lib.mkIf config.hyprland.enable true; # started automatically with the graphical session
   programs.nm-applet.indicator = lib.mkIf config.hyprland.enable true;
@@ -145,39 +139,6 @@
 nameservers = [ "1.1.1.1" "1.0.0.1"  "8.8.8.8" "8.8.4.4" ];
 
 };
-
-hardware = {
-  # enableAllFirmware = true; # enable all firmware regardless of license 
-  # enableAllHardware = true; # Enable support for most hardware
-  enableRedistributableFirmware = true; # enable firmware with a license allowing redistribution
-  bluetooth = {
-    # hsphfpd.enable = true; # support for hsphfpd[-prototype] implementation.
-    enable =  true;
-    powerOnBoot = true; #power on default controller on boot
-    settings = {#Set configuration for system-wide bluetooth (/etc/bluetooth/main.conf). See https://github.com/bluez/bluez/blob/master/src/main.conf for full list of options.
-      General = {
-        Experimental = true; #battery %
-        # ControllerMode = "bredr";
-      };
-    };
-    # package = pkgs.bluez;
-    # network = {
-    #     General = {
-    #       DisableSecurity = false; # Disable link encryption: default=false
-    #     };
-    # };
-    input = {#Set configuration for the input service (/etc/bluetooth/input.conf). See https://github.com/bluez/bluez/blob/master/profiles/input/input.conf for full list of options.
-      General = {
-      # ClassicBondedOnly = false; #true:: # # Limit HID connections to bonded devices
-      IdleTimeout = 30;# 0 (disabled)::
-      #UserspaceHID=true; #true:: # # Enable HID protocol handling in userspace input profile - true,false, persist
-      #LEAutoSecurity=true; # true::
-      };
-    };
-  };
-};
-
-# users.groups.students.gid = 1000; # creates group called students, gid optional
 
 # config= lib.mkIf (config.specialisation != {}) {
 security = {

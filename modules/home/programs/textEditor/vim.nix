@@ -19,6 +19,7 @@
       # onedark-vim
       vim-commentary
       vim-fugitive
+      vim-astro
     ];
     settings = {
       expandtab = true; # spaces instead of tabs

@@ -1,0 +1,10 @@
+#+title: Bluetooth
+
+
+=Technologies=
+- (A2DP - high , HSP/HFP-telephone - low,) older,
+- hsphfpd -middleman -> Better mic (NOTE: cannot be used with wireplumber)
+
+better mic zoom,discord with hsphfpd
+
+NOTE: for bt to work in HSP/HFP mode, test further

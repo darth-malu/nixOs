@@ -12,13 +12,6 @@ let
         ulem
         hyperref
         capt-of
-
-        # jupyter
-        tcolorbox
-        pdfcol
-        upquote
-        titling
-        enumitem
         ;
       #(setex-compiler "lualatex")
       #(setq org-preview-latex-default-process 'dvisvgm)

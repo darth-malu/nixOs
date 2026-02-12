@@ -89,6 +89,12 @@
   };
 
   # services.swapspace.enable = true;
+  hardware.usbStorage.manageShutdown = true; # USB storage graceful power off
+  services.zfs = {
+    autoSnapshot.enable = true; # TODO: see sanoid in man configuration.nix
+    autoScrub.enable = true;
+    trim.enable = true; # true:: - zpool trim, different from autorim pool property
+  };
 }
 
 #NOTE: default options: rw, suid, dev, exec, auto, nouser, and async. -> https://manpages.ubuntu.com/manpages/noble/en/man8/mount.8.html#filesystem-independent%20mount%20options

@@ -2,8 +2,6 @@
   description = "Kenyan Tinkerer makes a flake -- 🫥";
   inputs = {
 
-    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   disko.url = "github:nix-community/disko/latest";
@@ -103,7 +101,7 @@
 let
   system = "x86_64-linux"; # TODO system = builtins.currentSystem;?? find reason it doesn't work
 
-  config = {
+config = {
 
     allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
       "aspell-dict-en-science"
@@ -130,9 +128,10 @@ let
     ];
 
 };
+
  home = inputs.home-manager;
 
- # pkgs = nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};#FIXME better way to do this...+ inherit config
+ # pkgs = nixpkgs.legacyPackages.${system};
  pkgs = import nixpkgs {
    inherit  system;
    inherit config;

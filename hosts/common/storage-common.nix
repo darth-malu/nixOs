@@ -90,6 +90,7 @@
 
   # services.swapspace.enable = true;
   hardware.usbStorage.manageShutdown = true; # USB storage graceful power off
+
   services.zfs = {
     autoSnapshot.enable = true; # TODO: see sanoid in man configuration.nix
     autoScrub.enable = true;

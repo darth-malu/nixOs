@@ -17,6 +17,7 @@
     ./git.nix
     ./yazi
     ./shell
+    ./bluetuith.nix
     ./hyprland
     ./textEditor
     # ./kdeconnect.nix

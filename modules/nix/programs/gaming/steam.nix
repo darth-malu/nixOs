@@ -61,7 +61,8 @@
         # bottles
         heroic # without fhs
         protonup-ng
-        wineWowPackages.full # support both 32-bit and 64-bit applications - stable, full, waylandFull
+        # TODO see if wineWow64 needed or they are installed as deps where required
+        # wineWowPackages.full # support both 32-bit and 64-bit applications - stable, full, waylandFull
         # winetricks
       ]
       ++ (

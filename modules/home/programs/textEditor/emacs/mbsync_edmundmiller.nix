@@ -31,7 +31,7 @@ in
           address = "${email}";
           userName = "${email}"; # server username of this account
           flavor = "gmail.com";
-          passwordCommand = "gpg -d $HOME/Shibuya/modules/home/programs/textEditor/emacs/mu4e_password.gpg";
+          passwordCommand = "gpg -d $HOME/Shibuya/modules/home/programs/textEditor/emacs/mu4e_new.gpg";
           primary = true;
           # gpg.encryptByDefault = true;
           mbsync = {

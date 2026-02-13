@@ -12,14 +12,13 @@
 
 ** nixpkgs
 #+begin_src nix :tangle flake.nix
-    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 #+end_src
 
-nixos-unstable-small exist...smaller, update faster but require more to be built from source
+NOTE nixos-unstable-small exist...smaller, update faster but require more to be built from source
 
 https://nixos.wiki/wiki/Nix_channels
+
 ** disko
 #+begin_src nix :tangle flake.nix
   disko.url = "github:nix-community/disko/latest";
@@ -159,11 +158,14 @@ https://nixos.wiki/wiki/Nix_channels
 #+begin_src nix :tangle flake.nix
 let
   system = "x86_64-linux"; # TODO system = builtins.currentSystem;?? find reason it doesn't work
-
-  config = {
 #+end_src
 
-*** Allow Unfree
+*** config
+**** start
+#+begin_src nix :tangle flake.nix
+config = {
+#+end_src
+**** Allow Unfree
 #+begin_src nix :tangle flake.nix
     allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
       "aspell-dict-en-science"
@@ -182,7 +184,7 @@ let
     ];
 #+end_src
 
-*** Permit Insecure
+**** Permit Insecure
 #+begin_src nix :tangle flake.nix
     permittedInsecurePackages = [
       "ventoy-1.1.10"
@@ -193,19 +195,23 @@ let
     ];
 #+end_src
 
-*** pkgs | home
+**** ender
 #+begin_src nix :tangle flake.nix
 };
+#+end_src
+
+*** pkgs | home
+#+begin_src nix :tangle flake.nix
  home = inputs.home-manager;
 
- # pkgs = nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};#FIXME better way to do this...+ inherit config
+ # pkgs = nixpkgs.legacyPackages.${system};
  pkgs = import nixpkgs {
    inherit  system;
    inherit config;
  };
 #+end_src
 
-*** end of in
+*** end
 #+begin_src nix :tangle flake.nix
 in
 {

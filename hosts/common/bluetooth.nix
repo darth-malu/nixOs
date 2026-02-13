@@ -1,20 +1,4 @@
 {
-  programs.bluetuith = {
-    enable = true;
-    settings = {
-      adapter = "hci0";
-      receive-dir = "/home/malu/BluetoothTransfers";
-
-      keybindings = {
-        Menu = "Alt+m";
-      };
-
-      theme = {
-        Adapter = "red";
-      };
-    };
-  };
-
   hardware = {
     # enableAllFirmware = true; # enable all firmware regardless of license
     # enableAllHardware = true; # Enable support for most hardware

@@ -73,16 +73,15 @@ bind =
   ", XF86Tools, exec, pkill pwvucontrol ||  pwvucontrol"
 
   "$mod $al, mouse:272, exec, pkill rofi || $menu_rofi"
-  "$mod , P, exec, pkill rofi || $menu_rofi"
+  # "$mod , P, exec, pkill rofi || $menu_rofi"
 
   "$mod , R, exec, pkill rofi || $file_browser_rofi"
 
   "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
 
   "$mod, comma, exec, pkill rofi || $rofi_open_windows"
-  "$mod $al, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
-  "$mod, Delete, exec, pkill rofi || rofi_power"
+  "$mod $al, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
   ", XF86Calculator, exec, pkill rofi || $calc_rofi"
 
@@ -239,6 +238,8 @@ bind =
 
   # 🇲​​​​​🇮​​​​​🇸​​​​​🇨​​​​​
   "$mod , Delete, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
+
+  "$mod , P, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/AppLauncher.qml"
 
   "$mod $al,End,execr, systemctl --user restart quickshell"
 

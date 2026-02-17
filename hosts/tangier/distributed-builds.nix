@@ -9,7 +9,7 @@
         # makes it so i dont have to use --builders "ssh://myuser@builder <other builder specification>"
         sshUser = "remotebuild"; # NOTE special user that cant be sudo'd into
         # sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJXqFrWf3rqkudQ6+aBFXkWpZcAm9HW9oHZclRwtGI8G justinmalu@gmail.com"; # carthage
-        sshKey = "~/.ssh/remotebuild.pub";
+        sshKey = "/home/malu/.ssh/remotebuild.pub";
         hostName = "carthage";
         # protocol = "ssh-ng"; #ssh:: ssh-ng ( ssh next generation)
         # maxJobs = 4;

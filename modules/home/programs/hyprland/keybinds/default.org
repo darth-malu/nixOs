@@ -428,10 +428,14 @@ movetoworkspacesilent exists
           "$mod, code:1${toString i}, workspace, ${toString ws}"
           "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}" # this is genius 1-10, amazing
         ]
-    ) 9                         # do upto 10? -- see what it does
+    ) 9           
   )
 )
 #+end_src
+[[https://noogle.dev/f/builtins/genList][genList noogle]]: expects 2 args: generator length 
+
+concat: concatenate a list of lists into a single list
+
 *** Tangier-Carthage-bind
 #+begin_src nix :tangle yes
 ++ (if osConfig.networking.hostName == "tangier" then []

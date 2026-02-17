@@ -13,4 +13,6 @@
     "remotebuild"
     "malu"
   ];
+
+  # nixos-rebuild boot --target-host malu@192.168.100.3 --use-remote-sudo --flake ~/Shibuya#tangier --ask-sudo-password
 }

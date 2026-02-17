@@ -1,6 +1,6 @@
 {
   imports = [
     ./malu.nix
-    # ./remote-builder.nix
+    ./remote-builder.nix
   ];
 }

@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
 
@@ -23,7 +18,7 @@
         # system = "x86_64-linux";
         supportedFeatures = [
           "nixos-test"
-          # "benchmark"
+          "benchmark"
           "big-parallel"
           "kvm"
         ];

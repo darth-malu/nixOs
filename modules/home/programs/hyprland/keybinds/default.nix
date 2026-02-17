@@ -264,7 +264,7 @@ bind =
           "$mod, code:1${toString i}, workspace, ${toString ws}"
           "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}" # this is genius 1-10, amazing
         ]
-    ) 9                         # do upto 10? -- see what it does
+    ) 9           
   )
 )
 

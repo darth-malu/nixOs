@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 let
   plasmaSpecialisation.configuration = {
     # top level attributes
@@ -36,7 +36,7 @@ in
   kde.enable = lib.mkDefault false;
   # gnome.enable = lib.mkDefault false;
 
-  specialisation = {
+  specialisation = lib.mkIf (config.networking.hostName == "carthage") {
     plasmoid = plasmaSpecialisation;
   };
 }

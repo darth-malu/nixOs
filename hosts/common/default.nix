@@ -27,7 +27,7 @@
         "nvidia-settings"
       ];
     permittedInsecurePackages = [
-        "broadcom-sta-6.30.223.271-59-6.18.10"
+        "broadcom-sta-6.30.223.271-59-6.18.13"
       # "libxml2-2.13.8" # for cisco?
     ];
   };

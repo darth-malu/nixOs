@@ -51,6 +51,7 @@
     ])
     ++ (with pkgs; [
       # DEVELOPER 🛠️
+      ed
       # cling
       # firebase-tools
       # manim #FIXME failed
@@ -58,7 +59,6 @@
       # qtcreator
       # beekeeper-studio
       cryptsetup
-      ed
       pass-wayland
       patchelf # TODO see useful nexx
       socat
@@ -167,6 +167,9 @@
           # obs-cli
           obs-studio
           ungoogled-chromium
+          # krita
+          darktable
+          digikam
         ]
       else
         [ ]
@@ -176,10 +179,7 @@
       # blender-hip # Hardware accelerated rendering NOTE later after pos
       gimp
       ffmpeg
-      krita
       inkscape
-      darktable
-      digikam
     ]
     ++ (
       if config.homeHyprland.enable then
@@ -193,7 +193,7 @@
           slurp
           sushi
           viewnior
-          hyprpwcenter
+          # hyprpwcenter
           hyprland-autoname-workspaces
         ]
       else

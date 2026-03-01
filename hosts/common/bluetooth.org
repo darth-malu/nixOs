@@ -8,3 +8,75 @@
 better mic zoom,discord with hsphfpd
 
 NOTE: for bt to work in HSP/HFP mode, test further
+
+* Sig
+https://auth0.com/case-studies/bluetooth-sig
+https://www.tarlogic.com/bsam/documentation/bluetooth-core-specification/
+https://www.bluetooth.com/specifications/assigned-numbers/
+
+The Bluetooth Class of Device (CoD) is a 24-bit number usually represented in hexadecimal. It consists of three main segments: the Service Class, the Major Device Class, and the Minor Device Class.
+
+Because there are hundreds of possible combinations, they are grouped by their Major Device Class. Here are the most common codes you might use in your main.conf.
+
+1. Computer Class (Major: 0x01)
+Since you are on NixOS, your default is likely one of these.
+
+0x000100: Generic Computer (Desktop)
+
+0x000104: Desktop workstation
+
+0x000108: Laptop / Notebook
+
+0x00010C: Rugged Laptop
+
+0x000110: PDA/Palm-sized PC
+
+2. Phone Class (Major: 0x02)
+Useful if you were spoofing a mobile device for specific app compatibility.
+
+0x000200: Generic Phone
+
+0x000204: Smartphone
+
+0x000208: Cordless phone
+
+0x00020C: Wired modem or voice gateway
+
+3. Audio/Video Class (Major: 0x04)
+This is what your Crusher Wireless or Edifier R1280DB would broadcast to your PC.
+
+0x000404: Wearable Headset Device
+
+0x000408: Hands-free Device
+
+0x000414: Loudspeaker
+
+0x000418: Headphones
+
+0x00041C: Portable Audio
+
+0x000420: Car audio
+
+4. Peripheral Class (Major: 0x05)
+Common for HIDs (Human Interface Devices) like mice and keyboards.
+
+0x000540: Keyboard
+
+0x000580: Mouse (Pointing device)
+
+0x0005C0: Combo Keyboard/Mouse
+
+0x000504: Joystick
+
+0x000508: Gamepad (Like a DualSense or Xbox controller)
+
+5. Wearable Class (Major: 0x07)
+0x000704: Wristwatch
+
+0x000708: Pager
+
+0x00070C: Jacket
+
+0x000710: Helmet
+
+0x000714: Glasses

@@ -3,9 +3,9 @@ let
   texx = (
     pkgs.texlive.combine {
       inherit (pkgs.texlive)
-        scheme-basic
+        # scheme-basic
         scheme-medium
-        dvisvgm
+        dvisvgm # for preview and export as html
         dvipng # for preview and export as html
         wrapfig
         amsmath
@@ -40,8 +40,7 @@ in
     emacs-lsp-booster
     inputs.nix-qml.packages.${pkgs.stdenv.hostPlatform.system}.tree-sitter-qmljs
     inputs.nix-qml.packages.${pkgs.stdenv.hostPlatform.system}.qml-ts-mode
-    # prettier
-    # prettierd # prettier as a daemon, for improved speed # TODO test workings
+    prettierd # prettier as a daemon, for improved speed # TODO test workings
 
     libtool
     shellcheck
@@ -62,30 +61,17 @@ in
     # python3 or or specific number
     (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [
-        # gnureadline     # NOTE python-shell-interpreter not supporting readline warning fix
-        pyside6
-        # ffmpeg-python
-
-        # Machine Learning
-        # jupyterlab-widgets
-        seaborn
-        # pandasql
-
-        # ELPy
-        # autopep8
-        # jedi
-        # yapf
-        # flake8
+        # pyside6
 
         # Installers
-        pytubefix
-        nuitka
-        pyinstaller
+        # pytubefix
+        # nuitka
+        # pyinstaller
 
-        requests
+        # requests
 
         # Web Scraping
-        beautifulsoup4
+        # beautifulsoup4
 
         #emacs
         weasyprint # needed for some exports to work

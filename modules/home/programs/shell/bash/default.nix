@@ -66,7 +66,7 @@
           ];
         }
         EOF
-            ${"EDITOR:-vim"} default.nix
+            ''${EDITOR:-vim} default.nix
           fi
         }
         flakify() {
@@ -76,7 +76,7 @@
             echo "use flake" > .envrc
             direnv allow
           fi
-          ${"EDITOR:-vim"} flake.nix
+          ''${EDITOR:-vim} flake.nix
         }
 
         #complete command + file names. Investigate if needed

@@ -1,4 +1,7 @@
 { osConfig, ... }:
+let
+  vars = import ./layout.nix;
+in
 {
   wayland.windowManager.hyprland.settings = {
     general = {
@@ -10,7 +13,7 @@
       resize_on_border = true;
       resize_corner = 3; # 0:: 1-4 clockwise
       hover_icon_on_border = true;
-      layout = "dwindle";
+      layout = vars.layout;
       allow_tearing = true; # false:: - alternatively use immediate rule
       # no_border_on_floating = true;
       no_focus_fallback = true; # false, will not fall back to the next available window when moving focus in a direction where no window was found
@@ -72,6 +75,7 @@
     };
     misc = {
       # "col.splash" = "rgba(195,232,141,1.0)";
+      "col.splash" = "0xffc3e88d";
       # animate_manual_resizes = true; # false::
       # disable_xdg_env_checks = false; #false::
       # force_default_wallpaper = if osConfig.networking.hostName == "carthage" then "0" else "1"; #anime mascot wallpapers
@@ -92,8 +96,7 @@
       # mouse_move_enables_dpms = true;
       layers_hog_keyboard_focus = true; # keyboard interactive layers keep focus on mouse move, fix bittorrent etc pop ups
       # new_window_takes_over_fullscreen = 2; # 2 - unfullscreen, 1 -takes over, -nothing/staybehind -0
-      vrr = if osConfig.networking.hostName == "carthage" then 1 else 0; # 1 -on,2 -fullscreen, 3 - fs with video/audio # adaptive sync
-      # vfr = true;::
+      vrr = if osConfig.networking.hostName == "carthage" then 3 else 0; # 1 -on,2 -fullscreen, 3 - fs with video/audio # adaptive sync
     };
     cursor = {
       # warp_back_after_non_mouse_input = true; # Warp the cursor back to where it was after using a non-mouse input to move it, and then returning back to mouse.
@@ -144,8 +147,17 @@
     dwindle = {
       pseudotile = false; # false:: Pseudotiled windows retain their floating size when tiled.
       preserve_split = true; # if enabled, the split (side/top) will not change regardless of what happens to the container. #TODO: test to restore float to usual size
+      smart_split = true;
       force_split = 0; # 0 -> split follows mouse, 1 -> always split to the left (new = left or top) 2 -> always split to the right (new = right or bottom)
       # split_bias = 1; #specifies which window will receive the larger half of a split. positional - 0, current window - 1, opening window - 2 [0/1/2]
+    };
+
+    scrolling = {
+      fullscreen_on_one_column = true;
+      # column_width = 0.6; # 0.1-1.0, .5::
+      # direction = "down";
+      # focus_fit_method = 0; # 1:: - fit
+      # explicit_column_widths = "0.333, 0.5, 0.667, 1.0"; # "0.333, 0.5, 0.667, 1.0"::
     };
   };
 }

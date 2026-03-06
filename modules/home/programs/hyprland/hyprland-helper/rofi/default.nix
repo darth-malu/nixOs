@@ -33,7 +33,7 @@ pass = {
 
 extraConfig = {
 
-run-command = "hyprctl dispatch -- exec [workspace emptym] uwsm app -s a -- {cmd}";
+run-command = "hyprctl dispatch -- exec [workspace emptym] app2unit -s a -- {cmd}";
 # rofi -e "my message"
 
 modes = [

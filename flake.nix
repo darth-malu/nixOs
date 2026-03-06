@@ -117,6 +117,7 @@ config = {
       "youtube-upnext"
       "davinci-resolve"
       "wpsoffice"
+      # "broadcom-bt-firmware"
     ];
 
     permittedInsecurePackages = [

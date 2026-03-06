@@ -56,7 +56,7 @@
       # firebase-tools
       # manim #FIXME failed
       # nasm
-      # qtcreator
+      qtcreator
       # beekeeper-studio
       cryptsetup
       pass-wayland
@@ -167,9 +167,6 @@
           # obs-cli
           obs-studio
           ungoogled-chromium
-          # krita
-          darktable
-          digikam
         ]
       else
         [ ]
@@ -177,9 +174,12 @@
     ++ [
       # CreativeSPACE 📽
       # blender-hip # Hardware accelerated rendering NOTE later after pos
-      gimp
+      darktable
+      digikam
       ffmpeg
+      gimp
       inkscape
+      krita
     ]
     ++ (
       if config.homeHyprland.enable then

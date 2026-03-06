@@ -1,9 +1,9 @@
 #+title: Bluetooth
-
+#+startup: content indent
 
 =Technologies=
-- (A2DP - high , HSP/HFP-telephone - low,) older,
-- hsphfpd -middleman -> Better mic (NOTE: cannot be used with wireplumber)
+  * (A2DP - high , HSP/HFP-telephone - low,) older,
+  * hsphfpd -middleman -> Better mic (NOTE: cannot be used with wireplumber)
 
 better mic zoom,discord with hsphfpd
 

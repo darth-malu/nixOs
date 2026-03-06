@@ -22,7 +22,6 @@
         # fira-code
         # fira-math
         # office-code-pro # try
-        # proggyfonts
         symbola # emacs fallback
       ]
       ++ [

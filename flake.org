@@ -181,6 +181,7 @@ config = {
       "youtube-upnext"
       "davinci-resolve"
       "wpsoffice"
+      # "broadcom-bt-firmware"
     ];
 #+end_src
 

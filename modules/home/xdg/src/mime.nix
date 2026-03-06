@@ -27,9 +27,9 @@
     ];
 
     "text/plain" = [
+      "vim.desktop"
       "emacsclient.desktop"
       "dev.zed.Zed.desktop"
-      "vim.desktop"
     ];
 
     "text/pdf" = [
@@ -54,8 +54,9 @@
     "video/x-matroska" = [ "mpv.desktop" ];
 
     "inode/directory" = [
-      "yazi.desktop"
+      "org.kde.dolphin.desktop"
       "org.gnome.Nautilus.desktop"
+      "yazi.desktop"
     ];
 
     "x-scheme-handler/http" = [

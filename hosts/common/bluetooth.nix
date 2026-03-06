@@ -1,6 +1,6 @@
 {
   hardware = {
-    # enableAllFirmware = true; # enable all firmware regardless of license
+    # enableAllFirmware = true; # enable all firmware regardless of license - no audio HSP/HFP mode
     # enableAllHardware = true; # Enable support for most hardware
     enableRedistributableFirmware = true; # enable firmware with a license allowing redistribution
     bluetooth = {
@@ -11,11 +11,11 @@
         # Set configuration for system-wide bluetooth (/etc/bluetooth/main.conf). See https://github.com/bluez/bluez/blob/master/src/main.conf for full list of options.
         General = {
           Experimental = true; # battery %
-          ControllerMode = "dual"; # dual:: "bredr" "le"
-          # FastConnectable = true; # scan for incoming connections more frequently - increased power
+          ControllerMode = "bredr"; # dual:: "bredr" "le"
+          FastConnectable = true; # scan for incoming connections more frequently - increased power
           # JustWorksRepairing = "never"; # never::, confirm, always
           # Class = "0x000100"; # how pc ids itself ie. as computer to other devices 0x000000::
-          # name = "BluezDarth"; # default adaptere name- default is Bluez X.YZ
+          # name = "DarthBluez"; # default adaptere name- default is Bluez X.YZ
         };
       };
       # package = pkgs.bluez;

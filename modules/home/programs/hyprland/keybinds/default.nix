@@ -1,5 +1,9 @@
-{pkgs, osConfig, ...}:
+{pkgs, lib, config, osConfig, ...}:
 
+let
+  vars = import ../layout.nix;
+  isScrolling = vars.layout == "scrolling";
+in
 {
   wayland.windowManager.hyprland = {
     settings = {
@@ -13,11 +17,11 @@
       "$sr" = "SHIFT_R";
       "$date_short" = "`date +'%I:%M %p'`"; # add -u (utc)
       "$date_long" = "`date +'%a,%d %b%t%I:%M %p'`";
-      "$kitty" = "uwsm app -s a -- kitty -1 --instance-group kitty";
-      "$yazi_kitty" = "uwsm app -s a -- kitty -1 --instance-group yazi -e yazi";
+      "$kitty" = "app2unit -s a -- kitty -1 --instance-group kitty";
+      "$yazi_kitty" = "app2unit -s a -- kitty -1 --instance-group yazi -e yazi";
 
       "$gaps" = "gaps toggle_gaps_out";
-      "$emacs" = "uwsm app -s a -- emacsclient -c";
+      "$emacs" = "app2unit -s a -- emacsclient -c";
       "$emacs_restart_ico" = "/home/malu/Shibuya/assets/icons/icons8-emacs-color/icons8-emacs-48.png";
       "$notify_send_emacs_restarting" =  "notify-send 'restarting emacs' -i $emacs_restart_ico";
       "$notify_send_emacs_restarted" =  "notify-send 'restarted emacs' -i $emacs_restart_ico";
@@ -31,12 +35,9 @@
 
 bindr = [
 
-  "$mod, N, exec, [workspace emptym] uwsm app -s a -- nautilus"
+  "$mod, N, exec, [workspace emptym] app2unit -s a -- nautilus"
   "$mod , Y, exec, [workspace emptym] $yazi_kitty"
   # "$mod $sl, Y, exec, [workspace special:magic;float true; size 80% 80%] $yazi_kitty"
-
-"$mod $al, H, exec, hyprpicker -an"
-# "$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""
 
   # "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
 
@@ -54,13 +55,12 @@ bindr = [
 
 bind =
   [
-    # "$mod, F1,exec,  killall -9 spotify || [workspace emptym] uwsm app -- spotify"
 
-  "$mod , T, exec, [workspace emptym] uwsm app -s a -- freetube"
-  # "$mod, C, exec, [workspace emptym] uwsm app -s a -- google-chrome-stable"
-  "$mod, C, exec, [workspace emptym] uwsm app -s a -- chromium"
-  "$mod, B, exec, [workspace emptym] uwsm app -s a -- qutebrowser"
-  "$mod, F, exec, [workspace emptym] uwsm app -s a -- firefox"
+  "$mod , T, exec, [workspace 10] app2unit -s a -- freetube"
+  "$mod, C, exec, [workspace emptym] app2unit -s a -- chromium"
+  "$mod, B, exec, [workspace emptym] app2unit -s a -- qutebrowser"
+  "$mod, F, exec, [workspace emptym] app2unit -s a -- firefox"
+  "$mod, F1,exec,  [workspace 10] app2unit -s a -- spotify"
 
  # "$mod $sl, T, exec, youtubr"
  "$mod $sl, T, exec, /home/malu/.code/SkunkWorks/PySide6/youtubr/youtubr"
@@ -149,8 +149,8 @@ bind =
 "$mod, m, togglespecialworkspace, magic"
 "$mod SHIFT, m, movetoworkspace, special:magic"
 
-# "$mod, q, togglespecialworkspace, quanta"
-# "$mod SHIFT, q, movetoworkspace, special:quanta"
+"$mod, q, togglespecialworkspace, quanta"
+"$mod SHIFT, q, movetoworkspace, special:quanta"
 
 "$mod, Next, togglespecialworkspace, easy"
 "$mod SHIFT, Next, movetoworkspace, special:easy"
@@ -158,14 +158,12 @@ bind =
 "$mod, i, togglespecialworkspace, nc"
 #"$mod SHIFT, i, movetoworkspace, special:nc" no need to move shit into it using this for songart
 
-"$mod, s, togglespecialworkspace, scratch"
-"$mod SHIFT, S, movetoworkspace, special:scratch"
+# "$mod, s, togglespecialworkspace, scratch"
+# "$mod SHIFT, S, movetoworkspace, special:scratch"
 
 #"$mod, t, togglespecialworkspace, Tixati" #"$mod SHIFT, T, movetoworkspace, special:Tixati"
 
 # move to empty
-  "$mod , o, movetoworkspace, emptym"
-  "$mod $al, o, movetoworkspacesilent, emptym"
 
   "$mod $cl, h, movefocus, l"
   "$mod $cl, l, movefocus, r"
@@ -210,11 +208,6 @@ bind =
   "$mod $sl, KP_Insert, movetoworkspace, 10"
 
 # next/prev workspace
-  "$mod, mouse_up, workspace, m+1"
-  "$mod, mouse_down, workspace, m-1"
-
-  "$mod ,H, workspace,m-1"
-  "$mod ,L, workspace,m+1"
 
   # 🇳​​​​​🇴​​​​​🇹​​​​​🇮​​​​​🇫​​​​​🇮​​​​​🇨​​​​​🇦​​​​​🇹​​​​​🇮​​​​​🇴​​​​​🇳​​​​​🇸​​​​​
   "$mod $al,i,execr, qs ipc call notifications dismissAll"
@@ -239,7 +232,7 @@ bind =
   # 🇲​​​​​🇮​​​​​🇸​​​​​🇨​​​​​
   "$mod , Delete, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
 
-  "$mod , P, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/AppLauncher.qml"
+  "$mod , P, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/appLauncher/AppLauncher.qml"
 
   "$mod $al,End,execr, systemctl --user restart quickshell"
 
@@ -249,11 +242,9 @@ bind =
   # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
 
 # "$mod,K, Workspace, previous_per_monitor"
-  "$mod,K, focuscurrentorlast"
   "$mod $sl, k, focusmonitor, +1"
   "$mod, mouse:276, Workspace, previous_per_monitor"
-  # "$mod, semicolon, cyclenext"
-  "$mod , space, cyclenext"
+  "$mod,K, focuscurrentorlast"
 ]
 
 ++ (
@@ -263,34 +254,54 @@ bind =
       in
         [
           "$mod, code:1${toString i}, workspace, ${toString ws}"
-          "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}" # this is genius 1-10, amazing
+          "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
         ]
-    ) 9           
+    ) 10           
   )
 )
 
-++ (if osConfig.networking.hostName == "tangier" then []
-  else [
+++ (lib.optionals isScrolling [
+    "$mod $sl, semicolon, layoutmsg, move -col"
+    "$mod, semicolon, layoutmsg, move +col"
 
-    # "$mod ,bracketleft, movecurrentworkspacetomonitor, 0" # DP-3
-    # "$mod ,bracketright, movecurrentworkspacetomonitor, 1" # HDMI-A-1
+    "$mod ,H, workspace,m-1"
+    "$mod ,L, workspace,m+1"
+    "$mod $sl,H, layoutmsg, focus left"
+    "$mod $sl,L, layoutmsg, focus right"
 
-    "$mod ,bracketleft, movewindow, mon:0"
-    "$mod ,bracketright, movewindow, mon:1"
+    "$mod $al,H, layoutmsg, colresize -conf"
+    "$mod $al,L, layoutmsg, colresize +conf"
+    "$mod $al, Return, layoutmsg, colresize 0.5"
 
-    "$mod $cl,bracketleft, movewindow, mon:0 silent"
-    "$mod $cl,bracketright, movewindow, mon:1 silent"
+    "$mod , mouse_up, workspace, m+1"
+    "$mod , mouse_down, workspace, m-1"
+    "$mod $sl, mouse_up, layoutmsg, focus right"
+    "$mod $sl,mouse_down, layoutmsg, focus left"
 
-    "$mod $sl, bracketright, execr, hyprctl dispatch -- swapactiveworkspaces HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}')"
-    "$mod $sl, bracketleft, execr, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $(hyprctl monitors | awk '/^Monitor DP/ {print $2}'); dispatch focusmonitor +1;\""
+    "$mod , grave, layoutmsg,  fit active"
+    "$mod $sl, grave, layoutmsg,  promote"
+
+    "$mod , o, movetoworkspace, emptym"
+    "$mod $sl, o, layoutmsg, promote"
+    "$mod $al, o, movetoworkspacesilent, emptym"
+
+    "$mod , space, cyclenext"
+    "$mod $sl, space, layoutmsg, swapcol"
+  ])
+  ++ (lib.optionals (!isScrolling) [
+    "$mod ,H, workspace,m-1"
+    "$mod ,L, workspace,m+1"
+    "$mod, mouse_up, workspace, m+1"
+    "$mod, mouse_down, workspace, m-1"
+    "$mod , o, movetoworkspace, emptym"
+    "$mod $al, o, movetoworkspacesilent, emptym"
+    "$mod , space, cyclenext"
   ]);
 
 #mouse binds have one less arg
 bindm = [
   "$mod $cl, mouse:272, movewindow"
-  # "$mod , mouse:272, pass, class:^(dota2)$"
   "$mod $cl, mouse:273, resizewindow" # 1 - keep aspect ratio, 2 - ignore aspect
-  # "ALT, mouse:272, movewindow"
 ];
 
 bindc = [

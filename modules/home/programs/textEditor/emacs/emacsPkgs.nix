@@ -13,8 +13,6 @@ let
         hyperref
         capt-of
         ;
-      #(setex-compiler "lualatex")
-      #(setq org-preview-latex-default-process 'dvisvgm)
     }
   );
 in
@@ -38,8 +36,10 @@ in
 
   home.packages = with pkgs; [
     emacs-lsp-booster
+
     inputs.nix-qml.packages.${pkgs.stdenv.hostPlatform.system}.tree-sitter-qmljs
     inputs.nix-qml.packages.${pkgs.stdenv.hostPlatform.system}.qml-ts-mode
+
     prettierd # prettier as a daemon, for improved speed # TODO test workings
 
     libtool
@@ -61,28 +61,11 @@ in
     # python3 or or specific number
     (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [
-        # pyside6
-
-        # Installers
-        # pytubefix
-        # nuitka
-        # pyinstaller
-
-        # requests
-
-        # Web Scraping
-        # beautifulsoup4
-
-        #emacs
         weasyprint # needed for some exports to work
         pytest
         pyflakes
         isort # sort imports block
         grip
-
-        # Testing
-        # pytest-mock # yyoutubr pytest
-        # pytest-mockservers
       ]
     ))
 
@@ -162,6 +145,5 @@ in
     # MISC
     imagemagick # image-dired, has convert:
     unzip # tldr
-
   ];
 }

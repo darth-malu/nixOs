@@ -11,6 +11,7 @@
   imports = [
     ./Gaming
     ./yt-dlp
+    ./Development
     ./qutebrowser
     ./soundStuff
     ./mpv
@@ -22,7 +23,6 @@
     ./textEditor
     # ./kdeconnect.nix
     ./pkgs.nix
-    ./direnv.nix
     ./gpg.nix
     ./nyaa.nix
     # ./kde

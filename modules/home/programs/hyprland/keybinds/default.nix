@@ -107,7 +107,7 @@ bind =
   "$mod $sl, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch resizeactive exact 80% 80%;dispatch centerwindow 1;\""
   "$mod, v, togglefloating"
 
-  "$mod, KP_Divide, togglesplit" # dwindle
+  # "$mod, KP_Divide, togglesplit" # dwindle
   "$mod, KP_Multiply, pseudo"
 
 # "$mod $cl, KP_End, focuswindow, class:^(Emacs)$"

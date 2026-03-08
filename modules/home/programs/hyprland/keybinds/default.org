@@ -197,7 +197,7 @@ Make Trivial Builders for this
 
 *** toggle dwindle/pseudo
 #+begin_src nix :tangle default.nix
-  "$mod, KP_Divide, togglesplit" # dwindle
+  # "$mod, KP_Divide, togglesplit" # dwindle
   "$mod, KP_Multiply, pseudo"
 #+end_src
 *** obs

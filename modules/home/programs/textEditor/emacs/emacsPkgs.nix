@@ -40,7 +40,8 @@ in
     inputs.nix-qml.packages.${pkgs.stdenv.hostPlatform.system}.tree-sitter-qmljs
     inputs.nix-qml.packages.${pkgs.stdenv.hostPlatform.system}.qml-ts-mode
 
-    prettierd # prettier as a daemon, for improved speed # TODO test workings
+    prettier
+    # prettierd # prettier as a daemon, for improved speed # TODO test workings
 
     libtool
     shellcheck
@@ -58,6 +59,8 @@ in
     mediainfo
     vips
 
+    go-grip
+
     # python3 or or specific number
     (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [
@@ -65,7 +68,7 @@ in
         pytest
         pyflakes
         isort # sort imports block
-        grip
+        # grip
       ]
     ))
 
@@ -81,7 +84,7 @@ in
 
     # NODE / Javascript
     # nodejs_25 # consider npm for auto install of servers in lsp-mode
-    nodejs
+    # nodejs
     # deno
 
     # C

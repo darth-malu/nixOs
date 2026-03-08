@@ -20,12 +20,9 @@
     ./shell
     ./bluetuith.nix
     ./hyprland
-    ./textEditor
-    # ./kdeconnect.nix
     ./pkgs.nix
     ./gpg.nix
     ./nyaa.nix
-    # ./kde
   ];
 
   homeHyprland.enable = lib.mkIf osConfig.programs.hyprland.enable true;

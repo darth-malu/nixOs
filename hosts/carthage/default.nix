@@ -9,8 +9,6 @@ imports = [
 
 hardware = {
   cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  enableAllFirmware = true; # enable all firmware regardless of license #for bt to work in HSP/HFP mode
-  # enableAllHardware = true; # Enable support for most hardware
 };
 
 networking = {

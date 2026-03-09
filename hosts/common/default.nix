@@ -104,6 +104,11 @@
     libinput.enable = lib.mkIf (config.networking.hostName == "tangier") true; # touchpad, should be on by default
   };
 
+hardware = {
+  enableAllFirmware = true; # enable all firmware regardless of license #for bt to work in HSP/HFP mode
+  # enableAllHardware = true; # Enable support for most hardware
+};
+
   programs.nm-applet.enable = lib.mkIf config.hyprland.enable true; # started automatically with the graphical session
   programs.nm-applet.indicator = lib.mkIf config.hyprland.enable true;
 

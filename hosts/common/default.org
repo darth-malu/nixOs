@@ -121,6 +121,18 @@ https://search.nixos.org/options?channel=25.05&show=boot.loader.systemd-boot.sor
     libinput.enable = lib.mkIf (config.networking.hostName == "tangier") true; # touchpad, should be on by default
   };
 #+end_src
+* Hardware
+#+begin_src nix :tangle default.nix
+hardware = {
+  enableAllFirmware = true; # enable all firmware regardless of license #for bt to work in HSP/HFP mode
+  # enableAllHardware = true; # Enable support for most hardware
+};
+#+end_src
+
+TODO See implications without - 
+NOTE Runs mostly fine without this
+
+Enable hardware - Bloat? unneeded except for live media?
 
 * networking stuffs
 ** start

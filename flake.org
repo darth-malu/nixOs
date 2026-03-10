@@ -142,6 +142,13 @@ https://nixos.wiki/wiki/Nix_channels
       inputs.nixpkgs.follows = "nixpkgs";
     };
 #+end_src
+** Zen Browserv
+#+begin_src nix :tangle flake.nix
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+#+end_src
 ** end inputs
 #+begin_src nix :tangle flake.nix
   };
@@ -240,7 +247,6 @@ modules = [
 ***** Some systemPackage modules | winapps | rebuild-ng
 #+begin_src nix :tangle no
 {environment.systemPackages = [
-   # pkgs.nixos-rebuild-ng #  alternatively to replace old rebuild: system.rebuild.enableNg
    inputs.winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps
    inputs.winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps-launcher # optional
  ];
@@ -304,22 +310,22 @@ This will generate a flake.nix and a home.nix file in ~/.config/home-manager, cr
 to override default config directory:
   #+begin_src sh
 nix run home-manager/$branch -- init --switch ~/hmconf
+
 # And after the initial activation.
 home-manager switch --flake ~/hmconf
   #+end_src
 
-If you omit the --switch option then the activation will not happen. This is useful if you want to inspect and edit the configuration before activating it.
+If you =omit= the --switch option then the activation will not happen. This is useful if you want to inspect and edit the configuration before activating it.
 
 After the initial activation has completed successfully then building and activating your flake-based configuration is as simple as:
 #+begin_src sh
 home-manager switch
 #+end_src
 
-The flake inputs are not automatically updated by Home Manager. You need to use the standard =nix flake update= command for that.
++ The flake inputs are =not automatically= updated by Home Manager. You need to use the standard =nix flake update= command for that.
++ If you only want to update a single flake input, then the command =nix flake lock --update-input <input>= can be used.
++ You can also pass flake-related options such as =--recreate-lock-file= or =--update-input <input>= to home-manager when building or switching, and these options will be forwarded to nix build.
 
-If you only want to update a single flake input, then the command =nix flake lock --update-input <input>= can be used.
-
-You can also pass flake-related options such as =--recreate-lock-file= or =--update-input <input>= to home-manager when building or switching, and these options will be forwarded to nix build.
 See the NixOS Wiki page for details.
 ******** Module AutoImport
 Home manager imports all modules from the /modules/program /modules/services:
@@ -328,8 +334,8 @@ Home manager imports all modules from the /modules/program /modules/services:
 + _files: excluded from autoImport
 ***** Ender
 #+begin_src nix :tangle flake.nix
-];  # modules
- };  # carthage
+  ];  # modules
+};  # carthage
 #+end_src
 
 *** tangier

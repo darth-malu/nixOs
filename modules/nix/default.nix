@@ -7,7 +7,7 @@
     ./programs
     ./services
     ./core
-    # ./app-image.nix
+    ./app-image.nix
     ./overlays.nix
     # ./themes-nix.nix
   ];

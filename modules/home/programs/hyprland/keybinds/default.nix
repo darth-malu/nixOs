@@ -114,6 +114,7 @@ bind =
 # "$mod $cl, D, focuswindow, class:^(emacs)$"
 # "$mod $cl, D, focuswindow, initialTitle:(.*)(Doom Emacs)$"
   "$mod $cl, E, focuswindow, class:^(emacs)$"
+  "$mod $sl, E, execr, emacsclient --eval \"(emacs-everywhere)\""
 
 "$mod $cl, D, focuswindow, class:^(discord)$"
 

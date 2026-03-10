@@ -2,6 +2,7 @@
   config,
   osConfig,
   pkgs,
+  inputs,
   ...
 }:
 
@@ -167,6 +168,7 @@
           # obs-cli
           obs-studio
           ungoogled-chromium
+          inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
         ]
       else
         [ ]

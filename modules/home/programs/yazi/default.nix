@@ -19,7 +19,7 @@
     keymap = import ./keymap.nix;
     theme = import ./theme.nix;
     initLua = ./init.lua;
-    # shellWrapperName = "y"; # yy::
+    shellWrapperName = "y"; # yy::
     plugins = {
       # Linked to: $XDG_CONFIG_HOME/yazi/plugins/<name>.yazi
       arrow = ./plugins/arrow.yazi;

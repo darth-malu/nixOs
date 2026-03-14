@@ -167,7 +167,8 @@
           # handbrake # FIXME lag on open
           # obs-cli
           obs-studio
-          ungoogled-chromium
+          # ungoogled-chromium
+          google-chrome
           inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
         ]
       else
@@ -182,6 +183,8 @@
       gimp
       inkscape
       krita
+      figma-linux
+      figma-agent
     ]
     ++ (
       if config.homeHyprland.enable then

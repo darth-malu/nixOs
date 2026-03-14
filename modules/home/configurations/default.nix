@@ -2,7 +2,7 @@
 {
   xdg.configFile = {
     "hyprland-autoname-workspaces/config.toml".source =
-      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Shibuya/modules/home/configurations/hyprland-autoname-workspaces/config.toml";
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/quickshell/bar/autoname-config.toml";
   };
   home.file = {
     ".local/share/fonts/wps-fonts" = {

@@ -59,6 +59,7 @@ bindr = [
 **** file manager
 #+begin_src nix :tangle default.nix
   "$mod, N, exec, [workspace emptym] app2unit -s a -- nautilus"
+"$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
   "$mod , Y, exec, [workspace emptym] $yazi_kitty"
   # "$mod $sl, Y, exec, [workspace special:magic;float true; size 80% 80%] $yazi_kitty"
 #+end_src
@@ -112,7 +113,7 @@ bind =
 *** Applications
 #+begin_src nix :tangle default.nix
   "$mod , T, exec, [workspace 10] app2unit -s a -- freetube"
-  "$mod, C, exec, [workspace emptym] app2unit -s a -- chromium"
+  "$mod, C, exec, [workspace emptym] app2unit -s a -- google-chrome"
   "$mod, B, exec, [workspace emptym] app2unit -s a -- qutebrowser"
   "$mod, F, exec, [workspace emptym] app2unit -s a -- firefox"
   "$mod, F1,exec,  [workspace 10] app2unit -s a -- spotify"
@@ -131,7 +132,14 @@ Make Trivial Builders for this
 *** kitty
 #+begin_src nix :tangle default.nix
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
+"$mod $cl, Return, focuswindow, class:^(kitty)$"
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
+#+end_src
+
+*** foot
+#+begin_src nix :tangle default.nix
+  "$mod, F2, exec, [workspace emptym] footclient" 
+  # "$mod $sl, F2, exec, foot"
 #+end_src
 
 *** pwvucontrol
@@ -220,7 +228,7 @@ see hyprswitch:
 # "$mod $cl, D, focuswindow, class:^(emacs)$"
 # "$mod $cl, D, focuswindow, initialTitle:(.*)(Doom Emacs)$"
   "$mod $cl, E, focuswindow, class:^(emacs)$"
-  "$mod $sl, E, execr, emacsclient --eval \"(emacs-everywhere)\""
+  "$mod $sl, E, exec, emacsclient --eval \"(emacs-everywhere)\""
 #+end_src
 
 **** discord
@@ -231,11 +239,6 @@ see hyprswitch:
 **** yazi
 #+begin_src nix :tangle default.nix
 "$mod $cl, Y, focuswindow, title:^([Yy]azi)(.*)$"
-  # "$mod , up, focuswindow, class:^(Emacs)$"
-#+end_src
-**** nautilus
-#+begin_src nix :tangle default.nix
-"$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
   # "$mod , up, focuswindow, class:^(Emacs)$"
 #+end_src
 **** dolphin
@@ -253,18 +256,16 @@ see hyprswitch:
 **** chromium
 #+begin_src nix :tangle default.nix
 # "$mod $cl, C, focuswindow, class:^(google-chrome)$"
-"$mod $cl, c, focuswindow, class:^(chromium-browser)$"
-"$mod , g, exec, chromium gemini.google.com"
-"$mod g, g, exec, chromium gemini.google.com"
+"$mod $cl, c, focuswindow, class:^(google-chrome)$"
 #+end_src
 **** firefox
 #+begin_src nix :tangle default.nix
 "$mod $cl, f, focuswindow, class:^(firefox)$"
-"$mod g, f, exec, firefox gemini.google.com"
 #+end_src
-**** kitty
+**** zen
 #+begin_src nix :tangle default.nix
-"$mod $cl, Return, focuswindow, class:^(kitty)$"
+"$mod $cl, z, focuswindow, class:^(zen)$"
+"$mod , z, exec, zen"
 #+end_src
 **** mpv
 #+begin_src nix :tangle default.nix
@@ -371,6 +372,8 @@ movetoworkspacesilent exists
   # 🇳​​​​​🇴​​​​​🇹​​​​​🇮​​​​​🇫​​​​​🇮​​​​​🇨​​​​​🇦​​​​​🇹​​​​​🇮​​​​​🇴​​​​​🇳​​​​​🇸​​​​​
   "$mod $al,i,execr, qs ipc call notifications dismissAll"
 
+  "$mod $al, t, execr, qs ipc call Time currentDate"
+  "$mod , backslash, execr, qs ipc call Time currentDate"
 
   # 🇷​​​​​🇪​​​​​🇸​​​​​🇴​​​​​🇺​​​​​🇷​​​​​🇨​​​​​🇪​​​​​🇸​​​​​
   "$mod $cl, KP_Left, execr, qs ipc call netspeed toggleNet"
@@ -547,8 +550,8 @@ binde =
     "$mod, Prior, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
     "$mod $sl, Prior, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
 
-    "$mod, backslash, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
-    "$mod $sl, backslash, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
+    # "$mod, backslash, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
+    # "$mod $sl, backslash, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
   ]
   ++[
     "$mod $sl,i,execr, songart"

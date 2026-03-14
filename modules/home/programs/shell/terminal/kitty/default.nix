@@ -7,8 +7,7 @@
 
   programs.kitty = {
     enable = true;
-    # enableGitIntegration = true;
-    # environment
+    enableGitIntegration = true;
     shellIntegration = {
       enableBashIntegration = true;
       mode = "no-cursor"; # vi mode conflict fix

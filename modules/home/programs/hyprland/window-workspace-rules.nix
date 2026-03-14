@@ -123,7 +123,7 @@
       "special:magic, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:magic;float true;size (monitor_w*0.9) (monitor_h*0.8);center true] app2unit -s a kitty'\""
 
       # ncmpcpp
-      "special:nc, on-created-empty:sh -c \"hyprctl dispatch -- exec app2unit -s a 'kitty -e ncmpcpp'\", monitor:HDMI-A-1"
+      "special:nc, on-created-empty:sh -c \"hyprctl dispatch -- exec app2unit -s a 'footclient -e ncmpcpp'\", monitor:HDMI-A-1"
 
       "special:easy, easyeffects"
 

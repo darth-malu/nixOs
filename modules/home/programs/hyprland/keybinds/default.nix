@@ -36,6 +36,7 @@ in
 bindr = [
 
   "$mod, N, exec, [workspace emptym] app2unit -s a -- nautilus"
+"$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
   "$mod , Y, exec, [workspace emptym] $yazi_kitty"
   # "$mod $sl, Y, exec, [workspace special:magic;float true; size 80% 80%] $yazi_kitty"
 
@@ -57,7 +58,7 @@ bind =
   [
 
   "$mod , T, exec, [workspace 10] app2unit -s a -- freetube"
-  "$mod, C, exec, [workspace emptym] app2unit -s a -- chromium"
+  "$mod, C, exec, [workspace emptym] app2unit -s a -- google-chrome"
   "$mod, B, exec, [workspace emptym] app2unit -s a -- qutebrowser"
   "$mod, F, exec, [workspace emptym] app2unit -s a -- firefox"
   "$mod, F1,exec,  [workspace 10] app2unit -s a -- spotify"
@@ -68,7 +69,11 @@ bind =
  "$mod , A, exec, ascii"
 
   "$mod, Return, exec, $kitty" #$terminal , wezterm, ghostty
+"$mod $cl, Return, focuswindow, class:^(kitty)$"
   "$mod $sl, Return, exec, [workspace emptym] $kitty"
+
+  "$mod, F2, exec, [workspace emptym] footclient" 
+  # "$mod $sl, F2, exec, foot"
 
   ", XF86Tools, exec, pkill pwvucontrol ||  pwvucontrol"
 
@@ -114,14 +119,11 @@ bind =
 # "$mod $cl, D, focuswindow, class:^(emacs)$"
 # "$mod $cl, D, focuswindow, initialTitle:(.*)(Doom Emacs)$"
   "$mod $cl, E, focuswindow, class:^(emacs)$"
-  "$mod $sl, E, execr, emacsclient --eval \"(emacs-everywhere)\""
+  "$mod $sl, E, exec, emacsclient --eval \"(emacs-everywhere)\""
 
 "$mod $cl, D, focuswindow, class:^(discord)$"
 
 "$mod $cl, Y, focuswindow, title:^([Yy]azi)(.*)$"
-  # "$mod , up, focuswindow, class:^(Emacs)$"
-
-"$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
   # "$mod , up, focuswindow, class:^(Emacs)$"
 
 "$mod $cl $sl, N, focuswindow, class:org.kde.dolphin"
@@ -133,14 +135,12 @@ bind =
 # "$mod , left, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 
 # "$mod $cl, C, focuswindow, class:^(google-chrome)$"
-"$mod $cl, c, focuswindow, class:^(chromium-browser)$"
-"$mod , g, exec, chromium gemini.google.com"
-"$mod g, g, exec, chromium gemini.google.com"
+"$mod $cl, c, focuswindow, class:^(google-chrome)$"
 
 "$mod $cl, f, focuswindow, class:^(firefox)$"
-"$mod g, f, exec, firefox gemini.google.com"
 
-"$mod $cl, Return, focuswindow, class:^(kitty)$"
+"$mod $cl, z, focuswindow, class:^(zen)$"
+"$mod , z, exec, zen"
 
 "$mod $cl, m, focuswindow, class:^(mpv)$"
 # "$mod , down, focuswindow, class:^(mpv)$"
@@ -213,6 +213,8 @@ bind =
   # 🇳​​​​​🇴​​​​​🇹​​​​​🇮​​​​​🇫​​​​​🇮​​​​​🇨​​​​​🇦​​​​​🇹​​​​​🇮​​​​​🇴​​​​​🇳​​​​​🇸​​​​​
   "$mod $al,i,execr, qs ipc call notifications dismissAll"
 
+  "$mod $al, t, execr, qs ipc call Time currentDate"
+  "$mod , backslash, execr, qs ipc call Time currentDate"
 
   # 🇷​​​​​🇪​​​​​🇸​​​​​🇴​​​​​🇺​​​​​🇷​​​​​🇨​​​​​🇪​​​​​🇸​​​​​
   "$mod $cl, KP_Left, execr, qs ipc call netspeed toggleNet"
@@ -336,8 +338,8 @@ binde =
     "$mod, Prior, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
     "$mod $sl, Prior, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
 
-    "$mod, backslash, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
-    "$mod $sl, backslash, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
+    # "$mod, backslash, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
+    # "$mod $sl, backslash, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
   ]
   ++[
     "$mod $sl,i,execr, songart"

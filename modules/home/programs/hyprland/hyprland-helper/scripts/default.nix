@@ -12,36 +12,31 @@ let
   pause_play = import ./pause_play.nix { inherit pkgs; };
   # rofi_power = import ./rofi_power.nix { inherit pkgs; };
   gaps = import ./gaps.nix { inherit pkgs; };
-  netspeed = import ./netspeed.nix { inherit pkgs; };
+  # netspeed = import ./netspeed.nix { inherit pkgs; };
   # batteryQS = import ./battery.nix { inherit pkgs; };
-  temp =
-    if osConfig.networking.hostName == "tangier" then
-      import ./temp/tangier_temp.nix { inherit pkgs; }
-    else
-      import ./temp/carthage_temp.nix { inherit pkgs; };
+  # temp =
+  #   if osConfig.networking.hostName == "tangier" then
+  #     import ./temp/tangier_temp.nix { inherit pkgs; }
+  #   else
+  #     import ./temp/carthage_temp.nix { inherit pkgs; };
   clr_backup = import ./clr_backup.nix { inherit pkgs; };
   backupSumbi = import ./backup/backuper.nix { inherit pkgs; };
   mount_hdd = import ./mount_hdd.nix { inherit pkgs; };
 in
 {
   home.packages =
-    (
-      if osConfig.networking.hostName == "carthage" then
-        [
-          mount_hdd
-        ]
-      else
-        [ ]
-    )
+    pkgs.lib.optionals (osConfig.networking.hostName == "carthage") [
+      mount_hdd
+    ]
     ++ [
-      netspeed
+      # netspeed
       songart
       pause_play
       mpris_vol
       volume_dunst
       # rofi_power
       gaps
-      temp
+      # temp
       clr_backup
       backupSumbi
       # batteryQS

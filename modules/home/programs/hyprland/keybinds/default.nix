@@ -213,8 +213,8 @@ bind =
   # 🇳​​​​​🇴​​​​​🇹​​​​​🇮​​​​​🇫​​​​​🇮​​​​​🇨​​​​​🇦​​​​​🇹​​​​​🇮​​​​​🇴​​​​​🇳​​​​​🇸​​​​​
   "$mod $al,i,execr, qs ipc call notifications dismissAll"
 
-  "$mod $al, t, execr, qs ipc call Time currentDate"
-  "$mod , backslash, execr, qs ipc call Time currentDate"
+  "$mod $al, t, execr, qs ipc call Time currentTime"
+  "$mod , backslash, execr, qs ipc call Time currentTime"
 
   # 🇷​​​​​🇪​​​​​🇸​​​​​🇴​​​​​🇺​​​​​🇷​​​​​🇨​​​​​🇪​​​​​🇸​​​​​
   "$mod $cl, KP_Left, execr, qs ipc call netspeed toggleNet"

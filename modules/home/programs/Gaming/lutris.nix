@@ -22,10 +22,10 @@
         umu-launcher
         protobuf # for battle.net
       ];
-      protonPackages = [ pkgs.proton-ge-bin ];
+      # protonPackages = [ pkgs.proton-ge-bin ];
       steamPackage = osConfig.programs.steam.package;
-      winePackages = [ pkgs.wineWow64Packages.full ];
-      defaultWinePackage = pkgs.proton-ge-bin;
+      winePackages = [ pkgs.wineWow64Packages.waylandFull ];
+      # defaultWinePackage = pkgs.proton-ge-bin;
       # runners = {
       #   cemu.package = pkgs.cemu;
       #   pcsx2.config = {

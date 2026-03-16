@@ -401,6 +401,7 @@ movetoworkspacesilent exists
   "$mod $al,Home,execr, qs ipc call bar toggleBar"
 #+end_src
 
+
 *** swap position in workspace clockwise
 #+begin_src nix :tangle default.nix
   "$mod $sl, semicolon, swapnext"

@@ -32,7 +32,7 @@
         "b43-firmware"
       ];
     permittedInsecurePackages = [
-        "broadcom-sta-6.30.223.271-59-6.18.16"
+        "broadcom-sta-6.30.223.271-59-6.18.17"
       # "libxml2-2.13.8" # for cisco?
     ];
   };

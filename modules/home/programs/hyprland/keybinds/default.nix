@@ -226,7 +226,7 @@ bind =
   # 🇲​​​​​🇵​​​​​🇷​​​​​🇮​​​​​🇸​​​​​
   "$mod, F7, execr, qs ipc call mpris toggleMpris"
   "$mod $al, F7, execr, qs ipc call mpris toggleMprisIcon"
-  "$mod $sl, F7, execr, qs ipc call mpris raise"
+  "$mod $cl, F7, execr, qs ipc call mpris raise"
 
   ", F8, execr, qs ipc call mpris next"
   ", F6, execr, qs ipc call mpris previous"

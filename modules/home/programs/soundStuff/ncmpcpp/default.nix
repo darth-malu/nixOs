@@ -215,7 +215,7 @@ mpd_host = "localhost";
 mpd_port = 6600;
 
 # execute_on_song_change = "~/.darth/scripts/player/songinfo.sh";
-execute_on_song_change = "songart";
+# execute_on_song_change = "songart";
 # execute_on_player_state_change = "songart";
 
 selected_item_prefix = "+  ";

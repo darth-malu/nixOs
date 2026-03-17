@@ -132,7 +132,7 @@
       gpu-screen-recorder-gtk
       alarm-clock-applet
       spotify
-      castero
+      # castero                   # FIXME Failed Test
       # spotube
       sway-audio-idle-inhibit
       # digikam #TODO diff with darktable

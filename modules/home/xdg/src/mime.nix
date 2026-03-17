@@ -19,6 +19,15 @@
   defaultApplications = {
     "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
 
+    "text/javascript" = [
+      "firefox.desktop"
+      "emacsclient.desktop"
+    ];
+
+    "application/javascript" = [
+      "firefox.desktop"
+    ];
+
     "text/html" = [
       "google-chrome.desktop"
       "chromium-browser.desktop"

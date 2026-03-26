@@ -8,7 +8,7 @@
   options.steamy = {
     enable = lib.mkEnableOption "steam";
     # Steam Launcher options
-    # gamemoderun %command% -novid -sdlaudiodriver pipewire -vulkan -nomousegrab -high -map dota -vulkan_disable_steam_shader_cache
+    # NOTE gamemoderun %command% -novid -sdlaudiodriver pipewire -vulkan -nomousegrab -high -map dota -vulkan_disable_steam_shader_cache
   };
 
   config = lib.mkIf config.steamy.enable {
@@ -59,7 +59,13 @@
         # gst_all_1.gstreamer
         antimicrox
         # bottles
-        heroic # without fhs
+        (heroic.override {
+          extraPkgs =
+            pkgs': with pkgs'; [
+              gamemode
+              gamescope
+            ];
+        }) # without fhs
         # protonup-ng
         protonup-rs
         # TODO see if wineWow64 needed or they are installed as deps where required

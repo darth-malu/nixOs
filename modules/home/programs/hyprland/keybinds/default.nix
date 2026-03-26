@@ -40,6 +40,9 @@ bindr = [
   "$mod , Y, exec, [workspace emptym] $yazi_kitty"
   # "$mod $sl, Y, exec, [workspace special:magic;float true; size 80% 80%] $yazi_kitty"
 
+"$mod $sl, KP_End, exec, hyprpicker -an"
+# "$mod $al, R, exec, \"$(hyprpicker -f rgb - | sed 's/^/(/; s/$/,1.0)/; y/ /,/\' | wl-copy -n)\""
+
   # "$mod $al, Return, exec, $ghostty" #$terminal , wezterm, ghostty
 
   # copy save
@@ -217,8 +220,8 @@ bind =
   "$mod , backslash, execr, qs ipc call Time currentTime"
 
   # 🇷​​​​​🇪​​​​​🇸​​​​​🇴​​​​​🇺​​​​​🇷​​​​​🇨​​​​​🇪​​​​​🇸​​​​​
-  "$mod $cl, KP_Left, execr, qs ipc call netspeed toggleNet"
-  "$mod $cl, KP_End, execr, qs ipc call resources toggleResources"
+  # "$mod $cl, KP_Left, execr, qs ipc call netspeed toggleNet"
+  # "$mod $cl, KP_End, execr, qs ipc call resources toggleResources"
 
   "$mod $al, N, execr, qs ipc call netspeed toggleNet"
   "$mod $al, R, execr, qs ipc call resources toggleResources"
@@ -232,6 +235,9 @@ bind =
   ", F6, execr, qs ipc call mpris previous"
   ", F7, execr, qs ipc call mpris togglePlaying"
 
+    "$mod $sl,i,execr, qs ipc call mpris songArt"
+    ", Pause, execr, qs ipc call mpris songArt"
+
   # 🇲​​​​​🇮​​​​​🇸​​​​​🇨​​​​​
   "$mod , Delete, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
 
@@ -240,9 +246,6 @@ bind =
   "$mod $al,End,execr, systemctl --user restart quickshell"
 
   "$mod $al,Home,execr, qs ipc call bar toggleBar"
-
-  "$mod $sl, semicolon, swapnext"
-  # "$mod , Up, exec, hyprctl --batch \"dispatch swapactiveworkspaces HDMI-A-1 $( hyprctl monitors | grep DP | cut -d ' ' -f2 ) ; dispatch focusmonitor +1;\""
 
 # "$mod,K, Workspace, previous_per_monitor"
   "$mod $sl, k, focusmonitor, +1"
@@ -267,8 +270,6 @@ bind =
     "$mod $sl, semicolon, layoutmsg, move -col"
     "$mod, semicolon, layoutmsg, move +col"
 
-    "$mod ,H, workspace,m-1"
-    "$mod ,L, workspace,m+1"
     "$mod $sl,H, layoutmsg, focus left"
     "$mod $sl,L, layoutmsg, focus right"
 
@@ -276,30 +277,28 @@ bind =
     "$mod $al,L, layoutmsg, colresize +conf"
     "$mod $al, Return, layoutmsg, colresize 0.5"
 
-    "$mod , mouse_up, workspace, m+1"
-    "$mod , mouse_down, workspace, m-1"
+    # Scrolling left/right in a scrolling workspace
     "$mod $sl, mouse_up, layoutmsg, focus right"
     "$mod $sl,mouse_down, layoutmsg, focus left"
 
     "$mod , grave, layoutmsg,  fit active"
     "$mod $sl, grave, layoutmsg,  promote"
 
-    "$mod , o, movetoworkspace, emptym"
     "$mod $sl, o, layoutmsg, promote"
-    "$mod $al, o, movetoworkspacesilent, emptym"
-
-    "$mod , space, cyclenext"
     "$mod $sl, space, layoutmsg, swapcol"
   ])
   ++ (lib.optionals (!isScrolling) [
+    # 
+  ]) ++ [                       # Universal
+    "$mod $sl, space, swapnext"
+    "$mod , space, cyclenext"
     "$mod ,H, workspace,m-1"
     "$mod ,L, workspace,m+1"
     "$mod, mouse_up, workspace, m+1"
     "$mod, mouse_down, workspace, m-1"
     "$mod , o, movetoworkspace, emptym"
     "$mod $al, o, movetoworkspacesilent, emptym"
-    "$mod , space, cyclenext"
-  ]);
+  ];
 
 #mouse binds have one less arg
 bindm = [
@@ -341,10 +340,7 @@ binde =
     # "$mod, backslash, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
     # "$mod $sl, backslash, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
   ]
-  ++[
-    "$mod $sl,i,execr, songart"
-    ", Pause, execr, songart"
-  ]++
+  ++
   [
     #GAPS
     "$mod ,KP_Enter, exec, gaps reset_zero" # set according to hyprland config default

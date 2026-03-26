@@ -2,8 +2,8 @@
 
 {
   nixpkgs.overlays = [
-    (self: super: {
-      ccacheWrapper = super.ccacheWrapper.override {
+    (final: prev: {
+      ccacheWrapper = prev.ccacheWrapper.override {
         extraConfig = ''
           export CCACHE_COMPRESS=1
           export CCACHE_DIR="${config.programs.ccache.cacheDir}"
@@ -28,8 +28,9 @@
         '';
       };
     })
-    # (self: super: {
-    #   gnome = super.gnome.overrideScope' (
+
+    # (final: prev: {
+    #   gnome = prev.gnome.overrideScope' (
     #     gself: gsuper: {
     #       nautilus = gsuper.nautilus.overrideAttrs (nsuper: {
     #         buildInputs =

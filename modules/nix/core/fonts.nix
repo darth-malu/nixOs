@@ -8,7 +8,7 @@
       with pkgs;
       [
         jetbrains-mono
-        font-awesome
+        # font-awesome
         texlivePackages.nunito
         texlivePackages.plex
         inter
@@ -47,7 +47,7 @@
         monofur
         mononoki
         fantasque-sans-mono
-        ubuntu-mono
+        # ubuntu-mono
         symbols-only
         # shure-tech-mono
         # agave

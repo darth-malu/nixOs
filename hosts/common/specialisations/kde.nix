@@ -18,7 +18,7 @@
     };
     services.desktopManager.plasma6.enable = true;
 
-    services.blueman.enable = false; # TODO test if works
+    services.blueman.enable = false;
 
     programs.dconf.enable = true;
 
@@ -29,8 +29,8 @@
           # plasma-browser-integration # enable for kdeconnect
           # elisa
           # konsole
-          ksystemlog
-          oxygen
+          # ksystemlog
+          # oxygen
         ]
         ++ (with pkgs; [
         ]);

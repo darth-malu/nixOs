@@ -20,7 +20,7 @@
     # Prepend to $PATH in a double-quoted context
     # "$HOME/.code/PySide6/youtubr/dist"
     "${config.xdg.configHome}/emacs/bin"
-    "${config.home.homeDirectory}/Development/bash/Scripts"
+    "${config.home.homeDirectory}/Development/Core Utils/bash/Scripts"
   ];
 
   # UWSM environment

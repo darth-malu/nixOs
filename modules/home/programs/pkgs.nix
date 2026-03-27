@@ -19,7 +19,6 @@
       grim
       imagemagick # screenshot
       # sound-theme-freedesktop # free sounds
-      # pulseaudioFull # paplay
       libcanberra-gtk3
       kdePackages.qt6ct
       kdePackages.kservice
@@ -104,8 +103,8 @@
       wpsoffice
       # libreoffice-qt-still
       # libreoffice-still
-      discord
       wasistlos # whatsapp-for-linux
+      whatsapp-electron
       telegram-desktop
     ])
     ++ (with pkgs; [
@@ -113,7 +112,7 @@
       # cantata # old af
       # clapper
       # kando
-      # lollypop # cantata better
+      lollypop # cantata better
       # pipeline # flatpak better?
       # qqmusic
       # smplayer

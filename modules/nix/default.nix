@@ -9,7 +9,6 @@
     ./core
     ./app-image.nix
     ./overlays.nix
-    # ./themes-nix.nix
   ];
 
   xdg.menus.enable = true;

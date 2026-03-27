@@ -118,8 +118,8 @@ in
     # editorconfig-core-c # per-project style config# TODO use
 
     # :lang nix
-    nil
-    # nixd # for zed as well
+    # nil
+    nixd
     nixfmt # nixfmt-rfc-style # official - needed to use formatting with :lang nix
 
     age

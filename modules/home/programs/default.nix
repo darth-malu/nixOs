@@ -32,6 +32,15 @@
 
     # bashmount.enable = true;
 
+    discord = {
+      enable = true;
+      # package = pkgs.discord;
+      settings = {
+        SKIP_HOST_UPDATE = true;
+        DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = false; # CHrome devtools inside discord
+      };
+    };
+
     btop = import ./misc/btop.nix;
 
     comodoro.enable = false;

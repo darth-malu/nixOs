@@ -56,7 +56,8 @@ if osConfig.networking.hostName == "carthage" then
         # repeat_rate = 25; # ;;25 || nice: 39
         # }
         {
-          # TODO: carthage keyboard increase repeat rate
+          # TODO: tangier keyboard increase repeat rate
+          # TODO: see if production pressure needed
           name = "hp--inc-hyperx-alloy-origins-65";
           repeat_delay = 350; # 400, ;;380
           repeat_rate = 25; # ;;25 || nice: 39

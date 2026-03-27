@@ -1,3 +1,4 @@
+# TODO: see if transition to btrfs is worth it (Not fully utilizing ZFS + higher ram usage - No on the fly changes)
 # sudo nix run github:nix-community/disko -- --mode zap_create_mount ./disko-config.nix
 {
   disks ? [

@@ -49,8 +49,15 @@ if osConfig.networking.hostName == "carthage" then
           name = "razer-razer-viper-mini";
           sensitivity = "-0.8";
         }
+        # {
+        # 😵
+        # name = "sino-wealth-usb-keyboard";
+        # repeat_delay = 350; # 400, ;;380
+        # repeat_rate = 25; # ;;25 || nice: 39
+        # }
         {
-          name = "sino-wealth-usb-keyboard";
+          # TODO: carthage keyboard increase repeat rate
+          name = "hp--inc-hyperx-alloy-origins-65";
           repeat_delay = 350; # 400, ;;380
           repeat_rate = 25; # ;;25 || nice: 39
         }

@@ -25,7 +25,6 @@
         "steam"
         "nvidia-x11-570.153.02-6.12.30"
         "nvidia-settings"
-        # TODO. see if because of new bt flags
         "broadcom-bt-firmware"
         "facetimehd-calibration"
         "facetimehd-firmware"

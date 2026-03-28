@@ -132,7 +132,7 @@
       alarm-clock-applet
       spotify
       # castero                   # FIXME Failed Test
-      # spotube
+      spotube
       sway-audio-idle-inhibit
       # digikam #TODO diff with darktable
     ])
@@ -149,17 +149,9 @@
         with pkgs;
         [
           # coppwr
-          # ffmpeg-full # full vs vanilla?
-          # glmark2
           # helvum
-          # inkscape-with-extensions
-          # inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
           # kdePackages.mlt
-          # mastodon
-          # melt  #collison with mlt
-          # unigine-heaven
-          # unigine-superposition
-          # kdePackages.kdenlive
+          mastodon
           # davinci-resolve
           exiftool
           # ffmpeg-full
@@ -180,7 +172,7 @@
       digikam
       ffmpeg
       gimp
-      inkscape
+      inkscape-with-extensions
       krita
       figma-linux
       figma-agent

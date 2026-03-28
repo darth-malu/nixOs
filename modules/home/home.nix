@@ -3,7 +3,6 @@
   imports = [
     ./xdg
     ./session_Variables+Path.nix
-    # ./pkgs
     ./programs
     ./services
     ./configurations

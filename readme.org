@@ -1,3 +1,7 @@
 #+title: maluware bytes
 
-* excuse to use org mode lol
+I manage two machines with this configuration file:
++ AMD desktop
++ Intel/Nvidia laptop
+
+I run hyprland exclusively on the laptop, Plasma(kde)/Hyprland on the Desktop via nix specialisations

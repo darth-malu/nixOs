@@ -1,132 +1,19 @@
 {
-  pkgs,
-  lib,
-  osConfig,
-  config,
-  ...
-}:
-
-{
 
   imports = [
-    ./Gaming
-    ./yt-dlp
     ./Development
-    ./qutebrowser
-    ./soundStuff
-    ./mpv
+    ./Gaming
     ./git.nix
-    ./yazi
-    ./shell
-    ./bluetuith.nix
-    ./hyprland
-    ./pkgs.nix
     ./gpg.nix
+    ./hyprland
+    ./mpv
     ./nyaa.nix
+    ./pkgs.nix
+    ./qutebrowser
+    ./shell
+    ./soundStuff
+    ./yazi
+    ./yt-dlp
   ];
 
-  homeHyprland.enable = lib.mkIf osConfig.programs.hyprland.enable true;
-
-  programs = {
-    home-manager.enable = true; # Let Home Manager install and manage itself.
-
-    # bashmount.enable = true;
-
-    discord = {
-      enable = true;
-      # package = pkgs.discord;
-      settings = {
-        SKIP_HOST_UPDATE = true;
-        DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = false; # CHrome devtools inside discord
-      };
-    };
-
-    btop = import ./misc/btop.nix;
-
-    comodoro.enable = false;
-
-    fastfetch = import ./misc/fastfetch.nix;
-
-    fd = import ./misc/fd.nix;
-
-    freetube = import ./misc/freetube.nix;
-
-    fzf = import ./misc/fzf.nix;
-
-    # java.enable = true;
-
-    # lazygit = import ./misc/lazygit.nix;
-
-    lsd = import ./misc/lsd.nix;
-
-    # nix-index.enable = false;
-
-    # nh.enable = true;
-
-    pandoc.enable = true;
-
-    ripgrep = {
-      enable = true;
-      arguments = [
-        # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
-        "--max-columns-preview"
-        "--colors=line:style:bold"
-      ];
-    };
-
-    # spotify-player = import ./misc/spotify-player.nix;
-
-    zathura = import ./misc/zathura.nix;
-
-    zoxide = {
-      enable = true;
-      enableBashIntegration = config.programs.bash.enable;
-      options = [ "--cmd cd" ];
-    };
-
-    bat = {
-      enable = true;
-      extraPackages = with pkgs.bat-extras; [
-        batdiff
-        batman
-        batgrep
-        batwatch
-      ];
-      syntaxes = {
-        gleam = {
-          src = pkgs.fetchFromGitHub {
-            owner = "molnarmark";
-            repo = "sublime-gleam";
-            rev = "2e761cdb1a87539d827987f997a20a35efd68aa9";
-            hash = "sha256-Zj2DKTcO1t9g18qsNKtpHKElbRSc9nBRE2QBzRn9+qs=";
-          };
-          file = "syntax/gleam.sublime-syntax";
-        };
-      };
-
-      themes = {
-        dracula = {
-          src = pkgs.fetchFromGitHub {
-            owner = "dracula";
-            repo = "sublime"; # Bat uses sublime syntax for its themes
-            rev = "26c57ec282abcaa76e57e055f38432bd827ac34e";
-            sha256 = "019hfl4zbn4vm4154hh3bwk6hm7bdxbr1hdww83nabxwjn99ndhv";
-          };
-          file = "Dracula.tmTheme";
-        };
-      };
-    };
-
-    gemini-cli = {
-      enable = true;
-      defaultModel = "gemini-2.5-flash";
-      # context
-      settings = {
-        theme = "Default";
-        vimMode = true;
-        preferredEditor = "vim";
-        autoAccept = true;
-      };
-    };
-  };
 }

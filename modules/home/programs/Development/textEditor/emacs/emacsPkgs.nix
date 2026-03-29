@@ -127,6 +127,8 @@ in
 
     bash-language-server
 
+    docker-language-server
+
     # omnisharp-roslyn # c#
     # jdt-language-server
 

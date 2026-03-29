@@ -142,7 +142,7 @@ https://nixos.wiki/wiki/Nix_channels
       inputs.nixpkgs.follows = "nixpkgs";
     };
 #+end_src
-** Zen Browserv
+** Zen Browser
 #+begin_src nix :tangle flake.nix
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";

@@ -7,6 +7,10 @@
 }:
 
 {
+  imports = [
+    ./programs+options.nix
+  ];
+
   home.packages =
     with pkgs;
     [
@@ -23,6 +27,7 @@
       kdePackages.qt6ct
       kdePackages.kservice
       kdePackages.dolphin
+      nautilus
       kdePackages.konsole
       # KIO is a library that provides file manipulation and copying, remote file access, thumbnail previews, the Trash, the Places panel, and various other common file-related user interface components.
       kdePackages.kio-fuse # FUSE Interface for KIO
@@ -37,7 +42,7 @@
       # qalculate-qt # #FIXME:for rofi?
       # yaru-theme
       # aria2#NOTE: learn
-      libsecret # TODO use
+      # libsecret # TODO use
       ventoy-full # usb imager #woeusb
       wev # NOTE use ./ascii
     ]
@@ -51,7 +56,7 @@
     ])
     ++ (with pkgs; [
       # DEVELOPER 🛠️
-      ed
+      # ed
       # cling
       # firebase-tools
       # manim #FIXME failed
@@ -83,7 +88,7 @@
       file # need for yazi mimedetection etc.
       iftop # TODO seems powerful investigate more
       inxi
-      iotop-c # laggy?
+      iotop-c
       lm_sensors
       lsof # list open files/ports**
       mission-center
@@ -91,7 +96,7 @@
       pciutils # lspci
       usbutils # lsusb, usb-devices, usb-view(optional gui)
       util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
-      # psmisc # TODO need?
+      # psmisc
       ripgrep-all
       dotool
       httrack
@@ -99,13 +104,13 @@
       # modemmanager # saves the day with no internet
     ])
     ++ (with pkgs; [
-      # chromium
       wpsoffice
       # libreoffice-qt-still
       # libreoffice-still
-      wasistlos # whatsapp-for-linux
+      # wasistlos # whatsapp-for-linux
       whatsapp-electron
       telegram-desktop
+      discord
     ])
     ++ (with pkgs; [
       # SOUND
@@ -126,7 +131,6 @@
       blanket
       easyeffects
       mpc
-      nautilus
       qbittorrent
       gpu-screen-recorder-gtk
       alarm-clock-applet
@@ -152,8 +156,6 @@
           # helvum
           # kdePackages.mlt
           mastodon
-          # davinci-resolve
-          exiftool
           # ffmpeg-full
           # handbrake # FIXME lag on open
           # obs-cli
@@ -176,6 +178,8 @@
       krita
       figma-linux
       figma-agent
+      # davinci-resolve
+      exiftool
     ]
     ++ (
       if config.homeHyprland.enable then

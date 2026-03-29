@@ -23,7 +23,7 @@
       "gamemode"
       # "docker"
 
-      "openrazer" # needed to run openrazer-daemon
+      # "openrazer" # needed to run openrazer-daemon # does not seem to be working from here
       # android
       "adbusers" # grant user access to Android Debug Bridge
       "kvm"

@@ -1,17 +1,27 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
-  services.ratbagd.enable = true;
-  services.hardware.openrgb.enable = false;
+  services = {
+    ratbagd.enable = false;
+    hardware.openrgb.enable = false;
+  };
 
-  hardware.openrazer.enable = true;
-  hardware.openrazer.users = [ "malu " ];
+  hardware = {
+    openrazer = {
+      enable = true;
+      users = [ "malu" ];
+    };
+  };
 
-  environment.systemPackages = with pkgs; [
-    openrgb-with-all-plugins
-    polychromatic
-    piper
-    razer-cli # FIXME: Daemon issue
-    razergenie
-    # openrazer-daemon
-  ];
+  environment.systemPackages =
+    with pkgs;
+    [
+      polychromatic
+      # piper
+      razer-cli # FIXME: Daemon issue
+      # razergenie
+      # openrazer-daemon
+    ]
+    ++ pkgs.lib.optionals config.services.hardware.openrgb.enable [
+      openrgb-with-all-plugins
+    ];
 }

@@ -339,13 +339,27 @@ polkit.addRule(function(action, subject) {
 nix.optimise = {
   automatic = true; # false::
   dates = ["weekly"];
-  #dates = ["03:15" "00:00"]; # see systemd.time(7) for specification
-  randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
+  # dates = ["03:15" "00:00"];
+  # dates = ["Sat, 17:48"];
+  randomizedDelaySec = "30min"; # 1800:: systemd.time(7) - Delay btwn 0-thisValue
   # persistent = false; # true::
 };
 
 nix.settings.auto-optimise-store = true;#optimise with everybuild nix-store --optimise (manual) # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy. #false::
 #+end_src
+
+Uses [[https://www.mankier.com/7/systemd.time][systemd.time]](7)
+#+begin_src yaml
+    minutely → *-*-* *:*:00
+      hourly → *-*-* *:00:00
+       daily → *-*-* 00:00:00
+     monthly → *-*-01 00:00:00
+      weekly → Mon *-*-* 00:00:00
+      yearly → *-01-01 00:00:00
+   quarterly → *-01,04,07,10-01 00:00:00
+semiannually → *-01,07-01 00:00:00
+#+end_src
+
 ** nix garbage collector
 #+begin_src nix :tangle default.nix
 nix.gc = {

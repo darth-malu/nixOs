@@ -227,8 +227,9 @@ polkit.addRule(function(action, subject) {
 nix.optimise = {
   automatic = true; # false::
   dates = ["weekly"];
-  #dates = ["03:15" "00:00"]; # see systemd.time(7) for specification
-  randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
+  # dates = ["03:15" "00:00"];
+  # dates = ["Sat, 17:48"];
+  randomizedDelaySec = "30min"; # 1800:: systemd.time(7) - Delay btwn 0-thisValue
   # persistent = false; # true::
 };
 

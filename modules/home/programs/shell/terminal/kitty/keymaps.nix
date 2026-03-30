@@ -12,20 +12,13 @@
     "kitty_mod+a" = "paste_from_buffer a1";
 
     # Launch New Windows
-    "kitty_mod+enter" = "new_window_with_cwd";
-    "ctrl+alt+n" = "launch --cwd=current --type=os-window";
-    # "kitty_mod+n" = "new_os_window_with_cwd";
-
-    "kitty_mod+h" = "neighboring_window left";
-    "kitty_mod+l" = "neighboring_window right";
-    "kitty_mod+k" = "neighboring_window up";
-    "kitty_mod+j" = "neighboring_window down";
-
-    "kitty_mod+;" = "next_window";
+    "ctrl+alt+enter" = "new_window_with_cwd";
+    # "ctrl+alt+n" = "launch --cwd=current --type=os-window";
+    "kitty_mod+n" = "new_os_window_with_cwd";
 
     #close windows
     "kitty_mod+q" = "close_other_windows_in_tab";
-    "kitty_mod+space" = "close_window_with_confirmation ignore-shell";
+    "ctrl+alt+space" = "close_window_with_confirmation ignore-shell";
 
     # detach Windows/Tabs
     "kitty_mod+f1" = "detach_window ask";
@@ -39,16 +32,20 @@
 
     "kitty_mod+b" = "move_window_backward";
     "kitty_mod+f" = "move_window_forward";
-    "kitty_mod+`" = "move_window_to_top";
+    "kitty_mod+t" = "move_window_to_top";
     # "kitty_mod+r" = "start_resizing_window"; #NOTE does not work
 
-    #█▀█ █▀▀ █▀ █ ▀█ █▀▀   █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█
-    #█▀▄ ██▄ ▄█ █ █▄ ██▄   ▀▄▀▄▀ █ █░▀█ █▄▀ █▄█ ▀▄▀▄▀
-    "ctrl+KP_4" = "resize_window narrower 5";
-    "ctrl+KP_6" = "resize_window wider 5";
-    "ctrl+KP_8" = "resize_window taller 5";
-    "ctrl+KP_2" = "resize_window shorter 5";
-    "ctrl+KP_Multiply" = "resize_window reset";
+    "ctrl+left" = "resize_window narrower 5";
+    "ctrl+right" = "resize_window wider 5";
+    "ctrl+up" = "resize_window taller 5";
+    "ctrl+down" = "resize_window shorter 5";
+    "ctrl+Return" = "resize_window reset";
+
+    "ctrl+alt+h" = "neighboring_window left";
+    "ctrl+alt+l" = "neighboring_window right";
+    "ctrl+alt+k" = "neighboring_window up";
+    "ctrl+alt+j" = "neighboring_window down";
+    "ctrl+alt+;" = "next_window";
 
     # Layout Bigger window increase number
     "kitty_mod+[" = "layout_action decrease_num_full_size_windows";
@@ -58,20 +55,13 @@
     "ctrl+tab" = "next_layout";
     "kitty_mod+tab" = "layout_action bias 10 20 30 40 50 60";
 
-    # "ctrl+tab" = "send_text all \x1b[27;5;9~"; #FIXME: iron out this
-    # "ctrl+hift+tab" = "send_text all \x1b[27;6;9~";
-
-    # "kitty_mod+f12" = "swap_with_window";
-    # "kitty_mod+f11" = "focus_visible_window";
-
     # tabs
-    "ctrl+alt+space" = "close_tab";
-    "ctrl+alt+enter" = "new_tab_with_cwd";
+    "kitty_mod+space" = "close_tab";
+    "kitty_mod+enter" = "new_tab_with_cwd";
 
-    "kitty_mod+t" = "set_tab_title";
-
-    "alt+ctrl+l" = "next_tab";
-    "alt+ctrl+h" = "previous_tab";
+    "kitty_mod+`" = "set_tab_title";
+    "kitty_mod+l" = "next_tab";
+    "kitty_mod+h" = "previous_tab";
 
     "alt+ctrl+right" = "move_tab_forward";
     "alt+ctrl+left" = "move_tab_backward";

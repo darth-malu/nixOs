@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   users.mutableUsers = false; # false -> disable useradd group add
@@ -25,9 +25,12 @@
 
       # "openrazer" # needed to run openrazer-daemon # does not seem to be working from here
       # android
-      "adbusers" # grant user access to Android Debug Bridge
+      # "adbusers" # grant user access to Android Debug Bridge
       "kvm"
-    ];
+    ]
+    ++ (pkgs.lib.optionals config.hardware.openrazer.enable [
+      "openrazer"
+    ]);
     packages = with pkgs; [
       firefox
       tree

@@ -154,7 +154,7 @@ modules = [
   ./hosts/carthage
 
 disko.nixosModules.disko
-./hosts/common/disko.nix
+./hosts/common/disko-ZFS.nix
 
   home.nixosModules.home-manager {
     home-manager = {
@@ -189,38 +189,6 @@ tangier = nixpkgs.lib.nixosSystem {
 };
 
 }; #End of NixConfigurations
-
-devShells.${pkgs.stdenv.hostPlatform.system}.default = pkgs.mkShell {
-  buildInputs = with pkgs; [
-    # numpy
-    (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
-      # pip
-      # numpy
-      adblock
-    ]))
-  ];
-
-  shellHook = ''
-      echo "$USER:: welcome to your dev env lul 🧊"
-    '';
-
-  # packages = [
-  #inputs.python-nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.python313
-  #     (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
-  #     pip
-  #     ]))
-  # ];
-  # env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
-  #   pkgs.stdenv.cc.cc.lib
-  #   pkgs.libz
-  # ];
-  # shellHook = ''
-  #     if [ ! -d .venv ]; then
-  #         python -m venv .venv
-  #     fi
-  #     source .venv/bin/activate
-  # '';
-};
 
   };   # end of outputs
 }    # EOF

@@ -258,7 +258,7 @@ modules = [
 ***** disko
 #+begin_src nix :tangle flake.nix
 disko.nixosModules.disko
-./hosts/common/disko.nix
+./hosts/common/disko-ZFS.nix
 #+end_src
 
 ***** Home-manager
@@ -364,7 +364,7 @@ tangier = nixpkgs.lib.nixosSystem {
 
 ** devshell - nix develop
 *** teal environment / python
-#+begin_src nix :tangle flake.nix
+#+begin_src nix :tangle no
 devShells.${pkgs.stdenv.hostPlatform.system}.default = pkgs.mkShell {
   buildInputs = with pkgs; [
     # numpy

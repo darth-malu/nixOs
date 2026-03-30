@@ -1,7 +1,8 @@
+{pkgs, ...}:
 {
   programs.ncmpcpp = {
     enable = true;
-    # package = pkgs.ncmpcpp.override { visualizerSupport = true; };
+    package = pkgs.ncmpcpp.override { visualizerSupport = true; };
 
     mpdMusicDir = "~/Music";
 
@@ -37,6 +38,7 @@
 
   # WARN: DANGEROUS
   { key = "d"; command = "delete_browser_items"; }
+  { key = "d"; command = "delete_playlist_items"; }
 
   {
     key = "ctrl-k";
@@ -62,7 +64,7 @@
 
   {
     key = "0";
-    command = "run_external_command  \"songart\"";
+    command = "run_external_command  \"qs ipc call mpris songArt\"";
   }
 
   ];
@@ -214,8 +216,7 @@ mpd_connection_timeout = 5;
 mpd_host = "localhost";
 mpd_port = 6600;
 
-# execute_on_song_change = "~/.darth/scripts/player/songinfo.sh";
-# execute_on_song_change = "songart";
+execute_on_song_change = "qs ipc call mpris songArt";
 # execute_on_player_state_change = "songart";
 
 selected_item_prefix = "+  ";

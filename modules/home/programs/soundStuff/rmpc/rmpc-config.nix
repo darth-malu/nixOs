@@ -81,7 +81,7 @@ queue: {
   theme: None,
   cache_dir: "~/Music/rmpc/cache",
   lyrics_dir: "~/Music/rmpc/lyrics",
-  on_song_change: "songart",
+  on_song_change: "qs ipc call mpris songArt",
   volume_step: 5,
   scrolloff: 5,
   wrap_navigation: true,

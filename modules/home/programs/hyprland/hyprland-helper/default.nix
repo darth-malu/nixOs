@@ -5,5 +5,6 @@
     ./hypr-ecos
     ./themes
     ./quickshell.nix
+    ./satty.nix
   ];
 }

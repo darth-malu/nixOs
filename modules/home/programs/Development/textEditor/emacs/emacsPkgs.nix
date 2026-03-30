@@ -4,7 +4,7 @@ let
     pkgs.texlive.combine {
       inherit (pkgs.texlive)
         # scheme-basic
-        scheme-medium
+        scheme-medium # Any Less than medium wont work: org requirement...prbs for exporting
         dvisvgm # for preview and export as html
         dvipng # for preview and export as html
         wrapfig
@@ -69,6 +69,7 @@ in
         pyflakes
         isort # sort imports block
         # grip
+        jupyter # org docs suggestion
       ]
     ))
 

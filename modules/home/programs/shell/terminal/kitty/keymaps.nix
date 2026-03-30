@@ -25,14 +25,14 @@
     "kitty_mod+f2" = "detach_tab ask";
 
     # move #arrow keys
-    "kitty_mod+up" = "move_window top";
-    "kitty_mod+down" = "move_window bottom";
-    "kitty_mod+left" = "move_window left";
-    "kitty_mod+right" = "move_window right";
+    "ctrl+alt+up" = "move_window top";
+    "ctrl+alt+down" = "move_window bottom";
+    "ctrl+alt+left" = "move_window left";
+    "ctrl+alt+right" = "move_window right";
 
-    "kitty_mod+b" = "move_window_backward";
-    "kitty_mod+f" = "move_window_forward";
-    "kitty_mod+t" = "move_window_to_top";
+    "ctrl+alt+b" = "move_window_backward";
+    "ctrl+alt+f" = "move_window_forward";
+    "ctrl+alt+t" = "move_window_to_top";
     # "kitty_mod+r" = "start_resizing_window"; #NOTE does not work
 
     "ctrl+left" = "resize_window narrower 5";
@@ -63,8 +63,8 @@
     "kitty_mod+l" = "next_tab";
     "kitty_mod+h" = "previous_tab";
 
-    "alt+ctrl+right" = "move_tab_forward";
-    "alt+ctrl+left" = "move_tab_backward";
+    "kitty_mod+right" = "move_tab_forward";
+    "kitty_mod+left" = "move_tab_backward";
 
     "ctrl+page_up" = "scroll_page_up";
     "ctrl+page_down" = "scroll_page_down";

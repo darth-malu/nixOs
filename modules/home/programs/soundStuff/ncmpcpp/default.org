@@ -4,10 +4,11 @@
 
 * start
 #+begin_src nix :tangle default.nix
+{pkgs, ...}:
 {
   programs.ncmpcpp = {
     enable = true;
-    # package = pkgs.ncmpcpp.override { visualizerSupport = true; };
+    package = pkgs.ncmpcpp.override { visualizerSupport = true; };
 #+end_src
 
 * music location
@@ -49,6 +50,7 @@
 
   # WARN: DANGEROUS
   { key = "d"; command = "delete_browser_items"; }
+  { key = "d"; command = "delete_playlist_items"; }
 
   {
     key = "ctrl-k";
@@ -74,7 +76,7 @@
 
   {
     key = "0";
-    command = "run_external_command  \"songart\"";
+    command = "run_external_command  \"qs ipc call mpris songArt\"";
   }
 
   ];
@@ -441,8 +443,7 @@ mpd_port = 6600;
 
 ** on song change
 #+begin_src nix :tangle default.nix
-# execute_on_song_change = "~/.darth/scripts/player/songinfo.sh";
-# execute_on_song_change = "songart";
+execute_on_song_change = "qs ipc call mpris songArt";
 # execute_on_player_state_change = "songart";
 #+end_src
 

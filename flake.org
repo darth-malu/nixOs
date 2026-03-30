@@ -21,8 +21,10 @@ https://nixos.wiki/wiki/Nix_channels
 
 ** disko
 #+begin_src nix :tangle flake.nix
-  disko.url = "github:nix-community/disko/latest";
-  disko.inputs.nixpkgs.follows = "nixpkgs";
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 #+end_src
 
 ** yazi
@@ -46,14 +48,10 @@ https://nixos.wiki/wiki/Nix_channels
     };
 #+end_src
 ** home-manager
-#+begin_src nix :tangle flake.nix
-    # home-manager = {
-    #   url = "github:nix-community/home-manager/release-25.05";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
+#+begin_src nix :tangle flake.nix
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager"; 
       inputs.nixpkgs.follows = "nixpkgs";
     };
 #+end_src

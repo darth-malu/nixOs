@@ -69,7 +69,7 @@
     # List of packages installed in system profile. To search, run: $ nix search wget
     systemPackages =
       with pkgs;
-      ([
+      [
         libnotify # notify-send
         wget
         app2unit
@@ -77,7 +77,7 @@
         lshw
         efibootmgr
         curl
-        man-pages
+        # man-pages
         # dash
         procs
         killall
@@ -85,7 +85,6 @@
         pipewire
         pwvucontrol
         playerctl
-        wireplumber
         lsof # list open files/ports**
         usbutils # lsusb, usb-devices, usb-view(optional gui)
         jmtpfs # mtp drivers - # TODO check if mtp-probe error is from this and how to mitigate
@@ -95,7 +94,7 @@
         # bc
         wl-clipboard # rust wl-clipboard better?
         dotool # test if working
-      ])
+      ]
       ++ (
         if config.programs.hyprland.enable then
           [

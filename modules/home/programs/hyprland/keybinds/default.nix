@@ -60,12 +60,6 @@ bindr = [
 bind =
   [
 
-  "$mod , T, exec, [workspace 10] app2unit -s a -- freetube"
-  "$mod, C, exec, [workspace emptym] app2unit -s a -- google-chrome"
-  "$mod, B, exec, [workspace emptym] app2unit -s a -- qutebrowser"
-  "$mod, F, exec, [workspace emptym] app2unit -s a -- firefox"
-  "$mod, F1,exec,  [workspace 10] app2unit -s a -- spotify"
-
  # "$mod $sl, T, exec, youtubr"
  "$mod $sl, T, exec, /home/malu/.code/SkunkWorks/PySide6/youtubr/youtubr"
 
@@ -135,20 +129,26 @@ bind =
 # "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 # "$mod $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 "$mod $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"$mod, B, exec, [workspace emptym] app2unit -s a -- qutebrowser"
 # "$mod , left, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 
 # "$mod $cl, C, focuswindow, class:^(google-chrome)$"
 "$mod $cl, c, focuswindow, class:^(google-chrome)$"
+"$mod, C, exec, [workspace emptym] app2unit -s a -- google-chrome"
 
 "$mod $cl, f, focuswindow, class:^(firefox)$"
+"$mod, F, exec, [workspace emptym] app2unit -s a -- firefox"
 
 "$mod $cl, z, focuswindow, class:^(zen)$"
-"$mod , z, exec, zen"
+"$mod , z, exec,  [workspace emptym] app2unit -s a -- zen"
 
 "$mod $cl, m, focuswindow, class:^(mpv)$"
 # "$mod , down, focuswindow, class:^(mpv)$"
 
 "$mod $cl, T, focuswindow, class:^(FreeTube)$"
+"$mod , T, exec, [workspace 10] app2unit -s a -- freetube"
+
+"$mod, F1,exec,  [workspace 10] app2unit -s a -- spotify"
 
 "$mod, m, togglespecialworkspace, magic"
 "$mod SHIFT, m, movetoworkspace, special:magic"

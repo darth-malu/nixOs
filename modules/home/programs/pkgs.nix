@@ -14,6 +14,9 @@
   home.packages =
     with pkgs;
     [
+      libvdpau
+    ]
+    ++ [
       # Quickshell stuffs https://quickshell.org/docs/v0.2.0/guide/install-setup/
       qt6.qtimageformats # webp & less common format support
       qt6.qt5compat # extra visual effects, notably gaussian blur. MultiEffect is usually preferable
@@ -36,6 +39,7 @@
       # kdePackages.kio-gdrive
       kdePackages.qtwayland # allows Qt-based applications to run on the Wayland display protocol
       xdg-utils
+      trash-cli
     ]
     ++ [
       # pastel # color generator

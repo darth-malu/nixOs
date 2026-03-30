@@ -110,14 +110,6 @@ bind =
   [
 #+end_src
 
-*** Applications
-#+begin_src nix :tangle default.nix
-  "$mod , T, exec, [workspace 10] app2unit -s a -- freetube"
-  "$mod, C, exec, [workspace emptym] app2unit -s a -- google-chrome"
-  "$mod, B, exec, [workspace emptym] app2unit -s a -- qutebrowser"
-  "$mod, F, exec, [workspace emptym] app2unit -s a -- firefox"
-  "$mod, F1,exec,  [workspace 10] app2unit -s a -- spotify"
-#+end_src
 *** TODO SKUNKWORKS ☢️
 Make Trivial Builders for this
 **** MaluwareYt
@@ -219,7 +211,7 @@ Make Trivial Builders for this
     #"$mod , comma , sendshortcut, $cl $sl, r, class:^(com\.obsproject\.Studio)$"
     #"$cl $sl, R, pass, class:^(com\.obsproject\.Studio)$"
 #+end_src
-*** focus favorite apps
+*** Launch | focus favorite apps
 NOTE for KP need to bind with numlock off identifier
 see hyprswitch:
 **** emacs
@@ -251,21 +243,24 @@ see hyprswitch:
 # "SUPER $cl, KP_Down, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 # "$mod $cl, KP_Right, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 "$mod $cl, B, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
+"$mod, B, exec, [workspace emptym] app2unit -s a -- qutebrowser"
 # "$mod , left, focuswindow, class:^(org.qutebrowser.qutebrowser)$"
 #+end_src
 **** chromium
 #+begin_src nix :tangle default.nix
 # "$mod $cl, C, focuswindow, class:^(google-chrome)$"
 "$mod $cl, c, focuswindow, class:^(google-chrome)$"
+"$mod, C, exec, [workspace emptym] app2unit -s a -- google-chrome"
 #+end_src
 **** firefox
 #+begin_src nix :tangle default.nix
 "$mod $cl, f, focuswindow, class:^(firefox)$"
+"$mod, F, exec, [workspace emptym] app2unit -s a -- firefox"
 #+end_src
 **** zen
 #+begin_src nix :tangle default.nix
 "$mod $cl, z, focuswindow, class:^(zen)$"
-"$mod , z, exec, zen"
+"$mod , z, exec,  [workspace emptym] app2unit -s a -- zen"
 #+end_src
 **** mpv
 #+begin_src nix :tangle default.nix
@@ -275,6 +270,11 @@ see hyprswitch:
 **** freetube
 #+begin_src nix :tangle default.nix
 "$mod $cl, T, focuswindow, class:^(FreeTube)$"
+"$mod , T, exec, [workspace 10] app2unit -s a -- freetube"
+#+end_src
+**** Spotify
+#+begin_src nix :tangle default.nix
+"$mod, F1,exec,  [workspace 10] app2unit -s a -- spotify"
 #+end_src
 
 *** special workspaces / scratch

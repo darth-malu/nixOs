@@ -8,6 +8,7 @@
     ./hyprland
     ./mpv
     ./nyaa.nix
+    ./opencode.nix
     ./pkgs.nix
     ./qutebrowser
     ./shell

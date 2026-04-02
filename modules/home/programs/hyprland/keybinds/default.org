@@ -136,7 +136,7 @@ Make Trivial Builders for this
 
 *** pwvucontrol
 #+begin_src nix :tangle default.nix
-  ", XF86Tools, exec, pkill pwvucontrol ||  pwvucontrol"
+  "$mod $sl, f1, exec, pkill pwvucontrol ||   app2unit -s a -- pwvucontrol"
 #+end_src
 
 *** rofi
@@ -220,7 +220,7 @@ see hyprswitch:
 # "$mod $cl, D, focuswindow, class:^(emacs)$"
 # "$mod $cl, D, focuswindow, initialTitle:(.*)(Doom Emacs)$"
   "$mod $cl, E, focuswindow, class:^(emacs)$"
-  "$mod $sl, E, exec, emacsclient --eval \"(emacs-everywhere)\""
+  "$mod $sl, E, exec, app2unit -s a -- emacsclient --eval \"(emacs-everywhere)\""
 #+end_src
 
 **** discord
@@ -370,7 +370,7 @@ movetoworkspacesilent exists
 *** Quickshell
 #+begin_src nix :tangle default.nix
   # 🇳​​​​​🇴​​​​​🇹​​​​​🇮​​​​​🇫​​​​​🇮​​​​​🇨​​​​​🇦​​​​​🇹​​​​​🇮​​​​​🇴​​​​​🇳​​​​​🇸​​​​​
-  "$mod $al,i,execr, qs ipc call notifications dismissAll"
+  "$mod $al, x,execr, qs ipc call notifications dismissAll"
 
   "$mod $al, t, execr, qs ipc call Time currentTime"
   "$mod , backslash, execr, qs ipc call Time currentTime"
@@ -385,7 +385,7 @@ movetoworkspacesilent exists
   # 🇲​​​​​🇵​​​​​🇷​​​​​🇮​​​​​🇸​​​​​
   "$mod, F7, execr, qs ipc call mpris toggleMpris"
   "$mod $al, F7, execr, qs ipc call mpris toggleMprisIcon"
-  "$mod $cl, F7, execr, qs ipc call mpris raise"
+  "$mod $al, i, execr, qs ipc call mpris raise"
 
   ", F8, execr, qs ipc call mpris next"
   ", F6, execr, qs ipc call mpris previous"
@@ -399,9 +399,14 @@ movetoworkspacesilent exists
 
   "$mod , P, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/appLauncher/AppLauncher.qml"
 
-  "$mod $al,End,execr, systemctl --user restart quickshell"
+  # "$mod $al,End,execr, systemctl --user restart quickshell"
 
-  "$mod $al,Home,execr, qs ipc call bar toggleBar"
+  # "$mod $al,Home,execr, qs ipc call bar toggleBar"
+
+  # 65 %
+  "$mod $al, 0,execr, systemctl --user restart quickshell"
+  "$mod $al, 9,execr, qs ipc call bar toggleBar"
+  "$mod $al, 1,execr, qs ipc call activate toggle"
 #+end_src
 
 *** focus previously focused window, cycle next, previous_per_monitor

@@ -41,7 +41,7 @@ in
     inputs.nix-qml.packages.${pkgs.stdenv.hostPlatform.system}.qml-ts-mode
 
     prettier
-    # prettierd # prettier as a daemon, for improved speed # TODO test workings
+    prettierd # prettier as a daemon, for improved speed # TODO test workings
 
     libtool
     shellcheck
@@ -136,7 +136,8 @@ in
     # lua-language-server
 
     # WEB
-    nodePackages.js-beautify # js/css/html format
+    # nodePackages.js-beautify # js/css/html format # removed for being unmaintainable 😀
+    jsbeautifier
     stylelint # css linter
     html-tidy
 

@@ -72,7 +72,7 @@ bind =
   "$mod, F2, exec, [workspace emptym] footclient" 
   # "$mod $sl, F2, exec, foot"
 
-  ", XF86Tools, exec, pkill pwvucontrol ||  pwvucontrol"
+  "$mod $sl, f1, exec, pkill pwvucontrol ||   app2unit -s a -- pwvucontrol"
 
   "$mod $al, mouse:272, exec, pkill rofi || $menu_rofi"
   # "$mod , P, exec, pkill rofi || $menu_rofi"
@@ -116,7 +116,7 @@ bind =
 # "$mod $cl, D, focuswindow, class:^(emacs)$"
 # "$mod $cl, D, focuswindow, initialTitle:(.*)(Doom Emacs)$"
   "$mod $cl, E, focuswindow, class:^(emacs)$"
-  "$mod $sl, E, exec, emacsclient --eval \"(emacs-everywhere)\""
+  "$mod $sl, E, exec, app2unit -s a -- emacsclient --eval \"(emacs-everywhere)\""
 
 "$mod $cl, D, focuswindow, class:^(discord)$"
 
@@ -214,7 +214,7 @@ bind =
 # next/prev workspace
 
   # 🇳​​​​​🇴​​​​​🇹​​​​​🇮​​​​​🇫​​​​​🇮​​​​​🇨​​​​​🇦​​​​​🇹​​​​​🇮​​​​​🇴​​​​​🇳​​​​​🇸​​​​​
-  "$mod $al,i,execr, qs ipc call notifications dismissAll"
+  "$mod $al, x,execr, qs ipc call notifications dismissAll"
 
   "$mod $al, t, execr, qs ipc call Time currentTime"
   "$mod , backslash, execr, qs ipc call Time currentTime"
@@ -229,7 +229,7 @@ bind =
   # 🇲​​​​​🇵​​​​​🇷​​​​​🇮​​​​​🇸​​​​​
   "$mod, F7, execr, qs ipc call mpris toggleMpris"
   "$mod $al, F7, execr, qs ipc call mpris toggleMprisIcon"
-  "$mod $cl, F7, execr, qs ipc call mpris raise"
+  "$mod $al, i, execr, qs ipc call mpris raise"
 
   ", F8, execr, qs ipc call mpris next"
   ", F6, execr, qs ipc call mpris previous"
@@ -243,9 +243,14 @@ bind =
 
   "$mod , P, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/appLauncher/AppLauncher.qml"
 
-  "$mod $al,End,execr, systemctl --user restart quickshell"
+  # "$mod $al,End,execr, systemctl --user restart quickshell"
 
-  "$mod $al,Home,execr, qs ipc call bar toggleBar"
+  # "$mod $al,Home,execr, qs ipc call bar toggleBar"
+
+  # 65 %
+  "$mod $al, 0,execr, systemctl --user restart quickshell"
+  "$mod $al, 9,execr, qs ipc call bar toggleBar"
+  "$mod $al, 1,execr, qs ipc call activate toggle"
 
 # "$mod,K, Workspace, previous_per_monitor"
   "$mod $sl, k, focusmonitor, +1"

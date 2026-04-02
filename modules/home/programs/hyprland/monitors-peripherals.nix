@@ -3,15 +3,27 @@
 if osConfig.networking.hostName == "carthage" then
   {
     wayland.windowManager.hyprland.settings = {
-      monitor = [
-        # head /sys/class/drm/*/status with monitors connected
-        # name, resolution, position, scale::
-        # To disable use -> monitor = name, disable
-        # position -> special values(auto, auto-right/left/up/down) in pixels.calculated from the top-left corner
-        # resolution -> highrr, highres, preferred, maxwidth
-        "HDMI-A-1,1920x1080@240,0x0,1, vrr, 3"
-        "DP-3, highres, -1920x0,1, vrr, 0" # ",highres,0x0,1"
-      ];
+      # monitor = [
+      # head /sys/class/drm/*/status with monitors connected
+      # name, resolution, position, scale::
+      # To disable use -> monitor = name, disable
+      # position -> special values(auto, auto-right/left/up/down) in pixels.calculated from the top-left corner
+      # resolution -> highrr, highres, preferred, maxwidth
+
+      # "HDMI-A-1,1920x1080@120,0x0,1, vrr, 1"
+      # "HDMI-A-1,highrr,0x0,1, vrr, 1"
+      # ",highres, -1920x0,1, vrr, 1"
+      # "DP-3, highres, -1920x0,1, vrr, 0" # ",highres,0x0,1"
+      # ];
+
+      monitorv2 = {
+        output = "HDMI-A-1";
+        mode = "1920x1080@240";
+        position = "0x0";
+        scale = 1;
+        # transform = 2;
+      };
+
       binds = {
         allow_workspace_cycles = true; # workpsaces dontn forget their previous workspaces
         drag_threshold = 10;
@@ -60,7 +72,7 @@ if osConfig.networking.hostName == "carthage" then
           # TODO: see if production pressure needed
           name = "hp--inc-hyperx-alloy-origins-65";
           repeat_delay = 350; # 400, ;;380
-          repeat_rate = 25; # ;;25 || nice: 39
+          repeat_rate = 35; # ;;25 || nice: 39
         }
       ];
     };

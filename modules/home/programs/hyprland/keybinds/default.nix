@@ -36,7 +36,7 @@ in
 bindr = [
 
   "$mod, N, exec, [workspace emptym] app2unit -s a -- nautilus"
-"$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
+  "$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
   "$mod , Y, exec, [workspace emptym] $yazi_kitty"
   # "$mod $sl, Y, exec, [workspace special:magic;float true; size 80% 80%] $yazi_kitty"
 
@@ -71,6 +71,8 @@ bind =
 
   "$mod, F2, exec, [workspace emptym] footclient" 
   # "$mod $sl, F2, exec, foot"
+
+"$mod $sl, D, focuswindow, class:^(dota2)$"
 
   "$mod $sl, f1, exec, pkill pwvucontrol ||   app2unit -s a -- pwvucontrol"
 

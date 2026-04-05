@@ -21,7 +21,8 @@
     };
   };
 
-  steamy.enable = lib.mkIf (config.networking.hostName == "carthage") true;
+  # steamy.enable = lib.mkIf (config.networking.hostName == "carthage") true;
+  steamy.enable = true;
 
   programs = {
     ccache = {
@@ -95,25 +96,15 @@
         wl-clipboard # rust wl-clipboard better?
         dotool # test if working
       ]
-      ++ (
-        if config.programs.hyprland.enable then
-          [
-            hyprpicker
-            # hyprpolkitagent
-            libappindicator-gtk3 # needed for discord icon
-            # libsecret # secrets lul
-            # kdePackages.qt6ct
-          ]
-          ++ (
-            if config.networking.hostName == "tangier" then
-              [
-                brightnessctl
-              ]
-            else
-              [ ]
-          )
-        else
-          [ ]
-      );
+      ++ lib.optionals config.programs.hyprland.enable [
+        hyprpicker
+        # hyprpolkitagent
+        libappindicator-gtk3 # needed for discord icon
+        # libsecret # secrets lul
+        # kdePackages.qt6ct
+      ]
+      ++ lib.mkIf (config.networking.hostName == "tangier") [
+        brightnessctl
+      ];
   };
 }

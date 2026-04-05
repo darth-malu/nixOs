@@ -59,7 +59,7 @@ bindr = [
 **** file manager
 #+begin_src nix :tangle default.nix
   "$mod, N, exec, [workspace emptym] app2unit -s a -- nautilus"
-"$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
+  "$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
   "$mod , Y, exec, [workspace emptym] $yazi_kitty"
   # "$mod $sl, Y, exec, [workspace special:magic;float true; size 80% 80%] $yazi_kitty"
 #+end_src
@@ -132,6 +132,10 @@ Make Trivial Builders for this
 #+begin_src nix :tangle default.nix
   "$mod, F2, exec, [workspace emptym] footclient" 
   # "$mod $sl, F2, exec, foot"
+#+end_src
+*** dota
+#+begin_src nix :tangle default.nix
+"$mod $sl, D, focuswindow, class:^(dota2)$"
 #+end_src
 
 *** pwvucontrol

@@ -103,7 +103,7 @@
         # libsecret # secrets lul
         # kdePackages.qt6ct
       ]
-      ++ lib.mkIf (config.networking.hostName == "tangier") [
+      ++ lib.optionals (config.networking.hostName == "tangier") [
         brightnessctl
       ];
   };

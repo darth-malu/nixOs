@@ -1,7 +1,6 @@
 {
   wayland.windowManager.hyprland.settings = {
     windowrule = [
-
       "float true, match:class com.saivert.pwvucontrol"
       "center true, match:class com.saivert.pwvucontrol"
       "size (monitor_w*0.8) (monitor_h*0.7), match:class com.saivert.pwvucontrol"
@@ -28,11 +27,15 @@
       "float true, match:class udiskie, match:title udiskie"
       "size (monitor_w*0.2) (monitor_h*0.1), match:class udiskie, match:title udiskie"
 
+      # Zenity eg...protonfixes
+      "center true, match:class zenity"
+      "float true, match:class zenity"
       # "idleinhibit focus, match:class ncmpcpp"
 
       # "workspace special:scratch silent, match:class ^(org.qbittorrent.qBittorrent)$" # TODO get popups only
 
       "no_focus true, match:title (Discord Updater)"
+      # "no_focus true, match:title (Discord Updater)" # TODO steam initial
 
       # don't render hyprbars on tiling windows
       # "plugin:hyprbars:nobar, float:0"
@@ -106,7 +109,7 @@
       # "size 70% 70%,match:title ^(Select)(.*)"
       # "workspace emptym, match:initial_class ^(zen-alpha)$, match:initial_title ^(Zen Browser)$"
 
-      # "nofocus,match:class ^$,match:title ^$,xwayland:1,float:1,fullscreen:0,pinned:0" # fix some dragging issues with xwayland, FIXME: see if causing xwayland issues
+      # "nofocus,match:class ^$,match:title ^$,xwayland:1,float:1,fullscreen:0,pinned:0" # fix some dragging issues with xwayland, FIXME: see if causing xwayland issues | ps: dont remember need
       "match:workspace w[tv1]s[false],border_size 0" # no gaps when only = 1 # w[(flags)A-B], w[(flags)X], t tiled, v visible windows,f float | A-B inclusive range, X specific number
 
       # Workspace

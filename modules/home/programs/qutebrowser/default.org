@@ -3,13 +3,15 @@
 #+startup: content indent
 
 * start / misc settings
+
 #+begin_src nix :tangle default.nix
-{ lib, osConfig, ... }:
+{ lib, ... }:
+
 {
   programs.qutebrowser = {
     enable = true;
     loadAutoconfig = false; # false:: load config from GUI
-    enableDefaultBindings = true; # true::
+    # enableDefaultBindings = true; # true::
 #+end_src
 
 * keybindings
@@ -96,9 +98,9 @@ colors = {
 #+end_src
 
 ** completion
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
 completion = {
-  # shrink = false;
+  shrink = false;
 };
 
 #+end_src
@@ -139,21 +141,37 @@ downloads.location.suggestion = "both"; # path::, filename, both
 ** scrolling
 #+begin_src nix :tangle default.nix
 scrolling = {
-  smooth = true;
+  smooth = false;
   bar = "when-searching"; # overlay::, when-searching, never, always
 };
 #+end_src
 
 ** zoom
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
  zoom = {
    default = "110%";
    # levels = [];
+  };
+#+end_src
+
+** Brave browser adblocker
+#+begin_src nix :tangle default.nix
+  content.blocking.method = "both";
+#+end_src
+
+** Disable AutoPlay
+#+begin_src nix :tangle default.nix
+  content.autoplay = false;
+#+end_src
+
+
+** Lazy Restore
+#+begin_src nix :tangle default.nix
+  session.lazy_restore = true;
 #+end_src
 
 ** auto_save
 #+begin_src nix :tangle default.nix
-};
  auto_save = {
    session = true;
    interval = 10000; # milliseconds

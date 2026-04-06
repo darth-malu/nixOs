@@ -1,9 +1,10 @@
-{ lib, osConfig, ... }:
+{ lib, ... }:
+
 {
   programs.qutebrowser = {
     enable = true;
     loadAutoconfig = false; # false:: load config from GUI
-    enableDefaultBindings = true; # true::
+    # enableDefaultBindings = true; # true::
 
   keyBindings = {
     normal = {
@@ -76,10 +77,6 @@ colors = {
   };
 };
 
-completion = {
-  # shrink = false;
-};
-
 statusbar = {
   show = "always";              # in-mode, always, never
   # widgets = ["keypress"  "search_match"  "url"  "scroll"  "history"  "tabs"  "progress"];
@@ -105,15 +102,16 @@ tabs = {
 downloads.location.suggestion = "both"; # path::, filename, both
 
 scrolling = {
-  smooth = true;
+  smooth = false;
   bar = "when-searching"; # overlay::, when-searching, never, always
 };
 
- zoom = {
-   default = "110%";
-   # levels = [];
+  content.blocking.method = "both";
 
-};
+  content.autoplay = false;
+
+  session.lazy_restore = true;
+
  auto_save = {
    session = true;
    interval = 10000; # milliseconds

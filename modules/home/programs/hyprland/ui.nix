@@ -63,7 +63,7 @@ in
     group = {
       group_on_movetoworkspace = true; # false::whether using movetoworkspace[silent] will merge the window into the workspace’s solitary unlocked group
       groupbar = {
-        font_family = "quicksand medium"; # misc:font_family if not specified
+        font_family = "ZedMono Nerd Font"; # "quicksand medium"; # misc:font_family if not specified
         font_size = 14; # 8::
         # stacked = true; # render the groupbar as a vertical stack
         "col.active" = "0x8600FFF5"; # 0x66ffff00

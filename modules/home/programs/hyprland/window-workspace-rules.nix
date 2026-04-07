@@ -5,6 +5,12 @@
       "center true, match:class com.saivert.pwvucontrol"
       "size (monitor_w*0.8) (monitor_h*0.7), match:class com.saivert.pwvucontrol"
 
+      # Sign in windows
+      # Zen
+      "float true, match:class zen match:title ^(Sign in)(.*)"
+      "center true, match:class zen match:title ^(Sign in)(.*)"
+      "size (monitor_w*0.8) (monitor_h*0.7), match:class zen match:title ^(Sign in)(.*)"
+
       "float true, match:class alarm-clock-applet"
       "center true, match:class alarm-clock-applet"
       "size (monitor_w*0.6) (monitor_h*0.6), match:class alarm-clock-applet"
@@ -35,6 +41,9 @@
       # "workspace special:scratch silent, match:class ^(org.qbittorrent.qBittorrent)$" # TODO get popups only
 
       "no_focus true, match:title (Discord Updater)"
+
+      # Steam
+      "workspace emptym, match:title ^(steam)$,match:class ^(steam)$"
       # "no_focus true, match:title (Discord Updater)" # TODO steam initial
 
       # don't render hyprbars on tiling windows
@@ -72,7 +81,10 @@
       # match:class [regex],initial_class,initial_title,float, focus etc
       "match:class .*, suppress_event maximize"
 
+      # Chrome
       "match:class ^()$,match:title ^()$, no_blur true" # for chrome weird menus clear border
+      "persistent_size true, match:class ^(google-chrome)"
+      # TODO: float...zoom, meet pip (all pip)
 
       # "match:class ^(Xdg-desktop-portal-gtk)$,match:title ^(All Files)$, no_blur true"
 

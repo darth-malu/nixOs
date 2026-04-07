@@ -195,27 +195,27 @@ in
 
         # Keypad navigation
         # Switch workspaces with mod + [ numpad 0-9]
-        "$mod, KP_End, focusworkspaceoncurrentmonitor, 1" # TODO: do for loop make this cleaner
-        "$mod, KP_Down, focusworkspaceoncurrentmonitor, 2"
-        "$mod, KP_Next, focusworkspaceoncurrentmonitor, 3"
-        "$mod, KP_Left, focusworkspaceoncurrentmonitor, 4"
-        "$mod, KP_Begin, focusworkspaceoncurrentmonitor, 5"
-        "$mod, KP_Right, focusworkspaceoncurrentmonitor, 6"
-        "$mod, KP_Home, focusworkspaceoncurrentmonitor, 7"
-        "$mod, KP_Up, focusworkspaceoncurrentmonitor, 8"
-        "$mod, KP_Prior, focusworkspaceoncurrentmonitor, 9"
-        "$mod, KP_Insert, focusworkspaceoncurrentmonitor, 10"
+        # "$mod, KP_End, focusworkspaceoncurrentmonitor, 1" # TODO: do for loop make this cleaner
+        # "$mod, KP_Down, focusworkspaceoncurrentmonitor, 2"
+        # "$mod, KP_Next, focusworkspaceoncurrentmonitor, 3"
+        # "$mod, KP_Left, focusworkspaceoncurrentmonitor, 4"
+        # "$mod, KP_Begin, focusworkspaceoncurrentmonitor, 5"
+        # "$mod, KP_Right, focusworkspaceoncurrentmonitor, 6"
+        # "$mod, KP_Home, focusworkspaceoncurrentmonitor, 7"
+        # "$mod, KP_Up, focusworkspaceoncurrentmonitor, 8"
+        # "$mod, KP_Prior, focusworkspaceoncurrentmonitor, 9"
+        # "$mod, KP_Insert, focusworkspaceoncurrentmonitor, 10"
 
-        "$mod $sl, KP_End, movetoworkspace, 1"
-        "$mod $sl, KP_Down, movetoworkspace, 2"
-        "$mod $sl, KP_Next, movetoworkspace, 3"
-        "$mod $sl, KP_Left, movetoworkspace, 4"
-        "$mod $sl, KP_Begin, movetoworkspace, 5"
-        "$mod $sl, KP_Right, movetoworkspace, 6"
-        "$mod $sl, KP_Home, movetoworkspace, 7"
-        "$mod $sl, KP_Up, movetoworkspace, 8"
-        "$mod $sl, KP_Prior, movetoworkspace, 9"
-        "$mod $sl, KP_Insert, movetoworkspace, 10"
+        # "$mod $sl, KP_End, movetoworkspace, 1"
+        # "$mod $sl, KP_Down, movetoworkspace, 2"
+        # "$mod $sl, KP_Next, movetoworkspace, 3"
+        # "$mod $sl, KP_Left, movetoworkspace, 4"
+        # "$mod $sl, KP_Begin, movetoworkspace, 5"
+        # "$mod $sl, KP_Right, movetoworkspace, 6"
+        # "$mod $sl, KP_Home, movetoworkspace, 7"
+        # "$mod $sl, KP_Up, movetoworkspace, 8"
+        # "$mod $sl, KP_Prior, movetoworkspace, 9"
+        # "$mod $sl, KP_Insert, movetoworkspace, 10"
 
         # next/prev workspace
 
@@ -235,23 +235,21 @@ in
         # 🇲​​​​​🇵​​​​​🇷​​​​​🇮​​​​​🇸​​​​​
         "$mod, F7, execr, qs ipc call mpris toggleMpris"
         "$mod $al, F7, execr, qs ipc call mpris toggleMprisIcon"
-        "$mod $al, i, execr, qs ipc call mpris raise"
+        "$mod $cl, i, execr, qs ipc call mpris raise"
 
         ", F8, execr, qs ipc call mpris next"
         ", F6, execr, qs ipc call mpris previous"
         ", F7, execr, qs ipc call mpris togglePlaying"
 
         "$mod $sl,i,execr, qs ipc call mpris songArt"
-        ", Pause, execr, qs ipc call mpris songArt"
+
+        # System Tray Toggle
+        "$mod $al, s, execr, qs ipc call SysTray toggle"
 
         # 🇲​​​​​🇮​​​​​🇸​​​​​🇨​​​​​
         "$mod , Delete, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
 
         "$mod , P, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/appLauncher/AppLauncher.qml"
-
-        # "$mod $al,End,execr, systemctl --user restart quickshell"
-
-        # "$mod $al,Home,execr, qs ipc call bar toggleBar"
 
         # 65 %
         "$mod $al, 0,execr, systemctl --user restart quickshell"
@@ -339,7 +337,7 @@ in
         ", XF86AudioLowerVolume, execr, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%- >/dev/null 2>&1 "
 
         # ", XF86AudioNext, execr, playerctl -p spotify next || playerctl next " # TODO test for spotify running
-        ", XF86AudioNext, execr, qs ipc call mpris next" # TODO test for spotify running
+        ", XF86AudioNext, execr, qs ipc call mpris next" # TODO: check players script with quickshell
         ", XF86AudioPrev, execr, qs ipc call mpris previous"
         # ", XF86AudioPlay, execr, qs ipc call mpris togglePlaying"
       ];

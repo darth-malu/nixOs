@@ -151,10 +151,9 @@ mgr.keymap = [
 ];
 
 tasks.keymap = [
-  { on = [ "w" ]; run = "show"; desc = "Show the tasks manager"; }
-  # { on = [ "w" "t" ]; run = "show"; desc = "Show the tasks manager"; }
-  # { on = [ "w" "i" ]; run = "inspect"; desc = "tasks inspector"; }
-  # { on = [ "w" "c" ]; run = "close"; desc = "Show the tasks manager"; }
+  { on = [ "w" "t" ]; run = "show"; desc = "Show the tasks manager"; }
+  { on = [ "w" "i" ]; run = "inspect"; desc = "tasks inspector"; }
+  { on = [ "w" "c" ]; run = "close"; desc = "Show the tasks manager"; }
 ];
 
 spot.keymap = [

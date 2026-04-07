@@ -239,10 +239,9 @@ mgr.keymap = [
 ** task
 #+begin_src nix :tangle keymap.nix
 tasks.keymap = [
-  { on = [ "w" ]; run = "show"; desc = "Show the tasks manager"; }
-  # { on = [ "w" "t" ]; run = "show"; desc = "Show the tasks manager"; }
-  # { on = [ "w" "i" ]; run = "inspect"; desc = "tasks inspector"; }
-  # { on = [ "w" "c" ]; run = "close"; desc = "Show the tasks manager"; }
+  { on = [ "w" "t" ]; run = "show"; desc = "Show the tasks manager"; }
+  { on = [ "w" "i" ]; run = "inspect"; desc = "tasks inspector"; }
+  { on = [ "w" "c" ]; run = "close"; desc = "Show the tasks manager"; }
 ];
 #+end_src
 ** FIXME spot

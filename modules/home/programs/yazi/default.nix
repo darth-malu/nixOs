@@ -19,7 +19,7 @@
     keymap = import ./keymap.nix;
     theme = import ./theme.nix;
     initLua = ./init.lua;
-    shellWrapperName = "y"; # yy::
+    shellWrapperName = "y";
     plugins = {
       # Linked to: $XDG_CONFIG_HOME/yazi/plugins/<name>.yazi
       arrow = ./plugins/arrow.yazi;
@@ -86,16 +86,16 @@
             for = "unix";
           }
         ];
-        emacsEdit = [
+        emacs = [
           {
             run = "emacsclient -c \"$@\"";
             block = true;
             for = "unix";
           }
         ];
-        vimEdit = [
+        vim = [
           {
-            run = "$EDITOR \"$@\"";
+            run = "vim \"$@\"";
             block = true;
             for = "unix";
           }
@@ -107,10 +107,17 @@
             for = "unix";
           }
         ];
+        wps = [
+          {
+            run = "wps \"$@\"";
+            block = true;
+            for = "unix";
+          }
+        ];
         open = [
           {
             run = "xdg-open \"$@\"";
-            desc = "Open files with xdg-open"; # FIXME: does not work
+            desc = "Open files with xdg-open";
           }
         ];
       };
@@ -120,14 +127,14 @@
           # {
           #   mime = "text/*";
           #   use = [
-          #     "vimEdit"
+          #     "vim"
           #     "open"
           #   ];
           # }
           {
             mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
             use = [
-              "libreoffice"
+              "wps"
               "open"
             ];
           }
@@ -145,14 +152,14 @@
           }
           {
             name = "*.json";
-            use = "vimEdit";
+            use = "vim";
           }
           {
             name = "*.html";
             use = [
               # Multiple openers for a single rule
               "open"
-              "emacsEdit"
+              "emacs"
             ];
           }
         ];
@@ -160,20 +167,20 @@
           {
             name = "*.org";
             use = [
-              "emacsEdit"
+              "emacs"
               "open"
             ];
           }
           {
             name = "*.json";
-            use = "vimEdit";
+            use = "vim";
           }
           # Multiple openers for a single rule
           {
-            name = "*.html";
+            name = "*.docx";
             use = [
+              "wps"
               "open"
-              "vimEdit"
             ];
           }
         ];
@@ -181,7 +188,7 @@
           {
             mime = "text/*";
             use = [
-              "vimEdit"
+              "vim"
               "open"
             ];
           }

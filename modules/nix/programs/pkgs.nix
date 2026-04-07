@@ -12,16 +12,6 @@
     ./gaming
   ];
 
-  documentation = {
-    dev.enable = true; # TODO see instance of this
-    info.enable = true;
-    doc.enable = true; # distributed in pkgs /share/doc
-    nixos = {
-      includeAllModules = false; # false::
-    };
-  };
-
-  # steamy.enable = lib.mkIf (config.networking.hostName == "carthage") true;
   steamy.enable = true;
 
   programs = {
@@ -78,7 +68,6 @@
         lshw
         efibootmgr
         curl
-        # man-pages
         # dash
         procs
         killall

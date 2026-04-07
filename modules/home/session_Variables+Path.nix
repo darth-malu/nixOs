@@ -15,7 +15,12 @@
     SUDO_PROMPT = "$(tput sgr0)$(tput setaf 199) $(tput sgr0) ";
     EDITOR = "vim";
     # XDG_DATA_DIRS = "$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share";
+
+    # Nuitka Stuff
+    NUITKA_CACHE_DIR_CCACHE = "~/.cache/nuitka/cache";
+    NUITKA_CACHE_DIR_DOWNLOADS = "~/.cache/nuitka/downloads";
   };
+
   home.sessionPath = [
     # Prepend to $PATH in a double-quoted context
     "${config.xdg.configHome}/emacs/bin"

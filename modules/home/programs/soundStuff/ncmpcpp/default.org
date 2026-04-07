@@ -235,7 +235,11 @@ NOTE alternatives dont work in column list
 #+begin_src nix :tangle default.nix
 # song_columns_list_format = "(40)[39]{t} | (30)[39]{a} | (30)[39]{f} (25)[39]{b} (5)[39]{l}"; # clean
 
-song_columns_list_format = "(40)[7]{t} (30)[7]{a} (25)[7]{b} (5)[7]{l}"; # 39,38
+song_columns_list_format = "(40)[39]{t} | (30)[39]{a} | (25)[39]{b} (5)[39]{l}"; # clean
+
+# song_columns_list_format = "(40)[7]{t} (30)[7]{a} (25)[7]{b} (5)[7]{l}"; # 39,38
+
+# song_columns_list_format = "(40)[46]{t} (30)[46]{a} (25)[46]{b} (5)[46]{l}"; # 39,38
 #+end_src
 
 ***** song list
@@ -286,7 +290,7 @@ visualizer_look = "+|";
 *** Top Area
 **** volume
 #+begin_src nix :tangle default.nix
-volume_color = 124;
+volume_color = 214;             # 124 (green)
 display_volume_level = true;
 volume_change_step = 2;
 #+end_src
@@ -416,17 +420,28 @@ mouse_support = true;
 #+end_src
 
 ** ncmpcpp directory
-+ ncmpcpp_directory = PATH
-        Directory for storing ncmpcpp related files. Changing it is useful if you want to store everything somewhere else and provide command line setting for alternative location to config file which defines that while launching ncmpcpp.
 #+begin_src nix :tangle default.nix
 ncmpcpp_directory = "~/.local/share/ncmpcpp";
 #+end_src
 
+=ncmpcpp_directory= = PATH
+  Directory for storing ncmpcpp related files. Changing it is useful if you want to store everything somewhere else and provide command line setting for alternative location to config file which defines that while launching ncmpcpp.
+
 ** mpd settings
-+ mpd_communicat[[id:a34c5d79-9efd-40a7-a99a-87d96af60a1d][School]]ion_mode = MODE
-        If set to 'polling', ncmpcpp will constantly poll mpd for its status. If set to 'notifications', ncmppcp will make use of 'idle' command and wait for events. This is more efficient and responsive, but may cause some trouble with <mpd-0.15, so if you run such version and encounter strange bugs (e.g. current track time not being updated), you will either have to use 'polling' or upgrade your mpd.
+
++ mpd_communication_mode = MODE
+
+    If set to 'polling', ncmpcpp will constantly poll mpd for its status.
+
+    If set to 'notifications', ncmppcp will make use of 'idle' command and wait for events.
+
+    This is more efficient and responsive, but may cause some trouble with <mpd-0.
+
+    15, so if you run such version and encounter strange bugs (e.g. current track time not being updated), you will either have to use 'polling' or upgrade your mpd.
+
 + mpd_host = HOST
         Connect to MPD running on specified host/unix socket. When HOST starts with a '/', it is assumed to be a unix socket.
+
 + mpd_music_dir = PATH
         Search for files in specified directory. This is needed for ~tag editor~ to work.
        
@@ -443,8 +458,7 @@ mpd_port = 6600;
 
 ** on song change
 #+begin_src nix :tangle default.nix
-execute_on_song_change = "qs ipc call mpris songArt";
-# execute_on_player_state_change = "songart";
+execute_on_song_change = "qs ipc call mpris songArt"; # "songart"
 #+end_src
 
 ** selected prefix tracks

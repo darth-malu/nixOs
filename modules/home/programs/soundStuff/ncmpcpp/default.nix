@@ -139,7 +139,11 @@ color2 = 136;                   # Current Screen , playlist length
 
 # song_columns_list_format = "(40)[39]{t} | (30)[39]{a} | (30)[39]{f} (25)[39]{b} (5)[39]{l}"; # clean
 
-song_columns_list_format = "(40)[7]{t} (30)[7]{a} (25)[7]{b} (5)[7]{l}"; # 39,38
+song_columns_list_format = "(40)[39]{t} | (30)[39]{a} | (25)[39]{b} (5)[39]{l}"; # clean
+
+# song_columns_list_format = "(40)[7]{t} (30)[7]{a} (25)[7]{b} (5)[7]{l}"; # 39,38
+
+# song_columns_list_format = "(40)[46]{t} (30)[46]{a} (25)[46]{b} (5)[46]{l}"; # 39,38
 
 song_list_format = "{$5%t} | {$6%f$9} $r %p %b      {$4%a$1$9}$9";
 
@@ -162,7 +166,7 @@ visualizer_color = "25, 38, 104";
 visualizer_look = "+|";
 # visualizer_look = "●▮";
 
-volume_color = 124;
+volume_color = 214;             # 124 (green)
 display_volume_level = true;
 volume_change_step = 2;
 
@@ -216,8 +220,7 @@ mpd_connection_timeout = 5;
 mpd_host = "localhost";
 mpd_port = 6600;
 
-execute_on_song_change = "qs ipc call mpris songArt";
-# execute_on_player_state_change = "songart";
+execute_on_song_change = "qs ipc call mpris songArt"; # "songart"
 
 selected_item_prefix = "+  ";
 discard_colors_if_item_is_selected = true;

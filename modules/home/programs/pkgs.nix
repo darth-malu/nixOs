@@ -38,8 +38,6 @@
       kdePackages.kio-admin # Manage files as administrator using the admin:// KIO protocol
       # kdePackages.kio-gdrive
       kdePackages.qtwayland # allows Qt-based applications to run on the Wayland display protocol
-      xdg-utils
-      trash-cli
     ]
     ++ [
       # pastel # color generator
@@ -48,17 +46,19 @@
       # aria2#NOTE: learn
       # libsecret # TODO use
       ventoy-full # usb imager #woeusb
+      xdg-utils
+      trash-cli
       wev # NOTE use ./ascii
     ]
-    ++ (with pkgs; [
+    ++ [
       # testing for yazi #
       zip # Compressor/archiver for creating and modifying zipfiles.
       unzip # Extraction utility for archives compressed in .zip format
       xz # General-purpose data compression software, successor of LZMA
       p7zip # New p7zip fork with additional codecs and improvements (forked from https://sourceforge.net/projec…
       rar # also has unrar
-    ])
-    ++ (with pkgs; [
+    ]
+    ++ [
       # DEVELOPER 🛠️
       # ed
       # cling
@@ -72,8 +72,8 @@
       patchelf # TODO see useful nexx
       socat
       zlib
-    ])
-    ++ (with pkgs; [
+    ]
+    ++ [
       # gsmartcontrol
       # iotop #basic
       # perfomance monitoring
@@ -106,17 +106,20 @@
       httrack
       # modem-manager-gui
       # modemmanager # saves the day with no internet
-    ])
-    ++ (with pkgs; [
-      wpsoffice
-      # libreoffice-qt-still
-      # libreoffice-still
-      # wasistlos # whatsapp-for-linux
+    ]
+    ++ [
       whatsapp-electron
       telegram-desktop
       discord
-    ])
-    ++ (with pkgs; [
+    ]
+    ++ [
+      # Fediverse
+      # mastodon # TODO: self host only? no desktop
+      cinny-desktop
+      # rocketchat-desktop
+      # element-desktop
+    ]
+    ++ [
       # SOUND
       # cantata # old af
       # clapper
@@ -143,34 +146,33 @@
       spotube
       sway-audio-idle-inhibit
       # digikam #TODO diff with darktable
-    ])
-    ++ (with pkgs; [
+    ]
+    ++ [
       # komikku # broken
       mangal
       ani-cli
       # kazumi # watch anime online with danmaku support
       # miru # issue launching -kde
       #syncyomi - sync tachiyomi progress across devices
-    ])
-    ++ (
-      if osConfig.networking.hostName == "carthage" then
-        with pkgs;
-        [
-          # coppwr
-          # helvum
-          # kdePackages.mlt
-          mastodon
-          # ffmpeg-full
-          # handbrake # FIXME lag on open
-          # obs-cli
-          obs-studio
-          # ungoogled-chromium
-          google-chrome
-          inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-        ]
-      else
-        [ ]
-    )
+    ]
+    ++ lib.optionals (osConfig.networking.hostName == "carthage") [
+      # coppwr
+      # helvum
+      # kdePackages.mlt
+      # ffmpeg-full
+      # handbrake # FIXME lag on open
+      # obs-cli
+      obs-studio
+      # ungoogled-chromium
+      google-chrome
+      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ]
+    ++ [
+      # Productivity Tools
+      wpsoffice
+      # libreoffice-qt-still
+      # libreoffice-still
+    ]
     ++ [
       # CreativeSPACE 📽
       # blender-hip # Hardware accelerated rendering NOTE later after pos
@@ -181,26 +183,20 @@
       inkscape-with-extensions
       krita
       figma-linux
-      figma-agent
+      # figma-agent  #NOTE listens on 127.0.0.1:44950
       # davinci-resolve
       exiftool
     ]
-    ++ (
-      if config.homeHyprland.enable then
-        with pkgs;
-        [
-          # file-roller
-          # inputs.hyprswitch.packages.x86_64-linux.default
-          # yelp
-          cliphist
-          grimblast
-          slurp
-          sushi
-          viewnior
-          # hyprpwcenter
-          hyprland-autoname-workspaces
-        ]
-      else
-        [ ]
-    );
+    ++ lib.optionals config.homeHyprland.enable [
+      # file-roller
+      # inputs.hyprswitch.packages.x86_64-linux.default
+      # yelp
+      cliphist
+      grimblast
+      slurp
+      sushi
+      viewnior
+      # hyprpwcenter
+      hyprland-autoname-workspaces
+    ];
 }

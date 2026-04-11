@@ -193,37 +193,11 @@ in
         "$mod $sl , right, movewindoworgroup, r"
         "$mod $sl , left, movewindoworgroup, l"
 
-        # Keypad navigation
-        # Switch workspaces with mod + [ numpad 0-9]
-        # "$mod, KP_End, focusworkspaceoncurrentmonitor, 1" # TODO: do for loop make this cleaner
-        # "$mod, KP_Down, focusworkspaceoncurrentmonitor, 2"
-        # "$mod, KP_Next, focusworkspaceoncurrentmonitor, 3"
-        # "$mod, KP_Left, focusworkspaceoncurrentmonitor, 4"
-        # "$mod, KP_Begin, focusworkspaceoncurrentmonitor, 5"
-        # "$mod, KP_Right, focusworkspaceoncurrentmonitor, 6"
-        # "$mod, KP_Home, focusworkspaceoncurrentmonitor, 7"
-        # "$mod, KP_Up, focusworkspaceoncurrentmonitor, 8"
-        # "$mod, KP_Prior, focusworkspaceoncurrentmonitor, 9"
-        # "$mod, KP_Insert, focusworkspaceoncurrentmonitor, 10"
-
-        # "$mod $sl, KP_End, movetoworkspace, 1"
-        # "$mod $sl, KP_Down, movetoworkspace, 2"
-        # "$mod $sl, KP_Next, movetoworkspace, 3"
-        # "$mod $sl, KP_Left, movetoworkspace, 4"
-        # "$mod $sl, KP_Begin, movetoworkspace, 5"
-        # "$mod $sl, KP_Right, movetoworkspace, 6"
-        # "$mod $sl, KP_Home, movetoworkspace, 7"
-        # "$mod $sl, KP_Up, movetoworkspace, 8"
-        # "$mod $sl, KP_Prior, movetoworkspace, 9"
-        # "$mod $sl, KP_Insert, movetoworkspace, 10"
-
-        # next/prev workspace
-
         # 🇳​​​​​🇴​​​​​🇹​​​​​🇮​​​​​🇫​​​​​🇮​​​​​🇨​​​​​🇦​​​​​🇹​​​​​🇮​​​​​🇴​​​​​🇳​​​​​🇸​​​​​
         "$mod $al, x,execr, qs ipc call notifications dismissAll"
 
-        "$mod $al, t, execr, qs ipc call Time currentTime"
-        "$mod , backslash, execr, qs ipc call Time currentTime"
+        "$mod $al, t, execr, qs ipc call Time currentDate"
+        "$mod , backslash, execr, qs ipc call Time currentDate"
 
         # 🇷​​​​​🇪​​​​​🇸​​​​​🇴​​​​​🇺​​​​​🇷​​​​​🇨​​​​​🇪​​​​​🇸​​​​​
         # "$mod $cl, KP_Left, execr, qs ipc call netspeed toggleNet"

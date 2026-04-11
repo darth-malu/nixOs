@@ -9,7 +9,7 @@
   # This includes other pages targeted at developers if documentation.doc.enable is set (this also includes "devdoc" outputs). true::# distributed in pkgs /share/doc
 
   documentation.nixos = {
-    includeAllModules = false; # false::
+    includeAllModules = true; # false::
   };
 
   environment.systemPackages = with pkgs; [

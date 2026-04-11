@@ -51,6 +51,7 @@
   # WARN: DANGEROUS
   { key = "d"; command = "delete_browser_items"; }
   { key = "d"; command = "delete_playlist_items"; }
+  { key = "d"; command = "delete_stored_playlist"; }
 
   {
     key = "ctrl-k";

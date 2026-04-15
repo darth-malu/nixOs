@@ -19,6 +19,9 @@
     # Nuitka Stuff
     NUITKA_CACHE_DIR_CCACHE = "~/.cache/nuitka/cache";
     NUITKA_CACHE_DIR_DOWNLOADS = "~/.cache/nuitka/downloads";
+
+    # gpodder
+    GPODDER_DOWNLOAD_DIR = "/media/Mutsu/Podcasts";
   };
 
   home.sessionPath = [

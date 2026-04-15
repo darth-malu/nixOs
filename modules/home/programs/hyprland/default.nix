@@ -8,7 +8,7 @@
     ./keybinds
     ./monitors-peripherals.nix
     ./ui.nix
-    ./environment_variables.nix # avoid use .conf/uwsm/env - check file
+    ./hyprland-environment-variables.nix # avoid use .conf/uwsm/env - check file
     ./window-workspace-rules.nix
     ./autoStart.nix
     ./hyprland-helper

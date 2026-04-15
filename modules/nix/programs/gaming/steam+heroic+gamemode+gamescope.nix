@@ -56,7 +56,6 @@
       with pkgs;
       [
         # Trying gamescope recording
-        # gst_all_1.gstreamer
         antimicrox
         # bottles
         (heroic.override {
@@ -82,7 +81,9 @@
           [ ]
       );
 
-    hardware.xone.enable = true; # support for the xbox controller USB dongle
+    hardware.xone.enable = false; # support for the xone driver for Xbox One and Xbox Series X|S accessories.
+    # xpad kernel module
+    # https://docs.kernel.org/input/joydev/joystick.html
 
     environment.sessionVariables = {
       # STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d"; # change or add to the paths which steam searches for custom Proton versions.-> protonup

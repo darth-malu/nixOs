@@ -26,6 +26,11 @@
       inherit (pkgs.yaziPlugins) smart-paste;
       inherit (pkgs.yaziPlugins) smart-enter;
       inherit (pkgs.yaziPlugins) piper;
+      inherit (pkgs.yaziPlugins) git;
+      inherit (pkgs.yaziPlugins) gvfs;
+      inherit (pkgs.yaziPlugins) bookmarks;
+      inherit (pkgs.yaziPlugins) toggle-pane;
+      inherit (pkgs.yaziPlugins) wl-clipboard;
 
       # smart-tab: ya pkg add wekauwau/smart-tab
       # wl-clipboard: ya pkg add grappas/wl-clipboard

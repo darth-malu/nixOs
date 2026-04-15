@@ -23,7 +23,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager"; 
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -98,102 +98,98 @@
 
   };
 
-  outputs =
-    inputs@{ nixpkgs, disko, ... }: # Note the use of `self` which allows reusing flake's outputs in itself.
+  outputs = inputs@{nixpkgs, disko, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 
-    let
-      system = "x86_64-linux"; # TODO system = builtins.currentSystem;?? find reason it doesn't work
+let
+  system = "x86_64-linux"; # TODO system = builtins.currentSystem;?? find reason it doesn't work
 
-      config = {
+config = {
 
-        allowUnfreePredicate =
-          pkg:
-          builtins.elem (nixpkgs.lib.getName pkg) [
-            "aspell-dict-en-science"
-            "discord"
-            "evafast"
-            "google-chrome"
-            "rar"
-            "spotify"
-            "steam"
-            "steam-unwrapped"
-            "unrar"
-            "ventoy"
-            "youtube-upnext"
-            "davinci-resolve"
-            "wpsoffice"
-            # "broadcom-bt-firmware"
-          ];
+    allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+      "aspell-dict-en-science"
+      "discord"
+      "evafast"
+      "google-chrome"
+      "rar"
+      "spotify"
+      "steam"
+      "steam-unwrapped"
+      "unrar"
+      "ventoy"
+      "youtube-upnext"
+      "davinci-resolve"
+      "wpsoffice"
+      "bluemail"
+      # "broadcom-bt-firmware"
+    ];
 
-        permittedInsecurePackages = [
-          "ventoy-1.1.10"
-          "libsoup-2.74.3"
-          "libxml2-2.13.8" # for cisco?
-          "qtwebengine-5.15.19"
-          "beekeeper-studio-5.5.3"
-        ];
+    permittedInsecurePackages = [
+      "ventoy-1.1.10"
+      "libsoup-2.74.3"
+      "libxml2-2.13.8" # for cisco?
+      "qtwebengine-5.15.19" 
+      "beekeeper-studio-5.5.3"
+    ];
 
-      };
+};
 
-      home = inputs.home-manager;
+ home = inputs.home-manager;
 
-      # pkgs = nixpkgs.legacyPackages.${system};
-      pkgs = import nixpkgs {
-        inherit system;
-        inherit config;
-      };
+ # pkgs = nixpkgs.legacyPackages.${system};
+ pkgs = import nixpkgs {
+   inherit  system;
+   inherit config;
+ };
 
-    in
-    {
-      # This will make the package available as a flake output under 'packages'
-      # packages.${pkgs.stdenv.hostPlatform.system}.my-neovim = customNeovim.neovim;
+in
+{
+  # This will make the package available as a flake output under 'packages'
+  # packages.${pkgs.stdenv.hostPlatform.system}.my-neovim = customNeovim.neovim;
 
-      nixosConfigurations = {
-        carthage = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs system; };
+nixosConfigurations = {
+  carthage = nixpkgs.lib.nixosSystem {
+    inherit system;
+    specialArgs = { inherit inputs system; };
 
-          modules = [
-            ./hosts/carthage
+modules = [
+  ./hosts/carthage
 
-            disko.nixosModules.disko
-            ./hosts/common/disko-ZFS.nix
+disko.nixosModules.disko
+./hosts/common/disko-ZFS.nix
 
-            home.nixosModules.home-manager
-            {
-              home-manager = {
-                verbose = true;
-                backupFileExtension = "home_bak";
-                useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
-                useUserPackages = false; # if false ... uses nix-profile for home apps
-                extraSpecialArgs = { inherit inputs pkgs system; };
-                users.malu = import ./modules/home/home.nix;
-              };
-            }
-
-          ];
-        };
-
-        tangier = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs system; };
-          modules = [
-            ./hosts/tangier
-            home.nixosModules.home-manager
-            {
-              home-manager = {
-                verbose = true;
-                backupFileExtension = "home_backup";
-                users.malu = import ./modules/home/home.nix;
-                useGlobalPkgs = true; # dont use private instance of pkgs which is the default
-                useUserPackages = false; # if false:: ... uses nix-profile for home apps
-                extraSpecialArgs = { inherit pkgs inputs system; };
-              };
-            }
-          ];
-        };
-
-      };
-
+  home.nixosModules.home-manager {
+    home-manager = {
+      verbose = true;
+      backupFileExtension = "home_bak";
+      useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
+      useUserPackages = false; # if false ... uses nix-profile for home apps
+      extraSpecialArgs = { inherit inputs pkgs system; };
+      users.malu = import ./modules/home/home.nix;
     };
-}
+  }
+
+  ];  # modules
+};  # carthage
+
+tangier = nixpkgs.lib.nixosSystem {
+  inherit system;
+  specialArgs = { inherit inputs system; };
+  modules = [
+    ./hosts/tangier
+    home.nixosModules.home-manager {
+      home-manager = {
+        verbose = true;
+        backupFileExtension = "home_backup";
+        users.malu = import ./modules/home/home.nix;
+        useGlobalPkgs = true; # dont use private instance of pkgs which is the default
+        useUserPackages = false; # if false:: ... uses nix-profile for home apps
+        extraSpecialArgs = { inherit pkgs inputs system; };
+      };
+    }
+  ];
+};
+
+}; #End of NixConfigurations
+
+  };   # end of outputs
+}    # EOF

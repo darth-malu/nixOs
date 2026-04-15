@@ -2,7 +2,7 @@
   hardware = {
     # enableAllFirmware = true; # enable all firmware regardless of license - no audio HSP/HFP mode
     # enableAllHardware = true; # Enable support for most hardware
-    enableRedistributableFirmware = true; # enable firmware with a license allowing redistribution
+    enableRedistributableFirmware = false; # enable firmware with a license allowing redistribution
     bluetooth = {
       # hsphfpd.enable = true; # support for hsphfpd[-prototype] implementation.NOTE: might be old? and conflicting
       enable = true;
@@ -11,7 +11,7 @@
         # Set configuration for system-wide bluetooth (/etc/bluetooth/main.conf). See https://github.com/bluez/bluez/blob/master/src/main.conf for full list of options.
         General = {
           Experimental = true; # battery %
-          # ControllerMode = "bredr"; # dual:: "bredr"-old "le"
+          # ControllerMode = "bredr"; # dual::(BR/EDR and LE enabled.), "bredr"-old,  "le"
           FastConnectable = true; # scan for incoming connections more frequently - increased power
           # JustWorksRepairing = "never"; # never::, confirm, always
           # Class = "0x000100"; # how pc ids itself ie. as computer to other devices 0x000000::

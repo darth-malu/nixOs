@@ -186,6 +186,7 @@ config = {
       "youtube-upnext"
       "davinci-resolve"
       "wpsoffice"
+      "bluemail"
       # "broadcom-bt-firmware"
     ];
 #+end_src

@@ -70,11 +70,11 @@ colors = {
     selected.odd.bg = "#8f00ff"; # C3D898
     selected.even.bg = "#8f00ff";
   };
-  webpage.darkmode= {
-    enabled = false;
+  # webpage.darkmode= {
+    # enabled = false;
     # algorithm = "lightness-cielab";
     # policy.images = "never";
-  };
+  # };
 };
 
 statusbar = {

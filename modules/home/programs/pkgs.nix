@@ -121,7 +121,7 @@
     ]
     ++ [
       # SOUND
-      # cantata # old af
+      cantata # old af
       # clapper
       # kando
       lollypop # cantata better
@@ -142,7 +142,10 @@
       gpu-screen-recorder-gtk
       alarm-clock-applet
       spotify
-      # castero                   # FIXME Failed Test
+      # castero # FIXME Failed Test
+      gpodder # https://castos.com/tools/find-podcast-rss-feed/ #https://github.com/gpodder/gpodder
+      gnome-podcasts
+      mopidy-podcast
       spotube
       sway-audio-idle-inhibit
       # digikam #TODO diff with darktable
@@ -166,6 +169,7 @@
       # ungoogled-chromium
       google-chrome
       inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+      bluemail
     ]
     ++ [
       # Productivity Tools

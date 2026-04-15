@@ -2,7 +2,7 @@
 {
   imports = [
     ./xdg
-    ./session_Variables+Path.nix
+    ./homeSessionVariables+path.nix
     ./programs
     ./services
     ./configurations

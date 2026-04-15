@@ -1,6 +1,8 @@
 #+title: Bluetooth
 #+startup: content indent
 
+btusb - bt kernel driver
+
 =Technologies=
   * (A2DP - high , HSP/HFP-telephone - low,) older,
   * hsphfpd -middleman -> Better mic (NOTE: cannot be used with wireplumber)
@@ -9,6 +11,53 @@ better mic zoom,discord with hsphfpd
 
 NOTE: for bt to work in HSP/HFP mode, test further
 
+* Bluetoothctl
+Start the bluetoothctl interactive command. Input help to get a list of available commands.
+
+1. (optional) Select a default controller with select MAC_address.
+2. (optional) Enter power on to turn the power to the controller on if the device is set to off. It is on by default; see #Default adapter power state.
+3. Enter devices to get the MAC address of the device with which to pair.
+4. Enter device discovery mode with scan on command if device is not yet on the list.
+5. Turn the agent on with agent on or choose a specific agent: if you press tab twice after agent you should see a list of available agents. A Bluetooth agent is what manages the Bluetooth 'pairing code'. It can either respond to a 'pairing code' coming in, or can send one out. The default-agent should be appropriate in most cases.[1]
+6. Enter pair MAC_address to do the pairing (tab completion works).
+7. If using a device without a PIN, one may need to manually trust the device before it can reconnect successfully. Enter trust MAC_address to do so.
+8. Enter connect MAC_address to establish a connection.
+
+   =alternatively=
+   #+begin_src yaml
+[NEW] Controller 00:10:20:30:40:50 hostname [default]
+[bluetooth]# agent KeyboardOnly
+Agent registered
+
+[bluetooth]# default-agent
+Default agent request successful
+
+[bluetooth]# power on
+Changing power on succeeded
+[CHG] Controller 00:10:20:30:40:50 Powered: yes
+
+[bluetooth]# scan on
+Discovery started
+[CHG] Controller 00:10:20:30:40:50 Discovering: yes
+[NEW] Device 00:12:34:56:78:90 device name
+[CHG] Device 00:12:34:56:78:90 LegacyPairing: yes
+
+[bluetooth]# pair 00:12:34:56:78:90
+Attempting to pair with 00:12:34:56:78:90
+[CHG] Device 00:12:34:56:78:90 Connected: yes
+[CHG] Device 00:12:34:56:78:90 Connected: no
+[CHG] Device 00:12:34:56:78:90 Connected: yes
+Request PIN code
+[agent] Enter PIN code: 1234
+[CHG] Device 00:12:34:56:78:90 Paired: yes
+Pairing successful
+[CHG] Device 00:12:34:56:78:90 Connected: no
+
+[bluetooth]# connect 00:12:34:56:78:90
+Attempting to connect to 00:12:34:56:78:90
+[CHG] Device 00:12:34:56:78:90 Connected: yes
+Connection successful
+   #+end_src
 * Sig
 https://auth0.com/case-studies/bluetooth-sig
 https://www.tarlogic.com/bsam/documentation/bluetooth-core-specification/

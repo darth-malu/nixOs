@@ -6,13 +6,11 @@
     ./mbsync_edmundmiller.nix
   ];
 
-  config = {
-
     emacs-mail.enable = false;
 
     programs.emacs = {
       enable = true;
-      package = pkgs.emacs-unstable-pgtk; # emacs, emacs-gtk, emacs-nox, emacs-pgtk
+      package = pkgs.emacs-pgtk; # emacs, emacs-gtk, emacs-nox, emacs-pgtk
       # NOTE: need update from 30.2 -> pgtk
     };
 
@@ -43,5 +41,4 @@
         LSP_USE_PLISTS = "true";
       };
     };
-  };
 }

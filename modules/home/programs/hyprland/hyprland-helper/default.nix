@@ -2,7 +2,7 @@
   imports = [
     # ./rofi
     ./scripts
-    ./hypr-ecos
+    ./hypr-ecosystem
     ./themes
     ./quickshell.nix
     ./satty.nix # TODO

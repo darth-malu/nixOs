@@ -6,12 +6,11 @@
 {
   programs.quickshell = {
     enable = true;
-    package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default; # OR use stable
+    package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
     # activeConfig = "$HOME/Shibuya/modules/home/programs/hyprland/hyprland-helper/quickshell"; # if null use $XDG_CONFIG_HOME/quickshell::
     systemd = {
       enable = true;
       # target = "hyprland-session.target"; # config.wayland.systemd.target:: (graphical-session-target) # HACK:, hyprland-session.target
-      target = "graphical-session.target";
     };
   };
 

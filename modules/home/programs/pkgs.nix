@@ -105,6 +105,7 @@
     ++ [
       whatsapp-electron
       telegram-desktop
+      discord
     ]
     ++ [
       # Fediverse

@@ -1,3 +1,4 @@
+{lib, osConfig, ...}:
 {
   imports = [
     # ./alias.nix
@@ -40,14 +41,16 @@
     "gemini"
     "opencode"
   ];
-  # programs.bash.profileExtra =
-  #   lib.mkIf (osConfig.kde.enable == false)
-  #     #loginshell
-  #     ''
-  #        if uwsm check may-start; then
-  #          start-hyprland
-  #       fi
-  #     '';
+
+  programs.bash.profileExtra =
+    lib.mkIf (osConfig.kde.enable == false)
+      #loginshell
+      ''
+         if uwsm check may-start; then
+           start-hyprland
+        fi
+      '';
+
   programs.bash.initExtra = ''
     nixify() {
       if [ ! -e ./.envrc ]; then
@@ -76,7 +79,7 @@
       vim flake.nix
     }
 
-    #complete command + file names. Investigate if needed
+    #complete command + file names.
     #complete -cf sudo
 
     # export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin" # should be below in bashrcExtra

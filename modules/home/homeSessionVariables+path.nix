@@ -34,7 +34,6 @@
     "${config.home.homeDirectory}/Development/Core Utils/bash/Scripts"
   ];
 
-  # UWSM environment
   xdg.configFile = {
     "uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
     "mimeapps.list".force = true;

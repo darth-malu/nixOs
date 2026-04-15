@@ -8,7 +8,6 @@
   imports = [
     ../common
     ./nvidia.nix
-    ./distributed-builds.nix
   ];
 
   networking = {

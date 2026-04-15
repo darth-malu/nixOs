@@ -235,13 +235,13 @@ nix.optimise = {
 
 nix.settings.auto-optimise-store = true;#optimise with everybuild nix-store --optimise (manual) # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy. #false::
 
-nix.gc = {
-  automatic = true;
-  dates = "weekly"; # "03:15";
-  options = "--delete-older-than 14d";
-  # randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
-  # persistent = false; # true::
-};
+  nix.gc = {
+    automatic = true;
+    dates = "weekly"; # "03:15";
+    options = "--delete-older-than 14d";
+    # randomizedDelaySec = "30min"; # 1800:: systemd.time(7)
+    # persistent = false; # true::
+  };
 
 nix.settings = {
   # warn-dirty = false;
@@ -252,8 +252,7 @@ nix.settings = {
     "sumbi"
   ];
   trusted-users = [ # have additional rights when connecting to nix daemon. specify additional binary caches, or to import unsigned NARs
-    # "remotebuild"
-    # "remotebuild"
+    "remotebuild"
     # "@remotebuild"
     "malu"
   ];
@@ -276,6 +275,40 @@ nix.settings = {
     # "konradmalik.cachix.org-1:9REXmCYRwPNL0kAB0IMeTxnMB1Gl9VY5I8w7UVBTtSI="
   ];
 };
+
+  nix = {
+    distributedBuilds = lib.mkIf (config.networking.hostName != "carthage") true;
+    buildMachines = lib.mkIf (config.networking.hostName != "carthage") [
+      {
+        # makes it so i dont have to use --builders "ssh://myuser@builder <other builder specification>"
+        sshUser = "remotebuild"; # NOTE special user that cant be sudo'd into
+        sshKey = "/home/malu/.ssh/tangierRemote"; # path to remote key on client (tangier)
+        hostName = "192.168.100.122"; # # Replace by IP address, or add a ProxyCommand, see `man ssh_config` for full docs.
+        # protocol = "ssh-ng"; #ssh:: ssh-ng ( ssh next generation)
+        maxJobs = 8;
+        speedFactor = 2; # The relative speed of this builder. This is an arbitrary integer that indicates the speed of this builder, relative to other builders. Higher is faster.
+        system = pkgs.stdenv.hostPlatform.system;
+        supportedFeatures = [
+          "nixos-test"
+          "benchmark"
+          "big-parallel"
+          # "kvm"
+        ];
+        mandatoryFeatures = [ ];
+      }
+    ];
+    extraOptions = lib.mkIf (config.networking.hostName != "carthage") ''
+      builders-use-substitutes = true
+    '';
+    settings = {
+      extra-substituters = lib.mkIf (config.networking.hostName != "carthage") [
+        "ssh://malu@192.168.100.122"
+      ];
+      trusted-public-keys = lib.mkIf (config.networking.hostName != "carthage") [
+         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9bmUGM+Vxix3N6UsxEPwOLmH1JmBiCcudWMb0ZIzcD darth-malu@github.com"
+      ];
+    }
+  };
 
 i18n = {
   defaultLocale = "en_US.UTF-8";

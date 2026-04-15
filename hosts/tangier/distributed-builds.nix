@@ -8,14 +8,14 @@
       {
         # makes it so i dont have to use --builders "ssh://myuser@builder <other builder specification>"
         sshUser = "remotebuild"; # NOTE special user that cant be sudo'd into
-        # sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJXqFrWf3rqkudQ6+aBFXkWpZcAm9HW9oHZclRwtGI8G justinmalu@gmail.com"; # carthage
-        sshKey = "/home/malu/.ssh/remotebuild.pub";
-        hostName = "carthage";
+        sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9bmUGM+Vxix3N6UsxEPwOLmH1JmBiCcudWMb0ZIzcD darth-malu@github.com";
+        # sshKey = "/home/malu/.ssh/id_ed25519"; # Path to the PRIVATE key on Tangier
+        # hostName = "carthage";
+        hostName = "192.168.100.122"; # # Replace by IP address, or add a ProxyCommand, see `man ssh_config` for full docs.
         # protocol = "ssh-ng"; #ssh:: ssh-ng ( ssh next generation)
         # maxJobs = 4;
         # speedFactor = 2; # The relative speed of this builder. This is an arbitrary integer that indicates the speed of this builder, relative to other builders. Higher is faster.
         system = pkgs.stdenv.hostPlatform.system;
-        # system = "x86_64-linux";
         supportedFeatures = [
           "nixos-test"
           "benchmark"

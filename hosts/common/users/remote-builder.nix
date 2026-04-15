@@ -11,7 +11,7 @@
     ]; # tangier/remote machine ssh key
   };
 
-  # users.groups.remotebuild = { };
+  users.groups.remotebuild = { };
 
   nix.settings.trusted-users = [
     "remotebuild"

@@ -151,18 +151,22 @@ mgr.keymap = [
 ];
 
 tasks.keymap = [
-  { on = [ "w" "t" ]; run = "show"; desc = "Show the tasks manager"; }
-  { on = [ "w" "i" ]; run = "inspect"; desc = "tasks inspector"; }
-  { on = [ "w" "c" ]; run = "close"; desc = "Show the tasks manager"; }
+  { on = [ "w" ]; run = "show"; desc = "Show the tasks manager"; }
+  { on = [ "i" ]; run = "inspect"; desc = "tasks inspector"; }
+  { on = [ "c" ]; run = "cancel"; desc = "cancel the task"; }
 ];
 
 spot.keymap = [
   { on =  "<Tab>"; run = "help"; desc = "Display file information with the preset or user-customized spotter."; } # FIXME: not work
+  # { on = [ "y" ]; run = "copy"; desc = "copy content from the spotter"; }
+  # { on = [ "Y" ]; run = "copy cell"; desc = "copy content from the spotter (the selected table cell)"; }
 ];
 
 mgr.prepend_keymap = [
   {on = [ "!" ]; run = "shell \"$SHELL\" --block"; desc = "open $SHELL here";}
   # {on = [ "y" ]; run = "shell -- for path in \"$@\"; do echo \"file://$path\"; done | wl-copy -t text/uri-list, \"yank\""; desc = "copy selected files to clipboard when copying";}
+  {on = [ "<C-y>" ]; run = "plugin wl-clipboard"; desc = "Copy selected files to wl-clipboard";}
+  {on = [ "<C-d>" ]; run = "plugin drag"; desc = "Drag files";}
   {on = [ "l" ]; run = "plugin smart-enter"; desc = "Enter child dir or open file";}
   {on = [ "p" ]; run = "plugin smart-paste"; desc = "Paste into the hovered directory or CWD";}
   {on = [ "t" ]; run = "plugin smart-tab"; desc = "Create a tab and enter the hovered directory";}

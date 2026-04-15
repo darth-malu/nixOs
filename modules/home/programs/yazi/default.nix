@@ -8,6 +8,7 @@
   home.packages = with pkgs; [
     xdg-desktop-portal-termfilechooser
     glow
+    ripdrag
     ueberzugpp
   ];
 
@@ -26,14 +27,15 @@
       inherit (pkgs.yaziPlugins) smart-paste;
       inherit (pkgs.yaziPlugins) smart-enter;
       inherit (pkgs.yaziPlugins) piper;
-      inherit (pkgs.yaziPlugins) git;
-      inherit (pkgs.yaziPlugins) gvfs;
+      # inherit (pkgs.yaziPlugins) git;
+      # inherit (pkgs.yaziPlugins) gvfs; # TODO:
+      inherit (pkgs.yaziPlugins) jump-to-char;
       inherit (pkgs.yaziPlugins) bookmarks;
-      inherit (pkgs.yaziPlugins) toggle-pane;
+      # inherit (pkgs.yaziPlugins) toggle-pane;
       inherit (pkgs.yaziPlugins) wl-clipboard;
+      inherit (pkgs.yaziPlugins) drag; # Drag files using ripdrag
 
       # smart-tab: ya pkg add wekauwau/smart-tab
-      # wl-clipboard: ya pkg add grappas/wl-clipboard
     };
     settings = {
       mgr = {
@@ -54,14 +56,37 @@
         title_format = ""; # {cwd}
       };
       plugin = {
+        # prepend_fetchers = {
+        #   id = "git";
+        #   url = "*";
+        #   run = "git";
+        #   group = "git";
+        # };
         prepend_previewers = [
-          {
-            name = "*.md";
-            run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
-          }
+          # {
+          #   name = "*.md";
+          #   run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
+          #   # run = "piper -- echo \"$1\"";
+          # }
+          # {
+          #   url = "*.csv";
+          #   run = "piper -- bat -p --color=always \"$1\"";
+          # }
           # {
           #   name = "*/";
           #   run = "piper -- lsd";
+          # }
+          # {
+          #   name = "*";
+          #   run = "piper -- echo \"$1\"";
+          # }
+          # {
+          #   url = "*.tar*";
+          #   run = "piper --format=url -- tar tf \"$1\"";
+          # }
+          # {
+          #   mime = "application/sqlite3";
+          #   run = "piper -- sqlite3 \"$1\" \".schema --indent\"";
           # }
         ];
 
@@ -206,7 +231,7 @@
       tasks = {
         micro_workers = 5;
         macro_workers = 10;
-        bizarre_retry = 5;
+        # bizarre_retry = 5;
       }; # worker -> micro tasks,
     };
   };

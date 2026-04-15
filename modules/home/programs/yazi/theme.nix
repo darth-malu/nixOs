@@ -22,7 +22,7 @@
     # Empty files
     {
       mime = "inode/x-empty";
-      fg = "green";
+      fg = "orange";
     }
 
     # Orphan symbolic links

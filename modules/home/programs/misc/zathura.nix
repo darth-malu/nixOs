@@ -1,25 +1,27 @@
 {
   enable = true;
   options = {
-    # :set
+    # https://www.mankier.com/5/zathurarc#Options-zathura
+    # :set command options - Make them permanent
+    adjust-open = "best-fit";
+    continuous-hist-save = true; # save document history at each page change or only when closing a document
     default-bg = "#000000";
     default-fg = "#FFFFFF";
+    font = "Iosevka Comfy semibold 10";
+    guioptions = "none"; # no statusbar
+    highlight-active-color = "#623CEA"; # #00BC00::, #75DBCD - color of currently selected highlighted element (eg. current search result)
+    highlight-fg = "rgba(255, 255, 255, 0.8)"; # Text when highlighting...eg number for links
+    # highlight-color = ""; # #9FBC00:: # parts of document (eg show search results)
+    # highlight-transparency = ""; # 0.5::
+    incremental-search = true;
+    page-padding = 0;
+    scroll-step = 100; # 40::
+    selection-clipboard = "clipboard"; # copy selection to system clipboard
     statusbar-h-padding = 0;
     statusbar-v-padding = 0;
-    page-padding = 0;
-    selection-clipboard = "clipboard"; # copy selection to system clipboard
-    zoom-step = 20; # 10:: in % percentage
-    zoom-min = 20; # 10::
     zoom-max = 1000; # 1000::
-    scroll-step = 100; # 40::
-    incremental-search = true;
-    # highlight-color = ""; # #9FBC00::
-    highlight-active-color = "#623CEA"; # #00BC00::, #75DBCD
-    # highlight-transparency = ""; # 0.5::
-    guioptions = "none"; # no statusbar
-    adjust-open = "best-fit";
-    smoth-scroll = true;
-    font = "Iosevka Comfy semibold 10";
+    zoom-min = 20; # 10::
+    zoom-step = 20; # 10:: in % percentage
   };
   mappings = {
     # :map

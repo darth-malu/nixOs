@@ -92,14 +92,13 @@
 
       };
       preview = {
-        cache_dir = config.xdg.cacheHome;
+        cache_dir = config.xdg.cacheHome; # specifiy absolut path for persistence # after changing do yazi --clear-cache
         word_wrap = "yes"; # code preview word wrap
         image_filter = "lanczos3";
         image_quality = 90;
         tab_size = 2; # in spaces
         max_width = 600;
         max_height = 900;
-        # cache_dir = ""; # specifiy absolut path for persistence # after changing do yazi --clear-cache
         ueberzug_scale = 1;
         ueberzug_offset = [
           0
@@ -118,8 +117,8 @@
         ];
         emacs = [
           {
-            run = "emacsclient -c %s";
-            block = true;
+            run = "emacsclient -c -n %s"; # -c;;
+            orphan = true;
             for = "unix";
           }
         ];
@@ -130,18 +129,10 @@
             for = "unix";
           }
         ];
-        libreoffice = [
-          {
-            run = "libreoffice %s";
-            block = true;
-            for = "unix";
-          }
-        ];
         wps = [
           {
             run = "wps %s";
-            block = true;
-            for = "unix";
+            orphan = true;
           }
         ];
         open = [
@@ -155,19 +146,20 @@
       open = {
         # needs [openers]
         rules = [
-          # {
-          #   mime = "text/*";
-          #   use = [
-          #     "vim"
-          #     "open"
-          #   ];
-          # }
           {
-            mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            name = "*.org";
             use = [
-              "wps"
+              "emacs"
               "open"
             ];
+          }
+          {
+            mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            use = "wps";
+          }
+          {
+            name = "*.docx";
+            use = "wps";
           }
           {
             mime = "application/pdf";
@@ -185,48 +177,32 @@
             name = "*.json";
             use = "vim";
           }
-          {
-            name = "*.html";
-            use = [
-              # Multiple openers for a single rule
-              "open"
-              "emacs"
-            ];
-          }
         ];
         prepend_rules = [
-          {
-            name = "*.org";
-            use = [
-              "emacs"
-              "open"
-            ];
-          }
           {
             name = "*.json";
             use = "vim";
           }
-          # Multiple openers for a single rule
           {
-            name = "*.docx";
+            mime = "text/html";
             use = [
-              "wps"
               "open"
+              "emacs"
             ];
           }
         ];
         append_rules = [
           {
+            name = "*"; # my fallback
+            use = "open";
+          }
+          {
             mime = "text/*";
             use = [
               "emacs"
-              # "vim"
+              "vim"
               "open"
             ];
-          }
-          {
-            name = "*"; # my fallback
-            use = "open";
           }
         ];
       };

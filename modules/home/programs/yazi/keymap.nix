@@ -110,7 +110,7 @@ mgr.keymap = [
   { on = [ "c"  "f" ]; run = [ "escape --visual"  "copy filename" ];         desc = "Copy the name of the file"; }
   { on = [ "c"  "n" ]; run = [ "escape --visual"  "copy name_without_ext" ]; desc = "Copy the name of the file without the extension"; }
 
-{ on = [ "f" ]; run = "filter --smart"; desc = "Filter the files"; }
+{ on = [ "F" ]; run = "filter --smart"; desc = "Filter the files"; }
 
   { on = [ "/" ]; run = "find --smart";            desc = "Find next file"; }
   { on = [ "?" ]; run = "find --previous --smart"; desc = "Find previous file"; }
@@ -146,7 +146,7 @@ mgr.keymap = [
   { on = [ "{" ]; run = "tab_swap -1"; desc = "Swap the current tab with the previous tab"; }
   { on = [ "}" ]; run = "tab_swap 1";  desc = "Swap the current tab with the next tab"; }
 
-{ on =  "Tab"; run = "spot"; desc = "Display file information with the preset or user-customized spotter."; }
+{ on =  "<Tab>"; run = "spot"; desc = "Display file information with the preset or user-customized spotter."; }
 
 ];
 
@@ -157,7 +157,7 @@ tasks.keymap = [
 ];
 
 spot.keymap = [
-  { on =  "<Tab>"; run = "help"; desc = "Display file information with the preset or user-customized spotter."; } # FIXME: not work
+  { on =  "h"; run = "help"; desc = "Display file information with the preset or user-customized spotter."; } # FIXME: not work
   # { on = [ "y" ]; run = "copy"; desc = "copy content from the spotter"; }
   # { on = [ "Y" ]; run = "copy cell"; desc = "copy content from the spotter (the selected table cell)"; }
 ];
@@ -166,11 +166,11 @@ mgr.prepend_keymap = [
   {on = [ "!" ]; run = "shell \"$SHELL\" --block"; desc = "open $SHELL here";}
   # {on = [ "y" ]; run = "shell -- for path in \"$@\"; do echo \"file://$path\"; done | wl-copy -t text/uri-list, \"yank\""; desc = "copy selected files to clipboard when copying";}
   {on = [ "<C-y>" ]; run = "plugin wl-clipboard"; desc = "Copy selected files to wl-clipboard";}
-  # {on = [ "<C-d>" ]; run = "plugin drag"; desc = "Drag files";}
+  {on = [ "<C-r>" ]; run = "plugin drag"; desc = "Drag files";}
   {on = [ "l" ]; run = "plugin smart-enter"; desc = "Enter child dir or open file";}
   {on = [ "p" ]; run = "plugin smart-paste"; desc = "Paste into the hovered directory or CWD";}
   {on = [ "t" ]; run = "plugin smart-tab"; desc = "Create a tab and enter the hovered directory";}
-  {on = [ "F" ]; run = "plugin jump-to-char"; desc = "Jump to char";}
+  {on = [ "f" ]; run = "plugin jump-to-char"; desc = "Jump to char";}
   {on = [ "m" ]; run = "plugin bookmarks save"; desc = "Save current position as a bookmark";}
   {on = [ "'" ]; run = "plugin bookmarks jump"; desc = "Jump to a bookmark";}
   {on = [ "b" "d" ]; run = "plugin bookmarks delete"; desc = "Delete a bookmark";}

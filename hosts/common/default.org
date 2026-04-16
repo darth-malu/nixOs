@@ -404,11 +404,11 @@ nix.settings = {
     # "konradmalik.cachix.org-1:9REXmCYRwPNL0kAB0IMeTxnMB1Gl9VY5I8w7UVBTtSI="
   ] ++
   lib.optionals (config.networking.hostName != "carthage") [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9bmUGM+Vxix3N6UsxEPwOLmH1JmBiCcudWMb0ZIzcD darth-malu@github.com"
+      # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9bmUGM+Vxix3N6UsxEPwOLmH1JmBiCcudWMb0ZIzcD darth-malu@github.com"
   ];
 
   extra-substituters = lib.mkIf (config.networking.hostName != "carthage") [
-    "ssh://malu@192.168.100.122"
+    # "ssh://malu@192.168.100.122"
   ];
 };
 #+end_src

@@ -166,7 +166,7 @@ mgr.prepend_keymap = [
   {on = [ "!" ]; run = "shell \"$SHELL\" --block"; desc = "open $SHELL here";}
   # {on = [ "y" ]; run = "shell -- for path in \"$@\"; do echo \"file://$path\"; done | wl-copy -t text/uri-list, \"yank\""; desc = "copy selected files to clipboard when copying";}
   {on = [ "<C-y>" ]; run = "plugin wl-clipboard"; desc = "Copy selected files to wl-clipboard";}
-  {on = [ "<C-d>" ]; run = "plugin drag"; desc = "Drag files";}
+  # {on = [ "<C-d>" ]; run = "plugin drag"; desc = "Drag files";}
   {on = [ "l" ]; run = "plugin smart-enter"; desc = "Enter child dir or open file";}
   {on = [ "p" ]; run = "plugin smart-paste"; desc = "Paste into the hovered directory or CWD";}
   {on = [ "t" ]; run = "plugin smart-tab"; desc = "Create a tab and enter the hovered directory";}

@@ -57,7 +57,7 @@
     "kitty_mod+tab" = "layout_action bias 10 20 30 40 50 60";
 
     # tabs
-    "ctrl+alt+space" = "close_tab";
+    "ctrl+alt+Escape" = "close_tab";
     "ctrl+alt+enter" = "new_tab_with_cwd";
 
     "ctrl+alt+t" = "set_tab_title";

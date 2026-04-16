@@ -27,32 +27,21 @@ mgr.keymap = [
   { on = [ "l" ]; run = "enter";    desc = "@darth Enter child dir."; }
 
   { on = [ "<Left>" ];  run = "leave";    desc = "Go back to the parent directory"; }
-  { on = [ "<Right>" ]; run = "enter";    desc = "Enter the child directory"; }
+  { on = [ "<Right>" ]; run = "plugin smart-enter";    desc = "Enter the child directory (smart)"; }
    
   { on = [ "K" ]; run = "arrow -5"; desc = "Move cursor up 5 lines"; }
   { on = [ "J" ]; run = "arrow 5";  desc = "Move cursor down 5 lines"; }
 
-  { on = [ "<C-u>" ]; run = "arrow -50%";  desc = "Move cursor up half page"; }
-  { on = [ "<C-d>" ]; run = "arrow 50%";   desc = "Move cursor down half page"; }
-  { on = [ "<C-b>" ]; run = "arrow -100%"; desc = "Move cursor up one page"; }
-  { on = [ "<C-f>" ]; run = "arrow 100%";  desc = "Move cursor down one page"; }
+  # { on = [ "<C-u>" ]; run = "arrow -50%";  desc = "Move cursor up half page"; }
+  # { on = [ "<C-d>" ]; run = "arrow 50%";   desc = "Move cursor down half page"; }
+  # { on = [ "<C-b>" ]; run = "arrow -100%"; desc = "Move cursor up one page"; }
+  # { on = [ "<C-f>" ]; run = "arrow 100%";  desc = "Move cursor down one page"; }
 
   { on = [ "<Up>" ];    run = "arrow -1"; desc = "Move cursor up"; }
   { on = [ "<Down>" ];  run = "arrow 1";  desc = "Move cursor down"; }
 
   { on = [ "g"  "g" ]; run = "arrow top"; desc = "Move cursor to the top"; }
   { on = [ "G" ];      run = "arrow bot";  desc = "Move cursor to the bottom"; }
-  # { on = [ "<C-PageUp>" ];   run = "arrow -50%";  desc = "Move cursor up half page"; }
-  # { on = [ "<C-PageDown>" ]; run = "arrow 50%";   desc = "Move cursor down half page"; }
-  # { on = [ "<PageUp>" ];     run = "arrow -100%"; desc = "Move cursor up one page"; }
-  # { on = [ "<PageDown>" ];   run = "arrow 100%";  desc = "Move cursor down one page"; }
-  # { on = [ "<S-Up>" ];   run = "arrow -5"; desc = "Move cursor up 5 lines"; }
-  # { on = [ "<S-Down>" ]; run = "arrow 5";  desc = "Move cursor down 5 lines"; }
-  # { on = [ "H" ]; run = [ "escape --visual" "leave" ]; desc = "Go back to the parent directory"; }
-  # { on = [ "L" ]; run = [ "escape --visual" "enter" ]; desc = "Enter the child directory"; }
-  # { on = [ "h" ]; run = "back";    desc = "Go back to the previous directory"; }
-  # { on = [ "l" ]; run = "forward"; desc = "Go forward to the next directory"; }
-  # { on = [ "l" ]; run  = "plugin --@sync entry smart-enter"; desc = "Enter child dir. or open file lul"; }
 
 { on = [ "<A-k>" ]; run = "seek -5"; desc = "Seek up 5 units in the preview"; }
   { on = [ "<A-j>" ]; run = "seek 5";  desc = "Seek down 5 units in the preview"; }
@@ -112,6 +101,10 @@ mgr.keymap = [
 
 { on = [ "F" ]; run = "filter --smart"; desc = "Filter the files"; }
 
+{ on = [ "~" ]; run = "help"; desc = "Open Help"; }
+
+{ on = "w"; run = "tasks:show"; desc = "Show task manager"; }
+
   { on = [ "/" ]; run = "find --smart";            desc = "Find next file"; }
   { on = [ "?" ]; run = "find --previous --smart"; desc = "Find previous file"; }
   { on = [ "n" ]; run = "find_arrow";              desc = "Go to next found file"; }
@@ -131,7 +124,7 @@ mgr.keymap = [
   { on = [ ","  "S" ]; run = "sort size --reverse=yes --dir-first";         desc = "Sort by size (reverse)"; }
 
   # { on = [ "t" ]; run = "tab_create --current"; desc = "Create a new tab using the $CWD"; }
-  { on = [ "T" ]; run = "tab_create /home/malu"; desc = "Create a new tab"; } # If neither [path] nor --current is specified, will use the startup directory to create the tab.
+  { on = [ "T" ]; run = "tab_create /home/malu"; desc = "Create a new tab with HOME as CWD"; } # If neither [path] nor --current is specified, will use the startup directory to create the tab.
   { on = [ "1" ]; run = "tab_switch 0"; desc = "Switch to the first tab"; }
   { on = [ "2" ]; run = "tab_switch 1"; desc = "Switch to the second tab"; }
   { on = [ "3" ]; run = "tab_switch 2"; desc = "Switch to the third tab"; }
@@ -151,15 +144,24 @@ mgr.keymap = [
 ];
 
 tasks.keymap = [
-  { on = [ "w" ]; run = "show"; desc = "Show the tasks manager"; }
-  { on = [ "i" ]; run = "inspect"; desc = "tasks inspector"; }
-  { on = [ "c" ]; run = "cancel"; desc = "cancel the task"; }
+  { on =  "w" ; run = "close"; desc = "tasks inspector"; }
+  { on =  "n" ; run = "show"; desc = "Show the tasks manager"; }
+  { on =  "~" ; run = "help"; desc = "tasks inspector"; }
+  { on =  "<Enter>" ; run = "inspect"; desc = "tasks inspector"; }
+  { on =  "x" ; run = "cancel"; desc = "cancel the task"; }
 ];
 
 spot.keymap = [
-  { on =  "h"; run = "help"; desc = "Display file information with the preset or user-customized spotter."; } # FIXME: not work
-  # { on = [ "y" ]; run = "copy"; desc = "copy content from the spotter"; }
-  # { on = [ "Y" ]; run = "copy cell"; desc = "copy content from the spotter (the selected table cell)"; }
+  { on =  "~"; run = "help"; desc = "Display file information with the preset or user-customized spotter."; } # FIXME: not work
+  { on =  "<Tab>" ; run = "close"; desc = "Hide the spotter"; }
+  { on =  "<Esc>" ; run = "close"; desc = "Hide the spotter"; }
+  { on = "j" ;run = "arrow next" ; desc = "Spot next Item in directory"; }
+  { on = "k" ;run = "arrow prev" ; desc = "Spot prev Item in directory"; }
+  { on = "J" ;run = "arrow bot" ; desc = "Spot Last Item in directory"; }
+  { on = "K" ;run = "arrow top" ; desc = "Spot first Item in directory"; }
+  { on = "l" ;run = "swipe 1" ; desc = "swipe?"; } # TODO
+  { on = "h" ;run = "swipe -1" ; desc = "swipe?"; } # TODO
+  { on = [ "y" ]; run = "copy cell"; desc = "copy content from the spotter (the selected table cell)"; }
 ];
 
 mgr.prepend_keymap = [

@@ -88,7 +88,7 @@
           #   mime = "application/sqlite3";
           #   run = "piper -- sqlite3 \"$1\" \".schema --indent\"";
           # }
-        ];
+        ]; # TODO: fix previewers to be more perfomant
 
       };
       preview = {
@@ -111,43 +111,44 @@
       opener = {
         play = [
           {
-            run = "mpv \"$@\"";
+            run = "mpv %S";
             orphan = true;
             for = "unix";
           }
         ];
         emacs = [
           {
-            run = "emacsclient -c \"$@\"";
+            run = "emacsclient -c %s";
             block = true;
             for = "unix";
           }
         ];
         vim = [
           {
-            run = "vim \"$@\"";
+            run = "vim %s";
             block = true;
             for = "unix";
           }
         ];
         libreoffice = [
           {
-            run = "libreoffice \"$@\"";
+            run = "libreoffice %s";
             block = true;
             for = "unix";
           }
         ];
         wps = [
           {
-            run = "wps \"$@\"";
+            run = "wps %s";
             block = true;
             for = "unix";
           }
         ];
         open = [
           {
-            run = "xdg-open \"$@\"";
+            run = "xdg-open %S";
             desc = "Open files with xdg-open";
+            orphan = true;
           }
         ];
       };
@@ -218,7 +219,8 @@
           {
             mime = "text/*";
             use = [
-              "vim"
+              "emacs"
+              # "vim"
               "open"
             ];
           }
@@ -229,8 +231,8 @@
         ];
       };
       tasks = {
-        micro_workers = 5;
-        macro_workers = 10;
+        micro_workers = 10; # 10::
+        macro_workers = 10; # 10::
         # bizarre_retry = 5;
       }; # worker -> micro tasks,
     };

@@ -18,6 +18,10 @@
       fg = "#CD9EFC";
       mime = "application/x-bzip";
     }
+    {
+      url = "Music-Videos";
+      fg = "cyan";
+    }
 
     # Empty files
     {
@@ -27,23 +31,19 @@
 
     # Orphan symbolic links
     {
-      name = "*";
+      url = "*";
       is = "orphan";
       fg = "red";
     }
 
     # Fallback
     {
-      fg = "#CD9EFC";
-      name = "*/"; # dirs
+      url = "*/"; # dirs
+      fg = "#35A29F"; # "#7AD9E5";
     }
     {
-      name = "Music-Videos"; # all files
-      fg = "cyan";
-    }
-    {
-      name = "*"; # all files
-      fg = "white";
+      url = "*"; # all files
+      fg = "#cd9efc"; # "#7AD9E5"; # "#CD9EFC";
     }
   ];
 
@@ -125,7 +125,7 @@
         fg_light = "#563d7c";
       }
       {
-        name = "desktop";
+        name = "Desktop";
         text = "";
         fg_dark = "#563d7c";
         fg_light = "#563d7c";

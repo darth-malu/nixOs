@@ -7,5 +7,5 @@
     ./nextcloud.nix
   ];
 
-  nextcloud.enable = false;
+  nextcloud.enable = true;
 }

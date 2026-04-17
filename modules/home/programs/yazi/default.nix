@@ -24,18 +24,23 @@
     plugins = {
       # Linked to: $XDG_CONFIG_HOME/yazi/plugins/<name>.yazi
       arrow = ./plugins/arrow.yazi;
-      inherit (pkgs.yaziPlugins) smart-paste;
-      inherit (pkgs.yaziPlugins) smart-enter;
-      inherit (pkgs.yaziPlugins) piper;
-      # inherit (pkgs.yaziPlugins) git;
-      # inherit (pkgs.yaziPlugins) gvfs; # TODO:
-      inherit (pkgs.yaziPlugins) jump-to-char;
-      inherit (pkgs.yaziPlugins) bookmarks;
-      # inherit (pkgs.yaziPlugins) toggle-pane;
-      inherit (pkgs.yaziPlugins) wl-clipboard;
-      inherit (pkgs.yaziPlugins) drag; # Drag files using ripdrag
+      # "smart-tab" = ./plugins/smart-tab.yazi; #FIXME: does not load
+      inherit (pkgs.yaziPlugins)
+        smart-paste
+        smart-enter
+        piper
+        git
+        jump-to-char
+        # bookmarks               # FIXME mgr_emit
+        toggle-pane
+        wl-clipboard
+        drag
+        # relative-motions # - mgr_emit - FIXME: also bookmarks
+        ;
 
       # smart-tab: ya pkg add wekauwau/smart-tab
+
+      # TODO: make smart-tab runCommand
     };
     settings = {
       mgr = {
@@ -56,38 +61,45 @@
         title_format = ""; # {cwd}
       };
       plugin = {
-        # prepend_fetchers = {
-        #   id = "git";
-        #   url = "*";
-        #   run = "git";
-        #   group = "git";
-        # };
+        prepend_fetchers = [
+          {
+            url = "*";
+            run = "git";
+            group = "git";
+          }
+          {
+            url = "*/";
+            run = "git";
+            group = "git";
+          }
+        ];
+
         prepend_previewers = [
+          {
+            url = "*.md";
+            run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
+            # run = "piper -- echo \"$1\"";
+          }
+          {
+            url = "*.csv";
+            run = "piper -- bat -p --color=always \"$1\"";
+          }
           # {
-          #   name = "*.md";
-          #   run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
-          #   # run = "piper -- echo \"$1\"";
-          # }
-          # {
-          #   url = "*.csv";
-          #   run = "piper -- bat -p --color=always \"$1\"";
-          # }
-          # {
-          #   name = "*/";
+          #   url = "*/";
           #   run = "piper -- lsd";
           # }
           # {
-          #   name = "*";
+          #   url = "*";
           #   run = "piper -- echo \"$1\"";
           # }
-          # {
-          #   url = "*.tar*";
-          #   run = "piper --format=url -- tar tf \"$1\"";
-          # }
-          # {
-          #   mime = "application/sqlite3";
-          #   run = "piper -- sqlite3 \"$1\" \".schema --indent\"";
-          # }
+          {
+            url = "*.tar*";
+            run = "piper --format=url -- tar tf \"$1\"";
+          }
+          {
+            mime = "application/sqlite3";
+            run = "piper -- sqlite3 \"$1\" \".schema --indent\"";
+          }
         ]; # TODO: fix previewers to be more perfomant
 
       };
@@ -124,7 +136,7 @@
         ];
         vim = [
           {
-            run = "vim %s";
+            run = "$EDITOR %s";
             block = true;
             for = "unix";
           }
@@ -147,20 +159,20 @@
         # needs [openers]
         rules = [
           {
-            name = "*.org";
+            url = "*.org";
             use = [
               "emacs"
               "open"
             ];
           }
-          {
-            mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-            use = "wps";
-          }
-          {
-            name = "*.docx";
-            use = "wps";
-          }
+          # {
+          #   mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+          #   use = "wps";
+          # }
+          # {
+          #   url = "*.docx";
+          #   use = "wps";
+          # }
           {
             mime = "application/pdf";
             use = "open";
@@ -174,13 +186,21 @@
             use = "open";
           }
           {
-            name = "*.json";
+            url = "*.json";
             use = "vim";
+          }
+          {
+            mime = "text/*";
+            use = [
+              "emacs"
+              "vim"
+              "open"
+            ];
           }
         ];
         prepend_rules = [
           {
-            name = "*.json";
+            url = "*.json";
             use = "vim";
           }
           {
@@ -193,15 +213,11 @@
         ];
         append_rules = [
           {
-            name = "*"; # my fallback
-            use = "open";
-          }
-          {
-            mime = "text/*";
+            url = "*"; # my fallback
             use = [
-              "emacs"
-              "vim"
               "open"
+              "vim"
+              "emacs"
             ];
           }
         ];

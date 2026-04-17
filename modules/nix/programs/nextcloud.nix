@@ -15,18 +15,23 @@
     services.nextcloud = {
       enable = true;
       autoUpdateApps.enable = true;
-      package = pkgs.nextcloud32; # Instead of using pkgs.nextcloud28Packages.apps,
+      appstoreEnable = true;
+      package = pkgs.nextcloud33; # Instead of using pkgs.nextcloud28Packages.apps,
       # we'll reference the package version specified above
+      # with pkgs.nextcloud33Packages.apps;
       extraApps = {
         inherit (config.services.nextcloud.package.packages.apps)
           news
           contacts
           calendar
           tasks
+          memories
+          onlyoffice
+          bookmarks
           ;
       };
       extraAppsEnable = true;
-      configureRedis = true;
+      configureRedis = true; # The Nextcloud system check recommends to configure either Redis or Memcache for file lock caching.#The notify_push app requires Redis to be configured. If this option is turned off, this must be configured manually.
       hostName = "localhost";
       config = {
         adminpassFile = "/etc/nextcloud-admin-pass";

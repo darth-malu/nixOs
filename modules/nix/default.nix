@@ -7,6 +7,7 @@
     ./programs
     ./services
     ./core
+    ./bootStuff.nix
     ./app-image.nix
     ./overlays.nix
   ];

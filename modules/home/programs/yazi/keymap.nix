@@ -111,19 +111,20 @@ mgr.keymap = [
   { on = [ "N" ]; run = "find_arrow --previous";   desc = "Go to previous found file"; }
 
   { on = [ ","  "m" ]; run = "sort mtime --dir-first";                  desc = "Sort by modified time"; }
-  { on = [ ","  "M" ]; run = "sort mtime --reverse=yes --dir-first";        desc = "Sort by modified time (reverse)"; }
+  { on = [ ","  "M" ]; run = "sort mtime --reverse --dir-first";        desc = "Sort by modified time (reverse)"; }
   { on = [ ","  "c" ]; run = "sort btime --dir-first";                  desc = "Sort by btime time"; }
-  { on = [ ","  "C" ]; run = "sort btime --reverse=yes --dir-first";        desc = "Sort by btime (reverse)"; }
+  { on = [ ","  "C" ]; run = "sort btime --reverse --dir-first";        desc = "Sort by btime (reverse)"; }
   { on = [ ","  "e" ]; run = "sort extension --dir-first";              desc = "Sort by extension"; }
   { on = [ ","  "E" ]; run = "sort extension --reverse=yes --dir-first";    desc = "Sort by extension (reverse)"; }
   { on = [ ","  "a" ]; run = "sort alphabetical --dir-first";           desc = "Sort alphabetically"; } # 1<2<10
-  { on = [ ","  "A" ]; run = "sort alphabetical --reverse=yes --dir-first"; desc = "Sort alphabetically (reverse)"; }
+  { on = [ ","  "A" ]; run = "sort alphabetical --reverse --dir-first"; desc = "Sort alphabetically (reverse)"; }
   { on = [ ","  "n" ]; run = "sort natural --dir-first";                desc = "Sort naturally"; }
-  { on = [ ","  "N" ]; run = "sort natural --reverse=yes --dir-first";      desc = "Sort naturally (reverse)"; }
+  { on = [ ","  "N" ]; run = "sort natural --reverse --dir-first";      desc = "Sort naturally (reverse)"; }
   { on = [ ","  "s" ]; run = "sort size --dir-first";                   desc = "Sort by size"; }
-  { on = [ ","  "S" ]; run = "sort size --reverse=yes --dir-first";         desc = "Sort by size (reverse)"; }
+  { on = [ ","  "S" ]; run = "sort size --reverse --dir-first";         desc = "Sort by size (reverse)"; }
+  { on = [ ","  "r" ]; run = "sort random --dir-first";         desc = "SOrt randomly"; }
 
-  # { on = [ "t" ]; run = "tab_create --current"; desc = "Create a new tab using the $CWD"; }
+  { on = [ "t" ]; run = "tab_create --current"; desc = "Create a new tab using the $CWD"; }
   { on = [ "T" ]; run = "tab_create /home/malu"; desc = "Create a new tab with HOME as CWD"; } # If neither [path] nor --current is specified, will use the startup directory to create the tab.
   { on = [ "1" ]; run = "tab_switch 0"; desc = "Switch to the first tab"; }
   { on = [ "2" ]; run = "tab_switch 1"; desc = "Switch to the second tab"; }
@@ -165,19 +166,34 @@ spot.keymap = [
 ];
 
 mgr.prepend_keymap = [
-  {on = [ "!" ]; run = "shell \"$SHELL\" --block"; desc = "open $SHELL here";}
-  # {on = [ "y" ]; run = "shell -- for path in \"$@\"; do echo \"file://$path\"; done | wl-copy -t text/uri-list, \"yank\""; desc = "copy selected files to clipboard when copying";}
+
+{on = [ "!" ]; run = "shell \"$SHELL\" --block"; desc = "open $SHELL here";}
+# {on = [ "y" ]; run = "shell -- for path in \"$@\"; do echo \"file://$path\"; done | wl-copy -t text/uri-list, \"yank\""; desc = "copy selected files to clipboard when copying";}
+
   {on = [ "<C-y>" ]; run = "plugin wl-clipboard"; desc = "Copy selected files to wl-clipboard";}
+
   {on = [ "<C-r>" ]; run = "plugin drag"; desc = "Drag files";}
+
+    # A- Parent, B - Current, C - Preview
+  {on = [ "<C-.>" ]; run = "plugin toggle-pane max-current"; desc = "Maximize B";}
+  {on = [ "<C-/>" ]; run = "plugin toggle-pane min-preview"; desc = "Minimize C";}
+
   {on = [ "l" ]; run = "plugin smart-enter"; desc = "Enter child dir or open file";}
+
   {on = [ "p" ]; run = "plugin smart-paste"; desc = "Paste into the hovered directory or CWD";}
-  {on = [ "t" ]; run = "plugin smart-tab"; desc = "Create a tab and enter the hovered directory";}
+
+  {on = [ "<C-t>" ]; run = "plugin smart-tab"; desc = "Create a tab and enter the hovered directory";}
+
   {on = [ "f" ]; run = "plugin jump-to-char"; desc = "Jump to char";}
-  {on = [ "m" ]; run = "plugin bookmarks save"; desc = "Save current position as a bookmark";}
-  {on = [ "'" ]; run = "plugin bookmarks jump"; desc = "Jump to a bookmark";}
-  {on = [ "b" "d" ]; run = "plugin bookmarks delete"; desc = "Delete a bookmark";}
-  {on = [ "b" "D" ]; run = "plugin bookmarks delete_all"; desc = "Delete all bookmarks";}
-  # {on = [ "g" "f" ]; run = "search_do --via=fd --args='-d 3'"; desc = "Switch to the flat view with a max depth of 3";} #NOTE unused
+
+  # {on = [ "m" ]; run = "plugin relative-motions"; desc = "Trigger a new relative motion";}
+
+  # {on = [ "m" ]; run = "plugin bookmarks save"; desc = "Save current position as a bookmark";}
+  # {on = [ "'" ]; run = "plugin bookmarks jump"; desc = "Jump to a bookmark";}
+  # {on = [ "b" "d" ]; run = "plugin bookmarks delete"; desc = "Delete a bookmark";}
+  # {on = [ "b" "D" ]; run = "plugin bookmarks delete_all"; desc = "Delete all bookmarks";}
+# {on = [ "g" "f" ]; run = "search_do --via=fd --args='-d 3'"; desc = "Switch to the flat view with a max depth of 3";} #NOTE unused
+
 ];
 
 input.prepend_keymap = [

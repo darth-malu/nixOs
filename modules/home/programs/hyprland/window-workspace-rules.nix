@@ -135,7 +135,7 @@
       "layoutopt:direction:down"
       # GENERAL: f fullscreen, w window count, m monitor, n name workspaace n[bool], n[s:string], n[e:string], s[bool] special or not eg. special:scratchpad,
       "f[1], gapsout:0, gapsin:0"
-      "special:magic, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:magic;float true;size (monitor_w*0.9) (monitor_h*0.8);center true] app2unit -s a kitty'\""
+      "special:magic, on-created-empty:sh -c \"hyprctl dispatch -- exec '[workspace special:magic;float true;size (monitor_w*0.9) (monitor_h*0.8);center true] app2unit -s a kitty -d ~/Shibuya'\""
 
       # ncmpcpp
       "special:nc, on-created-empty:sh -c \"hyprctl dispatch -- exec app2unit -s a 'kitty -e ncmpcpp'\", monitor:HDMI-A-1"

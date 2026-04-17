@@ -31,26 +31,26 @@ end, 500, Status.RIGHT)
 -- }
 
 -- BookMark stuff
-require("bookmarks"):setup({
-	last_directory = { enable = false, persist = false, mode="dir" },
-	persist = "vim",             --vim (caps saved), all, none
-	desc_format = "full",        --parent, full
-	file_pick_mode = "hover",
-	custom_desc_input = false,
-	show_keys = true,
-	notify = {
-		enable = true,
-		timeout = 1,
-		message = {
-			new = "New bookmark '<key>' -> '<folder>'",
-			delete = "Deleted bookmark in '<key>'",
-			delete_all = "Deleted all bookmarks",
-		},
-	},
-})
+-- require("bookmarks"):setup({
+-- 	last_directory = { enable = false, persist = false, mode="dir" },
+-- 	persist = "vim",             --vim (caps saved), all, none
+-- 	desc_format = "full",        --parent, full
+-- 	file_pick_mode = "hover",
+-- 	custom_desc_input = false,
+-- 	show_keys = true,
+-- 	notify = {
+-- 		enable = true,
+-- 		timeout = 1,
+-- 		message = {
+-- 			new = "New bookmark '<key>' -> '<folder>'",
+-- 			delete = "Deleted bookmark in '<key>'",
+-- 			delete_all = "Deleted all bookmarks",
+-- 		},
+-- 	},
+-- })
 
--- -- git yazi
--- require("git"):setup {
--- 	-- Order of status signs showing in the linemode
--- 	order = 1500,
--- }
+-- git yazi
+require("git"):setup {
+	-- Order of status signs showing in the linemode
+	order = 1500,
+}

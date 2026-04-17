@@ -16,18 +16,21 @@ in
   };
 
   config = lib.mkIf config.hyprland.enable {
+    # Fix Dolphin right-click menu
+    environment.etc."/xdg/menus/applications.menu".text =
+      builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+
     # hardware.graphics.package = mesa;
     # system.nixos.tags = [ "Hyprland" ];
-    programs = {
-      hyprland = {
-        # required even with homeManager for system functions -> xdg, session files
-        enable = true; # also enables XDPH
-        withUWSM = true;
-        # xwayland.enable = true; # true::
-        package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; # set package + portal if using flake
-        portalPackage =
-          inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; # make sure to also set the portal package, so that they are in sync
-      };
+
+    programs.hyprland = {
+      # required even with homeManager for system functions -> xdg, session files
+      enable = true; # also enables XDPH
+      withUWSM = true;
+      # xwayland.enable = true; # true::
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; # set package + portal if using flake
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; # make sure to also set the portal package, so that they are in sync
     };
     services = {
       udisks2 = {

@@ -7,7 +7,7 @@
 # https://wiki.nixos.org/wiki/Linux_kernel
 {
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_7_0;
     # extraModprobeConfig =  ''
     #  kernelParams = [
     #   # example settings

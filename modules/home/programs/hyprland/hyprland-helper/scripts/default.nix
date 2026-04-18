@@ -6,8 +6,7 @@
 
 let
   mpris_vol = import ./volume/mpris_volume_dunst.nix { inherit pkgs; };
-  volumeControl = import ./volume/volumeControl.nix { inherit pkgs; };
-  pause_play = import ./pause_play.nix { inherit pkgs; };
+  # pause_play = import ./pause_play.nix { inherit pkgs; };
   gaps = import ./gaps.nix { inherit pkgs; };
   clr_backup = import ./clr_backup.nix { inherit pkgs; };
   backupSumbi = import ./backup/backuper.nix { inherit pkgs; };
@@ -15,9 +14,8 @@ let
 in
 {
   home.packages = [
-    pause_play
+    # pause_play
     mpris_vol
-    volumeControl
     gaps
     clr_backup
     backupSumbi

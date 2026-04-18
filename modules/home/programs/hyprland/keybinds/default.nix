@@ -230,9 +230,10 @@ in
         "$mod $al, 9,execr, qs ipc call bar toggleBar"
         "$mod $al, 1,execr, qs ipc call activate toggle"
 
+        # TODO:// SPLIT Dual Monitor settings to separate file
         # "$mod,K, Workspace, previous_per_monitor"
-        "$mod $sl, k, focusmonitor, +1"
-        "$mod, mouse:276, Workspace, previous_per_monitor"
+        # "$mod $sl, k, focusmonitor, +1"
+        # "$mod, mouse:276, Workspace, previous_per_monitor"
         "$mod,K, focuscurrentorlast"
       ]
 
@@ -298,14 +299,7 @@ in
       bindel = [
         ", XF86AudioPlay, execr, mpris togglePlaying"
         # mute
-        ", XF86AudioMute, execr, volume_dunst toggle_mute"
-
-        # "$mod, F12, execr, volume_dunst earphones"
-        # "$mod, F11, execr, volume_dunst speaker"
-        # "$mod, F10, execr, volume_dunst bluetooth"
-
-        # ", XF86AudioRaiseVolume, execr, volume_dunst 2%+"
-        # ", XF86AudioLowerVolume, execr, volume_dunst 2%-"
+        ", XF86AudioMute, execr, qs ipc call pipewire mute"
 
         ", XF86AudioRaiseVolume, execr, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%+ >/dev/null 2>&1 "
         ", XF86AudioLowerVolume, execr, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%- >/dev/null 2>&1 "
@@ -317,14 +311,6 @@ in
       ];
 
       binde = [
-        # Date
-        "$mod, Prior, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
-        "$mod $sl, Prior, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
-
-        # "$mod, backslash, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-stopwatch-office-l/icons8-stopwatch-30.png'  \"$date_short  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
-        # "$mod $sl, backslash, execr, ${pkgs.libnotify}/bin/notify-send -r 20 -i '/home/malu/Shibuya/assets/icons/icons8-today-windows-11-color/icons8-today-30.png' \"$date_long  \" ; ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message"
-      ]
-      ++ [
         #GAPS
         "$mod ,KP_Enter, exec, gaps reset_zero" # set according to hyprland config default
 

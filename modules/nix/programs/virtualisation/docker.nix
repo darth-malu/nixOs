@@ -7,7 +7,7 @@
   config = lib.mkIf config.docker.enable {
     # users.extraGroups.docker.members = [ "malu" ];
     virtualisation.docker = {
-      enable = if config.networking.hostName == "tangier" then false else true;
+      enable = if config.networking.hostName == "tangier" then false else false;
       storageDriver = "zfs";
       rootless = {
         enable = true;

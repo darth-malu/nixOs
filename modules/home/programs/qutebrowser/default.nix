@@ -19,7 +19,7 @@
         # TODO see more info on lib.mkMerge
         "config-cycle tabs.show never switching"
         "config-cycle statusbar.show in-mode always"
-        "config-cycle scrolling.bar never always"
+        # "config-cycle scrolling.bar never always"
       ];
       "<f9>" = lib.mkMerge [
         "config-cycle colors.webpage.darkmode.enabled false true"
@@ -86,7 +86,7 @@ tabs = {
   close_mouse_button = "right"; # right, middle::
   select_on_remove = "last-used"; # Which tab to select when the focused tab is removed.
   show = "never"; # always::, never, switching, multiple
-  width = "20%"; # in px or % - if vertical mode
+  width = "25%"; # in px or % - if vertical mode
   title.elide = "none";  # position of ellipsis (...)
   undo_stack_size = 50;  # 100::
   favicons = {
@@ -102,7 +102,7 @@ tabs = {
 downloads.location.suggestion = "both"; # path::, filename, both
 
 scrolling = {
-  smooth = false;
+  smooth = true;
   bar = "when-searching"; # overlay::, when-searching, never, always
 };
 

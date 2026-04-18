@@ -6,7 +6,7 @@
     ./programs
     ./services
     ./core
-    ./bootStuff.nix
+    # ./bootStuff.nix # BLEEDING_EDGE
     ./app-image.nix
     ./overlays.nix
   ];

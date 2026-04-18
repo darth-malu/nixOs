@@ -6,7 +6,7 @@
     ./docker.nix
   ];
 
-  docker.enable = true;
   qemu.enable = false;
+  docker.enable = true;
   n8n.enable = true;
 }

@@ -207,7 +207,7 @@ in
         "$mod $al, R, execr, qs ipc call resources toggleResources"
 
         # 🇲​​​​​🇵​​​​​🇷​​​​​🇮​​​​​🇸​​​​​
-        "$mod, F7, execr, qs ipc call mpris toggleMpris"
+        "$mod, XF86AudioPlay, execr, qs ipc call mpris toggleMpris"
         "$mod $al, F7, execr, qs ipc call mpris toggleMprisIcon"
         "$mod $cl, i, execr, qs ipc call mpris raise"
 
@@ -296,7 +296,7 @@ in
       ];
 
       bindel = [
-        ", XF86AudioPlay, execr, pause_play"
+        ", XF86AudioPlay, execr, mpris togglePlaying"
         # mute
         ", XF86AudioMute, execr, volume_dunst toggle_mute"
 

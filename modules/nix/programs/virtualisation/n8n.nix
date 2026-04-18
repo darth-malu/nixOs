@@ -1,5 +1,6 @@
 { config, lib, ... }:
 
+# http://localhost:5678::
 {
   options.n8n = {
     enable = lib.mkEnableOption "Enable custom n8n";

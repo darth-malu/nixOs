@@ -5,8 +5,8 @@
     terminal = true;
     type = "Application";
     categories = [ "Development" ];
-    exec = "/home/malu/Development/c/ascii";
-    icon = "/home/malu/Development/c/blue-hair-girl.jpg";
+    exec = "/home/malu/Development/C/ascii";
+    icon = "/home/malu/Development/C/blue-hair-girl.jpg";
   };
 
   YouTubr = {

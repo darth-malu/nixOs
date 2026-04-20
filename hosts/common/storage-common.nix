@@ -89,7 +89,7 @@
     # writebackDevice = "/dev/sda1";
   };
 
-  services.swapspace.enable = true; # https://wiki.nixos.org/wiki/Swap
+  # services.swapspace.enable = true; # https://wiki.nixos.org/wiki/Swap
 
   hardware.usbStorage.manageShutdown = true; # USB storage graceful power off
 

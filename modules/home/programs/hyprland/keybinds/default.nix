@@ -65,10 +65,9 @@ in
 
       bind = [
 
-        # "$mod $sl, T, exec, youtubr"
-        "$mod $sl, T, exec, /home/malu/.code/SkunkWorks/PySide6/youtubr/youtubr"
+        "$mod $sl, T, exec, $DARTH_YT"
 
-        "$mod , A, exec, ascii"
+        "$mod , A, exec, $DARTH_ASCII"
 
         "$mod, Return, exec, $kitty" # $terminal , wezterm, ghostty
         "$mod $cl, Return, focuswindow, class:^(kitty)$"
@@ -79,7 +78,7 @@ in
 
         "$mod $sl, D, focuswindow, class:^(dota2)$"
 
-        "$mod $sl, f1, exec, pkill pwvucontrol ||   app2unit -s a -- pwvucontrol"
+        # "$mod $sl, f1, exec, pkill pwvucontrol ||   app2unit -s a -- pwvucontrol"
 
         "$mod $al, mouse:272, exec, pkill rofi || $menu_rofi"
         # "$mod , P, exec, pkill rofi || $menu_rofi"
@@ -109,7 +108,8 @@ in
         "$mod ,Escape, killactive"
 
         "$al ,F4, killactive"
-        "$mod, mouse:275, killactive,"
+        "$mod, mouse:275, killactive"
+        "$mod, mouse:276, Workspace, previous_per_monitor"
 
         # Workspaces
         "$mod $al, Return , workspace, emptym"
@@ -208,12 +208,8 @@ in
 
         # 🇲​​​​​🇵​​​​​🇷​​​​​🇮​​​​​🇸​​​​​
         "$mod, XF86AudioPlay, execr, qs ipc call mpris toggleMpris"
-        "$mod $al, F7, execr, qs ipc call mpris toggleMprisIcon"
+        "$mod $al, XF86AudioPlay, execr, qs ipc call mpris toggleMprisIcon"
         "$mod $cl, i, execr, qs ipc call mpris raise"
-
-        ", F8, execr, qs ipc call mpris next"
-        ", F6, execr, qs ipc call mpris previous"
-        ", F7, execr, qs ipc call mpris togglePlaying"
 
         "$mod $sl,i,execr, qs ipc call mpris songArt"
 
@@ -233,7 +229,6 @@ in
         # TODO:// SPLIT Dual Monitor settings to separate file
         # "$mod,K, Workspace, previous_per_monitor"
         # "$mod $sl, k, focusmonitor, +1"
-        # "$mod, mouse:276, Workspace, previous_per_monitor"
         "$mod,K, focuscurrentorlast"
       ]
 
@@ -297,7 +292,7 @@ in
       ];
 
       bindel = [
-        ", XF86AudioPlay, execr, mpris togglePlaying"
+        ", XF86AudioPlay, execr, qs ipc call mpris togglePlaying"
         # mute
         ", XF86AudioMute, execr, qs ipc call pipewire mute"
 
@@ -306,23 +301,26 @@ in
 
         # ", XF86AudioNext, execr, playerctl -p spotify next || playerctl next " # TODO test for spotify running
         ", XF86AudioNext, execr, qs ipc call mpris next" # TODO: check players script with quickshell
+        "$mode $cl, mouse:276, execr, qs ipc call mpris next" # TODO: check players script with quickshell
+        "$mode $cl, mouse:275, execr, qs ipc call mpris previous" # TODO: check players script with quickshell
         ", XF86AudioPrev, execr, qs ipc call mpris previous"
         # ", XF86AudioPlay, execr, qs ipc call mpris togglePlaying"
       ];
 
       binde = [
         #GAPS
-        "$mod ,KP_Enter, exec, gaps reset_zero" # set according to hyprland config default
+        # TODO rebind all numpad keys
+        # "$mod ,KP_Enter, exec, gaps reset_zero" # set according to hyprland config default
 
         # increase/decrease gaps
-        "$mod,KP_Add, exec, gaps increment_gap"
-        "$mod,KP_Subtract, exec, gaps decrease_gap"
+        # "$mod,KP_Add, exec, gaps increment_gap"
+        # "$mod,KP_Subtract, exec, gaps decrease_gap"
 
-        "$mod $al, KP_Enter, exec, gaps gaps_in_reset"
-        "$mod $al, KP_Add, exec, gaps gaps_in_add"
-        "$mod $al, KP_Subtract, exec, gaps gaps_in_sub"
+        # "$mod $al, KP_Enter, exec, gaps gaps_in_reset"
+        # "$mod $al, KP_Add, exec, gaps gaps_in_add"
+        # "$mod $al, KP_Subtract, exec, gaps gaps_in_sub"
 
-        "$mod ,KP_Enter, exec, gaps reset_config"
+        # "$mod ,KP_Enter, exec, gaps reset_config"
         "$mod ,$ar, exec, gaps toggle_gaps_out" # gaps on/off
       ];
     };

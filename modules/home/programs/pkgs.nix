@@ -28,6 +28,9 @@
       # sound-theme-freedesktop # free sounds
       libcanberra-gtk3
       kdePackages.qt6ct
+      kdePackages.kasts
+      kdePackages.kalk
+      kdePackages.ksudoku
       kdePackages.kservice
       kdePackages.dolphin
       nautilus
@@ -69,7 +72,7 @@
       # beekeeper-studio
       cryptsetup
       pass-wayland
-      patchelf # TODO see useful nexx
+      patchelf
       socat
       zlib
     ]
@@ -110,7 +113,6 @@
     ++ [
       whatsapp-electron
       telegram-desktop
-      discord
     ]
     ++ [
       # Fediverse
@@ -143,9 +145,7 @@
       alarm-clock-applet
       spotify
       # castero # FIXME Failed Test
-      gpodder # https://castos.com/tools/find-podcast-rss-feed/ #https://github.com/gpodder/gpodder
-      gnome-podcasts
-      mopidy-podcast
+      # mopidy-podcast
       spotube
       sway-audio-idle-inhibit
       # digikam #TODO diff with darktable

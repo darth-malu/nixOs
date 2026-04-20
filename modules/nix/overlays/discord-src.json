@@ -1,0 +1,7 @@
+{
+    "linux-stable": {
+        "hash": "sha256-Ri4QDintjzbdKM/tKLcMq9ZimllbWa8NvS+fap1dYrw=",
+        "url": "https://stable.dl2.discordapp.net/apps/linux/0.0.133/discord-0.0.133.tar.gz",
+        "version": "0.0.133"
+    }
+}

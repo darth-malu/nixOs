@@ -120,6 +120,7 @@ config = {
       "davinci-resolve"
       "wpsoffice"
       "bluemail"
+      "discord"
       # "broadcom-bt-firmware"
     ];
 

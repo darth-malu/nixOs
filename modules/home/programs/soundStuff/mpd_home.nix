@@ -53,9 +53,9 @@
   };
 
   services.mpdris2 = {
-    enable = true;
+    enable = true; # mpris support for mpd
     multimediaKeys = true;
-    notifications = false; # have dunst lol
+    notifications = false; # I have a notification server
     mpd = {
       #host = "config.services.mpd.network.listenAddress"; # default
       host = "localhost"; # default
@@ -71,7 +71,9 @@
       hosts = [ "localhost:6600" ];
       format = {
         details = "$title";
-        state = "On $album by $artist";
+        state = "$album by $artist"; # "On $album by $artist";
+        small_image = ""; # notes::
+        large_image = "notes"; # notes::
       };
     };
   };

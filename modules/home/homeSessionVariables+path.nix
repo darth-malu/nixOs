@@ -13,7 +13,7 @@
   home.sessionVariables = {
     #MANWIDTH=999;
     SUDO_PROMPT = "$(tput sgr0)$(tput setaf 199) $(tput sgr0) ";
-    EDITOR = "vim";
+    # EDITOR = "vim";
     # XDG_DATA_DIRS = "$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share";
 
     # Nuitka Stuff
@@ -22,6 +22,9 @@
 
     # gpodder
     GPODDER_DOWNLOAD_DIR = "/media/Mutsu/Podcasts";
+
+    DARTH_ASCII = "~/Development/C/ascii";
+    DARTH_YT = "~/Development/SkunkWorks/PySide6/youtubr/youtubr";
   };
 
   home.sessionPath = [

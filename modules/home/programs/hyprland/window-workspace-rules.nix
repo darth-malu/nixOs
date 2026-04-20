@@ -5,6 +5,10 @@
       "center true, match:class com.saivert.pwvucontrol"
       "size (monitor_w*0.8) (monitor_h*0.7), match:class com.saivert.pwvucontrol"
 
+      # kcalc
+      "float true, match:class org.kde.kalk"
+      "persistent_size true, match:class org.kde.kalk"
+
       # Sign in windows
       # Zen
       "float true, match:class zen match:title ^(Sign in)(.*)"

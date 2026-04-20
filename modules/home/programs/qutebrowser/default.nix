@@ -102,7 +102,7 @@ tabs = {
 downloads.location.suggestion = "both"; # path::, filename, both
 
 scrolling = {
-  smooth = true;
+  smooth = false;
   bar = "when-searching"; # overlay::, when-searching, never, always
 };
 

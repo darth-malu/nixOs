@@ -16,7 +16,7 @@
 
   programs = {
     ccache = {
-      enable = true;
+      # enable = true; #FIXME: option does not work but pkg does lol
       packageNames = [
         # Nix top-level packages to be compiled using CCache.
         # "wxGTK32"

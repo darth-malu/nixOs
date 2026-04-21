@@ -24,7 +24,7 @@
 
   { key = "k"; command = "scroll_up"; }
 
-  {key = "l"; command = "next_column";}
+  {key = "l"; command = "next_column" ;}
 
   # {key = "L";command = "next_screen";}
   # {key = "H";command = "master_screen";}
@@ -39,9 +39,9 @@
   # { key = "tab"; command = "next"; }
 
   ##lyrics
-  { key = "'";  command = "show_lyrics"; }
+  { key = "'";  command ="show_lyrics" ; } # FIXME set_volume syntax
 
-  { key = "^"; command = "toggle_lyrics_fetcher"; }
+  { key = "\""; command = "toggle_lyrics_fetcher"; }
 
   # playlists manipulation
   { key = "ctrl-j"; command = [ "select_item" "scroll_down" ]; }
@@ -54,16 +54,16 @@
   { key = "d"; command = "delete_stored_playlist"; }
 
 
-  { key = "9"; command = "set_volume \"0\""; }
-  { key = "1"; command = "set_volume \"10\""; }
-  { key = "2"; command = "set_volume \"20\""; }
-  { key = "3"; command = "set_volume \"30\""; }
-  { key = "4"; command = "set_volume \"40\""; }
-  { key = "5"; command = "set_volume \"50\""; }
-  { key = "6"; command = "set_volume \"60\""; }
-  { key = "7"; command = "set_volume \"70\""; }
-  { key = "8"; command = "set_volume \"80\""; }
-  { key = "9"; command = "set_volume \"90\""; }
+  # { key = "0"; command = "set_volume \"0\""; }
+  # { key = "1"; command = "set_volume \"10\""; }
+  # { key = "2"; command = "set_volume \"20\""; }
+  # { key = "3"; command = "set_volume \"30\""; }
+  # { key = "4"; command = "set_volume \"40\""; }
+  # { key = "5"; command = "set_volume \"50\""; }
+  # { key = "6"; command = "set_volume \"60\""; }
+  # { key = "7"; command = "set_volume \"70\""; }
+  # { key = "8"; command = "set_volume \"80\""; }
+  # { key = "9"; command = "set_volume \"90\""; }
 
   {
     key = "ctrl-k";

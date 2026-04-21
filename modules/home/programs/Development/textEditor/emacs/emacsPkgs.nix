@@ -59,7 +59,7 @@ in
     mediainfo
     vips
 
-    go-grip
+    go-grip # TODO test
 
     # python3 or or specific number
     (pkgs.python3.withPackages (
@@ -84,7 +84,8 @@ in
     # ELPY
 
     # NODE / Javascript
-    nodejs_25 # consider npm for auto install of servers in lsp-mode
+    # nodejs_25 # consider npm for auto install of servers in lsp-mode
+    nodejs-slim_25 # consider npm for auto install of servers in lsp-mode
     # nodejs
     # deno
 

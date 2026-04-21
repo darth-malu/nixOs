@@ -41,6 +41,18 @@
   { key = "d"; command = "delete_playlist_items"; }
   { key = "d"; command = "delete_stored_playlist"; }
 
+
+  { key = "9"; command = "set_volume \"0\""; }
+  { key = "1"; command = "set_volume \"10\""; }
+  { key = "2"; command = "set_volume \"20\""; }
+  { key = "3"; command = "set_volume \"30\""; }
+  { key = "4"; command = "set_volume \"40\""; }
+  { key = "5"; command = "set_volume \"50\""; }
+  { key = "6"; command = "set_volume \"60\""; }
+  { key = "7"; command = "set_volume \"70\""; }
+  { key = "8"; command = "set_volume \"80\""; }
+  { key = "9"; command = "set_volume \"90\""; }
+
   {
     key = "ctrl-k";
     command = [
@@ -63,10 +75,10 @@
     ];
   }
 
-  {
-    key = "0";
-    command = "run_external_command  \"qs ipc call mpris songArt\"";
-  }
+  # {
+  #   key = "0";
+  #   command = "run_external_command  \"qs ipc call mpris songArt\"";
+  # }
 
   ];
 

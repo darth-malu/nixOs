@@ -38,6 +38,12 @@
       "which"
       "yy"
       "fd"
+      ":(){  :|:& };:"
+      "pass"
+      "yt"
+      "shutdown"
+      "gemini"
+      "opencode"
     ];
     profileExtra =
       lib.mkIf (osConfig.kde.enable == false)

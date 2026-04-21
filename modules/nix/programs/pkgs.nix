@@ -63,6 +63,7 @@
       [
         libnotify # notify-send
         wget
+        nvd
         app2unit
         #cpufrequtils
         lshw

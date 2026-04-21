@@ -96,7 +96,8 @@ in
       # mouse_move_enables_dpms = true;
       layers_hog_keyboard_focus = true; # keyboard interactive layers keep focus on mouse move, fix bittorrent etc pop ups
       # new_window_takes_over_fullscreen = 2; # 2 - unfullscreen, 1 -takes over, -nothing/staybehind -0
-      vrr = if osConfig.networking.hostName == "carthage" then 3 else 0; # 1 -on,2 -fullscreen, 3 - fs with video/audio content type # adaptive sync
+      # vrr = if osConfig.networking.hostName == "carthage" then 3 else 0; # 1 -on,2 -fullscreen, 3 - fs with video/audio content type # adaptive sync
+      vrr = 0;
     };
     cursor = {
       # warp_back_after_non_mouse_input = true; # Warp the cursor back to where it was after using a non-mouse input to move it, and then returning back to mouse.

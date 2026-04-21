@@ -84,7 +84,7 @@ in
     # ELPY
 
     # NODE / Javascript
-    # nodejs_25 # consider npm for auto install of servers in lsp-mode
+    nodejs_25 # consider npm for auto install of servers in lsp-mode
     # nodejs
     # deno
 

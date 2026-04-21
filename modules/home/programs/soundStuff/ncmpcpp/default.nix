@@ -9,30 +9,23 @@
   bindings = [
   # scroll
   { key = "j";command = "scroll_down";}
-
   { key = "k"; command = "scroll_up"; }
+  {key = "ctrl-j"; command = ["move_end"];}
+  {key = "ctrl-k"; command = ["move_home"];}
+  # playlists manipulation
+  { key = "J"; command = [ "select_item" "scroll_down" ]; }
+  {key = "K"; command = ["select_item" "scroll_up"];}
 
   {key = "l"; command = "next_column" ;}
-
-  # {key = "L";command = "next_screen";}
-  # {key = "H";command = "master_screen";}
-
-  # { key = "H"; command = "previous_screen"; }
-  # { key = "L"; command = "slave_screen"; }
-
   { key = "h"; command = "previous_column"; }
 
   # { key = "shift-tab"; command = "previous"; }
-
   # { key = "tab"; command = "next"; }
 
   ##lyrics
-  { key = "'";  command ="show_lyrics" ; } # FIXME set_volume syntax
+  { key = "'";  command ="show_lyrics" ; } # Had to rebind "l"
 
-  { key = "\""; command = "toggle_lyrics_fetcher"; }
-
-  # playlists manipulation
-  { key = "ctrl-j"; command = [ "select_item" "scroll_down" ]; }
+  # { key = "^"; command = "toggle_lyrics_fetcher"; }
 
   # { key = "ctrl-v"; command = "select_range"; }
 
@@ -41,45 +34,7 @@
   { key = "d"; command = "delete_playlist_items"; }
   { key = "d"; command = "delete_stored_playlist"; }
 
-
-  # { key = "0"; command = "set_volume \"0\""; }
-  # { key = "1"; command = "set_volume \"10\""; }
-  # { key = "2"; command = "set_volume \"20\""; }
-  # { key = "3"; command = "set_volume \"30\""; }
-  # { key = "4"; command = "set_volume \"40\""; }
-  # { key = "5"; command = "set_volume \"50\""; }
-  # { key = "6"; command = "set_volume \"60\""; }
-  # { key = "7"; command = "set_volume \"70\""; }
-  # { key = "8"; command = "set_volume \"80\""; }
-  # { key = "9"; command = "set_volume \"90\""; }
-
-  {
-    key = "ctrl-k";
-    command = [
-      "select_item"
-      "scroll_up"
-    ];
-  }
-
-  {
-    key = "J";
-    command = [
-      "move_end"
-    ];
-  }
-
-  {
-    key = "K";
-    command = [
-      "move_home"
-    ];
-  }
-
-  # {
-  #   key = "0";
-  #   command = "run_external_command  \"qs ipc call mpris songArt\"";
-  # }
-
+  # {key = "0"; command = "run_external_command  \"qs ipc call mpris songArt\"";}
   ];
 
 settings = {

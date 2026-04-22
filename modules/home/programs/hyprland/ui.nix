@@ -100,12 +100,15 @@ in
       vrr = 0;
     };
     cursor = {
+      # no_warps = true; #false (keybind focus etc warping):: #TODO: see if needed
+      enable_hyprcursor = true;
       # warp_back_after_non_mouse_input = true; # Warp the cursor back to where it was after using a non-mouse input to move it, and then returning back to mouse.
       #no_hardware_cursors = true; #invis cursor
       #persistent_warps = true; # maintain cursor position on switch rather than center
       #warp_on_change_workspace = true; # cursor to last focused window
-      enable_hyprcursor = true;
       hide_on_key_press = true;
+      inactive_timeout = 2; # in seconds, after how many seconds of cursor’s inactivity to hide it. Set to 0 for never.
+      #warp_on_change_workspace = true; # cursor to last focused window
       no_warps = true; # false:: focusing, keybinds etc - dont warp cursor
       # warp_back_after_non_mouse_input = true; # false:: NOTE new
       # sync_gsettings_theme = true; # true::

@@ -16,18 +16,6 @@ let
     # 3 - completely detach,click wont change focus,0-cursor movement will not change focus
     # special_fallthrough= true; # floating will not block focus to regular workspace
   };
-
-  cursor = {
-    # no_warps = true; #false (keybind focus etc warping):: #TODO: see if needed
-    enable_hyprcursor = true;
-    #no_hardware_cursors = true; #invis cursor
-    inactive_timeout = 2; # in seconds, after how many seconds of cursor’s inactivity to hide it. Set to 0 for never.
-    #persistent_warps = true; # maintain cursor position on switch rather than center
-    hide_on_key_press = true;
-    default_monitor = "HDMI-A-1"; # on this monitor on start
-    #warp_on_change_workspace = true; # cursor to last focused window
-    # sync_gsettings_theme = true;# on by default
-  };
 in
 if osConfig.networking.hostName == "carthage" then
   {
@@ -52,8 +40,6 @@ if osConfig.networking.hostName == "carthage" then
         allow_workspace_cycles = true; # workpsaces dontn forget their previous workspaces
         drag_threshold = 10;
       };
-      # inherit cursor;
-      cursor = cursor;
       input = commonInput // {
         scroll_factor = 1.6; # 1.2
       };
@@ -107,7 +93,7 @@ else
 
       cursor = cursor // {
         default_monitor = "ed"; # on this monitor on start
-    #TODO: see about using use_cpu_buffer for tangier nvidia
+        #TODO: see about using use_cpu_buffer for tangier nvidia
       };
 
       input = {

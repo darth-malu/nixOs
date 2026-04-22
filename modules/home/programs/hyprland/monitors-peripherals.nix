@@ -91,11 +91,6 @@ else
 
       xwayland.force_zero_scaling = true;
 
-      cursor = cursor // {
-        default_monitor = "ed"; # on this monitor on start
-        #TODO: see about using use_cpu_buffer for tangier nvidia
-      };
-
       input = {
         # https://wiki.hyprland.org/Configuring/Variables/
         # scroll_factor = 1.2;

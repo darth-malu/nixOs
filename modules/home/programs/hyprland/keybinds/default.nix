@@ -34,8 +34,8 @@ in
 
       "$file_browser_rofi" =
         "rofi -show filebrowser -filebrowser-command 'xdg-open' -filebrowser-directory '/home/malu' -theme '/home/malu/Shibuya/modules/home/programs/hyprland/keybinds/rofi-themes/fileBrowser.rasi'";
-      "$rofi_open_windows" =
-        "rofi -show window -theme-str 'window {width : 920px;}' -theme-str 'listview {lines:15; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'";
+      # "$rofi_open_windows" =
+      #   "rofi -show window -theme-str 'window {width : 920px;}' -theme-str 'listview {lines:15; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'";
       "$menu_rofi" = "rofi -show drun -theme-str 'listview {require-input: true;}'";
       "$emoji_rofi" = "rofi -show emoji";
       "$clip_rofi" =
@@ -86,10 +86,6 @@ in
         "$mod , R, exec, pkill rofi || $file_browser_rofi"
 
         "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
-
-        "$mod, comma, exec, pkill rofi || $rofi_open_windows"
-
-        "$mod $al, mouse:273, exec, pkill rofi || $rofi_open_windows"
 
         ", XF86Calculator, exec, pkill rofi || $calc_rofi"
 
@@ -220,6 +216,10 @@ in
         "$mod , Delete, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
 
         "$mod , P, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/appLauncher/AppLauncher.qml"
+        "$mod , P, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/appLauncher/AppLauncher.qml"
+
+        "$mod, comma, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/appLauncher/OpenWindows.qml"
+        "$mod $al, mouse:273, execr,qs -p $XDG_CONFIG_HOME/quickshell/notBar/appLauncher/OpenWindows.qml"
 
         # 65 %
         "$mod $al, 0,execr, systemctl --user restart quickshell"

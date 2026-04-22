@@ -129,7 +129,7 @@
       "match:workspace w[tv1]s[false],border_size 0" # no gaps when only = 1 # w[(flags)A-B], w[(flags)X], t tiled, v visible windows,f float | A-B inclusive range, X specific number
 
       # Workspace
-      "workspace 10, match:initial_class ^(spotube)$, match:initial_title ^(spotube)$"
+      # "workspace 10, match:initial_class ^(spotube)$, match:initial_title ^(spotube)$"
       "workspace 10, match:initial_class ^(spotify)$"
 
       "workspace 10, match:class ^(FreeTube)$"

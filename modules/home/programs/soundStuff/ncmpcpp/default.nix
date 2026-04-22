@@ -30,10 +30,13 @@
   # { key = "ctrl-v"; command = "select_range"; }
 
   # WARN: DANGEROUS
-  { key = "d"; command = "delete_browser_items"; }
-  { key = "d"; command = "delete_playlist_items"; }
-  { key = "d"; command = "delete_stored_playlist"; }
-
+  { key = "d";
+    command = [
+      "delete_browser_items"
+      "delete_playlist_items"
+      "delete_stored_playlist"
+    ];
+  }
   # {key = "0"; command = "run_external_command  \"qs ipc call mpris songArt\"";}
   ];
 

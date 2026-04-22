@@ -188,6 +188,7 @@ config = {
       "wpsoffice"
       "bluemail"
       "discord"
+      "stremio-linux-shell"
       # "broadcom-bt-firmware"
     ];
 #+end_src

@@ -133,6 +133,7 @@
       "workspace 10, match:initial_class ^(spotify)$"
 
       "workspace 10, match:class ^(FreeTube)$"
+      # "workspace emptym, match:class ^(com.stremio.Stremio)$"
     ];
 
     workspace = [

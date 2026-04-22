@@ -27,12 +27,9 @@
       imagemagick # screenshot
       # sound-theme-freedesktop # free sounds
       libcanberra-gtk3
-      kdePackages.qt6ct
       kdePackages.kasts
-      kdePackages.kalk
       kdePackages.ksudoku
       kdePackages.kservice
-      kdePackages.dolphin
       nautilus
       kdePackages.konsole
       # KIO is a library that provides file manipulation and copying, remote file access, thumbnail previews, the Trash, the Places panel, and various other common file-related user interface components.
@@ -127,16 +124,13 @@
       # clapper
       # kando
       lollypop # cantata better
-      # pipeline # flatpak better?
       # qqmusic
-      # smplayer
       # spotify-cli-linux
       # tenacity
       # wf-recorder
       # ymuse # rudimentary
       # youtube-tui # https://siriusmart.github.io/youtube-tui/
       audacity
-      # xclip
       blanket
       easyeffects
       mpc
@@ -144,11 +138,9 @@
       gpu-screen-recorder-gtk
       alarm-clock-applet
       spotify
-      # castero # FIXME Failed Test
-      # mopidy-podcast
       spotube
+      stremio-linux-shell
       sway-audio-idle-inhibit
-      # digikam #TODO diff with darktable
     ]
     ++ [
       # komikku # broken
@@ -176,11 +168,13 @@
       wpsoffice
       # libreoffice-qt-still
       # libreoffice-still
+      onlyoffice-desktopeditors
     ]
     ++ [
       # CreativeSPACE 📽
       # blender-hip # Hardware accelerated rendering NOTE later after pos
       darktable
+      # digikam #TODO diff with darktable
       digikam
       ffmpeg
       gimp
@@ -202,5 +196,8 @@
       viewnior
       # hyprpwcenter
       hyprland-autoname-workspaces
+      kdePackages.qt6ct
+      kdePackages.kalk
+      kdePackages.dolphin
     ];
 }

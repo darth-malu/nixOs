@@ -37,8 +37,18 @@ config = lib.mkIf config.rofi.enable {
     cycle = true;
     location = "center";
     font = "SpaceMono Nerd Font 12";
-    # plugins = with pkgs; [ rofi-emoji rofi-calc ];
     terminal = "${pkgs.kitty}/bin/kitty";
+#+end_src
+
+** modes
+#+begin_src nix :tangle default.nix
+modes = [
+  "window"
+  "drun"
+  # "filebrowser"
+  # "calc"
+  "emoji"
+];
 #+end_src
 
 ** Plugins
@@ -67,17 +77,6 @@ extraConfig = {
 run-command = "hyprctl dispatch -- exec [workspace emptym] app2unit -s a -- {cmd}";
 # rofi -e "my message"
 #+end_src
-*** modes
-#+begin_src nix :tangle default.nix
-modes = [
-  "window"
-  "drun"
-  "filebrowser"
-  "calc"
-  "emoji"
-];
-#+end_src
-
 *** display-{mode} /string/
 
 #+begin_src nix :tangle default.nix

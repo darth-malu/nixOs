@@ -32,15 +32,11 @@ in
       "$notify_send_emacs_restarting" = "notify-send 'restarting emacs' -i $emacs_restart_ico";
       "$notify_send_emacs_restarted" = "notify-send 'restarted emacs' -i $emacs_restart_ico";
 
-      "$file_browser_rofi" =
-        "rofi -show filebrowser -filebrowser-command 'xdg-open' -filebrowser-directory '/home/malu' -theme '/home/malu/Shibuya/modules/home/programs/hyprland/keybinds/rofi-themes/fileBrowser.rasi'";
       # "$rofi_open_windows" =
       #   "rofi -show window -theme-str 'window {width : 920px;}' -theme-str 'listview {lines:15; dynamic: true;}' -theme-str 'element {background-image: linear-gradient(white/5%, white/10%);border-color: lightblue /15%;}'";
-      "$menu_rofi" = "rofi -show drun -theme-str 'listview {require-input: true;}'";
       "$emoji_rofi" = "rofi -show emoji";
       "$clip_rofi" =
         "cliphist list | rofi -dmenu -theme-str 'window {width : 750px;}' -p '' | cliphist decode | wl-copy";
-      "$calc_rofi" = "rofi -show calc -p '🪓' -theme-str 'listview {require-input: true;}'";
 
       bindr = [
 
@@ -80,18 +76,9 @@ in
 
         # "$mod $sl, f1, exec, pkill pwvucontrol ||   app2unit -s a -- pwvucontrol"
 
-        "$mod $al, mouse:272, exec, pkill rofi || $menu_rofi"
         # "$mod , P, exec, pkill rofi || $menu_rofi"
 
-        "$mod , R, exec, pkill rofi || $file_browser_rofi"
-
         "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
-
-        ", XF86Calculator, exec, pkill rofi || $calc_rofi"
-
-        "$mod, slash, exec, pkill rofi || $calc_rofi"
-
-        "$mod, period, exec, pkill rofi || $emoji_rofi"
 
         # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
         "$mod, E, exec, [workspace emptym] $emacs"
@@ -215,11 +202,9 @@ in
         # 🇲​​​​​🇮​​​​​🇸​​​​​🇨​​​​​
         "$mod , Delete, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
 
-        "$mod , P, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/appLauncher/AppLauncher.qml"
-        "$mod , P, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/appLauncher/AppLauncher.qml"
+        "$mod, P, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/appLauncher/AppLauncher.qml"
 
-        "$mod, comma, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/appLauncher/OpenWindows.qml"
-        "$mod $al, mouse:273, execr,qs -p $XDG_CONFIG_HOME/quickshell/notBar/appLauncher/OpenWindows.qml"
+        "$mod, comma, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/clipHist/HyprlandTopLevels.qml"
 
         # 65 %
         "$mod $al, 0,execr, systemctl --user restart quickshell"

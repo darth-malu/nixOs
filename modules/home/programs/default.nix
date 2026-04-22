@@ -1,5 +1,4 @@
 {
-
   imports = [
     ./Development
     ./Gaming
@@ -16,5 +15,4 @@
     ./yazi
     ./yt-dlp
   ];
-
 }

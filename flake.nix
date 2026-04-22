@@ -121,6 +121,7 @@ config = {
       "wpsoffice"
       "bluemail"
       "discord"
+      "stremio-linux-shell"
       # "broadcom-bt-firmware"
     ];
 

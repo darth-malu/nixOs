@@ -10,9 +10,9 @@
   # scroll
   { key = "j";command = "scroll_down";}
   { key = "k"; command = "scroll_up"; }
-  {key = "G"; command = ["move_end"];}
-  {key = "K"; command = ["move_home"];}
-  {key = "ctrl-g"; command = ["jump_to_browser"];}
+  # {key = "G"; command = ["move_end"];}
+  # {key = "K"; command = ["move_home"];}
+  # {key = "ctrl-g"; command = ["jump_to_browser"];}
   # playlists manipulation
   { key = "J"; command = [ "select_item" "scroll_down" ]; }
   {key = "K"; command = ["select_item" "scroll_up"];}

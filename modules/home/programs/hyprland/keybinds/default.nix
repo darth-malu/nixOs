@@ -202,9 +202,9 @@ in
         # 🇲​​​​​🇮​​​​​🇸​​​​​🇨​​​​​
         "$mod , Delete, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
 
-        "$mod, P, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/appLauncher/AppLauncher.qml"
+        "$mod, P, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/rofi/appLauncher-BETA/shell.qml"
 
-        "$mod, comma, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/clipHist/HyprlandTopLevels.qml"
+        "$mod, comma, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/rofi/openWindows/shell.qml"
 
         # 65 %
         "$mod $al, 0,execr, systemctl --user restart quickshell"

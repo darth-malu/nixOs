@@ -32,6 +32,8 @@
   {key = "l"; command = "next_column" ;}
   { key = "h"; command = "previous_column"; }
 
+  { key = "escape"; command = "remove_selection"; }
+
   # { key = "shift-tab"; command = "previous"; }
   # { key = "tab"; command = "next"; }
 

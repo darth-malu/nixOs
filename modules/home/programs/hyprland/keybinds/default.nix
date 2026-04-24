@@ -196,15 +196,17 @@ in
 
         "$mod $sl,i,execr, qs ipc call mpris songArt"
 
+        "$mod $al,a,execr, qs ipc call activate toggle"
+
         # System Tray Toggle
         "$mod $al, s, execr, qs ipc call SysTray toggle"
 
         # 🇲​​​​​🇮​​​​​🇸​​​​​🇨​​​​​
         "$mod , Delete, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/wlogout/shell.qml"
 
-        "$mod, P, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/rofi/appLauncher-BETA/shell.qml"
+        "$mod, P, execr, qs ipc call appLauncher toggle"
 
-        "$mod, comma, execr, qs -p $XDG_CONFIG_HOME/quickshell/notBar/rofi/openWindows/shell.qml"
+        "$mod, comma, execr, qs ipc call openWindows toggle"
 
         # 65 %
         "$mod $al, 0,execr, systemctl --user restart quickshell"

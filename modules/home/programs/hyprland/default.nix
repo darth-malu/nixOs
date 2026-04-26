@@ -28,6 +28,7 @@
 
     wayland.windowManager.hyprland = {
       # configures Hyprland and adds it to your user’s PATH, but does not make certain system-level changes. the NixOS module makes system-level changes such as adding a desktop session entry.
+
       enable = true;
       package = null;
       portalPackage = null;

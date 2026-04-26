@@ -27,6 +27,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+nixvim = {
+    url = "github:nix-community/nixvim";
+    # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
+  };
+
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref={version}";
@@ -91,6 +96,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
+
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -98,7 +105,7 @@
 
   };
 
-  outputs = inputs@{nixpkgs, disko, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
+  outputs = inputs@{nixpkgs, disko, nixvim, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 
 let
   system = "x86_64-linux"; # TODO system = builtins.currentSystem;?? find reason it doesn't work
@@ -165,7 +172,7 @@ disko.nixosModules.disko
       backupFileExtension = "home_bak";
       useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
       useUserPackages = false; # if false ... uses nix-profile for home apps
-      extraSpecialArgs = { inherit inputs pkgs system; };
+      extraSpecialArgs = { inherit inputs pkgs system nixvim; };
       users.malu = import ./modules/home/home.nix;
     };
   }
@@ -178,6 +185,7 @@ tangier = nixpkgs.lib.nixosSystem {
   specialArgs = { inherit inputs system; };
   modules = [
     ./hosts/tangier
+    # nixvim.homeModules.nixvim
     home.nixosModules.home-manager {
       home-manager = {
         verbose = true;
@@ -185,7 +193,7 @@ tangier = nixpkgs.lib.nixosSystem {
         users.malu = import ./modules/home/home.nix;
         useGlobalPkgs = true; # dont use private instance of pkgs which is the default
         useUserPackages = false; # if false:: ... uses nix-profile for home apps
-        extraSpecialArgs = { inherit pkgs inputs system; };
+        extraSpecialArgs = { inherit pkgs inputs system nixvim; };
       };
     }
   ];

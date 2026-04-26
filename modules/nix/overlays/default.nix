@@ -1,12 +1,8 @@
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-
-{
   imports = [
-    ./overlays.nix
+    # ./ccache.nix
+    # ./gstreamer.nix
+    ./discord.nix
+    ./emacs-overlay.nix
   ];
 }

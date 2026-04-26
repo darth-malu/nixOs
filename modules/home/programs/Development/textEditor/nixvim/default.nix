@@ -1,4 +1,4 @@
-{inputs,...}:
+{ nixvim, ... }:
 
 {
   imports = [
@@ -8,12 +8,12 @@
     ./options.nix
     ./plugins
     ./autoCmd.nix
-    inputs.nixvim.homeManagerModules.nixvim # hM module for nixvim
+    nixvim.homeModules.nixvim # hM module for nixvim
   ];
 
   programs.nixvim = {
     enable = true;
-    defaultEditor = true;
+    # defaultEditor = true;
     globals.mapleader = " ";
 
     extraConfigLua = ''

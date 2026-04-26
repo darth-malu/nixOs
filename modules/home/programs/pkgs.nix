@@ -49,6 +49,7 @@
       xdg-utils
       trash-cli
       wev # NOTE use ./ascii
+      jdupes
     ]
     ++ [
       # testing for yazi #
@@ -60,10 +61,10 @@
     ]
     ++ [
       # DEVELOPER 🛠️
-      # ed
+      ed
       # cling
       # firebase-tools
-      # manim #FIXME failed
+      manim # FIXME failed
       # nasm
       qtcreator
       # beekeeper-studio
@@ -189,7 +190,6 @@
       # file-roller
       # inputs.hyprswitch.packages.x86_64-linux.default
       # yelp
-      cliphist
       grimblast
       slurp
       sushi

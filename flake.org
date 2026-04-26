@@ -55,6 +55,13 @@ https://nixos.wiki/wiki/Nix_channels
       inputs.nixpkgs.follows = "nixpkgs";
     };
 #+end_src
+** Nixvim
+#+begin_src nix :tangle flake.nix
+nixvim = {
+    url = "github:nix-community/nixvim";
+    # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
+  };
+#+end_src
 ** plasma-manager
 #+begin_src nix :tangle no
     plasma-manager = {
@@ -140,6 +147,10 @@ https://nixos.wiki/wiki/Nix_channels
       inputs.nixpkgs.follows = "nixpkgs";
     };
 #+end_src
+** emacs-overlay
+#+begin_src nix :tangle flake.nix
+emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
+#+end_src
 ** Zen Browser
 #+begin_src nix :tangle flake.nix
     zen-browser = {
@@ -156,7 +167,7 @@ https://nixos.wiki/wiki/Nix_channels
 
 * outputs
 #+begin_src nix :tangle flake.nix
-  outputs = inputs@{nixpkgs, disko, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
+  outputs = inputs@{nixpkgs, disko, nixvim, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 #+end_src
 ** let..in
 *** start
@@ -245,7 +256,7 @@ modules = [
   ./hosts/carthage
 #+end_src
 
-***** Some systemPackage modules | winapps | rebuild-ng
+***** winapps
 #+begin_src nix :tangle no
 {environment.systemPackages = [
    inputs.winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps
@@ -257,6 +268,10 @@ modules = [
 ***** plasma-manger
 #+begin_src nix :tangle no
   inputs.plasma-manager.homeManagerModules.plasma-manager
+#+end_src
+***** Nixvim
+#+begin_src nix :tangle default.nix
+    # nixvim.homeModules.nixvim
 #+end_src
 ***** disko
 #+begin_src nix :tangle flake.nix
@@ -273,7 +288,7 @@ disko.nixosModules.disko
       backupFileExtension = "home_bak";
       useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
       useUserPackages = false; # if false ... uses nix-profile for home apps
-      extraSpecialArgs = { inherit inputs pkgs system; };
+      extraSpecialArgs = { inherit inputs pkgs system nixvim; };
       users.malu = import ./modules/home/home.nix;
     };
   }
@@ -346,6 +361,7 @@ tangier = nixpkgs.lib.nixosSystem {
   specialArgs = { inherit inputs system; };
   modules = [
     ./hosts/tangier
+    # nixvim.homeModules.nixvim
     home.nixosModules.home-manager {
       home-manager = {
         verbose = true;
@@ -353,7 +369,7 @@ tangier = nixpkgs.lib.nixosSystem {
         users.malu = import ./modules/home/home.nix;
         useGlobalPkgs = true; # dont use private instance of pkgs which is the default
         useUserPackages = false; # if false:: ... uses nix-profile for home apps
-        extraSpecialArgs = { inherit pkgs inputs system; };
+        extraSpecialArgs = { inherit pkgs inputs system nixvim; };
       };
     }
   ];

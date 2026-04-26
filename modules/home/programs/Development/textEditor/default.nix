@@ -4,6 +4,6 @@
     # ./zed
     ./emacs
     ./vim.nix
-    # ./nixvim
+    ./nixvim
   ];
 }

@@ -6,7 +6,5 @@
     # "systemctl --user enable --now hyprsunset.service" #TODO write a script to auto do this
     "app2unit -s b sway-audio-idle-inhibit"
     "[workspace special:easy silent] app2unit -s a easyeffects"
-    "wl-paste --type image --watch cliphist store"
-    "wl-paste --type text --watch cliphist store"
   ];
 }

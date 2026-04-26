@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 # https://wiki.nixos.org/wiki/Linux_kernel
 {
   boot = {

@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     ./hypridle.nix
@@ -9,4 +10,7 @@
   services.hyprpolkitagent = {
     enable = true;
   };
+  home.packages = with pkgs; [
+    hyprsysteminfo
+  ];
 }

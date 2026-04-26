@@ -15,7 +15,7 @@
 
     comodoro.enable = false;
 
-    fastfetch = import ./misc/fastfetch.nix;
+    fastfetch = import ./misc/fastfetch.nix; # ALso have hyprsysteminfo
 
     fd = import ./misc/fd.nix;
 

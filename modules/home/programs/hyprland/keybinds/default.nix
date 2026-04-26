@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  osConfig,
-  ...
-}:
+{ lib, ... }:
 
 let
   vars = import ../layout.nix;
@@ -21,8 +15,6 @@ in
       "$cr" = "Control_R";
       "$sl" = "SHIFT_L";
       "$sr" = "SHIFT_R";
-      "$date_short" = "`date +'%I:%M %p'`"; # add -u (utc)
-      "$date_long" = "`date +'%a,%d %b%t%I:%M %p'`";
       "$kitty" = "app2unit -s a -- kitty -1 --instance-group kitty";
       "$yazi_kitty" = "app2unit -s a -- kitty -1 --instance-group yazi -e yazi";
 
@@ -39,7 +31,6 @@ in
         "cliphist list | rofi -dmenu -theme-str 'window {width : 750px;}' -p '' | cliphist decode | wl-copy";
 
       bindr = [
-
         "$mod, N, exec, [workspace emptym] app2unit -s a -- nautilus"
         "$mod $cl, N, focuswindow, class:org.gnome.Nautilus"
         "$mod , Y, exec, [workspace emptym] $yazi_kitty"
@@ -77,8 +68,6 @@ in
         # "$mod $sl, f1, exec, pkill pwvucontrol ||   app2unit -s a -- pwvucontrol"
 
         # "$mod , P, exec, pkill rofi || $menu_rofi"
-
-        "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
 
         # "$mod, D, exec, emacsclient -c -a 'emacs' %F" # launch emacs client with %F buffer?
         "$mod, E, exec, [workspace emptym] $emacs"
@@ -188,6 +177,9 @@ in
 
         "$mod $al, N, execr, qs ipc call netspeed toggleNet"
         "$mod $al, R, execr, qs ipc call resources toggleResources"
+
+        # "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
+        "$mod , BackSpace, execr, qs ipc call clipHist toggle"
 
         # 🇲​​​​​🇵​​​​​🇷​​​​​🇮​​​​​🇸​​​​​
         "$mod, XF86AudioPlay, execr, qs ipc call mpris toggleMpris"

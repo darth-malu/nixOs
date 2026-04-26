@@ -14,7 +14,7 @@ options.rofi = {
 
 config = lib.mkIf config.rofi.enable {
   programs.rofi = {
-    enable = true;
+    enable = false;
 
     cycle = true;
     location = "center";

@@ -30,7 +30,7 @@ options.rofi = {
 #+begin_src nix :tangle default.nix
 config = lib.mkIf config.rofi.enable {
   programs.rofi = {
-    enable = true;
+    enable = false;
 #+end_src
 
 #+begin_src nix :tangle default.nix

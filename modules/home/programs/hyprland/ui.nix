@@ -149,7 +149,7 @@ in
     };
 
     dwindle = {
-      pseudotile = false; # false:: Pseudotiled windows retain their floating size when tiled.
+      # pseudotile = false; # false:: Pseudotiled windows retain their floating size when tiled.
       preserve_split = true; # if enabled, the split (side/top) will not change regardless of what happens to the container. #TODO: test to restore float to usual size
       smart_split = true;
       force_split = 0; # 0 -> split follows mouse, 1 -> always split to the left (new = left or top) 2 -> always split to the right (new = right or bottom)

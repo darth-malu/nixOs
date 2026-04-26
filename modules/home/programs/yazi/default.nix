@@ -124,19 +124,23 @@
           {
             run = "mpv %S";
             orphan = true;
-            for = "unix";
           }
         ];
         emacs = [
           {
             run = "emacsclient -c -n %s"; # -c;;
             orphan = true;
-            for = "unix";
+          }
+        ];
+        emacsnw = [
+          {
+            run = "emacsclient -nw %s"; # -c;;
+            block = true;
           }
         ];
         vim = [
           {
-            run = "$EDITOR %s";
+            run = "vim %s";
             block = true;
             for = "unix";
           }
@@ -165,14 +169,6 @@
               "open"
             ];
           }
-          # {
-          #   mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-          #   use = "wps";
-          # }
-          # {
-          #   url = "*.docx";
-          #   use = "wps";
-          # }
           {
             mime = "application/pdf";
             use = "open";
@@ -192,7 +188,7 @@
           {
             mime = "text/*";
             use = [
-              "emacs"
+              "emacsnw"
               "vim"
               "open"
             ];
@@ -218,6 +214,7 @@
               "open"
               "vim"
               "emacs"
+              "emacsnw"
             ];
           }
         ];

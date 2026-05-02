@@ -116,19 +116,10 @@ hardware = {
     enable = true; # add user to group
     dns = "none"; # dnsmasq, default::, systemd-resolved
     wifi = {
-      powersave = false; # TODO what it does
+      powersave = true;
       # backend = "wpa_supplicant"; # wpa_supplicant::, iwd
     };
     logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
-    unmanaged = [
-      # "*"
-      # "except:type:wwan"
-      # "except:type:gsm"
-    ];
-  };
-
-  modemmanager = {
-    enable = true;
   };
 
   timeServers = [

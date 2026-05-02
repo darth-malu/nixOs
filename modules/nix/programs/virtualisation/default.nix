@@ -8,5 +8,5 @@
 
   qemu.enable = false;
   docker.enable = true;
-  n8n.enable = true;
+  n8n.enable = false;
 }

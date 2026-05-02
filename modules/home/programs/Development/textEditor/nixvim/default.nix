@@ -12,7 +12,7 @@
   ];
 
   programs.nixvim = {
-    enable = true;
+    enable = false;
     # defaultEditor = true;
     globals.mapleader = " ";
 

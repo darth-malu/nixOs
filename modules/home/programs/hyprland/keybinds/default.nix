@@ -181,6 +181,8 @@ in
         # "$mod , BackSpace, exec, pkill rofi || $clip_rofi"
         "$mod , BackSpace, execr, qs ipc call clipHist toggle"
 
+        # ##################### here
+
         # 🇲​​​​​🇵​​​​​🇷​​​​​🇮​​​​​🇸​​​​​
         "$mod, XF86AudioPlay, execr, qs ipc call mpris toggleMpris"
         "$mod $al, XF86AudioPlay, execr, qs ipc call mpris toggleMprisIcon"
@@ -256,8 +258,8 @@ in
         "$mod ,L, workspace,m+1"
         "$mod, mouse_up, workspace, m+1"
         "$mod, mouse_down, workspace, m-1"
-        "$mod , o, movetoworkspace, emptym"
-        "$mod $al, o, movetoworkspacesilent, emptym"
+        "$mod , O, movetoworkspace, emptym"
+        "$mod $cl, O, movetoworkspacesilent, emptym"
       ];
 
       #mouse binds have one less arg

@@ -7,11 +7,12 @@
   ];
 
   config = {
-    emacs-mail.enable = true;
+    emacs-mail.enable = false;
 
     programs.emacs = {
       enable = true;
-      package = pkgs.emacs-pgtk; # emacs, emacs-gtk, emacs-nox, emacs-pgtk
+      # package = pkgs.emacs-pgtk; # emacs, emacs-gtk, emacs-nox, emacs-pgtk
+      # NOTE: need update from 30.2 -> pgtk
     };
 
     services.emacs = {

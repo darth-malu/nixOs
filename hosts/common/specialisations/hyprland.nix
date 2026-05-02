@@ -6,10 +6,10 @@
   ...
 }:
 
-let
-  inherit (inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}) mesa;
-  # myMesa = (inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}) mesa.drivers;
-in
+# let
+# inherit (inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}) mesa;
+# myMesa = (inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}) mesa.drivers;
+# in
 {
   options.hyprland = {
     enable = lib.mkEnableOption "Hyprland";
@@ -34,13 +34,20 @@ in
     };
     services = {
       udisks2 = {
-        enable = true;
+        enable = lib.mkIf (!config.kde.enable) true;
         mountOnMedia = true;
       };
       power-profiles-daemon.enable = lib.mkIf (config.networking.hostName == "tangier") true;
       upower.enable = lib.mkIf (config.networking.hostName == "tangier") true;
       blueman.enable = lib.mkIf (!config.kde.enable) true;
+      seatd.enable = lib.mkIf (!config.kde.enable) true; # NOTE: Added as a fix...DOES NOT WORK LOL
     };
+
+    environment.loginShellInit = ''
+       if uwsm check may-start; then
+         start-hyprland
+      fi
+    '';
 
     security.polkit = {
       enable = true;

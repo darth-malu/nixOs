@@ -1,7 +1,7 @@
 {
   imports = [
     # ./helix
-    # ./zed
+    ./zed
     ./emacs
     ./vim.nix
     ./nixvim

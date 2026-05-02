@@ -20,9 +20,6 @@
     NUITKA_CACHE_DIR_CCACHE = "~/.cache/nuitka/cache";
     NUITKA_CACHE_DIR_DOWNLOADS = "~/.cache/nuitka/downloads";
 
-    # gpodder
-    GPODDER_DOWNLOAD_DIR = "/media/Mutsu/Podcasts";
-
     DARTH_ASCII = "~/Development/C/ascii";
     DARTH_YT = "~/Development/SkunkWorks/PySide6/youtubr/youtubr";
   };
@@ -41,10 +38,4 @@
 
   # EDITOR = "emacsclient -nw";
   # VISUAL = "emacs -r";
-
-  systemd.user = {
-    startServices = "sd-switch"; # Nicely reload system units when changing configs # https://mynixos.com/home-manager/option/systemd.user.startServices # suggest, legacy, sd-switch #TODO: see if need
-    # sessionVariables = {
-    # };
-  };
 }

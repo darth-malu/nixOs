@@ -1,4 +1,5 @@
-{#TODO: keymapOnEvents
+{
+  # TODO: keymapOnEvents
   programs.nixvim.keymaps = [
     {
       action = "<cmd>Neotree toggle<CR>";
@@ -23,7 +24,7 @@
     {
       mode = "n";
       key = "<leader>rn";
-      action.__raw = "vim.lsp.buf.rename";#FIXME: works unexpectedly...will do old_var = new_var instead rename to new_var
+      action.__raw = "vim.lsp.buf.rename"; # FIXME: works unexpectedly...will do old_var = new_var instead rename to new_var
       options = {
         desc = "rename variable under cursor lol";
       };
@@ -32,12 +33,12 @@
     #('n', '<space>q', vim.diagnostic.setloclist)
 
     #{
-      #mode = "n";
-      #key = "<space>d";
-      #action = "<cmd>lua vim.diagnostic.open_float<CR>";
-      #options = {
-        #desc = "Open float diagnostics";
-      #};
+    #mode = "n";
+    #key = "<space>d";
+    #action = "<cmd>lua vim.diagnostic.open_float<CR>";
+    #options = {
+    #desc = "Open float diagnostics";
+    #};
     #}
 
     {
@@ -60,8 +61,16 @@
       };
     }
 
-    { mode = "n"; key = "M-e"; action = "^"; }
-    { mode = "n"; key = "M-a"; action = "$"; }
+    {
+      mode = "n";
+      key = "M-e";
+      action = "^";
+    }
+    {
+      mode = "n";
+      key = "M-a";
+      action = "$";
+    }
 
     {
       mode = "n";
@@ -73,41 +82,41 @@
     }
 
     # {
-      # mode = "n";
-      # #key = "<leader>o";
-      # key = "K";
-      # action = ''<cmd>Oil<CR>'';
-      # options = {
-        # desc = "Oil";
-      # };
+    # mode = "n";
+    # #key = "<leader>o";
+    # key = "K";
+    # action = ''<cmd>Oil<CR>'';
+    # options = {
+    # desc = "Oil";
+    # };
     # }
 
-     # {
-     #   mode = "n";
-     #   key = "<A-o>"; #TODO: why this no work
-     #   action.__raw = "<C-u>call append(line(\".\"), repeat([\"\"], v:count))()";
-     #   options = {
-     #     desc = "insert line before";
-     #   };
-     # }
+    # {
+    #   mode = "n";
+    #   key = "<A-o>"; #TODO: why this no work
+    #   action.__raw = "<C-u>call append(line(\".\"), repeat([\"\"], v:count))()";
+    #   options = {
+    #     desc = "insert line before";
+    #   };
+    # }
 
-     # {
-     #   mode = "n";
-     #   key = "<A-O>";
-     #   action.__raw = "<C-u>call append(line(\".\")-1, repeat([''], v:count1)"; #TODO: convert this into  lua
-     #   options = {
-     #     desc = "insert line after";
-     #   };
-     # }
+    # {
+    #   mode = "n";
+    #   key = "<A-O>";
+    #   action.__raw = "<C-u>call append(line(\".\")-1, repeat([''], v:count1)"; #TODO: convert this into  lua
+    #   options = {
+    #     desc = "insert line after";
+    #   };
+    # }
 
-    {
-      mode = "n";
-      key = "U";
-      action = "<C-r>";
-      options = {
-        desc = "better undo (C-r)";
-      };
-    }
+    # {
+    #   mode = "n";
+    #   key = "U";
+    #   action = "<C-r>";
+    #   options = {
+    #     desc = "better undo (C-r)";
+    #   };
+    # }
 
     {
       mode = "n";
@@ -130,18 +139,18 @@
 
     # Lazygit
     #{
-      #mode = "n";
-      #key = "<leader>gg";
-      #action = "<cmd>LazyGit<CR>";
-      #options = {
-        #desc = "LazyGit (root dir)";
-      #};
+    #mode = "n";
+    #key = "<leader>gg";
+    #action = "<cmd>LazyGit<CR>";
+    #options = {
+    #desc = "LazyGit (root dir)";
+    #};
     #}
 
     # Commentary bindings
     #{
-      #action = "<cmd>Commentary<CR>";
-      #key = "<leader>/";
+    #action = "<cmd>Commentary<CR>";
+    #key = "<leader>/";
     #}
 
     {
@@ -218,12 +227,12 @@
     } # GOing natural lol 0-$ g_
 
     #{
-      #mode = "n";
-      #key = "<leader>p";
-      #action = "<cmd>BufferLinePick<cr>";
-      #options = {
-        #desc = "pick buffer visually";
-      #};
+    #mode = "n";
+    #key = "<leader>p";
+    #action = "<cmd>BufferLinePick<cr>";
+    #options = {
+    #desc = "pick buffer visually";
+    #};
     #}
   ];
 }

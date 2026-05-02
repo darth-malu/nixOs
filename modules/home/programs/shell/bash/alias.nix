@@ -7,4 +7,5 @@
   tColor = "for C in {0..255}; do tput setab \$C; echo -n \"$C \"; done; tput sgr0;echo";
   speedtest = "$(curl -S https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -)";
   bareBones = "$(which git) --git-dir=/media/Hyogo/Backups/Bare --work-tree=/media/Hyogo";
+  configBare = "$(which git) --git-dir=$XDG_DOCUMENTS_DIR/IMPORTANT/BARE/ --work-tree=$XDG_CONFIG_HOME";
 }

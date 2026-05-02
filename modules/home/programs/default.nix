@@ -1,10 +1,10 @@
+{ lib, osConfig, ... }:
 {
   imports = [
     ./Development
     ./Gaming
     ./git.nix
     ./gpg.nix
-    ./hyprland
     ./mpv
     ./nyaa.nix
     ./opencode.nix
@@ -14,5 +14,9 @@
     ./soundStuff
     ./yazi
     ./yt-dlp
+  ]
+  ++ lib.optionals osConfig.programs.hyprland.enable [
+    # ./hyprland  # - HOME hyprland
+    ./hyprland/hyprland-helper
   ];
 }

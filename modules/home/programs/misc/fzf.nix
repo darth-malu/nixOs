@@ -1,6 +1,6 @@
 {
   enable = true;
-  enableBashIntegration = true; # true::
+  enableBashIntegration = true;
   tmux = {
     enableShellIntegration = true; # sets FZF_TMUX=1
     shellIntegrationOptions = [ "-p 50%,60%" ]; # -d 40% #TODO: see more # fzf-tmux --help

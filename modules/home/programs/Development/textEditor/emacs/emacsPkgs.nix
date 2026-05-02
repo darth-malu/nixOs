@@ -61,6 +61,10 @@ in
 
     go-grip # TODO test
 
+    # LUA
+    lua54Packages.lua
+    lua54Packages.luarepl
+
     # python3 or or specific number
     (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [

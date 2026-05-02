@@ -1,10 +1,10 @@
 {
   imports = [
-    ./rofi
+    # ./rofi
     ./scripts
     ./hypr-ecos
     ./themes
     ./quickshell.nix
-    ./satty.nix
+    ./satty.nix # TODO
   ];
 }

@@ -164,31 +164,14 @@ Enable hardware - Bloat? unneeded except for live media?
     enable = true; # add user to group
     dns = "none"; # dnsmasq, default::, systemd-resolved
     wifi = {
-      powersave = false; # TODO what it does
+      powersave = true;
       # backend = "wpa_supplicant"; # wpa_supplicant::, iwd
     };
     logLevel = "WARN"; # "OFF", "ERR", "WARN"::, "INFO", "DEBUG", "TRACE"
-    unmanaged = [
-      # "*"
-      # "except:type:wwan"
-      # "except:type:gsm"
-    ];
   };
 #+end_src
 
 DNS = "none" # Disable NetworkManager's internal DNS resolution
-** modemmanager
-#+begin_src nix :tangle default.nix
-  modemmanager = {
-    enable = true;
-  };
-#+end_src
-
-fccUnlockScripts: List of FCC unlock scripts to enable on the system, behaving as described in https://modemmanager.org/docs/modemmanager/fcc-unlock/#integration-with-third-party-fcc-unlock-tools.
-example:
-#+begin_src nix
-[{ id = "03f0:4e1d"; path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/03f0:4e1d"; }]
-#+end_src
 
 ** time servers
 #+begin_src nix :tangle default.nix
@@ -222,6 +205,20 @@ use ~ip link~ to see all available interfaces
 # When using systemd-networkd it's
 # still possible to use this option, but it's recommended to use it in conjunction
 # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+** modemmanager
+#+begin_src nix :tangle no
+  modemmanager = {
+    enable = true;
+  };
+#+end_src
+
+fccUnlockScripts: List of FCC unlock scripts to enable on the system, behaving as described in https://modemmanager.org/docs/modemmanager/fcc-unlock/#integration-with-third-party-fcc-unlock-tools.
+example:
+
+#+begin_src nix
+[{ id = "03f0:4e1d"; path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/03f0:4e1d"; }]
+#+end_src
+
 ** end
 #+begin_src nix :tangle default.nix
 };

@@ -6,8 +6,6 @@
 }:
 {
 
-  homeHyprland.enable = pkgs.lib.mkIf osConfig.programs.hyprland.enable true;
-
   programs = {
     home-manager.enable = true; # Let Home Manager install and manage itself.
 

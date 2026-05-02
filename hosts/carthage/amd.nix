@@ -27,6 +27,8 @@
     opencl.enable = true; # OpenCL ROCM runtime library.(rocmPackages.clr + rocmPackages.clr.icd)
   };
 
+  nixpkgs.config.rocmSupport = true;
+
   environment.variables = {
     ROC_ENABLE_PRE_VEGA = "1"; # enable opencl polaris;
   };

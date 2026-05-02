@@ -17,12 +17,6 @@
       libvdpau
     ]
     ++ [
-      # Quickshell stuffs https://quickshell.org/docs/v0.2.0/guide/install-setup/
-      qt6.qtimageformats # webp & less common format support
-      qt6.qt5compat # extra visual effects, notably gaussian blur. MultiEffect is usually preferable
-      # qt6.qtsvg # support for SVG image loading (bundled with most packages) # NOTE its still fetched?
-      qt6.qtmultimedia # support for playing videos, audio, etc
-      qt6.qtdeclarative # qtdecl types in path
       grim
       imagemagick # screenshot
       # sound-theme-freedesktop # free sounds
@@ -105,8 +99,8 @@
       ripgrep-all
       dotool
       httrack
-      # modem-manager-gui
-      # modemmanager # saves the day with no internet
+      modem-manager-gui
+      modemmanager # saves the day with no internet
     ]
     ++ [
       whatsapp-electron
@@ -173,20 +167,19 @@
     ]
     ++ [
       # CreativeSPACE 📽
-      # blender-hip # Hardware accelerated rendering NOTE later after pos
-      darktable
-      # digikam #TODO diff with darktable
-      digikam
+      blender
+      darktable # Artist
+      digikam # Librarian
       ffmpeg
       gimp
       inkscape-with-extensions
       krita
-      figma-linux
+      # figma-linux
       # figma-agent  #NOTE listens on 127.0.0.1:44950
       # davinci-resolve
       exiftool
     ]
-    ++ lib.optionals config.homeHyprland.enable [
+    ++ lib.optionals osConfig.programs.hyprland.enable [
       # file-roller
       # inputs.hyprswitch.packages.x86_64-linux.default
       # yelp

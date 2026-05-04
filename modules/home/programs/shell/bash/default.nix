@@ -1,5 +1,3 @@
-{ osConfig, lib, ... }:
-
 {
   imports = [
     # ./alias.nix
@@ -75,7 +73,7 @@
         echo "use flake" > .envrc
         direnv allow
       fi
-      ''${EDITOR:-vim} flake.nix
+      vim flake.nix
     }
 
     #complete command + file names. Investigate if needed

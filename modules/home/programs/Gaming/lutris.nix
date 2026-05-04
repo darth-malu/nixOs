@@ -13,7 +13,7 @@
 
   config = lib.mkIf config.lutris-malu.enable {
     programs.lutris = {
-      enable = true;
+      enable = false;
       extraPackages = with pkgs; [
         mangohud
         winetricks

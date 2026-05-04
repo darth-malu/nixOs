@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ lib, ... }:
 {
   environment.etc = {
     "inputrc" = {
-      text = pkgs.lib.mkDefault (
-        pkgs.lib.mkAfter ''
+      text = lib.mkDefault (
+        lib.mkAfter ''
           #$include /etc/Inputrc
 
           # experiment
@@ -34,33 +34,39 @@
           # like zsh?
           set print-completions-horizontally on
 
-          set editing-mode vi
-          set keymap vi-insert 
-          set show-mode-in-prompt on
-
+          # VIM
           # 1 - begin , 2 -end
           # set vi-ins-mode-string (ins)\1\e[6 q\2
           # set vi-cmd-mode-string (cmd)\1\e[2 q\2
           # set vi-ins-mode-string \1\e[34;1m\2└──[ins] \1\e[0m\2
           # set vi-cmd-mode-string \1\e[33;1m\2└──[cmd] \1\e[0m\2
-
           # set vi-ins-mode-string \1\e[5 q\e]12;pink\a\2
+
           set vi-ins-mode-string \1\e[5 q\e]12;green\a\2
           set vi-cmd-mode-string \1\e[1 q\e]12;orange\a\2
-          # set vi-cmd-mode-string \1\e[1 q\e]12;purple\a\2
+
+          set editing-mode vi
+          set show-mode-in-prompt on
 
           $if mode=vi
+            set keymap vi-insert 
             # "\e[D":  backward-char
             # "\M-[C": forward-char
-            # "\eh":   backward-char # Make this useful..word instead
+            # # Make this useful..word instead
+            # "\eh":   backward-char
             # "\M-l":  forward-char 
             "\e[5~": history-search-backward 
             "\e[6~": history-search-forward 
 
             "\C-x\"": "\"\"\C-b" 
             # C-j - RET - enter for next line instead enter lol best shortcut fr like # alot of conflict eg tmux -- just use C-m
-            # "\C-l":"clear\n"
+            "\C-l": "clear\n"
           $endif
+
+          # \eh to pull help like in ZSHELL
+          # run-help() { help "$READLINE_LINE" 2>/dev/null || man "$READLINE_LINE"; }
+          # bind -m vi-insert -x '"\eh": run-help'
+          # bind -m emacs -x     '"\eh": run-help'
 
           $if Bash
             # Insert the next character literally, ignoring its special meaning.
@@ -71,16 +77,17 @@
             # prepare to type a quoted word --
             # insert open and close double quotes
             # and move to just after the open quote
-            "\C-x\"": "\"\"\C-b" # TODO FIXME works but weird...investigate
+            # TODO FIXME works but weird...investigate
+            "\C-x\"": "\"\C-b\""
 
             # Quote the current or previous word
-            "\C-xq": "\eb\"\ef\"" # FIXME
+            # "\C-xq": "\eb\"\ef\""
 
             # Add a binding to refresh the line, which is unbound
-            "\C-xr": redraw-current-line # FIXME
+            # "\C-xr": redraw-current-line
 
             # Edit variable on current line
-            "\M-\C-v": "\C-a\C-k$\C-y\M-\C-e\C-a\C-y=" # FIXME
+            # "\M-\C-v": "\C-a\C-k$\C-y\M-\C-e\C-a\C-y=" # FIXME
           $endif
 
           # Arrows
@@ -115,11 +122,10 @@
           set enable-bracketed-paste on # fix weird double indent?
 
           # control char as symbol rather than command when off, eg. C-l to clear to work need off
-          set echo-control-characters of
+          set echo-control-characters off
 
           # Color files by types
-
-          # Note that this may cause completion text blink in some terminals (e.g. xterm).
+          # NOTE that this may cause completion text blink in some terminals (e.g. xterm).
           #use LS_COLORS
           set colored-stats On
 

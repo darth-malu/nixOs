@@ -37,6 +37,7 @@
         "facetimehd-firmware"
         "b43-firmware"
         "discord"
+        "aspell-dict-en-science"
       ];
     permittedInsecurePackages = [
         "broadcom-sta-6.30.223.271-59-6.18.26"

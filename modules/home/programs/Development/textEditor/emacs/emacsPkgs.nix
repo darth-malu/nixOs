@@ -17,15 +17,6 @@ let
   );
 in
 {
-  programs = {
-    gcc = {
-      enable = true;
-      colors = {
-        error = "01;31";
-      };
-    };
-  };
-
   programs.emacs.extraPackages =
     epkgs: with epkgs; [
       treesit-grammars.with-all-grammars # for bash-ts-mode

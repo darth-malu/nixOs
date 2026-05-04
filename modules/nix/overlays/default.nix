@@ -2,7 +2,7 @@
   imports = [
     # ./ccache.nix
     # ./gstreamer.nix
-    ./discord.nix
+    # ./discord.nix
     ./emacs-overlay.nix
   ];
 }

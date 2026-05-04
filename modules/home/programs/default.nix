@@ -16,7 +16,7 @@
     ./yt-dlp
   ]
   ++ lib.optionals osConfig.programs.hyprland.enable [
-    # ./hyprland  # - HOME hyprland
+    # ./hyprland # - HOME hyprland
     ./hyprland/hyprland-helper
   ];
 }

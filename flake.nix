@@ -96,7 +96,7 @@ nixvim = {
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
+  emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
 
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";

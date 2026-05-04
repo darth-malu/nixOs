@@ -11,11 +11,11 @@
 # myMesa = (inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}) mesa.drivers;
 # in
 {
-  options.hyprland = {
+  options.hypr = {
     enable = lib.mkEnableOption "Hyprland";
   };
 
-  config = lib.mkIf config.hyprland.enable {
+  config = lib.mkIf config.hypr.enable {
     # Fix Dolphin right-click menu
     environment.etc."/xdg/menus/applications.menu".text =
       builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
@@ -43,10 +43,10 @@
       # seatd.enable = lib.mkIf (!config.kde.enable) true; # NOTE: Added as a fix...DOES NOT WORK LOL
     };
 
-    # environment.loginShellInit = ''
-    #    if uwsm check may-start; then
-    #      start-hyprland
-    #   fi
-    # '';
+    environment.loginShellInit = ''
+       if uwsm check may-start; then
+         start-hyprland
+      fi
+    '';
   };
 }

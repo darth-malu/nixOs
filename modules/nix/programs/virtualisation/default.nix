@@ -9,4 +9,6 @@
   qemu.enable = false;
   docker.enable = true;
   n8n.enable = false;
+
+  virtualisation.waydroid.enable = true;
 }

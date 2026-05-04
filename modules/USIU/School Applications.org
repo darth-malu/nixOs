@@ -75,20 +75,17 @@ services.jupyter = {
 
 * Past
 ** Android
-*** cisco packet tracer
-#+begin_src nix :tangle no
-  environment.systemPackages = with pkgs; [
-    # ciscoPacketTracer8
-    ciscoPacketTracer7
-  ];
-#+end_src
-
 *** adb
 This will add additional udev rules for unprivileged access as well as add adb to your $PATH.
+#+begin_src nix :tangle default.nix
+programs.adb = {
+  enable = true;
+};
+#+end_src
 
 Alternatively, if you don't want to install adb globally but do want to configure the udev rules, you can:
 
-#+begin_src nix
+#+begin_src nix :tangle no
 {
   services.udev.packages = [
     pkgs.android-udev-rules
@@ -96,15 +93,9 @@ Alternatively, if you don't want to install adb globally but do want to configur
 }
 #+end_src
 
-#+begin_src nix :tangle no
-programs.adb = {
-  enable = true;
-};
-#+end_src
-
 *** Android Studio
-#+begin_src nix :tangle no
-environment.systemPackages = [pkgs.android-studio ];
+#+begin_src nix :tangle default.nix
+environment.systemPackages = [pkgs.android-studio-full ];
 # if config.networking.hostName == "carthage" then
 #   [
 #     pkgs.android-studio-full
@@ -127,16 +118,16 @@ Currently the following tools are supported:
 + mkdtboimg
 
 *** accept licenses
-#+begin_src nix :tangle no
+#+begin_src nix :tangle default.nix
 android_sdk.accept_license = true;
 #+end_src
 
 *** hardware acceleration
-#+begin_src nix :tangle no
+#+begin_src nix :tangle default.nix
   users.users.malu.extraGroups = ["kvm" "adbusers"];
 #+end_src
-** Database - Petrollinah Mureithi
-*** SQL
+
+** Database/SQL - Petrollinah Mureithi
 #+begin_src nix :tangle no
   services.mysql = {
     enable = true;
@@ -144,19 +135,20 @@ android_sdk.accept_license = true;
   };
 #+end_src
 
-**** Backups
+=Backups=
 #+begin_src nix :tangle no
   services.mysqlBackup = {
     enable = false;
   };
 #+end_src
-** Project Management
+** cisco packet tracer - networking
 #+begin_src nix :tangle no
   environment.systemPackages = with pkgs; [
-    # zulip
-    # zulip-term
+    # ciscoPacketTracer8
+    ciscoPacketTracer7
   ];
 #+end_src
+
 * End
 #+begin_src nix :tangle default.nix
 }

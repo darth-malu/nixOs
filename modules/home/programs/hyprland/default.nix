@@ -1,4 +1,5 @@
 {
+  # DEPRECATED - LUA now
   # imports = [
   #   ./keybinds
   #   ./monitors-peripherals.nix
@@ -8,6 +9,7 @@
   #   ./autoStart.nix
   #   # ./plugins.nix
   # ];
+
 
   config = {
     wayland.windowManager.hyprland = {

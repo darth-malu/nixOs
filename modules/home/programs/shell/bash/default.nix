@@ -42,16 +42,17 @@
     "opencode"
   ];
 
-  programs.bash.profileExtra =
-    lib.mkIf (osConfig.kde.enable == false)
-      #loginshell
-      ''
-         if uwsm check may-start; then
-           start-hyprland
-        fi
-      '';
+  # initExtra -> interactive shell counterpart
+  # programs.bash.profileExtra =/* cmd for when init Login shell */
+  #   lib.mkIf (osConfig.kde.enable == false)
+  #     #loginshell
+  #     ''
+  #        if uwsm check may-start; then
+  #          start-hyprland
+  #       fi
+  #     '';
 
-  programs.bash.initExtra = ''
+  programs.bash.bashrcExtra = /*extra cmd for bashrc*/''
     nixify() {
       if [ ! -e ./.envrc ]; then
         echo "use nix" > .envrc
@@ -82,7 +83,11 @@
     #complete command + file names.
     #complete -cf sudo
 
-    # export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin" # should be below in bashrcExtra
+  '';
+
+  programs.bash.initExtra = /*cmd for when init Interactive shell*/''
+    # Moved bashExtra from here
+
     if command -v fzf-share >/dev/null; then
       source "$(fzf-share)/key-bindings.bash"
       source "$(fzf-share)/completion.bash"

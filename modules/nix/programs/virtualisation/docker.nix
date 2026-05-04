@@ -1,8 +1,6 @@
 { lib, config, ... }:
 {
-  options.docker = {
-    enable = lib.mkEnableOption "Enable Docker 😀";
-  };
+  options.docker.enable = lib.mkEnableOption "Enable Docker 😀";
 
   config = lib.mkIf config.docker.enable {
     # users.extraGroups.docker.members = [ "malu" ];

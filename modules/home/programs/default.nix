@@ -15,8 +15,8 @@
     ./yazi
     ./yt-dlp
   ]
-  ++ lib.optionals osConfig.programs.hyprland.enable [
-    # ./hyprland # - HOME hyprland
+  ++ (lib.optionals osConfig.hypr.enable [
+    # ./hyprland # - HOME hyprland setup files -> DEPRECATED
     ./hyprland/hyprland-helper
-  ];
+  ]);
 }

@@ -39,7 +39,7 @@
         "discord"
       ];
     permittedInsecurePackages = [
-        "broadcom-sta-6.30.223.271-59-6.18.24"
+        "broadcom-sta-6.30.223.271-59-6.18.26"
         # "broadcom-sta-6.30.223.271-59-7.0.1"
     ];
   };
@@ -300,8 +300,8 @@ polkit.addRule(function(action, subject) {
 });
 #+end_src
 
-**** blueman
-#+begin_src nix :tangle default.nix
+**** TODO blueman
+#+begin_src nix :tangle no
 polkit.addRule(function(action, subject) {
   if ((action.id == "org.blueman.network.setup" ||
        action.id == "org.blueman.dhcp.client" ||
@@ -386,7 +386,6 @@ nix.settings = {
   substituters = [
     # "https://cache.nixos.org?priority=10"
     "https://hyprland.cachix.org"
-    "https://nix-community.cachix.org"
     "https://yazi.cachix.org"
     "https://aseipp-nix-cache.global.ssl.fastly.net"
     "https://nix-community.cachix.org"
@@ -396,11 +395,10 @@ nix.settings = {
   trusted-public-keys = [
     # "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
     #"cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-    # "konradmalik.cachix.org-1:9REXmCYRwPNL0kAB0IMeTxnMB1Gl9VY5I8w7UVBTtSI="
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    # "konradmalik.cachix.org-1:9REXmCYRwPNL0kAB0IMeTxnMB1Gl9VY5I8w7UVBTtSI="
   ] ++
   lib.optionals (config.networking.hostName != "carthage") [
       # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9bmUGM+Vxix3N6UsxEPwOLmH1JmBiCcudWMb0ZIzcD darth-malu@github.com"

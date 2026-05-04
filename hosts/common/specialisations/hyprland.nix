@@ -40,7 +40,7 @@
       power-profiles-daemon.enable = lib.mkIf (config.networking.hostName == "tangier") true;
       upower.enable = lib.mkIf (config.networking.hostName == "tangier") true;
       blueman.enable = lib.mkIf (!config.kde.enable) true;
-      seatd.enable = lib.mkIf (!config.kde.enable) true; # NOTE: Added as a fix...DOES NOT WORK LOL
+      # seatd.enable = lib.mkIf (!config.kde.enable) true; # NOTE: Added as a fix...DOES NOT WORK LOL
     };
 
     environment.loginShellInit = ''
@@ -48,26 +48,5 @@
          start-hyprland
       fi
     '';
-
-    security.polkit = {
-      enable = true;
-      extraConfig = ''
-        # reboot/poweroff for non sudo users
-        polkit.addRule(function(action, subject) {
-          if (
-            subject.isInGroup("users")
-              && (
-                action.id == "org.freedesktop.login1.reboot" ||
-                action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-                action.id == "org.freedesktop.login1.power-off" ||
-                action.id == "org.freedesktop.login1.power-off-multiple-sessions"
-              )
-            )
-          {
-            return polkit.Result.YES;
-          }
-        });
-      '';
-    };
   };
 }

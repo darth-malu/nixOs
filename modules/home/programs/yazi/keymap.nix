@@ -4,10 +4,10 @@ mgr.keymap = [
 
   { on = [ "g" "h" ];       run = "cd ~";             desc = "Go to the home directory"; }
   { on = [ "g" "c" ];       run = "cd ~/.config";     desc = ".config";}
-  { on = [ "g" "d" ];       run = "cd ~/Documents";   desc = "Documents"; }
+  { on = [ "g" "D" ];       run = "cd ~/Documents";   desc = "Documents"; }
+  { on = [ "g" "d" ];       run = "cd ~/Downloads";   desc = "Go to the downloads directory"; }
   { on = [ "g" "p" ];       run = "cd ~/Pictures";   desc = "Go to the pictures directory"; }
-  { on = [ "g" "G" ];       run = "cd ~/Pictures/grimblast";   desc = "grimblast"; }
-  { on = [ "g" "x" ];       run = "cd ~/Downloads";   desc = "Go to the downloads directory"; }
+  { on = [ "g" "p" "g" ];       run = "cd ~/Pictures/grimblast";   desc = "grimblast"; }
   { on = [ "g" "s" ];       run = "cd ~/Shibuya";   desc = "~/Shibuya"; }
   { on = [ "g" "u" ];       run = "cd ~/USIU";   desc = "USIU 📚"; }
   { on = [ "g" "v" ];       run = "cd ~/Videos";   desc = "VIDEOS dir"; }

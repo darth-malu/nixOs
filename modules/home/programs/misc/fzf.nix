@@ -1,10 +1,10 @@
 {
   enable = true;
   enableBashIntegration = true;
-  tmux = {
-    enableShellIntegration = true; # sets FZF_TMUX=1
-    shellIntegrationOptions = [ "-p 50%,60%" ]; # -d 40% #TODO: see more # fzf-tmux --help
-  };
+  # tmux = {
+  #   enableShellIntegration = true; # sets FZF_TMUX=1
+  #   shellIntegrationOptions = [ "-p 50%,60%" ]; # -d 40% #TODO: see more # fzf-tmux --help
+  # };
   colors = {
     # https://github.com/junegunn/fzf/wiki/Color-schemes
     # bg -> background

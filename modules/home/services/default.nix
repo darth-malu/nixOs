@@ -10,6 +10,7 @@
       enable = true;
       # extraArgs = '''';
       # systemdTarget = "hyprland-session.target";
+      systemdTarget = "graphical.target";
     };
     udiskie = {
       enable = lib.mkIf osConfig.programs.hyprland.enable true;

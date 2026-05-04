@@ -77,9 +77,9 @@
             "\C-xq": "\eb\"\ef\"" # FIXME
 
             # Add a binding to refresh the line, which is unbound
-            "\C-xr": redraw-current-line # FIXEM
+            "\C-xr": redraw-current-line # FIXME
 
-            # Edit variable on current line.
+            # Edit variable on current line
             "\M-\C-v": "\C-a\C-k$\C-y\M-\C-e\C-a\C-y=" # FIXME
           $endif
 
@@ -114,7 +114,8 @@
           #security by preventing accidental execution of control characters in text, \e[200~ at the beginning and \e[201~ at the end
           set enable-bracketed-paste on # fix weird double indent?
 
-          set echo-control-characters of control char as symbol rather than command when off, eg. C-l to clear to work need off
+          # control char as symbol rather than command when off, eg. C-l to clear to work need off
+          set echo-control-characters of
 
           # Color files by types
 

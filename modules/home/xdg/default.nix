@@ -21,7 +21,6 @@
       # documents = "${config.home.homeDirectory}/Documents";
       # download = "${config.home.homeDirectory}/Downloads";
       extraConfig = {
-        # XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/grimblast";
         SCREENSHOTS = "${config.xdg.userDirs.pictures}/grimblast";
       };
     };

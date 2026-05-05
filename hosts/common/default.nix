@@ -8,6 +8,7 @@
     ./storage-common.nix
     ./specialisations
     ./bluetooth.nix
+    ./bootStuff.nix
   ];
 
   nixpkgs.config = {
@@ -29,74 +30,33 @@
         "b43-firmware"
         "discord"
         "aspell-dict-en-science"
+        # ANDROID studio
+        # --------------
+        "android-studio"
+        "android-sdk-cmdline-tools"
+        # "android-sdk-platform-tools"
+        # "platform-tools"
+        # "android-sdk-tools"
+        # "android-sdk-emulator"
+        # "android-sdk-system-image-36-google_apis-arm64-v8a-system-image-36-google_apis-x86_64"
+        # "system-image-36-google_apis-x86_64"
+        # "system-image-36-google_apis-arm64-v8a"
+        # "android-sdk-system-image-36-google_apis_playstore-arm64-v8a-system-image-36-google_apis_playstore-x86_64"
+        # "system-image-36-google_apis_playstore-x86_64"
+        # "system-image-36-google_apis_playstore-arm64-v8a"
+        # "android-sdk-system-image-35-google_apis-arm64-v8a-system-image-35-google_apis-x86_64"
+        # "system-image-35-google_apis-x86_64"
+        # "system-image-35-google_apis-arm64-v8a"
+        # "android-sdk-system-image-35-google_apis_playstore-arm64-v8a-system-image-35-google_apis_playstore-x86_64"
+        # "system-image-35-google_apis_playstore-x86_64"
+        # "system-image-35-google_apis_playstore-arm64-v8a"
+        # "android-sdk-system-image-34-google_apis-arm64-v8a-system-image-34-google_apis-x86_64"
+        # --------------
       ];
     permittedInsecurePackages = [
         "broadcom-sta-6.30.223.271-59-6.18.26"
         # "broadcom-sta-6.30.223.271-59-7.0.1"
     ];
-  };
-
-  boot = {
-    plymouth.enable = true;
-    extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
-    loader = {
-      systemd-boot = {
-        enable = true;
-        # editor = false; # true:: allow editing kernel commandline before boot
-        # windows
-        # sortKey = "nixos"; #https://uapi-group.org/specifications/specs/boot_loader_specification/#sorting
-      };
-      efi.canTouchEfiVariables = true;
-      timeout = 2;
-    };
-    initrd.kernelModules =
-      if config.networking.hostName == "carthage" then
-        [
-          # "dm-snapshot"               # lvm
-          # "amdgpu"
-        ]
-      else
-        [ ];
-    initrd.availableKernelModules =
-      if config.networking.hostName == "carthage" then
-        [
-          "nvme"
-          "xhci_pci"
-          "ahci"
-          "usbhid"
-          "usb_storage"
-          "sd_mod"
-        ]
-      else
-        [
-          "xhci_pci" # usb 3.0
-          "ehci_pci" # usb 2.0
-          "ahci" # sata
-          "usb_storage" # usb mass storage devices - hdd, flash
-          "sd_mod" # scsi device and some sata
-          "sr_mod" # cd drive
-        ];
-    initrd.systemd.network = {
-      enable = false;
-      wait-online.enable = false; # since using networkmanager not networkd;
-    };
-    kernelModules =
-      if config.networking.hostName == "tangier" then
-        [
-          "kvm-intel"
-          "wl"
-        ]
-      else
-        [
-          "kvm-amd"
-          "wl" # broadcomm closed source
-        ];
-    kernelParams = [# parameterrs for kernel command line
-    #   "video=HDMI-A-1:1920x1080@240"
-    #   "video=DP-3:1920x1080@60"
-      "nohibernate" # because zfs
-    ];
-    # supportedFilesystems = { ntfs-3g = true; ext4 = true; }; # can also be list # supportedFilesystems = [ "ntfs" ];
   };
 
   services = {

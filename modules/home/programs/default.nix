@@ -16,6 +16,7 @@
     ./yt-dlp
   ]
   ++ (lib.optionals osConfig.hypr.enable [
+    # TODO see if hypr better or full option
     # ./hyprland # - HOME hyprland setup files -> DEPRECATED
     ./hyprland/hyprland-helper
   ]);

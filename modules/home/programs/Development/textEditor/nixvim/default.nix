@@ -1,4 +1,4 @@
-{ nixvim, ... }:
+{ inputs, ... }:
 
 {
   imports = [
@@ -8,7 +8,7 @@
     ./options.nix
     ./plugins
     ./autoCmd.nix
-    nixvim.homeModules.nixvim # hM module for nixvim
+    inputs.nixvim.homeModules.nixvim # hM module for nixvim
   ];
 
   programs.nixvim = {

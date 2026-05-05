@@ -105,7 +105,7 @@ nixvim = {
 
   };
 
-  outputs = inputs@{nixpkgs, disko, nixvim, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
+  outputs = inputs@{nixpkgs, disko, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 
 let
   system = "x86_64-linux"; # TODO system = builtins.currentSystem;?? find reason it doesn't work
@@ -172,7 +172,7 @@ disko.nixosModules.disko
       backupFileExtension = "home_bak";
       useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
       useUserPackages = false; # if false ... uses nix-profile for home apps
-      extraSpecialArgs = { inherit inputs pkgs system nixvim; };
+      extraSpecialArgs = { inherit inputs pkgs system; };
       users.malu = import ./modules/home/home.nix;
     };
   }
@@ -193,7 +193,7 @@ tangier = nixpkgs.lib.nixosSystem {
         users.malu = import ./modules/home/home.nix;
         useGlobalPkgs = true; # dont use private instance of pkgs which is the default
         useUserPackages = false; # if false:: ... uses nix-profile for home apps
-        extraSpecialArgs = { inherit pkgs inputs system nixvim; };
+        extraSpecialArgs = { inherit pkgs inputs system; };
       };
     }
   ];

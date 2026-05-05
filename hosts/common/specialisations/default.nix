@@ -31,6 +31,6 @@ in
 
   specialisation = lib.mkIf (config.networking.hostName == "carthage") {
     plasmoid = plasmaSpecialisation;
-    niroid = niri;
+    # niroid = niri;# TODO incomplete
   };
 }

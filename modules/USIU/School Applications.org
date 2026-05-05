@@ -7,8 +7,77 @@
 {pkgs, lib, config, ...}:
 {
 #+end_src
-* Jan 2026
-** Machine Learning [ Leah mutanu ]
+* Past
+** Android
+*** Android Studio
+#+begin_src nix :tangle no
+environment.systemPackages = [pkgs.android-studio pkgs.android-tools ];
+#+end_src
+
+=Android-tools=
+Currently the following tools are supported:
++ adb
++ fastboot
++ mke2fs.android (required by fastboot)
++ simg2img, img2simg, append2simg
++ lpdump, lpmake, lpadd, lpflash, lpunpack
++ mkbootimg, unpack_bootimg, repack_bootimg, avbtool
++ mkdtboimg
+
+*** accept licenses
+#+begin_src nix :tangle default.nix
+# android_sdk.accept_license = true;
+nixpkgs.config.android_sdk.accept_license = true;
+#+end_src
+
+*** extra Groups
+#+begin_src nix :tangle default.nix
+  users.users.malu.extraGroups = ["kvm" "adbusers"];
+#+end_src
+
+*** DEPRECATED adb
+This will add additional udev rules for unprivileged access as well as add adb to your $PATH.
+NOTE: no longer has effect
+#+begin_src nix :tangle no
+programs.adb = {
+  enable = true;
+};
+#+end_src
+
+Alternatively, if you don't want to install adb globally but do want to configure the udev rules, you can:
+
+#+begin_src nix :tangle no
+{
+  services.udev.packages = [
+    pkgs.android-udev-rules
+  ];
+}
+#+end_src
+
+** Database/SQL - Petrollinah Mureithi
+#+begin_src nix :tangle no
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
+  };
+#+end_src
+
+=Backups=
+#+begin_src nix :tangle no
+  services.mysqlBackup = {
+    enable = false;
+  };
+#+end_src
+** cisco packet tracer - networking
+#+begin_src nix :tangle no
+  environment.systemPackages = with pkgs; [
+    # ciscoPacketTracer8
+    ciscoPacketTracer7
+  ];
+#+end_src
+
+** Jan 2026
+*** Machine Learning [ Leah mutanu ]
 #+begin_src nix :tangle no
 services.jupyter = {
   enable = true;
@@ -47,8 +116,8 @@ services.jupyter = {
   # port = 8888;
 };
 #+end_src
-** Cryptography APT3090B-Githinji
-*** LAMP stack
+*** Cryptography APT3090B-Githinji
+**** LAMP stack
 #+begin_src nix :tangle no
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
@@ -70,83 +139,6 @@ services.jupyter = {
   #   "f /var/www/example.org/index.php - - - - <?php phpinfo();"
   # ];
 # }
-#+end_src
-
-
-* Past
-** Android
-*** adb
-This will add additional udev rules for unprivileged access as well as add adb to your $PATH.
-#+begin_src nix :tangle default.nix
-programs.adb = {
-  enable = true;
-};
-#+end_src
-
-Alternatively, if you don't want to install adb globally but do want to configure the udev rules, you can:
-
-#+begin_src nix :tangle no
-{
-  services.udev.packages = [
-    pkgs.android-udev-rules
-  ];
-}
-#+end_src
-
-*** Android Studio
-#+begin_src nix :tangle default.nix
-environment.systemPackages = [pkgs.android-studio-full ];
-# if config.networking.hostName == "carthage" then
-#   [
-#     pkgs.android-studio-full
-#   ]
-# else
-#   [ pkgs.android-studio ];
-# android-tools
-# androidenv.androidPkgs_9_0.platform-tools
-# androidenv.androidPkgs.all.packages.platforms.v36
-#+end_src
-
-=Android-tools=
-Currently the following tools are supported:
-+ adb
-+ fastboot
-+ mke2fs.android (required by fastboot)
-+ simg2img, img2simg, append2simg
-+ lpdump, lpmake, lpadd, lpflash, lpunpack
-+ mkbootimg, unpack_bootimg, repack_bootimg, avbtool
-+ mkdtboimg
-
-*** accept licenses
-#+begin_src nix :tangle default.nix
-android_sdk.accept_license = true;
-#+end_src
-
-*** hardware acceleration
-#+begin_src nix :tangle default.nix
-  users.users.malu.extraGroups = ["kvm" "adbusers"];
-#+end_src
-
-** Database/SQL - Petrollinah Mureithi
-#+begin_src nix :tangle no
-  services.mysql = {
-    enable = true;
-    package = pkgs.mariadb;
-  };
-#+end_src
-
-=Backups=
-#+begin_src nix :tangle no
-  services.mysqlBackup = {
-    enable = false;
-  };
-#+end_src
-** cisco packet tracer - networking
-#+begin_src nix :tangle no
-  environment.systemPackages = with pkgs; [
-    # ciscoPacketTracer8
-    ciscoPacketTracer7
-  ];
 #+end_src
 
 * End

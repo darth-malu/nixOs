@@ -194,7 +194,7 @@ mpd_connection_timeout = 5;
 mpd_host = "localhost";
 mpd_port = 6600;
 
-execute_on_song_change = "qs ipc call mpris songArt"; # "songart"
+execute_on_song_change = "qs ipc call mpris songArt 2> /dev/null"; # "songart"
 
 selected_item_prefix = "+  ";
 discard_colors_if_item_is_selected = true;

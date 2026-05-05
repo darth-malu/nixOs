@@ -10,7 +10,6 @@
 #   gruvboxplus = import ../home/gruvbox-plus.nix { inherit pkgs;};
 # in
 lib.mkIf osConfig.programs.hyprland.enable {
-
   home.pointerCursor = {
     enable = true; # false::
     gtk.enable = true; # waybar, gtk apps

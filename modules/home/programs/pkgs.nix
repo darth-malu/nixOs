@@ -181,7 +181,7 @@
       # davinci-resolve
       exiftool
     ]
-    ++ (lib.optionals (osConfig.programs.hyprland.enable) [
+    ++ (lib.optionals (osConfig.hypr.enable) [
       # file-roller
       # inputs.hyprswitch.packages.x86_64-linux.default
       # yelp

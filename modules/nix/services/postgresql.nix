@@ -1,11 +1,11 @@
-{ pkgs }:
+{ pkgs, ... }:
 {
   services.postgresql = {
     enable = true;
     ensureDatabases = [ "mydatabase" ];
-    package = pkgs.posgresql.pg_config;
+    # package = pkgs.postgresql.pg_config;
     enableTCPIP = true;
-    # port = 5432;
+    settings.port = 5432;
     authentication = pkgs.lib.mkOverride 10 ''
       #type database DBuser origin-address auth-method
       local all      all     trust

@@ -55,7 +55,7 @@
       ];
     permittedInsecurePackages = [
         "broadcom-sta-6.30.223.271-59-6.18.26"
-        # "broadcom-sta-6.30.223.271-59-7.0.1"
+        # "broadcom-sta-6.30.223.271-59-7.0.3"
     ];
   };
 

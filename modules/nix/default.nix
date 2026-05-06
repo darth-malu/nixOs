@@ -6,7 +6,7 @@
     ./programs
     ./services
     ./core
-    # ./bootStuff.nix # BLEEDING_EDGE. FIXME: ZFS problems
+    # ./bootStuff.nix # BLEEDING_EDGE. FIXME: ZFS problems - Migrate or Wait
     ./app-image.nix
     ./overlays
   ];

@@ -6,10 +6,22 @@
 }:
 # https://wiki.nixos.org/wiki/Linux_kernel
 {
+  # Useful shortcuts, triggered using Alt+SysRq+<key>:
 
+  # h: Print help to the system log.
+  # f: Trigger the kernel oom killer.
+  # s: Sync data to disk before triggering the reset options below.
+  # e: SIGTERM all processes except PID 0.
+  # i: SIGKILL all processes except PID 0.
+  # b: Reboot the system.
+  # Check journalctl to see if you are triggering the shortcuts correctly, which might be different for your keyboard, as noted in the Wikipedia page.
+
+  # Also see services.earlyoom.enable and systemd.oomd.enable.
   boot.kernel.sysctl."kernel.sysrq" = 1;
 
-  boot.kernelPackages = pkgs.linuxPackages_7_0;
+  # boot.kernelPackages = pkgs.linuxPackages_7_0;
+
+  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackges;
 
   boot.plymouth.enable = true;
   boot.extraModulePackages = with config.boot.kernelPackages; [ broadcom_sta ];

@@ -22,11 +22,7 @@
       #"audio"
       "gamemode"
       # "docker"
-
-      # "openrazer" # needed to run openrazer-daemon # does not seem to be working from here
-      # android
-      # "adbusers" # grant user access to Android Debug Bridge
-      "kvm"
+      # "kvm" # ?android nonly?
     ]
     ++ (pkgs.lib.optionals config.hardware.openrazer.enable [
       "openrazer"

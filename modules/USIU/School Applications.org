@@ -25,13 +25,13 @@ Currently the following tools are supported:
 + mkdtboimg
 
 *** accept licenses
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
 # android_sdk.accept_license = true;
 nixpkgs.config.android_sdk.accept_license = true;
 #+end_src
 
 *** extra Groups
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
   users.users.malu.extraGroups = ["kvm" "adbusers"];
 #+end_src
 

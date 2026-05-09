@@ -34,6 +34,7 @@
         # --------------
         "android-studio"
         "android-sdk-cmdline-tools"
+        "android-studio-beta"
         # "android-sdk-platform-tools"
         # "platform-tools"
         # "android-sdk-tools"

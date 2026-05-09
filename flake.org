@@ -13,6 +13,7 @@
 ** nixpkgs
 #+begin_src nix :tangle flake.nix
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 #+end_src
 
 NOTE nixos-unstable-small exist...smaller, update faster but require more to be built from source
@@ -56,7 +57,7 @@ https://nixos.wiki/wiki/Nix_channels
     };
 #+end_src
 ** Nixvim
-#+begin_src nix :tangle flake.nix
+#+begin_src nix :tangle no
 nixvim = {
     url = "github:nix-community/nixvim";
     # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
@@ -167,7 +168,7 @@ nixvim = {
 
 * outputs
 #+begin_src nix :tangle flake.nix
-  outputs = inputs@{nixpkgs, disko, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
+  outputs = inputs@{nixpkgs-stable, nixpkgs, disko, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 #+end_src
 ** let..in
 *** start
@@ -229,6 +230,10 @@ config = {
    inherit  system;
    inherit config;
  };
+ pkgs-stable = import nixpkgs-stable {
+   inherit  system;
+   inherit config;
+ };
 #+end_src
 
 *** end
@@ -270,7 +275,7 @@ modules = [
   inputs.plasma-manager.homeManagerModules.plasma-manager
 #+end_src
 ***** Nixvim
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
     # nixvim.homeModules.nixvim
 #+end_src
 ***** disko

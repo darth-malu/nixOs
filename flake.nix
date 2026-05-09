@@ -3,6 +3,7 @@
   inputs = {
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     disko = {
       url = "github:nix-community/disko/latest";
@@ -26,11 +27,6 @@
       url = "github:nix-community/home-manager"; 
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-nixvim = {
-    url = "github:nix-community/nixvim";
-    # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
-  };
 
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
@@ -105,7 +101,7 @@ nixvim = {
 
   };
 
-  outputs = inputs@{nixpkgs, disko, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
+  outputs = inputs@{nixpkgs-stable, nixpkgs, disko, ...}: # Note the use of `self` which allows reusing flake's outputs in itself.
 
 let
   system = "x86_64-linux"; # TODO system = builtins.currentSystem;?? find reason it doesn't work
@@ -146,6 +142,10 @@ config = {
 
  # pkgs = nixpkgs.legacyPackages.${system};
  pkgs = import nixpkgs {
+   inherit  system;
+   inherit config;
+ };
+ pkgs-stable = import nixpkgs-stable {
    inherit  system;
    inherit config;
  };

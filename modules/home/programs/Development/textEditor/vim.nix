@@ -2,7 +2,7 @@
 {
   programs.vim = {
     enable = true;
-    # defaultEditor = true;
+    defaultEditor = true;
     packageConfigurable = pkgs.vim; # vim-full::
     # TODO: see  if can override to disable gvim
     # package = pkgs.vim;

@@ -2,9 +2,10 @@
 
 {
 
-  environment.systemPackages = [
-    pkgs.android-studio
-    pkgs.android-tools
+  environment.systemPackages = with pkgs; [
+    android-studio
+    android-tools
+    # androidenv.androidPkgs.androidsdk
   ];
 
   nixpkgs.config.android_sdk.accept_license = true;

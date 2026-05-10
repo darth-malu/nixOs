@@ -58,27 +58,28 @@
             "\e[5~": history-search-backward 
             "\e[6~": history-search-forward 
 
-            "\C-x\"": "\"\"\C-b" 
+            # "\C-x\"": "\"\"\C-b" 
+            "\C-o\"": "\"\"\\C-b" 
             # C-j - RET - enter for next line instead enter lol best shortcut fr like # alot of conflict eg tmux -- just use C-m
             "\C-l": "clear\n"
-          $endif
 
-          # \eh to pull help like in ZSHELL
-          # run-help() { help "$READLINE_LINE" 2>/dev/null || man "$READLINE_LINE"; }
-          # bind -m vi-insert -x '"\eh": run-help'
-          # bind -m emacs -x     '"\eh": run-help'
+            "\ew": "\C-l \C-e # macro" # TODO test
+            "\e\C-l": "\C-e | less\C-m"
+"\es": "\C-a su -c '\C-e'\C-m"
+"\e\C-y": "\C-ayes | \C-m"
+"\es": "\C-asudo \C-e"
+          $endif
 
           $if Bash
             # Insert the next character literally, ignoring its special meaning.
             "C-q":  quoted-insert
             "\e[A": history-search-backward
             "\e[B": history-search-forward
-
             # prepare to type a quoted word --
             # insert open and close double quotes
             # and move to just after the open quote
             # TODO FIXME works but weird...investigate
-            "\C-x\"": "\"\C-b\""
+            # "\C-x\"": "\"\C-b\""
 
             # Quote the current or previous word
             # "\C-xq": "\eb\"\ef\""

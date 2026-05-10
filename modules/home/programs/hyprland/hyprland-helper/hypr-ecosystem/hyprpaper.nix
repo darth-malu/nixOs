@@ -13,13 +13,14 @@
       ipc = true;
       splash = true;
       # splash_offset = 2.0; #20::
-      splach_opacity = 0.7; # 0.8::
+      splash_opacity = 0.7; # 0.8::
       wallpaper =
         if osConfig.networking.hostName == "carthage" then
           [
             {
               monitor = "HDMI-A-1";
               path = "$HOME/Pictures/wallpaperS/games/riot games/singed-LQ.png";
+              # path = "$HOME/Pictures/wallpaperS/art/camp-night-vk.jpg";
             }
             {
               monitor = "DP-3";

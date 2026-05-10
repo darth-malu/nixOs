@@ -2,7 +2,6 @@
 {
   imports = [
     ./emacsPkgs.nix
-    # ./mbsync.nix
     ./mbsync_edmundmiller.nix
   ];
 
@@ -15,20 +14,22 @@
 
   services.emacs = {
     enable = true; # emacs daemon
-    startWithUserSession = true; # launch with systemd user session. "graphical" -> graphical-session.target . true -> default.target::
-    defaultEditor = true;
+    startWithUserSession = true; # "graphical" - graphical-session.target . true - default.target::
+    # defaultEditor = true;
     socketActivation.enable = if osConfig.networking.hostName == "tangier" then true else false;
     client = {
       # Whether to enable systemd socket activation for the Emacs service. # TODO see if conflicting with startWithUSerSession
       enable = true; # false::, generation of Emacs client desktop file.
       arguments = [
-        "-c" # -r --reuse-frame (reuse frame if exists, otherwise create a new frame) - --create-frame/-c
+        "--reuse-frame" # -r --reuse-frame (reuse frame if exists, otherwise create a new frame) - --create-frame/-c
         # "-nw"
         # "-a 'emacs'"
       ];
     };
     extraOptions = [
-      "-c"
+      # extra command-line arguments to pass to emacs.
+      #"--fullscreen"
+      #"--no-splash"
     ];
   };
 

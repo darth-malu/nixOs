@@ -10,6 +10,7 @@
 {
   imports = [
     ./programs+options.nix
+    ./developerPkgs.nix
   ];
 
   home.packages =
@@ -45,6 +46,8 @@
       trash-cli
       wev # NOTE use ./ascii
       jdupes
+      cryptsetup
+      pass-wayland
     ]
     ++ [
       # testing for yazi #
@@ -53,21 +56,6 @@
       xz # General-purpose data compression software, successor of LZMA
       p7zip # New p7zip fork with additional codecs and improvements (forked from https://sourceforge.net/projec…
       rar # also has unrar
-    ]
-    ++ [
-      # DEVELOPER 🛠️
-      ed
-      # cling
-      # firebase-tools
-      manim # FIXME failed
-      # nasm
-      qtcreator
-      # beekeeper-studio
-      cryptsetup
-      pass-wayland
-      patchelf
-      socat
-      zlib
     ]
     ++ [
       # gsmartcontrol
@@ -152,7 +140,7 @@
       # helvum
       # kdePackages.mlt
       # ffmpeg-full
-      # handbrake # FIXME lag on open
+      handbrake # FIXME lag on open
       # obs-cli
       obs-studio
       # ungoogled-chromium
@@ -176,6 +164,7 @@
       gimp
       inkscape-with-extensions
       krita
+      kdePackages.kdenlive
       # figma-linux
       # figma-agent  #NOTE listens on 127.0.0.1:44950
       # davinci-resolve

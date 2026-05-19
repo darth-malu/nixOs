@@ -49,6 +49,10 @@
 
   programs.bash.bashrcExtra = # extra cmd for bashrc
     ''
+      rM() {
+        trash-put "$@"; echo "🧻 $@ "
+      }
+
       nixify() {
         if [ ! -e ./.envrc ]; then
           echo "use nix" > .envrc
@@ -82,6 +86,7 @@
       # \eh to pull help like in ZSHELL
       run-help() { help "$READLINE_LINE" 2>/dev/null || batman "$READLINE_LINE"; }
       bind -m vi-insert -x '"\eh": run-help'
+      bind -m vi-insert -x '"\el": lsd;printf "\n"'
       # bind -m emacs -x     '"\eh": run-help'
 
       # Macros

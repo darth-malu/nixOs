@@ -51,11 +51,6 @@ in
     vips
 
     go-grip # TODO test
-
-    # LUA
-    lua54Packages.lua
-    lua54Packages.luarepl
-
     # python3 or or specific number
     (pkgs.python3.withPackages (
       python-pkgs: with python-pkgs; [
@@ -77,12 +72,6 @@ in
     libxml2
     # pyenv
     # ELPY
-
-    # NODE / Javascript
-    # nodejs_25 # consider npm for auto install of servers in lsp-mode
-    nodejs-slim_25 # consider npm for auto install of servers in lsp-mode
-    # nodejs
-    # deno
 
     # C
     # clang # cc lsp & java? (maybe since derived) # FIXME...clash with binutils and gcc
@@ -124,18 +113,21 @@ in
 
     bash-language-server
 
+    lua-language-server
+
     docker-language-server
 
     # omnisharp-roslyn # c#
     # jdt-language-server
-
-    # lua-language-server
 
     # WEB
     # nodePackages.js-beautify # js/css/html format # removed for being unmaintainable 😀
     jsbeautifier
     stylelint # css linter
     html-tidy
+    vscode-langservers-extracted
+    # vscode-json-languageserver- in langservers
+    yaml-language-server
 
     # org stuff
     scrot # org-screenshot-take

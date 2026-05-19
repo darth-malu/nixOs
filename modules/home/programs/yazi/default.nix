@@ -165,7 +165,7 @@
           {
             url = "*.org";
             use = [
-              "emacs"
+              "emacsnw"
               "open"
             ];
           }
@@ -182,10 +182,6 @@
             use = "open";
           }
           {
-            url = "*.json";
-            use = "vim";
-          }
-          {
             mime = "text/*";
             use = [
               "emacsnw"
@@ -200,10 +196,38 @@
             use = "vim";
           }
           {
+            url = "*.jsx";
+            use = [
+              "emacsnw"
+              "emacs"
+            ];
+          }
+          {
+            url = "*.js";
+            use = [
+              "emacsnw"
+              "emacs"
+            ];
+          }
+          {
+            url = "*.ts";
+            use = [
+              "emacsnw"
+              "emacs"
+            ];
+          }
+          {
+            url = "*.tsx";
+            use = [
+              "emacsnw"
+              "emacs"
+            ];
+          }
+          {
             mime = "text/html";
             use = [
               "open"
-              "emacs"
+              "emacsnw"
             ];
           }
         ];
@@ -213,8 +237,8 @@
             use = [
               "open"
               "vim"
-              "emacs"
               "emacsnw"
+              "emacs"
             ];
           }
         ];

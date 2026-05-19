@@ -10,7 +10,7 @@
     # ./sync-thing
     ./virtualisation
     ./gaming
-    ./androidStudio.nix
+    ./android
   ];
 
   steamy.enable = true;

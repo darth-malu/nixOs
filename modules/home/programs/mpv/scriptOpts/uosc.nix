@@ -49,7 +49,7 @@ default_directory = "~/";
 
 autoload = true;
 
-shuffle = true;
+shuffle = false;
 
 # Enable uosc's playlist/directory shuffle mode
 # This simply makes the next selected playlist or directory item be random, just

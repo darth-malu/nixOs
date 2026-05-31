@@ -1,9 +1,20 @@
 {
+  disks ? [
+    "/dev/nvme0n1"
+    "/dev/sda"
+  ],
+  config,
+  ...
+}:
+let
+  diskName = if config.networking.hostName == "carthage" then "NVME" else "SATA";
+in
+{
   disko.devices = {
     disk = {
-      main = {
+      ${diskName} = {
+        device = builtins.elemAt disks 1;
         type = "disk";
-        device = "/dev/vdb";
         content = {
           type = "gpt";
           partitions = {

@@ -74,9 +74,9 @@ in
                 ESP = {
                   name = "ESP";
                   type = "EF00";
-                  size = "200M";
-                  # start = "1MiB";
-                  # end = "200MiB";
+                  # size = "200M";
+                  start = "1MiB";
+                  end = "200MiB";
                   content = {
                     type = "filesystem";
                     format = "vfat";
@@ -102,7 +102,8 @@ in
                 ESP = {
                   name = "ESP";
                   type = "EF00";
-                  size = "200M";
+                  start = "1MiB";
+                  end = "200MiB";
                   content = {
                     type = "filesystem";
                     format = "vfat";

@@ -32,6 +32,7 @@
     # Prepend to $PATH in a double-quoted context
     "${config.xdg.configHome}/emacs/bin"
     "${config.home.homeDirectory}/Development/Core Utils/bash/Scripts"
+    "/home/malu/.cache/.bun/bin:$PATH"
   ];
 
   xdg.configFile = {

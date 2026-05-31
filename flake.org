@@ -148,6 +148,13 @@ nixvim = {
       inputs.nixpkgs.follows = "nixpkgs";
     };
 #+end_src
+** Vermilion
+#+begin_src nix :tangle flake.nix
+    vermilion = {
+      url = "github:vaxerski/Vermilion";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+#+end_src
 ** emacs-overlay
 #+begin_src nix :tangle flake.nix
   emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";

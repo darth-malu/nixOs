@@ -92,6 +92,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    vermilion = {
+      url = "github:vaxerski/Vermilion";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
 
     zen-browser = {

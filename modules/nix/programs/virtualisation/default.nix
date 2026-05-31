@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     ./qemu
@@ -9,5 +10,9 @@
   docker.enable = true;
   n8n.enable = false;
 
-  virtualisation.waydroid.enable = true;
+  virtualisation.waydroid.enable = false;
+
+  environment.systemPackages = [
+    pkgs.genymotion
+  ];
 }

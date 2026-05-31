@@ -1,5 +1,4 @@
 {
-  config,
   osConfig,
   pkgs,
   inputs,
@@ -17,6 +16,7 @@
     with pkgs;
     [
       libvdpau
+      # inputs.vermilion.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
     ++ [
       grim

@@ -18,17 +18,16 @@
     patchelf
     socat
     zlib
+    libxml2
 
     # LUA
     lua54Packages.lua
     lua54Packages.luarepl
 
-    # JS
-    # nodejs
-    nodejs_25
-    # NODE / Javascript
+    # JavaScript
+    nodejs
     # nodejs_25 # consider npm for auto install of servers in lsp-mode
-    # nodejs-slim_25 # consider npm for auto install of servers in lsp-mode
+    # nodejs-slim_latest # consider npm for auto install of servers in lsp-mode
     # deno
   ];
 }

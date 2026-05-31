@@ -29,9 +29,9 @@
       # enableRenice  = true;     # true::
       settings = {
         # https://github.com/FeralInteractive/gamemode/blob/master/example/gamemode.ini
-        general = {
-          renice = 10; # 0(no change)::0-20 - user must be in gamemode group
-        };
+        # general = {
+        # renice = 10; # 0(no change)::0-20 - user must be in gamemode group
+        # };
         # Warning: GPU optimisations have the potential to damage hardware
         # gpu = {
         # apply_gpu_optimisations = "accept-responsibility"; # 0::
@@ -49,7 +49,7 @@
     programs.gamescope = {
       # is a microcompositor from Valve that is used on the Steam Deck. Its goal is to provide an isolated compositor that is tailored towards gaming and supports many gaming-centric features.
       enable = true;
-      capSysNice = true; # Add cap_sys_nice capability to the GameScope binary so that it may renice itself.
+      capSysNice = false; # Add cap_sys_nice capability to the GameScope binary so that it may renice itself.
     };
 
     environment.systemPackages =

@@ -1,0 +1,107 @@
+#+title: Mesa
+
+~Installable Client Driver~ (ICD) -> Used to load both vulkan and opencl drivers
+
+ICD files for vulkan are json files:
+    * Specify path to the driver library
+    * Show supported vulkan version
+
+      -----
+* Vulkan
+All successfully loaded drivers are exposed to the application as different GPUs.
+
+In nix you can make ICD files visible to vulkan applications through:
+a. Environment variable
+    VK_ICD_FILENAMES
+        Can Contain multiple JSON files
+        #+begin_src sh
+    export \
+    VK_ICD_FILENAMES=`nix-build '<nixpkgs>' --no-out-link -A amdvlk`/share/vulkan/icd.d/amd_icd64.json
+    #+end_src
+
+b. Module option
+   This links ICD file under /run/opengl-driver where it is visible to the ICD loader
+   #+begin_src nix
+    hardware.graphics.extraPackages = [];
+   #+end_src
+
+   -----
+
+   Investigate Installation done correctly with ~vulkaninfo~ from vulkan-tools pkg
+   #+begin_src sh
+   vulkaninfo | grep GPU
+   #+end_src
+
+* AMDvlk
+Enabling amdvlk makes it the default driver and hides RADV(bundled with mesa) and lavapipe from device list
+
+Force RADv with:
+#+begin_src sh
+  # Force radv
+  environment.variables.AMD_VULKAN_ICD = "RADV";
+  # Or
+  environment.variables.VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
+#+end_src
+
+* OpenCL
+General Compute API.
+
+Eg. used in blender/darktable
+
+Load drivers through ICD mechanism
+
+Drivers visible through:
+1. OCL_ICL_VENDORS:
+   #+begin_src sh
+
+   #+end_src
+
+2. OpenCL driver package
+
+Verify with:
+#+begin_src sh
+clinfo | head -n3               # From clinfo pkg
+#+end_src
+
+* VA-API [Video Acceleration API]
+Vaapi drivers loaded by ~libva~
+
+Version in nixpkgs is built to search the opengldriver path
+
+Test:
+#+begin_src sh
+nix-shell -p libva-utils --run vainfo
+#+end_src
+
+ On intel GPU-ihd driver
+ #+begin_src sh
+{ hardware.graphics.extraPackages = [ intel-media-driver ]; }
+# or older i965 driver
+{ hardware.graphics.extraPackages = [ intel-vaapi-driver ]; }
+ #+end_src
+
+ -----
+* Issues
++ Add user to video to get right permissions.
+  + Uses systemd-logind to add user to access control list
+    see:
+    #+begin_src sh
+    getfacl /dev/dri/card1
+    #+end_src
+    Out:
+    #+begin_src sh
+    getfacl: Removing leading '/' from absolute path names
+    # file: dev/dri/card1
+    # owner: root
+    # group: video
+    user::rw-
+    user:malu:rw-
+    group::rw-
+    mask::rw-
+    other::---
+    #+end_src
++ Runtime issue from mixing different verrsions of nixpkgs
+
+  ICD used ~dlopen~ to load runtimes into its address space
+
+  Mixing loader mechanism and runtimes from different pkgs may not work

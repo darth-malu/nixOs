@@ -6,14 +6,16 @@
   config,
   ...
 }:
-let
-  diskName = if config.networking.hostName == "carthage" then "NVME" else "SATA";
-in
+
 {
   disko.devices = {
     disk = {
-      ${diskName} = {
-        device = builtins.elemAt disks 1;
+      MAIN = {
+        device =
+          if config.networking.hostName == "tangier" then
+            builtins.elemAt disks 0
+          else
+            builtins.elemAt disks 1;
         type = "disk";
         content = {
           type = "gpt";
@@ -32,14 +34,14 @@ in
               size = "100%";
               content = {
                 type = "luks";
-                name = "crypted";
+                name = "GoodLuks";
                 # disable settings.keyFile if you want to use interactive password entry
-                #passwordFile = "/tmp/secret.key"; # Interactive
+                # passwordFile = "/tmp/secret.key"; # Interactive
                 settings = {
                   allowDiscards = true;
-                  keyFile = "/tmp/secret.key";
+                  # keyFile = "/tmp/secret.key";
                 };
-                additionalKeyFiles = [ "/tmp/additionalSecret.key" ];
+                # additionalKeyFiles = [ "/tmp/additionalSecret.key" ];
                 content = {
                   type = "btrfs";
                   extraArgs = [ "-f" ];
@@ -48,14 +50,14 @@ in
                       mountpoint = "/";
                       mountOptions = [
                         "compress=zstd"
-                        # "noatime"
+                        "noatime"
                       ];
                     };
                     "/home" = {
                       mountpoint = "/home";
                       mountOptions = [
                         "compress=zstd"
-                        # "noatime"
+                        "noatime"
                       ];
                     };
                     "/nix" = {
@@ -67,7 +69,7 @@ in
                     };
                     "/swap" = {
                       mountpoint = "/.swapvol";
-                      swap.swapfile.size = "20M";
+                      swap.swapfile.size = "16G";
                     };
                   };
                 };

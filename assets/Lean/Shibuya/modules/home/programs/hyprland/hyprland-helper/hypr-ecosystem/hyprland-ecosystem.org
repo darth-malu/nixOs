@@ -1,0 +1,17 @@
+#+title: Hyprland Ecosystem Docs
+
+* Hyprsunset
+
+# Enable blue-light filter
+#+begin_src sh
+hyprctl hyprsunset temperature 2500
+Disable blue-light filter
+hyprctl hyprsunset identity
+#+end_src
+
+#+begin_src sh
+# Set gamma to 50%
+hyprctl hyprsunset gamma 50
+# Increase gamma by 10%
+hyprctl hyprsunset gamma +10
+#+end_src

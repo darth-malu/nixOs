@@ -1,0 +1,237 @@
+#+title: Yt Dlp
+#+auto_tangle: t
+#+startup: content indent
+
+* start
+#+begin_src nix :tangle default.nix
+{
+  #NOTES:
+  # --ignore-config - to disable config for a single run
+  programs.yt-dlp = {
+    enable = true;
+#+end_src
+
+* settings
+# $XDG_CONFIG_HOME/yt-dlp/config.
+#+begin_src nix :tangle default.nix
+settings = {
+  # embed-thumbnail = true;
+  no-overwrites = true; # Do not overwrite existing output files
+  embed-metadata = true;
+  embed-subs = true; # if without write-subs will delete file
+  write-subs = true;
+  # write-thumbnail = false;
+  sub-langs = "en.*,-live_chat"; # all, en ja dwnload all safe for live chat
+  downloader = "\${pkgs.aria2}/bin/aria2c";
+  downloader-args = "aria2c:'-c -x8 -s8 -k1M'";
+  concurrent-fragments = 4;
+  # Number of seconds to sleep before each download when used alone or a lower bound of a range for randomized sleep before each download (minimum possible number of seconds to sleep) when used
+  min-sleep-interval = 1;
+  max-sleep-interval = 2;
+};
+#+end_src
+
+* extraConfig
+#+begin_src nix :tangle default.nix
+# $XDG_CONFIG_HOME/yt-dlp/config
+extraConfig =
+''
+    -P "~/Videos/Youtube"
+    # -P "subtitle:subs"
+
+    # Save all videos under YouTube directory in your home directory
+    -o "%(channel)s-%(title)s.%(ext)s"
+
+    # Download the best video available but no better than 1080p,
+    # -f "bv[height<=1080]+ba/b[height<=1080]"
+    # -f "bv[height<=1080][vcodec^=h264]+ba/b[height<=1080]"
+    # -f "(bv*[height<=1080]*[vcodec~='^((he|a)vc|h26[45])']+ba) / (bv[height<=1080]+ba/b[height<=1080])"
+    -f "(bv*[height<=1080]*[vcodec~='^(hevc|h26[45])']+ba) / (bv[height<=1080]+ba/b[height<=1080])"
+'';
+#+end_src
+
+** old setttings
+#+begin_src nix
+
+    #-P "temp:tmp"
+    # Download and merge the best video-only format and the best audio-only format,
+    # or download the best combined format if video-only format is not available
+    # -f "bv+ba/b"
+    #-P "thumbnail:thumbnail"
+    # -P "thumbnail:%(title)s\%(title)s.%(ext)s" # will put thumbnail in folder with same name as video
+    # -S "fps,codec:mp4:mp3"
+#+end_src
+    # -f "bv*[height<=1080]+ba/b[height<=1080]"
+
+** docs
+supported file extensions: 3gp, aac, flv, m4a, mp3, mp4, ogg, wav, webm
+
+By default mpv quality is: ~-f bestvideo*+bestaudio/best~ if ffmpeg is unavailable it becomes ~-f best/bestvideo+bestaudio~ will become ~-f bv*+ba/b~ in future versions.
+
+*** formats
+=--list-formats= or =-F= specify specific format with format codes eg. =-f 22=
+=-f webm= - will get best quality with webm extension served as a single file.
+=-f -= interactive format selector
+=-f 22/17/18= - 22 if it's available, otherwise it will download format 17 if it's available, otherwise it will download format 18 if it's available, otherwise it will complain that no suitable formats are available for download.
+=-f 22,17,18= download all these three formats, of course if they are available
+=-f bestvideo+bestaudio= best video-only format, the best audio-only format and =mux= them together with ffmpeg.
+
+|-------------------+-----------------------------------------------------------------------------------------------------+------------------------------------|
+| special name      | does                                                                                                | equivalent                         |
+|-------------------+-----------------------------------------------------------------------------------------------------+------------------------------------|
+| =b*=, =best*=         | best quality format that contains either a video or an audio or both                                | =vcodec!=none or acodec!=none=       |
+| =b= , =best=          | best quality format that contains both video and audio                                              | =best*[vcodec!=none][acodec!=none]=  |
+| =bv= , =bestvideo=    | select the best quality *video-only* format                                                           | best*[acodec=none]                 |
+| =bv*= , =bestvideo*=  | select the best quality *video-only* format                                                           | best*[vcodec!=none]                |
+| =ba= , =bestaudio=    | best quality audio-only format                                                                      | best*[vcodec=none]                 |
+| =ba*= , =bestaudio*=  | best quality format that contains audio. It may also contain video.                                 | best*[acodec!=none]                |
+|                   |                                                                                                     |                                    |
+| =w*= , =worst*=       | worst quality format that contains either a video or an audio                                       |                                    |
+| =w= , =worst=         | worst quality format that contains both video and audio                                             | worst*[vcodec!=none][acodec!=none] |
+| =wv= , =worstvideo=   | worst quality video-only format                                                                     | worst quality video-only format    |
+| =wv*= , =worstvideo*= | worst quality format that contains video, it may also contain audio.                                | worst*[vcodec!=none]               |
+| =wa= , =worstaudio=   | worst quality audio-only format                                                                     | worst*[vcodec=none]                |
+| =wa*= , =worstaudio*= | worst quality format that contains audio                                                            | worst*[acodec!=none]               |
+|                   |                                                                                                     |                                    |
+| =all=               | select all formats separately                                                                       |                                    |
+| =mergeall=          | select and merge all formats (Must be used with --audio-multistreams, --video-multistreams or both) |                                    |
+|                   |                                                                                                     |                                    |
+|-------------------+-----------------------------------------------------------------------------------------------------+------------------------------------|
+*** filtering formats eg. -f "best[height=720]"
+You can also filter the video formats by putting a condition in brackets, as in =-f "best[height=720]"= or (=-f "[filesize>10M]"= since filters without a selector are interpreted as best).
+
+The following numeric meta fields can be used with comparisons =<=, =<=, =>=, =>==, === (equals), =!== (not equals):
+|-----------------+---------------------------------------------------|
+| =filesize=        | number of bytes, if known in advance              |
+| =filesize_approx= | An estimate for the number of bytes               |
+| =width=           | Width of the video, if known                      |
+| =height=          | Height of the video, if known                     |
+| =aspect_ratio=    | Aspect ratio of the video, if known               |
+| =tbr=             | Average bitrate of audio and video in kbps        |
+| =abr=             | Average audio bitrate in kbps                     |
+| =vbr=             | Average video bitrate in kbps                     |
+| =asr=             | Audio sampling rate in Hertz                      |
+| =fps=             | frame rate                                        |
+| =audio_channels=  | the number of audio channels                      |
+| =stretched_audio= | =width:height= of the video's pixels, if not square |
+|-----------------+---------------------------------------------------|
+Also filtering work for comparisons === (equals), =^== (starts with), =$== (ends with), =*== (contains), =~== (matches regex) and following string meta fields:
+|-------------+----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| =url=         | video url                                                                                                                                                |
+| =ext=         | file extension                                                                                                                                           |
+| =acodec=      | name of the audio codec in  use                                                                                                                          |
+| =vcodec=      | name of the video codec in  use                                                                                                                          |
+| =container=   | name of the container format                                                                                                                             |
+| =protocol=    | protocol that will be used for the actual download, lower-case (http, https, rtsp, rtmp, rtmpe, mms, f4m, ism, http_dash_segments, m3u8, or m3u8_native) |
+| =format=      | A human-readable description of the format                                                                                                               |
+| =format_note= | Additional info about the format                                                                                                                         |
+| =resolution=  | Textual description of width and height                                                                                                                  |
+|-------------+----------------------------------------------------------------------------------------------------------------------------------------------------------|
+Any string comparison may be prefixed with negation =!= in order to produce an opposite comparison, e.g. =!*==
+The comparand of a string comparison needs to be quoted with either double or single quotes if it contains spaces or special characters other than =._-=.
+
+Formats for which the value is not known are excluded unless you put a question mark =?= after the operator. You can combine format filters, so -f ~"bv[height<=?720][tbr>500]"~ selects up to =720p= videos (or videos where the height is not known) with a bitrate of at least 500 kbps
+
+You can also use the filters with all to download all formats that satisfy the filter, e.g. -f "all[vcodec=none]" selects all audio-only formats.
+
+Format selectors can also be =grouped= using (parentheses) e.g. =-f "(mp4,webm)[height<480]"= will download the best pre-merged =mp4= and =webm= formats with a height lower than =480=.
+*** sorting formats
+You can change the criteria for being considered the best by using =-S (--format-sort)=. The general format for this is =--format-sort field1,field2....=
+
+|---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| =hasvid=  | Gives priority to formats that have a video stream                                                                                                        |
+| =hasaud=  | Gives priority to formats that have a audio stream                                                                                                        |
+| =quality= | the quality of the format                                                                                                                                 |
+| =proto=   | protocol used for download - =https/ftps > http/ftp > m3u8_native/m3u8 > http_dash_segments> websocket_frag > mms/rtsp > f4f/f4m=                           |
+| =vcodec=  | video codec =av01 > vp9.2 > vp9 > h265 > h264 > vp8 > h263 > theora=                                                                                        |
+| =acodec=  | audio codec =flac/alac > wav/aiff > opus > vorbis > aac > mp4a > mp3 > ac4 > eac3 > ac3 > dts > other=                                                      |
+| =codec=   | equivalent to =vcodec,acodec=                                                                                                                               |
+| =vex=     | video extension =mp4 > mov > webm > flv > other). If --prefer-free-formats is used, webm is preferred=                                                      |
+| =aext=    | audio extension (=m4a > aac > mp3 > ogg > opus > webm > other=). If =--prefer-free-formats= is used, the order changes to =ogg > opus > webm > mp3 > m4a > aac= |
+| =ext=     | =vex, aext=                                                                                                                                                 |
+| =height=  |                                                                                                                                                           |
+| =width=   |                                                                                                                                                           |
+| =res=     | Video resolution, calculated as the smallest dimension.                                                                                                   |
+| =fps=     | framerate                                                                                                                                                 |
+| =tbr=     |                                                                                                                                                           |
+| =vbr=     |                                                                                                                                                           |
+| =abr=     |                                                                                                                                                           |
+| =br=      | average bitrate =tbr/vbr/abr=                                                                                                                               |
+| =asr=     | audio sample rate in HZ                                                                                                                                   |
+|---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+All fields, unless specified otherwise, are sorted in descending order. (big to small)
+To reverse this, prefix the field with a =+=. E.g. =+res= prefers format with the smallest resolution
+
+Additionally, you can suffix a preferred value for the fields, separated by a :. E.g. =res:720= prefers larger videos, but no larger than 720p and the smallest video if there are no videos less than =720p=
+
+For =codec and ext=, you can provide two preferred values, the first for video and the second for audio. E.g. =+codec:avc:m4a (equivalent to +vcodec:avc,+acodec:m4a)= sets the video codec preference to =h264 > h265 > vp9 > vp9.2 > av01 > vp8 > h263 > theora= and audio codec preference to =mp4a > aac > vorbis > opus > mp3 > ac3 > dts=.
+
+You can also make the sorting prefer the nearest values to the provided by using =~= as the delimiter. E.g. =filesize~1G= prefers the format with filesize closest to 1 GiB.
+
+You can use the =-v -F= to see how the formats have been sorted (worst to best).
+***
+*** format selection examples
+|---------------+--------------------------------------------------------------------------------------------------------------------------------------------|
+| =-f "bv+ba/b"=  | best video-only format and the best audio-only format, or best combined format if video-only format unavailable (~default~) same as ~$ yt-dlp~ |
+| =-f "bv*+ba/b"= | =best= format that contains =video= , if it doesnt already have an audio stream, merge it with =best audio-only= format                          |
+| =-S "+res"=     | best video with the smallest resolution                                                                                                    |
+| =-S "+size,br"= | smallest video available                                                                                                                   |
+|               |                                                                                                                                            |
+|---------------+--------------------------------------------------------------------------------------------------------------------------------------------|
+#+begin_src bash
+# Download and merge the best video-only format and the best audio-only format,
+# or download the best combined format if video-only format is not available
+yt-dlp -f "bv+ba/b"
+
+# Download best format that contains video,
+# and if it doesn't already have an audio stream, merge it with best audio-only format
+$ yt-dlp -f "bv*+ba/b"
+
+# Download the best video available but with the smallest resolution
+$ yt-dlp -S "+res"
+
+# Download the smallest video available
+$ yt-dlp -S "+size,+br"
+
+# Download the best mp4 video available, or the best video if no mp4 available
+$ yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b"
+
+# Download the best video with the best extension
+# (For video, mp4 > mov > webm > flv. For audio, m4a > aac > mp3 ...)
+$ yt-dlp -S "ext"
+
+# Download the best video available but no better than 480p,
+# or the worst video if there is no video under 480p
+$ yt-dlp -f "bv*[height<=480]+ba/b[height<=480] / wv*+ba/w"
+
+# Download the best video available with the largest height but no better than 480p,
+# or the best video with the smallest resolution if there is no video under 480p
+$ yt-dlp -S "height:480"
+
+# Download the best video available with the largest resolution but no better than 480p,
+# or the best video with the smallest resolution if there is no video under 480p
+# Resolution is determined by using the smallest dimension.
+# So this works correctly for vertical videos as well
+$ yt-dlp -S "res:480"
+
+# Download the best video (that also has audio) but no bigger than 50 MB,
+# or the worst video (that also has audio) if there is no video under 50 MB
+$ yt-dlp -f "b[filesize<50M] / w"
+
+# Download the best video (that also has audio) that is closest in size to 50 MB
+$ yt-dlp -f "b" -S "filesize~50M"
+
+# Download the best video with best codec no better than h264,
+# or the best video with worst codec if there is no such video
+$ yt-dlp -S "codec:h264"
+
+# Download the best video with worst codec no worse than h264,
+# or the best video with best codec if there is no such video
+$ yt-dlp -S "+codec:h264"
+#+end_src
+* end
+#+begin_src nix :tangle default.nix
+  };
+}
+#+end_src
+source:[[https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#configuration]]

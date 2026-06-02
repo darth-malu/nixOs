@@ -33,7 +33,8 @@
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9bmUGM+Vxix3N6UsxEPwOLmH1JmBiCcudWMb0ZIzcD darth-malu@github.com" # new c
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKubRXSOrk4IrM4Ai3FcvWFVV1wxRUNPF+0VZo9xSph1 darth-malu@github.com" # t
+
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDMDB8vsULo1V0CZg7/zVVQdqMxPTfq5jJ9qJeTPvW9g Tangier Key"
     ];
   };
 

@@ -1,0 +1,6 @@
+{
+  imports = [
+    ./kitty
+    ./foot.nix
+  ];
+}

@@ -1,0 +1,57 @@
+#+auto_tangle: t
+#+startup: indent content
+
+* header, start
+#+begin_src nix :tangle default.nix
+{lib, config,...}:
+
+{
+#+end_src
+
+* imports
+#+begin_src nix :tangle default.nix
+imports = [
+  ./amd.nix
+  ../common
+];
+#+end_src
+
+* microcode
+Update the CPU microcode for AMD processors
+
+#+begin_src nix :tangle default.nix
+hardware = {
+  cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+};
+#+end_src
+
+* networking.hostId
+
+use: ~head -c 8 /etc/machine-id~ or ~head -c4 /dev/urandom | od -A none -t x4~
+
+#+begin_src nix :tangle default.nix
+networking = {
+  hostName = "carthage";
+  hostId = "7435d550";
+};
+#+end_src
+
+** Allowed TCP Ports, PortRanges
+
+#+begin_src nix :tangle default.nix
+  networking.firewall = {
+    allowedTCPPorts = [ 3216 3389 8806];
+    # allowedTCPPortRanges = [
+    #   {
+    #     from = 1714;
+    #     to = 1764;
+    #   }
+    # ];
+    # allowedUDPPortRanges = allowedTCPPortRanges;
+  };
+#+end_src
+
+* end
+#+begin_src nix :tangle default.nix
+}
+#+end_src

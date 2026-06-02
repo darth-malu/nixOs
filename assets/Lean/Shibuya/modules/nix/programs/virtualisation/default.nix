@@ -1,0 +1,18 @@
+{ pkgs, ... }:
+{
+  imports = [
+    ./qemu
+    ./n8n.nix
+    ./docker.nix
+  ];
+
+  qemu.enable = false;
+  docker.enable = true;
+  n8n.enable = false;
+
+  virtualisation.waydroid.enable = false;
+
+  environment.systemPackages = [
+    pkgs.genymotion
+  ];
+}

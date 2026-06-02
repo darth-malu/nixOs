@@ -1,0 +1,189 @@
+#+title: rofi
+#+auto_tangle: t
+#+startup: content indent
+
+* start
+#+begin_src nix :tangle default.nix
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+#+end_src
+
+* imports
+#+begin_src nix :tangle default.nix
+{
+  imports = [ ./theme.nix ];
+#+end_src
+
+* options
+#+begin_src nix :tangle default.nix
+options.rofi = {
+  enable = lib.mkEnableOption "rofi";
+};
+#+end_src
+
+* config
+** core
+#+begin_src nix :tangle default.nix
+config = lib.mkIf config.rofi.enable {
+  programs.rofi = {
+    enable = false;
+#+end_src
+
+#+begin_src nix :tangle default.nix
+    cycle = true;
+    location = "center";
+    font = "SpaceMono Nerd Font 12";
+    terminal = "${pkgs.kitty}/bin/kitty";
+#+end_src
+
+** modes
+#+begin_src nix :tangle default.nix
+modes = [
+  "window"
+  "drun"
+  # "filebrowser"
+  # "calc"
+  "emoji"
+];
+#+end_src
+
+** Plugins
+#+begin_src nix :tangle default.nix
+  plugins = with pkgs; [
+    rofi-emoji
+    rofi-calc
+  ];
+#+end_src
+
+** Pass
+#+begin_src nix :tangle default.nix
+pass = {
+  enable = true;
+};
+#+end_src
+
+** extraConfig
+*** start
+#+begin_src nix :tangle default.nix
+extraConfig = {
+#+end_src
+
+*** run-command
+#+begin_src nix :tangle default.nix
+run-command = "hyprctl dispatch -- exec [workspace emptym] app2unit -s a -- {cmd}";
+# rofi -e "my message"
+#+end_src
+*** display-{mode} /string/
+
+#+begin_src nix :tangle default.nix
+display-drun = "";
+display-run = "";
+display-dmenu = "";
+display-emoji = "❄️";
+display-calc = "🧮";
+display-filebrowser = "📂";
+display-window = ""; # 
+#+end_src
+
+*** window settings
+#+begin_src nix :tangle default.nix
+window-thumbnail = true; # FIXME not working
+# hide-active-window = true; #FIXME not working
+window-format = "{w}{c}  .  {t}";
+#+end_src
+
+w: desktop name
+t: title of window
+n: name
+r: role
+c: class
+
+*** click-to-exit
+#+begin_src nix :tangle default.nix
+click-to-exit = true;
+#+end_src
+
+*** kb-primary kb-secondary
+#+begin_src nix :tangle default.nix
+kb-primary-paste = "Control+V,Shift+Insert";
+kb-secondary-paste = "Control+v,Insert";
+# kb-toggle-case-sensitivity #TODO: assign later
+#+end_src
+*** Remap scroll down
+#+begin_src nix :tangle default.nix
+kb-row-down = "Control+j,Down";
+kb-row-up = "Control+k,Up";
+kb-remove-to-eol = "";
+kb-accept-entry = "KP_Enter,Return";
+#+end_src
+
+*** icons
+#+begin_src nix :tangle default.nix
+icon-theme = "Yaru";
+# icon-size = 88;#not working
+#+end_src
+
+*** select stuff
+#+begin_src nix :tangle default.nix
+ml-row-down = "ScrollDown";
+hover-select = false;
+me-select-entry = "MouseSecondary";
+me-accept-entry = "MousePrimary";
+kb-delete-entry = "Shift+space"; # Shift+space;;
+auto-select = false; # When one entry is left, automatically select it.
+#+end_src
+
+*** desktop cache
+#+begin_src nix :tangle default.nix
+drun-use-desktop-cache = true; # slow PC, Build and use a cache with the content of desktop files to reload when enabled -> -drun-reload-desktop-cache flag
+drun-reload-desktop-cache = true;
+# pid = "/home/malu/.rofi.pid"; #FIXME:
+# replace = true;
+#+end_src
+
+*** misc
+#+begin_src nix :tangle default.nix
+monitor = 4; # 1 - currently focused monitor, 2;; - currently focused window, 3 - mouse (see more in docs), 4 - monitor with the focused window, 5-monitor with mouse pointer::
+
+# dpi = 1; # 0 - aauto-detect based on x11 screen size(similar to i3 and gtk), 1 - auto based on monitor rofi is on
+# matching = "normal"; #normal ::, regex, glob(slower for large list), fuzzy, prefix
+# no-lazy-grab = true; # Disables lazy grab, this forces the keyboard being grabbed before gui is shown.
+
+scroll-method = 1; # 0 page::, 1 - continuous
+#+end_src
+* DOCS
+:source:[[https://davatorium.github.io/rofi/current/rofi.1/]]
+** available modes
+| window  |   |
+| windocd |   |
+| run     |   |
+| drun    |   |
+| ssh     |   |
+| keys    |   |
+| script  |   |
+| combi   |   |
+** dmenu
+:source:[[https://davatorium.github.io/rofi/current/rofi-dmenu.5/]]
+*** dmenu specific commandline flags
++ ~-p~ prompt
+  can specify emoji here 🫠
+#+begin_src sh
+echo "a|b|c|d|e" | rofi -sep '|' -dmenu -p "monkey"
+#+end_src
++ ~-l~ number of lines to show 25::
+  #+begin_src sh
+rofi -dmenu -l 25
+  #+end_src
++ ~i~ case insensitive search
+
+* EOF
+#+begin_src nix :tangle default.nix
+}; # end of programs.rofi
+ }; #end of config
+  }; #imports
+   } #EOF - end of attrSet
+#+end_src

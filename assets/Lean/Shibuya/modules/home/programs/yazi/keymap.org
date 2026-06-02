@@ -1,0 +1,327 @@
+#+title: yazi keymaps
+#+auto_tangle: t
+#+startup: content indent
+
+* start
+#+begin_src nix :tangle keymap.nix
+{
+#+end_src
+* keymaps
+** manager
+*** links / sources
+
+https://yazi-rs.github.io/docs/configuration/keymap#notation
+
+[[https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/keymap-default.toml][Default keys]]
+
+*** starter
+When you don't need any default and want to fully customize your keybindings, use keymap
+
+#+begin_src nix :tangle keymap.nix
+mgr.keymap = [
+#+end_src
+*** shortcuts -- interactive
+#+begin_src nix :tangle keymap.nix
+  { on = [ "g" "h" ];       run = "cd ~";             desc = "Go to the home directory"; }
+  { on = [ "g" "c" ];       run = "cd ~/.config";     desc = ".config";}
+  { on = [ "g" "D" ];       run = "cd ~/Documents";   desc = "Documents"; }
+  { on = [ "g" "d" ];       run = "cd ~/Downloads";   desc = "Go to the downloads directory"; }
+  { on = [ "g" "p" ];       run = "cd ~/Pictures";   desc = "Go to the pictures directory"; }
+  { on = [ "g" "p" "g" ];       run = "cd ~/Pictures/grimblast";   desc = "grimblast"; }
+  { on = [ "g" "s" ];       run = "cd ~/Shibuya";   desc = "~/Shibuya"; }
+  { on = [ "g" "u" ];       run = "cd ~/USIU";   desc = "USIU 📚"; }
+  { on = [ "g" "v" ];       run = "cd ~/Videos";   desc = "VIDEOS dir"; }
+  { on = [ "g" "m" ];       run = "cd ~/Music";   desc = "MUSIC"; }
+  { on = [ "g" "M" ];       run = "cd /media/";          desc = "media directory"; }
+  { on = [ "g" "<Space>" ]; run = "cd --interactive"; desc = "Go to a directory interactively"; }
+#+end_src
+
+*** quit
+#+begin_src nix :tangle keymap.nix
+  { on = [ "<Esc>" ]; run = "escape";             desc = "Exit visual mode, clear selected, or cancel search"; }
+  { on = [ "q" ];     run = "quit";               desc = "Exit the process"; }
+  { on = [ "Q" ];     run = "quit --no-cwd-file"; desc = "Exit the process without writing cwd-file"; }
+  { on = [ "<C-x>" ]; run = "close";              desc = "Close the current tab; or quit if it is last tab"; }
+  { on = [ "<C-z>" ]; run = "suspend";            desc = "Suspend the process"; }
+#+end_src
+*** navigation -- hjkl
+#+begin_src nix :tangle keymap.nix
+  { on = [ "k" ]; run = "arrow -1"; desc = "Move cursor up"; }
+  { on = [ "j" ]; run = "arrow 1";  desc = "Move cursor down"; }
+  { on = [ "h" ]; run = "leave";    desc = "parent dir. go"; }
+  { on = [ "l" ]; run = "enter";    desc = "@darth Enter child dir."; }
+
+  { on = [ "<Left>" ];  run = "leave";    desc = "Go back to the parent directory"; }
+  { on = [ "<Right>" ]; run = "plugin smart-enter";    desc = "Enter the child directory (smart)"; }
+   
+  { on = [ "K" ]; run = "arrow -5"; desc = "Move cursor up 5 lines"; }
+  { on = [ "J" ]; run = "arrow 5";  desc = "Move cursor down 5 lines"; }
+
+  # { on = [ "<C-u>" ]; run = "arrow -50%";  desc = "Move cursor up half page"; }
+  # { on = [ "<C-d>" ]; run = "arrow 50%";   desc = "Move cursor down half page"; }
+  # { on = [ "<C-b>" ]; run = "arrow -100%"; desc = "Move cursor up one page"; }
+  # { on = [ "<C-f>" ]; run = "arrow 100%";  desc = "Move cursor down one page"; }
+
+  { on = [ "<Up>" ];    run = "arrow -1"; desc = "Move cursor up"; }
+  { on = [ "<Down>" ];  run = "arrow 1";  desc = "Move cursor down"; }
+
+  { on = [ "g"  "g" ]; run = "arrow top"; desc = "Move cursor to the top"; }
+  { on = [ "G" ];      run = "arrow bot";  desc = "Move cursor to the bottom"; }
+#+end_src
+
+*** preview seek
+#+begin_src nix :tangle keymap.nix
+{ on = [ "<A-k>" ]; run = "seek -5"; desc = "Seek up 5 units in the preview"; }
+  { on = [ "<A-j>" ]; run = "seek 5";  desc = "Seek down 5 units in the preview"; }
+  { on = [ "<A-PageUp>" ];   run = "seek -5"; desc = "Seek up 5 units in the preview"; }
+  { on = [ "<A-PageDown>" ]; run = "seek 5";  desc = "Seek down 5 units in the preview"; }
+#+end_src
+*** TODO selection
++ [ ] make SPC select work
+**** space select
+#+begin_src nix :tangle keymap.nix
+{ on = [ "<Space>" ]; run = [ "toggle" "arrow 1" ]; desc = "Toggle the current selection state"; }
+#+end_src
+
+**** visual mode
+#+begin_src nix :tangle keymap.nix
+  { on = [ "v" ];       run = "visual_mode";                        desc = "Enter visual mode (selection mode)"; }
+  { on = [ "V" ];       run = "visual_mode --unset";                desc = "Enter visual mode (unset mode)"; }
+#+end_src
+
+**** select all
+#+begin_src nix :tangle keymap.nix
+  { on = [ "<C-a>" ];   run = "toggle_all --state=on";            desc = "Select all files"; }
+  { on = [ "<C-r>" ];   run = "toggle_all --state=off";            desc = "Inverse selection of all files"; }
+#+end_src
+
+*** operations
+**** open
+#+begin_src nix :tangle keymap.nix
+  { on = [ "o" ];         run = "open";                       desc = "Open the selected files"; }
+  { on = [ "O" ];         run = "open --interactive";         desc = "Open the selected files interactively"; }
+  { on = [ "<Enter>" ];   run = "open --hovered";             desc = "Always open the hovered file regardless of the selection state."; }
+  { on = [ "<C-Enter>" ]; run = "open --interactive";         desc = "Open the selected files interactively"; }
+#+end_src
+
+**** yank, cut, paste
+#+begin_src nix :tangle keymap.nix
+  { on = [ "y" ];         run = [ "escape --visual" "yank" ];                       desc = "Copy the selected files"; }
+  { on = [ "Y" ];         run = "unyank";                                            desc = "Cancel the yank status of files"; }
+  { on = [ "x" ];         run = [ "escape --visual"  "yank --cut" ];                 desc = "Cut the selected files"; }
+  { on = [ "p" ];         run = "paste";                                             desc = "Paste the files"; }
+  { on = [ "P" ];         run = "paste --force";                                     desc = "Paste the files (overwrite if the destination exists)"; }
+#+end_src
+
+**** symlink
+#+begin_src nix :tangle keymap.nix
+  { on = [ "-" ];         run = "link";                                              desc = "Symlink the absolute path of files"; }
+  { on = [ "_" ];         run = "link --relative";                                   desc = "Symlink the relative path of files"; }
+#+end_src
+
+**** delete files
+#+begin_src nix :tangle keymap.nix
+  { on = [ "d" ];         run = [ "escape --visual"  "remove" ];                     desc = "Move the files to the trash"; }
+  { on = [ "D" ];         run = [ "escape --visual"  "remove --permanently" ];       desc = "Permanently delete the files"; }
+#+end_src
+
+**** create, rename
+#+begin_src nix :tangle keymap.nix
+  { on = [ "a" ];         run = "create";                                            desc = "Create a file or directory (ends with / for directories)"; }
+  { on = [ "r" ];         run = [ "escape --visual"  "rename --cursor=before_ext" ]; desc = "Rename a file or directory"; }
+#+end_src
+
+*** SHELL
+#+begin_src nix :tangle keymap.nix
+  # { on = [ "b" ];         run = [ "escape --visual"  "shell -- 'wl-copy \"$@\"'" "shell 'notify-send This \"$@\"'" ];                      desc = "Run a shell --interactive command"; }
+  { on = [ ";" ];         run = [ "escape --visual"  "shell --interactive" ];                      desc = "Run a shell --interactive command"; }
+  { on = [ ":" ];         run = [ "escape --visual"  "shell --block --interactive" ];              desc = "Run a shell command (block the UI until the command finishes)"; }
+  #{ on = [ ":" ];         run = [ "escape --visual"; "shell --block" ];              desc = "Run a shell command (block the UI until the command finishes);" }
+#+end_src
+
+*** Search, hidden toggle --fzf, fd, zoxide, rg
+#+begin_src nix :tangle keymap.nix
+  { on = [ "." ];         run = "hidden toggle";                                     desc = "Toggle the visibility of hidden files"; }
+  { on = [ "s" ];         run = "search --via=fd";                                         desc = "Search files by name using fd"; }
+  { on = [ "S" ];         run = "search --via=rg";                                         desc = "Search files by content using ripgrep"; }
+  { on = [ "<C-s>" ];     run = "search none";                                       desc = "Cancel the ongoing search"; }
+  { on = [ "z" ];         run = "plugin zoxide";                                       desc = "Jump to a directory using zoxide"; }
+  { on = [ "Z" ];         run = "plugin fzf";                                          desc = "Jump to a directory, or reveal a file using fzf"; }
+#+end_src
+
+*** Linemode
+#+begin_src nix :tangle keymap.nix
+  { on = [ "L"  "s" ]; run = "linemode size";        desc = "Set linemode to size"; }
+  { on = [ "L"  "p" ]; run = "linemode permissions"; desc = "Set linemode to permissions"; }
+  { on = [ "L"  "m" ]; run = "linemode mtime";       desc = "Set linemode to mtime"; }
+  { on = [ "L"  "b" ]; run = "linemode btime";       desc = "Set linemode to btime"; }
+  { on = [ "L"  "n" ]; run = "linemode none";        desc = "Set linemode to none"; }
+#+end_src
+
+*** Copy
+#+begin_src nix :tangle keymap.nix
+  { on = [ "c"  "c" ]; run = [ "escape --visual"  "copy path" ];             desc = "Copy the absolute path"; }
+  { on = [ "c"  "d" ]; run = [ "escape --visual"  "copy dirname" ];          desc = "Copy the path of the parent directory"; }
+  { on = [ "c"  "f" ]; run = [ "escape --visual"  "copy filename" ];         desc = "Copy the name of the file"; }
+  { on = [ "c"  "n" ]; run = [ "escape --visual"  "copy name_without_ext" ]; desc = "Copy the name of the file without the extension"; }
+#+end_src
+
+*** filter
+#+begin_src nix :tangle keymap.nix
+{ on = [ "F" ]; run = "filter --smart"; desc = "Filter the files"; }
+#+end_src
+
+*** Help 
+#+begin_src nix :tangle keymap.nix
+{ on = [ "~" ]; run = "help"; desc = "Open Help"; }
+#+end_src
+*** Tasks
+#+begin_src nix :tangle keymap.nix
+{ on = "w"; run = "tasks:show"; desc = "Show task manager"; }
+#+end_src
+
+*** Find
+#+begin_src nix :tangle keymap.nix
+  { on = [ "/" ]; run = "find --smart";            desc = "Find next file"; }
+  { on = [ "?" ]; run = "find --previous --smart"; desc = "Find previous file"; }
+  { on = [ "n" ]; run = "find_arrow";              desc = "Go to next found file"; }
+  { on = [ "N" ]; run = "find_arrow --previous";   desc = "Go to previous found file"; }
+#+end_src
+
+*** sort
+#+begin_src nix :tangle keymap.nix
+  { on = [ ","  "m" ]; run = "sort mtime --dir-first";                  desc = "Sort by modified time"; }
+  { on = [ ","  "M" ]; run = "sort mtime --reverse --dir-first";        desc = "Sort by modified time (reverse)"; }
+  { on = [ ","  "c" ]; run = "sort btime --dir-first";                  desc = "Sort by btime time"; }
+  { on = [ ","  "C" ]; run = "sort btime --reverse --dir-first";        desc = "Sort by btime (reverse)"; }
+  { on = [ ","  "e" ]; run = "sort extension --dir-first";              desc = "Sort by extension"; }
+  { on = [ ","  "E" ]; run = "sort extension --reverse=yes --dir-first";    desc = "Sort by extension (reverse)"; }
+  { on = [ ","  "a" ]; run = "sort alphabetical --dir-first";           desc = "Sort alphabetically"; } # 1<2<10
+  { on = [ ","  "A" ]; run = "sort alphabetical --reverse --dir-first"; desc = "Sort alphabetically (reverse)"; }
+  { on = [ ","  "n" ]; run = "sort natural --dir-first";                desc = "Sort naturally"; }
+  { on = [ ","  "N" ]; run = "sort natural --reverse --dir-first";      desc = "Sort naturally (reverse)"; }
+  { on = [ ","  "s" ]; run = "sort size --dir-first";                   desc = "Sort by size"; }
+  { on = [ ","  "S" ]; run = "sort size --reverse --dir-first";         desc = "Sort by size (reverse)"; }
+  { on = [ ","  "r" ]; run = "sort random --dir-first";         desc = "SOrt randomly"; }
+#+end_src
+**** changes
+- created -> btime?
+- modified -> mtime
+*** Tabs
+#+begin_src nix :tangle keymap.nix
+  { on = [ "t" ]; run = "tab_create --current"; desc = "Create a new tab using the $CWD"; }
+  { on = [ "T" ]; run = "tab_create /home/malu"; desc = "Create a new tab with HOME as CWD"; } # If neither [path] nor --current is specified, will use the startup directory to create the tab.
+  { on = [ "1" ]; run = "tab_switch 0"; desc = "Switch to the first tab"; }
+  { on = [ "2" ]; run = "tab_switch 1"; desc = "Switch to the second tab"; }
+  { on = [ "3" ]; run = "tab_switch 2"; desc = "Switch to the third tab"; }
+  { on = [ "4" ]; run = "tab_switch 3"; desc = "Switch to the fourth tab"; }
+  { on = [ "5" ]; run = "tab_switch 4"; desc = "Switch to the fifth tab"; }
+  { on = [ "6" ]; run = "tab_switch 5"; desc = "Switch to the sixth tab"; }
+  { on = [ "7" ]; run = "tab_switch 6"; desc = "Switch to the seventh tab"; }
+  { on = [ "8" ]; run = "tab_switch 7"; desc = "Switch to the eighth tab"; }
+  { on = [ "9" ]; run = "tab_switch 8"; desc = "Switch to the ninth tab"; }
+  { on = [ "[" ]; run = "tab_switch -1 --relative"; desc = "Switch to the previous tab"; }
+  { on = [ "]" ]; run = "tab_switch 1 --relative";  desc = "Switch to the next tab"; }
+  { on = [ "{" ]; run = "tab_swap -1"; desc = "Swap the current tab with the previous tab"; }
+  { on = [ "}" ]; run = "tab_swap 1";  desc = "Swap the current tab with the next tab"; }
+#+end_src
+*** spot open
+#+begin_src nix :tangle keymap.nix
+{ on =  "<Tab>"; run = "spot"; desc = "Display file information with the preset or user-customized spotter."; }
+#+end_src
+
+*** manager end
+#+begin_src nix :tangle keymap.nix
+];
+#+end_src
+
+** task
+#+begin_src nix :tangle keymap.nix
+tasks.keymap = [
+  { on =  "w" ; run = "close"; desc = "tasks inspector"; }
+  { on =  "n" ; run = "show"; desc = "Show the tasks manager"; }
+  { on =  "~" ; run = "help"; desc = "tasks inspector"; }
+  { on =  "<Enter>" ; run = "inspect"; desc = "tasks inspector"; }
+  { on =  "x" ; run = "cancel"; desc = "cancel the task"; }
+];
+#+end_src
+
+** FIXME spot
+File information spotter
+
+#+begin_src nix :tangle keymap.nix
+spot.keymap = [
+  { on =  "~"; run = "help"; desc = "Display file information with the preset or user-customized spotter."; } # FIXME: not work
+  { on =  "<Tab>" ; run = "close"; desc = "Hide the spotter"; }
+  { on =  "<Esc>" ; run = "close"; desc = "Hide the spotter"; }
+  { on = "j" ;run = "arrow next" ; desc = "Spot next Item in directory"; }
+  { on = "k" ;run = "arrow prev" ; desc = "Spot prev Item in directory"; }
+  { on = "J" ;run = "arrow bot" ; desc = "Spot Last Item in directory"; }
+  { on = "K" ;run = "arrow top" ; desc = "Spot first Item in directory"; }
+  { on = "l" ;run = "swipe 1" ; desc = "swipe?"; } # TODO
+  { on = "h" ;run = "swipe -1" ; desc = "swipe?"; } # TODO
+  { on = [ "y" ]; run = "copy cell"; desc = "copy content from the spotter (the selected table cell)"; }
+];
+#+end_src
+
+
+* prepend keymap
+** manager.prepend
+ya pkg add wekauwau/smart-tab -> smart-tab not in yaziPlugins
+
+*** Start
+#+begin_src nix :tangle keymap.nix
+mgr.prepend_keymap = [
+#+end_src
+
+#+begin_src nix :tangle keymap.nix
+{on = [ "!" ]; run = "shell \"$SHELL\" --block"; desc = "open $SHELL here";}
+# {on = [ "y" ]; run = "shell -- for path in \"$@\"; do echo \"file://$path\"; done | wl-copy -t text/uri-list, \"yank\""; desc = "copy selected files to clipboard when copying";}
+#+end_src
+
+*** plugins
+#+begin_src nix :tangle keymap.nix
+  {on = [ "<C-y>" ]; run = "plugin wl-clipboard"; desc = "Copy selected files to wl-clipboard";}
+
+  {on = [ "<C-r>" ]; run = "plugin drag"; desc = "Drag files";}
+
+    # A- Parent, B - Current, C - Preview
+  {on = [ "<C-.>" ]; run = "plugin toggle-pane max-current"; desc = "Maximize B";}
+  {on = [ "<C-/>" ]; run = "plugin toggle-pane min-preview"; desc = "Minimize C";}
+
+  {on = [ "l" ]; run = "plugin smart-enter"; desc = "Enter child dir or open file";}
+
+  {on = [ "p" ]; run = "plugin smart-paste"; desc = "Paste into the hovered directory or CWD";}
+
+  {on = [ "<C-t>" ]; run = "plugin smart-tab"; desc = "Create a tab and enter the hovered directory";}
+
+  {on = [ "f" ]; run = "plugin jump-to-char"; desc = "Jump to char";}
+
+  # {on = [ "m" ]; run = "plugin relative-motions"; desc = "Trigger a new relative motion";}
+
+  # {on = [ "m" ]; run = "plugin bookmarks save"; desc = "Save current position as a bookmark";}
+  # {on = [ "'" ]; run = "plugin bookmarks jump"; desc = "Jump to a bookmark";}
+  # {on = [ "b" "d" ]; run = "plugin bookmarks delete"; desc = "Delete a bookmark";}
+  # {on = [ "b" "D" ]; run = "plugin bookmarks delete_all"; desc = "Delete all bookmarks";}
+# {on = [ "g" "f" ]; run = "search_do --via=fd --args='-d 3'"; desc = "Switch to the flat view with a max depth of 3";} #NOTE unused
+#+end_src
+
+**** Toggle Pane
+You can replace ~preview~ with current or parent to toggle other panes
+
+*** End
+#+begin_src nix :tangle keymap.nix
+];
+#+end_src
+
+** input.prepend
+#+begin_src nix :tangle keymap.nix
+input.prepend_keymap = [
+  {on = [ "<Esc>" ]; run = "close"; desc = "Cancel input";}
+];
+#+end_src
+
+* end
+#+begin_src nix :tangle keymap.nix
+}
+#+end_src

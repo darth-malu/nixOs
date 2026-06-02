@@ -1,0 +1,230 @@
+#+title: my Qutebrowser settings
+#+auto_tangle: t
+#+startup: content indent
+
+* start / misc settings
+
+#+begin_src nix :tangle default.nix
+{ lib, ... }:
+
+{
+  programs.qutebrowser = {
+    enable = true;
+    loadAutoconfig = false; # false:: load config from GUI
+    # enableDefaultBindings = true; # true::
+#+end_src
+
+* keybindings
+#+begin_src nix :tangle default.nix
+  keyBindings = {
+    normal = {
+      "<ctrl-m>" = "spawn mpv {url}";
+      "<ctrl-l>" = "hint links spawn mpv {hint-url}";
+      "x" = "tab-close";
+      "X" = "undo";
+      "<^>" = "tab-focus last";
+      # ",p" = "spawn --userscript qute-pass";
+      # ",l" = ''config-cycle spellcheck.languages ["en-GB"] ["en-US"]'';
+      "<f1>" = lib.mkMerge [
+        # TODO see more info on lib.mkMerge
+        "config-cycle tabs.show never switching"
+        "config-cycle statusbar.show in-mode always"
+        # "config-cycle scrolling.bar never always"
+      ];
+      "<f9>" = lib.mkMerge [
+        "config-cycle colors.webpage.darkmode.enabled false true"
+      ];
+      "<f12>" = lib.mkMerge [
+        "config-cycle tabs.show switching always"
+      ];
+      "<f10>" = "config-cycle statusbar.show never always";
+    };
+    prompt = {
+        "<ctrl-y>" = "prompt-yes";
+    };
+  };
+#+end_src
+
+* searchEngines
+#+begin_src nix :tangle default.nix
+  searchEngines = {
+    w   =  "https://en.wikipedia.org/wiki/Special:Search?search={}&amp;go=Go&amp;ns0=1";
+    aw  =  "https://wiki.archlinux.org/?search={}";
+    pdb  =  "https://www.protondb.com/search?q={}";
+    nw  =  "https://wiki.nixos.org/index.php?search={}";
+    mn  =  "https://mynixos.com/search?q={}";
+    nps =  "https://search.nixos.org/packages?channel=24.11&from=0&size=50&sort=relevance&type=packages&query={}";
+    npu =  "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
+    g   =  "https://www.google.com/search?hl=en&q={}"; # hl=en&amp;
+    pd   =  "https://www.protondb.com/search?q={}";
+    b   =  "https://search.brave.com/search?q={}";
+    yt  =  "https://www.youtube.com/results?search_query={}";
+    gh  =  "https://github.com/search?o=desc&q={}&s=stars";
+    t   =  "https://www.thesaurus.com/browse/{}";
+    r   =  "https://www.reddit.com/search/?q={}";
+  };
+#+end_src
+* settings =config.py=
+** start
+#+begin_src nix :tangle default.nix
+settings = {
+#+end_src
+
+** colors
+#+begin_src nix :tangle default.nix
+colors = {
+  hints = {
+    bg = "#000000";
+    fg = "#ffffff";
+  };
+  completion = {
+    fg = "white";
+    item.selected.bg = "#a100f2";    # #e8c000::
+  };
+  tabs = {
+    bar.bg = "#00000000";       # color or entire bar
+    odd.bg = "#00000000";       # odd rows
+    even.bg = "#00000000";      # transparency tech
+
+    selected.odd.bg = "#8f00ff"; # C3D898
+    selected.even.bg = "#8f00ff";
+  };
+  # webpage.darkmode= {
+    # enabled = false;
+    # algorithm = "lightness-cielab";
+    # policy.images = "never";
+  # };
+};
+#+end_src
+
+** completion
+#+begin_src nix :tangle no
+completion = {
+  shrink = false;
+};
+
+#+end_src
+** statusbar
+#+begin_src nix :tangle default.nix
+statusbar = {
+  show = "always";              # in-mode, always, never
+  # widgets = ["keypress"  "search_match"  "url"  "scroll"  "history"  "tabs"  "progress"];
+};
+
+#+end_src
+
+** tabs
+#+begin_src nix :tangle default.nix
+tabs = {
+  close_mouse_button = "right"; # right, middle::
+  select_on_remove = "last-used"; # Which tab to select when the focused tab is removed.
+  show = "never"; # always::, never, switching, multiple
+  width = "20%"; # in px or % - if vertical mode
+  title.elide = "none";  # position of ellipsis (...)
+  undo_stack_size = 50;  # 100::
+  favicons = {
+    show = "always";            # always::, never, pinned
+    scale = 1.0;
+  };
+  indicator = {
+    width = 2;
+  };
+  position = "left";
+};
+#+end_src
+
+** downloads
+#+begin_src nix :tangle default.nix
+downloads.location.suggestion = "both"; # path::, filename, both
+#+end_src
+
+** scrolling
+#+begin_src nix :tangle default.nix
+scrolling = {
+  smooth = false;
+  bar = "when-searching"; # overlay::, when-searching, never, always
+};
+#+end_src
+
+** zoom
+#+begin_src nix :tangle no
+ zoom = {
+   default = "110%";
+   # levels = [];
+  };
+#+end_src
+
+** Brave browser adblocker
+#+begin_src nix :tangle default.nix
+  content.blocking.method = "both";
+#+end_src
+
+** Disable AutoPlay
+#+begin_src nix :tangle default.nix
+  content.autoplay = false;
+#+end_src
+
+** Lazy Restore
+#+begin_src nix :tangle default.nix
+  session.lazy_restore = true;
+#+end_src
+
+** auto_save
+#+begin_src nix :tangle default.nix
+ auto_save = {
+   session = true;
+   interval = 10000; # milliseconds
+ };
+#+end_src
+
+** end
+#+begin_src nix :tangle default.nix
+};
+#+end_src
+
+url.searchengines
+source: qute://settings
+outputs to: @@config.py@@
+* extraConfig =config.py=
+extra lines added to qutebrowser config.py
+
+#+begin_src nix :tangle no
+extraConfig = ''
+'';
+#+end_src
+* aliases
+#+begin_src nix :tangle no
+# aliases = {};
+#+end_src
+
+* quickmarks
+Quickmarks to add to qutebrowser's quickmarks file. Note that when Home Manager manages your quickmarks, you cannot edit them at runtime.
+
+#+begin_src nix :tangle no
+quickmarks = {
+  nixpkgs = "https://github.com/NixOS/nixpkgs";
+  home-manager = "https://github.com/nix-community/home-manager";
+  twitter = "https://x.com";
+};
+#+end_src
+
+* cheatsheet
+
+|----------+---------------------------------------|
+| key      | does                                  |
+|----------+---------------------------------------|
+| gt       | open list of tabs to fuzzy search and |
+| +SHIFT+t | go to tab at N                        |
+| gD       | move current tab to new window        |
+| d        | close current tab                     |
+| co       | close all tabs but current            |
+| cd       | clear download list                   |
+| tsu      | reload                                |
+| gi       | go to primary input textbox           |
+| ;t       | hints for selecting input textbox     |
+|----------+---------------------------------------|
+* end
+#+begin_src nix :tangle default.nix
+  }; # end of programs.
+} # EOF
+#+end_src

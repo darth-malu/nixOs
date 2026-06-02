@@ -2,10 +2,10 @@
   imports = [
     ./pkgs.nix
     # ./sync-thing
-    ./gnupg.nix
+    # ./gnupg.nix
     ./less.nix
-    ./nextcloud.nix
+    # ./nextcloud.nix
   ];
 
-  nextcloud.enable = true;
+  # nextcloud.enable = true;
 }

@@ -1,5 +1,5 @@
 {
   imports = [
-    ./steam+heroic+gamemode+gamescope.nix
+    # ./steam+heroic+gamemode+gamescope.nix
   ];
 }

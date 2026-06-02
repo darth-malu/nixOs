@@ -10,7 +10,7 @@
 {
   disko.devices = {
     disk = {
-      MAIN = {
+      BtrfsDrive = {
         device =
           if config.networking.hostName == "tangier" then
             builtins.elemAt disks 0
@@ -31,7 +31,7 @@
               };
             };
             luks = {
-              size = if config.networking.hostName == "tangier" then "80%" else "95";
+              size = if config.networking.hostName == "tangier" then "182G" else "850G";
               content = {
                 type = "luks";
                 name = "GoodLuks";

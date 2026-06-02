@@ -64,7 +64,7 @@
               gamemode
               gamescope
             ];
-        }) # without fhs
+        })
         protonup-ng
         # protonup-rs
         # TODO see if wineWow64 needed or they are installed as deps where required

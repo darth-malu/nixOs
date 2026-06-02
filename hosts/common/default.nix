@@ -272,6 +272,6 @@ time.timeZone = "Africa/Nairobi";
 
 nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs set
 
-system.stateVersion = if config.networking.hostName == "tangier" then "24.11" else "25.11";
+system.stateVersion = "26.05";
 
 }

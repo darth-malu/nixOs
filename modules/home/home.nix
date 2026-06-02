@@ -13,7 +13,7 @@
     # groupname = "darth";
     homeDirectory = "/home/malu";
     preferXdgDirectories = true;
-    stateVersion = if osConfig.networking.hostName == "carthage" then "25.11" else "24.11";
+    stateVersion = "26.05";
   };
 
   systemd.user.startServices = "sd-switch"; # Nicely reload system units when changing configs # https://mynixos.com/home-manager/option/systemd.user.startServices # suggest, legacy, sd-switch #TODO: see if need

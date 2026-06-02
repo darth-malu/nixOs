@@ -449,7 +449,7 @@ nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # ignored with nixpkgs.pkgs
 
 * system.stateVersion -- NOTE dont delete/change
 #+begin_src nix :tangle default.nix
-system.stateVersion = if config.networking.hostName == "tangier" then "24.11" else "25.11";
+system.stateVersion = "26.05";
 #+end_src
 
 * Ender

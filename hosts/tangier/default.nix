@@ -12,7 +12,7 @@
 
   networking = {
     hostName = "tangier"; # Define your hostname.
-    hostId = "92d08a60";
+    # hostId = "92d08a60";
   };
 
   powerManagement = {
@@ -21,5 +21,4 @@
   };
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
 }

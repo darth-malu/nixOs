@@ -4,9 +4,17 @@ let
   plasmaSpecialisation.configuration = {
     # top level attributes
     system.nixos.tags = [ "::PLASMA::" ]; # disable if needed
-    hypr.enable = lib.mkForce false;
     kde.enable = lib.mkForce true;
+    hypr.enable = lib.mkForce false;
     # gnome.enable = lib.mkForce false;
+  };
+
+  gnome.configuration = {
+    # top level attributes
+    system.nixos.tags = [ "::GNOME::" ]; # disable if needed
+    gnome.enable = lib.mkForce true;
+    hypr.enable = lib.mkForce false;
+    kde.enable = lib.mkForce false;
   };
 
   niri.configuration = {
@@ -23,14 +31,17 @@ in
     ./hyprland.nix
     ./kde.nix
     ./niri.nix
+    ./gnome.nix
   ];
 
   hypr.enable = lib.mkDefault true;
   kde.enable = lib.mkDefault false;
   niri.enable = lib.mkDefault false;
+  gnome.enable = lib.mkDefault false;
 
-  specialisation = lib.mkIf (config.networking.hostName == "carthage") {
+  specialisation = {
     plasmoid = plasmaSpecialisation;
+    gnome = gnome;
     # niroid = niri;# TODO incomplete
   };
 }

@@ -17,7 +17,7 @@
   # Check journalctl to see if you are triggering the shortcuts correctly, which might be different for your keyboard, as noted in the Wikipedia page.
 
   # Also see services.earlyoom.enable and systemd.oomd.enable.
-  boot.kernel.sysctl."kernel.sysrq" = 1;
+  # boot.kernel.sysctl."kernel.sysrq" = 1;
 
   # boot.kernelPackages = pkgs.linuxPackages_7_0;
 
@@ -82,7 +82,7 @@
     # parameterrs for kernel command line
     #   "video=HDMI-A-1:1920x1080@240"
     #   "video=DP-3:1920x1080@60"
-    "nohibernate" # because zfs
+    # "nohibernate" # because zfs
   ];
 
   # boot.extraModprobeConfig = ''

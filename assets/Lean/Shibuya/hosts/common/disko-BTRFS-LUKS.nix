@@ -26,17 +26,17 @@
               };
             };
             luks = {
-              size = "100%";
+              size = "80%";
               content = {
                 type = "luks";
                 name = "GoodLuks";
                 # disable settings.keyFile if you want to use interactive password entry
-               # passwordFile = "/tmp/secret.key"; # Interactive
+                # passwordFile = "/tmp/secret.key"; # Interactive
                 settings = {
                   allowDiscards = true;
                   # keyFile = "/tmp/secret.key";
                 };
-               # additionalKeyFiles = [ "/tmp/additionalSecret.key" ];
+                # additionalKeyFiles = [ "/tmp/additionalSecret.key" ];
                 content = {
                   type = "btrfs";
                   extraArgs = [ "-f" ];

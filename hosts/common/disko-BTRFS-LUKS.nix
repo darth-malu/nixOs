@@ -31,7 +31,7 @@
               };
             };
             luks = {
-              size = "100%";
+              size = if config.networking.hostName == "tangier" then "80%" else "95";
               content = {
                 type = "luks";
                 name = "GoodLuks";

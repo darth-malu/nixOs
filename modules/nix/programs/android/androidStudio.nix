@@ -2,15 +2,19 @@
 
 {
 
-  environment.systemPackages = with pkgs; [
-    android-studio-full
-    android-tools
-    # androidenv.androidPkgs.androidsdk
-    jdk25_headless
-    steam-run
-    gradle
-    maven
-  ];
+  environment.systemPackages =
+    with pkgs;
+    [
+    ]
+    ++ lib.optionals (config.networking.hostName == "carthage") [
+      android-studio-full
+      android-tools
+      # androidenv.androidPkgs.androidsdk
+      jdk25_headless
+      steam-run
+      gradle
+      maven
+    ];
 
   nixpkgs.config.android_sdk.accept_license = true;
 

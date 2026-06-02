@@ -8,12 +8,12 @@
 {
   imports = [
     # ./sync-thing
-    ./virtualisation
-    ./gaming
-    ./android
+    # ./virtualisation
+    # ./gaming
+    # ./android
   ];
 
-  steamy.enable = true;
+  # steamy.enable = true;
 
   programs = {
     ccache = {

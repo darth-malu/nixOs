@@ -63,28 +63,10 @@
         # ];
       }
     else
-      {
-        "/" = {
-          device = "darthPool/core/root";
-          fsType = "zfs";
-        };
-        "/home" = {
-          device = "darthPool/extra/home";
-          fsType = "zfs";
-        };
-
-        "/boot" = {
-          device = "/dev/disk/by-uuid/D397-96F1";
-          fsType = "vfat";
-          options = [
-            "fmask=0022"
-            "dmask=0022"
-          ];
-        };
-      };
+      { };
 
   zramSwap = {
-    enable = true;
+    enable = false;
     # memoryPercent = 50; 50::
     # writebackDevice = "/dev/sda1";
   };
@@ -93,13 +75,13 @@
 
   hardware.usbStorage.manageShutdown = true; # USB storage graceful power off
 
-  services.zfs = {
-    autoSnapshot.enable = true; # TODO: see sanoid in man configuration.nix
-    autoScrub.enable = true;
-    trim.enable = true; # true:: - zpool trim, different from autorim pool property
-  };
+  # services.zfs = {
+  #   autoSnapshot.enable = true; # TODO: see sanoid in man configuration.nix
+  #   autoScrub.enable = true;
+  #   trim.enable = true; # true:: - zpool trim, different from autorim pool property
+  # };
 
-  boot.zfs.forceImportRoot = false; # NOTE: default^26.11 Forcibly import the ZFS root pool(s) during early boot - data loss mitigation
+  # boot.zfs.forceImportRoot = false; # NOTE: default^26.11 Forcibly import the ZFS root pool(s) during early boot - data loss mitigation
 }
 
 #NOTE: default options: rw, suid, dev, exec, auto, nouser, and async. -> https://manpages.ubuntu.com/manpages/noble/en/man8/mount.8.html#filesystem-independent%20mount%20options

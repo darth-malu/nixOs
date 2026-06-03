@@ -9,7 +9,7 @@
 {
   disko.devices = {
     disk = {
-      MAIN = {
+      main = {
         device = builtins.elemAt disks 1;
         type = "disk";
         content = {
@@ -52,7 +52,7 @@
                     };
                     "/swap" = {
                       mountpoint = "/.swapvol";
-                      swap.swapfile.size = "20M";
+                      swap.swapfile.size = "16G";
                     };
                   };
                 };

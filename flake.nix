@@ -122,7 +122,6 @@
       system = "x86_64-linux"; # TODO system = builtins.currentSystem;?? find reason it doesn't work
 
       config = {
-
         allowUnfreePredicate =
           pkg:
           builtins.elem (nixpkgs.lib.getName pkg) [
@@ -144,7 +143,6 @@
             "stremio-linux-shell"
             # "broadcom-bt-firmware"
           ];
-
         permittedInsecurePackages = [
           "ventoy-1.1.12"
           "libsoup-2.74.3"
@@ -152,7 +150,6 @@
           "qtwebengine-5.15.19"
           "beekeeper-studio-5.5.3"
         ];
-
       };
 
       home = inputs.home-manager;
@@ -169,58 +166,48 @@
 
     in
     {
-      # This will make the package available as a flake output under 'packages'
-      # packages.${pkgs.stdenv.hostPlatform.system}.my-neovim = customNeovim.neovim;
-
-      nixosConfigurations = {
-        carthage = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs system; };
-
-          modules = [
-            ./hosts/carthage
-
-            # disko.nixosModules.disko
-            # ./hosts/common/disko-ZFS.nix
-            disko.nixosModules.disko
-            ./hosts/common/disko-BTRFS-LUKS.nix
-            home.nixosModules.home-manager
-            {
-              home-manager = {
-                verbose = true;
-                backupFileExtension = "home_bak";
-                useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
-                useUserPackages = false; # if false ... uses nix-profile for home apps
-                extraSpecialArgs = { inherit inputs pkgs system; };
-                users.malu = import ./modules/home/home.nix;
-              };
-            }
-
-          ]; # modules
-        }; # carthage
-
-        tangier = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs system; };
-          modules = [
-            ./hosts/tangier
-            # nixvim.homeModules.nixvim
-            disko.nixosModules.disko
-            ./hosts/common/disko-BTRFS-LUKS.nix
-            # home.nixosModules.home-manager {
-            #   home-manager = {
-            #     verbose = true;
-            #     backupFileExtension = "home_backup";
-            #     users.malu = import ./modules/home/home.nix;
-            #     useGlobalPkgs = true; # dont use private instance of pkgs which is the default
-            #     useUserPackages = false; # if false:: ... uses nix-profile for home apps
-            #     extraSpecialArgs = { inherit pkgs inputs system; };
-            #   };
-            # }
-          ];
-        };
-
-      }; # End of NixConfigurations
-
-    }; # end of outputs
-} # EOF
+      nixosConfigurations.carthage = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs system; };
+        modules = [
+          ./hosts/carthage
+          # disko.nixosModules.disko
+          # ./hosts/common/disko-ZFS.nix
+          disko.nixosModules.disko
+          ./hosts/common/disko-BTRFS-LUKS.nix
+          home.nixosModules.home-manager
+          {
+            home-manager = {
+              verbose = true;
+              backupFileExtension = "home_bak";
+              useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
+              useUserPackages = false; # if false ... uses nix-profile for home apps
+              extraSpecialArgs = { inherit inputs pkgs system; };
+              users.malu = import ./modules/home/home.nix;
+            };
+          }
+        ];
+      };
+      nixosConfigurations.tangier = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs system; };
+        modules = [
+          ./hosts/tangier
+          # nixvim.homeModules.nixvim
+          disko.nixosModules.disko
+          ./hosts/common/disko-BTRFS-LUKS.nix
+          home.nixosModules.home-manager
+          {
+            home-manager = {
+              verbose = true;
+              backupFileExtension = "home_backup";
+              users.malu = import ./modules/home/home.nix;
+              useGlobalPkgs = true; # dont use private instance of pkgs which is the default
+              useUserPackages = false; # if false:: ... uses nix-profile for home apps
+              extraSpecialArgs = { inherit pkgs inputs system; };
+            };
+          }
+        ];
+      };
+    };
+}

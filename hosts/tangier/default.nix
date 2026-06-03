@@ -10,10 +10,7 @@
     ./nvidia.nix
   ];
 
-  networking = {
-    hostName = "tangier"; # Define your hostname.
-    # hostId = "92d08a60";
-  };
+  networking.hostName = "tangier";
 
   powerManagement = {
     enable = true;

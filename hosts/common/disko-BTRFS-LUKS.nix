@@ -10,13 +10,13 @@
 {
   disko.devices = {
     disk = {
-      BtrfsDrive = {
+      main = {
+        type = "disk";
         device =
           if config.networking.hostName == "tangier" then
             builtins.elemAt disks 0
           else
             builtins.elemAt disks 1;
-        type = "disk";
         content = {
           type = "gpt";
           partitions = {

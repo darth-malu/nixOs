@@ -75,14 +75,14 @@
           fsType = "btrfs";
           options = [ "subvol=swap" ];
         };
-        "/boot" = {
-          device = "/dev/disk/by-uuid/69C9-233D";
-          fsType = "vfat";
-          options = [
-            "fmask=0077"
-            "dmask=0077"
-          ];
-        };
+        # "/boot" = {
+        #   device = "/dev/disk/by-uuid/69C9-233D";
+        #   fsType = "vfat";
+        #   options = [
+        #     "fmask=0077"
+        #     "dmask=0077"
+        #   ];
+        # };
         "/home" = {
           device = "/dev/mapper/GoodLuks";
           fsType = "btrfs";

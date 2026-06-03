@@ -1,1 +1,0 @@
-    # nixvim.homeModules.nixvim

@@ -19,11 +19,11 @@
   # Also see services.earlyoom.enable and systemd.oomd.enable.
   # boot.kernel.sysctl."kernel.sysrq" = 1;
 
-  # boot.kernelPackages = pkgs.linuxPackages_7_0;
+  boot.kernelPackages = pkgs.linuxPackages_7_0;
 
   # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackges;
 
-  boot.plymouth.enable = true;
+  # boot.plymouth.enable = true;
   boot.extraModulePackages = with config.boot.kernelPackages; [ broadcom_sta ];
   boot.loader = {
     systemd-boot = {

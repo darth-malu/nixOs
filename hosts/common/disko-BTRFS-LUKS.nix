@@ -14,9 +14,9 @@
         type = "disk";
         device =
           if config.networking.hostName == "tangier" then
-            builtins.elemAt disks 0
+            builtins.elemAt disks 1
           else
-            builtins.elemAt disks 1;
+            builtins.elemAt disks 0;
         content = {
           type = "gpt";
           partitions = {

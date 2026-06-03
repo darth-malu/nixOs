@@ -10,7 +10,7 @@
 {
   disko.devices = {
     disk = {
-      main = {
+      BtrfsDevice = {
         type = "disk";
         device =
           if config.networking.hostName == "tangier" then

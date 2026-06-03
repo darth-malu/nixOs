@@ -31,7 +31,7 @@
         else
           {
             monitor = "eDP-1";
-            path = "$HOME/Pictures/wallpapers/singed-LQ.png";
+            path = "$HOME/Pictures/Wallpapers/singed-LQ.png";
           };
     };
   };

@@ -22,7 +22,7 @@
   # boot.kernelPackages = pkgs.linuxPackages_7_0;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.initrd.luks.devices.cryptroot.device =
+  boot.initrd.luks.devices.GoodLuks.device =
     if config.networking.hostName == "tangier" then
       "/dev/disk/by-uuid/7e45d6cc-717e-4c62-80fc-4d54192344f0"
     else

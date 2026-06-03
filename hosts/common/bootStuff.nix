@@ -24,12 +24,12 @@
 
   boot.initrd.systemd.enable = true;
 
-  boot.initrd.luks.devices.GoodLuks.device = lib.mkDefault (
-    if config.networking.hostName == "tangier" then
-      "/dev/disk/by-uuid/7e45d6cc-717e-4c62-80fc-4d54192344f0"
-    else
-      "/dev/disk/by-uuid/UUID-OF-SDA2"
-  );
+  # boot.initrd.luks.devices.GoodLuks.device = lib.mkDefault (
+  #   if config.networking.hostName == "tangier" then
+  #     "/dev/disk/by-uuid/7e45d6cc-717e-4c62-80fc-4d54192344f0"
+  #   else
+  #     "/dev/disk/by-uuid/UUID-OF-SDA2"
+  # );
   # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackges;
 
   # boot.plymouth.enable = true;

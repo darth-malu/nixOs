@@ -24,16 +24,16 @@
 
   boot.initrd.systemd.enable = true;
 
-  # boot.initrd.luks.devices.GoodLuks.device = lib.mkDefault (
-  #   if config.networking.hostName == "tangier" then
-  #     "/dev/disk/by-uuid/7e45d6cc-717e-4c62-80fc-4d54192344f0"
-  #   else
-  #     "/dev/disk/by-uuid/UUID-OF-SDA2"
-  # );
-  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackges;
+  boot.initrd.luks.devices.GoodLuks.device = lib.mkDefault (
+    if config.networking.hostName == "tangier" then
+      "/dev/disk/by-uuid/7e45d6cc-717e-4c62-80fc-4d54192344f0"
+    else
+      "/dev/disk/by-uuid/UUID-OF-SDA2"
+  );
 
   # boot.plymouth.enable = true;
   boot.extraModulePackages = with config.boot.kernelPackages; [ broadcom_sta ];
+  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackges;
 
   boot.loader = {
     systemd-boot = {
@@ -71,6 +71,8 @@
         "usb_storage" # usb mass storage devices - hdd, flash
         "sd_mod" # scsi device and some sata
         "sr_mod" # cd drive
+        "dm_crypt"
+        "btrfs"
       ];
   boot.initrd.systemd.network = {
     enable = false;

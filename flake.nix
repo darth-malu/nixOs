@@ -195,8 +195,8 @@
           ./hosts/tangier
           # nixvim.homeModules.nixvim
 
-          disko.nixosModules.disko
-          ./hosts/common/disko-BTRFS-LUKS.nix
+          # disko.nixosModules.disko
+          # ./hosts/common/disko-BTRFS-LUKS.nix
 
           home.nixosModules.home-manager
           {

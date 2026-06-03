@@ -1,5 +1,6 @@
 {
   description = "Kenyan Tinkerer makes a flake -- 🫥";
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
@@ -195,8 +196,8 @@
           ./hosts/tangier
           # nixvim.homeModules.nixvim
 
-          # disko.nixosModules.disko
-          # ./hosts/common/disko-BTRFS-LUKS.nix
+          disko.nixosModules.disko
+          ./hosts/common/disko-BTRFS-LUKS.nix
 
           home.nixosModules.home-manager
           {

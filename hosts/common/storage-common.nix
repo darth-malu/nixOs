@@ -64,35 +64,26 @@
     else
       { }
       // {
-        # Unified
-        "/" = {
-          device = "/dev/mapper/GoodLuks";
-          fsType = "btrfs";
-          options = [ "subvol=root" ];
-        };
-        "/.swapvol" = {
-          device = "/dev/mapper/GoodLuks";
-          fsType = "btrfs";
-          options = [ "subvol=swap" ];
-        };
-        # "/boot" = {
-        #   device = "/dev/disk/by-uuid/69C9-233D";
-        #   fsType = "vfat";
-        #   options = [
-        #     "fmask=0077"
-        #     "dmask=0077"
-        #   ];
+        # "/" = {
+        #   device = "/dev/mapper/GoodLuks";
+        #   fsType = "btrfs";
+        #   options = [ "subvol=root" ];
         # };
-        "/home" = {
-          device = "/dev/mapper/GoodLuks";
-          fsType = "btrfs";
-          options = [ "subvol=home" ];
-        };
-        "/nix" = {
-          device = "/dev/mapper/GoodLuks";
-          fsType = "btrfs";
-          options = [ "subvol=nix" ];
-        };
+        # "/.swapvol" = {
+        #   device = "/dev/mapper/GoodLuks";
+        #   fsType = "btrfs";
+        #   options = [ "subvol=swap" ];
+        # };
+        # "/home" = {
+        #   device = "/dev/mapper/GoodLuks";
+        #   fsType = "btrfs";
+        #   options = [ "subvol=home" ];
+        # };
+        # "/nix" = {
+        #   device = "/dev/mapper/GoodLuks";
+        #   fsType = "btrfs";
+        #   options = [ "subvol=nix" ];
+        # };
       };
 
   zramSwap = {

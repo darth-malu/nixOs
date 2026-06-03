@@ -21,7 +21,7 @@
           type = "gpt";
           partitions = {
             ESP = {
-              size = "500M";
+              size = "512M";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -44,13 +44,18 @@
                 # additionalKeyFiles = [ "/tmp/additionalSecret.key" ];
                 content = {
                   type = "btrfs";
-                  extraArgs = [ "-f" ];
+                  extraArgs = [
+                    "-f"
+                    "-L"
+                    "nixos"
+                  ];
                   subvolumes = {
                     "/root" = {
                       mountpoint = "/";
                       mountOptions = [
                         "compress=zstd"
                         "noatime"
+                        # "subvol=root"
                       ];
                     };
                     "/home" = {
@@ -58,6 +63,7 @@
                       mountOptions = [
                         "compress=zstd"
                         "noatime"
+                        # "subvol=home"
                       ];
                     };
                     "/nix" = {
@@ -67,6 +73,14 @@
                         "noatime"
                       ];
                     };
+                    # "/log" = {
+                    #   mountpoint = "/var/log";
+                    #   mountOptions = [
+                    #     "subvol=log"
+                    #     "compress=zstd"
+                    #     "noatime"
+                    #   ];
+                    # };
                     "/swap" = {
                       mountpoint = "/.swapvol";
                       swap.swapfile.size = "16G";

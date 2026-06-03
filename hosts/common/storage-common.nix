@@ -61,6 +61,8 @@
         #   }
         # ];
       }
+    else
+      { }
       // {
         # Unified
         "/" = {
@@ -91,9 +93,7 @@
           fsType = "btrfs";
           options = [ "subvol=nix" ];
         };
-      }
-    else
-      { };
+      };
 
   zramSwap = {
     enable = false;

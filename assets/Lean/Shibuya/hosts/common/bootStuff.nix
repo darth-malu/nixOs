@@ -19,8 +19,8 @@
   # Also see services.earlyoom.enable and systemd.oomd.enable.
   boot.kernel.sysctl."kernel.sysrq" = 1;
 
-  # boot.kernelPackages = pkgs.linuxPackages_7_0;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_7_0;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackges;
 

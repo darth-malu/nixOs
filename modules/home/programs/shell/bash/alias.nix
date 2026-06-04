@@ -12,5 +12,5 @@
   # la = "lsd -A";
 
   studious = "git --git-dir=/media/Hyogo/Backups/Bare --work-tree=/media/Hyogo";
-  dots = "git --git-dir=$HOME/Documents/IMPORTANT/BARE/ --work-tree=$HOME";
+  dots = "git --git-dir=$HOME/Documents/IMPORTANT/BARE/Dots.git --work-tree=$HOME";
 }

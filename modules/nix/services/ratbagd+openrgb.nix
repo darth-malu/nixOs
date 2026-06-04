@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 {
   services = {
     ratbagd.enable = false;
@@ -7,7 +12,7 @@
 
   hardware = {
     openrazer = {
-      enable = false;
+      enable = lib.mkIf (config.networking.hostName == "carthage") true;
       users = [ "malu" ];
     };
   };

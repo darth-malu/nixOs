@@ -6,20 +6,18 @@
 }:
 {
   imports = [
-    ./pkgs.nix
-    # ./sync-thing
-    # ./gnupg.nix
+    ./gnupg.nix
     ./less.nix
     # ./nextcloud.nix
     # ./sync-thing
-    # ./virtualisation
-    # ./gaming
-    # ./android
+    ./virtualisation
+    ./gaming
+    ./android
   ];
 
   # nextcloud.enable = true;
 
-  # steamy.enable = true;
+  steamy.enable = true;
 
   services = {
     locate.enable = true;

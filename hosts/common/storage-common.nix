@@ -4,32 +4,6 @@
   fileSystems =
     if config.networking.hostName == "carthage" then
       {
-
-        "/media/Alpha" = {
-          device = "/dev/disk/by-uuid/008a7ac5-f0a4-48aa-bda2-8da279fbd11a";
-          fsType = "ext4";
-          options = [
-            "users"
-            "nofail"
-            "defaults"
-            "x-systemd.mount-timeout=30"
-            "x-systemd.idle-timeout=20min"
-          ];
-        };
-
-        "/media/Omega" = {
-          device = "/dev/disk/by-uuid/96d58a24-f197-4f96-8409-595aba9431ad";
-          fsType = "ext4";
-          # noCheck = true;
-          options = [
-            "users"
-            "nofail"
-            "defaults"
-            "x-systemd.mount-timeout=30"
-            "x-systemd.idle-timeout=20min"
-          ];
-        };
-
         "/media/Hyogo" = {
           device = "/dev/disk/by-uuid/48b59b13-573c-4e39-b2ce-abb2a3c0206e";
           fsType = "ext4";
@@ -62,29 +36,7 @@
         # ];
       }
     else
-      { }
-      // {
-        # "/" = {
-        #   device = "/dev/mapper/GoodLuks";
-        #   fsType = "btrfs";
-        #   options = [ "subvol=root" ];
-        # };
-        # "/.swapvol" = {
-        #   device = "/dev/mapper/GoodLuks";
-        #   fsType = "btrfs";
-        #   options = [ "subvol=swap" ];
-        # };
-        # "/home" = {
-        #   device = "/dev/mapper/GoodLuks";
-        #   fsType = "btrfs";
-        #   options = [ "subvol=home" ];
-        # };
-        # "/nix" = {
-        #   device = "/dev/mapper/GoodLuks";
-        #   fsType = "btrfs";
-        #   options = [ "subvol=nix" ];
-        # };
-      };
+      { };
 
   zramSwap = {
     enable = false;

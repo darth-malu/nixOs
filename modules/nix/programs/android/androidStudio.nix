@@ -7,7 +7,7 @@
     [
     ]
     ++ lib.optionals (config.networking.hostName == "carthage") [
-      android-studio-full
+      android-studio
       android-tools
       # androidenv.androidPkgs.androidsdk
       jdk25_headless

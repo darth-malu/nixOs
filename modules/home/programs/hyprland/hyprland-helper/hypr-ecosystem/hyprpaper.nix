@@ -19,7 +19,7 @@
           [
             {
               monitor = "HDMI-A-1";
-              path = "$HOME/Pictures/wallpaperS/games/riot games/singed-LQ.png";
+              path = "$HOME/Pictures/wallpaperS/games/riot games/singed.png";
               # path = "$HOME/Pictures/wallpaperS/art/camp-night-vk.jpg";
             }
             {

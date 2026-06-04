@@ -164,6 +164,21 @@
         inherit system;
         inherit config;
       };
+      unifiedModules = [
+        disko.nixosModules.disko
+        ./hosts/common/disko-BTRFS-LUKS.nix
+        home.nixosModules.home-manager
+        {
+          home-manager = {
+            verbose = true;
+            backupFileExtension = "home_bak";
+            useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
+            useUserPackages = false; # if false ... uses nix-profile for home apps
+            extraSpecialArgs = { inherit inputs pkgs system; };
+            users.malu = import ./modules/home/home.nix;
+          };
+        }
+      ];
 
     in
     {
@@ -172,21 +187,7 @@
         specialArgs = { inherit inputs system; };
         modules = [
           ./hosts/carthage
-          # disko.nixosModules.disko
-          # ./hosts/common/disko-ZFS.nix
-          disko.nixosModules.disko
-          ./hosts/common/disko-BTRFS-LUKS.nix
-          home.nixosModules.home-manager
-          {
-            home-manager = {
-              verbose = true;
-              backupFileExtension = "home_bak";
-              useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
-              useUserPackages = false; # if false ... uses nix-profile for home apps
-              extraSpecialArgs = { inherit inputs pkgs system; };
-              users.malu = import ./modules/home/home.nix;
-            };
-          }
+          unifiedModules
         ];
       };
       nixosConfigurations.tangier = nixpkgs.lib.nixosSystem {
@@ -195,21 +196,7 @@
         modules = [
           ./hosts/tangier
           # nixvim.homeModules.nixvim
-
-          disko.nixosModules.disko
-          ./hosts/common/disko-BTRFS-LUKS.nix
-
-          home.nixosModules.home-manager
-          {
-            home-manager = {
-              verbose = true;
-              backupFileExtension = "home_backup";
-              users.malu = import ./modules/home/home.nix;
-              useGlobalPkgs = true; # dont use private instance of pkgs which is the default
-              useUserPackages = false; # if false:: ... uses nix-profile for home apps
-              extraSpecialArgs = { inherit pkgs inputs system; };
-            };
-          }
+          unifiedModules
         ];
       };
     };

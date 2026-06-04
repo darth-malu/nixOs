@@ -15,22 +15,6 @@
 
   # steamy.enable = true;
 
-  programs = {
-    ccache = {
-      # enable = true; #FIXME: option does not work but pkg does lol
-      packageNames = [
-        # Nix top-level packages to be compiled using CCache.
-        # "wxGTK32"
-        # "ffmpeg"
-        # "nuitka"
-        # "libav_all"
-      ];
-      # owner = "root";
-      # group = "nixblkd";
-      # cacheDir = "/var/cache/ccache";
-    };
-  };
-
   services = {
     locate.enable = true;
     gvfs.enable = true; # sets GIO_EXTRA_MODULES, used for accessing trash/network filesystems

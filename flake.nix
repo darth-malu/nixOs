@@ -187,8 +187,8 @@
         specialArgs = { inherit inputs system; };
         modules = [
           ./hosts/carthage
-          unifiedModules
-        ];
+        ]
+        ++ unifiedModules;
       };
       nixosConfigurations.tangier = nixpkgs.lib.nixosSystem {
         inherit system;
@@ -196,8 +196,8 @@
         modules = [
           ./hosts/tangier
           # nixvim.homeModules.nixvim
-          unifiedModules
-        ];
+        ]
+        ++ unifiedModules;
       };
     };
 }

@@ -12,7 +12,7 @@
 
   networking.hostName = "tangier";
 
-  boot.kernelParams = [ "intel_pstate=active" ];
+  boot.kernelParams = [ "intel_pstate=active" ]; # lets cpu use hardware p-states for deep idle
 
   powerManagement = {
     enable = true;

@@ -2,9 +2,7 @@
 
 {
   hardware = {
-    graphics = {
-      enable = true; # opengl?
-    };
+    graphics.enable = true; # nouveau, opengl
 
     nvidia.modesetting.enable = true; # required.
 
@@ -43,7 +41,7 @@
         # on-demand
         enable = true;
         enableOffloadCmd = true;
-        offloadCmdMainProgram = "offload";
+        offloadCmdMainProgram = "nvidiaOffload";
       };
 
       # Make sure to use the correct Bus ID values for your system!

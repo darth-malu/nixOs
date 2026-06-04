@@ -339,7 +339,7 @@ nix.settings = {
     # "@remotebuild"
     "malu"
   ];
-  extra-sandbox-paths = [ config.programs.ccache.cacheDir ];
+  # extra-sandbox-paths = [ config.programs.ccache.cacheDir ]; # see if need really
   experimental-features = [ "nix-command" "flakes" ];
   substituters = [
     # "https://cache.nixos.org?priority=10"

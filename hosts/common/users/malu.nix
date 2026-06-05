@@ -34,7 +34,7 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQMlSKPdJ2PxIxxCI5CMCNHmrZ7GvuwGfdow9CoZoqx Carthage"
 
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDMDB8vsULo1V0CZg7/zVVQdqMxPTfq5jJ9qJeTPvW9g Tangier Key"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGrwiQoWlBZ5OCuw8pF2CWM1iJjI4pW5FZvq5b5RktOH Tangier"
     ];
   };
 

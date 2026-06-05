@@ -7,7 +7,7 @@
     group = "remotebuild";
 
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINNI0lfUg8UYuCG6v48Li4iGL2uAsM5V8GpkRViT4V+B malu@tangier"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGrwiQoWlBZ5OCuw8pF2CWM1iJjI4pW5FZvq5b5RktOH Tangier"
     ]; # tangier/remote machine ssh key
   };
 

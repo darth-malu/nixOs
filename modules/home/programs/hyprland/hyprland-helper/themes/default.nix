@@ -41,24 +41,17 @@ lib.mkIf osConfig.programs.hyprland.enable {
     # };
 
     cursorTheme = {
-      # name = "Bibata-Modern-Ice"; package = pkgs.bibata-cursors;
       name = "GoogleDot-Black";
       package = pkgs.google-cursor;
-      # name = "google-cursor"; package = pkgs.google-cursor;
-      size =
-        if osConfig.networking.hostName == "carthage" then
-          24
-        else if osConfig.networking.hostName == "tangier" then
-          20
-        else
-          18;
+      size = if osConfig.networking.hostName == "carthage" then 24 else 20;
     };
 
     theme = {
-      name = "Nightfox-Dark";
-      package = pkgs.nightfox-gtk-theme;
+      # name = "Nightfox-Dark";
+      # package = pkgs.nightfox-gtk-theme;
       # name = "breeze-gtk";  package = pkgs.kdePackages.breeze-gtk;
-      # name = "Yaru-Dark";  package = pkgs.yaru-theme;
+      name = "Yaru-Dark";
+      package = pkgs.yaru-theme;
       # name = "tokyonight-gtk-theme"; package = pkgs.Tokyonight-Moon;
     };
 

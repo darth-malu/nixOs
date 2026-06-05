@@ -142,7 +142,7 @@
             "bluemail"
             "discord"
             "stremio-linux-shell"
-            # "broadcom-bt-firmware"
+            "antigravity-cli"
           ];
         permittedInsecurePackages = [
           "ventoy-1.1.12"

@@ -23,7 +23,8 @@ settings = {
 # $XDG_CONFIG_HOME/yt-dlp/config
 extraConfig =
 ''
-    -P "~/Videos/Youtube"
+    # -P "~/Videos/Youtube"
+    -P "/media/Hyogo/Videos/YouTube/Unsorted"
     # -P "subtitle:subs"
 
     # Save all videos under YouTube directory in your home directory

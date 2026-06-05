@@ -85,7 +85,7 @@
       };
     };
 
-    gemini-cli = {
+    antigravity-cli = {
       enable = true;
       defaultModel = "gemini-2.5-flash";
       # context

@@ -95,6 +95,7 @@
       whatsapp-electron
       telegram-desktop
       discord
+      signal-desktop
     ]
     ++ [
       # Fediverse

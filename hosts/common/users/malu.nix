@@ -32,7 +32,7 @@
       tree
     ];
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9bmUGM+Vxix3N6UsxEPwOLmH1JmBiCcudWMb0ZIzcD darth-malu@github.com" # new c
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQMlSKPdJ2PxIxxCI5CMCNHmrZ7GvuwGfdow9CoZoqx Carthage"
 
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDMDB8vsULo1V0CZg7/zVVQdqMxPTfq5jJ9qJeTPvW9g Tangier Key"
     ];

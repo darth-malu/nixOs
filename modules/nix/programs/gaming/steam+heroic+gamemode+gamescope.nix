@@ -23,15 +23,14 @@
 
     programs.gamemode = {
       # daemon and library combo that allows games to request a set of optimisations be temporarily applied to the host OS. This can improve game performance
-      # Feral Game mode
-      # https://www.mankier.com/8/gamemoded
+      # Feral Game mode --> https://www.mankier.com/8/gamemoded
       enable = true;
       # enableRenice  = true;     # true::
       settings = {
         # https://github.com/FeralInteractive/gamemode/blob/master/example/gamemode.ini
-        # general = {
-        # renice = 10; # 0(no change)::0-20 - user must be in gamemode group
-        # };
+        general = {
+          renice = 10; # 0(no change)::0-20 - user must be in gamemode group
+        };
         # Warning: GPU optimisations have the potential to damage hardware
         # gpu = {
         # apply_gpu_optimisations = "accept-responsibility"; # 0::
@@ -49,7 +48,7 @@
     programs.gamescope = {
       # is a microcompositor from Valve that is used on the Steam Deck. Its goal is to provide an isolated compositor that is tailored towards gaming and supports many gaming-centric features.
       enable = true;
-      capSysNice = false; # Add cap_sys_nice capability to the GameScope binary so that it may renice itself.
+      capSysNice = true; # Add cap_sys_nice capability to the GameScope binary so that it may renice itself.
     };
 
     environment.systemPackages =

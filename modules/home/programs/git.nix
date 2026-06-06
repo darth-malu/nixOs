@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   programs.delta = {
     enable = true;
@@ -34,7 +35,11 @@
       init.defaultBranch = "main";
       push.autoSetupRemote = true; # does --set-upstream origin to current branch
       signing = {
-        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGrwiQoWlBZ5OCuw8pF2CWM1iJjI4pW5FZvq5b5RktOH Tangier";
+        key =
+          if config.networking.hostName == "tangier" then
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGrwiQoWlBZ5OCuw8pF2CWM1iJjI4pW5FZvq5b5RktOH Tangier"
+          else
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQMlSKPdJ2PxIxxCI5CMCNHmrZ7GvuwGfdow9CoZoqx Carthage";
         signByDefault = true;
       };
       settings = {
@@ -44,7 +49,8 @@
       };
       user = {
         name = "darth-malu";
-        email = "justinmalu@gmail.com";
+        # email = "justinmalu@gmail.com";
+        email = "darth-malu@github.com";
       };
       #credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
       #safe.directory = "/etc/nixos";
@@ -66,17 +72,25 @@
 
   programs.ssh = {
     enable = true;
-    addKeysToAgent = "yes";
-    matchBlocks = {
+    enableDefaultConfig = false;
+    settings = {
       "carthage" = {
         identityFile = "~/.ssh/id_ed25519";
         user = "malu";
+        addKeysToAgent = "yes";
         # identitiesOnly = true;
       };
-      "github.com" = {
+      "tangier" = {
         identityFile = "~/.ssh/id_ed25519";
-        identitiesOnly = true;
+        user = "malu";
+        addKeysToAgent = "yes";
+        # identitiesOnly = true;
       };
+      # "github.com" = {
+      #   identityFile = "~/.ssh/id_ed25519";
+      #   identitiesOnly = true;
+      #   addKeysToAgent = "yes";
+      # };
     };
   };
 }

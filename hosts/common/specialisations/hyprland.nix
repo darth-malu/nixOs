@@ -26,7 +26,7 @@
     programs.hyprland = {
       # required even with homeManager for system functions -> xdg, session files
       enable = true; # also enables XDPH
-      # withUWSM = true; # NOTE disabled till uwsm variables fixed i guess
+      withUWSM = true; # NOTE disabled till uwsm variables fixed i guess
       # xwayland.enable = true; # true::
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; # set package + portal if using flake
       portalPackage =
@@ -44,10 +44,9 @@
     };
 
     environment.loginShellInit = ''
-      #  if uwsm check may-start; then
-      #    start-hyprland
-      # fi
+       if uwsm check may-start; then
          start-hyprland
+      fi
     '';
   };
 }

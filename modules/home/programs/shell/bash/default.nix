@@ -41,11 +41,7 @@
 
   # initExtra -> interactive shell counterpart
   # programs.bash.profileExtra = # init Login shell
-  #   lib.mkIf osConfig.hypr.enable ''
-  #      if uwsm check may-start; then
-  #        start-hyprland
-  #     fi
-  #   '';
+  #   '' '';
 
   programs.bash.bashrcExtra = # extra cmd for bashrc
     ''

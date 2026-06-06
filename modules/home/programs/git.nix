@@ -33,9 +33,18 @@
     settings = {
       init.defaultBranch = "main";
       push.autoSetupRemote = true; # does --set-upstream origin to current branch
+      signing = {
+        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGrwiQoWlBZ5OCuw8pF2CWM1iJjI4pW5FZvq5b5RktOH Tangier";
+        signByDefault = true;
+      };
+      settings = {
+        gpg = {
+          format = "ssh";
+        };
+      };
       user = {
         name = "darth-malu";
-        email = "darth-malu@github.com";
+        email = "justinmalu@gmail.com";
       };
       #credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
       #safe.directory = "/etc/nixos";
@@ -53,5 +62,21 @@
     #   s = "status";
     #   p = "push";
     # };
+  };
+
+  programs.ssh = {
+    enable = true;
+    addKeysToAgent = "yes";
+    matchBlocks = {
+      "carthage" = {
+        identityFile = "~/.ssh/id_ed25519";
+        user = "malu";
+        # identitiesOnly = true;
+      };
+      "github.com" = {
+        identityFile = "~/.ssh/id_ed25519";
+        identitiesOnly = true;
+      };
+    };
   };
 }

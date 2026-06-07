@@ -1,4 +1,4 @@
-{ config, ... }:
+{ osConfig, ... }:
 {
   programs.delta = {
     enable = true;
@@ -36,7 +36,7 @@
       push.autoSetupRemote = true; # does --set-upstream origin to current branch
       signing = {
         key =
-          if config.networking.hostName == "tangier" then
+          if osConfig.networking.hostName == "tangier" then
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGrwiQoWlBZ5OCuw8pF2CWM1iJjI4pW5FZvq5b5RktOH Tangier"
           else
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQMlSKPdJ2PxIxxCI5CMCNHmrZ7GvuwGfdow9CoZoqx Carthage";

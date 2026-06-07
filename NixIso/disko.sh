@@ -9,9 +9,9 @@ sudo nix --experimental-features "nix-command flakes" run github:nix-community/d
 
 sudo mount -o subvol=/swap /dev/mapper/GoodLuks /mnt/.swapvol
 
-$ sudo btrfs filesystem mkswapfile --size 20g /mnt/.swapvol/swapfile
+sudo btrfs filesystem mkswapfile --size 20g /mnt/.swapvol/swapfile
 
-$ sudo swapon /mnt/.swapvol/swapfile
+sudo swapon /mnt/.swapvol/swapfile
 
 # sudo truncate -s 0 /mnt/.swapvol/swapfile
 

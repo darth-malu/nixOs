@@ -67,26 +67,10 @@ folders = {
   type = "sendreceive";
 };
 
-  "myVaults" = {
-    path = "/home/malu/obsidianVaults";
-    devices = ["tangier" "carthage"];
-  };
-
   "sharepoint" = {
     path = "/home/malu/sharepoint";
     devices = ["tangier" "carthage"];
   };
-
-"org" = {
-  path = "/home/malu/org";
-  devices = ["tangier" "carthage"];
-};
-
-"org-roam" = {
-  path = "/home/malu/org-roam";
-  devices = ["tangier" "carthage"];
-};
-}; # end of folders
 
     }; # end of settings
 };

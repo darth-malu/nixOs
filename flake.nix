@@ -12,31 +12,19 @@
 
     yazi.url = "github:sxyazi/yazi";
 
-    quickshell = {
-      # add ?ref=<tag> to track a tag
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    quickshell.url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    quickshell.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-qml = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/nix-qml-support";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-qml.url = "git+https://git.outfoxxed.me/outfoxxed/nix-qml-support";
+    nix-qml.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
-    };
+    nixvim.url = "github:nix-community/nixvim"; # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
 
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref={version}";
-
     hyprland.url = "github:hyprwm/Hyprland"; # with cachix
 
     # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";

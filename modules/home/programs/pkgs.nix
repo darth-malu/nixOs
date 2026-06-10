@@ -43,6 +43,8 @@
       # libsecret # TODO use
       ventoy-full # usb imager #woeusb
       xdg-utils
+      ddrescue
+      testdisk
       trash-cli
       wev # NOTE use ./ascii
       jdupes

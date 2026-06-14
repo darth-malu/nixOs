@@ -17,12 +17,12 @@
   # Check journalctl to see if you are triggering the shortcuts correctly, which might be different for your keyboard, as noted in the Wikipedia page.
 
   # Also see services.earlyoom.enable and systemd.oomd.enable.
-  boot.kernel.sysctl = {
-    "kernel.sysrq" = 1;
-    "fs.inotify.max_user_watches" = 524288;
-  };
+  # boot.kernel.sysctl = {
+  #   "kernel.sysrq" = 1;
+  #   "fs.inotify.max_user_watches" = 524288; # NOTE: no effect
+  # };
 
-  boot.kernelPackages = pkgs.linuxPackages_7_0;
+  # boot.kernelPackages = pkgs.linuxPackages_7_0;
   # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.initrd.systemd.enable = true;

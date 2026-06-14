@@ -22,7 +22,7 @@
       kirigami
       kirigami-addons
       kirigami-gallery
-      qt5compat
+      # qt5compat
     ]
     ++ (with pkgs; [
       qt6.qtimageformats # webp & less common format support

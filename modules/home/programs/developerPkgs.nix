@@ -9,6 +9,7 @@
     rustywind
     tailwindcss-language-server # for use with lsp-tailwind (emacs)
     ed
+    # eas-cli
     # cling
     # firebase-tools
     manim # FIXME failed

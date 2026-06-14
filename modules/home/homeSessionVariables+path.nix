@@ -17,7 +17,7 @@
     # VISUAL = "emacsclient -r";
     # XDG_DATA_DIRS = "$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share";
 
-    APP2UNIT_SLICES = "a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice";
+    # APP2UNIT_SLICES = "a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice";
 
     # Nuitka Stuff
     NUITKA_CACHE_DIR_CCACHE = "~/.cache/nuitka/cache";
@@ -31,8 +31,9 @@
   home.sessionPath = [
     # Prepend to $PATH in a double-quoted context
     "${config.xdg.configHome}/emacs/bin"
-    "${config.home.homeDirectory}/Development/Core Utils/bash/Scripts"
-    "/home/malu/.cache/.bun/bin:$PATH"
+    "${config.home.homeDirectory}/Development/Core-Utils/bash/Scripts"
+    "/home/malu/.cache/.bun/bin"
+    "/home/malu/.bun/bin"
   ];
 
   xdg.configFile = {

@@ -5,7 +5,7 @@
       # xdg set by uwsm
       "HYPRCURSOR_THEME,theme_GoogleDot-Violet"
       "HYPRCURSOR_SIZE,24"
-      # "APP2UNIT_SLICES='a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice'" # NOTE..Uneeded
+      "APP2UNIT_SLICES='a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice'" # NOTE..Uneeded
       "SLURP_ARGS, -d -b -B F050F022 -b 10101022 -c ff00ff"
 
       "GDK_SCALE,1" # TODO TRY 2 won’t conflict with Wayland-native GTK programs.

@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
   services.postgresql = {
-    enable = true;
-    ensureDatabases = [ "mydatabase" ];
+    enable = false;
+    ensureDatabases = [ "myPostgresDb" ];
     # package = pkgs.postgresql.pg_config;
     enableTCPIP = true;
     settings.port = 5432;

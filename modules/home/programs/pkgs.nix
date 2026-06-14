@@ -21,6 +21,7 @@
     ++ [
       grim
       imagemagick # screenshot
+      zenity
       # sound-theme-freedesktop # free sounds
       libcanberra-gtk3
       kdePackages.kasts
@@ -147,9 +148,11 @@
       # obs-cli
       obs-studio
       # ungoogled-chromium
+    ]
+    ++ [
       google-chrome
-      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
       bluemail
+      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
     ++ [
       # Productivity Tools

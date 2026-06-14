@@ -10,7 +10,8 @@
       android-studio
       android-tools
       # androidenv.androidPkgs.androidsdk
-      jdk25_headless
+      # jdk25_headless
+      jdk25
       steam-run
       gradle
       maven

@@ -3,7 +3,7 @@
   # ENable distributed builds on client
   users.users.remotebuild = {
     isNormalUser = true;
-    createHome = false;
+    createHome = true;
     group = "remotebuild";
 
     openssh.authorizedKeys.keys = [

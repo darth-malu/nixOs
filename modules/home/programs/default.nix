@@ -5,6 +5,7 @@
     ./Gaming
     ./git.nix
     ./gpg.nix
+    ./matrix
     ./mpv
     ./nyaa.nix
     ./opencode.nix

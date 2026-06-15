@@ -1,7 +1,7 @@
 {
-    "linux-stable": {
-        "hash": "sha256-N4gdcj8LYiXxvkbZhZyiWr375vaXt6JnwcoqLOKMsGg=",
-        "url": "https://stable.dl2.discordapp.net/apps/linux/0.0.134/discord-0.0.134.tar.gz",
-        "version": "0.0.134"
-    }
+  "linux-stable": {
+    "hash": "sha256-N4gdcj8LYiXxvkbZhZyiWr375vaXt6JnwcoqLOKMsGg=",
+    "url": "https://stable.dl2.discordapp.net/apps/linux/0.0.134/discord-0.0.134.tar.gz",
+    "version": "0.0.134"
+  }
 }

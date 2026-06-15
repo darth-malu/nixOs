@@ -22,7 +22,7 @@
 
   # Add your user to the uinput group (replace "your-username" with your actual username)
 
-  users.users.your-username.extraGroups = [ "malu" ];
+  users.users.malu.extraGroups = [ "uinput" ];
 
   networking.firewall = {
     enable = true;

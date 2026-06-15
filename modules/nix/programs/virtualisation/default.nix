@@ -20,6 +20,5 @@
 
   environment.systemPackages = [
     pkgs.genymotion
-    pkgs.moonlight-qt
   ];
 }

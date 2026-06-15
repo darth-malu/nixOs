@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -6,12 +6,12 @@
   ];
 
   services.sunshine = {
-    enable = true;
+    enable = pkgs.lib.mkIf (config.networking.hostName == "carthage") true;
     openFirewall = true;
     capSysAdmin = true;
     autoStart = true; # true::
     settings = {
-      sunshine_name = "darthSunshine";
+      sunshine_name = "darthSunshine"; # Use hostname by default
       gamepad = "x360";
       # port = 47989;
     };

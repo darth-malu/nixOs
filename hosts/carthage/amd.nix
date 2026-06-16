@@ -4,19 +4,10 @@
     # previously hardware.opengl
     enable = true; # true:: MesaRADV + vulkan ->> /run/opengl-driver (for supported hardware)
     enable32Bit = true; # NOTE wine needs , vulkan 32 bit, vulkan on by default with radv
-    extraPackages =
-      with pkgs;
-      (
-        if config.networking.hostName == "tangier" then
-          [
-            intel-vaapi-driver
-          ]
-        else
-          [
-            # libvdpau
-            # libvdpau-va-gl
-          ]
-      );
+    extraPackages = [
+      # libvdpau
+      # libvdpau-va-gl
+    ];
   };
 
   services.lact.enable = true; # need overdrive.enable

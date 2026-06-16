@@ -141,13 +141,11 @@ gpu-context = "wayland";
 video-sync = "display-resample";
 
 hwdec = if osConfig.networking.hostName == "carthage" then "vulkan" else "nvdec"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
-vo =
-  if osConfig.networking.hostName == "carthage" then
+
+vo = if osConfig.networking.hostName == "carthage" then
     "gpu-next"
-  else if osConfig.networking.hostName == "tangier" then
-    "gpu"
-  else
-    "gpu";
+    else
+      "gpu";
 
 # ytdl-format = "bestvideo+bestaudio"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
 # ytdl-format = "bv[height<=1080]+ba/b[height<=1080]"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)

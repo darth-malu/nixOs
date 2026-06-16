@@ -75,13 +75,67 @@
         # bc
         wl-clipboard # rust wl-clipboard better?
         dotool # test if working
+        easyeffects
+        mpc
+        discord
+        # gsmartcontrol
+        # iotop #basic
+        # perfomance monitoring
+        # qdiskinfo
+        # squirreldisk #kinda nice
+        # superfile # kinda cool but dont need
+        # testdisk-qt
+        # utilities
+        # warp-terminal # insane bloat
+        # win-disk-writer
+        # testdisk # also installs photorec
+        # duc
+        # dust
+        duf
+        ncdu
+        file # need for yazi mimedetection etc.
+        iftop # TODO seems powerful investigate more
+        inxi
+        iotop-c
+        lm_sensors
+        lsof # list open files/ports**
+        mission-center
+        nethogs
+        pciutils # lspci
+        usbutils # lsusb, usb-devices, usb-view(optional gui)
+        util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
+        # psmisc
+        ripgrep-all
+        dotool
+        httrack
+        modem-manager-gui
+        modemmanager
+        whatsapp-electron
+        ventoy-full # usb imager #woeusb
+        nautilus
+        libvdpau
+        xdg-utils
+        ffmpeg
+        google-chrome
       ]
       ++ lib.optionals config.programs.hyprland.enable [
         hyprpicker
         # hyprpolkitagent
         libappindicator-gtk3 # needed for discord icon
         # libsecret # secrets lul
+        grimblast
         # kdePackages.qt6ct
+        # file-roller
+        # inputs.hyprswitch.packages.x86_64-linux.default
+        # yelp
+        slurp
+        sushi
+        viewnior
+        # hyprpwcenter
+        hyprland-autoname-workspaces
+        kdePackages.qt6ct
+        kdePackages.kalk
+        kdePackages.dolphin
       ]
       ++ lib.optionals (config.networking.hostName == "tangier") [
         brightnessctl

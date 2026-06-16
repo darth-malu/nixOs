@@ -369,17 +369,16 @@ desync:        Sync video according to system clock, and let audio play on its o
 
 *** video output drivers + hardware decoding
 
-auto hwdec tries vaapi
 #+begin_src nix :tangle default.nix
 hwdec = if osConfig.networking.hostName == "carthage" then "vulkan" else "nvdec"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
-vo =
-  if osConfig.networking.hostName == "carthage" then
+
+vo = if osConfig.networking.hostName == "carthage" then
     "gpu-next"
-  else if osConfig.networking.hostName == "tangier" then
-    "gpu"
-  else
-    "gpu";
+    else
+      "gpu";
 #+end_src
+
+auto hwdec tries vaapi
 
 *** ytdl, quality of the video
 #+begin_src nix :tangle default.nix

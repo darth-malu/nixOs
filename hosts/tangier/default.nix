@@ -7,7 +7,7 @@
 
   imports = [
     ../common
-    ./nvidia.nix
+    ./nvidia+intel.nix
   ];
 
   networking.hostName = "tangier";

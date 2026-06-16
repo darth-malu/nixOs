@@ -15,7 +15,6 @@
   home.packages =
     with pkgs;
     [
-      libvdpau
       # inputs.vermilion.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
     ++ [
@@ -27,7 +26,6 @@
       kdePackages.kasts
       kdePackages.ksudoku
       kdePackages.kservice
-      nautilus
       kdePackages.konsole
       # KIO is a library that provides file manipulation and copying, remote file access, thumbnail previews, the Trash, the Places panel, and various other common file-related user interface components.
       kdePackages.kio-fuse # FUSE Interface for KIO
@@ -42,8 +40,6 @@
       # yaru-theme
       # aria2#NOTE: learn
       # libsecret # TODO use
-      ventoy-full # usb imager #woeusb
-      xdg-utils
       ddrescue
       testdisk
       trash-cli
@@ -61,44 +57,8 @@
       rar # also has unrar
     ]
     ++ [
-      # gsmartcontrol
-      # iotop #basic
-      # perfomance monitoring
-      # qdiskinfo
-      # squirreldisk #kinda nice
-      # superfile # kinda cool but dont need
-      # testdisk-qt
-      # utilities
-      # warp-terminal # insane bloat
-      # win-disk-writer
-      # testdisk # also installs photorec
-      # duc
-      # dust
-      duf
-      ncdu
-      file # need for yazi mimedetection etc.
-      iftop # TODO seems powerful investigate more
-      inxi
-      iotop-c
-      lm_sensors
-      lsof # list open files/ports**
-      mission-center
-      nethogs
-      pciutils # lspci
-      usbutils # lsusb, usb-devices, usb-view(optional gui)
-      util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
-      # psmisc
-      ripgrep-all
-      dotool
-      httrack
-      modem-manager-gui
-      modemmanager # saves the day with no internet
-    ]
-    ++ [
-      whatsapp-electron
       telegram-desktop
-      discord
-      signal-desktop
+      # signal-desktop
     ]
     ++ [
       # Fediverse
@@ -121,8 +81,6 @@
       # youtube-tui # https://siriusmart.github.io/youtube-tui/
       audacity
       blanket
-      easyeffects
-      mpc
       qbittorrent
       gpu-screen-recorder-gtk
       alarm-clock-applet
@@ -150,7 +108,6 @@
       # ungoogled-chromium
     ]
     ++ [
-      google-chrome
       bluemail
       inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
@@ -160,13 +117,13 @@
       # libreoffice-qt-still
       # libreoffice-still
       onlyoffice-desktopeditors
+      wordbook
     ]
     ++ [
       # CreativeSPACE 📽
       blender
       darktable # Artist
       digikam # Librarian
-      ffmpeg
       gimp
       inkscape-with-extensions
       krita
@@ -175,19 +132,5 @@
       # figma-agent  #NOTE listens on 127.0.0.1:44950
       # davinci-resolve
       exiftool
-    ]
-    ++ (lib.optionals (osConfig.hypr.enable) [
-      # file-roller
-      # inputs.hyprswitch.packages.x86_64-linux.default
-      # yelp
-      grimblast
-      slurp
-      sushi
-      viewnior
-      # hyprpwcenter
-      hyprland-autoname-workspaces
-      kdePackages.qt6ct
-      kdePackages.kalk
-      kdePackages.dolphin
-    ]);
+    ];
 }

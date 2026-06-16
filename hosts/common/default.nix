@@ -58,6 +58,7 @@
     permittedInsecurePackages = [
         "broadcom-sta-6.30.223.271-59-7.0.11"
         "broadcom-sta-6.30.223.271-59-6.18.35"
+        "ventoy-1.1.12"
     ];
   };
 

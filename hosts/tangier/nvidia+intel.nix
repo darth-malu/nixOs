@@ -7,6 +7,7 @@
     nvidia-s
   ];
   hardware = {
+    intel-gpu-tools.enable = true;
     graphics = {
       enable = true; # nouveau, opengl
       extraPackages = with pkgs; [

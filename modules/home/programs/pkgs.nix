@@ -57,11 +57,9 @@
       rar # also has unrar
     ]
     ++ [
+      # Fediverse
       telegram-desktop
       # signal-desktop
-    ]
-    ++ [
-      # Fediverse
       # mastodon # TODO: self host only? no desktop
       cinny-desktop
       # rocketchat-desktop
@@ -97,7 +95,7 @@
       # miru # issue launching -kde
       #syncyomi - sync tachiyomi progress across devices
     ]
-    ++ lib.optionals (osConfig.networking.hostName == "carthage") [
+    ++ [
       # coppwr
       # helvum
       # kdePackages.mlt
@@ -105,7 +103,6 @@
       handbrake # FIXME lag on open
       # obs-cli
       obs-studio
-      # ungoogled-chromium
     ]
     ++ [
       bluemail
@@ -113,11 +110,11 @@
     ]
     ++ [
       # Productivity Tools
-      wpsoffice
       # libreoffice-qt-still
       # libreoffice-still
       onlyoffice-desktopeditors
       wordbook
+      wpsoffice
     ]
     ++ [
       # CreativeSPACE 📽

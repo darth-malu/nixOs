@@ -117,6 +117,9 @@
         xdg-utils
         ffmpeg
         google-chrome
+        # ungoogled-chromium
+        vulkan-tools
+        libva-utils
       ]
       ++ lib.optionals config.programs.hyprland.enable [
         hyprpicker

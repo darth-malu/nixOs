@@ -17,7 +17,7 @@
       "darth"
       "wheel"
       "networkmanager" # allow access to the NetworkManager daemon and be able to configure and add new networks # change networkmanager settings in general
-      "video" # backlight control, NOTE need forgpu ctrl?
+      "video" # backlight control, NOTE trouble accessing /dev/dri
       "render" # mesa stuff
       #"audio"
       "gamemode"

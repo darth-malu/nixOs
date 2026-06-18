@@ -1,13 +1,21 @@
 { config, pkgs, ... }:
 
 {
+
+  environment.systemPackages = with pkgs; [
+    nvtopPackages.full
+    nvidia-s
+  ];
   hardware = {
     graphics = {
       enable = true; # nouveau, opengl
       extraPackages = with pkgs; [
         intel-media-driver # LIBVA_DRIVER_NAME=iHD (for HD Graphics starting Broadwell (2014) and newer)
-        intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-        libvdpau-va-gl
+        # intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+        libvdpau-va-gl # vdpau-only apps
+        # libva
+        # libva-vdpau-driver
+        vdpauinfo
       ];
     };
 
@@ -61,6 +69,8 @@
   # https://nixos.org/manual/nixos/stable/options#opt-services.xserver.videoDrivers
   services.xserver.videoDrivers = [ "nvidia" ];
   environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
-  }; # Force intel-media-driver
+    LIBVA_DRIVER_NAME = "iHD"; # or  i965" # Force intel-media-driver
+    VDPAU_DRIVER = "va_gl"; # Only if using libvdpau-va-gl
+  };
+  # [Intel Graphics - Official NixOS Wiki](https://wiki.nixos.org/wiki/Intel_Graphics)
 }

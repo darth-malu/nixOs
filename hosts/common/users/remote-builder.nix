@@ -1,6 +1,9 @@
+{ config, lib, ... }:
+
 {
   # client will use this account on the remote
   # ENable distributed builds on client
+  # users.users.remotebuild = lib.mkIf (config.networking.hostName == "carthage") {
   users.users.remotebuild = {
     isNormalUser = true;
     createHome = false;

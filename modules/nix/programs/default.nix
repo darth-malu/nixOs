@@ -131,11 +131,13 @@
         slurp
         sushi
         viewnior
-        # hyprpwcenter
-        hyprland-autoname-workspaces
         kdePackages.qt6ct
         kdePackages.kalk
         kdePackages.dolphin
+        hyprsysteminfo
+        hyprshutdown
+        hyprpwcenter
+        hyprland-autoname-workspaces
       ]
       ++ lib.optionals (config.networking.hostName == "tangier") [
         brightnessctl

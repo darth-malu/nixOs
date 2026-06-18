@@ -5,7 +5,7 @@
   swapDevices = [
     {
       device = "/.swapvol/swapfile";
-      size = 16 * 1024; # 16GB in MB
+      size = 32 * 1024; # in MB
       options = [ "discard" ];
     }
   ];
@@ -19,8 +19,8 @@
             "users"
             "nofail"
             "defaults"
-            "x-systemd.mount-timeout=30"
-            "x-systemd.idle-timeout=20min"
+            # "x-systemd.mount-timeout=30"
+            # "x-systemd.idle-timeout=20min"
           ];
         };
 
@@ -31,8 +31,8 @@
             "users"
             "defaults"
             "nofail"
-            "x-systemd.mount-timeout=30"
-            "x-systemd.idle-timeout=20min"
+            # "x-systemd.mount-timeout=30"
+            # "x-systemd.idle-timeout=20min"
           ];
         };
       }

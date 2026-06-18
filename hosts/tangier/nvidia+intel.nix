@@ -4,7 +4,7 @@
 
   environment.systemPackages = with pkgs; [
     nvtopPackages.full
-    nvidia-s
+    nvidia-system-monitor-qt
   ];
   hardware = {
     intel-gpu-tools.enable = true;

@@ -1,4 +1,4 @@
-{ osConfig, ... }:
+{ osConfig, pkgs, ... }:
 {
   programs.delta = {
     enable = true;
@@ -49,10 +49,10 @@
       };
       user = {
         name = "darth-malu";
-        # email = "justinmalu@gmail.com";
-        email = "darth-malu@github.com";
+        email = "justinmalu@gmail.com";
+        # email = "darth-malu@github.com";
       };
-      #credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
+      # credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
       #safe.directory = "/etc/nixos";
     };
     ignores = [

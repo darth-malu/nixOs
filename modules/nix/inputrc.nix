@@ -20,7 +20,7 @@
           set completion-map-case on
 
           # ellipses past char number in common prefix
-          # set completion-prefix-display-length 2
+          set completion-prefix-display-length 2
 
           # should be displayed message, possibilities, default 100
           set completion-query-items 150
@@ -50,29 +50,38 @@
 
           $if mode=vi
             set keymap vi-insert 
-            # "\e[D":  backward-char
-            # "\M-[C": forward-char
-            # # Make this useful..word instead
-            # "\eh":   backward-char
-            # "\M-l":  forward-char 
-            "\e[5~": history-search-backward 
-            "\e[6~": history-search-forward 
+            # Movement
+            "\C-a": beginning-of-line      # Ctrl + A
+            "\C-e": end-of-line            # Ctrl + E
+            "\M-b": backward-word          # Alt + B (M stands for Meta/Alt)
+            "\M-f": forward-word           # Alt + F
+
+            # Editing / Killing
+            "\C-k": kill-line              # Ctrl + K (Cut to end of line)
+            # "\C-w": backward-kill-word     # Ctrl + W (Cut word backward)
+            "\C-y": yank                   # Ctrl + Y (Paste / Yank back)
+
+            # PGUP PGDOWN
+            # "\e[5~": history-search-backward 
+            # "\e[6~": history-search-forward 
+            "\e[5~": beginning-of-history
+            "\e[6~": end-of-history
 
             # "\C-x\"": "\"\"\C-b" 
-            "\C-o\"": "\"\"\\C-b" 
+            # "\C-o\"": "\"\"\\C-b" 
             # C-j - RET - enter for next line instead enter lol best shortcut fr like # alot of conflict eg tmux -- just use C-m
-            "\C-l": "clear\n"
+            # "\C-l": "clear\n"
 
-            "\ew": "\C-l \C-e # macro" # TODO test
-            "\e\C-l": "\C-e | less\C-m"
-"\es": "\C-a su -c '\C-e'\C-m"
-"\e\C-y": "\C-ayes | \C-m"
-"\es": "\C-asudo \C-e"
+            # "\ew": "\C-l \C-e # macro" # TODO test
+            # "\e\C-l": "\C-e | less\C-m"
+            # "\es": "\C-a su -c '\C-e'\C-m"
+            # "\e\C-y": "\C-ayes | \C-m"
+            # "\es": "\C-asudo \C-e"
           $endif
 
           $if Bash
             # Insert the next character literally, ignoring its special meaning.
-            "C-q":  quoted-insert
+            # "C-q":  quoted-insert
             "\e[A": history-search-backward
             "\e[B": history-search-forward
             # prepare to type a quoted word --

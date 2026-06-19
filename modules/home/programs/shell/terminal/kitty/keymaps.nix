@@ -18,7 +18,8 @@
 
     #close windows
     "kitty_mod+q" = "close_other_windows_in_tab";
-    "kitty_mod+Escape" = "close_window_with_confirmation ignore-shell";
+    # "kitty_mod+Escape" = "close_window_with_confirmation ignore-shell";
+    "ctrl+Escape" = "close_window_with_confirmation ignore-shell";
 
     # detach Windows/Tabs
     "kitty_mod+f1" = "detach_window ask";
@@ -41,38 +42,38 @@
     "ctrl+down" = "resize_window shorter 5";
     "ctrl+Return" = "resize_window reset";
 
-    "kitty_mod+h" = "neighboring_window left";
-    "kitty_mod+l" = "neighboring_window right";
-    "kitty_mod+k" = "neighboring_window up";
-    "kitty_mod+j" = "neighboring_window down";
+    "ctrl+h" = "neighboring_window left";
+    "ctrl+l" = "neighboring_window right";
+    "ctrl+k" = "neighboring_window up";
+    "ctrl+j" = "neighboring_window down";
 
-    "kitty_mod+space" = "next_window";
+    "ctrl+space" = "next_window";
 
     # Layout Bigger window increase number
-    "kitty_mod+[" = "layout_action decrease_num_full_size_windows";
-    "kitty_mod+]" = "layout_action increase_num_full_size_windows";
-    "kitty_mod+y" = "layout_action mirror toggle";
+    "ctrl+[" = "layout_action decrease_num_full_size_windows";
+    "ctrl+]" = "layout_action increase_num_full_size_windows";
+    "ctrl+y" = "layout_action mirror toggle";
 
     "ctrl+tab" = "next_layout";
     "kitty_mod+tab" = "layout_action bias 10 20 30 40 50 60";
 
     # tabs
-    "ctrl+alt+Escape" = "close_tab";
-    "ctrl+alt+enter" = "new_tab_with_cwd";
+    "alt+Escape" = "close_tab";
+    "alt+enter" = "new_tab_with_cwd";
 
-    "ctrl+alt+t" = "set_tab_title";
-    "ctrl+alt+l" = "next_tab";
-    "ctrl+alt+h" = "previous_tab";
+    "alt+t" = "set_tab_title";
+    "alt+l" = "next_tab";
+    "alt+h" = "previous_tab";
 
-    "ctrl+alt+right" = "move_tab_forward";
-    "ctrl+alt+left" = "move_tab_backward";
+    "alt+right" = "move_tab_forward";
+    "alt+left" = "move_tab_backward";
 
     # Scroll UP
     "ctrl+page_up" = "scroll_page_up";
     "ctrl+page_down" = "scroll_page_down";
 
     # Scrollback
-    "kitty_mod+period" = "show_scrollback";
-    "kitty_mod+comma" = "show_last_command_output";
+    "ctrl+period" = "show_scrollback";
+    "ctrl+comma" = "show_last_command_output";
   };
 }

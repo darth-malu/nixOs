@@ -12,8 +12,7 @@
 
   home.sessionVariables = {
     #MANWIDTH=999;
-    # SUDO_PROMPT = "$(tput sgr0)$(tput setaf 199) $(tput sgr0) ";
-    SUDO_PROMPT = "$'\e[0m\e[38;5;199m \e[0m '";
+    SUDO_PROMPT = "$(tput sgr0)$(tput setaf 199)  $(tput sgr0) ";
     # EDITOR = "vim";
     # VISUAL = "emacsclient -r";
     # XDG_DATA_DIRS = "$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share";

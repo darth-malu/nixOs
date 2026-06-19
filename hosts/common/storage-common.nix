@@ -5,7 +5,7 @@
   swapDevices = [
     {
       device = "/.swapvol/swapfile";
-      size = 32 * 1024; # in MB
+      size = if config.networking.hostName == "tangier" then 24 * 1024 else 32 * 1024; # in MB
       options = [ "discard" ];
     }
   ];

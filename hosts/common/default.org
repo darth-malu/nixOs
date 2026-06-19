@@ -379,7 +379,7 @@ https://sgt.hootr.club/blog/nix-distributed-builds/
 
 https://heitorpb.github.io/bla/wonders-of-nix-remote-builders/
 
-#+begin_src nix :tangle default.nix 
+#+begin_src nix :tangle no
   nix = {
     distributedBuilds = lib.mkIf (config.networking.hostName != "carthage") true;
     buildMachines = lib.mkIf (config.networking.hostName != "carthage") [

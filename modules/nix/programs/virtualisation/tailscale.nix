@@ -25,6 +25,8 @@
     ethtool
   ];
 
+  # services.resolved.enable = true; # DNS fix addition
+
   services.networkd-dispatcher = {
     enable = true;
     rules."50-tailscale-optimizations" = {

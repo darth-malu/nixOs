@@ -151,6 +151,7 @@ bindings = {
 # "ctrl+f" = "script-binding subtitle_lines/list_subtitles";
 # "menu" = "script-binding uosc/menu";
 "mbtn_right" = "script-binding uosc/menu";
+"ctrl+t" = "script-binding toggle-progress";
 # "mbtn_right" = "cycle pause; show-text \"\${filename}\n\${time-pos} / \${duration} (\${percent-pos}%)\"; osd-bar show-progress";
 "mbtn_left" = "cycle pause; show-progress";
 "ctrl+s" = "async screenshot"; # ! Utils > Screenshot

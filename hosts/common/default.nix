@@ -78,7 +78,7 @@ hardware = {
 
   networkmanager = {
     enable = true; # add user to group
-    dns = "none"; # dnsmasq, default::, systemd-resolved
+    dns = "none"; # dnsmasq, default::, systemd-resolved # NOTE: see if need as none or default
     wifi = {
       powersave = true;
       # backend = "wpa_supplicant"; # wpa_supplicant::, iwd
@@ -93,8 +93,8 @@ hardware = {
     "3.nixos.pool.ntp.org"
   ];
 
-# dhcpcd.enable = true; # true::
-# useDHCP =  false;
+dhcpcd.enable = false; # true::
+useDHCP =  false;
 # interfaces.enp5s0.useDHCP = if config.networking.hostName == "carthage" then true else false; #overrides default in useDHCP unless null
 # interfaces.wlo1.useDHCP = if config.networking.hostName == "tangier" then true else false;
 

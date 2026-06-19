@@ -33,7 +33,8 @@
           protocol = "ssh-ng";
           maxJobs = 3;
           speedFactor = 2;
-          system = "x86_64-linux";
+          # system = "x86_64-linux";
+          system = pkgs.stdenv.hostPlatform.system;
           supportedFeatures = [
             "nixos-test"
             "benchmark"

@@ -121,7 +121,7 @@ Enable hardware - Bloat? unneeded except for live media?
 #+begin_src nix :tangle default.nix
   networkmanager = {
     enable = true; # add user to group
-    dns = "none"; # dnsmasq, default::, systemd-resolved
+    dns = "none"; # dnsmasq, default::, systemd-resolved # NOTE: see if need as none or default
     wifi = {
       powersave = true;
       # backend = "wpa_supplicant"; # wpa_supplicant::, iwd
@@ -131,6 +131,8 @@ Enable hardware - Bloat? unneeded except for live media?
 #+end_src
 
 DNS = "none" # Disable NetworkManager's internal DNS resolution
+
+Nix Wiki recommends turning off networkmanager's dns
 
 ** time servers
 #+begin_src nix :tangle default.nix
@@ -149,8 +151,8 @@ useDHCP: Whether to use DHCP to obtain an IP address and other configuration for
 Not needed when managing dns ourselves 😄
 
 #+begin_src nix :tangle default.nix
-# dhcpcd.enable = true; # true::
-# useDHCP =  false;
+dhcpcd.enable = false; # true::
+useDHCP =  false;
 # interfaces.enp5s0.useDHCP = if config.networking.hostName == "carthage" then true else false; #overrides default in useDHCP unless null
 # interfaces.wlo1.useDHCP = if config.networking.hostName == "tangier" then true else false;
 

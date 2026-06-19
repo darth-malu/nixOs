@@ -9,7 +9,7 @@
     enable = pkgs.lib.mkIf (config.networking.hostName == "carthage") true;
     openFirewall = true;
     capSysAdmin = true;
-    autoStart = true; # true::
+    autoStart = false; # true::
     settings = {
       sunshine_name = "darthSunshine"; # Use hostname by default
       gamepad = "x360";

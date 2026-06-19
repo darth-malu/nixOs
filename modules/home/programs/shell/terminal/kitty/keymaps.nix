@@ -12,9 +12,9 @@
     "kitty_mod+a" = "paste_from_buffer a1";
 
     # Launch New Windows
-    "kitty_mod+enter" = "new_window_with_cwd";
+    "ctrl+enter" = "new_window_with_cwd";
     # "ctrl+alt+n" = "launch --cwd=current --type=os-window";
-    "kitty_mod+n" = "new_os_window_with_cwd";
+    "ctrl+n" = "new_os_window_with_cwd";
 
     #close windows
     "kitty_mod+q" = "close_other_windows_in_tab";

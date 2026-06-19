@@ -78,6 +78,8 @@
         easyeffects
         mpc
         discord
+        pv
+        ff2mpv-rust
         # gsmartcontrol
         # iotop #basic
         # perfomance monitoring

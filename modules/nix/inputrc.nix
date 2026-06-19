@@ -18,9 +18,10 @@
 
           # - and _ as same if completion-ignore-case is on
           set completion-map-case on
+          set completion-ignore-case on
 
           # ellipses past char number in common prefix
-          set completion-prefix-display-length 2
+          # set completion-prefix-display-length 2
 
           # should be displayed message, possibilities, default 100
           set completion-query-items 150
@@ -34,14 +35,11 @@
           # like zsh?
           set print-completions-horizontally on
 
+          # FIXME: Does not work
+          set blink-matching-paren on
+
           # VIM
           # 1 - begin , 2 -end
-          # set vi-ins-mode-string (ins)\1\e[6 q\2
-          # set vi-cmd-mode-string (cmd)\1\e[2 q\2
-          # set vi-ins-mode-string \1\e[34;1m\2└──[ins] \1\e[0m\2
-          # set vi-cmd-mode-string \1\e[33;1m\2└──[cmd] \1\e[0m\2
-          # set vi-ins-mode-string \1\e[5 q\e]12;pink\a\2
-
           set vi-ins-mode-string \1\e[5 q\e]12;green\a\2
           set vi-cmd-mode-string \1\e[1 q\e]12;orange\a\2
 
@@ -126,7 +124,6 @@
           # complete word, show possible compleetions if still ambiguous
           set show-all-if-ambiguous On
 
-          set completion-ignore-case on
 
           #security by preventing accidental execution of control characters in text, \e[200~ at the beginning and \e[201~ at the end
           set enable-bracketed-paste on # fix weird double indent?

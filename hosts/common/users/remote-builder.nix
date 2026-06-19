@@ -27,7 +27,7 @@
       trusted-users = [
         "remotebuild"
         "malu"
-      ];
+      ]; # have additional rights when connecting to nix daemon. specify additional binary caches, or to import unsigned NARs
       min-free = 10 * 1024 * 1024;
       max-free = 200 * 1024 * 1024;
       max-jobs = "auto";

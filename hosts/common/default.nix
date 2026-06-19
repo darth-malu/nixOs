@@ -195,10 +195,7 @@ nix.settings = {
     "@darth"
     "sumbi"
   ];
-  trusted-users = [ # have additional rights when connecting to nix daemon. specify additional binary caches, or to import unsigned NARs
-    "remotebuild"
-    # "@remotebuild"
-    "@wheel"
+  trusted-users = [ 
     "malu"
   ];
   fallback = true;

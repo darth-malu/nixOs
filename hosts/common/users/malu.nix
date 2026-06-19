@@ -28,7 +28,7 @@
       "openrazer"
     ]);
     packages = with pkgs; [
-      firefox
+      # firefox
       tree
     ];
     openssh.authorizedKeys.keys = [

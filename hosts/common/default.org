@@ -338,8 +338,11 @@ nix.settings = {
   trusted-users = [ # have additional rights when connecting to nix daemon. specify additional binary caches, or to import unsigned NARs
     "remotebuild"
     # "@remotebuild"
+    "@wheel"
     "malu"
   ];
+  fallback = true;
+  connect-timeout = 5;
   # extra-sandbox-paths = [ config.programs.ccache.cacheDir ]; # see if need really
   experimental-features = [ "nix-command" "flakes" ];
   substituters = [
@@ -386,7 +389,7 @@ https://heitorpb.github.io/bla/wonders-of-nix-remote-builders/
         sshKey = "/home/malu/.ssh/id_ed25519"; # path to remote key on client (tangier)
         hostName = "192.168.1.4"; # Replace by IP address, or add a ProxyCommand, see `man ssh_config` for full docs.
         protocol = "ssh-ng"; #ssh:: ssh-ng ( ssh next generation)
-        maxJobs = 8;
+        maxJobs = 3;         # 1::
         speedFactor = 2; # The relative speed of this builder. This is an arbitrary integer that indicates the speed of this builder, relative to other builders. Higher is faster.
         system = pkgs.stdenv.hostPlatform.system;
         supportedFeatures = [

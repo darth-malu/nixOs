@@ -8,7 +8,7 @@ pkgs.writeShellScriptBin "clr_backup" ''
 
     if [ -n "$files_to_delete" ]; then # -n: true if string > 0
       printf '%s\n%s\n' "Files to be deleted are::" "$files_to_delete"
-      read -r -p "Are you sure you want to remove these backups? (Y/n) \n" response
+      read -r -p "Are you sure you want to remove these backups? (Y/n) " response
 
       case "$response" in
         [yY]* | "") # match y/Yes/Yeah and blank RET"

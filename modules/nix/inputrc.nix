@@ -124,7 +124,6 @@
           # complete word, show possible compleetions if still ambiguous
           set show-all-if-ambiguous On
 
-
           #security by preventing accidental execution of control characters in text, \e[200~ at the beginning and \e[201~ at the end
           set enable-bracketed-paste on # fix weird double indent?
 

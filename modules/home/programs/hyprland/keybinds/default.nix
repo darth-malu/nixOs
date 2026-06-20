@@ -45,7 +45,7 @@ in
         ", Print, exec, grimblast --cursor --notify -e 2 copysave screen"
         # ", Scroll_Lock, exec, grimblast --cursor --notify copysave screen"
         "$sl, Print, exec, grimblast --cursor --notify -e 2 copy output"
-        "$al, Print, exec, sh -c 'grimblast save area - | satty --filename -'"
+        "SUPER, G, exec, sh -c 'grimblast save area - | satty --filename -'"
         "$cl, Print, exec, grimblast --cursor --notify -e 2 copy active"
 
       ];

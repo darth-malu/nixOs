@@ -131,6 +131,7 @@
             "discord"
             "stremio-linux-shell"
             "antigravity-cli"
+            "windows10-icons"
           ];
         permittedInsecurePackages = [
           "ventoy-1.1.12"

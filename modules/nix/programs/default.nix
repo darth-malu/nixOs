@@ -122,6 +122,7 @@
         # ungoogled-chromium
         vulkan-tools
         libva-utils
+        kdePackages.qt6ct
       ]
       ++ lib.optionals config.programs.hyprland.enable [
         hyprpicker

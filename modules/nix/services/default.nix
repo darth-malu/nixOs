@@ -5,5 +5,6 @@
     # ./jellyfin.nix
     ./postgresql.nix
     # ./jackett.nix
+    ./snapper.nix
   ];
 }

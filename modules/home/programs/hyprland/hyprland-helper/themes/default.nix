@@ -6,9 +6,6 @@
   ...
 }:
 
-# let
-#   gruvboxplus = import ../home/gruvbox-plus.nix { inherit pkgs;};
-# in
 lib.mkIf osConfig.programs.hyprland.enable {
   home.pointerCursor = {
     enable = true; # false::
@@ -24,13 +21,7 @@ lib.mkIf osConfig.programs.hyprland.enable {
     };
     name = "GoogleDot-Black";
     package = pkgs.google-cursor;
-    size =
-      if osConfig.networking.hostName == "carthage" then
-        24
-      else if osConfig.networking.hostName == "tangier" then
-        20
-      else
-        18;
+    size = if osConfig.networking.hostName == "carthage" then 24 else 20;
   };
 
   gtk = {
@@ -47,23 +38,28 @@ lib.mkIf osConfig.programs.hyprland.enable {
     };
 
     theme = {
-      # name = "Nightfox-Dark";
-      # package = pkgs.nightfox-gtk-theme;
+      name = "Nightfox-Dark";
+      package = pkgs.nightfox-gtk-theme;
       # name = "breeze-gtk";  package = pkgs.kdePackages.breeze-gtk;
-      name = "Yaru-Dark";
-      package = pkgs.yaru-theme;
+      # name = "Yaru-Dark";
+      # package = pkgs.yaru-theme;
       # name = "tokyonight-gtk-theme"; package = pkgs.Tokyonight-Moon;
     };
 
     iconTheme = {
       name = "Colloid-Dracula";
-      package = pkgs.colloid-icon-theme.override { schemeVariants = [ "dracula" ]; };
+      # package = pkgs.colloid-icon-theme.override { schemeVariants = [ "dracula" ]; };
+      package = pkgs.colloid-icon-theme.override {
+        schemeVariants = [ "gruvbox" ];
+        colorVariants = [ "purple" ];
+      };
       # name = "kora"; package = pkgs.kora-icon-theme;
       # name = "candy-icons"; package = pkgs.candy-icons;
       # name = "Papirus-Dark"; package = pkgs.papirus-icon-theme;
 
       # name = "gruvbox-plus-icons";  package = pkgs.gruvbox-plus-icons;
-      # name = "Windows10-icons"; package = pkgs.windows10-icons;
+      # name = "windows10-icons";
+      # package = pkgs.windows10-icons;
     };
 
     gtk2 = {
@@ -74,9 +70,7 @@ lib.mkIf osConfig.programs.hyprland.enable {
     };
 
     gtk3 = {
-      extraConfig = {
-        gtk-application-prefer-dark-theme = 1;
-      };
+      extraConfig.gtk-application-prefer-dark-theme = 1;
       # bookmarks = [ #FIXME error
       #   "file://home/malu/org"
       # ];
@@ -101,8 +95,7 @@ lib.mkIf osConfig.programs.hyprland.enable {
 
   qt = {
     enable = true;
-    platformTheme.name = "kde";
-    style.name = "breeze"; # "adwaita-dark";
+    platformTheme.name = "qt5ct"; # Use Qt settings from plasma (kde),
+    style.name = "adwaita-dark"; # breeze "adwaita-dark";
   };
-
 }

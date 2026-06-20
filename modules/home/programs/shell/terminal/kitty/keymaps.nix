@@ -36,16 +36,16 @@
     "kitty_mod+t" = "move_window_to_top";
     # "kitty_mod+r" = "start_resizing_window"; #NOTE does not work
 
-    "ctrl+left" = "resize_window narrower 5";
-    "ctrl+right" = "resize_window wider 5";
-    "ctrl+up" = "resize_window taller 5";
-    "ctrl+down" = "resize_window shorter 5";
-    "ctrl+Return" = "resize_window reset";
+    "ctrl+alt+left" = "resize_window narrower 5";
+    "ctrl+alt+right" = "resize_window wider 5";
+    "ctrl+alt+up" = "resize_window taller 5";
+    "ctrl+alt+down" = "resize_window shorter 5";
+    "ctrl+alt+Return" = "resize_window reset";
 
-    "ctrl+h" = "neighboring_window left";
-    "ctrl+l" = "neighboring_window right";
-    "ctrl+k" = "neighboring_window up";
-    "ctrl+j" = "neighboring_window down";
+    "ctrl+left" = "neighboring_window left";
+    "ctrl+right" = "neighboring_window right";
+    "ctrl+up" = "neighboring_window up";
+    "ctrl+down" = "neighboring_window down";
 
     "ctrl+space" = "next_window";
 

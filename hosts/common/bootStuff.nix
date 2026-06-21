@@ -36,7 +36,9 @@
 
   boot.plymouth.enable = true;
 
-  boot.extraModulePackages = with config.boot.kernelPackages; [ broadcom_sta ];
+  boot.extraModulePackages = lib.mkIf (config.networking.hostName == "tangier") [
+    config.boot.kernelPackages.broadcom_sta
+  ];
 
   # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackges;
 
@@ -62,22 +64,20 @@
     if config.networking.hostName == "carthage" then
       [
         "nvme"
-        "xhci_pci"
-        "ahci"
         "usbhid"
-        "usb_storage"
-        "sd_mod"
       ]
     else
       [
-        "xhci_pci" # usb 3.0
         "ehci_pci" # usb 2.0
-        "ahci" # sata
+      ]
+      ++ [
+        "btrfs"
+        "sr_mod" # cd drive
         "usb_storage" # usb mass storage devices - hdd, flash
         "sd_mod" # scsi device and some sata
-        "sr_mod" # cd drive
         "dm_crypt"
-        "btrfs"
+        "ahci" # sata
+        "xhci_pci" # usb 3.0
       ];
   boot.initrd.systemd.network = {
     enable = false;

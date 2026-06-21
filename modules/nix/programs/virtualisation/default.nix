@@ -9,14 +9,11 @@
     ./tailscale.nix
   ];
 
-  qemu.enable = true;
-  docker.enable = true;
+  qemu.enable = false;
+  docker.enable = false;
   n8n.enable = false;
 
   virtualisation.waydroid.enable = false;
-
-  # For VBOX
-  users.extraGroups.vboxusers.members = [ "malu" ];
 
   environment.systemPackages = [
     pkgs.genymotion

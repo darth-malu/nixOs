@@ -39,8 +39,7 @@
       };
       power-profiles-daemon.enable = lib.mkIf (config.networking.hostName == "tangier") true;
       upower.enable = lib.mkIf (config.networking.hostName == "tangier") true;
-      # blueman.enable = lib.mkIf (!config.kde.enable) true;
-      # seatd.enable = lib.mkIf (!config.kde.enable) true; # NOTE: Added as a fix...DOES NOT WORK LOL
+      blueman.enable = lib.mkIf (!config.kde.enable) true;
     };
 
     environment.loginShellInit = ''

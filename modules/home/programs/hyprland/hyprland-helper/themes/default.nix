@@ -50,7 +50,7 @@ lib.mkIf osConfig.programs.hyprland.enable {
       name = "Colloid-Dracula";
       # package = pkgs.colloid-icon-theme.override { schemeVariants = [ "dracula" ]; };
       package = pkgs.colloid-icon-theme.override {
-        schemeVariants = [ "gruvbox" ];
+        schemeVariants = [ "dracula" ];
         # colorVariants = [ "purple" ];
       };
       # name = "kora"; package = pkgs.kora-icon-theme;
@@ -99,7 +99,7 @@ lib.mkIf osConfig.programs.hyprland.enable {
     style.name = "adwaita-dark"; # breeze "adwaita-dark";
   };
 
-  # home.packages = with pkgs; [
-  #   kdePackages.qt6ct
-  # ];
+  home.packages = with pkgs; [
+    kdePackages.qt6ct
+  ];
 }

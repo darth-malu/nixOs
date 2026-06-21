@@ -73,12 +73,12 @@
     #   inputs.hyprland.follows = "hyprland";
     # };
 
-    # Hyprspace = {
-    #   url = "github:KZDKM/Hyprspace";
+    Hyprspace = {
+      url = "github:KZDKM/Hyprspace";
 
-    #   # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
-    #   inputs.hyprland.follows = "hyprland";
-    # };
+      # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
+      inputs.hyprland.follows = "hyprland";
+    };
 
     nyaa = {
       url = "github:Beastwick18/nyaa";
@@ -101,7 +101,7 @@
 
   outputs =
     inputs@{
-      nixpkgs-stable,
+      # nixpkgs-stable,
       nixpkgs,
       disko,
       ...
@@ -149,10 +149,10 @@
         inherit system;
         inherit config;
       };
-      pkgs-stable = import nixpkgs-stable {
-        inherit system;
-        inherit config;
-      };
+      # pkgs-stable = import nixpkgs-stable {
+      #   inherit system;
+      #   inherit config;
+      # };
       unifiedModules = [
         disko.nixosModules.disko
         ./hosts/common/disko-BTRFS-LUKS.nix

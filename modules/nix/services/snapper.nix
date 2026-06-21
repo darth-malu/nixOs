@@ -11,6 +11,12 @@
         TIMELINE_CREATE = true;
         TIMELINE_CLEANUP = true;
       };
+      nix = {
+        SUBVOLUME = "/nix";
+        ALLOW_USERS = [ "malu" ];
+        TIMELINE_CREATE = true;
+        TIMELINE_CLEANUP = true;
+      };
     };
   };
 }

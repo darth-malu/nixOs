@@ -8,4 +8,6 @@
       # addNetworkInterface = true; # true:: -vboxnet0
     };
   };
+
+  users.extraGroups.vboxusers.members = [ "malu" ];
 }

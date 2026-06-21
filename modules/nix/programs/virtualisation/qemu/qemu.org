@@ -24,7 +24,7 @@
     virtualisation.spiceUSBRedirection.enable = true;
 
     users.groups.libvirtd.members = ["malu"];
-  # users.users.<myuser>.extraGroups = [ "libvirtd" ];
+    users.users.malu.extraGroups = [ "libvirtd" ];
 
 #+end_src
 

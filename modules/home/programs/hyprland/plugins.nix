@@ -6,8 +6,8 @@
     inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.xtra-dispatchers
     # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.borders-plus-plus
 
-    inputs.hyprland-easymotion.packages.${pkgs.system}.hyprland-easymotion
-    # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+    inputs.hyprland-easymotion.packages.${pkgs.stdenv.hostPlatform.system}.hyprland-easymotion
+    inputs.Hyprspace.packages.${pkgs.stdenv.hostPlatform.system}.Hyprspace
     # "/absolute/path/to/plugin.so"
   ];
 }

@@ -2,7 +2,7 @@
   services.hyprsunset = {
     enable = true;
     extraArgs = [ "--verbose" ]; # ---identity
-    systemdTarget = "hyprland-session.target";
+    # systemdTarget = "hyprland-session.target";
     settings = {
       max-gamma = 150; # 100::
       profile = [

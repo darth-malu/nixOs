@@ -7,7 +7,7 @@
 {
   services = {
     ratbagd.enable = false;
-    hardware.openrgb.enable = false;
+    hardware.openrgb.enable = true;
   };
 
   hardware = {

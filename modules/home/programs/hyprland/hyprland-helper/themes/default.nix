@@ -95,8 +95,8 @@ lib.mkIf osConfig.programs.hyprland.enable {
 
   qt = {
     enable = true;
-    platformTheme.name = "qt5ct"; # Use Qt settings from plasma (kde),
-    style.name = "adwaita-dark"; # breeze "adwaita-dark";
+    platformTheme.name = "kde"; # Use Qt settings from plasma (kde),
+    style.name = "breeze"; # breeze "adwaita-dark";
   };
 
   home.packages = with pkgs; [

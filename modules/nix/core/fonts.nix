@@ -15,7 +15,7 @@
         quicksand
         iosevka-comfy.comfy
         ibm-plex
-        inconsolata
+        # inconsolata
         lato # unneeded?
         atkinson-hyperlegible-mono
         # cascadia-code

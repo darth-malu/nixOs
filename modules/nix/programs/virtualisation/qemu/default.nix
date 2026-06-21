@@ -1,11 +1,16 @@
-{ lib, pkgs, config, ...}:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 
 {
-  options.qemuNix = {
+  options.qemu = {
     enable = lib.mkEnableOption "homeHypr";
   };
 
-  config = lib.mkIf config.qemuNix.enable {
+  config = lib.mkIf config.qemu.enable {
     environment.systemPackages = with pkgs; [
       qemu
       virtiofsd
@@ -18,10 +23,10 @@
     programs.virt-manager.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
 
-    users.groups.libvirtd.members = ["malu"];
+    users.groups.libvirtd.members = [ "malu" ];
     users.users.malu.extraGroups = [ "libvirtd" ];
 
     systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
 
-    };
+  };
 }

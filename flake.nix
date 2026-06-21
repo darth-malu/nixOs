@@ -162,7 +162,7 @@
             verbose = true;
             backupFileExtension = "home_bak";
             useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
-            useUserPackages = false; # if false ... uses nix-profile for home apps
+            useUserPackages = true; # if false ... uses nix-profile for home apps
             extraSpecialArgs = { inherit inputs pkgs system; };
             users.malu = import ./modules/home/home.nix;
           };

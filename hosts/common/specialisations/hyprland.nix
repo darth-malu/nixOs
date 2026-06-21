@@ -26,7 +26,7 @@
     programs.hyprland = {
       # required even with homeManager for system functions -> xdg, session files
       enable = true; # also enables XDPH
-      # withUWSM = true; # NOTE disabled till uwsm variables fixed i guess
+      withUWSM = true; # NOTE disabled till uwsm variables fixed i guess
       # xwayland.enable = true; # true::
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; # set package + portal if using flake
       portalPackage =
@@ -39,15 +39,14 @@
       };
       power-profiles-daemon.enable = lib.mkIf (config.networking.hostName == "tangier") true;
       upower.enable = lib.mkIf (config.networking.hostName == "tangier") true;
-      blueman.enable = lib.mkIf (!config.kde.enable) true;
+      # blueman.enable = lib.mkIf (!config.kde.enable) true;
       # seatd.enable = lib.mkIf (!config.kde.enable) true; # NOTE: Added as a fix...DOES NOT WORK LOL
     };
 
-    #  if uwsm check may-start; then
-    #    start-hyprland
-    # fi
     environment.loginShellInit = ''
-      start-hyprland
+       if uwsm check may-start; then
+         start-hyprland
+      fi
     '';
   };
 }

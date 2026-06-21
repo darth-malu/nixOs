@@ -99,7 +99,7 @@ lib.mkIf osConfig.programs.hyprland.enable {
     style.name = "adwaita-dark"; # breeze "adwaita-dark";
   };
 
-  home.packages = with pkgs; [
-    kdePackages.qt6ct
-  ];
+  # home.packages = with pkgs; [
+  #   kdePackages.qt6ct
+  # ];
 }

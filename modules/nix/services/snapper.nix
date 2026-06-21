@@ -1,6 +1,11 @@
+{ pkgs, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    snapper-gui
+    snapper
+  ];
   services.snapper = {
-    snapshotInterval = "daily";
+    snapshotInterval = "hourly";
     snapshotRootOnBoot = true;
     cleanupInterval = "1d";
     persistentTimer = true;

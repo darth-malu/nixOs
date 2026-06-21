@@ -60,6 +60,8 @@
         curl
         # dash
         procs
+        # stacer
+        fio
         killall
         nix-prefetch-git # nix-prefetch-scripts #includes git prefetch
         pipewire
@@ -71,7 +73,7 @@
         pciutils # lspci
         util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock, more**
         kitty
-        emacs
+        # emacs
         # bc
         wl-clipboard # rust wl-clipboard better?
         dotool # test if working
@@ -121,6 +123,7 @@
         # ungoogled-chromium
         vulkan-tools
         libva-utils
+        zenith
       ]
       ++ lib.optionals config.programs.hyprland.enable [
         hyprpicker

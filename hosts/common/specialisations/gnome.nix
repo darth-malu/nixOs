@@ -26,6 +26,8 @@
 
     services.udev.packages = [ pkgs.gnome-settings-daemon ];
 
+    programs.dconf.enable = true;
+
     environment = {
       systemPackages = [ pkgs.gnomeExtensions.appindicator ];
       gnome.excludePackages = with pkgs; [

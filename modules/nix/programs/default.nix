@@ -115,14 +115,12 @@
         whatsapp-electron
         ventoy-full # usb imager #woeusb
         nautilus
-        libvdpau
         xdg-utils
         ffmpeg
         google-chrome
         # ungoogled-chromium
         vulkan-tools
         libva-utils
-        kdePackages.qt6ct
       ]
       ++ lib.optionals config.programs.hyprland.enable [
         hyprpicker
@@ -130,14 +128,12 @@
         libappindicator-gtk3 # needed for discord icon
         # libsecret # secrets lul
         grimblast
-        # kdePackages.qt6ct
         # file-roller
         # inputs.hyprswitch.packages.x86_64-linux.default
         # yelp
         slurp
         sushi
         viewnior
-        kdePackages.qt6ct
         kdePackages.kalk
         kdePackages.dolphin
         hyprsysteminfo

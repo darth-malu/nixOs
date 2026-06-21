@@ -13,6 +13,10 @@
       source = ./wps;
       # recursive = true;
     };
+    ".icons/theme_GoogleDot-Violet" = {
+      source = /home/malu/Shibuya/assets/hyprcursor/theme_GoogleDot-Violet;
+      recursive = true;
+    };
   };
 }
 # xdg.dataFile = {

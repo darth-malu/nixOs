@@ -51,7 +51,7 @@ lib.mkIf osConfig.programs.hyprland.enable {
       # package = pkgs.colloid-icon-theme.override { schemeVariants = [ "dracula" ]; };
       package = pkgs.colloid-icon-theme.override {
         schemeVariants = [ "gruvbox" ];
-        colorVariants = [ "purple" ];
+        # colorVariants = [ "purple" ];
       };
       # name = "kora"; package = pkgs.kora-icon-theme;
       # name = "candy-icons"; package = pkgs.candy-icons;
@@ -98,4 +98,8 @@ lib.mkIf osConfig.programs.hyprland.enable {
     platformTheme.name = "qt5ct"; # Use Qt settings from plasma (kde),
     style.name = "adwaita-dark"; # breeze "adwaita-dark";
   };
+
+  home.packages = with pkgs; [
+    kdePackages.qt6ct
+  ];
 }

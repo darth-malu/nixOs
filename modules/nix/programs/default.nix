@@ -6,13 +6,14 @@
 }:
 {
   imports = [
-    ./gnupg.nix
-    ./less.nix
     # ./nextcloud.nix
     # ./sync-thing
-    ./virtualisation
-    ./gaming
     ./android
+    ./gaming
+    ./gnupg.nix
+    ./less.nix
+    ./localsend.nix
+    ./virtualisation
   ];
 
   # nextcloud.enable = true;
@@ -124,6 +125,7 @@
         vulkan-tools
         libva-utils
         zenith
+        # localsend
       ]
       ++ lib.optionals config.programs.hyprland.enable [
         hyprpicker

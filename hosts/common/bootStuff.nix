@@ -22,7 +22,6 @@
   #   "fs.inotify.max_user_watches" = 524288; # NOTE: no effect
   # };
 
-  # boot.kernelPackages = pkgs.linuxPackages_7_0;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.initrd.systemd.enable = true;
@@ -36,7 +35,8 @@
 
   boot.plymouth.enable = true;
 
-  boot.extraModulePackages = lib.mkIf (config.networking.hostName == "tangier") [
+  # boot.extraModulePackages = lib.mkIf (config.networking.hostName == "tangier") [
+  boot.extraModulePackages = [
     config.boot.kernelPackages.broadcom_sta
   ];
 
@@ -52,14 +52,15 @@
     efi.canTouchEfiVariables = true;
     timeout = 2;
   };
-  boot.initrd.kernelModules =
-    if config.networking.hostName == "carthage" then
-      [
-        # "dm-snapshot"               # lvm
-        # "amdgpu"
-      ]
-    else
-      [ ];
+
+  boot.initrd.kernelModules = [
+    # "wl" # NOTE: see difference without wl
+  ]
+  ++ lib.optionals (config.networking.hostName == "carthage") [
+    # "dm-snapshot"               # lvm
+    # "amdgpu"
+  ];
+
   boot.initrd.availableKernelModules =
     if config.networking.hostName == "carthage" then
       [
@@ -71,18 +72,20 @@
         "ehci_pci" # usb 2.0
       ]
       ++ [
+        "ahci" # sata
         "btrfs"
+        "dm_crypt"
+        "sd_mod" # scsi device and some sata
         "sr_mod" # cd drive
         "usb_storage" # usb mass storage devices - hdd, flash
-        "sd_mod" # scsi device and some sata
-        "dm_crypt"
-        "ahci" # sata
         "xhci_pci" # usb 3.0
       ];
+
   boot.initrd.systemd.network = {
     enable = false;
     wait-online.enable = false; # since using networkmanager not networkd;
   };
+
   boot.kernelModules =
     lib.optionals (config.networking.hostName == "tangier") [
       "kvm-intel"
@@ -110,5 +113,4 @@
   #   options thinkpad_acpi  fan_control=1                 # example #1 kernel module parameter
   #   options usbcore        blinkenlights=1               # example #2 kernel module parameter
   # '';
-
 }

@@ -35,8 +35,7 @@
 
   boot.plymouth.enable = true;
 
-  # boot.extraModulePackages = lib.mkIf (config.networking.hostName == "tangier") [
-  boot.extraModulePackages = [
+  boot.extraModulePackages = lib.mkIf (config.networking.hostName == "carthage") [
     config.boot.kernelPackages.broadcom_sta
   ];
 

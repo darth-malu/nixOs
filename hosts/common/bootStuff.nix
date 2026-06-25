@@ -91,9 +91,7 @@
     ]
     ++ lib.optionals (config.networking.hostName == "carthage") [
       "kvm-amd"
-    ]
-    ++ [
-      "wl" # broadcomm closed source
+      # "wl" # broadcomm closed source
     ];
 
   # boot.supportedFilesystems = lib.mkForce [ "btrfs" ];

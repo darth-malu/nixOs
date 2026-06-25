@@ -36,7 +36,7 @@
   boot.plymouth.enable = true;
 
   boot.extraModulePackages = lib.mkIf (config.networking.hostName == "carthage") [
-    config.boot.kernelPackages.broadcom_sta
+    # config.boot.kernelPackages.broadcom_sta # FIXME: broken
   ];
 
   # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackges;

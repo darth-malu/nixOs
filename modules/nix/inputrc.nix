@@ -40,14 +40,13 @@
 
           # VIM
           # 1 - begin , 2 -end
-          set vi-ins-mode-string \1\e[5 q\e]12;green\a\2
-          set vi-cmd-mode-string \1\e[1 q\e]12;orange\a\2
-
-          set editing-mode vi
-          set show-mode-in-prompt on
+          # set vi-ins-mode-string \1\e[5 q\e]12;green\a\2
+          # set vi-cmd-mode-string \1\e[1 q\e]12;orange\a\2
+          # set editing-mode vi
 
           $if mode=vi
             set keymap vi-insert 
+            set show-mode-in-prompt on
             # Movement
             "\C-a": beginning-of-line      # Ctrl + A
             "\C-e": end-of-line            # Ctrl + E

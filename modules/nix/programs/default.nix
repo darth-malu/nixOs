@@ -82,7 +82,8 @@
         mpc
         discord
         pv
-        ff2mpv-rust
+        # ff2mpv-rust
+        ff2mpv
         # gsmartcontrol
         # iotop #basic
         # perfomance monitoring
@@ -121,11 +122,13 @@
         xdg-utils
         ffmpeg
         google-chrome
+        # firefox
         # ungoogled-chromium
         vulkan-tools
         libva-utils
         zenith
-        # localsend
+        powershell
+        localsend
       ]
       ++ lib.optionals config.programs.hyprland.enable [
         hyprpicker

@@ -4,9 +4,9 @@
     ./qemu
     ./n8n.nix
     ./docker.nix
-    ./vmware.nix
+    # ./vmware.nix
     # ./virtualbox.nix
-    ./tailscale.nix
+    # ./tailscale.nix
   ];
 
   qemu.enable = false;

@@ -31,7 +31,7 @@
               };
             };
             luks = {
-              size = "100%";
+              size = "800G";
               content = {
                 type = "luks";
                 name = "GoodLuks";
@@ -88,7 +88,7 @@
                         "nodatacow"
                         "compress=no"
                       ];
-                      swap.swapfile.size = "16G";
+                      swap.swapfile.size = "32G";
                     };
                   };
                 };

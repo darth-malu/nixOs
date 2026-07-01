@@ -14,7 +14,7 @@
     # Launch New Windows
     "ctrl+enter" = "new_window_with_cwd";
     # "ctrl+alt+n" = "launch --cwd=current --type=os-window";
-    "ctrl+n" = "new_os_window_with_cwd";
+    "ctrl+alt+n" = "new_os_window_with_cwd";
 
     #close windows
     "kitty_mod+q" = "close_other_windows_in_tab";

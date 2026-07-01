@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     disko = {
       url = "github:nix-community/disko/latest";
@@ -132,6 +132,7 @@
             "stremio-linux-shell"
             "antigravity-cli"
             "windows10-icons"
+            "vmware-workstation"
           ];
         permittedInsecurePackages = [
           "ventoy-1.1.12"
@@ -149,10 +150,14 @@
         inherit system;
         inherit config;
       };
-      # pkgs-stable = import nixpkgs-stable {
-      #   inherit system;
-      #   inherit config;
-      # };
+
+      # pkgs-stable = inputs.nixpkgs-stable.legacyPackages.${system};
+
+      pkgs-stable = import inputs.nixpkgs-stable {
+        inherit system;
+        inherit config;
+      };
+
       unifiedModules = [
         disko.nixosModules.disko
         ./hosts/common/disko-BTRFS-LUKS.nix
@@ -163,7 +168,14 @@
             backupFileExtension = "home_bak";
             useGlobalPkgs = true; # if true dont use private instance of pkgs which is the default
             useUserPackages = true; # if false ... uses nix-profile for home apps
-            extraSpecialArgs = { inherit inputs pkgs system; };
+            extraSpecialArgs = {
+              inherit
+                inputs
+                pkgs-stable
+                pkgs
+                system
+                ;
+            };
             users.malu = import ./modules/home/home.nix;
           };
         }
@@ -173,7 +185,7 @@
     {
       nixosConfigurations.carthage = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs system; };
+        specialArgs = { inherit inputs pkgs-stable system; };
         modules = [
           ./hosts/carthage
         ]
@@ -181,7 +193,7 @@
       };
       nixosConfigurations.tangier = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs system; };
+        specialArgs = { inherit inputs pkgs-stable system; };
         modules = [
           ./hosts/tangier
           # nixvim.homeModules.nixvim

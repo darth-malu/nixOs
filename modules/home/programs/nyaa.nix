@@ -5,7 +5,7 @@
   ];
   #https://github.com/Beastwick18/nyaa/wiki/General-Configuration
   programs.nyaa = {
-    enable = true;
+    enable = false;
     default_theme = "Gruvbox"; # Dracula, Gruvbox, Catppuccin Macchiato, Default - also user themes FIXME: theme does not exist
     # default_source = "Nyaa"; # Nyaa:: , TorrentGalaxy, Sukebei
     download_client = "qBittorrent";

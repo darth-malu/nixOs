@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-
   virtualisation.vmware = {
     guest.enable = true;
     host = {

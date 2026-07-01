@@ -114,7 +114,7 @@
       # libreoffice-still
       onlyoffice-desktopeditors
       wordbook
-      wpsoffice
+      # wpsoffice
     ]
     ++ [
       # CreativeSPACE 📽

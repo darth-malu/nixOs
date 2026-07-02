@@ -57,6 +57,7 @@
         app2unit
         #cpufrequtils
         lshw
+        e2fsprogs # chattr etc
         efibootmgr
         curl
         # dash

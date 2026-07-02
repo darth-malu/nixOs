@@ -49,6 +49,14 @@
 
   hardware.usbStorage.manageShutdown = true; # USB storage graceful power off
 
+  services.btrfs = {
+    autoScrub = {
+      enable = true;
+      interval = "weekly";
+      fileSystems = [ "/" ];
+    };
+  };
+
   # services.zfs = {
   #   autoSnapshot.enable = true; # TODO: see sanoid in man configuration.nix
   #   autoScrub.enable = true;

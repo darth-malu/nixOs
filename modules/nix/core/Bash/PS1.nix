@@ -1,3 +1,4 @@
+# TODO: make git status
 ''
   exitstatus() {
       local stat="$?"

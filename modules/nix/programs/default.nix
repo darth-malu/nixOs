@@ -111,7 +111,11 @@
         pciutils # lspci
         usbutils # lsusb, usb-devices, usb-view(optional gui)
         util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
-        # psmisc
+        xdg-utils
+        psmisc # fuser,killall?
+        testdisk
+        testdisk-qt
+        extundelete
         ripgrep-all
         dotool
         httrack
@@ -120,7 +124,6 @@
         whatsapp-electron
         ventoy-full # usb imager #woeusb
         nautilus
-        xdg-utils
         ffmpeg
         google-chrome
         # firefox

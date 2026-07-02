@@ -1,4 +1,4 @@
-{ osConfig, pkgs, ... }:
+{ osConfig, ... }:
 {
   programs.delta = {
     enable = true;
@@ -27,25 +27,19 @@
   };
 
   programs.git = {
+    lfs.enable = true;
     enable = true;
-    lfs = {
-      enable = true;
-    };
     settings = {
       init.defaultBranch = "main";
       push.autoSetupRemote = true; # does --set-upstream origin to current branch
+      settings.gpg.format = "ssh";
       signing = {
         key =
           if osConfig.networking.hostName == "tangier" then
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGrwiQoWlBZ5OCuw8pF2CWM1iJjI4pW5FZvq5b5RktOH Tangier"
           else
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQMlSKPdJ2PxIxxCI5CMCNHmrZ7GvuwGfdow9CoZoqx Carthage";
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIId3seRsbwLhySTSeLqDFPbY33OcFqLoASSHdW2iNQ2w carthage";
         signByDefault = true;
-      };
-      settings = {
-        gpg = {
-          format = "ssh";
-        };
       };
       user = {
         name = "darth-malu";

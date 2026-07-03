@@ -29,7 +29,8 @@
       settings = {
         # https://github.com/FeralInteractive/gamemode/blob/master/example/gamemode.ini
         general = {
-          renice = 10; # 0(no change)::0-20 - user must be in gamemode group
+          # renice = 10; # 0(no change)::0-20 - user must be in gamemode group
+          # NOTE: conflicting: 0-7 (highests priortiy -0)
         };
         # Warning: GPU optimisations have the potential to damage hardware
         # gpu = {
@@ -51,34 +52,24 @@
       capSysNice = true; # Add cap_sys_nice capability to the GameScope binary so that it may renice itself.
     };
 
-    environment.systemPackages =
-      with pkgs;
-      [
-        # Trying gamescope recording
-        antimicrox
-        # bottles
-        (heroic.override {
-          extraPkgs =
-            pkgs': with pkgs'; [
-              gamemode
-              gamescope
-            ];
-        })
-        protonup-ng
-        # protonup-rs
-        # TODO see if wineWow64 needed or they are installed as deps where required
-        # wineWowPackages.full # support both 32-bit and 64-bit applications - stable, full, waylandFull
-        # pkgs.wineWow64Packages.wayland
-        # winetricks
-      ]
-      ++ (
-        if config.networking.hostName == "carthage" then
-          [
-            amdgpu_top
-          ]
-        else
-          [ ]
-      );
+    environment.systemPackages = with pkgs; [
+      # Trying gamescope recording
+      antimicrox
+      # bottles
+      (heroic.override {
+        extraPkgs =
+          pkgs': with pkgs'; [
+            gamemode
+            gamescope
+          ];
+      })
+      protonup-ng
+      # protonup-rs
+      # TODO see if wineWow64 needed or they are installed as deps where required
+      # wineWowPackages.full # support both 32-bit and 64-bit applications - stable, full, waylandFull
+      # pkgs.wineWow64Packages.wayland
+      # winetricks
+    ];
 
     hardware.xone.enable = false; # support for the xone driver for Xbox One and Xbox Series X|S accessories.
     # xpad kernel module

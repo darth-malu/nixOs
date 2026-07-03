@@ -14,7 +14,7 @@
 
   hardware.amdgpu = {
     initrd.enable = true; # # early userspace, fix low res in boot scrn
-    overdrive.enable = false; # sets amd.ppfeaturemask=0xffffffff; from default of 0x
+    overdrive.enable = true; # sets amd.ppfeaturemask=0xffffffff; from default of 0x
     opencl.enable = true; # OpenCL ROCM runtime library.(rocmPackages.clr + rocmPackages.clr.icd)
   };
 

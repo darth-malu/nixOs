@@ -1,6 +1,7 @@
 {
   osConfig,
   pkgs,
+  pkgs-stable,
   inputs,
   lib,
   ...
@@ -113,7 +114,7 @@
       # libreoffice-qt-still
       # libreoffice-still
       onlyoffice-desktopeditors
-      wordbook
+      # wordbook
       # wpsoffice
     ]
     ++ [
@@ -127,7 +128,7 @@
       kdePackages.kdenlive
       # figma-linux
       # figma-agent  #NOTE listens on 127.0.0.1:44950
-      # davinci-resolve
+      pkgs-stable.davinci-resolve
       exiftool
     ];
 }

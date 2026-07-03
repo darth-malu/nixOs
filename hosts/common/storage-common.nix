@@ -5,7 +5,7 @@
   swapDevices = [
     {
       device = "/.swapvol/swapfile";
-      size = if config.networking.hostName == "tangier" then 24 * 1024 else 32 * 1024; # in MB
+      size = if config.networking.hostName == "tangier" then 16 * 1024 else 32 * 1024; # in MB
       options = [ "discard" ];
     }
   ];
@@ -33,6 +33,16 @@
             "nofail"
             # "x-systemd.mount-timeout=30"
             # "x-systemd.idle-timeout=20min"
+          ];
+        };
+
+        "/media/Yuri" = {
+          device = "/dev/disk/by-uuid/07b5529b-889a-4567-ba75-bbc738c23219";
+          fsType = "ext4";
+          options = [
+            "users"
+            "defaults"
+            "nofail"
           ];
         };
       }

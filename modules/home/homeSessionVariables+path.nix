@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  osConfig,
+  config,
+  lib,
+  ...
+}:
 {
   /*
     If you need to reference another session variable (even if it is declared by using other options like ), then do so inside Nix instead. The above example then becomes
@@ -31,13 +36,19 @@
   home.sessionPath = [
     # Prepend to $PATH in a double-quoted context
     "${config.xdg.configHome}/emacs/bin"
-    "${config.home.homeDirectory}/Development/Core-Utils/bash/Scripts"
+    "/home/malu/.emacs.d"
+
+    # "${config.home.homeDirectory}/Development/Core-Utils/bash/Scripts"
+
     "/home/malu/.cache/.bun/bin"
     "/home/malu/.bun/bin"
   ];
 
   xdg.configFile = {
-    "uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    "uwsm/env" = {
+      enable = lib.mkIf osConfig.programs.hyprland.withUWSM true;
+      source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    };
     "mimeapps.list".force = true;
   };
 }

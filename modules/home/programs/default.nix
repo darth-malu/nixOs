@@ -5,10 +5,8 @@
     ./Gaming
     ./git.nix
     ./gpg.nix
-    ./matrix.nix
     ./mpv
     ./nyaa.nix
-    ./opencode.nix
     ./pkgs.nix
     ./qutebrowser
     ./shell

@@ -32,6 +32,12 @@
 
     pandoc.enable = true;
 
+    programs.element-desktop = {
+      enable = true;
+      # profiles
+      # settings = { };
+    };
+
     ripgrep = {
       enable = true;
       arguments = [
@@ -85,7 +91,7 @@
     };
 
     antigravity-cli = {
-      enable = true;
+      enable = false;
       defaultModel = "gemini-2.5-flash";
       # context
       settings = {
@@ -96,4 +102,10 @@
       };
     };
   };
+
+  programs.opencode = {
+    enable = true;
+    # TODO: add more options + settings
+  };
+
 }

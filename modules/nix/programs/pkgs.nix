@@ -1,13 +1,5 @@
+{ pkgs, lib, ... }:
 {
-  pkgs,
-  config,
-  lib,
-  ...
-}:
-{
-  imports = [
-    ./developerPkgs.nix
-  ];
   # List of packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages =
     with pkgs;
@@ -186,53 +178,53 @@
       qbittorrent
       gpu-screen-recorder-gtk
       alarm-clock-applet
-      spotify
-      spotube
-      stremio-linux-shell
-      sway-audio-idle-inhibit
-    ]
-    ++ [
-      # komikku # broken
-      mangal
-      ani-cli
-      # kazumi # watch anime online with danmaku support
-      # miru # issue launching -kde
-      #syncyomi - sync tachiyomi progress across devices
-    ]
-    ++ [
-      # coppwr
-      # helvum
-      # kdePackages.mlt
-      # ffmpeg-full
-      handbrake # FIXME lag on open
-      # obs-cli
-      obs-studio
-    ]
-    ++ [
-      bluemail
-      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-    ]
-    ++ [
-      # Productivity Tools
-      # libreoffice-qt-still
-      # libreoffice-still
-      onlyoffice-desktopeditors
-      # wordbook
-      # wpsoffice
-    ]
-    ++ [
-      # CreativeSPACE 📽
-      blender
-      darktable # Artist
-      digikam # Librarian
-      gimp
-      inkscape-with-extensions
-      krita
-      kdePackages.kdenlive
-      # figma-linux
-      # figma-agent  #NOTE listens on 127.0.0.1:44950
-      davinci-resolve
-      exiftool
-    ];
-  ;
+        spotify
+        spotube
+        stremio-linux-shell
+        sway-audio-idle-inhibit
+      ]
+      ++ [
+        # komikku # broken
+        mangal
+        ani-cli
+        # kazumi # watch anime online with danmaku support
+        # miru # issue launching -kde
+        #syncyomi - sync tachiyomi progress across devices
+      ]
+      ++ [
+        # coppwr
+        # helvum
+        # kdePackages.mlt
+        # ffmpeg-full
+        handbrake # FIXME lag on open
+        # obs-cli
+        obs-studio
+      ]
+      ++ [
+        bluemail
+        inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+      ]
+      ++ [
+        # Productivity Tools
+        # libreoffice-qt-still
+        # libreoffice-still
+        onlyoffice-desktopeditors
+        # wordbook
+        # wpsoffice
+      ]
+      ++ [
+        # CreativeSPACE 📽
+        blender
+        darktable # Artist
+        digikam # Librarian
+        gimp
+        inkscape-with-extensions
+        krita
+        kdePackages.kdenlive
+        # figma-linux
+        # figma-agent  #NOTE listens on 127.0.0.1:44950
+        davinci-resolve
+        exiftool
+      ];
+    
 }

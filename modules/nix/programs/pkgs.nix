@@ -231,5 +231,4 @@
       # davinci-resolve
       exiftool
     ];
-
 }

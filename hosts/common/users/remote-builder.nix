@@ -5,66 +5,77 @@
   ...
 }:
 
+let
+  isBuilder = config.networking.hostName == "carthage";
+  isClient = config.networking.hostName != "carthage";
+in
 {
   # client will use this account on the remote
   # ENable distributed builds on client
-  users.users.remotebuild = lib.mkIf (config.networking.hostName == "carthage") {
-    # users.users.remotebuild = {
+  # ==========================================
+  # BUILDER CONFIGURATION (Carthage)
+  # ==========================================
+
+  # The client will log into this account on Carthage to run builds
+  users.users.remotebuild = lib.mkIf isBuilder {
     isNormalUser = true;
     createHome = false;
     group = "remotebuild";
 
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGrwiQoWlBZ5OCuw8pF2CWM1iJjI4pW5FZvq5b5RktOH Tangier"
-    ]; # tangier/remote machine ssh key
+    ];
   };
 
-  users.groups.remotebuild = { };
+  users.groups.remotebuild = lib.mkIf isBuilder { };
 
-  nix =
-    lib.mkIf (config.networking.hostName != "carthage") {
-      distributedBuilds = true;
+  # ==========================================
+  # CLIENT CONFIGURATION (Tangier / Others)
+  # ==========================================
 
-      buildMachines = [
-        {
-          sshUser = "remotebuild";
-          sshKey = "/home/malu/.ssh/id_ed25519";
-          hostName = "192.168.1.4";
-          protocol = "ssh-ng";
-          maxJobs = 3;
-          speedFactor = 2;
-          # system = "x86_64-linux";
-          system = pkgs.stdenv.hostPlatform.system;
-          supportedFeatures = [
-            "nixos-test"
-            "benchmark"
-            "big-parallel"
-          ];
-          mandatoryFeatures = [ ];
-        }
+  nix.distributedBuilds = lib.mkIf isClient true;
+
+  nix.buildMachines = lib.mkIf isClient [
+    {
+      sshUser = "remotebuild";
+      sshKey = "/home/malu/.ssh/id_ed25519";
+      hostName = "192.168.1.4"; # IP address of Carthage
+      protocol = "ssh-ng";
+      maxJobs = 3;
+      speedFactor = 2;
+      system = pkgs.stdenv.hostPlatform.system;
+      supportedFeatures = [
+        "nixos-test"
+        "benchmark"
+        "big-parallel"
       ];
-
-      # Removed the semicolons from the nix.conf string
-      extraOptions = ''
-        builders-use-substitutes = true
-      '';
-      # keep-outputs = true
-      # keep-derivations = true
-      # FIXME: invalid value 'true'
+      mandatoryFeatures = [ ];
     }
-    // {
-      nrBuildUsers = 64;
-      settings = {
-        trusted-users = [
-          "remotebuild"
-          "malu"
-        ]; # have additional rights when connecting to nix daemon. specify additional binary caches, or to import unsigned NARs
-        min-free = 10 * 1024 * 1024;
-        max-free = 200 * 1024 * 1024;
-        max-jobs = "auto";
-        cores = 0;
-      };
-    };
+  ];
+
+  nix.extraOptions = lib.mkIf isClient ''
+    builders-use-substitutes = true
+  '';
+
+  # ==========================================
+  # GLOBAL NIX & SYSTEMD SETTINGS (Both Hosts)
+  # ==========================================
+
+  nix.nrBuildUsers = 64;
+
+  nix.settings = {
+    # 'remotebuild' needs to be a trusted user on Carthage so the
+    # client's nix-daemon can talk to Carthage's nix-daemon.
+    trusted-users = [
+      "root"
+      "remotebuild"
+      "malu"
+    ]; # have additional rights when connecting to nix daemon. specify additional binary caches, or to import unsigned NARs
+    min-free = 10 * 1024 * 1024;
+    max-free = 200 * 1024 * 1024;
+    max-jobs = "auto";
+    cores = 0;
+  };
 
   systemd.services.nix-daemon.serviceConfig = {
     MemoryAccounting = true;

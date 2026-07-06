@@ -32,7 +32,7 @@
 
     pandoc.enable = true;
 
-    programs.element-desktop = {
+    element-desktop = {
       enable = true;
       # profiles
       # settings = { };
@@ -90,6 +90,11 @@
       };
     };
 
+    opencode = {
+      enable = true;
+      # TODO: add more options + settings
+    };
+
     antigravity-cli = {
       enable = false;
       defaultModel = "gemini-2.5-flash";
@@ -101,11 +106,6 @@
         autoAccept = true;
       };
     };
-  };
-
-  programs.opencode = {
-    enable = true;
-    # TODO: add more options + settings
   };
 
 }

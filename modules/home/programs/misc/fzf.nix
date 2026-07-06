@@ -49,11 +49,11 @@
     # "--gap 1"
     # "--scroll-off=4"
   ];
-  changeDirWidgetOptions = [ "--preview 'tree -C {} | head -200'" ]; # M-c binding
+  changeDirWidget.options = [ "--preview 'tree -C {} | head -200'" ]; # M-c binding
   # changeDirWidgetCommand = "fd --type d";
   # fileWidgetCommand = "fd --type f"; #C-t #FIXME: broken $FZF_DEFAULT_OPTS: invalid command line string
   # fileWidgetOptions = ["preview 'head {}"];
-  historyWidgetOptions = [
+  historyWidget.options = [
     "--sort"
     "--exact"
   ];

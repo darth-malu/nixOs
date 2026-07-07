@@ -106,6 +106,8 @@
       sushi
       viewnior
       kdePackages.kalk
+      kdePackages.kclock # NOTE: broken jumpers/incrementers
+      gnome-clocks
       kdePackages.dolphin
       hyprsysteminfo
       hyprshutdown
@@ -182,7 +184,7 @@
       blanket
       qbittorrent
       gpu-screen-recorder-gtk
-      alarm-clock-applet
+      # alarm-clock-applet
       spotify
       spotube
       stremio-linux-shell

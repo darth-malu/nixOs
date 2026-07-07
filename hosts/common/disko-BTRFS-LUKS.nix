@@ -13,10 +13,10 @@
       BtrfsDevice = {
         type = "disk";
         device =
-          if config.networking.hostName == "tangier" then
-            builtins.elemAt disks 1
+          if config.networking.hostName == "carthage" then
+            builtins.elemAt disks 0
           else
-            builtins.elemAt disks 0;
+            builtins.elemAt disks 1;
         content = {
           type = "gpt";
           partitions = {

@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  osConfig,
-  config,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   xdg = {
@@ -21,12 +15,13 @@
       # documents = "${config.home.homeDirectory}/Documents";
       # download = "${config.home.homeDirectory}/Downloads";
       extraConfig = {
-        SCREENSHOTS = "${config.xdg.userDirs.pictures}/grimblast";
+        # SCREENSHOTS = "${config.xdg.userDirs.pictures}/grimblast";
+        SCREENSHOTS = "/media/Hyogo/Pictures/grimblast";
       };
     };
     autostart = {
-      enable = false; # lib.mkIf (osConfig.networking.hostName == "carthage" && osConfig.hyprland.enable) true;
-      readOnly = true; # Make XDG_CONFIG_HOME/autostart a symlink to a readonly directory so that programs cannot install arbitrary autostart services.
+      enable = true; # lib.mkIf (osConfig.networking.hostName == "carthage" && osConfig.hyprland.enable) true;
+      readOnly = false; # Make XDG_CONFIG_HOME/autostart a symlink to a readonly directory so that programs cannot install arbitrary autostart services. (NOTE: lets try this)
       entries = [
         "${pkgs.qbittorrent}/share/applications/org.qbittorrent.qBittorrent.desktop"
       ];

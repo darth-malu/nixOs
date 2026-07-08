@@ -19,8 +19,9 @@
             "users"
             "nofail"
             "defaults"
-            # "x-systemd.mount-timeout=30"
-            # "x-systemd.idle-timeout=20min"
+            "exec"
+            "x-systemd.mount-timeout=30"
+            "x-systemd.idle-timeout=20min"
           ];
         };
 

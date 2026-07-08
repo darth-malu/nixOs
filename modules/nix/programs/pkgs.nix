@@ -187,6 +187,7 @@
       # alarm-clock-applet
       spotify
       spotube
+      picard
       stremio-linux-shell
       sway-audio-idle-inhibit
     ]

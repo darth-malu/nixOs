@@ -3,6 +3,7 @@
 {
   imports = [
     ./lutris.nix
+    ./ludusavi.nix
     ./mangohud.nix
   ];
 

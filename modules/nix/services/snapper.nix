@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    # snapper-gui
+    snapper-gui
     # snapper
   ];
   services.snapper = {

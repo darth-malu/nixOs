@@ -1,10 +1,4 @@
 {
-  pkgs,
-  config,
-  lib,
-  ...
-}:
-{
   imports = [
     # ./nextcloud.nix
     # ./sync-thing
@@ -15,6 +9,7 @@
     ./localsend.nix
     ./virtualisation
     ./pkgs.nix
+    ./manPages.nix
   ];
 
   # nextcloud.enable = true;

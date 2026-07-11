@@ -1,6 +1,6 @@
 { pkgs, inputs, ... }:
 let
-  texx = (
+  texxOld = (
     pkgs.texlive.combine {
       inherit (pkgs.texlive)
         # scheme-basic
@@ -14,6 +14,23 @@ let
         capt-of
         ;
     }
+  );
+  texxNew = pkgs.texliveSmall.withPackages (
+    ps: with ps; [
+      collection-langkorean
+      algorithms
+      cm-super
+
+      # scheme-basic
+      scheme-medium # Any Less than medium wont work: org requirement...prbs for exporting
+      dvisvgm # for preview and export as html
+      dvipng # for preview and export as html
+      wrapfig
+      amsmath
+      ulem
+      hyperref
+      capt-of
+    ]
   );
 in
 {
@@ -40,7 +57,7 @@ in
     # Latex
     auctex
     texlab
-    texx # :lang latex, org (latex previews)
+    texxNew # :lang latex, org (latex previews)
 
     # Docker
     dockfmt

@@ -62,6 +62,7 @@
       file # need for yazi mimedetection etc.
       iftop # TODO seems powerful investigate more
       inxi
+      gparted-full
       iotop-c
       lm_sensors
       lsof # list open files/ports**
@@ -204,7 +205,7 @@
       # helvum
       # kdePackages.mlt
       # ffmpeg-full
-      handbrake # FIXME lag on open
+      # handbrake # FIXME lag on open
       # obs-cli
       obs-studio
     ]

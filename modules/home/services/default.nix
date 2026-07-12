@@ -1,4 +1,9 @@
-{ lib, osConfig, ... }:
+{
+  lib,
+  osConfig,
+  config,
+  ...
+}:
 
 {
   # systemd.user.services.udiskie.Unit.After = lib.mkForce "graphical-session.target";
@@ -7,10 +12,21 @@
     # blueman-applet.enable = lib.mkIf osConfig.programs.hyprland.enable false;
     # blanket.enable = true;
     clipman = {
-      enable = true;
+      enable = false;
       # extraArgs = '''';
       # systemdTarget = "hyprland-session.target";
       systemdTarget = "graphical-session.target";
+    };
+    cliphist = {
+      enable = true;
+      # allowImages = true;       # true::
+      extraOptions = [
+        "-max-dedupe-search"
+        "10"
+        "-max-items"
+        "500"
+      ];
+      # systemdTargets = [ config.wayland.systemd.target ];
     };
     udiskie = {
       enable = lib.mkIf osConfig.programs.hyprland.enable true;

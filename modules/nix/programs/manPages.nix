@@ -1,6 +1,4 @@
-{
-  pkgs,
-}:
+{ pkgs, ... }:
 
 {
   documentation.dev.enable = true;

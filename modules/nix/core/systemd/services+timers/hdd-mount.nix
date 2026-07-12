@@ -7,10 +7,9 @@
       description = "This unit is made to solve my HDD mounting issues 😃";
       script = ''
         mount_units=(
-          media-kibweziExtraHdd.mount
-          media-kibweziC.mount
-          media-extraHdd.mount
-          media-linuxHdd.mount
+          media-Yuri.mount
+          media-Hyogo.mount
+          media-Mutsu.mount
         )
         for unit in "''${mount_units[@]}"; do
           systemctl start $unit || echo "Failed to start $unit"
@@ -25,7 +24,7 @@
       #   "local-fs.target"
       #   "dev-disk-by\\x2duuid-*.device"
       # ];
-      wantedBy = [ "multi-user.target" ]; # 🟢 This makes it run at boo
+      wantedBy = [ "multi-user.target" ]; # 🟢 This makes it run at boot
     };
   };
   # timers = {

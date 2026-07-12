@@ -37,6 +37,7 @@
       # emacs
       # bc
       wl-clipboard # rust wl-clipboard better?
+      # cliphist
       dotool # test if working
       easyeffects
       mpc

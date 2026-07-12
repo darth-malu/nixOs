@@ -1,6 +1,6 @@
 {
   imports = [
-    # ./rofi
+    ./rofi
     ./scripts
     ./hypr-ecosystem
     ./themes

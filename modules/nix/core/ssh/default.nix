@@ -1,4 +1,3 @@
-{ pkgs, config, ... }:
 {
   # systemd.services.sshd.wantedBy = pkgs.lib.mkForce [ ];
   services = {

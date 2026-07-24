@@ -187,17 +187,29 @@ nix.settings.auto-optimise-store = true;#optimise with everybuild nix-store --op
     # persistent = false; # true::
   };
 
+nix.nrBuildUsers = 12; # 64;; NOTE Creates * system users (nixbld1–nixbld*) for build isolation
 nix.settings = {
-  # warn-dirty = false;
+    # warn-dirty = false;
+    # 'remotebuild' needs to be a trusted user on Carthage so the
+    # client's nix-daemon can talk to Carthage's nix-daemon.
+    trusted-users = [
+      "root"
+      "remotebuild"
+      "malu"
+    ]; # have additional rights when connecting to nix daemon. specify additional binary caches, or to import unsigned NARs
+    # min-free = 10 * 1024 * 1024; # NOTE: check if this is helpful for my usecase
+    # max-free = 200 * 1024 * 1024;
+    max-jobs = "auto"; # Number of jobs to build in parallel, auto - all available logical cores (e.g., 16 for two CPUs with 4 cores each and hyper-threading)
+    cores = 0;         # 0 - all available::
+
+
   allowed-users = [             # Allowed to connect with the nix daemon. All users with *:: Trusted users always allowed to connect
     "@wheel"
     "malu"
     "@darth"
     "sumbi"
   ];
-  trusted-users = [ 
-    "malu"
-  ];
+
   fallback = true;
   connect-timeout = 5;
   # extra-sandbox-paths = [ config.programs.ccache.cacheDir ]; # see if need really
@@ -220,7 +232,7 @@ nix.settings = {
     # "konradmalik.cachix.org-1:9REXmCYRwPNL0kAB0IMeTxnMB1Gl9VY5I8w7UVBTtSI="
   ] ++
   lib.optionals (config.networking.hostName != "carthage") [
-      # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9bmUGM+Vxix3N6UsxEPwOLmH1JmBiCcudWMb0ZIzcD darth-malu@github.com"
+    # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9bmUGM+Vxix3N6UsxEPwOLmH1JmBiCcudWMb0ZIzcD darth-malu@github.com"
   ];
 
   extra-substituters = lib.mkIf (config.networking.hostName != "carthage") [

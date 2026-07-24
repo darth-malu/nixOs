@@ -5,12 +5,13 @@
   ...
 }:
 
+# NOTE: test with: # ssh remotebuild@remotemachine -i /root/.ssh/remotebuild "echo hello"
+
 let
   isBuilder = config.networking.hostName == "carthage";
   isClient = config.networking.hostName != "carthage";
 in
 {
-  # client will use this account on the remote
   # ENable distributed builds on client
   # ==========================================
   # BUILDER CONFIGURATION (Carthage)
@@ -18,13 +19,17 @@ in
 
   # The client will log into this account on Carthage to run builds
   users.users.remotebuild = lib.mkIf isBuilder {
-    isNormalUser = true;
+    # isNormalUser = true;
     createHome = false;
     group = "remotebuild";
 
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGrwiQoWlBZ5OCuw8pF2CWM1iJjI4pW5FZvq5b5RktOH Tangier"
     ];
+
+    # --nix.dev
+    isSystemUser = true;
+    useDefaultShell = true;
   };
 
   users.groups.remotebuild = lib.mkIf isBuilder { };
@@ -36,18 +41,20 @@ in
   nix.distributedBuilds = lib.mkIf isClient true;
 
   nix.buildMachines = lib.mkIf isClient [
+    # NOTE: ignored if distributedBuilds is off?
     {
       sshUser = "remotebuild";
       sshKey = "/home/malu/.ssh/id_ed25519";
-      hostName = "192.168.1.4"; # IP address of Carthage
-      protocol = "ssh-ng";
-      maxJobs = 3;
-      speedFactor = 2;
+      hostName = "192.168.1.2"; # Carthage
+      protocol = "ssh-ng"; # Modern protocol — streams derivation info over SSH directly. Faster than legacy ssh which copies the entire derivation closure first.
+      maxJobs = 3; # max parallel builds
+      speedFactor = 2; # does not matter with one builder :)
       system = pkgs.stdenv.hostPlatform.system;
       supportedFeatures = [
-        "nixos-test"
-        "benchmark"
-        "big-parallel"
+        "nixos-test" # Machine can run NixOs tests
+        "benchmark" # Machine can generate metrics (means the builds usually takes the same amount of time)
+        "big-parallel" # NOTE?? big-parallel allows derivations with many parallel build steps (e.g., chromium). Without it, some heavy builds won't be sent to carthage.
+        "kvm" # Everything which builds inside a vm, like NixOS tests
       ];
       mandatoryFeatures = [ ];
     }
@@ -56,31 +63,6 @@ in
   nix.extraOptions = lib.mkIf isClient ''
     builders-use-substitutes = true
   '';
-
-  # ==========================================
-  # GLOBAL NIX & SYSTEMD SETTINGS (Both Hosts)
-  # ==========================================
-
-  nix.nrBuildUsers = 64;
-
-  nix.settings = {
-    # 'remotebuild' needs to be a trusted user on Carthage so the
-    # client's nix-daemon can talk to Carthage's nix-daemon.
-    trusted-users = [
-      "root"
-      "remotebuild"
-      "malu"
-    ]; # have additional rights when connecting to nix daemon. specify additional binary caches, or to import unsigned NARs
-    min-free = 10 * 1024 * 1024;
-    max-free = 200 * 1024 * 1024;
-    max-jobs = "auto";
-    cores = 0;
-  };
-
-  systemd.services.nix-daemon.serviceConfig = {
-    MemoryAccounting = true;
-    MemoryMax = "90%";
-    OOMScoreAdjust = 500;
-  };
   # nixos-rebuild boot --target-host malu@192.168.100.3 --use-remote-sudo --flake ~/Shibuya#tangier --ask-sudo-password # from tangier
+  # nixos-rebuild boot --target-host remotebuild@192.168.100.4 --elevate=sudo --flake ~/Shibuya#tangier --ask-sudo-password
 }

@@ -14,6 +14,7 @@
       wget
       nvd
       app2unit
+      nu
       #cpufrequtils
       lshw
       e2fsprogs # chattr etc
@@ -30,7 +31,7 @@
       playerctl
       lsof # list open files/ports**
       usbutils # lsusb, usb-devices, usb-view(optional gui)
-      jmtpfs # mtp drivers - # TODO check if mtp-probe error is from this and how to mitigate
+      # jmtpfs # mtp drivers - # TODO check if mtp-probe error is from this and how to mitigate - UNMAINTAINED
       pciutils # lspci
       util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock, more**
       kitty
@@ -108,7 +109,7 @@
       sushi
       viewnior
       kdePackages.kalk
-      kdePackages.kclock # NOTE: broken jumpers/incrementers
+      # kdePackages.kclock # NOTE: broken jumpers/incrementers
       gnome-clocks
       kdePackages.dolphin
       hyprsysteminfo

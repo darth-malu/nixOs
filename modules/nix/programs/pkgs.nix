@@ -14,7 +14,7 @@
       wget
       nvd
       app2unit
-      nu
+      nushell
       #cpufrequtils
       lshw
       e2fsprogs # chattr etc

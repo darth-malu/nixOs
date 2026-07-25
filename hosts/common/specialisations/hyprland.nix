@@ -26,7 +26,7 @@
     programs.hyprland = {
       # required even with homeManager for system functions -> xdg, session files
       enable = true; # also enables XDPH
-      withUWSM = true; # NOTE disabled till uwsm variables fixed i guess
+      withUWSM = true; # Launch Hyprland with the UWSM (Universal Wayland Session Manager) session manager. This has improved systemd support and is recommended for most users. This automatically starts appropriate targets like graphical-session.target, and wayland-session@Hyprland.target.
       # xwayland.enable = true; # true::
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; # set package + portal if using flake
       portalPackage =

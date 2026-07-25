@@ -102,6 +102,7 @@
       libappindicator-gtk3 # needed for discord icon
       # libsecret # secrets lul
       grimblast
+      mousam
       # file-roller
       # inputs.hyprswitch.packages.x86_64-linux.default
       # yelp

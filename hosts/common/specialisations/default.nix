@@ -41,7 +41,7 @@ in
 
   specialisation = {
     plasmoid = plasmaSpecialisation;
-    gnome = lib.mkIf (config.networking.hostName == "carthage") gnome;
+    # gnome = lib.mkIf (config.networking.hostName == "carthage") gnome;
     # niroid = lib.mkIf (config.networking.hostName == "carthage") niri;
   };
 }

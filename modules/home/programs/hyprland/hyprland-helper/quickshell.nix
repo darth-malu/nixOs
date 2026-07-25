@@ -11,7 +11,7 @@
     systemd = {
       enable = true;
       # target = "hyprland-session.target"; # config.wayland.systemd.target:: (graphical-session-target) # HACK:, hyprland-session.target
-      target = "graphical-session.target";
+      # target = "graphical-session.target";
     };
   };
 

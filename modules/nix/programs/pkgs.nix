@@ -22,6 +22,7 @@
       curl
       # dash
       procs
+      libdisplay-info
       # stacer
       fio
       killall
@@ -64,6 +65,7 @@
       file # need for yazi mimedetection etc.
       iftop # TODO seems powerful investigate more
       inxi
+      isd
       gparted-full
       iotop-c
       lm_sensors

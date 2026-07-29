@@ -11,10 +11,10 @@
   };
 
   services.lact.enable = pkgs.lib.mkIf config.hardware.amdgpu.overdrive.enable true; # need overdrive.enable
+  hardware.amdgpu.overdrive.enable = true; # sets amd.ppfeaturemask=0xffffffff; from default of 0x
 
   hardware.amdgpu = {
     initrd.enable = true; # # early userspace, fix low res in boot scrn
-    overdrive.enable = true; # sets amd.ppfeaturemask=0xffffffff; from default of 0x
     opencl.enable = true; # OpenCL ROCM runtime library.(rocmPackages.clr + rocmPackages.clr.icd)
   };
 

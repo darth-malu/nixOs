@@ -4,6 +4,21 @@
   fonts = {
     enableDefaultPackages = true; # install basic fonts for unicode coverage
     # enableGhostscriptFonts = true; #  URW fonts and the “Base-14” Postscript fonts) to the list of system fonts, making them available to X11 applications.
+    fontconfig.defaultFonts = {
+      serif = [ "IBM Plex Serif" ];
+      sansSerif = [
+        "Inter"
+        "nunito"
+        "lato"
+        "quicksand"
+        "IBM Plex Sans"
+      ]; # DejaVu Sans::
+      # emoji = ["Noto Color Emoji"];
+      monospace = [
+        "JetBrains Mono"
+        "VictorMono Nerd Font"
+      ];
+    };
     packages =
       with pkgs;
       [

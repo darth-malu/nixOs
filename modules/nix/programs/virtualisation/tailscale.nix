@@ -22,7 +22,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    ethtool
+    # ethtool
   ];
 
   # services.resolved.enable = true; # DNS fix addition

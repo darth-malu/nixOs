@@ -6,11 +6,11 @@
     ./docker.nix
     # ./vmware.nix
     # ./virtualbox.nix
-    # ./tailscale.nix
+    ./tailscale.nix
   ];
 
   qemu.enable = false;
-  docker.enable = false;
+  docker.enable = true;
   n8n.enable = false;
 
   virtualisation.waydroid.enable = false;

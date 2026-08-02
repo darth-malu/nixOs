@@ -2,12 +2,13 @@
   config,
   lib,
   pkgs,
+  osConfig,
   ...
 }:
 
 {
   services.ludusavi = {
-    enable = true;
+    enable = lib.mkIf (osConfig.networking.hostName == "carthage") true;
     # Path to a Ludusavi config.yaml. Mutually exclusive with the settings option. See https://github.com/mtkennerly/ludusavi/blob/master/docs/help/configuration-file.md for available options.
     # configFile
     frequency = "daily"; # daily::, "*-*-* 8:00:00" - systemd.time(7)

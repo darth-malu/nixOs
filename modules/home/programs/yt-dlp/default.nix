@@ -1,6 +1,6 @@
+{osConfig, ...}:
 {
   #NOTES:
-  # --ignore-config - to disable config for a single run
   programs.yt-dlp = {
     enable = true;
 
@@ -22,9 +22,12 @@ settings = {
 
 # $XDG_CONFIG_HOME/yt-dlp/config
 extraConfig =
-''
-    # -P "~/Videos/Youtube"
+if osConfig.networking.hostName == "carthage" then ''
     -P "/media/Hyogo/Videos/YouTube/Unsorted"
+'' else
+    '' -P "~/Videos/Youtube/Unsorted"
+'' +
+''
     # -P "subtitle:subs"
     --no-playlist
 

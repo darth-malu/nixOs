@@ -13,7 +13,7 @@
       libnotify # notify-send
       wget
       nvd
-      # app2unit #NOTE build error...wait for stable bin
+      # app2unit # NOTE build error...wait for stable bin
       nushell
       #cpufrequtils
       lshw

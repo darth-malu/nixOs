@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  osConfig,
+  pkgs,
+  config,
+  ...
+}:
 
 {
   xdg = {
@@ -16,7 +21,12 @@
       # download = "${config.home.homeDirectory}/Downloads";
       extraConfig = {
         # SCREENSHOTS = "${config.xdg.userDirs.pictures}/grimblast";
-        SCREENSHOTS = "/media/Hyogo/Pictures/grimblast";
+        SCREENSHOTS =
+          if osConfig.networking.hostName == "tangier" then
+            # "~/Pictures/grimblast"
+            "${config.xdg.userDirs.pictures}/grimblast"
+          else
+            "/media/Hyogo/Pictures/grimblast";
       };
     };
     autostart = {

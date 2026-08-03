@@ -1,6 +1,5 @@
 {osConfig, ...}:
 {
-  #NOTES:
   programs.yt-dlp = {
     enable = true;
 

@@ -7,7 +7,6 @@
 #+begin_src nix :tangle default.nix
 {osConfig, ...}:
 {
-  #NOTES:
   programs.yt-dlp = {
     enable = true;
 #+end_src

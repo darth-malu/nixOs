@@ -12,6 +12,7 @@
   qemu.enable = false;
   docker.enable = true;
   n8n.enable = false;
+  tailscale.enable = false;
 
   virtualisation.waydroid.enable = false;
 

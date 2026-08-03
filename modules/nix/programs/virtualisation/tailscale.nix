@@ -1,10 +1,15 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.tailscale = {
-    enable = pkgs.lib.mkEnableOption "Enable my tailscale module :)";
+    enable = lib.mkEnableOption "Enable my tailscale module :)";
   };
 
-  config = pkgs.lib.mkIf config.tailscale.enable {
+  config = lib.mkIf config.tailscale.enable {
     services.tailscale = {
       enable = true;
       #authKeyFile = "/run/secrets/tailscale_key"; # preauthorized key

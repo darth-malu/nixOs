@@ -4,6 +4,7 @@
     ./qemu
     ./n8n.nix
     ./docker.nix
+    ./kubernetes.nix
     # ./vmware.nix
     # ./virtualbox.nix
     ./tailscale.nix

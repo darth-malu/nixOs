@@ -9,7 +9,7 @@
   ];
 
   services = {
-    locate.enable = true;
+    locate.enable = false; # DISABLE: too heavy and i dont really use it
     gvfs.enable = true; # sets GIO_EXTRA_MODULES, used for accessing trash/network filesystems
     fstrim = {
       enable = true;

@@ -10,7 +10,7 @@
   config = lib.mkIf config.docker.enable {
     # users.extraGroups.docker.members = [ "malu" ];
     virtualisation.docker = {
-      enable = if config.networking.hostName == "tangier" then false else false;
+      enable = (config.networking.hostName == "tangier");
       storageDriver = "btrfs";
       enableOnBoot = true;
       extraOptions = "--default-runtime=nvidia";

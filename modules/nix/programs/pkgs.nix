@@ -13,19 +13,21 @@
       libnotify # notify-send
       wget
       nvd
-      # app2unit # NOTE build error...wait for stable bin
+      app2unit # NOTE build error...wait for stable bin
       nushell
+      xonsh
       #cpufrequtils
       lshw
       e2fsprogs # chattr etc
       efibootmgr
       curl
-      # dash
+      dash
       procs
       libdisplay-info
-      # stacer
+      stacer
       fio
-      killall
+      # killall # TODO: see if needed with psmisc
+      psmisc # fuser,killall?
       nix-prefetch-git # nix-prefetch-scripts #includes git prefetch
       pipewire
       pwvucontrol
@@ -38,8 +40,8 @@
       kitty
       # emacs
       # bc
-      wl-clipboard # rust wl-clipboard better?
-      # cliphist
+      wl-clipboard
+      cliphist
       dotool # test if working
       easyeffects
       mpc
@@ -76,7 +78,6 @@
       usbutils # lsusb, usb-devices, usb-view(optional gui)
       util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
       xdg-utils
-      psmisc # fuser,killall?
       testdisk
       testdisk-qt
       extundelete
@@ -114,19 +115,6 @@
       kdePackages.kalk
       # kdePackages.kclock # NOTE: broken jumpers/incrementers
       gnome-clocks
-      kdePackages.dolphin
-      hyprsysteminfo
-      hyprshutdown
-      hyprpwcenter
-      hyprland-autoname-workspaces
-    ]
-    ++ pkgs.lib.optionals (config.networking.hostName == "tangier") [
-      brightnessctl
-    ]
-    ++ [
-      # inputs.vermilion.packages.${pkgs.stdenv.hostPlatform.system}.default
-    ]
-    ++ [
       grim
       imagemagick # screenshot
       zenity
@@ -142,6 +130,17 @@
       kdePackages.kio-admin # Manage files as administrator using the admin:// KIO protocol
       # kdePackages.kio-gdrive
       kdePackages.qtwayland # allows Qt-based applications to run on the Wayland display protocol
+      kdePackages.dolphin
+      hyprsysteminfo
+      hyprshutdown
+      hyprpwcenter
+      hyprland-autoname-workspaces
+    ]
+    ++ pkgs.lib.optionals (config.networking.hostName == "tangier") [
+      brightnessctl
+    ]
+    ++ [
+      # inputs.vermilion.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
     ++ [
       # pastel # color generator

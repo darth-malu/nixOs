@@ -6,7 +6,9 @@
 }:
 
 let
-  kubeMasterIP = "10.1.1.2";
+  # Single-node cluster (roles = master + node on the same host): loopback
+  # avoids hardcoding a dynamic LAN IP that breaks the easyCerts bootstrap.
+  kubeMasterIP = "127.0.0.1";
   kubeMasterHostname = "api.kube";
   kubeMasterAPIServerPort = 6443;
 in

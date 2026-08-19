@@ -18,6 +18,6 @@
   virtualisation.waydroid.enable = false;
 
   environment.systemPackages = [
-    pkgs.genymotion
+    # pkgs.genymotion
   ];
 }

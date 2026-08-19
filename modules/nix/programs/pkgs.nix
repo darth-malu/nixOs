@@ -24,7 +24,7 @@
       dash
       procs
       libdisplay-info
-      stacer
+      # stacer
       fio
       # killall # TODO: see if needed with psmisc
       psmisc # fuser,killall?

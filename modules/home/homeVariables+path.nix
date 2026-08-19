@@ -15,6 +15,12 @@
     };
   */
 
+  programs.bash.profileExtra = ''
+     if uwsm check may-start; then
+       start-hyprland
+    fi
+  '';
+
   home.sessionVariables = {
     #MANWIDTH=999;
     SUDO_PROMPT = "$(tput sgr0)$(tput setaf 199)  $(tput sgr0) ";
@@ -35,13 +41,8 @@
 
   home.sessionPath = [
     # Prepend to $PATH in a double-quoted context
-    "${config.xdg.configHome}/emacs/bin"
-    "/home/malu/.emacs.d"
-
-    # "${config.home.homeDirectory}/Development/Core-Utils/bash/Scripts"
-
-    "/home/malu/.cache/.bun/bin"
-    "/home/malu/.bun/bin"
+    "${config.home.homeDirectory}/.cache/.bun/bin"
+    "${config.home.homeDirectory}/.bun/bin"
   ];
 
   xdg.configFile = {

@@ -1,4 +1,9 @@
-{ pkgs, osConfig, ... }:
+{
+  pkgs,
+  osConfig,
+  config,
+  ...
+}:
 {
   imports = [
     ./emacsPkgs.nix
@@ -35,10 +40,9 @@
 
   home = {
     sessionPath = [
-      "$HOME/.config/emacs/bin"
+      "${config.xdg.configHome}/emacs/bin"
+      "/home/malu/.emacs.d"
     ];
-    sessionVariables = {
-      LSP_USE_PLISTS = "true";
-    };
+    sessionVariables.LSP_USE_PLISTS = "true";
   };
 }

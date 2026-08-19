@@ -42,7 +42,13 @@
       blueman.enable = lib.mkIf (!config.kde.enable) true;
     };
 
-    environment.loginShellInit = ''
+    # environment.loginShellInit = ''
+    #    if uwsm check may-start; then
+    #      start-hyprland
+    #   fi
+    # '';
+
+    programs.bash.loginShellInit = ''
        if uwsm check may-start; then
          start-hyprland
       fi

@@ -1,7 +1,7 @@
 {
   imports = [
     ./inputrc.nix
-    ./enVars.nix
+    ./systemVariables.nix
     ../USIU
     ./programs
     ./services
@@ -11,4 +11,5 @@
   ];
 
   xdg.menus.enable = true; # install files to support the XDG Desktop Menu specification
+  # NOTE: cannot have this in home options
 }

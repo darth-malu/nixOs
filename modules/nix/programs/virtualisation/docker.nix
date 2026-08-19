@@ -39,7 +39,7 @@
 
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/cluster/k3s/docs/examples/NVIDIA.md
     hardware = {
-      nvidia-container-toolkit.enable = true; # Enable dynamic CDI (container device interface) configuration for Nvidia devices by running nvidia-container-toolkit on boot.
+      nvidia-container-toolkit.enable = if config.networking.hostName == "tangier" then true else false; # Enable dynamic CDI (container device interface) configuration for Nvidia devices by running nvidia-container-toolkit on boot.
       nvidia-container-toolkit.mount-nvidia-executables = true;
     };
 

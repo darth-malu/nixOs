@@ -29,6 +29,7 @@
 
     # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     # hyprland-plugins.inputs.hyprland.follows = "hyprland";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.7.0";
 
     hyprlock = {
       url = "github:hyprwm/hyprlock";

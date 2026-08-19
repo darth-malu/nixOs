@@ -27,7 +27,7 @@ scripts = with pkgs.mpvScripts; [
   # quality-menu # have uosc
   youtube-upnext # [C-u] (configurable) , space to append. 'up next'/recommended youtube videos
   # mpv-cheatsheet # use ?
-  mpv-playlistmanager # [S-Enter] to add to playlist
+  # mpv-playlistmanager # [S-Enter] to add to playlist
   uosc
   memo # recent files menu [h]
   # modernx-zydezu

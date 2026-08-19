@@ -26,7 +26,10 @@
         "-max-items"
         "500"
       ];
-      # systemdTargets = [ config.wayland.systemd.target ];
+      systemdTargets = [
+        config.wayland.systemd.target
+        "hyprland-session.target"
+      ];
     };
     udiskie = {
       enable = lib.mkIf osConfig.programs.hyprland.enable true;

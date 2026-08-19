@@ -118,6 +118,7 @@
       grim
       imagemagick # screenshot
       zenity
+      newt
       # sound-theme-freedesktop # free sounds
       libcanberra-gtk3
       kdePackages.kasts

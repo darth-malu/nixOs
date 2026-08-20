@@ -175,8 +175,8 @@ mgr.prepend_keymap = [
   {on = [ "<C-r>" ]; run = "plugin drag"; desc = "Drag files";}
 
     # A- Parent, B - Current, C - Preview
-  {on = [ "<C-.>" ]; run = "plugin toggle-pane max-current"; desc = "Maximize B";}
-  {on = [ "<C-/>" ]; run = "plugin toggle-pane min-preview"; desc = "Minimize C";}
+  {on = [ "<C-=>" ]; run = "plugin toggle-pane max-current"; desc = "Maximize B";}
+  {on = [ "<C-->" ]; run = "plugin toggle-pane min-preview"; desc = "Minimize C";}
 
   {on = [ "l" ]; run = "plugin smart-enter"; desc = "Enter child dir or open file";}
 

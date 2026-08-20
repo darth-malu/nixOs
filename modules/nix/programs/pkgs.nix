@@ -198,11 +198,11 @@
       sway-audio-idle-inhibit
     ]
     ++ [
-      # komikku # broken
+      komikku # broken
       mangal
       ani-cli
-      # kazumi # watch anime online with danmaku support
-      # miru # issue launching -kde
+      kazumi # watch anime online with danmaku support
+      # miru #UNMAINTAINED
       #syncyomi - sync tachiyomi progress across devices
     ]
     ++ [

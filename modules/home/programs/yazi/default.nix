@@ -24,7 +24,8 @@
     plugins = {
       # Linked to: $XDG_CONFIG_HOME/yazi/plugins/<name>.yazi
       arrow = ./plugins/arrow.yazi;
-      # "smart-tab" = ./plugins/smart-tab.yazi; #FIXME: does not load
+      smart-tab = ./plugins/smart-tab.yazi;
+      # TODO: make smart-tab runCommand
       inherit (pkgs.yaziPlugins)
         smart-paste
         smart-enter
@@ -38,9 +39,6 @@
         # relative-motions # - mgr_emit - FIXME: also bookmarks
         ;
 
-      # smart-tab: ya pkg add wekauwau/smart-tab
-
-      # TODO: make smart-tab runCommand
     };
     settings = {
       mgr = {

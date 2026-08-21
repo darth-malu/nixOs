@@ -5,8 +5,13 @@
       general = {
         after_sleep_cmd = "hyprctl dispatch dpms on";
         # ignore_dbus_inhibit = false;
-        lock_cmd = "hyprlock";
+        lock_cmd = "pidof hyprlock || hyprlock";
       };
+      # listener = {
+      #     timeout = 150                                # 2.5min.
+      #     on-timeout = brightnessctl -s set 10         # set monitor backlight to minimum, avoid 0 on OLED monitor.
+      #     on-resume = brightnessctl -r                 # monitor backlight restore.
+      # }
       listener = [
         {
           timeout = 240;

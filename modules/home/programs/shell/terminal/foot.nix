@@ -50,7 +50,7 @@ let
 in
 {
   programs.foot = {
-    enable = true;
+    enable = false;
     server.enable = true;
     settings = {
       main = {

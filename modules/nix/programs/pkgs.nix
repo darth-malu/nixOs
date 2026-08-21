@@ -170,9 +170,9 @@
       telegram-desktop
       # signal-desktop
       # mastodon # TODO: self host only? no desktop
-      cinny-desktop
+      # cinny-desktop
       # rocketchat-desktop
-      # element-desktop
+      element-desktop
     ]
     ++ [
       # SOUND
@@ -189,7 +189,7 @@
       audacity
       blanket
       qbittorrent
-      gpu-screen-recorder-gtk
+      # gpu-screen-recorder-gtk
       # alarm-clock-applet
       spotify
       spotube
@@ -201,7 +201,6 @@
       komikku # broken
       mangal
       ani-cli
-      kazumi # watch anime online with danmaku support
       # miru #UNMAINTAINED
       #syncyomi - sync tachiyomi progress across devices
     ]
@@ -210,7 +209,7 @@
       # helvum
       # kdePackages.mlt
       # ffmpeg-full
-      # handbrake # FIXME lag on open
+      handbrake # FIXME lag on open
       # obs-cli
       obs-studio
     ]

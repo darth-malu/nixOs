@@ -26,20 +26,11 @@
 
   boot.initrd.systemd.enable = true;
 
-  # boot.initrd.luks.devices.GoodLuks.device = lib.mkDefault (
-  #   if config.networking.hostName == "tangier" then
-  #     "/dev/disk/by-uuid/7e45d6cc-717e-4c62-80fc-4d54192344f0"
-  #   else
-  #     "/dev/disk/by-uuid/dbadedcf-5fe2-4ecc-aebd-a8cc74dd884d"
-  # );
-
   boot.plymouth.enable = true;
 
   boot.extraModulePackages = lib.mkIf (config.networking.hostName == "carthage") [
-    # config.boot.kernelPackages.broadcom_sta # FIXME: broken
+    config.boot.kernelPackages.broadcom_sta # FIXME: broken
   ];
-
-  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackges;
 
   boot.loader = {
     systemd-boot = {
@@ -53,7 +44,7 @@
   };
 
   boot.initrd.kernelModules = [
-    # "wl" # NOTE: see difference without wl
+    "wl" # NOTE: see difference without wl
   ]
   ++ lib.optionals (config.networking.hostName == "carthage") [
     # "dm-snapshot"               # lvm

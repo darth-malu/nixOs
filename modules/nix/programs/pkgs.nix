@@ -192,6 +192,7 @@
       # gpu-screen-recorder-gtk
       # alarm-clock-applet
       spotify
+      cliamp
       spotube
       # picard
       stremio-linux-shell

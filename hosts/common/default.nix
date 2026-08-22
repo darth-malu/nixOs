@@ -239,6 +239,32 @@ nix.settings = {
   ];
 };
 
+  nix = {
+    distributedBuilds = lib.mkIf (config.networking.hostName != "carthage") true;
+    buildMachines = lib.mkIf (config.networking.hostName != "carthage") [
+      {
+        # makes it so i dont have to use --builders "ssh://myuser@builder <other builder specification>"
+        sshUser = "remotebuild"; # NOTE special user that cant be sudo'd into
+        sshKey = "/home/malu/.ssh/id_ed25519"; # path to remote key on client (tangier)
+        hostName = "192.168.1.4"; # Replace by IP address, or add a ProxyCommand, see `man ssh_config` for full docs.
+        protocol = "ssh-ng"; #ssh:: ssh-ng ( ssh next generation)
+        maxJobs = 3;         # 1::
+        speedFactor = 2; # The relative speed of this builder. This is an arbitrary integer that indicates the speed of this builder, relative to other builders. Higher is faster.
+        system = pkgs.stdenv.hostPlatform.system;
+        supportedFeatures = [
+          "nixos-test"
+          "benchmark"
+          "big-parallel"
+          # "kvm"
+        ];
+        mandatoryFeatures = [ ];
+      }
+    ];
+    extraOptions = lib.mkIf (config.networking.hostName != "carthage") ''
+      builders-use-substitutes = true
+    '';
+  };
+
 i18n = {
   defaultLocale = "en_US.UTF-8";
   extraLocaleSettings = {

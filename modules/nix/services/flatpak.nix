@@ -7,7 +7,7 @@
     enable = true;
     package = pkgs.flatpak;
     packages = [
-      "com.vixalien.sticky"
+      # "com.vixalien.sticky"
     ];
   };
 

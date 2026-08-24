@@ -91,12 +91,15 @@ NOTE Runs mostly fine without this
 Enable hardware - Bloat? unneeded except for live media?
 
 * networking stuffs
+** NM applet
+#+begin_src nix :tangle no
+programs.nm-applet.enable = lib.mkIf config.hypr.enable true; # started automatically with the graphical session
+  programs.nm-applet.indicator = lib.mkIf config.hypr.enable true;
+#+end_src
+
 ** start
 #+begin_src nix :tangle default.nix
-  programs.nm-applet.enable = lib.mkIf config.hypr.enable true; # started automatically with the graphical session
-  programs.nm-applet.indicator = lib.mkIf config.hypr.enable true;
-
-  networking = {
+networking = {
 #+end_src
 
 ** wireless | wpa_supplicant

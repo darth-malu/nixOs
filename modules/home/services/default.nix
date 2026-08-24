@@ -8,15 +8,6 @@
 {
   # systemd.user.services.udiskie.Unit.After = lib.mkForce "graphical-session.target";
   services = {
-    # kdeconnect.enable = true;
-    # blueman-applet.enable = lib.mkIf osConfig.programs.hyprland.enable false;
-    # blanket.enable = true;
-    clipman = {
-      enable = false;
-      # extraArgs = '''';
-      # systemdTarget = "hyprland-session.target";
-      systemdTarget = "graphical-session.target";
-    };
     cliphist = {
       enable = true;
       # allowImages = true;       # true::

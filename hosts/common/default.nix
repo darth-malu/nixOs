@@ -70,10 +70,7 @@ hardware = {
   # enableAllHardware = true; # Enable support for most hardware
 };
 
-  programs.nm-applet.enable = lib.mkIf config.hypr.enable true; # started automatically with the graphical session
-  programs.nm-applet.indicator = lib.mkIf config.hypr.enable true;
-
-  networking = {
+networking = {
 
   networkmanager = {
     enable = true; # add user to group

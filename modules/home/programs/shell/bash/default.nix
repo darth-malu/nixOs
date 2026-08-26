@@ -46,7 +46,7 @@
   programs.bash.bashrcExtra = # extra cmd for bashrc
     ''
       # SUDO_PROMPT: reset + red (color 199) + lock icon + reset
-      export SUDO_PROMPT=$'\033[0m\033[38;5;199m \uf023 \033[0m '
+      export SUDO_PROMPT=$'\033[0m\033[38;5;199m 🔑 \033[0m '
 
       rM() {
         trash-put "$@"; echo "🧻 $@ "

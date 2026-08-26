@@ -29,7 +29,7 @@
   boot.plymouth.enable = true;
 
   boot.extraModulePackages = lib.mkIf (config.networking.hostName == "carthage") [
-    config.boot.kernelPackages.broadcom_sta # FIXME: broken
+    # config.boot.kernelPackages.broadcom_sta # FIXME: broken
   ];
 
   boot.loader = {
@@ -44,7 +44,7 @@
   };
 
   boot.initrd.kernelModules = [
-    "wl" # NOTE: see difference without wl
+    # "wl" # NOTE: see difference without wl
   ]
   ++ lib.optionals (config.networking.hostName == "carthage") [
     # "dm-snapshot"               # lvm

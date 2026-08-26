@@ -26,7 +26,7 @@ git_info() {
 
 ssh_info() {
 	[[ -n "$SSH_CONNECTION" || -n "$SSH_TTY" ]] &&
-		printf '%s' " $(tput setaf 214)\uf023$(tput sgr0)"
+		printf '%s' " $(tput setaf 214)󰣀$(tput sgr0)"
 }
 
 PS1='$(printf "\[%s\]" "$(exitstatus)")'

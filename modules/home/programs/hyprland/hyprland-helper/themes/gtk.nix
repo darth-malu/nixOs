@@ -31,19 +31,15 @@
     };
 
     iconTheme = {
-      name = "Colloid-Dracula";
+      # name = "Colloid-Dracula";
       # package = pkgs.colloid-icon-theme.override { schemeVariants = [ "dracula" ]; };
-      package = pkgs.colloid-icon-theme.override {
-        schemeVariants = [ "dracula" ];
-        # colorVariants = [ "purple" ];
-      };
       # name = "kora"; package = pkgs.kora-icon-theme;
       # name = "candy-icons"; package = pkgs.candy-icons;
       # name = "Papirus-Dark"; package = pkgs.papirus-icon-theme;
 
       # name = "gruvbox-plus-icons";  package = pkgs.gruvbox-plus-icons;
-      # name = "windows10-icons";
-      # package = pkgs.windows10-icons;
+      name = "windows10-icons";
+      package = pkgs.windows10-icons;
     };
 
     gtk2 = {

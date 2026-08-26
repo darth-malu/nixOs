@@ -41,7 +41,7 @@
       # emacs
       # bc
       wl-clipboard
-      cliphist
+      # cliphist
       dotool # test if working
       easyeffects
       mpc

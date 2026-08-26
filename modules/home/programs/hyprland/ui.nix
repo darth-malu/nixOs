@@ -67,7 +67,6 @@ in
         font_size = 13; # 8::
         # stacked = true; # render the groupbar as a vertical stack
         "col.active" = "0x8600FFF5"; # 0x66ffff00
-        "col.inactive" = "0x3300FFF5";
         # col.locked_active
         # col.locked_inactive
         keep_upper_gap = false;

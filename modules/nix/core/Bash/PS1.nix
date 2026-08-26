@@ -26,13 +26,13 @@ git_info() {
 
 ssh_info() {
 	[[ -n "$SSH_CONNECTION" || -n "$SSH_TTY" ]] &&
-		printf '%s' " $(tput setaf 214)󰣀$(tput sgr0)"
+		printf '%s' " $(tput setaf 214)$(tput sgr0)"
 }
 
 PS1='$(printf "\[%s\]" "$(exitstatus)")'
 PS1+='\[$(tput bold)\]'
 PS1+='\[$(tput sc; printf "%*s" $COLUMNS "\[\w\]"; tput rc)\]'
-PS1+='$(git_info)'
 PS1+='$(ssh_info)'
+PS1+='$(git_info)'
 PS1+='\n• \[$(tput sgr0)\]'
 ''

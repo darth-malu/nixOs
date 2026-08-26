@@ -38,7 +38,7 @@
       # name = "Papirus-Dark"; package = pkgs.papirus-icon-theme;
 
       # name = "gruvbox-plus-icons";  package = pkgs.gruvbox-plus-icons;
-      name = "windows10-icons";
+      name = "Windows 10";
       package = pkgs.windows10-icons;
     };
 

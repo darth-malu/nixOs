@@ -17,7 +17,7 @@
         size = 32;
       };
       # iconTheme = "Papirus-Dark";
-      iconTheme = "kora";
+      iconTheme = "Windows 10";
       # wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Patak/contents/images/1080x1920.png";
       wallpaper = ../../../Pictures/wallpapers/vi_xander.png;
     };

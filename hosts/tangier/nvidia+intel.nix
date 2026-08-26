@@ -7,12 +7,13 @@
     nvidia-system-monitor-qt
   ];
   hardware = {
-    intel-gpu-tools.enable = true;
+    intel-gpu-tools.enable = false; # TODO: test for breakages
     graphics = {
       enable = true; # nouveau, opengl
       extraPackages = with pkgs; [
         intel-media-driver # LIBVA_DRIVER_NAME=iHD (for HD Graphics starting Broadwell (2014) and newer)
-        intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+        # intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+        # TODO: test if break source
         libvdpau-va-gl # vdpau-only apps
         vdpauinfo
       ];

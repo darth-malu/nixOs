@@ -93,20 +93,15 @@ profiles = {
     vo =
       if osConfig.networking.hostName == "carthage" then
         "gpu"
-        # "vaapi"
       else
-        # "vdpau"
-        "gpu"
-        # "nvdec"
-    ;
+        "gpu-next"; # gpu-next is faster & higher quality than gpu, even on the 940M
   }; # video output backend to use
   high-quality = {
     vo =
       if osConfig.networking.hostName == "carthage" then
-        "gpu-next" # change to gpu if issues
+        "gpu-next"
       else
-        # "vdpau" "nvdec"
-        "gpu";
+        "gpu-next";
   };
 };
 
@@ -141,22 +136,24 @@ gpu-context = "wayland";
 
 video-sync = "display-resample";
 
-hwdec = if osConfig.networking.hostName == "carthage" then "vulkan" else "nvdec"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
+hwdec = if osConfig.networking.hostName == "carthage" then "vulkan" else "nvdec,nvdec-copy,auto"; # hardware decoding with fallback chain
 
 vo = if osConfig.networking.hostName == "carthage" then
     "gpu-next"
     else
-      "gpu";
+      "gpu-next"; # recommended default; faster & higher quality than gpu
 
 # ytdl-format = "bestvideo+bestaudio"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
 # ytdl-format = "bv[height<=1080]+ba/b[height<=1080]"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
 ytdl-format = "(bv[height<=1080]*[vcodec~='^(hevc|h26[45])']+ba) / (bv[height<=1080]+ba/b[height<=1080])";
 
 cache = true; # yes, no , auto
-cache-pause = true; # buffering insteaad of stutter :)
+cache-pause = true; # buffering instead of stutter :)
 cache-pause-initial = true;
-demuxer-max-bytes = "1000MiB";   # 512MiB
-demuxer-max-back-bytes = "100M";
+demuxer-max-bytes =
+  if osConfig.networking.hostName == "carthage" then "1000MiB" else "512MiB"; # tangier has less RAM (8GB)
+demuxer-max-back-bytes =
+  if osConfig.networking.hostName == "carthage" then "100M" else "50M";
 demuxer-readahead-secs = 40;    # 20::
 # Store cache payload on the hard disk instead of in RAM. (This may negatively
 # impact performance unless used for slow input such as network.)

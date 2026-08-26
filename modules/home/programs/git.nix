@@ -69,12 +69,14 @@
     enableDefaultConfig = false;
     settings = {
       "carthage" = {
+        hostname = "192.168.1.2";
         identityFile = "~/.ssh/id_ed25519";
         user = "malu";
         addKeysToAgent = "yes";
         # identitiesOnly = true;
       };
       "tangier" = {
+        hostname = "192.168.1.5";
         identityFile = "~/.ssh/id_ed25519";
         user = "malu";
         addKeysToAgent = "yes";

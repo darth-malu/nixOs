@@ -67,18 +67,6 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    knownHosts = {
-      # Added after carthage reinstall — pinned so reinstalls only need rebuild
-      "carthage" = {
-        hostNames = [ "carthage" "192.168.1.2" ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILAG5e76Bmm84K1Xqd38o1TUBFbgvsj6/5wILkI3GQUV root@carthage";
-      };
-      # Added after carthage reinstall — pinned so reinstalls only need rebuild
-      "tangier" = {
-        hostNames = [ "tangier" "192.168.1.5" ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO9a9x3FJGsEmfZ6cC9dHrPZhL+qrnJarZ4BrPYrHtSX root@tangier";
-      };
-    };
     settings = {
       "carthage" = {
         hostname = "192.168.1.2";

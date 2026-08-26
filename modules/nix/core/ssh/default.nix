@@ -18,15 +18,17 @@
           "remotebuild"
         ]; # [ "user1" "user2 "] or null(all users allowed)::
       };
-      # extraConfig = ''
-      #   Host carthage
-      #   HostName 192.168.100.122
-      #   User malu
-      #   IdentityFile ~/.ssh/id_ed25519
-      # '';
-
-      # authorizedKeysInHomedir = true;
-      # authorizedKeysFiles = [ "/home/malu/Documents/authorized_keys" ];
+      # Added after carthage reinstall — pinned so reinstalls only need rebuild
+      knownHosts = {
+        "carthage" = {
+          hostNames = [ "carthage" "192.168.1.2" ];
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILAG5e76Bmm84K1Xqd38o1TUBFbgvsj6/5wILkI3GQUV root@carthage";
+        };
+        "tangier" = {
+          hostNames = [ "tangier" "192.168.1.5" ];
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO9a9x3FJGsEmfZ6cC9dHrPZhL+qrnJarZ4BrPYrHtSX root@tangier";
+        };
+      };
     };
   };
 }

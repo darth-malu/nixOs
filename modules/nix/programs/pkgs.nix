@@ -97,7 +97,6 @@
       libva-utils
       zenith
       powershell
-      localsend
     ]
     ++ pkgs.lib.optionals (config.hypr.enable) [
       hyprpicker

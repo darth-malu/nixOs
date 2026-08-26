@@ -6,7 +6,7 @@
     ./gaming
     ./gnupg.nix
     ./less.nix
-    ./localsend.nix
+    # ./localsend.nix
     ./virtualisation
     ./pkgs.nix
     ./manPages.nix

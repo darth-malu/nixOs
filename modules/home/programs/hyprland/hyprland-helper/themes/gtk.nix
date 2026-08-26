@@ -39,7 +39,17 @@
 
       # name = "gruvbox-plus-icons";  package = pkgs.gruvbox-plus-icons;
       name = "Windows 10";
-      package = pkgs.windows10-icons;
+      package = pkgs.windows10-icons.overrideAttrs (old: {
+        installPhase = ''
+          runHook preInstall
+          mkdir -p "$out/share/icons/Windows 10"
+          find . \
+            ! -path ./README.md \
+            -mindepth 1 -maxdepth 1 \
+            -exec cp -r {} "$out/share/icons/Windows 10" \;
+          runHook postInstall
+        '';
+      });
     };
 
     gtk2 = {

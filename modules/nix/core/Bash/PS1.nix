@@ -32,7 +32,7 @@ ssh_info() {
 PS1='$(printf "\[%s\]" "$(exitstatus)")'
 PS1+='\[$(tput bold)\]'
 PS1+='\[$(tput sc; printf "%*s" $COLUMNS "\[\w\]"; tput rc)\]'
-PS1+='$(ssh_info)'
+PS1+='$(ssh_info) '
 PS1+='$(git_info)'
 PS1+='\n• \[$(tput sgr0)\]'
 ''

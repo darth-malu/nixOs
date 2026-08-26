@@ -11,10 +11,9 @@
     graphics = {
       enable = true; # nouveau, opengl
       extraPackages = with pkgs; [
-        intel-media-driver # LIBVA_DRIVER_NAME=iHD (for HD Graphics starting Broadwell (2014) and newer)
-        # intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-        # TODO: test if break source
-        libvdpau-va-gl # vdpau-only apps
+        # intel-media-driver # LIBVA_DRIVER_NAME=iHD (for HD Graphics starting Broadwell (2014) and newer)
+        # intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium) #NOTE: not source of breakage
+        # libvdpau-va-gl # vdpau-only apps
         vdpauinfo
       ];
     };
@@ -45,7 +44,6 @@
     nvidia.nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    # nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
     nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
 
     # laptop optimus prime
@@ -61,7 +59,7 @@
 
       # Make sure to use the correct Bus ID values for your system!
       intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:10:0:0"; # "0a:00.0"
+      nvidiaBusId = "PCI:10:0:0"; # "0a:00.0" # a = 10
     };
   };
 
@@ -69,7 +67,7 @@
   # https://nixos.org/manual/nixos/stable/options#opt-services.xserver.videoDrivers
   services.xserver.videoDrivers = [ "nvidia" ];
   environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD"; # iHD for intel-media-driver (Broadwell+). Use i965 if browser VAAPI issues.
+    # LIBVA_DRIVER_NAME = "iHD"; # iHD for intel-media-driver (Broadwell+). Use i965 if browser VAAPI issues.
     # VDPAU_DRIVER = "va_gl"; # Unnecessary with NVIDIA driver — VDPAU handled natively by nvidia. Only needed for VDPAU-only apps on Intel iGPU.
   };
   # [Intel Graphics - Official NixOS Wiki](https://wiki.nixos.org/wiki/Intel_Graphics)

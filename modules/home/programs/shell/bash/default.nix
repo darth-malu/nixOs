@@ -46,7 +46,7 @@
   programs.bash.bashrcExtra = # extra cmd for bashrc
     ''
       # SUDO_PROMPT: reset + red (color 199) + lock icon + reset
-      export SUDO_PROMPT=$'\033[0m\033[38;5;199m 🔑 \033[0m '
+      export SUDO_PROMPT=$'\033[0m\033[38;5;199m 🔑\033[0m '
 
       rM() {
         trash-put "$@"; echo "🧻 $@ "
@@ -84,7 +84,7 @@
 
       # \eh to pull help like in ZSHELL
       run-help() { help "$READLINE_LINE" 2>/dev/null || batman "$READLINE_LINE"; }
-      bind -m vi-insert -x '"\eh": run-help'
+      bind -m vi-insert -x '"\ek": run-help'
       bind -m vi-insert -x '"\el": lsd;printf "\n"'
       # bind -m emacs -x     '"\eh": run-help'
 

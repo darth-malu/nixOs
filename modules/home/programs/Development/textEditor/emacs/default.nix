@@ -41,7 +41,8 @@
   home = {
     sessionPath = [
       "${config.xdg.configHome}/emacs/bin"
-      "/home/malu/.emacs.d"
+      "${config.home.homeDirectory}/.config/emacs/bin"
+      "/home/malu/.config/emacs/bin"
     ];
     sessionVariables.LSP_USE_PLISTS = "true";
   };

@@ -6,7 +6,7 @@
     ./git.nix
     ./gpg.nix
     ./mpv
-    ./nyaa.nix
+    # ./nyaa.nix
     ./pkgs.nix
     ./qutebrowser
     ./shell

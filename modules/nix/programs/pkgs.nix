@@ -96,6 +96,7 @@
       libva-utils
       zenith
       powershell
+      eas-cli
     ]
     ++ pkgs.lib.optionals (config.hypr.enable) [
       hyprpicker

@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   environment.systemPackages = with pkgs; [
@@ -57,7 +62,7 @@
       sync.enable = true; # gpu on always when true
       offload = {
         # on-demand
-        enable = true;
+        enable = lib.mkIf (!config.hardware.nvidia.prime.sync.enable) true;
         enableOffloadCmd = true;
         offloadCmdMainProgram = "nvidiaOffload";
       };

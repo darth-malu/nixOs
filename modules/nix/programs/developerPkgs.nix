@@ -29,6 +29,6 @@
     nodejs
     # nodejs_25 # consider npm for auto install of servers in lsp-mode
     # nodejs-slim_latest # consider npm for auto install of servers in lsp-mode
-    # deno
+    deno
   ];
 }

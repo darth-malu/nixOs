@@ -62,7 +62,7 @@
       sync.enable = true; # gpu on always when true
       offload = {
         # on-demand
-        enable = lib.mkIf (!config.hardware.nvidia.prime.sync.enable) true;
+        enable = false;
         enableOffloadCmd = true;
         offloadCmdMainProgram = "nvidiaOffload";
       };

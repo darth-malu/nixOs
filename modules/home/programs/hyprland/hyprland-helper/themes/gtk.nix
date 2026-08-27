@@ -2,6 +2,7 @@
   config,
   osConfig,
   pkgs,
+  lib,
   ...
 }:
 
@@ -21,13 +22,10 @@
     };
 
     theme = {
-      # name = "Nightfox-Dark";
-      # package = pkgs.nightfox-gtk-theme;
-      name = "breeze-gtk";
-      package = pkgs.kdePackages.breeze-gtk;
-      # name = "Yaru-Dark";
-      # package = pkgs.yaru-theme;
-      # name = "tokyonight-gtk-theme"; package = pkgs.Tokyonight-Moon;
+      name = "Dracula";
+      package = pkgs.dracula-theme;
+      # name = "breeze-gtk";
+      # package = pkgs.kdePackages.breeze-gtk;
     };
 
     iconTheme = {
@@ -35,21 +33,22 @@
       # package = pkgs.colloid-icon-theme.override { schemeVariants = [ "dracula" ]; };
       # name = "kora"; package = pkgs.kora-icon-theme;
       # name = "candy-icons"; package = pkgs.candy-icons;
-      # name = "Papirus-Dark"; package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
 
       # name = "gruvbox-plus-icons";  package = pkgs.gruvbox-plus-icons;
-      name = "Windows 10";
-      package = pkgs.windows10-icons.overrideAttrs (old: {
-        installPhase = ''
-          runHook preInstall
-          mkdir -p "$out/share/icons/Windows 10"
-          find . \
-            ! -path ./README.md \
-            -mindepth 1 -maxdepth 1 \
-            -exec cp -r {} "$out/share/icons/Windows 10" \;
-          runHook postInstall
-        '';
-      });
+      # name = "Windows 10";
+      # package = pkgs.windows10-icons.overrideAttrs (old: {
+      #   installPhase = ''
+      #     runHook preInstall
+      #     mkdir -p "$out/share/icons/Windows 10"
+      #     find . \
+      #       ! -path ./README.md \
+      #       -mindepth 1 -maxdepth 1 \
+      #       -exec cp -r {} "$out/share/icons/Windows 10" \;
+      #     runHook postInstall
+      #   '';
+      # });
     };
 
     gtk2 = {
@@ -80,6 +79,11 @@
       #   #   ''
       #   # '';
     };
+  };
 
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      icon-theme = "Papirus-Dark";
+    };
   };
 }

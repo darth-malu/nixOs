@@ -138,6 +138,7 @@
     ]
     ++ pkgs.lib.optionals (config.networking.hostName == "tangier") [
       brightnessctl
+      envycontrol.packages.x86_64-linux.default
     ]
     ++ [
       # inputs.vermilion.packages.${pkgs.stdenv.hostPlatform.system}.default

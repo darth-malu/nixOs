@@ -23,6 +23,8 @@
 
     nixvim.url = "github:nix-community/nixvim"; # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
 
+    envycontrol.url = "github:bayasdev/envycontrol";
+
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref={version}";
     hyprland.url = "github:hyprwm/Hyprland"; # with cachix

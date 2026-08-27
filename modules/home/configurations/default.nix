@@ -1,8 +1,10 @@
 { config, ... }:
 {
   xdg.configFile = {
-    "hyprland-autoname-workspaces/config.toml".source =
-      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/quickshell/bar/autoname-config.toml";
+    "hyprland-autoname-workspaces/config.toml" = {
+      enable = false;
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/quickshell/bar/autoname-config.toml";
+    };
   };
   home.file = {
     # ".local/share/fonts/wps-fonts" = {

@@ -2,6 +2,7 @@
 {
   systemd.user.services = {
     hyprland-autoname-workspaces = {
+      enable = false;
       description = "Hyprland-autoname-workspaces as systemd service";
       after = [ "graphical-session.target" ];
       requires = [ "graphical-session.target" ];

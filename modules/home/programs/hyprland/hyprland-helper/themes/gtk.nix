@@ -32,9 +32,10 @@
       # name = "Colloid-Dracula";
       # package = pkgs.colloid-icon-theme.override { schemeVariants = [ "dracula" ]; };
       # name = "kora"; package = pkgs.kora-icon-theme;
-      # name = "candy-icons"; package = pkgs.candy-icons;
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      name = "candy-icons";
+      package = pkgs.candy-icons;
+      # name = "Papirus-Dark";
+      # package = pkgs.papirus-icon-theme;
 
       # name = "gruvbox-plus-icons";  package = pkgs.gruvbox-plus-icons;
       # name = "Windows 10";
@@ -83,7 +84,8 @@
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      icon-theme = "Papirus-Dark";
+      # icon-theme = "Papirus-Dark";
+      icon-theme = "candy-icons";
     };
   };
 }

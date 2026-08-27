@@ -12,5 +12,5 @@
   # la = "lsd -A";
 
   # studious = "git --git-dir=/media/Hyogo/Backups/Bare --work-tree=/media/Hyogo";
-  dots = "git --git-dir=$HOME/Documents/Dots --work-tree=$HOME -c status.showUntrackedFiles=no";
+  dots = "git --git-dir=$HOME/Projects/Dots --work-tree=$HOME -c status.showUntrackedFiles=no";
 }

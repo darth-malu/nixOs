@@ -54,7 +54,7 @@
     # laptop optimus prime
     nvidia.prime = {
       # sudo lshw -c display
-      sync.enable = false; # gpu on always when true
+      sync.enable = true; # gpu on always when true
       offload = {
         # on-demand
         enable = true;

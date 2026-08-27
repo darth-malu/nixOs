@@ -1,4 +1,4 @@
-{ osConfig, ... }:
+{ lib, osConfig, ... }:
 {
   wayland.windowManager.hyprland.settings = {
     env = [
@@ -21,6 +21,10 @@
       # "GTK_THEME,Nightfox-Dark"
       # "SDL_VIDEODRIVER,wayland" # set to x11 incase of game issues
       # "AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0" #attempted fix
+    ]
+    ++ lib.optionals (osConfig.networking.hostName == "tangier") [
+      "LIBVA_DRIVER_NAME,nvidia" # hw acceleration on nvidia GPUs
+      "__GLX_VENDOR_LIBRARY_NAME,nvidia" # force GBM as backend;
     ];
   };
 }

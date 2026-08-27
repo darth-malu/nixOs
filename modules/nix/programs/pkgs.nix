@@ -2,7 +2,6 @@
   inputs,
   config,
   pkgs,
-  lib,
   ...
 }:
 {
@@ -134,11 +133,11 @@
       hyprsysteminfo
       hyprshutdown
       hyprpwcenter
-      hyprland-autoname-workspaces
+      # hyprland-autoname-workspaces
     ]
     ++ pkgs.lib.optionals (config.networking.hostName == "tangier") [
       brightnessctl
-      envycontrol.packages.x86_64-linux.default
+      inputs.envycontrol.packages.x86_64-linux.default
     ]
     ++ [
       # inputs.vermilion.packages.${pkgs.stdenv.hostPlatform.system}.default

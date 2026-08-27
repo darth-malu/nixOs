@@ -13,10 +13,11 @@ let
     (pkgs.androidenv.composeAndroidPackages {
       platformVersions = [ "35" ]; # compileSdkVersion set in app.json expo-build-properties
       buildToolsVersions = [
-        "34.0.0"
         "35.0.0"
+        "36.0.0" # react-native/gradle/libs.versions.toml: buildTools = "36.0.0"
       ];
       cmdLineToolsVersion = "22.0"; # sdkmanager / avdmanager
+      cmakeVersions = [ "3.22.1" ]; # AGP resolves cmake;3.22.1 for RN native modules
       includeNDK = true;
       ndkVersions = [ "27.1.12297006" ]; # react-native/gradle/libs.versions.toml
       includeEmulator = false;
@@ -32,8 +33,7 @@ in
 
   environment.systemPackages =
     (with pkgs; [
-      jdk21 # Gradle 8.14 supports up to Java 24; jdk25 is too new, jdk17 also works
-      jdk17
+      jdk17 # RN 0.81 / Kotlin 2.1 / Gradle 8.14 all target JDK 17
       gradle
     ])
     ++ lib.optionals onCarthage [
@@ -43,7 +43,7 @@ in
   environment.sessionVariables = lib.mkIf onCarthage {
     ANDROID_HOME = "${androidSdk}/libexec/android-sdk";
     ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
-    JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
+    JAVA_HOME = "${pkgs.jdk17}/lib/openjdk";
   };
 
   users.users.malu.extraGroups = lib.mkIf onCarthage [

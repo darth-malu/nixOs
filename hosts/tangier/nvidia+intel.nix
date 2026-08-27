@@ -63,8 +63,8 @@
       offload = {
         # on-demand
         enable = false;
-        enableOffloadCmd = true;
-        offloadCmdMainProgram = "nvidiaOffload";
+        # enableOffloadCmd = true;
+        # offloadCmdMainProgram = "nvidiaOffload";
       };
 
       # Make sure to use the correct Bus ID values for your system!

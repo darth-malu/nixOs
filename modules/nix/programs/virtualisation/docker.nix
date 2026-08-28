@@ -10,14 +10,14 @@
   config = lib.mkIf config.docker.enable {
     # users.extraGroups.docker.members = [ "malu" ];
     virtualisation.docker = {
-      enable = (config.networking.hostName == "tangier");
+      enable = true;
       storageDriver = "btrfs";
       enableOnBoot = true;
-      extraOptions = "--default-runtime=nvidia";
+      extraOptions = lib.mkIf (config.networking.hostName == "carthage") "--default-runtime=nvidia";
       # APply the demo set
       # kubectl create -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/1.0.0-beta4/nvidia-device-plugin.yml
       rootless = {
-        enable = true;
+        enable = true; # no CDI with this?
         setSocketVariable = true; # DOCKER_HOST
         # daemon = {
         #   fixed-cidr-v6 = "fd00::/80";

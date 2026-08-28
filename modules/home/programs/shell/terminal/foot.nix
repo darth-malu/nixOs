@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }:
 let
@@ -54,7 +55,11 @@ in
     server.enable = false;
     settings = {
       main = {
-        font = "JetBrains Mono Nerd Font:size=11.2";
+        font =
+          if config.networking.hostName == "tangier" then
+            "JetBrains Mono Nerd Font:size=10.2"
+          else
+            "JetBrains Mono Nerd Font:size=11.2";
         horizontal-letter-offset = 0;
         vertical-letter-offset = 0;
         # letter-spacing = 2;

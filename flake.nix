@@ -128,6 +128,7 @@
             "antigravity-cli"
             "windows10-icons"
             "vmware-workstation"
+            "genymotion"
           ];
         permittedInsecurePackages = [
           "ventoy-1.1.12"

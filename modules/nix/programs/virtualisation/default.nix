@@ -1,4 +1,10 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  pkgs-stable,
+  config,
+  lib,
+  ...
+}:
 {
   imports = [
     ./qemu
@@ -11,13 +17,13 @@
   ];
 
   qemu.enable = false;
-  docker.enable = true;
+  docker.enable = lib.mkIf (config.networking.hostname == "carthage") false;
   n8n.enable = false;
   tailscale.enable = false;
 
   virtualisation.waydroid.enable = false;
 
   environment.systemPackages = [
-    # pkgs.genymotion
+    # pkgs-stable.genymotion
   ];
 }

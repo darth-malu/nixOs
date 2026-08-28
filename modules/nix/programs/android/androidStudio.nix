@@ -34,7 +34,11 @@ in
   # Gradle/AGP download third-party binaries (aapt2, ...) that are dynamically
   # linked against generic-linux glibc; let them run on NixOS.
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [ glibc zlib stdenv.cc.cc.lib ];
+  programs.nix-ld.libraries = with pkgs; [
+    glibc
+    zlib
+    stdenv.cc.cc.lib
+  ];
 
   environment.systemPackages =
     (with pkgs; [
@@ -43,6 +47,7 @@ in
     ])
     ++ lib.optionals onCarthage [
       androidSdk # provides adb (platform-tools), aapt2, avdmanager...
+      android-studio-full
     ];
 
   environment.sessionVariables = lib.mkIf onCarthage {

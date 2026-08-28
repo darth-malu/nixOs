@@ -60,7 +60,7 @@ in
     }
   ];
 
-  # optional, useful when the builder has a faster internet connection than yours
+  # optional, true => useful when the builder has a faster internet connection than yours
   nix.settings.builders-use-substitutes = lib.mkIf isClient false;
 
   # 'remotebuild' needs to be a trusted user on Carthage so the client's nix-daemon can talk to Carthage's nix-daemon.
@@ -70,6 +70,6 @@ in
   # nixos-rebuild boot --target-host malu@192.168.100.3 --use-remote-sudo --flake ~/Shibuya#tangier --ask-sudo-password # from tangier
   # nixos-rebuild boot --target-host remotebuild@192.168.100.4 --elevate=sudo --flake ~/Shibuya#tangier --ask-sudo-password
 
-  # nixos-rebuild boot --target-host remotebuild@192.168.100.4 --sudo --ask-sudo-password --flake ~/Shibuya#tangier
+  # nixos-rebuild boot --target-host remotebuild@tangier --sudo --ask-sudo-password --flake ~/Shibuya#tangier
   # https://wiki.nixos.org/wiki/Nixos-rebuild#Deploying_on_other_machines
 }

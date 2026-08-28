@@ -75,7 +75,7 @@
         "facetimehd-calibration"
         "facetimehd-firmware"
         "nvidia-kernel-modules"
-        # "genymotion"
+        "genymotion"
         "androidsdk"
       ]
       || isAndroidSdkInnards;

@@ -21,9 +21,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixvim.url = "github:nix-community/nixvim"; # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
+    # nixvim.url = "github:nix-community/nixvim"; # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
 
-    envycontrol.url = "github:bayasdev/envycontrol";
+    # envycontrol.url = "github:bayasdev/envycontrol";
 
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref={version}";
@@ -76,22 +76,14 @@
     #   inputs.hyprland.follows = "hyprland";
     # };
 
-    Hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-
-      # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
-      inputs.hyprland.follows = "hyprland";
-    };
+    # Hyprspace.url = "github:KZDKM/Hyprspace"; Hyprspace.inputs.hyprland.follows = "hyprland";
 
     nyaa = {
       url = "github:Beastwick18/nyaa";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    vermilion = {
-      url = "github:vaxerski/Vermilion";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # vermilion.url = "github:vaxerski/Vermilion"; vermilion.inputs.nixpkgs.follows = "nixpkgs";
 
     emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
 

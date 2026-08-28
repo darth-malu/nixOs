@@ -78,7 +78,7 @@
 
   boot.kernelModules =
     lib.optionals (config.networking.hostName == "tangier") [
-      "kvm-intel"
+      # "kvm-intel"
     ]
     ++ lib.optionals (config.networking.hostName == "carthage") [
       "kvm-amd"

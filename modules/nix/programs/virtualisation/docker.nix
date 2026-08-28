@@ -13,7 +13,7 @@
       enable = true;
       storageDriver = "btrfs";
       enableOnBoot = true;
-      extraOptions = lib.mkIf (config.networking.hostName == "carthage") "--default-runtime=nvidia";
+      extraOptions = lib.mkIf (config.networking.hostName == "tangier") "--default-runtime=nvidia";
       # APply the demo set
       # kubectl create -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/1.0.0-beta4/nvidia-device-plugin.yml
       rootless = {

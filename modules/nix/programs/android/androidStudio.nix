@@ -31,6 +31,11 @@ in
   # Accept the android-sdk-license (read by androidenv/license.nix)
   nixpkgs.config.android_sdk.accept_license = true;
 
+  # Gradle/AGP download third-party binaries (aapt2, ...) that are dynamically
+  # linked against generic-linux glibc; let them run on NixOS.
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [ glibc zlib stdenv.cc.cc.lib ];
+
   environment.systemPackages =
     (with pkgs; [
       jdk17 # RN 0.81 / Kotlin 2.1 / Gradle 8.14 all target JDK 17

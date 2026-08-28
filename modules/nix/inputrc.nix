@@ -118,10 +118,10 @@
           #"\M-\C-[B":       next-history
 
           #single tab instead of double tab
-          set show-all-if-unmodified On
+          set show-all-if-unmodified on
 
           # complete word, show possible compleetions if still ambiguous
-          set show-all-if-ambiguous On
+          set show-all-if-ambiguous on
 
           #security by preventing accidental execution of control characters in text, \e[200~ at the beginning and \e[201~ at the end
           set enable-bracketed-paste on # fix weird double indent?
@@ -132,18 +132,18 @@
           # Color files by types
           # NOTE that this may cause completion text blink in some terminals (e.g. xterm).
           #use LS_COLORS
-          set colored-stats On
+          set colored-stats on
 
           # Append char to indicate type
-          set visible-stats On
+          set visible-stats on
 
-          set mark-symlinked-directories On
+          set mark-symlinked-directories on
 
           # color common prefix cmp
-          set colored-completion-prefix On
+          set colored-completion-prefix on
 
           # show shared prefix
-          set menu-complete-display-prefix On
+          set menu-complete-display-prefix on
 
           # suffix for file type like with ls -F
           set page-completions off # pager like show of many possible completions

@@ -50,8 +50,8 @@ let
 in
 {
   programs.foot = {
-    enable = false;
-    server.enable = true;
+    enable = true;
+    server.enable = false;
     settings = {
       main = {
         font = "JetBrains Mono Nerd Font:size=11.2";

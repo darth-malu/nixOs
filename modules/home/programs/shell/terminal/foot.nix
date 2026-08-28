@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  config,
+  osConfig,
   ...
 }:
 let
@@ -56,7 +56,7 @@ in
     settings = {
       main = {
         font =
-          if config.networking.hostName == "tangier" then
+          if (osConfig.networking.hostName == "tangier") then
             "JetBrains Mono Nerd Font:size=10.2"
           else
             "JetBrains Mono Nerd Font:size=11.2";

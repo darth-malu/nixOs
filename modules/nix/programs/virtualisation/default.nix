@@ -17,7 +17,7 @@
   ];
 
   qemu.enable = false;
-  docker.enable = lib.mkIf (config.networking.hostname == "carthage") false;
+  docker.enable = lib.mkIf (config.networking.hostName == "carthage") false;
   n8n.enable = false;
   tailscale.enable = false;
 

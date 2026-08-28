@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -59,12 +54,12 @@
     # laptop optimus prime
     nvidia.prime = {
       # sudo lshw -c display
-      sync.enable = true; # gpu on always when true
+      sync.enable = false; # gpu on always when true
       offload = {
         # on-demand
-        enable = false;
-        # enableOffloadCmd = true;
-        # offloadCmdMainProgram = "nvidiaOffload";
+        enable = true;
+        enableOffloadCmd = true;
+        offloadCmdMainProgram = "nvidiaOffload";
       };
 
       # Make sure to use the correct Bus ID values for your system!
@@ -76,9 +71,9 @@
   # Load nvidia driver for Xorg and Wayland
   # https://nixos.org/manual/nixos/stable/options#opt-services.xserver.videoDrivers
   services.xserver.videoDrivers = [ "nvidia" ];
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD"; # iHD for intel-media-driver (Broadwell+). Use i965 if browser VAAPI issues.
-    VDPAU_DRIVER = "va_gl"; # Unnecessary with NVIDIA driver — VDPAU handled natively by nvidia. Only needed for VDPAU-only apps on Intel iGPU.
-  };
+  # environment.sessionVariables = {
+  #   LIBVA_DRIVER_NAME = "iHD"; # iHD for intel-media-driver (Broadwell+). Use i965 if browser VAAPI issues.
+  #   VDPAU_DRIVER = "va_gl"; # Unnecessary with NVIDIA driver — VDPAU handled natively by nvidia. Only needed for VDPAU-only apps on Intel iGPU.
+  # };
   # [Intel Graphics - Official NixOS Wiki](https://wiki.nixos.org/wiki/Intel_Graphics)
 }

@@ -72,7 +72,7 @@
   # https://nixos.org/manual/nixos/stable/options#opt-services.xserver.videoDrivers
   services.xserver.videoDrivers = [ "nvidia" ];
   # environment.sessionVariables = {
-  #   LIBVA_DRIVER_NAME = "iHD"; # iHD for intel-media-driver (Broadwell+). Use i965 if browser VAAPI issues.
+  LIBVA_DRIVER_NAME = "iHD"; # iHD for intel-media-driver (Broadwell+). Use i965 if browser VAAPI issues.
   #   VDPAU_DRIVER = "va_gl"; # Unnecessary with NVIDIA driver — VDPAU handled natively by nvidia. Only needed for VDPAU-only apps on Intel iGPU.
   # };
   # [Intel Graphics - Official NixOS Wiki](https://wiki.nixos.org/wiki/Intel_Graphics)

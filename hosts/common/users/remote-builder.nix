@@ -45,10 +45,10 @@ in
     {
       sshUser = "remotebuild";
       sshKey = "/home/malu/.ssh/id_ed25519";
-      hostName = "192.168.1.2"; # Carthage
+      hostName = "carthage"; # Carthage - 192.168.1.2
       protocol = "ssh-ng"; # Modern protocol — streams derivation info over SSH directly. Faster than legacy ssh which copies the entire derivation closure first.
       maxJobs = 3; # max parallel builds
-      speedFactor = 2; # does not matter with one builder :)
+      speedFactor = 2; # how fast is the builder compared to other remote builders
       system = pkgs.stdenv.hostPlatform.system;
       supportedFeatures = [
         "nixos-test" # Machine can run NixOs tests
@@ -60,9 +60,16 @@ in
     }
   ];
 
-  nix.extraOptions = lib.mkIf isClient ''
-    builders-use-substitutes = true
-  '';
+  # optional, useful when the builder has a faster internet connection than yours
+  nix.settings.builders-use-substitutes = lib.mkIf isClient false;
+
+  # 'remotebuild' needs to be a trusted user on Carthage so the client's nix-daemon can talk to Carthage's nix-daemon.
+  nix.settings.trusted-users = lib.mkIf isBuilder [
+    "remotebuild"
+  ];
   # nixos-rebuild boot --target-host malu@192.168.100.3 --use-remote-sudo --flake ~/Shibuya#tangier --ask-sudo-password # from tangier
   # nixos-rebuild boot --target-host remotebuild@192.168.100.4 --elevate=sudo --flake ~/Shibuya#tangier --ask-sudo-password
+
+  # nixos-rebuild boot --target-host remotebuild@192.168.100.4 --sudo --ask-sudo-password --flake ~/Shibuya#tangier
+  # https://wiki.nixos.org/wiki/Nixos-rebuild#Deploying_on_other_machines
 }

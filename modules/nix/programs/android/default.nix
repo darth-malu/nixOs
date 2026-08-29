@@ -1,5 +1,5 @@
 {
   imports = [
-    ./androidStudio.nix
+    # ./androidStudio.nix
   ];
 }

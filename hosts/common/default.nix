@@ -18,67 +18,36 @@
   ];
 
   nixpkgs.config = {
-    # allowUnfree = true;
-    allowUnfreePredicate =
-      pkg:
-      let
-        name = lib.getName pkg;
-        # androidenv's deployed SDK is made of several unfree plugin derivations
-        # ("android-sdk-*") and the raw SDK tarballs they unpack (each marked
-        # meta.license = unfree). getName may return either the short pname
-        # ("platform-tools") or the archive filename, so match both.
-        isAndroidSdkInnards =
-          lib.hasPrefix "android-" name
-          || builtins.elem name [
-            "android-sdk"
-            "android-tools"
-            "platform-tools"
-            "build-tools"
-            "tools"
-            "cmdline-tools"
-            "platforms"
-            "platform"
-            "emulator"
-            "cmake"
-            "ndk"
-            "sdkmanager"
-          ]
-          || builtins.any (re: builtins.match re name != null) [
-            "^platform-tools_r[0-9].*\\.zip$"
-            "^build-tools_r[0-9].*\\.zip$"
-            "^platform-[0-9]+_r[0-9].*\\.zip$"
-            "^commandlinetools-linux-.*\\.zip$"
-            "^android-ndk-.*\\.zip$"
-          ];
-      in
-      builtins.elem name [
-        "broadcom-sta"
-        "n8n"
-        "symbola"
-        "steam-unwrapped"
-        "nvidia-x11"
-        "nvidia-settings"
-        "cuda_nvml_dev"
-        "xone-dongle-firmware"
-        "steam"
-        "discord"
-        "discord-unwrapped"
-        "aspell-dict-en-science"
-        "ventoy"
-        "google-chrome"
-        "rar"
-        "spotify"
-        "stremio-linux-shell"
-        "bluemail"
-        "broadcom-bt-firmware"
-        "b43-firmware"
-        "facetimehd-calibration"
-        "facetimehd-firmware"
-        "nvidia-kernel-modules"
-        "genymotion"
-        "androidsdk"
-      ]
-      || isAndroidSdkInnards;
+    allowUnfree = true;
+    # allowUnfreePredicate =
+    #   pkg:
+    #   builtins.elem name [
+    #     "broadcom-sta"
+    #     "n8n"
+    #     "symbola"
+    #     "steam-unwrapped"
+    #     "nvidia-x11"
+    #     "nvidia-settings"
+    #     "cuda_nvml_dev"
+    #     "xone-dongle-firmware"
+    #     "steam"
+    #     "discord"
+    #     "discord-unwrapped"
+    #     "aspell-dict-en-science"
+    #     "ventoy"
+    #     "google-chrome"
+    #     "rar"
+    #     "spotify"
+    #     "stremio-linux-shell"
+    #     "bluemail"
+    #     "broadcom-bt-firmware"
+    #     "b43-firmware"
+    #     "facetimehd-calibration"
+    #     "facetimehd-firmware"
+    #     "nvidia-kernel-modules"
+    #     "genymotion"
+    #     "androidsdk"
+    #   ]
     permittedInsecurePackages = [
       "broadcom-sta-6.30.223.271-63-7.2"
       "ventoy-1.1.17"

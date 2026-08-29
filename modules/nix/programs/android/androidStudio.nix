@@ -46,8 +46,8 @@ in
       gradle
     ])
     ++ lib.optionals onCarthage [
-      androidSdk # provides adb (platform-tools), aapt2, avdmanager...
-      android-studio-full
+      androidSdk # provides adb (platform-tools), aapt2, avdmanager
+      pkgs.android-studio-full
     ];
 
   environment.sessionVariables = lib.mkIf onCarthage {

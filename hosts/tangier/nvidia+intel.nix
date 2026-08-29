@@ -11,6 +11,11 @@
 
   # boot.kernelParams = [ "i915.enable_guc=3" ];
 
+  boot.blacklistedKernelModules = [ "nouveau" ]; # NOTE that disabling both NVIDIA kernel modules and Nouveau effectively disables the GPU entirely.
+
+  # intel
+  # boot.kernelParams = [ "module_blacklist=i915" ];
+
   hardware = {
     intel-gpu-tools.enable = true; # TODO: test for breakages
     graphics = {
@@ -29,7 +34,7 @@
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
-    nvidia.powerManagement.enable = true;
+    nvidia.powerManagement.enable = false;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).

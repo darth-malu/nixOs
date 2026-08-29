@@ -13,13 +13,13 @@
 
   boot.blacklistedKernelModules = [ "nouveau" ]; # NOTE that disabling both NVIDIA kernel modules and Nouveau effectively disables the GPU entirely.
 
-  # intel
+  # intel -- intel kernel module
   # boot.kernelParams = [ "module_blacklist=i915" ];
 
   hardware = {
     intel-gpu-tools.enable = true; # TODO: test for breakages
     graphics = {
-      enable = true; # nouveau, opengl
+      enable = false; # nouveau, opengl
       extraPackages = with pkgs; [
         intel-media-driver # LIBVA_DRIVER_NAME=iHD (for HD Graphics starting Broadwell (2014) and newer)
         # intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium) #NOTE: not source of breakage
@@ -76,9 +76,9 @@
   # Load nvidia driver for Xorg and Wayland
   # https://nixos.org/manual/nixos/stable/options#opt-services.xserver.videoDrivers
   services.xserver.videoDrivers = [ "nvidia" ];
-  # environment.sessionVariables = {
-  # LIBVA_DRIVER_NAME = "iHD"; # iHD for intel-media-driver (Broadwell+). Use i965 if browser VAAPI issues.
-  #   VDPAU_DRIVER = "va_gl"; # Unnecessary with NVIDIA driver — VDPAU handled natively by nvidia. Only needed for VDPAU-only apps on Intel iGPU.
-  # };
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD"; # iHD for intel-media-driver (Broadwell+). Use i965 if browser VAAPI issues.
+    VDPAU_DRIVER = "va_gl"; # Unnecessary with NVIDIA driver — VDPAU handled natively by nvidia. Only needed for VDPAU-only apps on Intel iGPU.
+  };
   # [Intel Graphics - Official NixOS Wiki](https://wiki.nixos.org/wiki/Intel_Graphics)
 }

@@ -9,23 +9,54 @@
   environment.systemPackages =
     with pkgs;
     [
+      # DEVELOPER 🛠️
+      # JavaScript
+      # LUA
+      # beekeeper-studio
+      # cling
+      # firebase-tools
+      # libxml2
+      # nasm
+      # nodejs-slim_latest # consider npm for auto install of servers in lsp-mode
+      # nodejs_25 # consider npm for auto install of servers in lsp-mode
+      # patchelf
+      # qtcreator
+      # zlib
+      dash
+      deno
+      ed
+      lua54Packages.lua
+      lua54Packages.luarepl
+      manim # FIXME failed
+      nodejs
+      nushell
+      rustywind
+      socat
+      tailwindcss-language-server # for use with lsp-tailwind (emacs)
+      tailwindcss_4
+      typescript
+      typescript-language-server
+      xonsh
+      powershell
+      eas-cli
+      zenity
+      newt
+    ]
+    ++ [
+      # CORE
       libnotify # notify-send
       wget
       nvd
       app2unit # NOTE build error...wait for stable bin
-      nushell
-      xonsh
+      localsend
       #cpufrequtils
       lshw
       e2fsprogs # chattr etc
       efibootmgr
       curl
-      dash
       procs
       libdisplay-info
-      # stacer
-      fio
-      # killall # TODO: see if needed with psmisc
+      # stacer #NOTE: defunct
       psmisc # fuser,killall?
       nix-prefetch-git # nix-prefetch-scripts #includes git prefetch
       pipewire
@@ -37,11 +68,9 @@
       pciutils # lspci
       util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock, more**
       kitty
-      # emacs
-      # bc
+      dotool # TODO test if working
       wl-clipboard
       # cliphist
-      dotool # test if working
       easyeffects
       mpc
       discord
@@ -49,14 +78,11 @@
       # ff2mpv-rust
       ff2mpv
       # gsmartcontrol
-      # iotop #basic
-      # perfomance monitoring
       # qdiskinfo
       # squirreldisk #kinda nice
       # superfile # kinda cool but dont need
       # testdisk-qt
       # utilities
-      # warp-terminal # insane bloat
       # win-disk-writer
       # testdisk # also installs photorec
       # duc
@@ -67,7 +93,7 @@
       iftop # TODO seems powerful investigate more
       inxi
       isd
-      gparted-full
+      # gparted-full
       iotop-c
       lm_sensors
       lsof # list open files/ports**
@@ -77,47 +103,38 @@
       usbutils # lsusb, usb-devices, usb-view(optional gui)
       util-linux # fdisk, findmnt, kill, chsh, dmesg, eject, fstrim, hwclock
       xdg-utils
-      testdisk
-      testdisk-qt
-      extundelete
       ripgrep-all
       dotool
       httrack
       modem-manager-gui
       modemmanager
-      whatsapp-electron
       ventoy-full # usb imager #woeusb
       nautilus
       ffmpeg
-      google-chrome
       # firefox
       # ungoogled-chromium
       vulkan-tools
       libva-utils
       zenith
-      powershell
-      eas-cli
     ]
     ++ pkgs.lib.optionals (config.hypr.enable) [
-      hyprpicker
+      # hyprpicker
       # hyprpolkitagent
       libappindicator-gtk3 # needed for discord icon
       # libsecret # secrets lul
-      grimblast
+      # grimblast
+      grim
+      slurp
       mousam
       # file-roller
       # inputs.hyprswitch.packages.x86_64-linux.default
       # yelp
-      slurp
       sushi
       viewnior
       kdePackages.kalk
       # kdePackages.kclock # NOTE: broken jumpers/incrementers
       gnome-clocks
-      grim
       imagemagick # screenshot
-      zenity
-      newt
       # sound-theme-freedesktop # free sounds
       libcanberra-gtk3
       kdePackages.kasts
@@ -131,9 +148,9 @@
       # kdePackages.kio-gdrive
       kdePackages.qtwayland # allows Qt-based applications to run on the Wayland display protocol
       kdePackages.dolphin
-      hyprsysteminfo
-      hyprshutdown
-      hyprpwcenter
+      # hyprsysteminfo
+      # hyprshutdown
+      # hyprpwcenter
       # hyprland-autoname-workspaces
     ]
     ++ pkgs.lib.optionals (config.networking.hostName == "tangier") [
@@ -141,16 +158,13 @@
       # inputs.envycontrol.packages.x86_64-linux.default
     ]
     ++ [
-      # inputs.vermilion.packages.${pkgs.stdenv.hostPlatform.system}.default
-    ]
-    ++ [
       # pastel # color generator
       # qalculate-qt # #FIXME:for rofi?
       # yaru-theme
       # aria2#NOTE: learn
       # libsecret # TODO use
-      ddrescue
-      testdisk
+      # ddrescue
+      # testdisk
       trash-cli
       wev # NOTE use ./ascii
       jdupes
@@ -166,30 +180,32 @@
       rar # also has unrar
     ]
     ++ [
-      # Fediverse
+      # SOCIALS + Fediverse
       telegram-desktop
       # signal-desktop
       # mastodon # TODO: self host only? no desktop
       # cinny-desktop
       # rocketchat-desktop
       element-desktop
+      google-chrome
+      whatsapp-electron
     ]
     ++ [
       # SOUND
-      cantata # old af
+      # cantata # old af
       # clapper
       # kando
-      lollypop # cantata better
+      # lollypop # cantata better
       # qqmusic
       # spotify-cli-linux
       # tenacity
-      # wf-recorder
       # ymuse # rudimentary
       # youtube-tui # https://siriusmart.github.io/youtube-tui/
       audacity
       blanket
       qbittorrent
       # gpu-screen-recorder-gtk
+      wf-recorder
       # alarm-clock-applet
       spotify
       cliamp
@@ -199,6 +215,7 @@
       sway-audio-idle-inhibit
     ]
     ++ [
+      # ANIMU
       komikku # broken
       mangal
       ani-cli
@@ -206,24 +223,9 @@
       #syncyomi - sync tachiyomi progress across devices
     ]
     ++ [
-      # coppwr
-      # helvum
-      # kdePackages.mlt
-      # ffmpeg-full
-      handbrake # FIXME lag on open
-      # obs-cli
-      obs-studio
-    ]
-    ++ [
       bluemail
       inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-    ]
-    ++ [
-      # Productivity Tools
-      # libreoffice-qt-still
-      # libreoffice-still
       onlyoffice-desktopeditors
-      # wordbook
       # wpsoffice
     ]
     ++ [
@@ -238,6 +240,22 @@
       # figma-linux
       # figma-agent  #NOTE listens on 127.0.0.1:44950
       # davinci-resolve
+      # coppwr
+      # helvum
+      # kdePackages.mlt
+      # ffmpeg-full
+      handbrake # FIXME lag on open
+      # obs-cli
+      obs-studio
       exiftool
+    ]
+    ++ [
+      # RARE usage | UNNEEDED
+      # testdisk
+      # testdisk-qt
+      # extundelete
+      # fio
+      # killall # TODO: see if needed with psmisc
+      # bc
     ];
 }

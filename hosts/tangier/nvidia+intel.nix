@@ -21,7 +21,7 @@
     graphics = {
       enable = true; # nouveau, opengl
       extraPackages = with pkgs; [
-        intel-media-driver # LIBVA_DRIVER_NAME=iHD (for HD Graphics starting Broadwell (2014) and newer)
+        # intel-media-driver # LIBVA_DRIVER_NAME=iHD (for HD Graphics starting Broadwell (2014) and newer)
         # intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium) #NOTE: not source of breakage
         libvdpau-va-gl # vdpau-only apps
         vdpauinfo
@@ -78,7 +78,7 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD"; # iHD for intel-media-driver (Broadwell+). Use i965 if browser VAAPI issues.
-    VDPAU_DRIVER = "va_gl"; # Unnecessary with NVIDIA driver — VDPAU handled natively by nvidia. Only needed for VDPAU-only apps on Intel iGPU.
+    # VDPAU_DRIVER = "va_gl"; # Unnecessary with NVIDIA driver — VDPAU handled natively by nvidia. Only needed for VDPAU-only apps on Intel iGPU.
   };
   # [Intel Graphics - Official NixOS Wiki](https://wiki.nixos.org/wiki/Intel_Graphics)
 }

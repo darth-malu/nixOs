@@ -2,6 +2,7 @@
   pkgs,
   osConfig,
   config,
+  lib,
   ...
 }:
 {
@@ -21,7 +22,7 @@
     enable = true; # emacs daemon
     startWithUserSession = true; # "graphical" - graphical-session.target . true - default.target::
     # defaultEditor = true;
-    socketActivation.enable = if osConfig.networking.hostName == "tangier" then true else false;
+    socketActivation.enable = lib.mkIf (osConfig.networking.hostName == "tangier") true;
     client = {
       # Whether to enable systemd socket activation for the Emacs service. # TODO see if conflicting with startWithUSerSession
       enable = true; # false::, generation of Emacs client desktop file.

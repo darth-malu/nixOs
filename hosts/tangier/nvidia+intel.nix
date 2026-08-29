@@ -14,12 +14,12 @@
   boot.blacklistedKernelModules = [ "nouveau" ]; # NOTE that disabling both NVIDIA kernel modules and Nouveau effectively disables the GPU entirely.
 
   # intel -- intel kernel module
-  # boot.kernelParams = [ "module_blacklist=i915" ];
+  boot.kernelParams = [ "module_blacklist=i915" ];
 
   hardware = {
     intel-gpu-tools.enable = true; # TODO: test for breakages
     graphics = {
-      enable = false; # nouveau, opengl
+      enable = true; # nouveau, opengl
       extraPackages = with pkgs; [
         intel-media-driver # LIBVA_DRIVER_NAME=iHD (for HD Graphics starting Broadwell (2014) and newer)
         # intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium) #NOTE: not source of breakage
@@ -54,7 +54,7 @@
     nvidia.nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+    # nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
 
     # laptop optimus prime
     nvidia.prime = {

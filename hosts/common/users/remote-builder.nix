@@ -45,7 +45,7 @@ in
     {
       sshUser = "remotebuild";
       sshKey = "/home/malu/.ssh/id_ed25519";
-      hostName = "carthage"; # Carthage - 192.168.1.2
+      hostName = "192.168.1.2"; # Carthage - 192.168.1.2
       protocol = "ssh-ng"; # Modern protocol — streams derivation info over SSH directly. Faster than legacy ssh which copies the entire derivation closure first.
       maxJobs = 3; # max parallel builds
       speedFactor = 2; # how fast is the builder compared to other remote builders

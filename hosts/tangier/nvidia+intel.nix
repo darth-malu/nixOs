@@ -13,8 +13,8 @@
 
   boot.blacklistedKernelModules = [ "nouveau" ]; # NOTE that disabling both NVIDIA kernel modules and Nouveau effectively disables the GPU entirely.
 
-  # intel -- intel kernel module
-  boot.kernelParams = [ "module_blacklist=i915" ];
+  # intel -- intel kernel module NOTE: blackscreen
+  # boot.kernelParams = [ "module_blacklist=i915" ];
 
   hardware = {
     intel-gpu-tools.enable = true; # TODO: test for breakages

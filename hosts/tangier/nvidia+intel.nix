@@ -54,7 +54,7 @@
     nvidia.nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    # nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+    nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
 
     # laptop optimus prime
     nvidia.prime = {

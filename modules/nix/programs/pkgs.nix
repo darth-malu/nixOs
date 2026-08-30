@@ -5,6 +5,8 @@
   ...
 }:
 {
+  # services.udev.packages = [ pkgs.android-udev-rules ]; # NOTE: 'android-udev-rules' has been removed due to being superseded by built-in systemd uaccess rules.
+
   # List of packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages =
     with pkgs;
@@ -22,6 +24,7 @@
       # patchelf
       # qtcreator
       # zlib
+      android-tools
       dash
       deno
       ed

@@ -19,10 +19,10 @@
 
   environment.systemPackages =
     with pkgs;
-    [
+    lib.optionals config.hardware.openrazer.enable [
       polychromatic
       # piper
-      razer-cli # FIXME: Daemon issue
+      # razer-cli # FIXME: Daemon issue
       # razergenie
       # openrazer-daemon
     ]

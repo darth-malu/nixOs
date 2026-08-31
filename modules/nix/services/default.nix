@@ -1,6 +1,6 @@
 {
   imports = [
-    ./flatpak.nix
+    # ./flatpak.nix
     ./ratbagd+openrgb.nix
     # ./jellyfin.nix
     ./postgresql.nix

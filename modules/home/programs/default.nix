@@ -13,6 +13,7 @@
     ./soundStuff
     ./yazi
     ./yt-dlp
+    ./scripts
   ]
   ++ (lib.optionals osConfig.hypr.enable [
     # TODO see if hypr better or full option

@@ -11,7 +11,7 @@ mgr.keymap = [
   { on = [ "g" "M" ];       run = "cd ~/Music";   desc = "MUSIC"; }
   { on = [ "g" "m" ];       run = "cd /media/";          desc = "media directory"; }
   { on = [ "g" "p" ];       run = "cd ~/Pictures";   desc = "Go to the pictures directory"; }
-  { on = [ "g" "P" ];       run = "cd ~/Projects";   desc = "Go to the pictures directory"; }
+  { on = [ "g" "P" ];       run = "cd ~/Projects";   desc = "~/Projects"; }
   { on = [ "g" "s" ];       run = "cd ~/Shibuya";   desc = "~/Shibuya"; }
   { on = [ "g" "u" ];       run = "cd ~/Projects/USIU";   desc = "USIU 📚"; }
   { on = [ "g" "v" ];       run = "cd ~/Videos";   desc = "VIDEOS dir"; }

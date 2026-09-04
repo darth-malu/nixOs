@@ -6,10 +6,6 @@
   ...
 }:
 
-# let
-# inherit (inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}) mesa;
-# myMesa = (inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}) mesa.drivers;
-# in
 {
   options.hypr = {
     enable = lib.mkEnableOption "Hyprland";
@@ -17,11 +13,11 @@
 
   config = lib.mkIf config.hypr.enable {
     # Fix Dolphin right-click menu
-    environment.etc."/xdg/menus/applications.menu".text =
-      builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
-
-    # hardware.graphics.package = mesa;
-    # system.nixos.tags = [ "Hyprland" ];
+    environment.etc."/xdg/menus/applications.menu" =
+      lib.mkIf (lib.elem pkgs.kdePackages.dolphin config.environment.systemPackages)
+        {
+          text = builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+        };
 
     programs.hyprland = {
       # required even with homeManager for system functions -> xdg, session files

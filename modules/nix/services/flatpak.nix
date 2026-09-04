@@ -5,7 +5,7 @@
   ];
   services.flatpak = {
     enable = true;
-    package = pkgs.flatpak;
+    # package = pkgs.flatpak;
     packages = [
       # "com.vixalien.sticky"
     ];

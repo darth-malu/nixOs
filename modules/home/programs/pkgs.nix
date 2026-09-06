@@ -64,6 +64,7 @@
         batman
         batgrep
         batwatch
+        # TODO: prettybat
       ];
       syntaxes = {
         gleam = {

@@ -25,13 +25,15 @@
       # qtcreator
       # zlib
       android-tools
+      # inputs.matugen.packages.${system}.default
+      matugen
       dash
       deno
+      nodejs
       ed
       lua54Packages.lua
       lua54Packages.luarepl
       manim # FIXME failed
-      nodejs
       nushell
       rustywind
       socat
@@ -118,6 +120,19 @@
       # ungoogled-chromium
       vulkan-tools
       libva-utils
+      # pastel # color generator
+      # qalculate-qt # #FIXME:for rofi?
+
+      # yaru-theme
+      # aria2#NOTE: learn
+      # libsecret # TODO use
+      # ddrescue
+      # testdisk
+      trash-cli
+      wev # NOTE use ./ascii
+      jdupes
+      cryptsetup
+      pass-wayland
       zenith
     ]
     ++ pkgs.lib.optionals (config.hypr.enable) [
@@ -125,6 +140,8 @@
       # hyprpolkitagent
       libappindicator-gtk3 # needed for discord icon
       # libsecret # secrets lul
+      # qalc
+      # kdePackages.kalk
       # grimblast
       grim
       slurp
@@ -134,7 +151,7 @@
       # yelp
       sushi
       viewnior
-      kdePackages.kalk
+      sway-audio-idle-inhibit
       # kdePackages.kclock # NOTE: broken jumpers/incrementers
       gnome-clocks
       imagemagick # screenshot
@@ -161,18 +178,6 @@
       # inputs.envycontrol.packages.x86_64-linux.default
     ]
     ++ [
-      # pastel # color generator
-      # qalculate-qt # #FIXME:for rofi?
-      # yaru-theme
-      # aria2#NOTE: learn
-      # libsecret # TODO use
-      # ddrescue
-      # testdisk
-      trash-cli
-      wev # NOTE use ./ascii
-      jdupes
-      cryptsetup
-      pass-wayland
     ]
     ++ [
       # testing for yazi #
@@ -213,9 +218,9 @@
       spotify
       cliamp
       spotube
+      cava
       # picard
       stremio-linux-shell
-      sway-audio-idle-inhibit
     ]
     ++ [
       # ANIMU

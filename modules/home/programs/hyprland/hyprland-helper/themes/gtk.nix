@@ -2,7 +2,6 @@
   config,
   osConfig,
   pkgs,
-  lib,
   ...
 }:
 
@@ -29,11 +28,11 @@
     };
 
     iconTheme = {
-      # name = "Colloid-Dracula";
-      # package = pkgs.colloid-icon-theme.override { schemeVariants = [ "dracula" ]; };
+      name = "Colloid-Dracula";
+      package = pkgs.colloid-icon-theme.override { schemeVariants = [ "dracula" ]; };
       # name = "kora"; package = pkgs.kora-icon-theme;
-      name = "candy-icons";
-      package = pkgs.candy-icons;
+      # name = "candy-icons";
+      # package = pkgs.candy-icons;
       # name = "Papirus-Dark";
       # package = pkgs.papirus-icon-theme;
 
@@ -85,7 +84,8 @@
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       # icon-theme = "Papirus-Dark";
-      icon-theme = "candy-icons";
+      # icon-theme = "candy-icons";
+      icon-theme = "Colloid-Dracula";
     };
   };
 }

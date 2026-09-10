@@ -34,24 +34,19 @@ settings = {
 * extraConfig
 #+begin_src nix :tangle default.nix
 # $XDG_CONFIG_HOME/yt-dlp/config
-extraConfig =
-if osConfig.networking.hostName == "carthage" then ''
-    -P "/media/Hyogo/Videos/YouTube/Unsorted"
-'' else
-    '' -P "~/Videos/Youtube/Unsorted"
-'' +
-''
-    # -P "subtitle:subs"
-    --no-playlist
+extraConfig = ''
+  ${if osConfig.networking.hostName == "carthage" 
+    then "-P /media/Hyogo/Videos/YouTube/Unsorted"
+    else "-P ~/Videos/Youtube/Unsorted"}
 
-    # Save all videos under YouTube directory in your home directory
-    -o "%(channel)s-%(title)s.%(ext)s"
+  # -P "subtitle:subs"
+  --no-playlist
 
-    # Download the best video available but no better than 1080p,
-    # -f "bv[height<=1080]+ba/b[height<=1080]"
-    # -f "bv[height<=1080][vcodec^=h264]+ba/b[height<=1080]"
-    # -f "(bv*[height<=1080]*[vcodec~='^((he|a)vc|h26[45])']+ba) / (bv[height<=1080]+ba/b[height<=1080])"
-    -f "(bv*[height<=1080]*[vcodec~='^(hevc|h26[45])']+ba) / (bv[height<=1080]+ba/b[height<=1080])"
+  # Save all videos under YouTube directory in your home directory
+  -o "%(channel)s-%(title)s.%(ext)s"
+
+  # Download the best video available but no better than 1080p
+  -f "(bv*[height<=1080]*[vcodec~='^(hevc|h26[45])']+ba) / (bv[height<=1080]+ba/b[height<=1080])"
 '';
 #+end_src
 

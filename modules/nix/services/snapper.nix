@@ -1,9 +1,4 @@
-{ pkgs, lib, config, ... }:
-{
-  environment.systemPackages = with pkgs; [
-    # snapper-gui
-    # snapper
-  ];
+{ lib, config, ... }: {
   services.snapper = lib.mkIf (config.networking.hostName == "carthage") {
     # systemd.time(7)
     snapshotInterval = "daily";
@@ -17,8 +12,8 @@
         TIMELINE_CREATE = true;
         TIMELINE_CLEANUP = true;
         TIMELINE_LIMIT_HOURLY = "0";
-        TIMELINE_LIMIT_DAILY = "7";
-        TIMELINE_LIMIT_WEEKLY = "4";
+        TIMELINE_LIMIT_DAILY = "1";
+        TIMELINE_LIMIT_WEEKLY = "2";
         TIMELINE_LIMIT_MONTHLY = "0";
         TIMELINE_LIMIT_YEARLY = "0";
       };

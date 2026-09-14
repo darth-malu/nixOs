@@ -45,6 +45,6 @@
       "${config.home.homeDirectory}/.config/emacs/bin"
       "/home/malu/.config/emacs/bin"
     ];
-    sessionVariables.LSP_USE_PLISTS = "true";
+    # sessionVariables.LSP_USE_PLISTS = "true";
   };
 }

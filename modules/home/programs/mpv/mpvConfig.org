@@ -54,7 +54,7 @@ scriptOpts = {
 uosc = import ./scriptOpts/uosc.nix;
 #+end_src
 **** [[file:scriptOpts/modernx-zydezu.nix][modernX-zydezu]]
-#+begin_src nix :tangle default.nix
+#+begin_src nix :tangle no
 modernx-zydezu = import ./scriptOpts/modernx-zydezu.nix;
 #+end_src
 **** discord rich presence
@@ -254,27 +254,9 @@ Sub-configuration options for specific profiles written to =$XDG_CONFIG_HOME/mpv
 vdpau = x11 only
 
 #+begin_src nix :tangle default.nix
-profiles = {
-  # mpv/mpv.conf
-  fast = {
-    vo =
-      if osConfig.networking.hostName == "carthage" then
-        "gpu"
-        # "vaapi"
-      else
-        # "vdpau"
-        "gpu"
-        # "nvdec"
-    ;
-  }; # video output backend to use
-  high-quality = {
-    vo =
-      if osConfig.networking.hostName == "carthage" then
-        "gpu-next" # change to gpu if issues
-      else
-        # "vdpau" "nvdec"
-        "gpu";
-  };
+profiles = {# mpv/mpv.conf
+  fast.vo = "gpu" ; # video output backend to use
+  high-quality.vo = "gpu-next"; # change to gpu if issues
 };
 #+end_src
 

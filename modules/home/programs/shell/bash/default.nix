@@ -18,6 +18,8 @@
     "ignoreboth" # ignore duplicate commands, ignore commands starting with a space
     "erasedups"
   ];
+
+  programs.bash.sessionVariables = { };
   programs.bash.historyIgnore = [
     "ls"
     "rg"

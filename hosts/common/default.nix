@@ -15,6 +15,7 @@
     ./specialisations
     ./bluetooth.nix
     ./bootStuff.nix
+    ./environmentVariables.nix
   ];
 
   nixpkgs.config = {

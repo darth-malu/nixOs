@@ -31,8 +31,6 @@ scriptOpts = {
 # uosc = import ./scripts/uosc.nix;
 uosc = import ./scriptOpts/uosc.nix;
 
-modernx-zydezu = import ./scriptOpts/modernx-zydezu.nix;
-
 };
 
 bindings = {
@@ -87,22 +85,9 @@ tab =  "script-binding uosc/toggle-ui"; # ! darth toggle
 
 };
 
-profiles = {
-  # mpv/mpv.conf
-  fast = {
-    vo =
-      if osConfig.networking.hostName == "carthage" then
-        "gpu"
-      else
-        "gpu-next"; # gpu-next is faster & higher quality than gpu, even on the 940M
-  }; # video output backend to use
-  high-quality = {
-    vo =
-      if osConfig.networking.hostName == "carthage" then
-        "gpu-next"
-      else
-        "gpu-next";
-  };
+profiles = {# mpv/mpv.conf
+  fast.vo = "gpu" ; # video output backend to use
+  high-quality.vo = "gpu-next"; # change to gpu if issues
 };
 
 config = {
@@ -136,24 +121,22 @@ gpu-context = "wayland";
 
 video-sync = "display-resample";
 
-hwdec = if osConfig.networking.hostName == "carthage" then "vulkan" else "nvdec,nvdec-copy,auto"; # hardware decoding with fallback chain
+hwdec = if osConfig.networking.hostName == "carthage" then "vulkan" else "nvdec"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
 
 vo = if osConfig.networking.hostName == "carthage" then
     "gpu-next"
     else
-      "gpu-next"; # recommended default; faster & higher quality than gpu
+      "gpu";
 
 # ytdl-format = "bestvideo+bestaudio"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
 # ytdl-format = "bv[height<=1080]+ba/b[height<=1080]"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
 ytdl-format = "(bv[height<=1080]*[vcodec~='^(hevc|h26[45])']+ba) / (bv[height<=1080]+ba/b[height<=1080])";
 
 cache = true; # yes, no , auto
-cache-pause = true; # buffering instead of stutter :)
+cache-pause = true; # buffering insteaad of stutter :)
 cache-pause-initial = true;
-demuxer-max-bytes =
-  if osConfig.networking.hostName == "carthage" then "1000MiB" else "512MiB"; # tangier has less RAM (8GB)
-demuxer-max-back-bytes =
-  if osConfig.networking.hostName == "carthage" then "100M" else "50M";
+demuxer-max-bytes = "1000MiB";   # 512MiB
+demuxer-max-back-bytes = "100M";
 demuxer-readahead-secs = 40;    # 20::
 # Store cache payload on the hard disk instead of in RAM. (This may negatively
 # impact performance unless used for slow input such as network.)

@@ -1,11 +1,11 @@
 { osConfig, ... }:
 {
   imports = [
-    ./xdg
+    ./configurations
     ./homeVariables+path.nix
     ./programs
     ./services
-    ./configurations
+    ./xdg
   ];
 
   home = {

@@ -181,11 +181,11 @@
     ]
     ++ [
       # testing for yazi #
-      zip # Compressor/archiver for creating and modifying zipfiles.
-      unzip # Extraction utility for archives compressed in .zip format
-      xz # General-purpose data compression software, successor of LZMA
-      p7zip # New p7zip fork with additional codecs and improvements (forked from https://sourceforge.net/projec…
-      rar # also has unrar
+      # zip # Compressor/archiver for creating and modifying zipfiles.
+      # unzip # Extraction utility for archives compressed in .zip format
+      # xz # General-purpose data compression software, successor of LZMA
+      # p7zip # New p7zip fork with additional codecs and improvements (forked from https://sourceforge.net/projec…
+      # rar # also has unrar
     ]
     ++ [
       # SOCIALS + Fediverse

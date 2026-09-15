@@ -1,21 +1,6 @@
 { pkgs, inputs, ... }:
 let
-  texxOld = (
-    pkgs.texlive.combine {
-      inherit (pkgs.texlive)
-        # scheme-basic
-        scheme-medium # Any Less than medium wont work: org requirement...prbs for exporting
-        dvisvgm # for preview and export as html
-        dvipng # for preview and export as html
-        wrapfig
-        amsmath
-        ulem
-        hyperref
-        capt-of
-        ;
-    }
-  );
-  texxNew = pkgs.texliveSmall.withPackages (
+  tex = pkgs.texliveSmall.withPackages (
     ps: with ps; [
       collection-langkorean
       algorithms
@@ -57,7 +42,7 @@ in
     # Latex
     auctex
     texlab
-    texxNew # :lang latex, org (latex previews)
+    tex # :lang latex, org (latex previews)
 
     # Docker
     dockfmt
@@ -98,7 +83,7 @@ in
     # Doom Dependencies
     gnumake # for compiling vterm
     cmake # vterm
-    # gnutls # to TLS connectivity
+    # gnutls # to TLS connectivity -- irc?
     binutils # native-comp needs 'as'...NOTE also has ld needed for clang?
 
     # C#
@@ -132,7 +117,7 @@ in
 
     lua-language-server
 
-    docker-language-server
+    # docker-language-server
 
     # omnisharp-roslyn # c#
     # jdt-language-server

@@ -225,7 +225,7 @@
       # "https://cache.nixos.org?priority=10"
       "https://hyprland.cachix.org"
       "https://yazi.cachix.org"
-      "https://aseipp-nix-cache.global.ssl.fastly.net"
+      # "https://aseipp-nix-cache.global.ssl.fastly.net"
       "https://nix-community.cachix.org"
       # "https://konradmalik.cachix.org"
       #"https://cache.nixos.org" #used automatically by nix pkg mgr

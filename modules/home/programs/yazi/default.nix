@@ -14,7 +14,9 @@
 
   programs.yazi = {
     enable = true;
-    package = inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    package = inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+      _7zz = pkgs._7zz-rar; # Support for RAR extraction
+    };
     enableBashIntegration = config.programs.bash.enable;
     enableZshIntegration = config.programs.zsh.enable;
     keymap = import ./keymap.nix;

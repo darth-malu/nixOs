@@ -86,7 +86,7 @@ tab =  "script-binding uosc/toggle-ui"; # ! darth toggle
 };
 
 profiles = {# mpv/mpv.conf
-  fast.vo = "gpu" ; # video output backend to use
+  fast.vo = "gpu-next" ; # video output backend to use
   high-quality.vo = "gpu-next"; # change to gpu if issues
 };
 
@@ -117,16 +117,17 @@ profile =
   else
     "fast";
 
-gpu-context = "wayland";
+gpu-context = "waylandvk";
 
 video-sync = "display-resample";
 
-hwdec = if osConfig.networking.hostName == "carthage" then "vulkan" else "nvdec"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
+hwdec = if osConfig.networking.hostName == "carthage" then "vaapi" else "auto"; # "nvdec"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
 
-vo = if osConfig.networking.hostName == "carthage" then
-    "gpu-next"
-    else
-      "gpu";
+# vo = if osConfig.networking.hostName == "carthage" then
+#     "gpu-next"
+#     else
+#       "gpu";
+vo = "gpu-next";
 
 # ytdl-format = "bestvideo+bestaudio"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)
 # ytdl-format = "bv[height<=1080]+ba/b[height<=1080]"; # ytdl,"best"  worst, mp4, webm (Default: bestvideo+bestaudio/best)

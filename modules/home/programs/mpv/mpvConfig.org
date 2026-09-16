@@ -255,7 +255,7 @@ vdpau = x11 only
 
 #+begin_src nix :tangle default.nix
 profiles = {# mpv/mpv.conf
-  fast.vo = "gpu" ; # video output backend to use
+  fast.vo = "gpu-next" ; # video output backend to use
   high-quality.vo = "gpu-next"; # change to gpu if issues
 };
 #+end_src
@@ -326,7 +326,7 @@ profile =
 
 *** gpu-context
 #+begin_src nix :tangle default.nix
-gpu-context = "wayland";
+gpu-context = "waylandvk";
 #+end_src
 
 *** video sync
@@ -353,15 +353,22 @@ desync:        Sync video according to system clock, and let audio play on its o
 *** video output drivers + hardware decoding
 
 #+begin_src nix :tangle default.nix
-hwdec = if osConfig.networking.hostName == "carthage" then "vulkan" else "nvdec"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
+hwdec = if osConfig.networking.hostName == "carthage" then "vaapi" else "auto"; # "nvdec"; # hardware decoding, auto,auto-safe, vaapi (unsafe)
 
-vo = if osConfig.networking.hostName == "carthage" then
-    "gpu-next"
-    else
-      "gpu";
+# vo = if osConfig.networking.hostName == "carthage" then
+#     "gpu-next"
+#     else
+#       "gpu";
+vo = "gpu-next";
 #+end_src
 
 auto hwdec tries vaapi
+
+=NOTE=: Hardware encoding is not enabled by default for reliability reasons 
+
+Reduces CPU usage and power consumption
+
+use =C-h= to toggle hwdec auto/no anytime at runtime
 
 *** ytdl, quality of the video
 #+begin_src nix :tangle default.nix

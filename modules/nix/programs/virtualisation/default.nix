@@ -25,5 +25,6 @@
 
   environment.systemPackages = [
     # pkgs-stable.genymotion
+    # pkgs.genymotion
   ];
 }

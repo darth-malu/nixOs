@@ -6,7 +6,7 @@
       # source = "nixos_small"; # nixos_small #nixos_old
       source = "/home/malu/Pictures/wallpaperS/anime/blue-hair-girl.jpg";
       # width = 60;
-      height = 15;
+      # height = 15;
       position = "left";
       padding = {
         right = 1;
@@ -44,78 +44,41 @@
       };
     };
     modules = [
-      "break"
-      {
-        type = "custom";
-        format = "┌────────────────Hardware────────────────┐";
-        outputColor = "cyan";
-      }
-      # {
-      #   type = "host";
-      #   key = " PC";
-      #   keyColor = "red";
-      # }
+      # "break"
       {
         type = "cpu";
         key = " ";
-        format = "│ ├ {name} ({cores-physical}C/{cores-logical}T) @ {freq-max}";
+        keyColor = "red";
+        format = " {name} ({cores-physical}C/{cores-logical}T) @ {freq-max}";
       }
       # "gpu"
       {
-        type = "disk";
-        key = "│ ├ ";
-        folders = "/";
-        format = "{size-used} / {size-total} ({size-percentage})";
-        keyColor = "red";
-      }
-      {
         type = "memory";
-        key = "└ └󰍛 ";
+        key = "󰍛 ";
         keyColor = "red";
       }
       {
         type = "display";
-        key = "MONITOR ({name})";
+        key = "󰍹 ({name})";
         # key = " ";
         keyColor = "blue";
         # "format" = "{width}x{height} @ {refresh-rate} Hz - {physical-width}x{physical-height} mm ({inch} inches, {ppi} ppi)";
         format = "{width}x{height} @ {refresh-rate} Hz";
       }
-      {
-        type = "custom";
-        format = "└────────────────────────────────────────┘";
-        outputColor = "cyan";
-      }
 
-      ## SOFTWARE
-      {
-        "type" = "custom";
-        "format" = "┌────────────────Software────────────────┐";
-        "outputColor" = "cyan";
-      }
       {
         "type" = "os";
-        "key" = "􀣺 OS ";
+        "key" = " ";
         "keyColor" = "green";
       }
       {
         "type" = "kernel";
-        "key" = "│ ├ ";
-        "keyColor" = "green";
-      }
-      {
-        "type" = "packages";
-        "key" = "│ ├󰏖 ";
-        "keyColor" = "green";
-      }
-      {
-        "type" = "localip";
-        "key" = "│ ├IP";
+        "key" = " ";
         "keyColor" = "green";
       }
       {
         "type" = "shell";
-        "key" = "└ └ ";
+        "key" = " ";
         "keyColor" = "green";
       }
       {
@@ -123,67 +86,20 @@
         "key" = " DE ";
         "keyColor" = "blue";
       }
-      # {
-      #   "type" = "lm";
-      #   "key" = "│ ├ ";
-      #   "keyColor" = "blue";
-      # }
       {
         "type" = "wm";
-        "key" = "│ ├ ";
+        "key" = " ";
         "keyColor" = "blue";
       }
       {
         "type" = "terminal";
-        "key" = "│ ├ ";
+        "key" = " ";
         "keyColor" = "blue";
       }
       {
         "type" = "terminalfont";
-        "key" = "└ └ ";
+        "key" = "  ";
         "keyColor" = "blue";
-      }
-      {
-        "type" = "custom";
-        "format" = "└────────────────────────────────────────┘";
-        "outputColor" = "cyan";
-      }
-
-      # UPTIME
-      {
-        "type" = "custom";
-        "format" = "┌────────────────────────────────────────┐";
-        "outputColor" = "cyan";
-      }
-      {
-        "type" = "uptime";
-        # "key" = "  Uptime";
-        "keyColor" = "magenta";
-      }
-      {
-        "type" = "custom";
-        "format" = "└────────────────────────────────────────┘";
-        "outputColor" = "cyan";
-      }
-      {
-        "type" = "custom";
-        "format" = "┌──────────────────Media─────────────────┐";
-        "outputColor" = "cyan";
-      }
-      # "break"
-      "player"
-      # "media"
-      {
-        "type" = "media";
-        "key" = "NOW PLAYING";
-        "format" = "{?artist}{artist} - {?}{title}";
-        "keyColor" = "cyan";
-      }
-      # "break"
-      {
-        "type" = "custom";
-        "format" = "└────────────────────────────────────────┘";
-        "outputColor" = "cyan";
       }
     ];
   };

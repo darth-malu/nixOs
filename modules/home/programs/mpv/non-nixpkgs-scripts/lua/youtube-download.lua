@@ -18,13 +18,13 @@ local opts = {
   -- Set to empty string "" to disable
   download_video_binding = "ctrl+d",
   download_audio_binding = "ctrl+a",
-  download_subtitle_binding = "",               --C-s
-  download_video_embed_subtitle_binding = "",   --C-i
+  download_subtitle_binding = "",             --C-s
+  download_video_embed_subtitle_binding = "", --C-i
   select_range_binding = "ctrl+r",
   download_mpv_playlist = "ctrl+p",
 
   -- Specify audio format: "best", "aac","flac", "mp3", "m4a", "opus", "vorbis", or "wav"
-  audio_format = "mp3",
+  audio_format = "best",
 
   -- Specify ffmpeg/avconv audio quality
   -- insert a value between 0 (better) and 9 (worse) for VBR or a specific bitrate like 128K
@@ -42,7 +42,7 @@ local opts = {
   -- Same as youtube-dl --format FORMAT
   -- see https://github.com/ytdl-org/youtube-dl/blob/master/README.md#format-selection
   -- set to "current" to download the same quality that is currently playing
-  video_format = "current",   --""::
+  video_format = "current", --""::
 
   -- Remux the video into another container if necessary: "avi", "flv",
   -- "gif", "mkv", "mov", "mp4", "webm", "aac", "aiff", "alac", "flac",
@@ -85,7 +85,8 @@ local opts = {
   -- OR leave empty "" to use the current working directory
   -- download_path = "/:dir%mpvconf%/ytdl/download",
   -- download_path = "/:var%HOME%/Videos/mpvDownloads",
-  download_path = "/:var/media/Mutsu/Videos/Youtube/MPV-downloads",
+  -- download_path = "/:var/media/Mutsu/Videos/Youtube/MPVdownloads",
+  download_path = "/:var%HOME%/Videos/Youtube/MPVdownloads",
 
   -- Filename format to download file
   -- see https://github.com/ytdl-org/youtube-dl/blob/master/README.md#output-template
@@ -270,7 +271,7 @@ elseif opts.download_path:match('^/:var%%(.*)%%') then
   local os_variable = opts.download_path:match('/:var%%(.*)%%')
   opts.download_path = opts.download_path:gsub('/:var%%(.*)%%', os.getenv(os_variable))
 elseif opts.download_path:match('^~') then
-  opts.download_path = mp.command_native({ "expand-path", opts.download_path })   -- Expands both ~ and ~~
+  opts.download_path = mp.command_native({ "expand-path", opts.download_path }) -- Expands both ~ and ~~
 end
 
 --create opts.download_path if it doesn't exist
@@ -281,7 +282,7 @@ if not_empty(opts.download_path) and utils.readdir(opts.download_path) == nil th
   local res = mp.command_native({ name = "subprocess", capture_stdout = true, playback_only = false, args = args })
   if res.status ~= 0 then
     msg.error("Failed to create youtube-download save directory " ..
-    opts.download_path .. ". Error: " .. (res.error or "unknown"))
+      opts.download_path .. ". Error: " .. (res.error or "unknown"))
     return
   end
 end
@@ -402,7 +403,7 @@ local function download(download_type, config_file, overwrite_opts)
     return
   end
 
-  url = string.gsub(url, "ytdl://", "")   -- Strip possible ytdl:// prefix.
+  url = string.gsub(url, "ytdl://", "") -- Strip possible ytdl:// prefix.
 
   local list_match = url:match("list=(%w+)")
   local download_archive = opts.download_archive
@@ -502,7 +503,7 @@ local function download(download_type, config_file, overwrite_opts)
           "-loglevel warning -nostats -hide_banner -ss " ..
           start_time_str .. " -to " .. end_time_str .. " -avoid_negative_ts make_zero")
       end
-    else     --DOWNLOAD.VIDEO or DOWNLOAD.VIDEO_EMBED_SUBTITLE
+    else --DOWNLOAD.VIDEO or DOWNLOAD.VIDEO_EMBED_SUBTITLE
       if download_type == DOWNLOAD.VIDEO_EMBED_SUBTITLE then
         table.insert(command, "--embed-subs")
         table.insert(command, "--sub-lang")
@@ -721,7 +722,7 @@ local function download(download_type, config_file, overwrite_opts)
       table.insert(command, start_time_str)
       table.insert(command, "-i")
       table.insert(command, range_mode_subtitle_file_name)
-      table.insert(command, "-to")       -- To must be after input for subtitle
+      table.insert(command, "-to") -- To must be after input for subtitle
       table.insert(command, end_time_str)
     end
     table.insert(command, "-c")
@@ -989,9 +990,9 @@ local function download(download_type, config_file, overwrite_opts)
       elseif value == "$cmd" then
         inserted_cmd = true
       elseif inserted_cmd then
-        table.insert(command, value)            -- append after command
+        table.insert(command, value)    -- append after command
       else
-        table.insert(command, i, value)         -- prepend before command
+        table.insert(command, i, value) -- prepend before command
       end
       i = i + 1
     end

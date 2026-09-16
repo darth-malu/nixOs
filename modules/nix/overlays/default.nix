@@ -4,5 +4,6 @@
     # ./gstreamer.nix
     # ./discord.nix
     # ./emacs-overlay.nix # -- NOTE: frequent rebuilds
+    # ./opencode.nix
   ];
 }

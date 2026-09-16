@@ -25,7 +25,7 @@
         "config-cycle colors.webpage.darkmode.enabled false true"
       ];
       "<f12>" = lib.mkMerge [
-        "config-cycle tabs.show switching always"
+        "config-cycle tabs.show never switching always"
       ];
       "<f10>" = "config-cycle statusbar.show never always";
     };
@@ -70,11 +70,11 @@ colors = {
     selected.odd.bg = "#8f00ff"; # C3D898
     selected.even.bg = "#8f00ff";
   };
-  # webpage.darkmode= {
-    # enabled = false;
-    # algorithm = "lightness-cielab";
-    # policy.images = "never";
-  # };
+  webpage.darkmode= {
+    enabled = true;
+    algorithm = "lightness-cielab";
+    policy.images = "never";
+  };
 };
 
 statusbar = {

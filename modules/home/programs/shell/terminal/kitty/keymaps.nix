@@ -47,6 +47,10 @@
     "ctrl+up" = "neighboring_window up";
     "ctrl+down" = "neighboring_window down";
 
+    "f1" = "set_background_opacity +0.1";
+    "f2" = "set_background_opacity -0.1";
+    "f3" = "set_background_opacity 0.80";
+
     "ctrl+space" = "next_window";
 
     # Layout Bigger window increase number

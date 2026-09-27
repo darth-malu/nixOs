@@ -1,17 +1,10 @@
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-
-{
-
   environment.variables = {
+    # GLOBAL - on shell init
     #MANWIDTH=999;
     # SUDO_PROMPT moved to bashrcExtra (needs bash ANSI-C quoting)
-    # EDITOR = "vim";
-    # VISUAL = "emacsclient -r";
+    EDITOR = "vim";
+    VISUAL = "emacsclient --reuse-frame";
     # XDG_DATA_DIRS = "$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share";
 
     APP2UNIT_SLICES = "a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice";
@@ -26,7 +19,15 @@
     LSP_USE_PLISTS = "true";
 
     PATH = [
-      "/home/malu/.config/emacs/bin"
+      "$HOME/.config/emacs/bin"
+      # "$HOME/Projects/Development/Bash"
     ];
+    NIXOS_OZONE_WL = "1";
+    # ELECTRON_OZONE_PLATFORM_HINT = "auto"; For packages that dont yet support the above
   };
+
+  # environment.sessionVariables = {#PAM
+  # };
+  # environment.profileRelativeSessionVariables = {#PAM
+  # };
 }

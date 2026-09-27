@@ -1,65 +1,33 @@
 {
-  pkgs,
   config,
   lib,
+  pkgs,
   ...
 }:
 
-let
-  # Declarative Android SDK. Versions pinned to match the Vaite project
-  # (Expo SDK 54 / React Native 0.81). Only evaluated on the host that needs
-  # it (carthage) to avoid pulling the ~4 GB SDK onto tangier.
-  androidSdk =
-    (pkgs.androidenv.composeAndroidPackages {
-      platformVersions = [ "35" ]; # compileSdkVersion set in app.json expo-build-properties
-      buildToolsVersions = [
-        "35.0.0"
-        "36.0.0" # react-native/gradle/libs.versions.toml: buildTools = "36.0.0"
-      ];
-      cmdLineToolsVersion = "22.0"; # sdkmanager / avdmanager
-      cmakeVersions = [ "3.22.1" ]; # AGP resolves cmake;3.22.1 for RN native modules
-      includeNDK = true;
-      ndkVersions = [ "27.1.12297006" ]; # react-native/gradle/libs.versions.toml
-      includeEmulator = false;
-      includeSystemImages = false;
-      includeSources = false;
-    }).androidsdk;
-
-  onCarthage = config.networking.hostName == "carthage";
-in
 {
-  # Accept the android-sdk-license (read by androidenv/license.nix)
-  nixpkgs.config.android_sdk.accept_license = true;
+  /*
+    https://wiki.nixos.org/wiki/Android
+    NixOS uses the androidenv package for building android SDKs and manually creating emulators without the use of Android Studio.
+    Example android sdk is androidenv.androidPkgs.androidsdk
+    They also include all of the SDK tools such as sdkmanager and avdmanager needed to create emulators.
 
-  # Gradle/AGP download third-party binaries (aapt2, ...) that are dynamically
-  # linked against generic-linux glibc; let them run on NixOS.
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    glibc
-    zlib
-    stdenv.cc.cc.lib
-  ];
+    # RUnning apps -> steam-run ~/Android/Sdk/emulator/emulator -feature -Vulkan @Pixel_5_API_33
 
-  environment.systemPackages =
-    (with pkgs; [
-      jdk17 # RN 0.81 / Kotlin 2.1 / Gradle 8.14 all target JDK 17
-      gradle
-    ])
-    ++ lib.optionals onCarthage [
-      androidSdk # provides adb (platform-tools), aapt2, avdmanager
-      pkgs.android-studio-full
-    ];
+    # ADB
+    Previously you would need use programs.adb.enable = true; and users.users.<your-user>.extraGroups = [ "adbusers" ]; to add ADB to your PATH and configure access rules. This option is no longer needed as systemd 258 handles uaccess rules for ADB and fastboot automatically.
 
-  environment.sessionVariables = lib.mkIf onCarthage {
-    ANDROID_HOME = "${androidSdk}/libexec/android-sdk";
-    ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
-    JAVA_HOME = "${pkgs.jdk17}/lib/openjdk";
-  };
+    # https://nixos.org/manual/nixpkgs/unstable/#android
+  */
 
-  users.users.malu.extraGroups = lib.mkIf onCarthage [
-    # needed for the Android emulator (KVM); harmless if unused
+  users.users.malu.extraGroups = [
     "kvm"
+    "adbusers"
   ];
-  # USB device access (adb/fastboot) is handled automatically by systemd >= 258
-  # uaccess rules (see 70-uaccess.rules); no adbusers group or custom udev rules.
+
+  # programs.adb.enable = true; #no longer works?
+
+  environment.systemPackages = with pkgs; [ android-studio-full ];
+
+  nixpkgs.config.android_sdk.accept_license = true;
 }

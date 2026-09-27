@@ -26,10 +26,11 @@
   };
 
   home.sessionPath = [
+    # FIXME: broken
     # Prepend to $PATH in a double-quoted context
-    "${config.home.homeDirectory}/.cache/.bun/bin"
-    "${config.home.homeDirectory}/.bun/bin"
-    "/home/malu/.bun/bin"
+    # "${config.home.homeDirectory}/.cache/.bun/bin"
+    # "${config.home.homeDirectory}/.bun/bin"
+    # "/home/malu/.bun/bin"
   ];
 
   xdg.configFile = {

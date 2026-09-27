@@ -35,9 +35,14 @@
   boot.loader = {
     systemd-boot = {
       enable = true;
+      configurationLimit = 7; # null::
       # editor = false; # true:: allow editing kernel commandline before boot
-      # windows
       # sortKey = "nixos"; #https://uapi-group.org/specifications/specs/boot_loader_specification/#sorting
+      # windows = {};
+      memtest86 = {
+        enable = true;
+        sortKey = "o_memtest86";
+      };
     };
     efi.canTouchEfiVariables = true;
     timeout = 2;

@@ -13,4 +13,5 @@
 
   # studious = "git --git-dir=/media/Hyogo/Backups/Bare --work-tree=/media/Hyogo";
   dots = "git --git-dir=$HOME/Projects/Dots --work-tree=$HOME -c status.showUntrackedFiles=no";
+  Nvd = "nvd diff /run/current-system/ result/";
 }

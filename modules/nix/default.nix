@@ -1,7 +1,6 @@
 {
   imports = [
     ./inputrc.nix
-    ./systemVariables.nix
     ../USIU
     ./programs
     ./services

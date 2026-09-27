@@ -22,7 +22,7 @@
       #"audio"
       "gamemode"
       # "docker"
-      # "kvm" # ?android nonly?
+      "kvm" # android
     ]
     ++ (pkgs.lib.optionals config.hardware.openrazer.enable [
       "openrazer"

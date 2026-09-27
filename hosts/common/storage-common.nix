@@ -1,6 +1,12 @@
 { config, ... }:
 
 {
+  /*
+    x-systemd.mount-timeout: Specifies the maximum time (in seconds) that systemd will wait for a mount operation to complete before timing out and failing. eg.
+            # "x-systemd.mount-timeout=30" (30sec)
+    x-systemd.idle-timeout: Automatically unmounts the filesystem after it has been completely idle (no read/write activity) for 20 minutes.eg.
+            # x-systemd.idle-timeout=20min (20min of idle)
+  */
 
   swapDevices = [
     {
@@ -20,8 +26,7 @@
             "nofail"
             "defaults"
             "exec"
-            # "x-systemd.mount-timeout=30"
-            # "x-systemd.idle-timeout=20min"
+            "x-systemd.idle-timeout=20min"
           ];
         };
 
@@ -32,8 +37,8 @@
             "users"
             "defaults"
             "nofail"
-            # "x-systemd.mount-timeout=30"
-            # "x-systemd.idle-timeout=20min"
+            "exec" # Execute scripts 😄
+            "x-systemd.idle-timeout=20min"
           ];
         };
 
@@ -44,6 +49,7 @@
             "users"
             "defaults"
             "nofail"
+            "x-systemd.idle-timeout=20min"
           ];
         };
       }

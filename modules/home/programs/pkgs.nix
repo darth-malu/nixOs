@@ -48,6 +48,10 @@
         # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
         "--max-columns-preview"
         "--colors=line:style:bold"
+        "--smart-case"
+        # Set the colors.
+        "--colors=line:none"
+        "--colors=line:style:bold"
       ];
     };
 

@@ -1,4 +1,3 @@
-{ osConfig, ... }:
 {
   imports = [
     ./configurations

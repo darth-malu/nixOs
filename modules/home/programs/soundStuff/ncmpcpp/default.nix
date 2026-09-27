@@ -163,8 +163,8 @@ display_remaining_time = false; #instead of elapsed in status bar
 
 progressbar_color = 24;
 # progressbar_look = "─⊙┄";
-progressbar_look = "─⊙ ";
-#progressbar_look = "─░─";
+# progressbar_look = "─░";
+progressbar_look = "─";
 progressbar_elapsed_color = 74;
 #progressbar_elapsed_color = 24; # muted
 

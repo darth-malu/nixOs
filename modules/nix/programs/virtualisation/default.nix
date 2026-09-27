@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-stable,
   config,
   lib,
   ...
@@ -24,7 +23,6 @@
   virtualisation.waydroid.enable = false;
 
   environment.systemPackages = [
-    # pkgs-stable.genymotion
     # pkgs.genymotion
   ];
 }

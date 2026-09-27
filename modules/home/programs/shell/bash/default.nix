@@ -1,4 +1,3 @@
-{ lib, osConfig, ... }:
 {
   programs.bash.enable = true;
   programs.bash.shellOptions = [

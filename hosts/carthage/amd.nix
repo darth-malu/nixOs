@@ -23,8 +23,13 @@
     Whether or not a package is built with ROCm support is controlled by the rocmSupport nixpkgs config variable. As HIP is a component of ROCm, anything that needs HIP support (e.g. Blender) gets that enabled through rocmSupport too.
       You can set it globally with this line
   */
-  environment.variables = {
-    ROC_ENABLE_PRE_VEGA = "1"; # enable opencl polaris;
+  environment = {
+    systemPackages = [
+      pkgs.amdgpu_top
+    ];
+    variables = {
+      ROC_ENABLE_PRE_VEGA = "1"; # enable opencl polaris;
+    };
   };
 
   # Kernel params

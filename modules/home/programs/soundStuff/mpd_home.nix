@@ -1,7 +1,9 @@
+{ config, ... }:
 {
   services.mpd = {
     enable = true;
-    musicDirectory = "/home/malu/Music";
+    # musicDirectory = "/home/malu/Music";
+    musicDirectory = "${config.xdg.userDirs.music}";
     playlistDirectory = "/home/malu/Music/ncmpcpp/playlists";
     dataDir = "/home/malu/.local/share/mpd";
     dbFile = "/home/malu/.local/share/mpd/db";
@@ -54,14 +56,16 @@
 
   services.mpdris2 = {
     enable = true; # mpris support for mpd
-    multimediaKeys = true;
-    notifications = false; # I have a notification server
-    mpd = {
-      #host = "config.services.mpd.network.listenAddress"; # default
-      host = "localhost"; # default
-      musicDirectory = "/home/malu/Music/";
-      port = 6600;
-      #host = "192.168.1.1";
+    settings = {
+      Bling = {
+        mmkeys = true;
+        notify = true; # I have a notification server
+      };
+      Library.music_dir = "/home/malu/Music/";
+      Connection = {
+        port = 6600;
+        host = "localhost"; # "config.services.mpd.network.listenAddress"; # Olddefault
+      };
     };
   };
 

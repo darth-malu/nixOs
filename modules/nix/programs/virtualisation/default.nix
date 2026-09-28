@@ -9,6 +9,7 @@
     ./qemu
     ./n8n.nix
     ./docker.nix
+    ./waydroid.nix
     # ./kubernetes.nix
     # ./vmware.nix
     # ./virtualbox.nix
@@ -19,10 +20,5 @@
   docker.enable = lib.mkIf (config.networking.hostName == "carthage") false;
   n8n.enable = false;
   tailscale.enable = false;
-
-  virtualisation.waydroid.enable = false;
-
-  environment.systemPackages = [
-    # pkgs.genymotion
-  ];
+  waydroid.enable = true;
 }

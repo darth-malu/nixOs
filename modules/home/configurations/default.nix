@@ -7,15 +7,14 @@
     };
   };
   home.file = {
-    # ".local/share/fonts/wps-fonts" = {
-    # ".local/share/fonts" = {
-    # source = ./wps;
-    # source = ../../../assets/Fonts-Darth;
-    # recursive = true;
-    # };
     ".icons/theme_GoogleDot-Violet" = {
       source = ../../../assets/hyprcursor/theme_GoogleDot-Violet;
-      # recursive = true;
+      recursive = false;
+    };
+
+    ".local/share/icons" = {
+      source = ../../../assets/quickshell-icons;
+      recursive = true;
     };
   };
 }

@@ -14,8 +14,8 @@
     mimeApps = import ./src/mime.nix;
     desktopEntries = import ./src/desktopEntries.nix;
     userDirs = {
-      setSessionVariables = true;
       enable = true;
+      setSessionVariables = true;
       createDirectories = true; # false::, Whether to enable automatic creation of the XDG user directories.
       # documents = "${config.home.homeDirectory}/Documents";
       # download = "${config.home.homeDirectory}/Downloads";

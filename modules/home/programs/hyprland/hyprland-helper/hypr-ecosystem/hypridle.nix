@@ -13,7 +13,6 @@
           timeout = 240;
           on-timeout = "qs ipc call lock lock"; # "hyprlock";
         }
-
         {
           timeout = 500;
           on-timeout = "hyprctl dispatch dpms off";

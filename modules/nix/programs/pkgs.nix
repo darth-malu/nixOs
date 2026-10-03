@@ -122,7 +122,7 @@
       gnome-clocks
       imagemagick # screenshot
       # sound-theme-freedesktop # free sounds
-      libcanberra-gtk3
+      # libcanberra-gtk3 # NOT needed anymore with quickshell
       kdePackages.kasts
       kdePackages.ksudoku
       kdePackages.kservice
@@ -183,7 +183,7 @@
       inkscape-with-extensions
       krita
       kdePackages.kdenlive
-      openshot-qt
+      # openshot-qt
       handbrake # FIXME lag on open
       obs-cli
       obs-studio

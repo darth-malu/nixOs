@@ -21,4 +21,11 @@ $ sudo waydroid shell
 
 Overrides the full-ui width
 $ waydroid prop set persist.waydroid.width 608
+
 #+end_src
+
+=Fetch Waydroid images.=
+
+You can add the parameters ="-s GAPPS -f"= to have GApps support.
+
+~$ sudo waydroid init~

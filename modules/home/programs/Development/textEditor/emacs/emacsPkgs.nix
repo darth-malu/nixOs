@@ -95,8 +95,8 @@ in
       # Because emacs expects the dictionaries to be on the same directory as aspell, they won't be picked up. To fix it install the aspellWithDicts package, specifying the dictionaries you want to use:
       ds: with ds; [
         en
-        en-computers
-        en-science
+        # en-computers # FIXME: error: 'aspellDicts.en-computers' has been removed as upstream url pointed to a gambling website.
+        # en-science # REMOVED
       ]
     ))
     # hunspell

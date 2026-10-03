@@ -5,4 +5,4 @@ nul.*
 *sync-conflict*
 flake.lock
 *discord-guy*
-result/
+result

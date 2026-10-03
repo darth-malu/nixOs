@@ -879,12 +879,12 @@
       desc = "Toggle the visibility of hidden files";
     }
     {
-      on = [ "s" ];
+      on = [ "S" ];
       run = "search --via=fd";
       desc = "Search files by name via fd";
     }
     {
-      on = [ "S" ];
+      on = [ "s" ];
       run = "search --via=rg";
       desc = "Search files by content via ripgrep";
     }

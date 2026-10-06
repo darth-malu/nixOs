@@ -4,7 +4,8 @@
     enable = true;
     settings = {
       general = {
-        after_sleep_cmd = "hyprctl dispatch dpms on";
+        after_sleep_cmd = "hyprctl eval 'hl.dispatch(hl.dsp.dpms({ action = \"enable\" }))'";
+        before_sleep_cmd = "loginctl lock-session";
         # ignore_dbus_inhibit = false;
         lock_cmd = "qs ipc call lock lock"; # "pidof hyprlock || hyprlock";
       };
@@ -15,8 +16,8 @@
         }
         {
           timeout = 500;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
+          on-timeout = "hyprctl eval 'hl.dispatch(hl.dsp.dpms({ action = \"disable\" }))'";
+          on-resume = "hyprctl eval 'hl.dispatch(hl.dsp.dpms({ action = \"enable\" }))'";
         }
       ]
       ++ lib.optionals (osConfig.networking.hostName == "tangier") [

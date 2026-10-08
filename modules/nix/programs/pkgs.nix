@@ -14,7 +14,6 @@
       # DEVELOPER 🛠
       android-tools
       matugen
-      dash
       deno
       nodejs
       lua54Packages.lua
@@ -27,9 +26,10 @@
       tailwindcss_4
       typescript
       typescript-language-server
-      eas-cli
+      # eas-cli
       nushell
       xonsh
+      # dash
       # powershell
       zenity
       newt # TODO use more
@@ -101,6 +101,7 @@
       cryptsetup
       pass-wayland
       zenith
+      zeal
     ]
     ++ pkgs.lib.optionals (config.hypr.enable) [
       hyprpicker

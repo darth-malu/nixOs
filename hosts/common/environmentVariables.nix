@@ -20,10 +20,12 @@
 
     PATH = [
       "$HOME/.config/emacs/bin"
-      # "$HOME/Projects/Development/Bash"
+      "$HOME/Projects/Development/Bash"
+      "$HOME/.bun/bin"
     ];
+
     NIXOS_OZONE_WL = "1";
-    # ELECTRON_OZONE_PLATFORM_HINT = "auto"; For packages that dont yet support the above
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland"; # see if wayland works, # For packages that dont yet support the above
   };
 
   # environment.sessionVariables = {#PAM

@@ -19,3 +19,17 @@
     };
   };
 }
+
+/*
+  // Blue light filter
+  hyprctl hyprsunset temperature 2500
+  Disable blue-light filter
+  hyprctl hyprsunset identity
+
+  //
+
+  # Set gamma to 50%
+  hyprctl hyprsunset gamma 50
+  # Increase gamma by 10%
+  hyprctl hyprsunset gamma +10
+*/

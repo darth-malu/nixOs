@@ -1,17 +1,15 @@
 {
-  # DEPRECATED - LUA now
-  # imports = [
-  #   ./keybinds
-  #   ./monitors-peripherals.nix
-  #   ./ui.nix
-  #   ./hyprland-environment-variables.nix # avoid use .conf/uwsm/env - check file
-  #   ./window-workspace-rules.nix
-  #   ./autoStart.nix
-  #   # ./plugins.nix
-  # ];
-
+  imports = [
+    ./themes
+    ./quickshell.nix
+    ./satty.nix # TODO
+    ../plugins.nix
+    ./hypridle.nix
+    ./hyprsunset.nix
+  ];
 
   config = {
+    services.hyprpolkitagent.enable = false;
     wayland.windowManager.hyprland = {
       # configures Hyprland and adds it to your user’s PATH, but does not make certain system-level changes. the NixOS module makes system-level changes such as adding a desktop session entry.
       enable = true;

@@ -3,14 +3,14 @@
 {
   fonts = {
     enableDefaultPackages = true; # install basic fonts for unicode coverage
-    # enableGhostscriptFonts = true; #  URW fonts and the “Base-14” Postscript fonts) to the list of system fonts, making them available to X11 applications.
+    # enableGhostscriptFonts = true;
     fontconfig.defaultFonts = {
       serif = [ "IBM Plex Serif" ];
       sansSerif = [
+        "quicksand"
         "Inter"
         "nunito"
         "lato"
-        "quicksand"
         "IBM Plex Sans"
       ]; # DejaVu Sans::
       # emoji = ["Noto Color Emoji"];
@@ -22,28 +22,37 @@
     packages =
       with pkgs;
       [
-        jetbrains-mono
-        # font-awesome
-        texlivePackages.nunito
-        texlivePackages.plex
-        inter
-        quicksand
-        iosevka-comfy.comfy
-        ibm-plex
-        # inconsolata
-        lato # unneeded?
-        atkinson-hyperlegible-mono
+        # JAPAN
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
+        ipafont
+      ]
+      ++ [
+        # (texlive.withPackages (ps: [ ps.plex ]))
         # cascadia-code
         # fira-code
         # fira-math
+        # font-awesome
+        # ibm-plex
+        # inconsolata
         # office-code-pro # try
-        symbola # emacs fallback
+        # texlivePackages.nunito
+        # texlivePackages.plex
+        atkinson-hyperlegible-mono
+        inter
+        iosevka-comfy.comfy
+        jetbrains-mono
+        lato # unneeded?
+        nunito
+        nunito-sans # TODO: differentiate nunitos
+        quicksand
       ]
       ++ [
         # emacs fonts
         emacs-all-the-icons-fonts
         noto-fonts-color-emoji
         noto-fonts
+        symbola # emacs fallback
       ]
       ++ (with pkgs.nerd-fonts; [
         proggy-clean-tt

@@ -14,6 +14,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-craftapps = {
+      url = "github:olafkfreund/nix-craftapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # matugen = {
     # url = "github:InioX/Matugen";
     # If you need a specific version:
@@ -103,6 +108,7 @@
       unifiedModules = [
         disko.nixosModules.disko
         ./hosts/common/disko-BTRFS-LUKS.nix
+        inputs.nix-craftapps.nixosModules.default
         home.nixosModules.home-manager
         {
           home-manager = {
@@ -120,7 +126,6 @@
           };
         }
       ];
-
     in
     {
       nixosConfigurations.carthage = nixpkgs.lib.nixosSystem {

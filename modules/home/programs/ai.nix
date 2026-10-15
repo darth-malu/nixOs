@@ -3,7 +3,7 @@
   programs = {
     opencode = {
       enable = true;
-      package = pkgs.opencode;
+      # package = pkgs.opencode;
       extraPackages = [ pkgs.uv ];
       settings = {
         autoshare = false;
@@ -23,7 +23,7 @@
     };
 
     antigravity = {
-      enable = true;
+      enable = false;
       # defaultModel = "gemini-2.5-flash";
       mutableExtensionsDir = true;
       # context

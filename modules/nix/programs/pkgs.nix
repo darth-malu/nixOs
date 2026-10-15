@@ -5,7 +5,9 @@
   ...
 }:
 {
-  # services.udev.packages = [ pkgs.android-udev-rules ]; # NOTE: 'android-udev-rules' has been removed due to being superseded by built-in systemd uaccess rules.
+  imports = [
+    ./crafting.nix
+  ];
 
   # List of packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages =
@@ -25,7 +27,7 @@
       tailwindcss-language-server # for use with lsp-tailwind (emacs)
       tailwindcss_4
       typescript
-      typescript-language-server
+      # typescript-language-server #TODO broken
       # eas-cli
       nushell
       xonsh
@@ -121,11 +123,16 @@
       sway-audio-idle-inhibit
       # kdePackages.kclock # NOTE: broken jumpers/incrementers
       gnome-clocks
+      gnome-system-monitor
+      gnome-chess
       imagemagick # screenshot
       # sound-theme-freedesktop # free sounds
       # libcanberra-gtk3 # NOT needed anymore with quickshell
       kdePackages.kasts
       kdePackages.ksudoku
+      kdePackages.kalzium
+      kdePackages.kbookmarks
+      kdePackages.kbackup
       kdePackages.kservice
       kdePackages.konsole
       # KIO is a library that provides file manipulation and copying, remote file access, thumbnail previews, the Trash, the Places panel, and various other common file-related user interface components.

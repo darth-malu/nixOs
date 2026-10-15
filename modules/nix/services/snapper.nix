@@ -13,7 +13,18 @@
         TIMELINE_CLEANUP = true;
         TIMELINE_LIMIT_HOURLY = "0";
         TIMELINE_LIMIT_DAILY = "1";
-        TIMELINE_LIMIT_WEEKLY = "2";
+        TIMELINE_LIMIT_WEEKLY = "1";
+        TIMELINE_LIMIT_MONTHLY = "0";
+        TIMELINE_LIMIT_YEARLY = "0";
+      };
+      nix = {
+        SUBVOLUME = "/nix";
+        ALLOW_USERS = [ "malu" ];
+        TIMELINE_CREATE = true;
+        TIMELINE_CLEANUP = true;
+        TIMELINE_LIMIT_HOURLY = "0";
+        TIMELINE_LIMIT_DAILY = "1";
+        TIMELINE_LIMIT_WEEKLY = "1";
         TIMELINE_LIMIT_MONTHLY = "0";
         TIMELINE_LIMIT_YEARLY = "0";
       };

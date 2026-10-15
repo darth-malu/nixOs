@@ -124,6 +124,7 @@
       # kdePackages.kclock # NOTE: broken jumpers/incrementers
       gnome-clocks
       gnome-system-monitor
+      gnome-font-viewer
       gnome-chess
       imagemagick # screenshot
       # sound-theme-freedesktop # free sounds

@@ -5,13 +5,18 @@
     enableDefaultPackages = true; # install basic fonts for unicode coverage
     # enableGhostscriptFonts = true;
     fontconfig.defaultFonts = {
-      serif = [ "IBM Plex Serif" ];
+      serif = [
+        "fraunces"
+        "IBM Plex Serif"
+      ];
       sansSerif = [
+        "inter"
+        "playfair"
+        "work sans"
         "quicksand"
-        "Inter"
         "nunito"
         "lato"
-        "IBM Plex Sans"
+        # "IBM Plex Sans"
       ]; # DejaVu Sans::
       # emoji = ["Noto Color Emoji"];
       monospace = [
@@ -28,12 +33,31 @@
         ipafont
       ]
       ++ [
+        # SERIF
+        fraunces
+        source-serif-pro
+        eb-garamond
+        crimson-pro
+        lora
+        libre-baskerville
+      ]
+      ++ [
+        # SANS-SERIF
+        garamond-libre
+        # texlivePackages.ebgaramond
+        texlivePackages.playfair
+        work-sans
+        #manrope                 # SOurce Pulled --removed
+        karla
+        dm-sans
+        # ibm-plex
+      ]
+      ++ [
         # (texlive.withPackages (ps: [ ps.plex ]))
         # cascadia-code
         # fira-code
         # fira-math
         # font-awesome
-        # ibm-plex
         # inconsolata
         # office-code-pro # try
         # texlivePackages.nunito
